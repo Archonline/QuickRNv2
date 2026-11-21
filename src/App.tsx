@@ -1,4 +1,7 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import { db } from "./firebase";
+import { useAuth } from "./AuthContext";
 import { Activity, ArrowRight, BookOpen, Check, ChevronLeft, ChevronRight, CircleHelp, Clock3, Flame, GraduationCap, LayoutDashboard, Search, ShieldCheck, Target, X } from "lucide-react";
 import { questions } from "./questions";
 
@@ -10,6 +13,32 @@ export default function App() {
   const [selected, setSelected] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false);
   const [completed, setCompleted] = useState<string[]>([]);
+  const [progressLoaded, setProgressLoaded] = useState(false);
+  const { user, logOut } = useAuth();
+
+  useEffect(() => {
+    let active = true;
+    async function loadProgress() {
+      if (!user || !db) { setProgressLoaded(true); return; }
+      try {
+        const snapshot = await getDoc(doc(db, "users", user.uid, "progress", "default"));
+        if (active && snapshot.exists()) {
+          const ids = snapshot.data().completedQuestionIds;
+          if (Array.isArray(ids)) setCompleted(ids.filter((id): id is string => typeof id === "string"));
+        }
+      } catch (error) { console.error("Could not load learning progress", error); }
+      finally { if (active) setProgressLoaded(true); }
+    }
+    setProgressLoaded(false); void loadProgress();
+    return () => { active = false; };
+  }, [user]);
+
+  useEffect(() => {
+    if (!user || !db || !progressLoaded) return;
+    void setDoc(doc(db, "users", user.uid, "progress", "default"), {
+      completedQuestionIds: completed, updatedAt: serverTimestamp()
+    }, { merge: true }).catch(error => console.error("Could not save learning progress", error));
+  }, [user, completed, progressLoaded]);
   const [query, setQuery] = useState("");
   const filtered = useMemo(() => questions.filter((q) =>
     (active === "All topics" || q.category === active) &&
@@ -40,7 +69,7 @@ export default function App() {
     </aside>
 
     <main className="main-content">
-      <header className="topbar"><div className="breadcrumb">Learning space <span>/</span> <b>Dashboard</b></div><div className="top-right"><span className="status-dot"></span><span>Development workspace</span><div className="avatar">S</div></div></header>
+      <header className="topbar"><div className="breadcrumb">Learning space <span>/</span> <b>Dashboard</b></div><div className="top-right"><span className="status-dot"></span><span>{user?.email ?? "Learner account"}</span><button className="auth-logout" onClick={() => void logOut()}>Sign out</button><div className="avatar">{(user?.email?.[0] ?? "S").toUpperCase()}</div></div></header>
       <div className="content-wrap">
         <div className="welcome-row"><div><div className="eyebrow">YOUR NCLEX STUDY SPACE</div><h1>Build confidence, one question at a time.</h1><p className="subheading">Focused practice to help you strengthen clinical judgment and prepare with purpose.</p></div><div className="welcome-icon"><GraduationCap size={34}/></div></div>
 
