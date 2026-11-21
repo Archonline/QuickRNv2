@@ -1,9 +1,11 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import {
+  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
+  signInWithPopup,
   signOut,
   type User
 } from "firebase/auth";
@@ -14,6 +16,7 @@ type AuthValue = {
   loading: boolean;
   configured: boolean;
   signIn: (email: string, password: string) => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
   signUp: (email: string, password: string) => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   logOut: () => Promise<void>;
@@ -42,6 +45,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     signIn: async (email, password) => {
       if (!auth) throw new Error("Firebase is not configured. Add your Firebase web app settings first.");
       await signInWithEmailAndPassword(auth, email, password);
+    },
+    signInWithGoogle: async () => {
+      if (!auth) throw new Error("Firebase is not configured. Add your Firebase web app settings first.");
+      const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({ prompt: "select_account" });
+      await signInWithPopup(auth, provider);
     },
     signUp: async (email, password) => {
       if (!auth) throw new Error("Firebase is not configured. Add your Firebase web app settings first.");
