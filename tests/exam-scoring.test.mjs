@@ -12,7 +12,7 @@ const formats = [
   ["highlight-table", ["1"], ["1"], true],
   ["matrix-grid", ["Emergency", "Expected"], ["Emergency", "Expected"], true],
   ["ordered-response", ["0", "2", "1"], ["0", "1", "2"], false],
-  ["bow-tie", ["c0", "a1", "a0", "m0", "m1"], ["c0", "a0", "a1", "m0", "m1"], true],
+  ["bow-tie", ["c0", "a1-1", "a0-0", "m1-1", "m0-0"], ["c0", "a0-0", "a1-1", "m0-0", "m1-1"], true],
   ["trend", ["3"], ["3"], true],
   ["extended-drag-drop", ["2", "1", "0"], ["0", "1", "2"], false],
   ["graphics-based", ["2"], ["2"], true],
