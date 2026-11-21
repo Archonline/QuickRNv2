@@ -7,7 +7,9 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "set-admin": "node scripts/set-admin-claim.mjs"
+    "set-admin": "node scripts/set-admin-claim.mjs",
+    "test": "node --test",
+    "test:ngn": "node --experimental-strip-types scripts/test-ngn-formats.mjs"
   },
   "dependencies": {
     "firebase": "^11.6.0",
