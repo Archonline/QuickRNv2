@@ -1,0 +1,343 @@
+{
+  "blueprint_version": "1.0.0",
+  "bank": "QuickRNv2",
+  "purpose": "Standalone nursing topic taxonomy and seed-topic coverage for AI-generated NCLEX-RN practice questions.",
+  "coverage_policy": {
+    "use_all_domains": true,
+    "seed_topics_are_mandatory_coverage_targets": true,
+    "seed_topics_are_not_exhaustive": true,
+    "avoid_overconcentration": true,
+    "rotate_subtopics_and_client_needs": true
+  },
+  "domains": [
+    {
+      "id": "medical_surgical",
+      "name": "Medical-Surgical / Adult Health",
+      "topics": [
+        "Cardiovascular disorders",
+        "Respiratory disorders",
+        "Neurological disorders",
+        "Gastrointestinal disorders",
+        "Renal and urinary disorders",
+        "Endocrine disorders",
+        "Hematological disorders",
+        "Musculoskeletal disorders",
+        "Integumentary disorders",
+        "Immune disorders",
+        "Oncology",
+        "Fluid and electrolyte imbalances",
+        "Acid-base imbalances",
+        "Infectious diseases",
+        "Shock and multiple organ dysfunction",
+        "Emergency and critical care"
+      ],
+      "seed_conditions": [
+        "Heart failure",
+        "Acute coronary syndrome and myocardial infarction",
+        "Dysrhythmias",
+        "Stroke",
+        "Increased intracranial pressure",
+        "COPD",
+        "Asthma",
+        "Pneumonia",
+        "Pulmonary embolism",
+        "Tuberculosis",
+        "Sepsis",
+        "Hypovolemic shock",
+        "Burns",
+        "Acute kidney injury",
+        "Chronic kidney disease",
+        "Cirrhosis",
+        "Pancreatitis",
+        "Bowel obstruction",
+        "Diabetes mellitus",
+        "Diabetic ketoacidosis",
+        "Hyperosmolar hyperglycemic state",
+        "Addison disease",
+        "Cushing syndrome",
+        "Compartment syndrome",
+        "Postoperative complications"
+      ]
+    },
+    {
+      "id": "maternal_newborn",
+      "name": "Maternal and Newborn Nursing",
+      "topics": [
+        "Antepartum care",
+        "Intrapartum care",
+        "Postpartum care",
+        "Newborn care",
+        "High-risk pregnancy",
+        "Obstetric emergencies",
+        "Fetal monitoring",
+        "Labor and delivery complications",
+        "Maternal medication safety",
+        "Patient education"
+      ],
+      "seed_conditions": [
+        "Placental abruption (NGN case study)",
+        "Placenta previa",
+        "Umbilical cord prolapse",
+        "VEAL CHOP and fetal heart-rate interpretation",
+        "Preeclampsia",
+        "Eclampsia",
+        "HELLP syndrome",
+        "Postpartum hemorrhage",
+        "Uterine inversion",
+        "Shoulder dystocia",
+        "PROM and PPROM",
+        "Preterm labor",
+        "Oxytocin administration",
+        "Magnesium sulfate administration",
+        "Rh incompatibility",
+        "Neonatal respiratory distress"
+      ]
+    },
+    {
+      "id": "pediatrics",
+      "name": "Pediatric Nursing",
+      "topics": [
+        "Growth and development",
+        "Pediatric assessment",
+        "Congenital disorders",
+        "Pediatric respiratory disorders",
+        "Pediatric cardiovascular disorders",
+        "Pediatric neurological disorders",
+        "Pediatric emergencies",
+        "Immunization",
+        "Communicable diseases",
+        "Pediatric medication calculations"
+      ],
+      "seed_conditions": [
+        "Diphtheria",
+        "Pertussis",
+        "Epiglottitis",
+        "Croup",
+        "RSV",
+        "Kawasaki disease",
+        "Tetralogy of Fallot",
+        "Dehydration",
+        "Febrile seizures",
+        "Pediatric meningitis"
+      ]
+    },
+    {
+      "id": "pharmacology",
+      "name": "Pharmacology",
+      "topics": [
+        "Medication administration",
+        "Dosage calculations",
+        "High-alert medications",
+        "Drug interactions",
+        "Adverse reactions",
+        "Contraindications",
+        "Antidotes",
+        "Therapeutic drug monitoring",
+        "IV medication administration",
+        "Insulin",
+        "Anticoagulants",
+        "Antibiotics",
+        "Antihypertensives",
+        "Diuretics",
+        "Opioids",
+        "Sedatives",
+        "Cardiac medications",
+        "Psychiatric medications"
+      ],
+      "seed_conditions": []
+    },
+    {
+      "id": "fundamentals",
+      "name": "Fundamentals of Nursing",
+      "topics": [
+        "Infection prevention",
+        "Standard precautions",
+        "Transmission-based precautions",
+        "Sterile technique",
+        "Wound care",
+        "Pressure injury prevention",
+        "Oxygen therapy",
+        "Airway management",
+        "Suctioning",
+        "Tracheostomy care",
+        "Enteral feeding",
+        "Parenteral nutrition",
+        "IV therapy",
+        "Blood transfusion",
+        "Urinary catheterization",
+        "Patient positioning",
+        "Mobility and transfer",
+        "Restraints",
+        "Pain management",
+        "Nursing documentation"
+      ],
+      "seed_conditions": [
+        "Buck's traction management"
+      ]
+    },
+    {
+      "id": "mental_health",
+      "name": "Mental Health Nursing",
+      "topics": [
+        "Depression",
+        "Bipolar disorder",
+        "Schizophrenia",
+        "Anxiety disorders",
+        "Substance use disorders",
+        "Suicide prevention",
+        "Crisis intervention",
+        "Therapeutic communication",
+        "Personality disorders",
+        "Eating disorders",
+        "Psychiatric medications"
+      ],
+      "seed_conditions": []
+    },
+    {
+      "id": "community_health",
+      "name": "Community Health Nursing",
+      "topics": [
+        "Disease prevention",
+        "Health promotion",
+        "Epidemiology",
+        "Immunization",
+        "Environmental health",
+        "Disaster preparedness",
+        "Community assessment",
+        "Population health",
+        "Communicable disease control",
+        "Health teaching",
+        "Smoking cessation"
+      ],
+      "seed_conditions": [
+        "Smoking cessation education"
+      ]
+    },
+    {
+      "id": "leadership_management",
+      "name": "Leadership, Management and Professional Practice",
+      "topics": [
+        "Prioritization",
+        "Delegation",
+        "Assignment",
+        "Scope of practice",
+        "Ethical nursing practice",
+        "Legal responsibilities",
+        "Informed consent",
+        "Patient confidentiality",
+        "Incident reporting",
+        "Quality improvement",
+        "Conflict resolution",
+        "Interprofessional collaboration"
+      ],
+      "seed_conditions": []
+    },
+    {
+      "id": "priority_safety",
+      "name": "Priority and Patient Safety",
+      "topics": [
+        "Airway and breathing emergencies",
+        "Circulation and shock",
+        "Neurological deterioration",
+        "Postoperative complications",
+        "Medication safety",
+        "Fall prevention",
+        "Emergency response",
+        "Clinical prioritization"
+      ],
+      "seed_conditions": [
+        "Severe headache after lumbar puncture",
+        "Severe pain with suspected compartment syndrome",
+        "Acute respiratory distress",
+        "Anaphylaxis",
+        "Sepsis",
+        "Hypovolemic shock",
+        "Sudden neurological deterioration",
+        "Medication error",
+        "Fall risk",
+        "Airway obstruction"
+      ]
+    }
+  ],
+  "required_seed_coverage": [
+    {
+      "topic": "Diphtheria",
+      "domain": "pediatrics"
+    },
+    {
+      "topic": "Pertussis",
+      "domain": "pediatrics"
+    },
+    {
+      "topic": "Placental abruption",
+      "domain": "maternal_newborn",
+      "preferred_format": "case_study"
+    },
+    {
+      "topic": "Umbilical cord prolapse",
+      "domain": "maternal_newborn",
+      "clinical_emphasis": "fetal heart-rate interpretation and immediate nursing response"
+    },
+    {
+      "topic": "VEAL CHOP",
+      "domain": "maternal_newborn"
+    },
+    {
+      "topic": "Addison disease",
+      "domain": "medical_surgical"
+    },
+    {
+      "topic": "Cushing syndrome",
+      "domain": "medical_surgical"
+    },
+    {
+      "topic": "Smoking cessation",
+      "domain": "community_health"
+    },
+    {
+      "topic": "Severe headache after lumbar puncture",
+      "domain": "priority_safety"
+    },
+    {
+      "topic": "Buck's traction",
+      "domain": "fundamentals"
+    },
+    {
+      "topic": "Compartment syndrome with severe pain",
+      "domain": "priority_safety"
+    }
+  ],
+  "clinical_judgment_skills": [
+    "recognize_cues",
+    "analyze_cues",
+    "prioritize_hypotheses",
+    "generate_solutions",
+    "take_action",
+    "evaluate_outcomes"
+  ],
+  "question_formats": [
+    "multiple_choice",
+    "multiple_response",
+    "extended_multiple_response",
+    "matrix",
+    "cloze",
+    "highlight_text",
+    "highlight_table",
+    "bow_tie",
+    "trend",
+    "ordered_response",
+    "calculation",
+    "hot_spot",
+    "case_study"
+  ],
+  "client_needs_alignment": [
+    "Management of Care",
+    "Safety and Infection Control",
+    "Health Promotion and Maintenance",
+    "Psychosocial Integrity",
+    "Basic Care and Comfort",
+    "Pharmacological and Parenteral Therapies",
+    "Reduction of Risk Potential",
+    "Physiological Adaptation"
+  ]
+}
