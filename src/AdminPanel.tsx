@@ -18,7 +18,7 @@ export default function AdminPanel({onImported}:{onImported:()=>void}) {
     setBusy(true);
     try {
       const batch=writeBatch(db);
-      items.forEach((q,i)=>{
+      items.forEach((q)=>{
         const id=(q.id || crypto.randomUUID()).replace(/[^a-zA-Z0-9_-]/g,"-").slice(0,100);
         batch.set(doc(collection(db,"questions"),id),{category:q.category,topic:q.topic,difficulty:q.difficulty,prompt:q.prompt,options:q.options,answer:q.answer,rationale:q.rationale,status:"published",updatedAt:new Date()});
       });
