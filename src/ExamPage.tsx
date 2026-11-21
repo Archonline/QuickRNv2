@@ -16,7 +16,8 @@ export default function ExamPage({questions,onExit}:Props){
  const published=useMemo(()=>questions.filter(q=>q.status==="published"),[questions]);
  const [questionCount,setQuestionCount]=useState("85");
  const [started,setStarted]=useState(false);
- const [formatSampler,setFormatSampler]=useState(false);\n const exam=useMemo(()=>formatSampler?Object.keys(LABELS).map(type=>published.find(q=>(q.itemType??(q.format==="multiple"?"multiple-response":"single-response"))===type)).filter((q):q is Question=>!!q):published.slice(0,questionCount==="all"?published.length:Number(questionCount)),[published,questionCount,formatSampler]);
+ const [formatSampler,setFormatSampler]=useState(false);
+ const exam=useMemo(()=>formatSampler?Object.keys(LABELS).map(type=>published.find(q=>(q.itemType??(q.format==="multiple"?"multiple-response":"single-response"))===type)).filter((q):q is Question=>!!q):published.slice(0,questionCount==="all"?published.length:Number(questionCount)),[published,questionCount,formatSampler]);
  const [answers,setAnswers]=useState<Record<string,string[]>>({});
  const [current,setCurrent]=useState(0);
  const [flagged,setFlagged]=useState<string[]>([]);
