@@ -136,7 +136,7 @@ const extension: Question[] = Array.from({length:100},(_,i)=>{
   const isMatrixMultiple=type==="matrix-multiple";
   const isNumeric=type==="numeric-entry";
   const seed=isCaseScreen?caseStudySeeds[i]:isMatrixMultiple?matrixMultiSeed:isNumeric?numericSeed:seeds[i%seeds.length];
-  const prompt=isCaseScreen?seed.question:isMatrixMultiple?matrixMultiSeed.question:isNumeric?numericSeed.question:prompts[Math.floor(i/seeds.length)%prompts.length](seed);
+  const prompt=isCaseScreen?seed.question:isMatrixMultiple?matrixMultiSeed.patient+" "+matrixMultiSeed.question:isNumeric?numericSeed.patient+" "+numericSeed.question:prompts[Math.floor(i/seeds.length)%prompts.length](seed);
   const interaction=isCaseScreen?caseInteractions[i]:isMatrixMultiple?matrixMultiInteraction:buildInteraction(type,seed);
   return {
     id:"ngn-"+String(i+1).padStart(3,"0"),
