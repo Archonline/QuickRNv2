@@ -1,14 +1,15 @@
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 import { Activity, Mail, LockKeyhole } from "lucide-react";
 import { AuthProvider, useAuth } from "./AuthContext";
 
-function Gate({ children }: { children: React.ReactNode }) {
+function Gate({ children }: { children: ReactNode }) {
   const { user, loading, configured, signIn, signUp } = useAuth();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [demoMode, setDemoMode] = useState(false);
   async function submit(event: FormEvent) {
     event.preventDefault(); setError(""); setBusy(true);
     try { if (mode === "signup") await signUp(email.trim(), password); else await signIn(email.trim(), password); }
@@ -16,7 +17,7 @@ function Gate({ children }: { children: React.ReactNode }) {
     finally { setBusy(false); }
   }
   if (loading) return <div className="auth-screen"><div className="auth-card">Loading your learning space…</div></div>;
-  if (user) return <>{children}</>;
+  if (user || demoMode) return <>{children}</>;
   return <div className="auth-screen"><form className="auth-card" onSubmit={submit}>
     <div className="auth-brand"><span className="brand-mark"><Activity size={22}/></span><strong>quickrn</strong></div>
     <div className="eyebrow">YOUR NCLEX STUDY SPACE</div><h1>{mode === "signin" ? "Welcome back" : "Create your account"}</h1>
@@ -27,8 +28,9 @@ function Gate({ children }: { children: React.ReactNode }) {
     {error && <div className="auth-error" role="alert">{error}</div>}
     <button className="button primary auth-submit" disabled={busy || !configured}>{busy ? "Please wait…" : mode === "signin" ? "Sign in" : "Create account"}</button>
     <button type="button" className="auth-switch" onClick={()=>{setMode(mode === "signin" ? "signup" : "signin");setError("");}}>{mode === "signin" ? "New to QuickRN? Create an account" : "Already registered? Sign in"}</button>
+    {!configured && <button type="button" className="auth-switch" onClick={()=>setDemoMode(true)}>Continue in demo mode (progress not saved)</button>}
   </form></div>;
 }
-export default function AuthGate({ children }: { children: React.ReactNode }) {
+export default function AuthGate({ children }: { children: ReactNode }) {
   return <AuthProvider><Gate>{children}</Gate></AuthProvider>;
 }
