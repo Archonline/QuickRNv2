@@ -51,13 +51,13 @@ function buildInteraction(type:NclexItemType, seed:Seed, n:number) {
   const correct = String(seed.answer);
   const choices = seed.choices;
   const common = {instruction:formatInstructions[type],choices,correctResponse:[correct]};
-  if(type==="highlight-text"||type==="highlight-table") return {...common,segments:[seed.patient,seed.record,seed.question]};
+  if(type==="highlight-text"||type==="highlight-table") return {...common,correctResponse:["0"],segments:[seed.patient,seed.record,seed.question]};
   if(type==="drop-down-cloze"||type==="drop-down-table") return {...common,rows:["Priority interpretation","Immediate nursing response"],columns:choices};
-  if(type==="matrix-grid") return {...common,rows:["Finding 1: "+seed.topic,"Finding 2: vital-sign change","Finding 3: diagnostic result"],columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":n%3===0?"Emergency":"Needs follow-up","1":"Emergency","2":"Needs follow-up"}};
-  if(type==="ordered-response"||type==="extended-drag-drop") return {...common,orderItems:["Assess immediate safety and airway","Initiate the indicated emergency response","Carry out prescribed/authorized intervention","Reassess and document response"],correctOrder:[0,1,2,3]};
-  if(type==="bow-tie") return {...common,bowTie:{conditions:["Acute deterioration related to "+seed.topic,"Expected recovery finding","Chronic stable condition"],actions:choices,monitoring:["Vital signs and oxygenation","Relevant laboratory trend","Routine appetite","Hair and skin changes"],correctCondition:0,correctActions:[0,1],correctMonitoring:[0,1]}};
+  if(type==="matrix-grid") return {...common,correctResponse:["Emergency","Emergency","Needs follow-up"],rows:["Finding 1: "+seed.topic,"Finding 2: vital-sign change","Finding 3: diagnostic result"],columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Emergency","2":"Needs follow-up"}};
+  if(type==="ordered-response"||type==="extended-drag-drop") return {...common,correctResponse:["0","1","2","3"],orderItems:["Assess immediate safety and airway","Initiate the indicated emergency response","Carry out prescribed/authorized intervention","Reassess and document response"],correctOrder:[0,1,2,3]};
+  if(type==="bow-tie") return {...common,correctResponse:["c0","a0","a1","m0","m1"],bowTie:{conditions:["Acute deterioration related to "+seed.topic,"Expected recovery finding","Chronic stable condition"],actions:choices,monitoring:["Vital signs and oxygenation","Relevant laboratory trend","Routine appetite","Hair and skin changes"],correctCondition:0,correctActions:[0,1],correctMonitoring:[0,1]}};
   if(type==="trend") return {...common,trend:[{time:"Initial",findings:seed.patient},{time:"Current",findings:seed.record},{time:"Clinical question",findings:seed.question}]};
-  if(type==="graphics-based") return {...common,graphic:{title:seed.topic+" clinical reference",description:"Schematic teaching graphic; use the labeled regions with the clinical record.",labels:["Airway / breathing","Circulation / perfusion","Neurologic status","Affected body system"],correctLabels:[n%4]}};
+  if(type==="graphics-based") return {...common,correctResponse:[String(n%4)],graphic:{title:seed.topic+" clinical reference",description:"Schematic teaching graphic; use the labeled regions with the clinical record.",labels:["Airway / breathing","Circulation / perfusion","Neurologic status","Affected body system"],correctLabels:[n%4]}};
   return common;
 }
 
