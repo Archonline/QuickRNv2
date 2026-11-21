@@ -1,13 +1,20 @@
 import { useEffect, useMemo, useState } from "react";
-import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, limit, query as firestoreQuery, serverTimestamp, setDoc, where } from "firebase/firestore";
+import type { Question } from "./questions";
+import AdminPanel from "./AdminPanel";
+import { getIdTokenResult } from "firebase/auth";
 import { db } from "./firebase";
 import { useAuth } from "./AuthContext";
 import { Activity, ArrowRight, BookOpen, Check, ChevronLeft, ChevronRight, CircleHelp, Clock3, Flame, GraduationCap, LayoutDashboard, Search, ShieldCheck, Target, X } from "lucide-react";
 import { questions } from "./questions";
 
-const categories = ["All topics", ...Array.from(new Set(questions.map((q) => q.category)))];
+
 
 export default function App() {
+  const [bank, setBank] = useState<Question[]>(questions);
+  const [categories, setCategories] = useState<string[]>(["All topics", ...Array.from(new Set(questions.map((q) => q.category)))]);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showAdmin, setShowAdmin] = useState(false);
   const [active, setActive] = useState("All topics");
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -15,6 +22,34 @@ export default function App() {
   const [completed, setCompleted] = useState<string[]>([]);
   const [progressLoaded, setProgressLoaded] = useState(false);
   const { user, logOut } = useAuth();
+
+  useEffect(() => {
+    let active = true;
+    async function loadPublishedQuestions() {
+      if (!db || !user) return;
+      try {
+        const snapshot = await getDocs(firestoreQuery(collection(db, "questions"), where("status", "==", "published"), limit(300)));
+        if (!active || snapshot.empty) return;
+        const remote = snapshot.docs.map(item => ({ id: item.id, ...item.data() } as Question));
+        const merged = [...remote, ...questions];
+        setBank(merged);
+        setCategories(["All topics", ...Array.from(new Set(merged.map(q => q.category))) ]);
+      } catch (error) { console.error("Could not load published question bank", error); }
+    }
+    void loadPublishedQuestions();
+    return () => { active = false; };
+  }, [user]);
+
+  useEffect(() => {
+    let active = true;
+    async function checkAdmin() {
+      if (!user) { setIsAdmin(false); return; }
+      try { const token = await getIdTokenResult(user); if (active) setIsAdmin(token.claims.admin === true); }
+      catch { if (active) setIsAdmin(false); }
+    }
+    void checkAdmin();
+    return () => { active = false; };
+  }, [user]);
 
   useEffect(() => {
     let active = true;
@@ -40,10 +75,10 @@ export default function App() {
     }, { merge: true }).catch(error => console.error("Could not save learning progress", error));
   }, [user, completed, progressLoaded]);
   const [query, setQuery] = useState("");
-  const filtered = useMemo(() => questions.filter((q) =>
+  const filtered = useMemo(() => bank.filter((q) =>
     (active === "All topics" || q.category === active) &&
     (q.prompt.toLowerCase().includes(query.toLowerCase()) || q.topic.toLowerCase().includes(query.toLowerCase()))
-  ), [active, query]);
+  ), [active, query, bank]);
   const question = filtered[index];
   const correct = question ? selected === question.answer : false;
 
@@ -64,19 +99,21 @@ export default function App() {
       <button className="nav-item" onClick={() => document.getElementById("practice")?.scrollIntoView({behavior:"smooth"})}><BookOpen size={18}/> Practice questions</button>
       <button className="nav-item" onClick={() => changeCategory("All topics")}><GraduationCap size={18}/> Study topics</button>
       <div className="side-label spaced">YOUR PROGRESS</div>
-      <div className="progress-card"><div className="progress-icon"><Target size={17}/></div><div><strong>{completed.length} / {questions.length}</strong><span>Questions completed</span></div></div>
+      <div className="progress-card"><div className="progress-icon"><Target size={17}/></div><div><strong>{completed.length} / {bank.length}</strong><span>Questions completed</span></div></div>
       <div className="sidebar-bottom"><div className="help-icon"><CircleHelp size={17}/></div><div><strong>Keep learning</strong><span>Small steps add up.</span></div></div>
     </aside>
 
     <main className="main-content">
       <header className="topbar"><div className="breadcrumb">Learning space <span>/</span> <b>Dashboard</b></div><div className="top-right"><span className="status-dot"></span><span>{user?.email ?? "Learner account"}</span><button className="auth-logout" onClick={() => void logOut()}>Sign out</button><div className="avatar">{(user?.email?.[0] ?? "S").toUpperCase()}</div></div></header>
       <div className="content-wrap">
+        {isAdmin && <div className="admin-toolbar"><span>Administrator tools</span><button className="button secondary" onClick={() => setShowAdmin(v => !v)}>{showAdmin ? "Close importer" : "Open question importer"}</button></div>}
+        {showAdmin && isAdmin && db && <AdminPanel onImported={() => window.location.reload()} /> }
         <div className="welcome-row"><div><div className="eyebrow">YOUR NCLEX STUDY SPACE</div><h1>Build confidence, one question at a time.</h1><p className="subheading">Focused practice to help you strengthen clinical judgment and prepare with purpose.</p></div><div className="welcome-icon"><GraduationCap size={34}/></div></div>
 
         <div className="notice"><ShieldCheck size={18}/><div><strong>Development question set</strong><span>These sample items are for interface testing and learning-flow development only. They have not been clinically validated and are not an official NCLEX resource.</span></div></div>
 
         <section className="stats-grid">
-          <div className="stat-card"><div className="stat-icon purple"><BookOpen size={19}/></div><div className="stat-number">{questions.length}</div><div className="stat-label">Sample questions</div><div className="stat-foot">Across {categories.length - 1} topic areas</div></div>
+          <div className="stat-card"><div className="stat-icon purple"><BookOpen size={19}/></div><div className="stat-number">{bank.length}</div><div className="stat-label">Available questions</div><div className="stat-foot">Across {categories.length - 1} topic areas</div></div>
           <div className="stat-card"><div className="stat-icon green"><Check size={19}/></div><div className="stat-number">{completed.length}</div><div className="stat-label">Completed</div><div className="stat-foot">Keep your momentum going</div></div>
           <div className="stat-card"><div className="stat-icon orange"><Flame size={19}/></div><div className="stat-number">{completed.length ? "Active" : "Start"}</div><div className="stat-label">Study streak</div><div className="stat-foot">Build a consistent routine</div></div>
           <div className="stat-card"><div className="stat-icon blue"><Clock3 size={19}/></div><div className="stat-number">5–10</div><div className="stat-label">Daily minutes</div><div className="stat-foot">A little practice each day</div></div>
