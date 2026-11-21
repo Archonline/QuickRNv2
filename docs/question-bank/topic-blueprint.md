@@ -225,10 +225,10 @@ Do not label an ordinary single-best-answer item as NGN merely because it uses a
 
 ## 6. Recommended 500-item coverage plan
 This is a starting allocation; adjust to ensure all high-yield topics and integrated skills are represented:
-- Maternal-newborn / obstetrics: 65
-- Cardiovascular / perfusion: 65
-- Respiratory / airway: 35
-- Endocrine / metabolic: 40
+- Maternal-newborn / obstetrics: 60
+- Cardiovascular / perfusion: 60
+- Respiratory / airway: 30
+- Endocrine / metabolic: 35
 - Renal / urinary: 25
 - Neurologic: 40
 - Musculoskeletal / mobility: 30
@@ -239,9 +239,9 @@ This is a starting allocation; adjust to ensure all high-yield topics and integr
 - Pharmacology / medication teaching: 45
 - Pediatrics / growth and development: 25
 - Fundamentals / safety / ethics / delegation / prioritization: 40
-Total: 520
+Total: 500
 
-For a strict 500-item bank, reduce 20 items from overlapping categories after checking topic coverage; preserve at least 6 integrated case studies and a substantial number of prioritization/delegation items. Avoid double-counting an item across the total even when it has multiple tags.
+Preserve at least 6 integrated case studies and a substantial number of prioritization/delegation items. Avoid double-counting an item across the total even when it has multiple tags.
 
 ## 7. Quality and safety checks before publication
 - Verify each answer against current authoritative references and local scope-of-practice context where relevant.
