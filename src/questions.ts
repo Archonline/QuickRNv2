@@ -1,8 +1,14 @@
-export type NclexItemType =
-  | "single-response" | "multiple-response" | "extended-multiple-response"
-  | "drop-down-cloze" | "drop-down-table" | "highlight-text" | "highlight-table"
-  | "matrix-grid" | "ordered-response" | "bow-tie" | "trend"
-  | "extended-drag-drop" | "graphics-based";
+export type CanonicalNclexItemType =
+  | "single-response" | "multiple-response" | "select-n"
+  | "drop-down-cloze" | "drop-down-rationale" | "highlight-text"
+  | "matrix-multiple" | "matrix-single" | "numeric-entry"
+  | "ordered-response" | "bow-tie" | "drag-drop" | "trend";
+
+export type LegacyNclexItemType =
+  | "extended-multiple-response" | "drop-down-table" | "highlight-table"
+  | "matrix-grid" | "extended-drag-drop" | "graphics-based";
+
+export type NclexItemType = CanonicalNclexItemType | LegacyNclexItemType;
 
 export type QuestionInteraction = {
   instruction?: string;
@@ -13,6 +19,14 @@ export type QuestionInteraction = {
   columns?: string[];
   correctMatrix?: Record<string, string | string[]>;
   matrixMode?: "single" | "multiple";
+  selectCount?: number;
+  clozeChoicesByBlank?: string[][];
+  rationaleTemplate?: string;
+  rationaleChoicesByBlank?: string[][];
+  dragDropTemplate?: string;
+  dragDropChoices?: string[];
+  numericUnit?: string;
+  numericTolerance?: number;
   rowChoices?: string[][];
   clozeTemplate?: string;
   clozeChoices?: string[];
