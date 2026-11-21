@@ -19,13 +19,17 @@ function friendlyAuthError(error: unknown): string {
     "auth/too-many-requests": "Too many attempts. Wait a little while before trying again.",
     "auth/network-request-failed": "Network error. Check your internet connection and try again.",
     "auth/operation-not-allowed": "Email/password sign-in is disabled in Firebase Authentication settings.",
-    "auth/unauthorized-domain": "This website domain is not authorized in Firebase Authentication."
+    "auth/unauthorized-domain": "This website domain is not authorized in Firebase Authentication.",
+    "auth/popup-closed-by-user": "The Google sign-in window was closed before completing sign-in.",
+    "auth/popup-blocked": "Your browser blocked the Google sign-in window. Allow pop-ups and try again.",
+    "auth/cancelled-popup-request": "A Google sign-in window is already open. Finish that sign-in first.",
+    "auth/account-exists-with-different-credential": "An account already exists with this email using another sign-in method. Sign in with that method first."
   };
   return messages[code] ?? (error instanceof Error ? error.message : "Something went wrong. Please try again.");
 }
 
 function Gate({ children }: { children: ReactNode }) {
-  const { user, loading, configured, signIn, signUp, resetPassword } = useAuth();
+  const { user, loading, configured, signIn, signInWithGoogle, signUp, resetPassword } = useAuth();
   const [mode, setMode] = useState<AuthMode>("signin");
   const [showAuth, setShowAuth] = useState(false);
   const [email, setEmail] = useState("");
@@ -43,6 +47,19 @@ function Gate({ children }: { children: ReactNode }) {
     setNotice("");
     setPassword("");
     setConfirmPassword("");
+  }
+
+  async function continueWithGoogle() {
+    setError("");
+    setNotice("");
+    setBusy(true);
+    try {
+      await signInWithGoogle();
+    } catch (authError) {
+      setError(friendlyAuthError(authError));
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function submit(event: FormEvent<HTMLFormElement>) {
@@ -109,6 +126,15 @@ function Gate({ children }: { children: ReactNode }) {
             Firebase isn't connected yet. Add the Firebase web app configuration and enable Email/Password sign-in to activate accounts.
           </div>
         )}
+
+        {!isReset && <>
+          <button type="button" className="auth-google-button" onClick={continueWithGoogle}
+            disabled={busy || !configured}>
+            <span className="auth-google-mark" aria-hidden="true">G</span>
+            Continue with Google
+          </button>
+          <div className="auth-divider"><span>or continue with email</span></div>
+        </>}
 
         <label htmlFor="auth-email">Email address</label>
         <div className="auth-input">
