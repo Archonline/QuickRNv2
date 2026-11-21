@@ -1,4 +1,4 @@
-import type { CanonicalNclexItemType, Question, QuestionInteraction } from "./questions";
+import type { CanonicalNclexItemType, NclexItemType, Question, QuestionInteraction } from "./questions";
 import { questionBank500 } from "./questionBank";
 
 export const NCLEX_ITEM_TYPES: CanonicalNclexItemType[] = [
@@ -68,7 +68,7 @@ const formatInstructions: Record<CanonicalNclexItemType,string> = {
 "trend":"Interpret the change in the clinical findings over time."
 };
 
-function buildInteraction(type:CanonicalNclexItemType, seed:Seed, n:number) {
+function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
   const correct=String(seed.answer);
   const choices=seed.choices;
   const common={instruction:formatInstructions[type],choices,correctResponse:[correct]};
@@ -137,7 +137,7 @@ const extension: Question[] = Array.from({length:100},(_,i)=>{
   const isNumeric=type==="numeric-entry";
   const seed=isCaseScreen?caseStudySeeds[i]:isMatrixMultiple?matrixMultiSeed:isNumeric?numericSeed:seeds[i%seeds.length];
   const prompt=isCaseScreen?seed.question:isMatrixMultiple?matrixMultiSeed.question:isNumeric?numericSeed.question:prompts[Math.floor(i/seeds.length)%prompts.length](seed);
-  const interaction=isCaseScreen?caseInteractions[i]:isMatrixMultiple?matrixMultiInteraction:buildInteraction(type,seed,i);
+  const interaction=isCaseScreen?caseInteractions[i]:isMatrixMultiple?matrixMultiInteraction:buildInteraction(type,seed);
   return {
     id:"ngn-"+String(i+1).padStart(3,"0"),
     category:seed.category,
