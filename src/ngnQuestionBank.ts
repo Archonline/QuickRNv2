@@ -73,7 +73,8 @@ const prompts = [
   (s:Seed)=>"Which additional assessment finding would most strongly support the priority concern in this client? "+s.patient,
   (s:Seed)=>"Which provider order should the nurse clarify before implementation? "+s.patient,
   (s:Seed)=>"Which change best indicates that the immediate intervention has been effective? "+s.patient,
-  (s:Seed)=>"Which information should the nurse communicate during an urgent handoff? "+s.patient
+  (s:Seed)=>"Which information should the nurse communicate during an urgent handoff? "+s.patient,
+  (s:Seed)=>"After the nursing interventions are implemented, which outcome should the nurse evaluate first? "+s.patient
 ];
 const extension: Question[] = Array.from({length:100},(_,i)=>{
   const seed=seeds[i%seeds.length];
@@ -94,7 +95,7 @@ const extension: Question[] = Array.from({length:100},(_,i)=>{
     interaction:buildInteraction(type,seed,i),
     caseStudy:seed.patient,
     exhibit:seed.record,
-    caseStudyId:"ngn-case-"+String(i%seeds.length+1).padStart(2,"0"),
+    caseStudyId:i<6?"ngn-case-01":undefined,
     clinicalJudgmentStep:(["recognize-cues","analyze-cues","prioritize-hypotheses","generate-solutions","take-action","evaluate-outcomes"] as const)[i%6],
     contentVersion:2,
     reviewStatus:"generated"
