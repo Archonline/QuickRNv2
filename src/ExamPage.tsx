@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, CheckCircle2, Clock3, Flag, List, X, ChevronUp, ChevronDown, Menu, Calculator, FileText, AlertCircle, ClipboardList } from "lucide-react";
+import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, CheckCircle2, Clock3, Flag, X, ChevronUp, ChevronDown, Menu, Calculator, FileText, AlertCircle, ClipboardList } from "lucide-react";
 import type { NclexItemType, Question, QuestionInteraction } from "./questions";
 
 type Props={questions:Question[];onExit:()=>void};
