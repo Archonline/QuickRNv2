@@ -17,6 +17,7 @@ export type QuestionInteraction = {
   segments?: string[];
   rows?: string[];
   columns?: string[];
+  matrixGroups?: { label: string; options: string[] }[];
   correctMatrix?: Record<string, string | string[]>;
   matrixMode?: "single" | "multiple";
   selectCount?: number;
