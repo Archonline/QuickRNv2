@@ -19,7 +19,9 @@ service cloud.firestore {
         allow create, update: if isOwner(uid)
           && request.resource.data.keys().hasOnly(['completedQuestionIds','correctQuestionIds','updatedAt'])
           && request.resource.data.completedQuestionIds is list
-          && request.resource.data.completedQuestionIds.size() <= 10000;
+          && request.resource.data.completedQuestionIds.size() <= 10000
+          && request.resource.data.correctQuestionIds is list
+          && request.resource.data.correctQuestionIds.size() <= 10000;
         allow delete: if isOwner(uid);
       }
     }
