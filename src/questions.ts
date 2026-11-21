@@ -11,7 +11,12 @@ export type QuestionInteraction = {
   segments?: string[];
   rows?: string[];
   columns?: string[];
-  correctMatrix?: Record<string, string>;
+  correctMatrix?: Record<string, string | string[]>;
+  matrixMode?: "single" | "multiple";
+  rowChoices?: string[][];
+  clozeTemplate?: string;
+  clozeChoices?: string[];
+  optionRationales?: string[];
   orderItems?: string[];
   correctOrder?: number[];
   bowTie?: { conditions: string[]; actions: string[]; monitoring: string[]; correctCondition: number; correctActions: number[]; correctMonitoring: number[] };
@@ -38,6 +43,15 @@ export type Question = {
   reviewStatus?: "generated" | "editorially-reviewed" | "clinically-reviewed";
   caseStudy?: string;
   exhibit?: string;
+  caseRecord?: {
+    progressNotes?: string;
+    history?: string;
+    medicationList?: string;
+    assessment?: string;
+    vitalSigns?: string;
+    labs?: string;
+    providerOrders?: string;
+  };
 };
 
 // Illustrative development items only. These are not an approved or validated NCLEX bank.
