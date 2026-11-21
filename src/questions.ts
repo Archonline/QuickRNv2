@@ -8,6 +8,9 @@ export type Question = {
   answer: number;
   rationale: string;
   status: "development" | "published";
+  format?: "single" | "multiple" | "case-study";
+  caseStudy?: string;
+  exhibit?: string;
 };
 
 // Illustrative development items only. These are not an approved or validated NCLEX bank.
