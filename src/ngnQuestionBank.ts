@@ -56,7 +56,7 @@ function buildInteraction(type:NclexItemType, seed:Seed, n:number) {
     return {...common,choices:multiChoices,correctResponse:[correct,"4"]};
   }
   if(type==="drop-down-table") return {...common,correctResponse:[correct,correct],rows:["Clinical interpretation","Nursing response"]};
-  if(type==="highlight-text"||type==="highlight-table") return {...common,correctResponse:["0"],segments:[...seed.patient.split(". "),...seed.record.split("; ")]};
+  if(type==="highlight-text"||type==="highlight-table") { const segments=[...seed.patient.split(". "),...seed.record.split("; ")]; return {...common,correctResponse:[segments[0]],segments}; }
   if(type==="drop-down-cloze") return {...common,correctResponse:[correct,correct],rows:["Priority interpretation","Immediate nursing response"],columns:choices};
   if(type==="matrix-grid") return {...common,correctResponse:["Emergency","Emergency","Needs follow-up"],rows:["Finding 1: "+seed.topic,"Finding 2: vital-sign change","Finding 3: diagnostic result"],columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Emergency","2":"Needs follow-up"}};
   if(type==="ordered-response"||type==="extended-drag-drop") return {...common,correctResponse:["0","1","2","3"],orderItems:["Assess immediate safety and airway","Initiate the indicated emergency response","Carry out prescribed/authorized intervention","Reassess and document response"],correctOrder:[0,1,2,3]};
