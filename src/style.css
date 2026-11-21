@@ -300,3 +300,5 @@
 .ngn-bowtie-tile.selected{background:#e6f2fa!important;border-color:#6d9db9!important}
 @media(max-width:850px){.exam-layout-case{grid-template-columns:1fr!important}.exam-record-panel{min-height:0!important;border-right:0!important;border-bottom:2px solid #d6d9dd!important}.exam-main-case{padding:22px 18px!important}.ngn-bowtie-workspace{grid-template-columns:1fr!important}}
 @media(max-width:560px){.exam-record-panel{padding:17px 14px!important}.exam-record-tabs button{padding:8px 9px!important;font-size:10px!important}.exam-main-case{padding:20px 14px!important}.ngn-dragdrop-bank{grid-template-columns:1fr}.ngn-bowtie-diagram{grid-template-columns:1fr}}
+
+.ngn-trend{display:block;overflow-x:auto}.ngn-trend table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #cbd7e1}.ngn-trend th,.ngn-trend td{padding:11px 12px;border:1px solid #d8e1e8;text-align:left;vertical-align:top;font-size:11px;line-height:1.55;white-space:pre-line}.ngn-trend thead th{background:#eaf1f6;color:#36536a;font-weight:700}.ngn-trend tbody th{width:110px;background:#f6f9fb;color:#36536a}
