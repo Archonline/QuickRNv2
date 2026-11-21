@@ -44,7 +44,8 @@ const exam=useMemo(()=>{const formatType=(q:Question)=>q.itemType??(q.format==="
 
  const done=Object.keys(answers).filter(k=>(answers[k]??[]).some(value=>value!=="")).length;
  const expected=(q:Question)=>q.interaction?.correctResponse??[String(q.answer)];
- const correct=(q:Question)=>responseIsCorrect(q.itemType??(q.format==="multiple"?"multiple-response":"single-response"),answers[q.id]??[],expected(q),q.interaction?.numericTolerance);
+ const isQuestionCorrect=(q:Question,actual:string[])=>{const itemType=q.itemType??(q.format==="multiple"?"multiple-response":"single-response");const target=expected(q);if(itemType==="numeric-entry"){if(actual.length!==1||target.length!==1)return false;const value=Number(actual[0]),key=Number(target[0]);return Number.isFinite(value)&&Number.isFinite(key)&&Math.abs(value-key)<=(q.interaction?.numericTolerance??0);}return responseIsCorrect(itemType,actual,target);};
+ const correct=(q:Question)=>isQuestionCorrect(q,answers[q.id]??[]);
  const score=exam.reduce((n,q)=>n+(correct(q)?1:0),0);
  const selected=item?(answers[item.id]??[]):[];
  const setResponse=(values:string[])=>{if(item)setAnswers(old=>({...old,[item.id]:values}));};
@@ -128,7 +129,7 @@ const exam=useMemo(()=>{const formatType=(q:Question)=>q.itemType??(q.format==="
   const q=exam[reviewIndex]??exam[0];
   const response=answers[q.id]??[];
   const expectedResponse=expected(q);
-  const isCorrect=responseIsCorrect(q.itemType??(q.format==="multiple"?"multiple-response":"single-response"),response,expectedResponse,q.interaction?.numericTolerance);
+  const isCorrect=isQuestionCorrect(q,response);
   const qData:QuestionInteraction=q.interaction??{choices:q.options,correctResponse:[String(q.answer)]};
   const reviewRecordTabs:{key:"notes"|"history"|"medications"|"assessment"|"vitals"|"labs"|"orders";label:string;content:string}[]=q.caseRecord?[
    {key:"notes",label:"Progress Notes",content:q.caseRecord.progressNotes??q.caseStudy??""},
