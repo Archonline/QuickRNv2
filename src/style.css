@@ -168,3 +168,32 @@
   flex: 1;
   background: #e5e9f0;
 }
+
+
+/* NGN response controls */
+.ngn-matrix{overflow-x:auto;margin:18px 0;border:1px solid #dbe3ed;border-radius:12px}
+.ngn-matrix table{width:100%;border-collapse:collapse;min-width:560px;background:#fff}
+.ngn-matrix th,.ngn-matrix td{padding:12px;border-bottom:1px solid #e6ebf2;text-align:left;font-size:13px}
+.ngn-matrix thead th{background:#f4f7fb;color:#34445a}
+.ngn-matrix td label{display:flex;gap:6px;align-items:center}
+.ngn-highlight{display:grid;gap:10px;margin:18px 0}
+.ngn-highlight button{padding:14px;text-align:left;line-height:1.6;border:1px solid #dbe3ed;border-radius:10px;background:#fff;color:#27364b}
+.ngn-highlight button.selected,.ngn-graphic-labels button.selected{background:#fff2c6;border-color:#d7a52b}
+.ngn-dropdown{display:grid;gap:14px;margin:18px 0}
+.ngn-dropdown label,.ngn-bowtie>label:not(.ngn-check){display:grid;gap:7px;font-weight:600;color:#334155}
+.ngn-dropdown select,.ngn-bowtie select{padding:11px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;color:#1e293b;max-width:100%}
+.ngn-order{display:grid;gap:9px;margin:18px 0}
+.ngn-order-row{display:flex;align-items:center;gap:8px;padding:11px 13px;border:1px solid #dbe3ed;border-radius:10px;background:#fff}
+.ngn-order-row span{flex:1;font-size:14px}
+.ngn-order-row button{border:1px solid #dbe3ed;border-radius:7px;background:#f8fafc;padding:7px;display:inline-flex;align-items:center}
+.ngn-order-row button:disabled{opacity:.35}
+.ngn-bowtie{display:grid;gap:12px;margin:18px 0;padding:16px;border:1px solid #dbe3ed;border-radius:12px;background:#f8fafc}
+.ngn-check{display:flex;gap:9px;align-items:flex-start;padding:9px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-weight:400}
+.ngn-trend{display:grid;gap:10px;margin:18px 0}
+.ngn-trend>div{padding:13px;border-left:3px solid #64748b;background:#f8fafc;border-radius:0 9px 9px 0}
+.ngn-trend p{margin:5px 0 0;line-height:1.5}
+.ngn-graphic{margin:18px 0;padding:16px;border:1px solid #dbe3ed;border-radius:12px;background:#f8fafc}
+.ngn-graphic-figure>strong{font-size:16px}
+.ngn-graphic-labels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.ngn-graphic-labels button{padding:14px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;text-align:left;color:#27364b}
+@media(max-width:640px){.ngn-graphic-labels{grid-template-columns:1fr}.ngn-order-row{flex-wrap:wrap}}
