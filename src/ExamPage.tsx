@@ -58,7 +58,6 @@ export default function ExamPage({questions,onExit}:Props){
   <header className="exam-header"><div className="exam-brand"><span className="exam-brand-mark">Q</span><div><strong>QuickRN</strong><small>RN LICENSURE PRACTICE</small></div></div><div className="exam-header-center"><strong>NCLEX-RN Practice Examination</strong><span>Self-paced examination</span></div><button type="button" className="exam-exit" onClick={()=>setFinished(true)}>End exam</button></header>
   <div className="exam-session-bar"><span><i/> Examination in progress</span><span>Self-paced · no time limit</span><span>{done} of {exam.length} answered</span></div>
   <div className="exam-layout">
-   }
    <main className="exam-main">
     <div className="exam-main-top"><div><span className="exam-question-counter">QUESTION {current+1} <i>OF</i> {exam.length}</span><span className="exam-format-pill">{LABELS[type]}</span></div><button type="button" className={flagged.includes(item.id)?"exam-flag active":"exam-flag"} onClick={()=>setFlagged(v=>v.includes(item.id)?v.filter(x=>x!==item.id):[...v,item.id])}>{flagged.includes(item.id)?<BookmarkCheck size={17}/>:<Bookmark size={17}/>} {flagged.includes(item.id)?"Remove flag":"Flag for review"}</button></div>
     {item.caseStudy&&<section className="exam-case"><div className="exam-case-label"><FileText size={15}/> CLIENT RECORD · {item.caseStudyId?"UNFOLDING CASE STUDY":"CLINICAL SCENARIO"}</div><p>{item.caseStudy}</p>{item.exhibit&&<details><summary>View clinical exhibit</summary><p>{item.exhibit}</p></details>}</section>}
