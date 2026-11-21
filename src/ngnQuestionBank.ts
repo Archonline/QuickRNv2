@@ -85,7 +85,7 @@ function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
   if(type==="ordered-response") return {...common,correctResponse:["0","1","2","3"],orderItems:["Assess immediate safety and airway","Initiate the indicated emergency response","Carry out prescribed/authorized intervention","Reassess and document response"],correctOrder:[0,1,2,3]};
   if(type==="drag-drop") return {...common,correctResponse:["0","1"],dragDropTemplate:"The nurse should first [BLANK_1] and then [BLANK_2].",dragDropChoices:["Assess immediate safety and airway","Activate the indicated emergency response","Complete routine documentation","Provide routine education"]};
   if(type==="bow-tie") return {...common,correctResponse:["c0","a0-0","a1-1","m0-0","m1-1"],bowTie:{conditions:["Acute deterioration related to "+seed.topic,"Expected recovery finding","Chronic stable condition"],actions:choices,monitoring:["Vital signs and oxygenation","Relevant laboratory trend","Routine appetite","Hair and skin changes"],correctCondition:0,correctActions:[0,1],correctMonitoring:[0,1]}};
-  if(type==="trend") return {...common,trend:[{time:"Initial",findings:seed.patient},{time:"Current",findings:seed.record},{time:"Clinical question",findings:seed.question}]};
+  if(type==="trend") return {...common,trend:[{time:"Initial",findings:seed.patient},{time:"Current",findings:seed.record}]};
   return common;
 }
 
