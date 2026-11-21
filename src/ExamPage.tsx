@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, CheckCircle2, X, ChevronUp, ChevronDown, Calculator, FileText, AlertCircle, ClipboardList } from "lucide-react";
 import type { NclexItemType, Question, QuestionInteraction } from "./questions";
+import { responseIsCorrect } from "./examScoring.js";
 
 type Props={questions:Question[];onExit:()=>void};
 const LETTERS=["A","B","C","D","E","F","G","H"];
@@ -10,8 +11,7 @@ const LABELS:Record<NclexItemType,string>={
  "highlight-table":"Highlight table","matrix-grid":"Matrix / grid","ordered-response":"Ordered response",
  "bow-tie":"Bow-tie","trend":"Trend","extended-drag-drop":"Drag and drop","graphics-based":"Graphics-based"
 };
-function sameSet(a:string[],b:string[]){return a.length===b.length&&a.every(x=>b.includes(x));}
-function responseIsCorrect(type:NclexItemType,actual:string[],expected:string[]){if(type==="ordered-response"||type==="extended-drag-drop"||type==="matrix-grid"||type==="drop-down-table"||type==="drop-down-cloze")return actual.length===expected.length&&actual.every((value,index)=>value===expected[index]);return sameSet(actual,expected);}
+
 export default function ExamPage({questions,onExit}:Props){
  const published=useMemo(()=>questions.filter(q=>q.status==="published"),[questions]);
  const [questionCount,setQuestionCount]=useState("85");
