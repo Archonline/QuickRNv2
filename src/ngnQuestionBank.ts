@@ -51,6 +51,11 @@ function buildInteraction(type:NclexItemType, seed:Seed, n:number) {
   const correct = String(seed.answer);
   const choices = seed.choices;
   const common = {instruction:formatInstructions[type],choices,correctResponse:[correct]};
+  if(type==="multiple-response"||type==="extended-multiple-response") {
+    const multiChoices=[...choices,"Reassess the client after the immediate intervention and document the response."];
+    return {...common,choices:multiChoices,correctResponse:[correct,"4"]};
+  }
+  if(type==="drop-down-table") return {...common,correctResponse:[correct,correct],rows:["Clinical interpretation","Nursing response"]};
   if(type==="highlight-text"||type==="highlight-table") return {...common,correctResponse:["0"],segments:[seed.patient,seed.record,seed.question]};
   if(type==="drop-down-cloze"||type==="drop-down-table") return {...common,rows:["Priority interpretation","Immediate nursing response"],columns:choices};
   if(type==="matrix-grid") return {...common,correctResponse:["Emergency","Emergency","Needs follow-up"],rows:["Finding 1: "+seed.topic,"Finding 2: vital-sign change","Finding 3: diagnostic result"],columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Emergency","2":"Needs follow-up"}};
