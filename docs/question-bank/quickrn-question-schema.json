@@ -1,0 +1,460 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quickrnv2.local/schemas/question-bank-1.0.0.json",
+  "title": "QuickRNv2 Question Bank Batch",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "bank",
+    "batch",
+    "questions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "bank": {
+      "const": "QuickRNv2"
+    },
+    "batch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_id",
+        "sequence",
+        "requested_count",
+        "generated_count",
+        "first_question_id",
+        "last_question_id",
+        "status"
+      ],
+      "properties": {
+        "batch_id": {
+          "type": "string",
+          "pattern": "^QRN-BATCH-[0-9]{3,}$"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "requested_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "generated_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "first_question_id": {
+          "type": "string",
+          "pattern": "^QRN-[0-9]{6}$"
+        },
+        "last_question_id": {
+          "type": "string",
+          "pattern": "^QRN-[0-9]{6}$"
+        },
+        "status": {
+          "enum": [
+            "complete",
+            "partial"
+          ]
+        }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/question"
+      }
+    }
+  },
+  "$defs": {
+    "clinicalScenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "patient_profile",
+        "assessment",
+        "vital_signs",
+        "laboratory_results",
+        "diagnostic_results",
+        "medications",
+        "provider_orders"
+      ],
+      "properties": {
+        "patient_profile": {
+          "type": "object"
+        },
+        "assessment": {
+          "type": "object"
+        },
+        "vital_signs": {
+          "type": "object"
+        },
+        "laboratory_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "value",
+              "unit"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "number"
+                ]
+              },
+              "unit": {
+                "type": "string"
+              },
+              "reference_range": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "interpretation": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "diagnostic_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "test_name",
+              "findings"
+            ],
+            "properties": {
+              "test_name": {
+                "type": "string"
+              },
+              "findings": {
+                "type": "string"
+              },
+              "interpretation": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "medications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "dose": {
+                "type": [
+                  "string",
+                  "number",
+                  "null"
+                ]
+              },
+              "route": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "frequency": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "details": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "provider_orders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "order"
+            ],
+            "properties": {
+              "order": {
+                "type": "string"
+              },
+              "dose": {
+                "type": [
+                  "string",
+                  "number",
+                  "null"
+                ]
+              },
+              "route": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "frequency": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "instructions": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "option": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "text"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "max_points"
+      ],
+      "properties": {
+        "method": {
+          "enum": [
+            "exact_match",
+            "plus_minus",
+            "per_cell",
+            "per_blank",
+            "per_component",
+            "sequence",
+            "numeric_tolerance",
+            "coordinate_region"
+          ]
+        },
+        "max_points": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "partial_credit": {
+          "type": [
+            "boolean",
+            "string"
+          ]
+        },
+        "rules": {
+          "type": "object"
+        }
+      }
+    },
+    "interaction": {
+      "type": "object",
+      "description": "Must match question_type. Format-specific requirements are enforced by validation rules and application renderer."
+    },
+    "correctResponse": {
+      "type": "object",
+      "minProperties": 1
+    },
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "topic",
+        "subtopic",
+        "specialty",
+        "difficulty",
+        "question_type",
+        "clinical_scenario",
+        "stem",
+        "interaction",
+        "correct_response",
+        "scoring",
+        "rationales",
+        "clinical_judgment",
+        "tags",
+        "estimated_time_seconds",
+        "case_study_id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^QRN-[0-9]{6}$"
+        },
+        "topic": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subtopic": {
+          "type": "string",
+          "minLength": 1
+        },
+        "specialty": {
+          "type": "string",
+          "minLength": 1
+        },
+        "difficulty": {
+          "enum": [
+            "moderate",
+            "difficult",
+            "very_difficult"
+          ]
+        },
+        "question_type": {
+          "enum": [
+            "multiple_choice",
+            "multiple_response",
+            "extended_multiple_response",
+            "matrix",
+            "cloze",
+            "highlight_text",
+            "highlight_table",
+            "bow_tie",
+            "trend",
+            "ordered_response",
+            "calculation",
+            "hot_spot",
+            "case_study"
+          ]
+        },
+        "clinical_scenario": {
+          "$ref": "#/$defs/clinicalScenario"
+        },
+        "stem": {
+          "type": "string",
+          "minLength": 1
+        },
+        "interaction": {
+          "$ref": "#/$defs/interaction"
+        },
+        "correct_response": {
+          "$ref": "#/$defs/correctResponse"
+        },
+        "scoring": {
+          "$ref": "#/$defs/scoring"
+        },
+        "rationales": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "correct",
+            "incorrect"
+          ],
+          "properties": {
+            "correct": {
+              "type": "string",
+              "minLength": 1
+            },
+            "incorrect": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "option_id",
+                  "rationale"
+                ],
+                "properties": {
+                  "option_id": {
+                    "type": "string"
+                  },
+                  "rationale": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "clinical_judgment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "skill",
+            "explanation"
+          ],
+          "properties": {
+            "skill": {
+              "enum": [
+                "recognize_cues",
+                "analyze_cues",
+                "prioritize_hypotheses",
+                "generate_solutions",
+                "take_action",
+                "evaluate_outcomes"
+              ]
+            },
+            "explanation": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "estimated_time_seconds": {
+          "type": "integer",
+          "minimum": 15,
+          "maximum": 1800
+        },
+        "case_study_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^QRN-CASE-[0-9]{4,}$"
+        }
+      }
+    }
+  }
+}
