@@ -70,7 +70,7 @@ const exam=useMemo(()=>{const formatType=(q:Question)=>q.itemType??(q.format==="
   {key:"vitals",label:"Vital Signs",content:caseRecord.vitalSigns??vitalLines.join("\n")},
   {key:"labs",label:"Lab Results",content:caseRecord.labs??exhibitText},
   {key:"orders",label:"Provider Orders",content:caseRecord.providerOrders??orderText},
-  {key:"flowsheet",label:"Flow Sheet",content:[caseRecord.vitalSigns,caseRecord.assessment,caseRecord.labs].filter(Boolean).join("\n\n")||"No additional flow-sheet observations are documented."}
+  {key:"flowsheet",label:"Flow Sheet",content:currentCaseItems.slice(0,caseScreen).map((entry,index)=>"Screen "+(index+1)+" · "+(entry.caseRecord?.progressNotes??"Clinical update")+"\n"+(entry.caseRecord?.vitalSigns??"")).join("\n\n")+(caseRecord.assessment?"\n\nCurrent assessment\n"+caseRecord.assessment:"")+(caseRecord.labs?"\n\nCurrent labs\n"+caseRecord.labs:"")||"No additional flow-sheet observations are documented."}
  ]:[
   {key:"notes",label:"Nurses’ Notes",content:recordText},
   {key:"vitals",label:"Vital Signs",content:vitalLines.join("\n")||"Review the Nurses’ Notes for documented vital signs and assessment findings."},
