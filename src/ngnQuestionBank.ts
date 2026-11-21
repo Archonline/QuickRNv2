@@ -84,7 +84,7 @@ const extension: Question[] = Array.from({length:100},(_,i)=>{
     category:seed.category,
     topic:seed.topic,
     difficulty:i%4===0?"Advanced":i%3===0?"Foundational":"Intermediate",
-    prompt,
+    prompt: type==="multiple-response"?"Which nursing actions are appropriate? Select all that apply. "+prompt:type==="extended-multiple-response"?"Select every applicable finding and nursing action. "+prompt:type==="ordered-response"||type==="extended-drag-drop"?"Arrange the nursing actions in the safest sequence for this client. "+prompt:prompt,
     options:seed.choices,
     answer:seed.answer,
     rationale:seed.rationale,
