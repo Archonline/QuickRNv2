@@ -237,3 +237,66 @@
 /* Native answer controls: radio for single response, checkbox for multi-response */
 .exam-options{display:grid;gap:0;margin:10px 0 20px}.exam-option{display:grid;grid-template-columns:18px 24px minmax(0,1fr);align-items:start;gap:9px;width:100%;padding:13px 8px;border:0;border-bottom:1px solid #e2e7ec;border-radius:0;background:#fff;color:#25364a;text-align:left;font:400 12px/1.65 'DM Sans';cursor:pointer}.exam-option:hover{background:#f6fafc;border-color:#c6d6e1}.exam-option.selected{background:#eef7fb;border-bottom-color:#b9d2e1}.exam-option input{width:16px;height:16px;margin:3px 0 0;accent-color:#0876aa;cursor:pointer}.exam-option input:disabled{cursor:not-allowed}.exam-option-letter{width:auto;height:auto;display:inline;color:#344b5e;border:0;border-radius:0;background:transparent;font-size:12px;font-weight:700;line-height:1.65}.exam-option-text{min-width:0;font-size:12px;line-height:1.65;color:#263b50}.exam-option-check{display:none}.exam-option.multi input{border-radius:3px}
 @media(max-width:650px){.exam-option{grid-template-columns:18px 22px minmax(0,1fr);gap:7px;padding:11px 4px}.exam-option-text{font-size:11px}}
+
+
+/* Screenshot-matched NCLEX/NGN split clinical workstation */
+.exam-layout-case{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:0!important;max-width:none!important;min-height:calc(100vh - 110px);padding:0!important;background:#fff}
+.exam-record-panel{position:relative;min-width:0;min-height:calc(100vh - 110px);padding:24px 24px 36px!important;background:#fff!important;border:0!important;border-right:2px solid #d6d9dd!important;overflow:auto}
+.exam-record-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;color:#0875ad}
+.exam-record-heading>div>span{display:block;font-size:9px;letter-spacing:.8px;color:#65778a}
+.exam-record-heading>div>strong{display:block;font-size:13px;color:#263746;margin-top:4px}
+.exam-record-client{margin:0 0 14px!important;padding:0!important;background:transparent!important;border:0!important}
+.exam-record-client strong{font-size:14px!important;color:#202b36}
+.exam-record-client span{font-size:11px!important;color:#687887}
+.exam-record-tabs{display:flex!important;flex-wrap:wrap!important;gap:3px!important;border:0!important;border-bottom:1px solid #9ca8b3!important;margin:12px 0 0}
+.exam-record-tabs button{padding:10px 13px!important;border:1px solid #d5dce3!important;border-bottom:0!important;border-radius:5px 5px 0 0!important;background:#f3f5f7!important;color:#33485a!important;font-size:11px!important}
+.exam-record-tabs button.active{background:#fff!important;border-color:#8c9aa7!important;color:#172b3d!important;position:relative;z-index:1;margin-bottom:-1px;border-bottom:1px solid #fff!important;font-weight:700}
+.exam-record-content{border:1px solid #8c9aa7!important;border-top:0!important;min-height:220px!important;padding:18px 16px!important;background:#fff!important;color:#202b36!important;font-size:12px!important;line-height:1.75!important}
+.exam-record-content h3{font-size:12px!important;margin:0 0 10px!important;color:#263746}
+.exam-record-content p{white-space:pre-wrap!important;line-height:1.75!important}
+.exam-record-footer{font-size:9px!important;color:#8995a0!important;margin-top:12px}
+.exam-main-case{min-width:0!important;max-width:none!important;margin:0!important;padding:34px 34px 50px!important;border:0!important;border-radius:0!important;background:#fff!important}
+.exam-main-case .exam-main-top{margin-bottom:24px}
+.exam-main-case .exam-stem{font-size:17px;line-height:1.65;font-weight:500}
+.exam-main-case .exam-item-meta{display:none}
+.exam-main-case .exam-card-kicker{display:none}
+.exam-main-case .exam-instruction{font-size:13px;line-height:1.65;margin:14px 0 20px}
+.exam-main-case .exam-response-label{display:none}
+.exam-main-case .exam-question-card{border:0}
+.exam-main-case .exam-option{border:0;border-radius:0;padding:10px 4px;grid-template-columns:20px 1fr;gap:12px;font-size:13px}
+.exam-main-case .exam-option-letter{display:none}
+.exam-main-case .exam-option input{width:17px;height:17px;accent-color:#0876aa}
+.exam-main-case .exam-controls{margin-top:28px}
+.exam-case{background:#fff;border:1px solid #d4dbe2;border-radius:0;padding:17px 16px}
+.exam-case-label{font-size:10px}
+.exam-case p{font-size:12px;line-height:1.75}
+.ngn-highlight-passage{border:1px solid #9ca8b3!important;padding:17px 18px!important;line-height:1.9!important;font-size:13px!important;min-height:150px;background:#fff}
+.ngn-highlight-passage mark{background:#fff16a;color:#202020;padding:0 1px}
+.ngn-highlight-selections{margin-top:12px}
+.ngn-dropdown{margin:18px 0}
+.ngn-cloze-sentence{font-size:14px;line-height:2.6;color:#202b36}
+.ngn-cloze-sentence select{display:inline-block;min-width:150px;max-width:100%;margin:3px 5px;padding:8px 30px 8px 10px;border:1px solid #aab7c3;border-radius:3px;background:#fff;font-size:12px;color:#263746}
+.ngn-dragdrop{margin:18px 0}
+.ngn-dragdrop>p{font-size:12px;line-height:1.6}
+.ngn-dragdrop-sentence{font-size:13px;line-height:2.7;margin:15px 0 22px}
+.ngn-dragdrop-slot{display:inline-flex;vertical-align:middle;min-width:155px;min-height:34px;align-items:center;justify-content:center;padding:5px 9px;margin:0 4px;border:1px solid #9eabb6;background:#f5f8fa;color:#536474;font-size:11px}
+.ngn-dragdrop-slot.filled{background:#edf5ef;border-color:#9ab5a1}
+.ngn-dragdrop-slot button{border:0;background:transparent;color:#263746;font-size:11px;cursor:pointer}
+.ngn-dragdrop-bank{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;border:1px solid #cbd4dc;padding:10px}
+.ngn-dragdrop-bank strong{grid-column:1/-1;font-size:11px}
+.ngn-dragdrop-bank button{padding:9px;text-align:left;border:1px solid #d1d9e0;background:#f7f9fa;font-size:11px;cursor:grab}
+.ngn-dragdrop-bank button:disabled{opacity:.4;cursor:default}
+.ngn-matrix table{font-size:11px}
+.ngn-matrix th{background:#f2e8f5;color:#283849}
+.ngn-matrix td{text-align:center}
+.ngn-matrix .exam-radio-cell{display:flex;align-items:center;justify-content:center;gap:5px;font-size:10px}
+.ngn-matrix .exam-radio-cell span{display:none}
+.ngn-bowtie-workspace{grid-template-columns:minmax(180px,.75fr) minmax(0,1.25fr)!important;gap:14px}
+.ngn-bowtie-diagram{grid-template-columns:1fr 1fr 1fr}
+.ngn-bowtie-drop-slot{min-height:52px;border:1px solid #aab6c0;background:#f7f9fa;padding:7px;text-align:center;font-size:10px}
+.ngn-bowtie-drop-slot.filled{background:#edf5ef;border-color:#8eaa98}
+.ngn-bowtie-drop-slot button{border:0;background:transparent;font-size:10px;cursor:pointer}
+.ngn-bowtie-tile{padding:8px!important;border:1px solid #cbd4dc!important;background:#f7f9fa!important;text-align:left!important;font-size:10px!important;cursor:grab}
+.ngn-bowtie-tile.selected{background:#e6f2fa!important;border-color:#6d9db9!important}
+@media(max-width:850px){.exam-layout-case{grid-template-columns:1fr!important}.exam-record-panel{min-height:0!important;border-right:0!important;border-bottom:2px solid #d6d9dd!important}.exam-main-case{padding:22px 18px!important}.ngn-bowtie-workspace{grid-template-columns:1fr!important}}
+@media(max-width:560px){.exam-record-panel{padding:17px 14px!important}.exam-record-tabs button{padding:8px 9px!important;font-size:10px!important}.exam-main-case{padding:20px 14px!important}.ngn-dragdrop-bank{grid-template-columns:1fr}.ngn-bowtie-diagram{grid-template-columns:1fr}}
