@@ -58,7 +58,7 @@ function buildInteraction(type:NclexItemType, seed:Seed, n:number) {
   if(type==="drop-down-table") return {...common,correctResponse:["0:0","1:"+correct],rows:["Clinical interpretation","Nursing response"],rowChoices:[["Acute clinical concern","Expected finding","Unrelated finding"],choices]};
   if(type==="highlight-text"||type==="highlight-table") { const segments=[...seed.patient.split(". "),...seed.record.split("; ")]; return {...common,correctResponse:type==="highlight-text"?[segments[0]]:["0"],segments}; }
   if(type==="drop-down-cloze") return {...common,correctResponse:[correct],clozeTemplate:"The priority nursing response is [BLANK_1].",clozeChoices:choices};
-  if(type==="matrix-grid") return {...common,correctResponse:["0:Emergency","1:Emergency","2:Needs follow-up"],matrixMode:"single",rows:["Finding 1: "+seed.topic,"Finding 2: vital-sign change","Finding 3: diagnostic result"],columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Emergency","2":"Needs follow-up"}};
+  if(type==="matrix-grid") return {...common,correctResponse:["0:2","1:2","2:1"],matrixMode:"single",rows:["Finding 1: "+seed.topic,"Finding 2: vital-sign change","Finding 3: diagnostic result"],columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Emergency","2":"Needs follow-up"}};
   if(type==="ordered-response"||type==="extended-drag-drop") return {...common,correctResponse:["0","1","2","3"],orderItems:["Assess immediate safety and airway","Initiate the indicated emergency response","Carry out prescribed/authorized intervention","Reassess and document response"],correctOrder:[0,1,2,3]};
   if(type==="bow-tie") return {...common,correctResponse:["c0","a0","a1","m0","m1"],bowTie:{conditions:["Acute deterioration related to "+seed.topic,"Expected recovery finding","Chronic stable condition"],actions:choices,monitoring:["Vital signs and oxygenation","Relevant laboratory trend","Routine appetite","Hair and skin changes"],correctCondition:0,correctActions:[0,1],correctMonitoring:[0,1]}};
   if(type==="trend") return {...common,trend:[{time:"Initial",findings:seed.patient},{time:"Current",findings:seed.record},{time:"Clinical question",findings:seed.question}]};
@@ -110,7 +110,7 @@ const extension: Question[] = Array.from({length:100},(_,i)=>{
     category:seed.category,
     topic:seed.topic,
     difficulty:i%4===0?"Advanced":i%3===0?"Foundational":"Intermediate",
-    prompt:type==="multiple-response"||type==="extended-multiple-response"&&!isCaseScreen?"Which nursing actions are appropriate? Select all that apply. "+prompt:type==="extended-multiple-response"?"Select every applicable finding and nursing action. "+prompt:type==="ordered-response"||type==="extended-drag-drop"?"Arrange the nursing actions in the safest sequence for this client. "+prompt:prompt,
+    prompt:!isCaseScreen&&type==="multiple-response"?"Which nursing actions are appropriate? Select all that apply. "+prompt:!isCaseScreen&&type==="extended-multiple-response"?"Select every applicable finding and nursing action. "+prompt:!isCaseScreen&&(type==="ordered-response"||type==="extended-drag-drop")?"Arrange the nursing actions in the safest sequence for this client. "+prompt:prompt,
     options:seed.choices,
     answer:seed.answer,
     rationale:seed.rationale,
