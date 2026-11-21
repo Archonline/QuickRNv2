@@ -7,7 +7,7 @@ export type Question = {
   options: string[];
   answer: number;
   rationale: string;
-  status: "development";
+  status: "development" | "published";
 };
 
 // Illustrative development items only. These are not an approved or validated NCLEX bank.
