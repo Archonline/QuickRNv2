@@ -131,14 +131,15 @@ const exam=useMemo(()=>{const formatType=(q:Question)=>q.itemType??(q.format==="
   const expectedResponse=expected(q);
   const isCorrect=isQuestionCorrect(q,response);
   const qData:QuestionInteraction=q.interaction??{choices:q.options,correctResponse:[String(q.answer)]};
-  const reviewRecordTabs:{key:"notes"|"history"|"medications"|"assessment"|"vitals"|"labs"|"orders";label:string;content:string}[]=q.caseRecord?[
+  const reviewRecordTabs:{key:"notes"|"history"|"medications"|"assessment"|"vitals"|"labs"|"orders"|"flowsheet";label:string;content:string}[]=q.caseRecord?[
    {key:"notes",label:"Progress Notes",content:q.caseRecord.progressNotes??q.caseStudy??""},
    {key:"history",label:"History",content:q.caseRecord.history??"No additional history is documented."},
    {key:"medications",label:"Medication List",content:q.caseRecord.medicationList??"No medication list is documented."},
    {key:"assessment",label:"Assessment",content:q.caseRecord.assessment??"No separate assessment is documented."},
    {key:"vitals",label:"Vital Signs",content:q.caseRecord.vitalSigns??"No separate vital-sign record is documented."},
    {key:"labs",label:"Lab Results",content:q.caseRecord.labs??q.exhibit??"No laboratory results are documented."},
-   {key:"orders",label:"Provider Orders",content:q.caseRecord.providerOrders??"No separate provider orders are documented."}
+   {key:"orders",label:"Provider Orders",content:q.caseRecord.providerOrders??"No separate provider orders are documented."},
+   {key:"flowsheet",label:"Flow Sheet",content:exam.filter(entry=>entry.caseStudyId===q.caseStudyId&&exam.indexOf(entry)<=reviewIndex).map((entry,index)=>"Screen "+(index+1)+" · "+(entry.caseRecord?.progressNotes??"Clinical update")+"\n"+(entry.caseRecord?.vitalSigns??"")).join("\n\n")}
   ]:[];
   const reviewRecordActive=reviewRecordTabs.find(tab=>tab.key===activeRecordTab)??reviewRecordTabs[0];
   const actualLabels=reviewLabels(q,response);
