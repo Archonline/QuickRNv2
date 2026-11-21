@@ -84,7 +84,7 @@ const exam=useMemo(()=>{if(formatSampler)return Object.keys(LABELS).map(type=>pu
  const reviewLabels=(q:Question,values:string[])=>{
   if(!values.length)return ["Not answered"];
   const t=q.itemType??(q.format==="multiple"?"multiple-response":"single-response");
-  const d=q.interaction??{choices:q.options,correctResponse:[String(q.answer)]};
+  const d:QuestionInteraction=q.interaction??{choices:q.options,correctResponse:[String(q.answer)]};
   const opts=d.choices??q.options;
   if(t==="matrix-grid")return values.map(v=>{const [row,...rest]=v.split(":");const ri=Number(row);return (d.rows?.[ri]??"Finding "+(ri+1))+": "+rest.join(":");});
   if(t==="drop-down-table")return values.map(v=>{const [row,...rest]=v.split(":");const ri=Number(row),choice=Number(rest.join(":"));return (d.rows?.[ri]??"Row "+(ri+1))+": "+(d.rowChoices?.[ri]?.[choice]??opts[choice]??rest.join(":"));});
@@ -100,14 +100,14 @@ const exam=useMemo(()=>{if(formatSampler)return Object.keys(LABELS).map(type=>pu
  if(!started)return <div className="exam-screen exam-setup"><header className="exam-header"><div className="exam-brand"><span className="exam-brand-mark">Q</span><div><strong>QuickRN</strong><small>RN LICENSURE PRACTICE</small></div></div><button type="button" className="exam-exit" onClick={onExit}>Exit</button></header><main className="exam-setup-content"><div className="exam-setup-kicker">SELF-PACED PRACTICE EXAM</div><h1>Choose your examination length</h1><p>Work through the questions at your own pace. There is no countdown timer.</p><div className="exam-length-options">{[{value:"20",label:"20 questions",detail:"Quick practice"},{value:"60",label:"60 questions",detail:"Focused session"},{value:"85",label:"85 questions",detail:"NCLEX-length practice"},{value:"150",label:"150 questions",detail:"Extended practice"},{value:"all",label:"All questions",detail:published.length+" available"}].map(o=><button type="button" key={o.value} className={!formatSampler&&questionCount===o.value?"active":""} onClick={()=>{setFormatSampler(false);setQuestionCount(o.value);}}><strong>{o.label}</strong><span>{o.detail}</span></button>)}</div><button type="button" className={"exam-format-sampler "+(formatSampler?"active":"")} onClick={()=>setFormatSampler(true)}><strong>13-format NGN sampler</strong><span>One published item from each supported interaction format</span></button><button type="button" className="exam-start-button" onClick={()=>{setStarted(true);setCurrent(0);setAnswers({});setFlagged([]);setFinished(false);setSubmitted(false);}}>Begin examination <ArrowRight size={18}/></button><div className="exam-setup-note"><span>Self-paced</span><span>Responses save automatically</span><span>Review before submission</span></div></main></div>;
  if(!item)return <div className="exam-screen"><div className="exam-empty"><h2>No questions in this examination</h2><button className="exam-next" onClick={onExit}>Return to QuickRN</button></div></div>;
  const reviewItems=exam.map((q,i)=>({q,i})).filter(({q})=>reviewFilter==="all"||(reviewFilter==="incorrect"&&(answers[q.id]?.length??0)>0&&!correct(q))||(reviewFilter==="unanswered"&&!(answers[q.id]?.length))||(reviewFilter==="flagged"&&flagged.includes(q.id)));
- const submitExam=()=>{setFinished(false);setSubmitted(true);};
+ const submitExam=()=>{setFinished(false);setReviewIndex(0);setSubmitted(true);};
 
  if(submitted){
   const q=exam[reviewIndex]??exam[0];
   const response=answers[q.id]??[];
   const expectedResponse=expected(q);
   const isCorrect=responseIsCorrect(q.itemType??(q.format==="multiple"?"multiple-response":"single-response"),response,expectedResponse);
-  const qData=q.interaction??{choices:q.options,correctResponse:[String(q.answer)]};
+  const qData:QuestionInteraction=q.interaction??{choices:q.options,correctResponse:[String(q.answer)]};
   const actualLabels=reviewLabels(q,response);
   const correctLabels=reviewLabels(q,expectedResponse);
   const status=response.length===0?"Unanswered":isCorrect?"Correct":"Incorrect";
