@@ -3,3 +3,5 @@ dist
 .env
 .env.local
 *.tsbuildinfo
+service-account*.json
+*-firebase-adminsdk-*.json
