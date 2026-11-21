@@ -21,8 +21,8 @@ const formats = [
 for (const [type, actual, expected, wanted] of formats) {
   test(type + " scoring", () => assert.equal(responseIsCorrect(type, actual, expected), wanted));
 }
-test("matrix and ordered responses are position-sensitive", () => {
-  assert.equal(responseIsCorrect("matrix-grid", ["Emergency", "Expected"], ["Expected", "Emergency"]), false);
+test("matrix selections are order-independent while ordered responses are position-sensitive", () => {
+  assert.equal(responseIsCorrect("matrix-grid", ["Emergency", "Expected"], ["Expected", "Emergency"]), true);
   assert.equal(responseIsCorrect("ordered-response", ["1", "0"], ["0", "1"]), false);
 });
 test("empty and incomplete answers are never correct", () => {
