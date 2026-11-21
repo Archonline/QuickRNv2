@@ -1,0 +1,295 @@
+{
+  "rules_version": "1.0.0",
+  "bank": "QuickRNv2",
+  "validation_stages": [
+    "json_parse",
+    "schema_validation",
+    "semantic_validation",
+    "clinical_consistency_review",
+    "asset_readiness",
+    "duplicate_detection",
+    "render_smoke_test"
+  ],
+  "manifest": {
+    "batch_id_pattern": "^QRN-BATCH-[0-9]{3,}$",
+    "question_id_pattern": "^QRN-[0-9]{6}$",
+    "case_id_pattern": "^QRN-CASE-[0-9]{4,}$",
+    "generated_count_must_equal_questions_length": true,
+    "first_and_last_ids_must_match_array_boundaries": true,
+    "complete_status_requires_requested_count": true,
+    "partial_status_requires_generated_count_less_than_requested_count": true
+  },
+  "question_integrity": {
+    "unique_question_ids_within_batch": true,
+    "unique_case_study_ids_for_distinct_cases": true,
+    "all_required_fields_present": true,
+    "no_undeclared_top_level_or_question_fields": true,
+    "valid_difficulty_values": [
+      "moderate",
+      "difficult",
+      "very_difficult"
+    ],
+    "valid_question_types": [
+      "multiple_choice",
+      "multiple_response",
+      "extended_multiple_response",
+      "matrix",
+      "cloze",
+      "highlight_text",
+      "highlight_table",
+      "bow_tie",
+      "trend",
+      "ordered_response",
+      "calculation",
+      "hot_spot",
+      "case_study"
+    ],
+    "valid_clinical_judgment_skills": [
+      "recognize_cues",
+      "analyze_cues",
+      "prioritize_hypotheses",
+      "generate_solutions",
+      "take_action",
+      "evaluate_outcomes"
+    ]
+  },
+  "interaction_validation": {
+    "multiple_choice": {
+      "required": [
+        "options",
+        "selection_mode"
+      ],
+      "selection_mode": "single",
+      "minimum_options": 2,
+      "correct_response_keys": [
+        "selected_option"
+      ]
+    },
+    "multiple_response": {
+      "required": [
+        "options",
+        "selection_mode"
+      ],
+      "selection_mode": "multiple",
+      "minimum_options": 4,
+      "correct_response_keys": [
+        "selected_options"
+      ]
+    },
+    "extended_multiple_response": {
+      "required": [
+        "options",
+        "selection_mode",
+        "min_selections",
+        "max_selections"
+      ],
+      "selection_mode": "multiple",
+      "minimum_options": 6,
+      "correct_response_keys": [
+        "selected_options"
+      ]
+    },
+    "matrix": {
+      "required": [
+        "rows",
+        "columns",
+        "selection_mode"
+      ],
+      "selection_mode": "single_per_row",
+      "correct_response_keys": [
+        "selections"
+      ]
+    },
+    "cloze": {
+      "required": [
+        "segments"
+      ],
+      "correct_response_keys": [
+        "selections"
+      ]
+    },
+    "highlight_text": {
+      "required": [
+        "passage",
+        "segments",
+        "selection_mode"
+      ],
+      "correct_response_keys": [
+        "selected_segments"
+      ]
+    },
+    "highlight_table": {
+      "required": [
+        "headers",
+        "rows",
+        "selectable_cells",
+        "selection_mode"
+      ],
+      "correct_response_keys": [
+        "selected_cells"
+      ]
+    },
+    "bow_tie": {
+      "required": [
+        "condition_options",
+        "action_options",
+        "parameter_options",
+        "required_selections"
+      ],
+      "correct_response_keys": [
+        "condition",
+        "actions",
+        "parameters"
+      ]
+    },
+    "trend": {
+      "required": [
+        "observations",
+        "options",
+        "selection_mode"
+      ],
+      "selection_mode": "single",
+      "minimum_observations": 2,
+      "correct_response_keys": [
+        "selected_option"
+      ]
+    },
+    "ordered_response": {
+      "required": [
+        "items",
+        "instruction"
+      ],
+      "correct_response_keys": [
+        "ordered_items"
+      ]
+    },
+    "calculation": {
+      "required": [
+        "calculation_type",
+        "given_data",
+        "required_unit",
+        "decimal_places",
+        "tolerance"
+      ],
+      "correct_response_keys": [
+        "value",
+        "unit"
+      ]
+    },
+    "hot_spot": {
+      "required": [
+        "image_reference",
+        "coordinate_system",
+        "selection_mode",
+        "target_region"
+      ],
+      "correct_response_keys": [
+        "x",
+        "y",
+        "tolerance_radius"
+      ]
+    },
+    "case_study": {
+      "required": [
+        "case_id",
+        "stage",
+        "total_stages",
+        "patient_record",
+        "follow_up",
+        "linked_question_ids"
+      ],
+      "requires_shared_case_study_id": true
+    }
+  },
+  "answer_validation": {
+    "correct_response_must_reference_existing_interaction_ids": true,
+    "single_best_answer_must_have_exactly_one_keyed_option": true,
+    "multi_select_must_have_at_least_one_correct_option": true,
+    "matrix_must_key_each_required_row": true,
+    "cloze_must_key_each_segment": true,
+    "highlight_ids_must_exist": true,
+    "bow_tie_selection_counts_must_match_required_selections": true,
+    "ordered_response_must_contain_each_item_once": true,
+    "calculation_answer_must_include_unit": true,
+    "hot_spot_coordinates_must_be_within_coordinate_system": true
+  },
+  "rationale_and_scoring": {
+    "correct_rationale_required": true,
+    "incorrect_option_rationales_required_for_option_based_items": true,
+    "scoring_method_must_be_allowed": true,
+    "allowed_scoring_methods": [
+      "exact_match",
+      "plus_minus",
+      "per_cell",
+      "per_blank",
+      "per_component",
+      "sequence",
+      "numeric_tolerance",
+      "coordinate_region"
+    ],
+    "max_points_must_be_positive": true,
+    "final_score_floor": 0,
+    "partial_credit_behavior_must_be_defined_when_applicable": true
+  },
+  "clinical_consistency_checks": {
+    "vital_signs_must_include_units_or_unambiguous_units": true,
+    "laboratory_values_must_include_units": true,
+    "reference_ranges_recommended_when_interpretation_depends_on_them": true,
+    "diagnostic_findings_must_support_the_case_or_be_explained": true,
+    "medication_dose_route_and_frequency_must_be_consistent_when_provided": true,
+    "provider_orders_must_not_contradict_themselves": true,
+    "chronology_must_be_plausible": true,
+    "do_not_force_irrelevant_clinical_fields": true,
+    "clinical_red_flags_require_safe_prioritization": true
+  },
+  "case_study_validation": {
+    "all_linked_questions_must_share_case_study_id": true,
+    "all_linked_question_ids_must_exist_in_batch_or_declared_prior_context": true,
+    "stage_numbers_must_be_valid": true,
+    "patient_context_must_be_continuous": true,
+    "follow_up_must_add_or_update_relevant_information": true,
+    "do_not_duplicate_same_static_scenario_as_multiple_stages": true
+  },
+  "asset_readiness": {
+    "hot_spot_requires_real_supplied_asset_before_publish": true,
+    "asset_id_must_be_stable": true,
+    "never_invent_asset_url": true,
+    "missing_asset_status": "required",
+    "items_with_missing_required_assets_are_not_publish_ready": true
+  },
+  "batch_distribution": {
+    "difficulty_targets_per_100": {
+      "moderate": 20,
+      "difficult": 50,
+      "very_difficult": 30
+    },
+    "minimum_target_per_question_format_per_100": 5,
+    "report_actual_counts": true,
+    "do_not_falsify_distribution_when_output_is_partial": true
+  },
+  "duplicate_detection": {
+    "check_exact_stem_duplicates": true,
+    "check_normalized_stem_similarity": true,
+    "check_repeated_patient_profiles": true,
+    "check_repeated_vital_sign_patterns": true,
+    "check_repeated_lab_and_diagnostic_patterns": true,
+    "check_repeated_learning_objectives": true,
+    "cross_batch_comparison_requires_prior_batch_data": true,
+    "never_claim_unseen_batches_were_checked": true
+  },
+  "publication_gate": {
+    "required_passes": [
+      "json_parse",
+      "schema_validation",
+      "semantic_validation",
+      "answer_key_validation",
+      "rationale_validation",
+      "clinical_consistency_review",
+      "duplicate_detection",
+      "render_smoke_test"
+    ],
+    "hot_spot_asset_must_be_ready": true,
+    "automated_validation_is_not_human_clinical_review": true,
+    "official_nclex_endorsement_must_not_be_claimed": true
+  }
+}
