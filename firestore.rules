@@ -17,7 +17,7 @@ service cloud.firestore {
       match /progress/{progressId} {
         allow read: if isOwner(uid);
         allow create, update: if isOwner(uid)
-          && request.resource.data.keys().hasOnly(['completedQuestionIds','updatedAt'])
+          && request.resource.data.keys().hasOnly(['completedQuestionIds','correctQuestionIds','updatedAt'])
           && request.resource.data.completedQuestionIds is list
           && request.resource.data.completedQuestionIds.size() <= 10000;
         allow delete: if isOwner(uid);
