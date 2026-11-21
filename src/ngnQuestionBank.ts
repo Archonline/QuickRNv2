@@ -55,10 +55,10 @@ function buildInteraction(type:NclexItemType, seed:Seed, n:number) {
     const multiChoices=[...choices,"Reassess the client after the immediate intervention and document the response."];
     return {...common,choices:multiChoices,correctResponse:[correct,"4"]};
   }
-  if(type==="drop-down-table") return {...common,correctResponse:[correct,correct],rows:["Clinical interpretation","Nursing response"]};
+  if(type==="drop-down-table") return {...common,correctResponse:["0:0","1:"+correct],rows:["Clinical interpretation","Nursing response"],rowChoices:[["Acute clinical concern","Expected finding","Unrelated finding"],choices]};
   if(type==="highlight-text"||type==="highlight-table") { const segments=[...seed.patient.split(". "),...seed.record.split("; ")]; return {...common,correctResponse:type==="highlight-text"?[segments[0]]:["0"],segments}; }
-  if(type==="drop-down-cloze") return {...common,correctResponse:[correct,correct],rows:["Priority interpretation","Immediate nursing response"],columns:choices};
-  if(type==="matrix-grid") return {...common,correctResponse:["Emergency","Emergency","Needs follow-up"],rows:["Finding 1: "+seed.topic,"Finding 2: vital-sign change","Finding 3: diagnostic result"],columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Emergency","2":"Needs follow-up"}};
+  if(type==="drop-down-cloze") return {...common,correctResponse:[correct],clozeTemplate:"The priority nursing response is [BLANK_1].",clozeChoices:choices};
+  if(type==="matrix-grid") return {...common,correctResponse:["0:Emergency","1:Emergency","2:Needs follow-up"],matrixMode:"single",rows:["Finding 1: "+seed.topic,"Finding 2: vital-sign change","Finding 3: diagnostic result"],columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Emergency","2":"Needs follow-up"}};
   if(type==="ordered-response"||type==="extended-drag-drop") return {...common,correctResponse:["0","1","2","3"],orderItems:["Assess immediate safety and airway","Initiate the indicated emergency response","Carry out prescribed/authorized intervention","Reassess and document response"],correctOrder:[0,1,2,3]};
   if(type==="bow-tie") return {...common,correctResponse:["c0","a0","a1","m0","m1"],bowTie:{conditions:["Acute deterioration related to "+seed.topic,"Expected recovery finding","Chronic stable condition"],actions:choices,monitoring:["Vital signs and oxygenation","Relevant laboratory trend","Routine appetite","Hair and skin changes"],correctCondition:0,correctActions:[0,1],correctMonitoring:[0,1]}};
   if(type==="trend") return {...common,trend:[{time:"Initial",findings:seed.patient},{time:"Current",findings:seed.record},{time:"Clinical question",findings:seed.question}]};
@@ -66,8 +66,32 @@ function buildInteraction(type:NclexItemType, seed:Seed, n:number) {
   return common;
 }
 
-// Five distinct clinical-judgment prompts are authored from each patient record.
-// The 100-item extension covers all 13 interactive formats; each item has its own ID.
+// Six linked screens share one client and progressively updated EHR information.
+const caseStudyPatient="A 68-year-old client is on postoperative day 2 after total hip arthroplasty. The client suddenly reports dyspnea and pleuritic chest pain.";
+const caseStudySeeds:Seed[]=[
+ {category:"Cardiovascular",topic:"Acute pulmonary embolism",patient:caseStudyPatient,question:"Which assessment finding requires immediate nursing action?",choices:["Oxygen saturation of 84% on room air","Incisional pain rated 3/10","Temperature 37.0°C","A dry, intact surgical dressing"],answer:0,rationale:"Acute hypoxemia with sudden dyspnea is an immediate threat to oxygenation. Stay with the client, activate the emergency response, and support oxygenation.",record:"0810: Client reports sudden dyspnea and pleuritic chest pain. Restless and pale. SpO2 84% on room air."},
+ {category:"Cardiovascular",topic:"Acute pulmonary embolism",patient:caseStudyPatient,question:"Which additional findings support concern for venous thromboembolism?",choices:["Unilateral calf swelling and tenderness","Sudden dyspnea","Pleuritic chest pain","Tachycardia","Bilateral equal pedal pulses"],answer:0,rationale:"Recent major orthopedic surgery and reduced mobility increase venous thromboembolism risk. Unilateral calf swelling and tenderness, sudden dyspnea, pleuritic pain, and tachycardia are concerning cues.",record:"0815: Left calf is swollen and tender compared with the right. Sudden dyspnea persists; HR 128/min."},
+ {category:"Cardiovascular",topic:"Acute pulmonary embolism",patient:caseStudyPatient,question:"Which clinical cues require immediate escalation? Select all that apply.",choices:["SpO2 84% on room air","Heart rate 132/min","Respiratory rate 32/min","Pleuritic chest pain","Temperature 37.0°C","Dry surgical dressing"],answer:0,rationale:"Hypoxemia, tachycardia, tachypnea, and pleuritic chest pain in a postoperative client indicate acute cardiopulmonary deterioration and require immediate escalation.",record:"0820: CT pulmonary angiography confirms acute pulmonary embolism. BP 104/64 mm Hg; HR 124/min; RR 28/min."},
+ {category:"Cardiovascular",topic:"Acute pulmonary embolism",patient:caseStudyPatient,question:"Complete the statement: The nurse should first ______.",choices:["Activate the rapid response team and apply oxygen","Assist the client to ambulate","Offer oral fluids","Wait for the next routine vital-sign check"],answer:0,rationale:"The immediate response is to activate the emergency response and support oxygenation. Do not delay stabilization for routine activities.",record:"0825: Oxygen applied, two peripheral IV lines secured, and continuous cardiac and oxygen-saturation monitoring initiated."},
+ {category:"Cardiovascular",topic:"Acute pulmonary embolism",patient:caseStudyPatient,question:"Select the priority nursing response and the first indicator to reassess.",choices:["Activate the rapid response team and support oxygenation","Encourage ambulation","Delay escalation"],answer:0,rationale:"Rapid escalation and oxygen support address the immediate threat. Reassess oxygen saturation and respiratory effort to evaluate the response.",record:"0830: Provider orders oxygen, baseline coagulation studies, and anticoagulation after review of bleeding risk."},
+ {category:"Cardiovascular",topic:"Acute pulmonary embolism",patient:caseStudyPatient,question:"Highlight the findings in the record that require immediate escalation.",choices:["SpO2 84% on room air","Heart rate 132/min","Respiratory rate 32/min","Temperature 37.0°C"],answer:0,rationale:"Hypoxemia, marked tachycardia, and tachypnea are the urgent findings. The normal temperature is not the priority cue in this presentation.",record:"0900: Dyspnea has decreased. SpO2 95% with supplemental oxygen; HR 98/min; RR 20/min. No bleeding observed."}
+];
+const caseRecords=[
+ {progressNotes:"0810: Sudden dyspnea and pleuritic chest pain. Client is restless and pale.",history:"Total hip arthroplasty 2 days ago. Mobility has been limited since surgery. No known bleeding disorder documented.",medicationList:"Review the current medication administration record and verify all postoperative and anticoagulant medications before administration.",assessment:"Acute respiratory distress with sudden onset. Assess airway, breathing, circulation, chest pain, and signs of venous thrombosis.",vitalSigns:"BP 108/68 mm Hg\nHR 132/min\nRR 32/min\nSpO2 84% on room air\nTemperature 37.0°C",labs:"Baseline CBC and coagulation profile requested. No results available yet.",providerOrders:"Activate rapid response. Apply oxygen, obtain IV access, and begin continuous cardiac and pulse-oximetry monitoring."},
+ {progressNotes:"0815: Left calf is swollen and tender compared with the right. Sudden dyspnea persists.",history:"Total hip arthroplasty 2 days ago. Reduced mobility since surgery. No known bleeding disorder documented.",medicationList:"Review the current medication administration record. Confirm last doses of postoperative medications and any prescribed thromboprophylaxis.",assessment:"Unilateral calf swelling and tenderness with acute dyspnea and tachycardia.",vitalSigns:"BP 106/66 mm Hg\nHR 128/min\nRR 30/min\nSpO2 86% on room air",labs:"CBC and coagulation studies are being collected. Imaging is requested by the provider.",providerOrders:"Continue oxygen and emergency monitoring. Notify the provider of unilateral calf findings and respiratory deterioration."},
+ {progressNotes:"0820: CT pulmonary angiography confirms acute pulmonary embolism. Provider and rapid response team are at the bedside.",history:"Recent total hip arthroplasty and limited postoperative mobility are relevant thromboembolic risk factors.",medicationList:"Medication reconciliation completed. Verify allergies and bleeding history before anticoagulant administration.",assessment:"Acute pulmonary embolism confirmed. Monitor for worsening hypoxemia, hypotension, and signs of right-heart strain.",vitalSigns:"BP 104/64 mm Hg\nHR 124/min\nRR 28/min\nSpO2 89% with supplemental oxygen",labs:"Baseline aPTT 30 seconds\nPlatelets 224,000/mm³\nHemoglobin 12.1 g/dL\nCT pulmonary angiography: acute pulmonary embolism",providerOrders:"Prepare to implement the prescribed anticoagulation plan after baseline laboratory results and bleeding-risk review."},
+ {progressNotes:"0825: Oxygen applied and two peripheral IV lines secured. Continuous cardiac and oxygen-saturation monitoring initiated.",history:"Recent major orthopedic surgery increases venous thromboembolism risk. Continue to assess for bleeding risk.",medicationList:"Anticoagulant therapy is being prepared according to the current provider order and institutional protocol.",assessment:"Respiratory distress persists but the client is responding to oxygen support. Continue frequent respiratory and hemodynamic reassessment.",vitalSigns:"BP 110/70 mm Hg\nHR 118/min\nRR 26/min\nSpO2 92% with supplemental oxygen",labs:"Baseline aPTT 30 seconds\nPlatelets 224,000/mm³\nHemoglobin 12.1 g/dL",providerOrders:"Begin prescribed unfractionated heparin bolus and infusion after baseline studies. Continue oxygen and monitoring."},
+ {progressNotes:"0835: Prescribed heparin infusion initiated after baseline coagulation studies. No active bleeding noted.",history:"Postoperative day 2 following total hip arthroplasty. Maintain bleeding precautions while anticoagulated.",medicationList:"Unfractionated heparin infusion per current order. Verify pump settings and protocol-based dose adjustments with required independent checks.",assessment:"Assess for bleeding, changes in neurologic status, new chest pain, worsening dyspnea, and hemodynamic instability.",vitalSigns:"BP 112/72 mm Hg\nHR 106/min\nRR 22/min\nSpO2 94% with supplemental oxygen",labs:"Repeat aPTT per heparin protocol. Trend CBC, hemoglobin, and platelet count.",providerOrders:"Titrate heparin according to institutional protocol. Monitor aPTT, CBC, and signs of bleeding."},
+ {progressNotes:"0900: Client reports less dyspnea. No new chest pain or bleeding. Oxygen saturation and heart rate have improved.",history:"Recent total hip arthroplasty remains relevant to mobility and thrombosis prevention planning.",medicationList:"Continue prescribed anticoagulation. Review the medication plan and bleeding precautions before transfer or discharge planning.",assessment:"Respiratory symptoms improving. Continue assessment for bleeding, recurrent hypoxemia, chest pain, and hemodynamic changes.",vitalSigns:"BP 116/74 mm Hg\nHR 98/min\nRR 20/min\nSpO2 95% with supplemental oxygen",labs:"aPTT is within the prescribed therapeutic range. Hemoglobin is stable; no evidence of bleeding.",providerOrders:"Continue anticoagulation and oxygen as prescribed. Reassess respiratory status and hemodynamic stability."}
+];
+const caseInteractions:QuestionInteraction[]=[
+ {instruction:"Select the one finding that requires immediate nursing action.",choices:caseStudySeeds[0].choices,correctResponse:["0"],optionRationales:["Hypoxemia is an immediate threat to oxygenation.","Mild incisional pain is not the priority over acute respiratory compromise.","The temperature is within the stated normal range.","A dry dressing does not explain the acute respiratory symptoms."]},
+ {instruction:"Select all findings that support concern for venous thromboembolism.",choices:caseStudySeeds[1].choices,correctResponse:["0","1","2","3"]},
+ {instruction:"Select all clinical cues that require immediate escalation.",choices:caseStudySeeds[2].choices,correctResponse:["0","1","2","3"]},
+ {instruction:"Choose the best response to complete the statement.",choices:caseStudySeeds[3].choices,correctResponse:["0"],clozeTemplate:"The nurse should first [BLANK_1].",clozeChoices:caseStudySeeds[3].choices},
+ {instruction:"Choose the priority response in each row.",choices:caseStudySeeds[4].choices,correctResponse:["0:0","1:0"],rows:["Priority nursing action","First response to reassess"],rowChoices:[caseStudySeeds[4].choices,["Oxygen saturation and respiratory effort","Hair and skin changes","Routine appetite"]]},
+ {instruction:"Select the clinically significant findings directly in the record.",choices:caseStudySeeds[5].choices,correctResponse:["SpO2 84% on room air","Heart rate 132/min","Respiratory rate 32/min"],segments:["SpO2 84% on room air","Heart rate 132/min","Respiratory rate 32/min","Temperature 37.0°C"]}
+];
 const prompts = [
   (s:Seed)=>s.question,
   (s:Seed)=>"Which additional assessment finding would most strongly support the priority concern in this client? "+s.patient,
@@ -77,25 +101,27 @@ const prompts = [
   (s:Seed)=>"After the nursing interventions are implemented, which outcome should the nurse evaluate first? "+s.patient
 ];
 const extension: Question[] = Array.from({length:100},(_,i)=>{
-  const seed=seeds[i%seeds.length];
+  const isCaseScreen=i<6;
+  const seed=isCaseScreen?caseStudySeeds[i]:seeds[i%seeds.length];
   const type=NCLEX_ITEM_TYPES[i%NCLEX_ITEM_TYPES.length];
-  const prompt=prompts[Math.floor(i/seeds.length)%prompts.length](seed);
+  const prompt=isCaseScreen?seed.question:prompts[Math.floor(i/seeds.length)%prompts.length](seed);
   return {
     id:"ngn-"+String(i+1).padStart(3,"0"),
     category:seed.category,
     topic:seed.topic,
     difficulty:i%4===0?"Advanced":i%3===0?"Foundational":"Intermediate",
-    prompt: type==="multiple-response"?"Which nursing actions are appropriate? Select all that apply. "+prompt:type==="extended-multiple-response"?"Select every applicable finding and nursing action. "+prompt:type==="ordered-response"||type==="extended-drag-drop"?"Arrange the nursing actions in the safest sequence for this client. "+prompt:prompt,
+    prompt:type==="multiple-response"||type==="extended-multiple-response"&&!isCaseScreen?"Which nursing actions are appropriate? Select all that apply. "+prompt:type==="extended-multiple-response"?"Select every applicable finding and nursing action. "+prompt:type==="ordered-response"||type==="extended-drag-drop"?"Arrange the nursing actions in the safest sequence for this client. "+prompt:prompt,
     options:seed.choices,
     answer:seed.answer,
     rationale:seed.rationale,
     status:"published",
     format:type==="multiple-response"||type==="extended-multiple-response"?"multiple":"single",
     itemType:type,
-    interaction:buildInteraction(type,seed,i),
-    caseStudy:seed.patient,
-    exhibit:seed.record,
-    caseStudyId:i<6?"ngn-case-01":undefined,
+    interaction:isCaseScreen?caseInteractions[i]:buildInteraction(type,seed,i),
+    caseStudy:isCaseScreen?caseStudyPatient:seed.patient,
+    exhibit:isCaseScreen?caseRecords[i].labs+"\n"+caseRecords[i].providerOrders:seed.record,
+    caseRecord:isCaseScreen?caseRecords[i]:undefined,
+    caseStudyId:isCaseScreen?"ngn-case-01":undefined,
     clinicalJudgmentStep:(["recognize-cues","analyze-cues","prioritize-hypotheses","generate-solutions","take-action","evaluate-outcomes"] as const)[i%6],
     contentVersion:2,
     reviewStatus:"generated"
