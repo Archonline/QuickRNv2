@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import type { DragEvent } from "react";
-import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, CheckCircle2, X, ChevronUp, ChevronDown, Calculator, FileText, AlertCircle, ClipboardList } from "lucide-react";
+import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, X, ChevronUp, ChevronDown, Calculator, FileText, AlertCircle, ClipboardList } from "lucide-react";
 import type { CanonicalNclexItemType, NclexItemType, Question, QuestionInteraction } from "./questions";
 import { responseIsCorrect } from "./examScoring.js";
 
@@ -50,7 +50,6 @@ const exam=useMemo(()=>{const formatType=(q:Question)=>q.itemType??(q.format==="
  const setResponse=(values:string[])=>{if(item)setAnswers(old=>({...old,[item.id]:values}));};
  const setIndexedResponse=(index:number,value:string)=>{const next=[...selected];while(next.length<=index)next.push("");next[index]=value;setResponse(next);};
  const toggle=(value:string)=>setResponse(selected.includes(value)?selected.filter(x=>x!==value):[...selected,value]);
- const toggleLimited=(prefix:string,value:string,limit:number)=>{if(selected.includes(value)){setResponse(selected.filter(x=>x!==value));return;}if(selected.filter(x=>x.startsWith(prefix)).length<limit)setResponse([...selected,value]);};
 
  const type=item?(item.itemType??(item.format==="multiple"?"multiple-response":"single-response")):"single-response";
  const isUnfoldingCase=!!item&&(!!item.caseStudyId||(!!item.caseStudy&&item.format==="case-study"));
@@ -110,7 +109,7 @@ const exam=useMemo(()=>{const formatType=(q:Question)=>q.itemType??(q.format==="
   if(t==="drop-down-table")return values.map(v=>{const [row,...rest]=v.split(":");const ri=Number(row),choice=Number(rest.join(":"));return (d.rows?.[ri]??"Row "+(ri+1))+": "+(d.rowChoices?.[ri]?.[choice]??opts[choice]??rest.join(":"));});
   if(t==="drop-down-cloze")return values.map((v,i)=>(d.clozeChoicesByBlank?.[i]??d.clozeChoices??opts)[Number(v)]??v);
   if(t==="drop-down-rationale")return values.map((v,i)=>(d.rationaleChoicesByBlank?.[i]??opts)[Number(v)]??v);
-  if(t==="drag-drop")return values.map((v,i)=>(d.dragDropChoices??opts)[Number(v)]??v);
+  if(t==="drag-drop")return values.map(v=>(d.dragDropChoices??opts)[Number(v)]??v);
   if(t==="numeric-entry")return values.map(v=>(v+(d.numericUnit?" "+d.numericUnit:"")));
   if(t==="highlight-text")return values;
   if(t==="highlight-table")return values.map(v=>d.segments?.[Number(v)]??v);
