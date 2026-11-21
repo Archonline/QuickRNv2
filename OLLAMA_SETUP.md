@@ -40,3 +40,15 @@ Ollama is running on your own computer. It helps author content locally, while V
 - Quickstart: https://github.com/ollama/ollama/blob/main/docs/quickstart.mdx
 - API: https://github.com/ollama/ollama/blob/main/docs/api.md
 - Server configuration and network security: https://github.com/ollama/ollama/blob/main/docs/faq.mdx
+
+## Give your administrator account access
+
+The Question Studio appears only for accounts with the Firebase custom claim `admin: true`. This claim must be set from a trusted machine using a Firebase service account; never set it from the browser.
+
+1. Install dependencies with `npm install`.
+2. In Firebase Console → Project settings → Service accounts, create/download a private service-account key for the existing project. Store it outside the repository and never commit or share it.
+3. Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable to that local JSON key file path.
+4. Run `npm run set-admin -- your-admin-email@example.com`.
+5. Sign out of QuickRN and sign back in so Firebase refreshes the ID token.
+
+This grants powerful publishing permissions. Only assign the claim to trusted administrator accounts.
