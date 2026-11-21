@@ -2,7 +2,7 @@ export type Question = {
   id: string;
   category: string;
   topic: string;
-  difficulty: "Foundational" | "Intermediate";
+  difficulty: "Foundational" | "Intermediate" | "Advanced";
   prompt: string;
   options: string[];
   answer: number;
