@@ -75,3 +75,36 @@
 .exam-start-button{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:22px;padding:14px 18px;background:#28577e;border:1px solid #28577e;border-radius:2px;color:#fff;font-size:14px;font-weight:700;cursor:pointer}
 .exam-setup-note{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:19px;color:#788492;font-size:10px}
 @media(max-width:700px){.exam-header{padding:0 13px}.exam-header-center{display:none}.exam-session-bar{padding:0 13px}.exam-main{padding:22px 16px 30px}.exam-stem{font-size:18px}.exam-setup-content{padding:28px 20px;margin-top:5vh}.exam-setup-content h1{font-size:23px}.exam-length-options{grid-template-columns:1fr}.exam-setup-note{gap:8px 14px}}
+
+
+/* NCLEX-style testing workstation refinements */
+.exam-header{display:flex;align-items:center;gap:22px}
+.exam-header-tools{display:flex;align-items:center;gap:10px;margin-left:auto}
+.exam-tool-button{display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid #b9c4cf;background:#fff;color:#334b63;border-radius:2px;font-size:12px;font-weight:700;cursor:pointer}
+.exam-tool-button:hover,.exam-exit:hover{background:#f3f6f8}
+.exam-session-bar{font-size:11px}
+.exam-progress-track{height:3px;background:#e8edf1;width:100%}
+.exam-progress-track span{display:block;height:100%;background:#3e6e96;transition:width .2s ease}
+.exam-main{max-width:1060px;padding-top:30px}
+.exam-main-top{align-items:center}
+.exam-question-counter{font-size:14px;letter-spacing:.3px}
+.exam-format-pill{padding:6px 10px}
+.exam-item-meta span{font-size:10px;letter-spacing:.1px}
+.exam-response-label{font-size:12px;font-weight:700;color:#46596d;margin:5px 0 8px}
+.exam-option.multi .exam-option-letter{border-radius:3px}
+.exam-option.multi.selected .exam-option-letter{border-radius:3px}
+.exam-option.multi .exam-option-check{width:18px;height:18px;border:1px solid #aebbc8;border-radius:3px;display:grid;place-items:center;font-size:12px}
+.exam-option.multi.selected .exam-option-check{background:#315f91;border-color:#315f91;color:#fff}
+.exam-controls{z-index:3}
+.exam-case details[open] p{padding:12px;background:#fff;border:1px solid #e0e5ea;margin-top:9px}
+.exam-calculator{font-family:Arial,Helvetica,sans-serif}
+@media(max-width:700px){
+ .exam-header{height:auto;min-height:62px;flex-wrap:nowrap;padding:8px 11px;gap:8px}
+ .exam-brand{min-width:0;flex:1}
+ .exam-header-tools{gap:6px}
+ .exam-tool-button{padding:8px;font-size:10px}
+ .exam-tool-button svg{width:14px}
+ .exam-exit{padding:8px;font-size:10px}
+ .exam-session-bar{height:34px}
+ .exam-session-bar>span:nth-child(2){display:none}
+}
