@@ -1,3 +1,24 @@
+export type NclexItemType =
+  | "single-response" | "multiple-response" | "extended-multiple-response"
+  | "drop-down-cloze" | "drop-down-table" | "highlight-text" | "highlight-table"
+  | "matrix-grid" | "ordered-response" | "bow-tie" | "trend"
+  | "extended-drag-drop" | "graphics-based";
+
+export type QuestionInteraction = {
+  instruction?: string;
+  choices?: string[];
+  correctResponse?: string[];
+  segments?: string[];
+  rows?: string[];
+  columns?: string[];
+  correctMatrix?: Record<string, string>;
+  orderItems?: string[];
+  correctOrder?: number[];
+  bowTie?: { conditions: string[]; actions: string[]; monitoring: string[]; correctCondition: number; correctActions: number[]; correctMonitoring: number[] };
+  trend?: { time: string; findings: string }[];
+  graphic?: { title: string; description: string; labels: string[]; correctLabels: number[] };
+};
+
 export type Question = {
   id: string;
   category: string;
@@ -9,6 +30,12 @@ export type Question = {
   rationale: string;
   status: "development" | "published";
   format?: "single" | "multiple" | "case-study";
+  itemType?: NclexItemType;
+  interaction?: QuestionInteraction;
+  caseStudyId?: string;
+  clinicalJudgmentStep?: "recognize-cues" | "analyze-cues" | "prioritize-hypotheses" | "generate-solutions" | "take-action" | "evaluate-outcomes";
+  contentVersion?: number;
+  reviewStatus?: "generated" | "editorially-reviewed" | "clinically-reviewed";
   caseStudy?: string;
   exhibit?: string;
 };
