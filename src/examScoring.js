@@ -8,7 +8,7 @@ const SET_SCORED = new Set([
   "bow-tie",
   "graphics-based"
 ]);
-const ORDER_SCORED = new Set(["ordered-response", "extended-drag-drop"]);
+const ORDER_SCORED = new Set(["drop-down-cloze", "ordered-response", "extended-drag-drop"]);
 
 export function responseIsCorrect(type, actual, expected) {
   if (!Array.isArray(actual) || !Array.isArray(expected) || expected.length === 0) return false;
