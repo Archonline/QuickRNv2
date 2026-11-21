@@ -148,3 +148,8 @@
  .exam-main-case{padding:20px 14px 30px}
  .exam-main-case .exam-controls{position:sticky}
 }
+
+
+.exam-format-sampler{display:flex;flex-direction:column;gap:5px;width:100%;margin:12px 0 0;padding:15px 17px;text-align:left;border:1px dashed #8da8c4;background:#f8fafc;color:#344b64;border-radius:2px;cursor:pointer}
+.exam-format-sampler strong{font-size:13px}.exam-format-sampler span{font-size:11px;color:#718093}
+.exam-format-sampler.active{border:2px solid #315f85;background:#edf3f8;padding:14px 16px}
