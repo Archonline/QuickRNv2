@@ -81,3 +81,38 @@
 .landing-footer>span:last-child{font-size:10px;color:#a0a2b1}
 @media(max-width:800px){.landing-hero{grid-template-columns:1fr;gap:25px;padding-top:55px}.landing-preview{max-width:570px;width:100%;margin:auto}.landing-strip,.landing-features,.landing-how,.landing-cta{margin-left:18px;margin-right:18px}.landing-how{grid-template-columns:1fr;gap:18px}.feature-grid{grid-template-columns:1fr}.landing-strip{margin-bottom:65px}}
 @media(max-width:520px){.landing-nav{padding:0 16px;height:66px}.landing-nav nav{display:none}.landing-nav>.button{padding:9px 10px;font-size:10px}.landing-hero{padding:45px 18px 55px}.landing-copy h1{font-size:42px;letter-spacing:-1.8px}.landing-copy>p{font-size:13px}.landing-actions{gap:15px;flex-wrap:wrap}.landing-trust{gap:12px}.landing-preview{padding:8px 5px 28px}.preview-content{padding:17px}.preview-float{right:-3px}.landing-strip{padding:18px;margin-bottom:58px}.landing-section-head h2,.landing-how h2{font-size:24px}.landing-features,.landing-how{padding:0 5px 60px}.landing-cta{padding:22px;align-items:flex-start;flex-direction:column}.landing-footer{padding:18px;align-items:flex-start;flex-direction:column}}
+
+/* Firebase authentication experience */
+.auth-screen{min-height:100vh;display:grid;place-items:center;padding:28px 16px;background:radial-gradient(ellipse at 15% 10%,#eeecff 0,transparent 38%),radial-gradient(ellipse at 90% 90%,#eaf7f3 0,transparent 34%),#f8f9fd}
+.auth-card{width:min(100%,440px);background:#fff;border:1px solid #e9eaf2;border-radius:18px;padding:30px 34px;box-shadow:0 22px 70px #29264d12}
+.back-to-landing{display:inline-flex;align-items:center;gap:7px;border:0;background:transparent;color:#85899d;font:600 11px 'DM Sans';padding:0;cursor:pointer;margin-bottom:25px}
+.back-to-landing:hover,.auth-inline-link:hover,.auth-switch:hover{color:#5146c2}
+.auth-brand{display:flex;align-items:center;gap:9px;margin-bottom:27px;font:800 23px Manrope,sans-serif;letter-spacing:-1px;color:#252943}
+.auth-brand strong span{color:#6558dc}
+.auth-brand .brand-mark{width:36px;height:36px}
+.auth-beta{font:700 9px 'DM Sans';letter-spacing:.7px;color:#6558dc;background:#f0efff;padding:4px 6px;border-radius:5px}
+.auth-card .eyebrow{margin-bottom:8px}
+.auth-card h1{font:800 27px/1.2 Manrope,sans-serif;letter-spacing:-.8px;color:#252943;margin:0}
+.auth-intro{font-size:12px;line-height:1.65;color:#85899d;margin:10px 0 23px}
+.auth-card>label,.auth-label-row label{display:block;font-size:11px;font-weight:700;color:#4d5269;margin:15px 0 7px}
+.auth-label-row{display:flex;justify-content:space-between;align-items:center}
+.auth-label-row label{margin-bottom:7px}
+.auth-inline-link{border:0;background:transparent;color:#6558dc;font:600 10px 'DM Sans';cursor:pointer;padding:0}
+.auth-input{height:44px;border:1px solid #e5e6ef;border-radius:9px;display:flex;align-items:center;gap:10px;padding:0 12px;color:#9a9daf;transition:border-color .15s,box-shadow .15s}
+.auth-input:focus-within{border-color:#8d83e7;box-shadow:0 0 0 3px #6558dc13}
+.auth-input input{border:0;outline:0;min-width:0;flex:1;background:transparent;color:#30344d;font:12px 'DM Sans'}
+.auth-input input::placeholder{color:#b0b2bf}
+.auth-eye{display:grid;place-items:center;border:0;background:transparent;color:#9295a8;padding:4px;cursor:pointer}
+.auth-submit{width:100%;height:43px;justify-content:center;margin-top:20px;font-size:12px}
+.auth-switch{display:block;width:100%;border:0;background:transparent;color:#6558dc;font:600 11px 'DM Sans';cursor:pointer;padding:12px 5px 0}
+.auth-demo{color:#85899d}
+.auth-warning,.auth-error,.auth-success{font-size:11px;line-height:1.55;padding:11px 12px;border-radius:8px;margin:14px 0}
+.auth-warning{background:#fff8e9;border:1px solid #f4e8c9;color:#8c6b2c}
+.auth-error{background:#fff2f2;border:1px solid #f4d6d6;color:#a64040}
+.auth-success{background:#effaf4;border:1px solid #d5efdf;color:#287b53}
+.auth-security{display:flex;justify-content:center;align-items:center;gap:6px;border-top:1px solid #eff0f5;margin-top:22px;padding-top:17px;color:#9a9daf;font-size:9px}
+.auth-security svg{color:#39a77b}
+.auth-loading{display:flex;align-items:center;gap:12px;background:#fff;padding:18px 22px;border:1px solid #e9eaf2;border-radius:12px;color:#777b90;font-size:12px}
+.auth-spinner{width:17px;height:17px;border:2px solid #e7e4ff;border-top-color:#6558dc;border-radius:50%;animation:authspin .8s linear infinite}
+@keyframes authspin{to{transform:rotate(360deg)}}
+@media(max-width:520px){.auth-card{padding:25px 21px;border-radius:14px}.auth-card h1{font-size:24px}}
