@@ -27,6 +27,7 @@ export default function ExamPage({questions,onExit}:Props){
  const [showCalculator,setShowCalculator]=useState(false);
  const [calcValue,setCalcValue]=useState("0");
  const [reviewFilter,setReviewFilter]=useState<"all"|"incorrect"|"unanswered"|"flagged">("all");
+ const [activeRecordTab,setActiveRecordTab]=useState<"notes"|"vitals"|"labs"|"orders">("notes");
  const item=exam[current];
 
  const done=Object.keys(answers).filter(k=>(answers[k]??[]).length>0).length;
@@ -38,6 +39,11 @@ export default function ExamPage({questions,onExit}:Props){
  const toggle=(value:string)=>setResponse(selected.includes(value)?selected.filter(x=>x!==value):[...selected,value]);
 
  const type=item?(item.itemType??(item.format==="multiple"?"multiple-response":"single-response")):"single-response";
+ const isUnfoldingCase=!!item?.caseStudy&&item.format==="case-study";
+ const recordText=item?.caseStudy??"";
+ const exhibitText=item?.exhibit??"";
+ const vitalLines=[...recordText.matchAll(/(?:BP|HR|RR|SpO2|temperature|Temp|O2 saturation)[^\n.]*(?:\.|$)/gi)].map(m=>m[0].trim());
+ const orderText=(exhibitText.match(/(?:Orders?(?: include|:)?)[\s\S]*/i)?.[0]??"No separate provider orders are listed in this exhibit.");
  const data:QuestionInteraction=item?.interaction??{instruction:type==="multiple-response"?"Select all that apply.":"Select one response.",choices:item?.options??[],correctResponse:item?[String(item.answer)]:[]};
  const choices=data.choices??item?.options??[];
  const go=(i:number)=>{setCurrent(Math.max(0,Math.min(exam.length-1,i)));setShowReview(false);};
@@ -57,10 +63,11 @@ export default function ExamPage({questions,onExit}:Props){
  return <div className="exam-screen">
   <header className="exam-header"><div className="exam-brand"><span className="exam-brand-mark">Q</span><div><strong>QuickRN</strong><small>RN LICENSURE PRACTICE</small></div></div><div className="exam-header-center"><strong>NCLEX-RN Practice Examination</strong><span>Self-paced examination</span></div><div className="exam-header-tools"><button type="button" className="exam-tool-button" onClick={()=>setShowCalculator(true)}><Calculator size={16}/> Calculator</button><button type="button" className="exam-exit" onClick={()=>setFinished(true)}>End exam</button></div></header>
   <div className="exam-session-bar"><span><i/> Examination in progress</span><span>Self-paced · no time limit</span><span>{done} of {exam.length} answered</span></div><div className="exam-progress-track" aria-label={`${done} of ${exam.length} questions answered`}><span style={{width:`${exam.length?done/exam.length*100:0}%`}}/></div>
-  <div className="exam-layout">
-   <main className="exam-main">
+  <div className={isUnfoldingCase?"exam-layout exam-layout-case":"exam-layout"}>
+   {isUnfoldingCase&&<aside className="exam-record-panel"><div className="exam-record-heading"><div><span>CLIENT CHART</span><strong>Electronic health record</strong></div><FileText size={19}/></div><div className="exam-record-client"><strong>Unfolding case study</strong><span>{item.caseStudyId??item.topic}</span></div><div className="exam-record-tabs" role="tablist" aria-label="Client record sections"><button type="button" role="tab" aria-selected={activeRecordTab==="notes"} className={activeRecordTab==="notes"?"active":""} onClick={()=>setActiveRecordTab("notes")}>Nurses’ Notes</button><button type="button" role="tab" aria-selected={activeRecordTab==="vitals"} className={activeRecordTab==="vitals"?"active":""} onClick={()=>setActiveRecordTab("vitals")}>Vital Signs</button><button type="button" role="tab" aria-selected={activeRecordTab==="labs"} className={activeRecordTab==="labs"?"active":""} onClick={()=>setActiveRecordTab("labs")}>Labs</button><button type="button" role="tab" aria-selected={activeRecordTab==="orders"} className={activeRecordTab==="orders"?"active":""} onClick={()=>setActiveRecordTab("orders")}>Orders</button></div><section className="exam-record-content" role="tabpanel">{activeRecordTab==="notes"?<><h3>Nurses’ Notes</h3><p>{recordText}</p></>:activeRecordTab==="vitals"?<><h3>Vital signs & assessment</h3>{vitalLines.length?<ul>{vitalLines.map((v,i)=><li key={i}>{v}</li>)}</ul>:<p>Review the Nurses’ Notes for documented vital signs and assessment findings.</p>}</>:activeRecordTab==="labs"?<><h3>Laboratory & diagnostic results</h3><p>{exhibitText||"No laboratory or diagnostic results are listed."}</p></>:<><h3>Provider orders</h3><p>{orderText}</p></>}</section><div className="exam-record-footer">Review the chart as new information becomes available throughout the case.</div></aside>}
+   <main className={isUnfoldingCase?"exam-main exam-main-case":"exam-main"}>
     <div className="exam-main-top"><div><span className="exam-question-counter">QUESTION {current+1} <i>OF</i> {exam.length}</span><span className="exam-format-pill">{LABELS[type]}</span></div><button type="button" className={flagged.includes(item.id)?"exam-flag active":"exam-flag"} onClick={()=>setFlagged(v=>v.includes(item.id)?v.filter(x=>x!==item.id):[...v,item.id])}>{flagged.includes(item.id)?<BookmarkCheck size={17}/>:<Bookmark size={17}/>} {flagged.includes(item.id)?"Remove flag":"Flag for review"}</button></div>
-    {item.caseStudy&&<section className="exam-case"><div className="exam-case-label"><FileText size={15}/> CLIENT RECORD · {item.caseStudyId?"UNFOLDING CASE STUDY":"CLINICAL SCENARIO"}</div><p>{item.caseStudy}</p>{item.exhibit&&<details><summary>View clinical exhibit</summary><p>{item.exhibit}</p></details>}</section>}
+    {item.caseStudy&&!isUnfoldingCase&&<section className="exam-case"><div className="exam-case-label"><FileText size={15}/> CLINICAL SCENARIO</div><p>{item.caseStudy}</p>{item.exhibit&&<details><summary>View clinical exhibit</summary><p>{item.exhibit}</p></details>}</section>}
     <div className="exam-item-meta"><span>{item.category}</span><span>{item.difficulty}</span><span>{item.topic}</span></div>
     <section className="exam-question-card"><div className="exam-card-kicker">ITEM {String(current+1).padStart(2,"0")}</div><h1 className="exam-stem">{item.prompt}</h1><p className="exam-instruction">{data.instruction??(type==="multiple-response"||type==="extended-multiple-response"?"Select all that apply.":"Select the best response.")}</p><div className="exam-response-label">{type==="multiple-response"||type==="extended-multiple-response"?"Response · Select all that apply":"Response"}</div>{renderInteraction()}</section>
     <div className="exam-workspace-note"><AlertCircle size={15}/> Select your response before moving to the next question. You can return to previous questions at any time.</div>
