@@ -1,10 +1,10 @@
-import type { NclexItemType, Question } from "./questions";
+import type { CanonicalNclexItemType, Question, QuestionInteraction } from "./questions";
 import { questionBank500 } from "./questionBank";
 
-export const NCLEX_ITEM_TYPES: NclexItemType[] = [
-  "single-response","multiple-response","extended-multiple-response","drop-down-cloze",
-  "drop-down-table","highlight-text","highlight-table","matrix-grid","ordered-response",
-  "bow-tie","trend","extended-drag-drop","graphics-based"
+export const NCLEX_ITEM_TYPES: CanonicalNclexItemType[] = [
+  "single-response","multiple-response","select-n","drop-down-cloze","drop-down-rationale",
+  "highlight-text","matrix-multiple","matrix-single","numeric-entry","ordered-response",
+  "bow-tie","drag-drop","trend"
 ];
 
 type Seed = { category:string; topic:string; patient:string; question:string; choices:string[]; answer:number; rationale:string; record:string };
@@ -31,38 +31,61 @@ const seeds: Seed[] = [
 {category:"Neurologic",topic:"Autonomic dysreflexia",patient:"A client with a T4 spinal cord injury develops pounding headache, flushing and BP 208/110. The urinary catheter tubing is kinked.",question:"What should the nurse do first?",choices:["Sit the client upright and remove the triggering stimulus by checking the catheter","Place the client flat","Apply an abdominal binder tightly","Delay action until the headache resolves"],answer:0,rationale:"Autonomic dysreflexia is a hypertensive emergency. Sit upright, loosen restrictive items and rapidly identify/remove the trigger while following protocol.",record:"Baseline BP 100/62; current BP 208/110; catheter tubing visibly kinked."}
 ];
 
-const formatInstructions: Record<NclexItemType,string> = {
-"single-response":"Select the one best response.",
-"multiple-response":"Select all responses that apply.",
-"extended-multiple-response":"Select every finding or intervention that applies; more than one response is correct.",
-"drop-down-cloze":"Complete the clinical statement using the drop-down selections.",
-"drop-down-table":"Choose the best response in each row of the table.",
-"highlight-text":"Select the clinical cues in the record that require follow-up.",
-"highlight-table":"Select the table cells that represent clinically significant findings.",
-"matrix-grid":"For each finding, select the most appropriate classification.",
-"ordered-response":"Place the nursing actions in the safest sequence.",
-"bow-tie":"Choose the most likely condition, two priority actions and two parameters to monitor.",
-"trend":"Interpret the change in the clinical findings over time.",
-"extended-drag-drop":"Arrange the response steps in the correct order using the move controls.",
-"graphics-based":"Use the labeled clinical graphic to identify the priority area or finding."
+const matrixMultiSeed:Seed={
+ category:"Infection Prevention",
+ topic:"C. difficile precautions",
+ patient:"A hospitalized client has confirmed Clostridioides difficile infection and requires transmission-based precautions.",
+ question:"For each intervention, select all precaution categories that apply.",
+ choices:[],
+ answer:0,
+ rationale:"Contact/enteric precautions include gown and gloves on room entry and dedicated equipment. Soap-and-water hand hygiene is important because alcohol-based hand rubs do not reliably remove C. difficile spores. A negative-pressure room is not indicated for C. difficile.",
+ record:"Stool testing is positive for C. difficile toxin. The client has frequent watery stools."
+};
+const numericSeed:Seed={
+ category:"Pharmacology",
+ topic:"Weight-based medication calculation",
+ patient:"A client weighs 70 kg. The prescription is 0.1 mg/kg per dose.",
+ question:"How many milligrams should the nurse administer per dose? Enter a numeric response.",
+ choices:[],
+ answer:7,
+ rationale:"Multiply the prescribed dose by the client's weight: 0.1 mg/kg × 70 kg = 7 mg per dose.",
+ record:"Weight: 70 kg. Prescribed dose: 0.1 mg/kg per dose."
 };
 
-function buildInteraction(type:NclexItemType, seed:Seed, n:number) {
-  const correct = String(seed.answer);
-  const choices = seed.choices;
-  const common = {instruction:formatInstructions[type],choices,correctResponse:[correct]};
-  if(type==="multiple-response"||type==="extended-multiple-response") {
+const formatInstructions: Record<CanonicalNclexItemType,string> = {
+"single-response":"Select the one best response.",
+"multiple-response":"Select all responses that apply.",
+"select-n":"Select exactly the specified number of responses.",
+"drop-down-cloze":"Complete the clinical statement using the drop-down selections.",
+"drop-down-rationale":"Complete the clinical rationale by selecting the best response in each blank.",
+"highlight-text":"Select the clinical cues in the record that require follow-up.",
+"matrix-multiple":"For each row, select all applicable response columns.",
+"matrix-single":"For each row, select the one most appropriate response.",
+"numeric-entry":"Enter the numeric answer. Include the requested unit if shown.",
+"ordered-response":"Place the nursing actions in the safest sequence.",
+"bow-tie":"Choose the most likely condition, two priority actions and two parameters to monitor.",
+"drag-drop":"Drag the word choices into the correct blanks in the clinical statement.",
+"trend":"Interpret the change in the clinical findings over time."
+};
+
+function buildInteraction(type:CanonicalNclexItemType, seed:Seed, n:number) {
+  const correct=String(seed.answer);
+  const choices=seed.choices;
+  const common={instruction:formatInstructions[type],choices,correctResponse:[correct]};
+  if(type==="multiple-response"||type==="select-n") {
     const multiChoices=[...choices,"Reassess the client after the immediate intervention and document the response."];
-    return {...common,choices:multiChoices,correctResponse:[correct,"4"]};
+    return {...common,choices:multiChoices,correctResponse:[correct,"4"],selectCount:type==="select-n"?2:undefined};
   }
-  if(type==="drop-down-table") return {...common,correctResponse:["0:0","1:"+correct],rows:["Clinical interpretation","Nursing response"],rowChoices:[["Acute clinical concern","Expected finding","Unrelated finding"],choices]};
-  if(type==="highlight-text"||type==="highlight-table") { const segments=[...seed.patient.split(". "),...seed.record.split("; ")]; return {...common,correctResponse:type==="highlight-text"?[segments[0]]:["0"],segments}; }
   if(type==="drop-down-cloze") return {...common,correctResponse:[correct],clozeTemplate:"The priority nursing response is [BLANK_1].",clozeChoices:choices};
-  if(type==="matrix-grid") return {...common,correctResponse:["0:2","1:2","2:1"],matrixMode:"single",rows:["Finding 1: "+seed.topic,"Finding 2: vital-sign change","Finding 3: diagnostic result"],columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Emergency","2":"Needs follow-up"}};
-  if(type==="ordered-response"||type==="extended-drag-drop") return {...common,correctResponse:["0","1","2","3"],orderItems:["Assess immediate safety and airway","Initiate the indicated emergency response","Carry out prescribed/authorized intervention","Reassess and document response"],correctOrder:[0,1,2,3]};
+  if(type==="drop-down-rationale") return {...common,correctResponse:[correct,"0"],rationaleTemplate:"The nurse should [BLANK_1] because [BLANK_2].",rationaleChoicesByBlank:[choices,["the client has an acute clinical concern","the finding is expected","the finding is unrelated"]]};
+  if(type==="highlight-text") {const segments=[...seed.patient.split(". "),...seed.record.split("; ")];return {...common,correctResponse:[segments[0]],segments};}
+  if(type==="matrix-multiple") return {...common,correctResponse:["0:1","1:0","1:1","2:1"],matrixMode:"multiple",rows:["Wear gown and gloves on room entry","Perform soap-and-water hand hygiene after care","Use dedicated client-care equipment","Place the client in a negative-pressure room"],columns:["Standard","Contact/Enteric","Droplet","Airborne"]};
+  if(type==="matrix-single") return {...common,correctResponse:["0:2","1:2","2:1"],matrixMode:"single",rows:["Finding 1: "+seed.topic,"Finding 2: vital-sign change","Finding 3: diagnostic result"],columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Emergency","2":"Needs follow-up"}};
+  if(type==="numeric-entry") return {...common,correctResponse:[String(seed.answer)],numericUnit:"mg",numericTolerance:0};
+  if(type==="ordered-response") return {...common,correctResponse:["0","1","2","3"],orderItems:["Assess immediate safety and airway","Initiate the indicated emergency response","Carry out prescribed/authorized intervention","Reassess and document response"],correctOrder:[0,1,2,3]};
+  if(type==="drag-drop") return {...common,correctResponse:["0","1"],dragDropTemplate:"The nurse should first [BLANK_1] and then [BLANK_2].",dragDropChoices:["Assess immediate safety and airway","Activate the indicated emergency response","Complete routine documentation","Provide routine education"]};
   if(type==="bow-tie") return {...common,correctResponse:["c0","a0","a1","m0","m1"],bowTie:{conditions:["Acute deterioration related to "+seed.topic,"Expected recovery finding","Chronic stable condition"],actions:choices,monitoring:["Vital signs and oxygenation","Relevant laboratory trend","Routine appetite","Hair and skin changes"],correctCondition:0,correctActions:[0,1],correctMonitoring:[0,1]}};
   if(type==="trend") return {...common,trend:[{time:"Initial",findings:seed.patient},{time:"Current",findings:seed.record},{time:"Clinical question",findings:seed.question}]};
-  if(type==="graphics-based") return {...common,correctResponse:[String(n%4)],graphic:{title:seed.topic+" clinical reference",description:"Schematic teaching graphic; use the labeled regions with the clinical record.",labels:["Airway / breathing","Circulation / perfusion","Neurologic status","Affected body system"],correctLabels:[n%4]}};
   return common;
 }
 
@@ -87,9 +110,9 @@ const caseRecords=[
 const caseInteractions:QuestionInteraction[]=[
  {instruction:"Select the one finding that requires immediate nursing action.",choices:caseStudySeeds[0].choices,correctResponse:["0"],optionRationales:["Hypoxemia is an immediate threat to oxygenation.","Mild incisional pain is not the priority over acute respiratory compromise.","The temperature is within the stated normal range.","A dry dressing does not explain the acute respiratory symptoms."]},
  {instruction:"Select all findings that support concern for venous thromboembolism.",choices:caseStudySeeds[1].choices,correctResponse:["0","1","2","3"]},
- {instruction:"Select all clinical cues that require immediate escalation.",choices:caseStudySeeds[2].choices,correctResponse:["0","1","2","3"]},
- {instruction:"Choose the best response to complete the statement.",choices:caseStudySeeds[3].choices,correctResponse:["0"],clozeTemplate:"The nurse should first [BLANK_1].",clozeChoices:caseStudySeeds[3].choices},
- {instruction:"Choose the priority response in each row.",choices:caseStudySeeds[4].choices,correctResponse:["0:0","1:0"],rows:["Priority nursing action","First response to reassess"],rowChoices:[caseStudySeeds[4].choices,["Oxygen saturation and respiratory effort","Hair and skin changes","Routine appetite"]]},
+ {instruction:"Select exactly four clinical cues that require immediate escalation.",choices:caseStudySeeds[2].choices,correctResponse:["0","1","2","3"],selectCount:4},
+ {instruction:"Choose the best response in each blank.",choices:caseStudySeeds[3].choices,correctResponse:["0","0"],clozeTemplate:"The nurse should first [BLANK_1] because of the client’s [BLANK_2].",clozeChoicesByBlank:[["Activate rapid response and apply oxygen","Assist with ambulation","Offer oral fluids","Delay care"],["acute hypoxemia and sudden dyspnea","mild incisional pain","normal temperature","dry surgical dressing"]]},
+ {instruction:"Complete the rationale by choosing the best response in each blank.",choices:caseStudySeeds[4].choices,correctResponse:["0","0"],rationaleTemplate:"The nurse should [BLANK_1] because [BLANK_2].",rationaleChoicesByBlank:[["Activate the rapid response team and support oxygenation","Encourage ambulation","Delay escalation"],["the client is acutely hypoxemic","the temperature is normal","the dressing is dry"]]},
  {instruction:"Select the clinically significant findings directly in the record.",choices:caseStudySeeds[5].choices,correctResponse:["SpO2 84% on room air","Heart rate 132/min","Respiratory rate 32/min"],segments:["SpO2 84% on room air","Heart rate 132/min","Respiratory rate 32/min","Temperature 37.0°C"]}
 ];
 const prompts = [
@@ -100,24 +123,34 @@ const prompts = [
   (s:Seed)=>"Which information should the nurse communicate during an urgent handoff? "+s.patient,
   (s:Seed)=>"After the nursing interventions are implemented, which outcome should the nurse evaluate first? "+s.patient
 ];
+const matrixMultiInteraction:QuestionInteraction={
+ instruction:formatInstructions["matrix-multiple"],
+ rows:["Wear gown and gloves on room entry","Perform soap-and-water hand hygiene after care","Use dedicated client-care equipment","Place the client in a negative-pressure room"],
+ columns:["Standard","Contact/Enteric","Droplet","Airborne"],
+ matrixMode:"multiple",
+ correctResponse:["0:1","1:0","1:1","2:1"]
+};
 const extension: Question[] = Array.from({length:100},(_,i)=>{
   const isCaseScreen=i<6;
-  const seed=isCaseScreen?caseStudySeeds[i]:seeds[i%seeds.length];
   const type=NCLEX_ITEM_TYPES[i%NCLEX_ITEM_TYPES.length];
-  const prompt=isCaseScreen?seed.question:prompts[Math.floor(i/seeds.length)%prompts.length](seed);
+  const isMatrixMultiple=type==="matrix-multiple";
+  const isNumeric=type==="numeric-entry";
+  const seed=isCaseScreen?caseStudySeeds[i]:isMatrixMultiple?matrixMultiSeed:isNumeric?numericSeed:seeds[i%seeds.length];
+  const prompt=isCaseScreen?seed.question:isMatrixMultiple?matrixMultiSeed.question:isNumeric?numericSeed.question:prompts[Math.floor(i/seeds.length)%prompts.length](seed);
+  const interaction=isCaseScreen?caseInteractions[i]:isMatrixMultiple?matrixMultiInteraction:buildInteraction(type,seed,i);
   return {
     id:"ngn-"+String(i+1).padStart(3,"0"),
     category:seed.category,
     topic:seed.topic,
     difficulty:i%4===0?"Advanced":i%3===0?"Foundational":"Intermediate",
-    prompt:!isCaseScreen&&type==="multiple-response"?"Which nursing actions are appropriate? Select all that apply. "+prompt:!isCaseScreen&&type==="extended-multiple-response"?"Select every applicable finding and nursing action. "+prompt:!isCaseScreen&&(type==="ordered-response"||type==="extended-drag-drop")?"Arrange the nursing actions in the safest sequence for this client. "+prompt:prompt,
+    prompt:!isCaseScreen&&type==="multiple-response"?"Which nursing actions are appropriate? Select all that apply. "+prompt:!isCaseScreen&&type==="select-n"?"Select exactly two responses. "+prompt:!isCaseScreen&&type==="ordered-response"?"Arrange the nursing actions in the safest sequence for this client. "+prompt:prompt,
     options:seed.choices,
     answer:seed.answer,
-    rationale:seed.rationale,
+    rationale:isMatrixMultiple?matrixMultiSeed.rationale:isNumeric?numericSeed.rationale:seed.rationale,
     status:"published",
-    format:type==="multiple-response"||type==="extended-multiple-response"?"multiple":"single",
+    format:type==="multiple-response"||type==="select-n"?"multiple":"single",
     itemType:type,
-    interaction:isCaseScreen?caseInteractions[i]:buildInteraction(type,seed,i),
+    interaction,
     caseStudy:isCaseScreen?caseStudyPatient:seed.patient,
     exhibit:isCaseScreen?caseRecords[i].labs+"\n"+caseRecords[i].providerOrders:seed.record,
     caseRecord:isCaseScreen?caseRecords[i]:undefined,
