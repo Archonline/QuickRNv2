@@ -7,7 +7,7 @@
  * confidence adjustment for the number of completed assessments.
  * This is an educational estimate, not a clinically validated NCLEX prediction.
  */
-export function buildPassProbabilitySeries(attempts: ProbabilityAttempt[]): ProbabilityPoint[] {
+export function buildPassProbabilitySeries(attempts) {
   const ordered = attempts
     .filter(item =>
       (item.mode === "cat" || item.mode === "readiness") &&
@@ -20,7 +20,7 @@ export function buildPassProbabilitySeries(attempts: ProbabilityAttempt[]): Prob
     .sort((a, b) => a.completedAtMs - b.completedAtMs);
 
   let rollingScore = 70;
-  const scores: number[] = [];
+  const scores = [];
   let effectiveAssessments = 0;
 
   return ordered.map((attempt, index) => {
