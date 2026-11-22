@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+<title id="title">Clinical anatomical landmark reference</title>
+<desc id="desc">Neutral schematic views of the anterior torso, posterior torso, hip region, and foot for landmark identification practice.</desc>
+<rect width="800" height="500" rx="22" fill="#f4f7fb"/>
+<g fill="#e6edf5" stroke="#71849b" stroke-width="4" stroke-linejoin="round">
+<path d="M120 90 Q160 45 205 75 L235 105 L255 180 L240 250 L225 330 L205 385 L175 385 L160 300 L145 385 L115 385 L95 300 L80 385 L50 385 L65 250 L50 180 L70 105 Z"/>
+<path d="M390 90 Q430 45 475 75 L505 105 L525 180 L510 250 L495 330 L475 385 L445 385 L430 300 L415 385 L385 385 L365 300 L350 385 L320 385 L335 250 L320 180 L340 105 Z"/>
+<path d="M610 285 Q650 250 700 280 L750 320 L735 365 L690 380 L625 365 L590 330 Z"/>
+</g>
+<g fill="none" stroke="#9aabba" stroke-width="3" stroke-linecap="round">
+<path d="M85 145 Q155 175 225 145 M155 92 L155 380 M365 145 Q435 175 505 145 M435 92 L435 380"/>
+<path d="M155 185 Q120 220 125 255 M155 185 Q190 220 185 255"/>
+<path d="M435 185 Q400 220 405 255 M435 185 Q470 220 465 255"/>
+<path d="M155 255 L155 320 M435 255 L435 320"/>
+<path d="M625 320 Q675 340 725 335 M660 290 L680 370"/>
+</g>
+<g fill="#52677f" font-family="Arial, sans-serif" font-size="18" font-weight="700">
+<text x="155" y="35" text-anchor="middle">ANTERIOR</text><text x="435" y="35" text-anchor="middle">POSTERIOR</text><text x="675" y="245" text-anchor="middle">FOOT</text>
+</g>
+<g fill="none" stroke="#9aabba" stroke-width="2"><path d="M280 50 V430 M550 220 H780"/></g>
+</svg>
