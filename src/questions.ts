@@ -56,6 +56,7 @@ export type Question = {
   clinicalJudgmentStep?: "recognize-cues" | "analyze-cues" | "prioritize-hypotheses" | "generate-solutions" | "take-action" | "evaluate-outcomes";
   contentVersion?: number;
   reviewStatus?: "generated" | "editorially-reviewed" | "clinically-reviewed";
+  clinicalScenario?: string;
   caseStudy?: string;
   exhibit?: string;
   caseRecord?: {
