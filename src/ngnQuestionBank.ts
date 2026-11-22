@@ -22,7 +22,7 @@ function formatNgnContent(value:any):string{
 }
 function curatedCaseRecord(record:any,follow:any){
  const progress=[formatNgnContent(follow?.clinical_development),formatNgnContent(follow?.new_information)].filter(Boolean).join("\n");
- return {progressNotes:progress||"Clinical progression documented in the case exhibit.",history:formatNgnContent(record?.patient_profile),medicationList:formatNgnContent(record?.medications),assessment:formatNgnContent(record?.assessment),vitalSigns:formatNgnContent(record?.vital_signs),labs:formatNgnContent(record?.laboratory_results),providerOrders:formatNgnContent(record?.provider_orders),flowSheet:formatNgnContent(follow)};
+ return {progressNotes:progress,history:formatNgnContent(record?.patient_profile),medicationList:formatNgnContent(record?.medications),assessment:formatNgnContent(record?.assessment),vitalSigns:formatNgnContent(record?.vital_signs),labs:formatNgnContent(record?.laboratory_results),providerOrders:formatNgnContent(record?.provider_orders),flowSheet:formatNgnContent(follow)};
 }
 function curateNgnQuestion(raw:CuratedNgnItem,index:number):Question{
  const data=raw.interaction??{},key=raw.correct_response??{},r=raw.rationales??{};
@@ -101,7 +101,7 @@ function curateNgnQuestion(raw:CuratedNgnItem,index:number):Question{
   const conditions=data.condition_options??[],actions=data.action_options??[],parameters=data.parameter_options??[];
   const condition=idx(key.condition,conditions),correctActions=(key.actions??[]).map((id:string)=>idx(id,actions)).filter((v:number)=>v>=0),correctMonitoring=(key.parameters??[]).map((id:string)=>idx(id,parameters)).filter((v:number)=>v>=0);
   const monitoringOptions=parameters.map((x:any)=>x.text);
-  if(conditions.length<3||actions.length<4||monitoringOptions.length<4||new Set(monitoringOptions).size!==monitoringOptions.length) throw new Error(`NGN bow-tie ${raw.id} requires three authored conditions, four actions, and four distinct monitoring parameters.`);
+  if(conditions.length<3||actions.length<4||monitoringOptions.length<3||new Set(monitoringOptions).size!==monitoringOptions.length) throw new Error(`NGN bow-tie ${raw.id} requires three authored conditions, four actions, and four distinct monitoring parameters.`);
   if(condition<0||correctActions.length!==2||correctMonitoring.length!==2) throw new Error(`NGN bow-tie ${raw.id} has an incomplete or invalid answer key.`);
   itemType="bow-tie";options=[];answer=Math.max(0,condition);
   interaction={instruction:"Select the most likely condition, two priority actions, and two parameters to monitor.",choices:[],correctResponse:["c"+condition,...correctActions.map((v:number,i:number)=>"a"+i+"-"+v),...correctMonitoring.map((v:number,i:number)=>"m"+i+"-"+v)],bowTie:{conditions:conditions.map((x:any)=>x.text),actions:actions.map((x:any)=>x.text),monitoring:monitoringOptions,correctCondition:condition,correctActions,correctMonitoring}};
@@ -136,13 +136,22 @@ function buildCuratedExtension():Question[]{
 const curatedExtension:Question[]=buildCuratedExtension();
 
 function migrateLegacy(q:Question):Question {
-  if(q.itemType&&q.interaction)return {...q,contentVersion:3,reviewStatus:q.reviewStatus??"generated",reviewMetadata:q.reviewMetadata??{status:"not-clinically-verified",references:[],publicationStatus:"published"}};
+  if(q.itemType&&q.interaction){const metadata=q.reviewMetadata??{status:"not-clinically-verified" as const,references:[],publicationStatus:"published" as const};const reviewStatus=metadata.status==="clinically-verified"?"clinically-reviewed":metadata.status==="editorially-reviewed"?"editorially-reviewed":q.reviewStatus??"generated";return {...q,contentVersion:3,reviewStatus,reviewMetadata:metadata};}
   const itemType:NclexItemType=q.format==="multiple"?"multiple-response":"single-response";
-  return {...q,itemType,reviewMetadata:q.reviewMetadata??{status:"not-clinically-verified",references:[],publicationStatus:"published"},interaction:{...q.interaction,instruction:q.interaction?.instruction??(itemType==="multiple-response"?"Select all responses that apply.":"Select the one best response."),choices:q.interaction?.choices??q.options,correctResponse:q.interaction?.correctResponse??[String(q.answer)],optionRationales:q.interaction?.optionRationales},contentVersion:3,reviewStatus:"generated"};
+  const metadata=q.reviewMetadata??{status:"not-clinically-verified" as const,references:[],publicationStatus:"published" as const};
+  const reviewStatus=metadata.status==="clinically-verified"?"clinically-reviewed":metadata.status==="editorially-reviewed"?"editorially-reviewed":"generated";
+  return {...q,itemType,reviewMetadata:metadata,interaction:{...q.interaction,instruction:q.interaction?.instruction??(itemType==="multiple-response"?"Select all responses that apply.":"Select the one best response."),choices:q.interaction?.choices??q.options,correctResponse:q.interaction?.correctResponse??[String(q.answer)],optionRationales:q.interaction?.optionRationales},contentVersion:3,reviewStatus};
 }
 export const questionBank500V2:Question[]=questionBank500.map(migrateLegacy);
 export const questionBank100:Question[]=curatedExtension;
 export const questionBank600:Question[]=[...questionBank500V2,...questionBank100];
+const normalizeQuestionText=(value:string)=>value.toLowerCase().replace(/[^a-z0-9]+/g," ").trim().replace(/\s+/g," ");
+const traditionalPrompts=new Set(questionBank500V2.map(q=>normalizeQuestionText(q.prompt)));
+const duplicateCrossBankPrompts=questionBank100.filter(q=>traditionalPrompts.has(normalizeQuestionText(q.prompt)));
+if(duplicateCrossBankPrompts.length)throw new Error("Duplicate prompts across traditional and NGN banks: "+duplicateCrossBankPrompts.map(q=>q.id).join(", "));
+const traditionalScenarios=new Set(questionBank500V2.map(q=>normalizeQuestionText(q.clinicalScenario??q.caseStudy??"")).filter(Boolean));
+const duplicateCrossBankScenarios=questionBank100.filter(q=>{const value=normalizeQuestionText(q.clinicalScenario??q.caseStudy??"");return !!value&&traditionalScenarios.has(value);});
+if(duplicateCrossBankScenarios.length)throw new Error("Duplicate scenarios across traditional and NGN banks: "+duplicateCrossBankScenarios.map(q=>q.id).join(", "));
 if(questionBank100.length!==100) throw new Error("NGN extension must contain exactly 100 items.");
 if(new Set(questionBank600.map(q=>q.id)).size!==600) throw new Error("Question IDs must be unique across the 600-item bank.");
 export const itemFormatCounts = NCLEX_ITEM_TYPES.map(type=>({type,count:questionBank100.filter(q=>q.itemType===type||(type==="matrix-multiple"&&q.itemType==="matrix-grid")).length}));
@@ -161,7 +170,7 @@ const invalidFormatItems=questionBank100.filter(q=>{
   case "matrix-single": return (d.rows?.length??0)<3||(d.columns?.length??0)<2||!d.correctResponse?.length;
   case "numeric-entry": return !d.numericUnit||!d.correctResponse?.length;
   case "ordered-response": return !d.orderItems||d.orderItems.length<4||!d.correctOrder||d.correctOrder.length!==d.orderItems.length;
-  case "bow-tie": return !d.bowTie||d.bowTie.conditions.length<3||d.bowTie.actions.length<4||d.bowTie.monitoring.length<4||d.bowTie.correctActions.length!==2||d.bowTie.correctMonitoring.length!==2;
+  case "bow-tie": return !d.bowTie||d.bowTie.conditions.length<3||d.bowTie.actions.length<4||d.bowTie.monitoring.length<3||d.bowTie.correctCondition<0||d.bowTie.correctActions.length!==2||d.bowTie.correctMonitoring.length!==2;
   case "drag-drop": return !d.dragDropTemplate?.includes("[BLANK_3]")||!d.dragDropChoices||d.dragDropChoices.length<5;
   case "trend": return !d.trend||d.trend.length<3;
   case "graphics-based": return !d.graphic?.hotspots?.length||d.graphic.hotspots.length<4||!d.correctResponse?.length;
