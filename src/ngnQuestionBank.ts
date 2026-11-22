@@ -45,7 +45,7 @@ const numericSeed:Seed={
  category:"Pharmacology",
  topic:"Weight-based medication calculation",
  patient:"A client weighs 70 kg. The prescription is 0.1 mg/kg per dose.",
- question:"How many milligrams should the nurse administer per dose? Enter a numeric response.",
+ question:"How many milligrams should the nurse administer per dose?",
  choices:[],
  answer:7,
  rationale:"Multiply the prescribed dose by the client's weight: 0.1 mg/kg × 70 kg = 7 mg per dose.",
@@ -93,9 +93,12 @@ function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
     return {...common,correctResponse:["0:2","1:1","2:1"],matrixMode:"single",rows,columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Needs follow-up","2":"Needs follow-up"}};
   }
   if(type==="numeric-entry") return {...common,correctResponse:[String(seed.answer)],numericUnit:"mg",numericTolerance:0};
+  if(type==="ordered-response"&&seed.topic==="Hemodialysis hypotension") return {...common,correctResponse:["0","1","2","3"],orderItems:["Stop or reduce ultrafiltration according to the dialysis-unit protocol","Position the client safely and reassess blood pressure and symptoms","Notify the dialysis clinician and implement prescribed treatment for hypotension","Reassess hemodynamic response and document the event"],correctOrder:[0,1,2,3]};
   if(type==="ordered-response") return {...common,correctResponse:["0","1","2","3"],orderItems:["Assess airway, breathing, circulation, and immediate safety","Activate the appropriate urgent response and notify the responsible clinician","Implement the prescribed or protocol-authorized intervention","Reassess the client's response and document the outcome"],correctOrder:[0,1,2,3]};
+  if(type==="drag-drop"&&seed.topic==="Newborn hypoglycemia") return {...common,correctResponse:["0","1","2"],dragDropTemplate:"For this symptomatic newborn, the nurse should first [BLANK_1], then [BLANK_2], and recheck the [BLANK_3].",dragDropChoices:["Initiate the newborn hypoglycemia protocol","Provide prompt glucose treatment as indicated by the protocol","Blood glucose","Wait until the next scheduled feeding","Give sterile water"]};
   if(type==="drag-drop") return {...common,correctResponse:["0","1","2"],dragDropTemplate:"Based on the client's presentation, the nurse should first [BLANK_1], then [BLANK_2], and next [BLANK_3].",dragDropChoices:["Assess the immediate clinical threat","Initiate the appropriate urgent response","Implement the prescribed or protocol-based intervention","Complete routine documentation","Provide discharge teaching"]};
   if(type==="bow-tie") return {...common,correctResponse:["c0","a0-0","a1-1","m0-0","m1-1"],bowTie:{conditions:[seed.topic+" with acute clinical deterioration","Expected response to routine care","Stable chronic condition unrelated to the presentation"],actions:[...choices,"Reassess after the immediate intervention"],monitoring:["Vital signs and oxygenation","The clinical indicator most directly related to "+seed.topic,"Routine appetite","Unrelated skin assessment"],correctCondition:0,correctActions:[0,1],correctMonitoring:[0,1]}};
+  if(type==="trend"&&seed.topic==="Hepatic encephalopathy") return {...common,correctResponse:["1"],trend:[{time:"Day 1 · 0800",findings:"Alert and oriented. No asterixis. One bowel movement in the previous 24 hours. Ammonia 58 µmol/L."},{time:"Day 2 · 0800",findings:"New disorientation and asterixis. No bowel movement for 72 hours. Ammonia 92 µmol/L."},{time:"After prescribed lactulose",findings:"Three soft stools in 12 hours. Client is more alert and follows commands. Continue to monitor hydration and electrolytes."}]};
   if(type==="trend") return {...common,trend:[{time:"Initial assessment",findings:seed.patient},{time:"Current assessment",findings:seed.record},{time:"Nursing interpretation",findings:"Compare the direction of change with the client's symptoms and response to the intervention."}]};
   return common;
 }
