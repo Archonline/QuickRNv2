@@ -386,3 +386,27 @@
 .exam-layout-case .exam-record-panel .exam-left-scenario p,.exam-layout-case .exam-record-panel .exam-left-exhibit p,.exam-layout-case .exam-main .exam-stem{font-family:inherit;font-size:15px;font-weight:400;line-height:1.7;color:#303c49;letter-spacing:normal;}
 
 .ngn-bowtie-diagram:before{display:none!important;}
+
+
+/* Shared NGN presentation: keep controls in-pane and chart trends chronologically. */
+.exam-main-top{position:sticky;top:0;z-index:30;background:#fff;padding-top:12px;}
+.exam-main-top>div{min-width:0}.exam-question-counter{white-space:nowrap;}
+.ngn-cloze-sentence{display:block;width:100%;max-width:100%;box-sizing:border-box;line-height:2.35;overflow-wrap:anywhere;white-space:normal;}
+.ngn-cloze-sentence select,.ngn-dropdown select{display:inline-block;max-width:100%;min-width:0;width:auto;box-sizing:border-box;vertical-align:middle;white-space:normal;margin:3px 4px;padding:8px 28px 8px 9px;}
+.exam-main-case .ngn-cloze-sentence select{max-width:100%;min-width:0;width:auto;}
+/* Three-column NCLEX bow-tie: two stacked actions | one condition | two stacked monitors. */
+.ngn-bowtie-layout{display:block!important;width:100%;}
+.ngn-bowtie-diagram{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(170px,.9fr) minmax(0,1fr)!important;grid-template-rows:minmax(250px,auto)!important;align-items:stretch!important;gap:14px!important;padding:16px!important;}
+.ngn-bowtie-actions{grid-column:1!important;grid-row:1!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto repeat(2,minmax(82px,1fr))!important;align-content:stretch!important;gap:10px!important;}
+.ngn-bowtie-actions>strong,.ngn-bowtie-monitors>strong{grid-column:1!important;text-align:center;}
+.ngn-bowtie-actions .ngn-bowtie-drop-slot,.ngn-bowtie-monitors .ngn-bowtie-drop-slot{min-height:82px;width:100%;box-sizing:border-box;}
+.ngn-bowtie-condition{grid-column:2!important;grid-row:1!important;align-self:center!important;justify-self:stretch!important;width:100%!important;min-height:125px!important;border-radius:8px!important;}
+.ngn-bowtie-monitors{grid-column:3!important;grid-row:1!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto repeat(2,minmax(82px,1fr))!important;align-content:stretch!important;gap:10px!important;}
+.ngn-bowtie-actions:after,.ngn-bowtie-condition:after{display:none!important;}
+.ngn-bowtie-drop-slot button{width:100%;max-width:100%;min-height:62px;white-space:normal;overflow-wrap:anywhere;line-height:1.4;}
+@media(max-width:720px){
+ .exam-main-top{top:0;padding-top:8px;}
+ .ngn-bowtie-diagram{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto!important;gap:12px!important;}
+ .ngn-bowtie-actions,.ngn-bowtie-monitors{grid-column:1!important;grid-row:auto!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto repeat(2,minmax(72px,auto))!important;}
+ .ngn-bowtie-condition{grid-column:1!important;grid-row:auto!important;width:100%!important;}
+}
