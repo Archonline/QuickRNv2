@@ -302,5 +302,10 @@ const invalidFormatItems=extension.filter(q=>{
  }
 });
 if(invalidFormatItems.length) throw new Error("NGN format remediation failed for: "+invalidFormatItems.map(q=>q.id+" ("+q.itemType+")").join(", "));
+const bowTieItems=extension.filter(q=>q.itemType==="bow-tie");
+if(bowTieItems.some(q=>!q.exhibit?.includes("CLINICAL RECORD")&&!q.exhibit?.includes("EMERGENCY DEPARTMENT RECORD")||/Review the current assessment and record/i.test(q.exhibit??""))) throw new Error("Every bow-tie item must include an actual, non-placeholder clinical record.");
+if(bowTieItems.some(q=>{const b=q.interaction?.bowTie;if(!b)return true;return new Set(b.actions).size!==b.actions.length||new Set(b.monitoring).size!==b.monitoring.length;})) throw new Error("Bow-tie choices must be distinct within each item.");
+if(extension.filter(q=>q.itemType==="trend").some(q=>!q.exhibit?.includes("CLINICAL RECORD")||!q.interaction?.trend||q.interaction.trend.length!==4)) throw new Error("Every trend item must include a clinical record and four hourly findings.");
+
 if(questionBank600.some(q=>q.contentVersion!==3)) throw new Error("All 600 questions must use content version 3 before publication.");
 if(questionBank600.some(q=>q.status!=="published"||!q.prompt.trim()||!q.rationale.trim()||!q.topic.trim()||!q.category.trim()||!q.itemType||!q.interaction||(!q.clinicalScenario&&!q.caseStudy))) throw new Error("Every published question must have a renderable prompt, rationale, topic, category, interaction, and clinical scenario or case record.");
