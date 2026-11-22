@@ -258,8 +258,8 @@ const invalidFormatItems=extension.filter(q=>{
   case "drop-down-cloze": return !d.clozeTemplate?.includes("[BLANK_1]")||!(d.clozeChoices?.length||d.clozeChoicesByBlank?.length);
   case "drop-down-rationale": return !d.rationaleTemplate?.includes("[BLANK_1]")||!d.rationaleTemplate.includes("[BLANK_2]")||!d.rationaleChoicesByBlank||d.rationaleChoicesByBlank.length<2;
   case "highlight-text": return !d.segments?.length||!d.highlightableSegments?.length||!d.correctResponse?.length;
-  case "matrix-multiple": return !(d.matrixGroups?.length||d.rows?.length>=3)||!d.correctResponse?.length;
-  case "matrix-single": return !d.rows||d.rows.length<3||!d.columns||d.columns.length<3||!d.correctResponse?.length;
+  case "matrix-multiple": return !((d.matrixGroups?.length??0)>0||(d.rows?.length??0)>=3)||!d.correctResponse?.length;
+  case "matrix-single": return (d.rows?.length??0)<3||(d.columns?.length??0)<3||!d.correctResponse?.length;
   case "numeric-entry": return !d.numericUnit||!d.correctResponse?.length;
   case "ordered-response": return !d.orderItems||d.orderItems.length<4||!d.correctOrder||d.correctOrder.length!==d.orderItems.length;
   case "bow-tie": return !d.bowTie||d.bowTie.conditions.length<3||d.bowTie.actions.length<4||d.bowTie.monitoring.length<4||d.bowTie.correctActions.length!==2||d.bowTie.correctMonitoring.length!==2;
