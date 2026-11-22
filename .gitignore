@@ -1,7 +1,25 @@
-node_modules
-dist
+# Dependencies and build output
+node_modules/
+dist/
+coverage/
+
+# Local environment files (keep the committed example template)
 .env
-.env.local
-*.tsbuildinfo
+.env.*
+!.env.example
+
+# Local credentials and private keys
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
 service-account*.json
 *-firebase-adminsdk-*.json
+credentials*.json
+secrets/
+
+# Tooling
+*.tsbuildinfo
+.DS_Store
