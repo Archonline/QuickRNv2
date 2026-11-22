@@ -350,6 +350,7 @@ function curatedTraditionalQuestion(raw:CuratedTraditionalItem,index:number):Que
   const difficulty=raw.difficulty.toLowerCase();
   const clinicalScenario=formatCuratedScenario(raw.clinical_scenario);
   const rationale=rationales.summary??rationales.calculation??rationales.condition??rationales.correct??"";
+  const prompt=/^which action should the nurse take (first|immediately)\?$/i.test(raw.stem.trim())?"Which nursing action should the nurse take "+raw.stem.trim().replace(/^which action should the nurse take /i,"").replace(/\?$/,"")+" for this client with "+raw.subtopic.toLowerCase()+"?":raw.stem;
   const cj:Record<string,Question["clinicalJudgmentStep"]>={
     recognize_cues:"recognize-cues",analyze_cues:"analyze-cues",prioritize_hypotheses:"prioritize-hypotheses",
     generate_solutions:"generate-solutions",take_action:"take-action",evaluate_outcomes:"evaluate-outcomes"
@@ -395,14 +396,14 @@ function curatedTraditionalQuestion(raw:CuratedTraditionalItem,index:number):Que
   return {
     id:"qrn-"+String(37+index).padStart(4,"0"),category:raw.topic,topic:raw.subtopic,
     difficulty:difficulty==="easy"?"Foundational":difficulty==="hard"?"Advanced":"Intermediate",
-    prompt:raw.stem,options:outputOptions,answer,rationale,status:"published",
+    prompt,options:outputOptions,answer,rationale,status:"published",
     format:itemType==="multiple-response"?"multiple":"single",itemType,interaction,
     clinicalScenario,contentVersion:3,reviewStatus:"generated",
     clinicalJudgmentStep:cj[raw.clinical_judgment]
   };
 }
 const curatedTraditionalQuestions:Question[]=curatedTraditionalRaw.map(curatedTraditionalQuestion);
-if(curatedTraditionalQuestions.length!==100||new Set(curatedTraditionalQuestions.map(q=>q.prompt)).size<95)throw new Error("Curated traditional batch must contain 100 distinct questions.");
+if(curatedTraditionalQuestions.length!==100||new Set(curatedTraditionalQuestions.map(q=>q.prompt)).size!==100)throw new Error("Curated traditional batch must contain 100 distinct questions.");
 
 function make(b:B,i:number,global:number):Question{
 const topic=b.topics[i%b.topics.length],alias:Record<string,string>={"Digoxin toxicity":"Digoxin","Magnesium sulfate toxicity":"Magnesium sulfate","Hemodialysis hypotension":"Hemodialysis","C. difficile precautions":"C. difficile","Neutropenic fever":"Neutropenia","Delegation":"UAP delegation"},clinical=topicClinicalOverrides[topic]??topicClinicalOverrides[alias[topic]??""]??first300TopicOverrides[topic]??additionalTopicOverrides[topic]??cardiovascularTopicOverrides[topic]??respiratoryTopicOverrides[topic]??second300TopicOverrides[topic]??{},source: B & {caseRecord?:Question["caseRecord"];prompt?:string}={...b,...clinical},age=18+(i*7+global*3)%69,hr=76+(i*11+global*3)%61,sbp=98+(i*13+global*5)%78,dbp=58+(i*7+global*2)%42,rr=14+(i*3+global)%19,spo=88+(i*5+global*2)%12,temp=(36.4+((i*17+global*3)%27)/10).toFixed(1);
