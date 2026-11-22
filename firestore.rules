@@ -3,10 +3,9 @@ service cloud.firestore {
   match /databases/{database}/documents {
     function signedIn() { return request.auth != null; }
     function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
-    function isAdmin() { return signedIn() && request.auth.token.admin == true; }
 
     match /users/{uid} {
-      allow read: if isOwner(uid) || isAdmin();
+      allow read: if isOwner(uid);
       allow create: if isOwner(uid)
         && request.resource.data.keys().hasOnly(['displayName','email','createdAt','updatedAt'])
         && request.resource.data.email == request.auth.token.email;
@@ -76,16 +75,8 @@ service cloud.firestore {
     }
 
     match /questions/{questionId} {
-      allow read: if signedIn() && (resource.data.status == 'published' || isAdmin());
-      allow create, update: if isAdmin()
-        && request.resource.data.keys().hasAll(['category','topic','difficulty','prompt','options','answer','rationale','status'])
-        && request.resource.data.status in ['development','published']
-        && request.resource.data.options is list
-        && request.resource.data.options.size() >= 2
-        && request.resource.data.answer is int
-        && request.resource.data.answer >= 0
-        && request.resource.data.answer < request.resource.data.options.size();
-      allow delete: if isAdmin();
+      allow read: if signedIn() && resource.data.status == 'published';
+      allow create, update, delete: if false;
     }
 
     match /{document=**} { allow read, write: if false; }
