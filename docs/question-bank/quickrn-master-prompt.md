@@ -1,6 +1,6 @@
 # QuickRNv2 — Standalone NCLEX-RN Question Bank Generator
 
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Purpose:** Shared generation contract for Google Gemini and local Ollama models.  
 **Repository access required:** No.
 
@@ -21,6 +21,10 @@ When these companion files are supplied as context, follow them exactly:
 
 If a user provides a newer explicit version of any contract file, use that version consistently. Never invent fields or change enum values.
 
+## Existing bank reconciliation
+
+The repository's current published bank is 600 items: 500 core questions (`questionBank500`) plus 100 NGN extension questions (`questionBank100`), combined as `questionBank600`. The name `questionBank500` is the core-bank export only, not the total published bank. Any audit, revision, export, or release report must count the combined `questionBank600` collection and report the two source segments separately. Never silently truncate the bank to 500.
+
 ## Generation goals
 
 - Match the reasoning demands and item-writing style of NCLEX-RN/NGN practice assessments without claiming to reproduce official or secured exam content.
@@ -28,7 +32,8 @@ If a user provides a newer explicit version of any contract file, use that versi
 - Use realistic patient cases with internally consistent vital signs, assessment findings, laboratory values, diagnostic studies, medications, and provider orders when relevant.
 - Use all 13 supported interaction formats.
 - Provide a defensible answer key, complete rationales, scoring instructions, and clinical-judgment mapping.
-- Avoid duplicated questions, scenarios, patient data patterns, and learning objectives.
+- Avoid duplicated questions, scenarios, patient data patterns, and learning objectives. A topic label alone is not a clinical scenario: each question must have a topic-specific patient presentation, relevant findings, an answer supported by those findings, and distractors that are plausible near-misses for that exact clinical decision.
+- Do not cycle a small set of seed scenarios across unrelated topics or manufacture random vital signs/laboratory values. If a topic-specific clinical case cannot be authored with confidence, flag it for content remediation rather than attaching an unrelated category-level vignette.
 - Produce valid, machine-readable JSON conforming to the canonical schema.
 
 ## Embedded nursing topic blueprint
