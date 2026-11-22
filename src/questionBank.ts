@@ -1,4 +1,5 @@
 import type { Question } from "./questions";
+import curatedTraditionalBatch from "./curatedQuestionBatch2_100.json";
 type B={category:string;count:number;topics:string[];scenario:string;priority:string;distractors:string[];rationale:string;record:string};
 const B:B[]=[
 {category:"Maternal-Newborn / Obstetrics",count:60,topics:["Placental abruption","Cord prolapse","Preeclampsia with severe features","Magnesium sulfate toxicity","Late decelerations","PROM","Postpartum hemorrhage","Shoulder dystocia","Preterm labor","Newborn hypoglycemia","Chorioamnionitis","Gestational diabetes","Fetal heart-rate variability","Amniotic fluid embolism","Ectopic pregnancy","Hyperemesis gravidarum","Rh incompatibility","Postpartum infection","Breastfeeding complications","Newborn thermoregulation"],scenario:"A 29-year-old G2P1 at 34 weeks reports sudden constant abdominal pain and dark vaginal bleeding. BP 154/96 mm Hg, HR 118/min, RR 22/min, temperature 36.8°C. The uterus is firm and tender; fetal tracing shows minimal variability with recurrent late decelerations.",priority:"Activate the obstetric emergency response, assess maternal hemodynamic status and fetal status, establish IV access, and prepare for expedited birth as directed.",distractors:["Perform a digital vaginal examination before placental location is established","Encourage ambulation and reassess bleeding in 30 minutes","Administer a tocolytic before clarifying the cause of bleeding","Reassure the client that painful bleeding is an expected pregnancy finding"],rationale:"Painful bleeding, uterine tenderness and fetal compromise are concerning for placental abruption. Maternal stabilization and urgent obstetric evaluation take priority; avoid digital examination until placenta previa is excluded.",record:"CBC: Hgb 9.6 g/dL, platelets 112,000/mm³; fibrinogen 185 mg/dL; PT 15.8 seconds; type and crossmatch ordered; continuous fetal monitoring."},
@@ -324,6 +325,85 @@ const second300TopicOverrides:Record<string,ClinicalOverride>={
 "Incident reporting":ov("Which action is appropriate after a medication error?","A nurse discovers that a client received twice the prescribed insulin dose. The client is currently asymptomatic.","Assess the client immediately, notify the provider and charge nurse, monitor glucose per protocol, and complete an objective incident report after immediate care.",["Wait for symptoms before notifying anyone","Alter the medical record to hide the error","Document blame and speculation in the incident report"],"Patient assessment and harm prevention come first. Follow disclosure and reporting policy; chart objective clinical facts, not the incident report itself.","Double insulin dose administered; no symptoms yet; glucose monitoring required."),
 "Therapeutic communication":ov("Which response is most therapeutic?","A client newly diagnosed with cancer says, 'I am terrified that I will die.'","Use an open-ended, empathetic response such as, 'This feels frightening. What concerns you most right now?' and remain present.",["Tell the client not to worry","Change the subject","Offer false reassurance that death is impossible"],"Therapeutic communication acknowledges emotion, invites expression, and avoids minimizing or offering unsupported reassurance.","New cancer diagnosis; client expresses fear of dying.")
 };
+
+type CuratedTraditionalItem = {
+  topic:string; subtopic:string; difficulty:string; question_type:string; stem:string;
+  clinical_scenario:unknown; interaction:Record<string,unknown>; correct_response:unknown;
+  rationales:Record<string,string>; clinical_judgment:string; scoring:Record<string,unknown>;
+};
+const curatedTraditionalRaw=(curatedTraditionalBatch as {questions:CuratedTraditionalItem[]}).questions;
+function formatCuratedScenario(value:unknown):string {
+  if(typeof value==="string")return value;
+  if(Array.isArray(value))return value.map(formatCuratedScenario).filter(Boolean).join("\n");
+  if(value&&typeof value==="object")return Object.entries(value as Record<string,unknown>)
+    .map(([key,entry])=>key.replace(/_/g," ").replace(/\b\w/g,char=>char.toUpperCase())+": "+formatCuratedScenario(entry))
+    .filter(line=>!line.endsWith(": ")).join("\n");
+  return value===null||value===undefined?"":String(value);
+}
+function curatedTraditionalQuestion(raw:CuratedTraditionalItem,index:number):Question {
+  const source=raw.interaction??{};
+  const rationales=raw.rationales??{};
+  const options=(Array.isArray(source.options)?source.options as {id:string;text:string}[]:[]);
+  const optionTexts=options.map(option=>option.text);
+  const optionIndex=(id:unknown)=>options.findIndex(option=>option.id===String(id));
+  const correct=raw.correct_response;
+  const difficulty=raw.difficulty.toLowerCase();
+  const clinicalScenario=formatCuratedScenario(raw.clinical_scenario);
+  const rationale=rationales.summary??rationales.calculation??rationales.condition??rationales.correct??"";
+  const cj:Record<string,Question["clinicalJudgmentStep"]>={
+    recognize_cues:"recognize-cues",analyze_cues:"analyze-cues",prioritize_hypotheses:"prioritize-hypotheses",
+    generate_solutions:"generate-solutions",take_action:"take-action",evaluate_outcomes:"evaluate-outcomes"
+  };
+  let itemType:Question["itemType"]="single-response";
+  let interaction:Question["interaction"]={instruction:"Select the one best response.",choices:optionTexts,correctResponse:["0"]};
+  let answer=0;
+  let outputOptions=optionTexts;
+  if(raw.question_type==="multiple_choice"||raw.question_type==="multiple_response"){
+    const ids=Array.isArray(correct)?correct as unknown[]:[];
+    const indexes=ids.map(optionIndex).filter(value=>value>=0);
+    itemType=raw.question_type==="multiple_response"?"multiple-response":"single-response";
+    interaction={instruction:itemType==="multiple-response"?"Select all responses that apply.":"Select the one best response.",choices:optionTexts,correctResponse:indexes.map(String),optionRationales:options.map(option=>rationales[option.id]??"Review the clinical rationale and compare this option with the documented assessment, risks, and prescribed plan.")};
+    answer=indexes[0]??0;
+  } else if(raw.question_type==="ordered_response"){
+    const items=Array.isArray(source.items)?source.items as string[]:[];
+    const ordered=Array.isArray(correct)?correct as string[]:[];
+    const order=ordered.map(item=>items.indexOf(item)).filter(value=>value>=0);
+    itemType="ordered-response";outputOptions=items;answer=order[0]??0;
+    interaction={instruction:"Arrange the nursing actions in the safest order.",choices:items,orderItems:items,correctOrder:order,correctResponse:order.map(String),optionRationales:items.map((_,i)=>rationales[String(i+1)]??rationale)};
+  } else if(raw.question_type==="fill_in_the_blank"){
+    const numeric=Number(correct);
+    itemType="numeric-entry";outputOptions=[];answer=Number.isFinite(numeric)?numeric:0;
+    interaction={instruction:"Enter the calculated answer.",choices:[],correctResponse:[String(numeric)],numericUnit:String(source.unit??""),numericTolerance:Number(raw.scoring.tolerance??0),optionRationales:[rationales.calculation??rationale]};
+  } else if(raw.question_type==="bowtie"){
+    const conditions=Array.isArray(source.conditions)?source.conditions as string[]:[];
+    const actions=Array.isArray(source.actions)?source.actions as string[]:[];
+    const parameters=Array.isArray(source.parameters)?source.parameters as string[]:[];
+    const key=correct as {condition?:string;actions?:string[];parameters?:string[]};
+    const correctCondition=Math.max(0,conditions.indexOf(String(key.condition??"")));
+    const correctActions=(key.actions??[]).map(item=>actions.indexOf(item)).filter(value=>value>=0);
+    const correctMonitoring=(key.parameters??[]).map(item=>parameters.indexOf(item)).filter(value=>value>=0);
+    itemType="bow-tie";outputOptions=[];answer=correctCondition;
+    interaction={instruction:"Identify the most likely condition, two priority actions, and two parameters to monitor.",choices:[],correctResponse:["c"+correctCondition,...correctActions.map((value,i)=>"a"+i+"-"+value),...correctMonitoring.map((value,i)=>"m"+i+"-"+value)],bowTie:{conditions,actions,monitoring:parameters,correctCondition,correctActions,correctMonitoring},optionRationales:[rationales.condition??"",rationales.actions??"",rationales.parameters??""]};
+  } else if(raw.question_type==="matrix_grid"){
+    const rows=Array.isArray(source.rows)?source.rows as {id:string;text:string}[]:[];
+    const columns=Array.isArray(source.columns)?source.columns as string[]:[];
+    const key=correct as Record<string,string>;
+    const expected=rows.map((row,index)=>index+":"+Math.max(0,columns.indexOf(String(key[row.id]??""))));
+    itemType="matrix-grid";outputOptions=[];answer=0;
+    interaction={instruction:"Select the best classification for each clinical finding.",choices:[],rows:rows.map(row=>row.text),columns,matrixMode:"single",correctResponse:expected,correctMatrix:Object.fromEntries(rows.map((row,index)=>[String(index),String(key[row.id]??"")]))};
+  }
+  return {
+    id:"qrn-"+String(37+index).padStart(4,"0"),category:raw.topic,topic:raw.subtopic,
+    difficulty:difficulty==="easy"?"Foundational":difficulty==="hard"?"Advanced":"Intermediate",
+    prompt:raw.stem,options:outputOptions,answer,rationale,status:"published",
+    format:itemType==="multiple-response"?"multiple":"single",itemType,interaction,
+    clinicalScenario,contentVersion:3,reviewStatus:"generated",
+    clinicalJudgmentStep:cj[raw.clinical_judgment]
+  };
+}
+const curatedTraditionalQuestions:Question[]=curatedTraditionalRaw.map(curatedTraditionalQuestion);
+if(curatedTraditionalQuestions.length!==100||new Set(curatedTraditionalQuestions.map(q=>q.prompt)).size<95)throw new Error("Curated traditional batch must contain 100 distinct questions.");
+
 function make(b:B,i:number,global:number):Question{
 const topic=b.topics[i%b.topics.length],alias:Record<string,string>={"Digoxin toxicity":"Digoxin","Magnesium sulfate toxicity":"Magnesium sulfate","Hemodialysis hypotension":"Hemodialysis","C. difficile precautions":"C. difficile","Neutropenic fever":"Neutropenia","Delegation":"UAP delegation"},clinical=topicClinicalOverrides[topic]??topicClinicalOverrides[alias[topic]??""]??first300TopicOverrides[topic]??additionalTopicOverrides[topic]??cardiovascularTopicOverrides[topic]??respiratoryTopicOverrides[topic]??second300TopicOverrides[topic]??{},source: B & {caseRecord?:Question["caseRecord"];prompt?:string}={...b,...clinical},age=18+(i*7+global*3)%69,hr=76+(i*11+global*3)%61,sbp=98+(i*13+global*5)%78,dbp=58+(i*7+global*2)%42,rr=14+(i*3+global)%19,spo=88+(i*5+global*2)%12,temp=(36.4+((i*17+global*3)%27)/10).toFixed(1);
 const mode=i%4;const prompt=source.prompt??"Based on the client's current assessment findings, which nursing action should the nurse take first?";
@@ -332,6 +412,7 @@ return {id:"qrn-"+String(global+1).padStart(4,"0"),category:b.category,topic,dif
 }
 const all:Question[]=[];for(const b of B){for(let i=0;i<b.count;i++)all.push(make(b,i,all.length));}
 for(let c=0;c<cases.length;c++){for(let j=0;j<6;j++){const q=all[c*6+j],f=caseSpecificFollowups[c]?.[j]??followups[j],file=cases[c];if(q)all[c*6+j]={...q,id:"qrn-case-"+(c+1)+"-"+(j+1),topic:file.name,format:"case-study",difficulty:j===0||j===3?"Advanced":"Intermediate",caseStudy:file.record,exhibit:file.exhibit,caseRecord:{progressNotes:file.record,labs:file.exhibit,flowSheet:""},prompt:f.prompt,options:f.options,answer:f.answer,rationale:f.rationale,status:"published",clinicalScenario:undefined};}}
+for(let i=0;i<curatedTraditionalQuestions.length;i++)all[36+i]=curatedTraditionalQuestions[i];
 export const questionBank500:Question[]=all.slice(0,500);
 if(questionBank500.length!==500)throw new Error("Question bank must contain exactly 500 items.");
 if(new Set(questionBank500.map(q=>q.id)).size!==500)throw new Error("Duplicate question IDs detected.");
