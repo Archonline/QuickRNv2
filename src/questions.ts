@@ -2,7 +2,7 @@ export type CanonicalNclexItemType =
   | "single-response" | "multiple-response" | "select-n"
   | "drop-down-cloze" | "drop-down-rationale" | "highlight-text"
   | "matrix-multiple" | "matrix-single" | "numeric-entry"
-  | "ordered-response" | "bow-tie" | "drag-drop" | "trend";
+  | "ordered-response" | "bow-tie" | "drag-drop" | "trend" | "graphics-based";
 
 export type LegacyNclexItemType =
   | "extended-multiple-response" | "drop-down-table" | "highlight-table"
