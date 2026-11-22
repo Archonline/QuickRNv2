@@ -1,4 +1,4 @@
-import type { ProbabilityPoint } from "./passProbability";
+import type { ProbabilityPoint } from "./passProbability.js";
 
 type Props = { points: ProbabilityPoint[] };
 
