@@ -39,3 +39,8 @@ The extension contains exactly 100 records distributed across all 13 item types.
 The renderer now supports the two-pane chart/question layout, centered matrix headings, drag-only ordered response, a bow-tie diagram before the choice bank, drag-away removal of bow-tie selections, full-sentence drag/drop, and clickable text highlighting. The six-screen pulmonary-embolism unfolding case retains one shared patient and evolving chart.
 
 All new items remain marked `reviewStatus: generated`; no clinical validation is claimed. This is original QuickRN study content and is not official NCSBN material.
+
+
+## Global feedback patches
+
+All rendering and item-quality corrections are applied globally across the existing question bank, not just the 13 IDs in the feedback export. New question batches must use the same rules: one patient scenario in the left pane, question/task and answer interaction only in the right pane, no topic/category/difficulty hints, no empty chart tabs or fabricated chart data, chronological flow sheets, and plausible near-miss distractors. Trend tables belong below the scenario in the left pane. Bow-tie uses two vertically stacked action slots, a central condition, two vertically stacked monitoring slots, and connecting lines; condition distractors should be similar and monitoring options must not reveal the diagnosis. Cloze instructions appear once, rationale blanks must produce grammatical action phrases, and highlight-text selects individual key words/values rather than whole sentences. A confirmed reset control for saved item feedback is available at exam setup.
