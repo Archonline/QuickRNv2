@@ -89,7 +89,7 @@ function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
     const keyTokens=tokens.filter(token=>matched.some(cue=>{const word=token.trim().replace(/[.,;:]/g,"").toLowerCase();const match=cue.toLowerCase();return word.length>1&&(match.includes(word)||word.includes(match));})).map(token=>token.trim());
     return {...common,correctResponse:keyTokens.length?keyTokens:[tokens[0]?.trim()??""],segments:tokens};
   }
-  if(type==="matrix-multiple") return {...common,correctResponse:["0:1","1:0","1:1","2:1"],matrixMode:"multiple",rows:["Wear gown and gloves on room entry","Perform soap-and-water hand hygiene after care","Use dedicated client-care equipment","Place the client in a negative-pressure room"],columns:["Standard","Contact/Enteric","Droplet","Airborne"]};
+  if(type==="matrix-multiple") return {...common,correctResponse:["0:0","1:1","2:0","3:1"],matrixMode:"multiple",rows:["Implement the priority intervention: "+(choices[seed.answer]??choices[0]),"Implement this distractor: "+(choices[(seed.answer+1)%choices.length]??"Delay care"),"Monitor the client for deterioration related to "+seed.topic,"Delay reassessment until the next routine round"],columns:["Appropriate for this client","Not appropriate for this client"]};
   if(type==="matrix-single"&&seed.topic==="Acute pulmonary embolism") return {...common,correctResponse:["0:2","1:2","2:0"],matrixMode:"single",rows:["Sudden dyspnea with SpO2 84% on room air","Heart rate 132/min with pleuritic chest pain","Temperature 37.0°C with a dry surgical dressing"],columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Emergency","2":"Expected"}};
   if(type==="matrix-single") {
     const rows=clinicalCues.slice(0,3).map(cue=>cue.length>95?cue.slice(0,92)+"…":cue);
@@ -149,14 +149,15 @@ const matrixMultiInteraction:QuestionInteraction={
  matrixMode:"multiple",
  correctResponse:["0:1","1:0","1:1","2:1"]
 };
+const ngnCoreSeeds:Seed[]=questionBank500.slice(300,400).map(q=>({category:q.category,topic:q.topic,patient:q.clinicalScenario??q.caseStudy??("Clinical scenario: "+q.topic),question:q.prompt,choices:q.options,answer:q.answer,rationale:q.rationale,record:q.exhibit??q.caseRecord?.labs??("Review the current assessment and record for "+q.topic+".")}));
 const extension: Question[] = Array.from({length:100},(_,i)=>{
   const isCaseScreen=i<6;
   const type:CanonicalNclexItemType=isCaseScreen&&i===3?"matrix-multiple":NCLEX_ITEM_TYPES[i%NCLEX_ITEM_TYPES.length];
   const isMatrixMultiple=type==="matrix-multiple";
   const isNumeric=type==="numeric-entry";
-  const seed=isCaseScreen?caseStudySeeds[i]:isMatrixMultiple?matrixMultiSeed:isNumeric?numericSeed:seeds[i%seeds.length];
-  const prompt=isCaseScreen?seed.question:isMatrixMultiple?matrixMultiSeed.question:isNumeric?numericSeed.question:prompts[Math.floor(i/seeds.length)%prompts.length](seed);
-  const interaction=isCaseScreen?caseInteractions[i]:isMatrixMultiple?matrixMultiInteraction:buildInteraction(type,seed);
+  const seed=isCaseScreen?caseStudySeeds[i]:isNumeric?numericSeed:ngnCoreSeeds[(i-6)%ngnCoreSeeds.length];
+  const prompt=isCaseScreen?seed.question:isNumeric?numericSeed.question:seed.question;
+  const interaction=isCaseScreen?caseInteractions[i]:buildInteraction(type,seed);
   return {
     id:"ngn-"+String(i+1).padStart(3,"0"),
     category:seed.category,
@@ -165,7 +166,7 @@ const extension: Question[] = Array.from({length:100},(_,i)=>{
     prompt:prompt,
     options:seed.choices,
     answer:seed.answer,
-    rationale:isCaseScreen?seed.rationale:isMatrixMultiple?matrixMultiSeed.rationale:isNumeric?numericSeed.rationale:seed.rationale,
+    rationale:seed.rationale,
     status:"published",
     format:type==="multiple-response"||type==="select-n"?"multiple":"single",
     itemType:type,
