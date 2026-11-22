@@ -251,4 +251,24 @@ if(new Set(questionBank600.map(q=>q.id)).size!==600) throw new Error("Question I
 export const itemFormatCounts = NCLEX_ITEM_TYPES.map(type=>({type,count:questionBank100.filter(q=>q.itemType===type).length}));
 if(NCLEX_ITEM_TYPES.some(type=>!questionBank100.some(q=>q.itemType===type))) throw new Error("Every supported NCLEX item format must have a published sample.");
 if(extension.filter(q=>q.caseStudyId==="ngn-case-01").length!==6) throw new Error("The unfolding case must contain exactly six linked screens.");
+const invalidFormatItems=extension.filter(q=>{
+ const d=q.interaction;if(!d)return true;
+ switch(q.itemType){
+  case "single-response": return !d.choices||d.choices.length<4||!d.correctResponse?.length;
+  case "multiple-response": case "select-n": return !d.choices||d.choices.length<5||!d.correctResponse||d.correctResponse.length<2;
+  case "drop-down-cloze": return !d.clozeTemplate?.includes("[BLANK_1]")||!(d.clozeChoices?.length||d.clozeChoicesByBlank?.length);
+  case "drop-down-rationale": return !d.rationaleTemplate?.includes("[BLANK_1]")||!d.rationaleTemplate.includes("[BLANK_2]")||!d.rationaleChoicesByBlank||d.rationaleChoicesByBlank.length<2;
+  case "highlight-text": return !d.segments?.length||!d.highlightableSegments?.length||!d.correctResponse?.length;
+  case "matrix-multiple": return !(d.matrixGroups?.length||d.rows?.length>=3)||!d.correctResponse?.length;
+  case "matrix-single": return !d.rows||d.rows.length<3||!d.columns||d.columns.length<3||!d.correctResponse?.length;
+  case "numeric-entry": return !d.numericUnit||!d.correctResponse?.length;
+  case "ordered-response": return !d.orderItems||d.orderItems.length<4||!d.correctOrder||d.correctOrder.length!==d.orderItems.length;
+  case "bow-tie": return !d.bowTie||d.bowTie.conditions.length<3||d.bowTie.actions.length<4||d.bowTie.monitoring.length<4||d.bowTie.correctActions.length!==2||d.bowTie.correctMonitoring.length!==2;
+  case "drag-drop": return !d.dragDropTemplate?.includes("[BLANK_3]")||!d.dragDropChoices||d.dragDropChoices.length<5;
+  case "trend": return !d.trend||d.trend.length<4;
+  default: return true;
+ }
+});
+if(invalidFormatItems.length) throw new Error("NGN format remediation failed for: "+invalidFormatItems.map(q=>q.id+" ("+q.itemType+")").join(", "));
+if(questionBank600.some(q=>q.contentVersion!==3)) throw new Error("All 600 questions must use content version 3 before publication.");
 if(questionBank600.some(q=>q.status!=="published"||!q.prompt.trim()||!q.rationale.trim()||!q.topic.trim()||!q.category.trim()||!q.itemType||!q.interaction||(!q.clinicalScenario&&!q.caseStudy))) throw new Error("Every published question must have a renderable prompt, rationale, topic, category, interaction, and clinical scenario or case record.");
