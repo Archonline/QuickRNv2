@@ -52,7 +52,7 @@ const exam=useMemo(()=>{const formatType=(q:Question)=>q.itemType??(q.format==="
 
  const type=item?(item.itemType??(item.format==="multiple"?"multiple-response":"single-response")):"single-response";
  const isUnfoldingCase=!!item&&(!!item.caseStudyId||(!!item.caseStudy&&item.format==="case-study"));
- const hasClinicalRecord=!!item&&(isUnfoldingCase||type==="bow-tie"||type==="trend"||!!item.caseRecord)&&!!(item.caseStudy||item.caseRecord||item.clinicalScenario||item.exhibit||(type==="trend"&&data?.trend?.length));
+ const hasClinicalRecord=!!item&&(isUnfoldingCase||type==="bow-tie"||type==="trend"||!!item.caseRecord)&&!!(item.caseStudy||item.caseRecord||item.clinicalScenario||item.exhibit);
  const currentCaseItems=isUnfoldingCase?exam.filter(q=>caseGroupKey(q)===caseGroupKey(item!)):[ ];
  const caseScreen=isUnfoldingCase?currentCaseItems.findIndex(q=>q.id===item!.id)+1:0;
  const recordText=item?.caseStudy??"";
