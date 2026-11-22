@@ -329,7 +329,7 @@ const second300TopicOverrides:Record<string,ClinicalOverride>={
 type CuratedTraditionalItem = {
   topic:string; subtopic:string; difficulty:string; question_type:string; stem:string;
   clinical_scenario:unknown; interaction:Record<string,unknown>; correct_response:unknown;
-  rationales:Record<string,string>; clinical_judgment:string; scoring:Record<string,unknown>;
+  rationales:Record<string,string|undefined>; clinical_judgment:string; scoring:Record<string,unknown>;
 };
 const curatedTraditionalRaw=(curatedTraditionalBatch as {questions:CuratedTraditionalItem[]}).questions;
 function formatCuratedScenario(value:unknown):string {
@@ -562,7 +562,6 @@ const balanceDistractor=(value:string)=>{const words=value.trim().split(/\s+/).l
 const base=[answerText,balanceDistractor(distractors[mode]),balanceDistractor(distractors[(mode+1)%distractors.length]),balanceDistractor(distractors[(mode+2)%distractors.length])];
 const shift=(global+occurrence)%4;
 const opts=base.slice(shift).concat(base.slice(0,shift));
-const patientAge=clinical.scenario?undefined:age;
 const careContexts=["during the initial emergency assessment","during a focused inpatient reassessment","before the next scheduled treatment","during discharge-readiness review","after a change in the client condition","during medication-safety verification","at an urgent bedside handoff","during follow-up after the initial intervention"];
 const scenario=global<136?(source.scenario??("A "+age+"-year-old client is receiving care for "+topic.toLowerCase()+".")):(source.scenario??("A "+age+"-year-old client is receiving care for "+topic.toLowerCase()+"."))+"\n\nClinical context: "+careContexts[occurrence%careContexts.length]+". "+lens.cue;
 const record=source.record??b.record;
