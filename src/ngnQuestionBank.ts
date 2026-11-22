@@ -84,7 +84,7 @@ function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
   if(type==="highlight-text") {
     const passage=[seed.patient,seed.record].filter(Boolean).join(" ");
     const tokens=passage.match(/\S+\s*/g)??[passage];
-    const cuePattern=/(?:chemotherapy|oral temperature of 38\.4°C|temperature of 38\.4°C|ANC 380\/mm³|absolute neutrophil count of 380\/mm³|lactate 2\.4 mmol\/L|SpO2 \d+%|oxygen saturation of \d+%|BP \d+\/\d+|HR \d+\/min|RR \d+\/min|glucose \d+ mg\/dL|potassium \d+(?:\.\d+)? mEq\/L)/gi;
+    const cuePattern=/(?:chemotherapy|temperature|38\\.4°C|380\\/mm³|ANC|lactate|2\\.4|mmol\\/L|SpO2|oxygen saturation|BP|HR|RR|glucose|potassium)/gi;
     const matched=[...passage.matchAll(cuePattern)].map(match=>match[0]);
     const keyTokens=tokens.filter(token=>matched.some(cue=>cue.toLowerCase().includes(token.trim().toLowerCase())&&token.trim().length>1)).map(token=>token.trim());
     return {...common,correctResponse:keyTokens.length?keyTokens:[tokens[0]?.trim()??""],segments:tokens};
