@@ -59,14 +59,18 @@ function curateNgnQuestion(raw:CuratedNgnItem,index:number):Question{
   const rows=Array.isArray(data.rows)?data.rows as {id:string;label?:string;text?:string}[]:[];
   const cols=Array.isArray(data.columns)?data.columns as {id:string;label:string}[]:[];
   const selections=key.selections??{};
-  const correct=rows.map((row,i)=>i+":"+Math.max(0,cols.findIndex(col=>col.id===selections[row.id])));
+  const selectedColumns=rows.map(row=>cols.findIndex(col=>col.id===selections[row.id]));
+  if(rows.length<3||cols.length<2||selectedColumns.some(value=>value<0))throw new Error(`NGN matrix ${raw.id} has incomplete rows, columns, or answer keys.`);
+  const correct=selectedColumns.map((column,i)=>i+":"+column);
   itemType="matrix-single";options=[];
   interaction={instruction:"Select one classification in each row.",choices:[],rows:rows.map(row=>row.label??row.text??""),columns:cols.map(col=>col.label),matrixMode:"single",correctResponse:correct,correctMatrix:Object.fromEntries(rows.map((row,i)=>[String(i),cols.find(col=>col.id===selections[row.id])?.label??""]))};
  }else if(raw.question_type==="cloze"){
   const segments=Array.isArray(data.segments)?data.segments as {id:string;text_before:string;text_after:string;options:{id:string;text:string}[]}[]:[];
   const clozeTemplate=segments.map((segment,i)=>segment.text_before+"[BLANK_"+(i+1)+"]"+segment.text_after).join(" ");
   const choicesByBlank=segments.map(segment=>segment.options.map(option=>option.text));
-  const correct=segments.map(segment=>String(segment.options.findIndex(option=>option.id===key.selections?.[segment.id])));
+  const correctIndexes=segments.map(segment=>segment.options.findIndex(option=>option.id===key.selections?.[segment.id]));
+  if(!segments.length||correctIndexes.some(value=>value<0))throw new Error(`NGN cloze ${raw.id} has an incomplete authored answer key.`);
+  const correct=correctIndexes.map(String);
   itemType="drop-down-cloze";options=[];
   interaction={instruction:"Complete each clinical statement using the drop-down selections.",choices:[],clozeTemplate,clozeChoicesByBlank:choicesByBlank,correctResponse:correct};
  }else if(raw.question_type==="highlight_text"){
@@ -79,27 +83,34 @@ function curateNgnQuestion(raw:CuratedNgnItem,index:number):Question{
   const rows=Array.isArray(data.rows)?data.rows as {id:string;cells:string[]}[]:[];
   const cells=Array.isArray(data.selectable_cells)?data.selectable_cells as {id:string;row_id:string;column_index:number}[]:[];
   const selected=key.selected_cells??[];
-  const segments=cells.map(cell=>{const row=rows.find(candidate=>candidate.id===cell.row_id);return row?row.cells[0]+" — "+row.cells[cell.column_index]:"Clinical result "+cell.id;});
+  if(!rows.length||!cells.length||cells.some(cell=>!rows.some(row=>row.id===cell.row_id)||!Number.isInteger(cell.column_index)||cell.column_index<0||cell.column_index>=rows.find(row=>row.id===cell.row_id)!.cells.length)||selected.some((id:string)=>!cells.some(cell=>cell.id===id)))throw new Error(`NGN highlight-table ${raw.id} has invalid authored cells or answer key.`);
+  const segments=cells.map(cell=>{const row=rows.find(candidate=>candidate.id===cell.row_id)!;return row.cells[0]+" — "+row.cells[cell.column_index];});
   itemType="highlight-table";options=[];
   interaction={instruction:"Highlight the results that require immediate follow-up.",choices:[],segments,correctResponse:cells.map((cell,i)=>selected.includes(cell.id)?String(i):"").filter(Boolean)};
  }else if(raw.question_type==="trend"){
   const observations=Array.isArray(data.observations)?data.observations as any[]:[];
   const correctIndex=idx(key.selected_option);
+  if(correctIndex<0||observations.length<3)throw new Error(`NGN trend ${raw.id} requires three observations and a valid authored answer key.`);
   itemType="trend";
   interaction={instruction:"Review the trend and select the best interpretation.",choices:optionTexts,correctResponse:[String(correctIndex)],trend:observations.map(observation=>({time:String(observation.time),findings:formatNgnContent({vital_signs:observation.vital_signs,assessment:observation.assessment,laboratory_results:observation.laboratory_results})})),optionRationales};
   answer=correctIndex;
  }else if(raw.question_type==="ordered_response"){
   const items=Array.isArray(data.items)?data.items as {id:string;text:string}[]:[];
-  const ordered=key.ordered_items??[],correctOrder=ordered.map((id:string)=>items.findIndex(item=>item.id===id)).filter((value:number)=>value>=0);
+  const ordered=key.ordered_items??[],orderIndexes=ordered.map((id:string)=>items.findIndex(item=>item.id===id));
+  if(items.length<4||!ordered.length||orderIndexes.some(value=>value<0))throw new Error(`NGN ordered-response ${raw.id} has incomplete items or answer key.`);
+  const correctOrder=orderIndexes;
   itemType="ordered-response";options=items.map(item=>item.text);answer=correctOrder[0]??0;
   interaction={instruction:"Arrange the nursing actions in the safest order.",choices:options,orderItems:options,correctOrder,correctResponse:correctOrder.map(String)};
  }else if(raw.question_type==="calculation"){
   const numeric=Number(key.value);
+  if(!Number.isFinite(numeric))throw new Error(`NGN calculation ${raw.id} has an invalid authored numeric answer.`);
   itemType="numeric-entry";options=[];answer=Number.isFinite(numeric)?numeric:0;
   interaction={instruction:"Calculate and enter the requested value.",choices:[],correctResponse:[String(numeric)],numericUnit:String(data.required_unit??""),numericTolerance:Number(data.tolerance_radius??0)};
  }else if(raw.question_type==="bow_tie"){
   const conditions=data.condition_options??[],actions=data.action_options??[],parameters=data.parameter_options??[];
-  const condition=idx(key.condition,conditions),correctActions=(key.actions??[]).map((id:string)=>idx(id,actions)).filter((v:number)=>v>=0),correctMonitoring=(key.parameters??[]).map((id:string)=>idx(id,parameters)).filter((v:number)=>v>=0);
+  const condition=idx(key.condition,conditions),actionIndexes=(key.actions??[]).map((id:string)=>idx(id,actions)),monitorIndexes=(key.parameters??[]).map((id:string)=>idx(id,parameters));
+  const correctActions=actionIndexes.filter((v:number)=>v>=0),correctMonitoring=monitorIndexes.filter((v:number)=>v>=0);
+  if(actionIndexes.length!==2||monitorIndexes.length!==2||actionIndexes.some((v:number)=>v<0)||monitorIndexes.some((v:number)=>v<0))throw new Error(`NGN bow-tie ${raw.id} has an invalid authored answer key.`);
   const monitoringOptions=parameters.map((x:any)=>x.text);
   if(conditions.length<3||actions.length<4||monitoringOptions.length<3||new Set(monitoringOptions).size!==monitoringOptions.length) throw new Error(`NGN bow-tie ${raw.id} requires three authored conditions, four actions, and three or more distinct monitoring parameters.`);
   if(condition<0||correctActions.length!==2||correctMonitoring.length!==2) throw new Error(`NGN bow-tie ${raw.id} has an incomplete or invalid answer key.`);
