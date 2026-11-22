@@ -67,6 +67,7 @@ export type Question = {
     vitalSigns?: string;
     labs?: string;
     providerOrders?: string;
+    flowSheet?: string;
   };
 };
 
