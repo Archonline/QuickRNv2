@@ -576,6 +576,7 @@ return {
  options:opts,
  answer:opts.indexOf(answerText),
  rationale:global<136?rationale:rationale+" The nurse should use the current assessment and the topic-specific clinical evidence in the case to prioritize this response over routine or delayed interventions.",
+ interaction:{instruction:"Select the one best response.",choices:opts,correctResponse:[String(opts.indexOf(answerText))],optionRationales:opts.map((choice,index)=>index===opts.indexOf(answerText)?"Correct. "+rationale:"This option does not address the priority finding as safely or promptly as the keyed response: "+choice)},
  status:"published",
  format:"single",
  contentVersion:3,
