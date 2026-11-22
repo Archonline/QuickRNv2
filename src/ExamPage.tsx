@@ -14,7 +14,7 @@ export default function ExamPage({questions,onExit}:Props){
  const [questionCount,setQuestionCount]=useState("85");
  const [started,setStarted]=useState(false);
  const [formatSampler,setFormatSampler]=useState(false);
- const [samplerSeed,setSamplerSeed]=useState(0);
+ const [samplerSeed,setSamplerSeed]=useState(()=>Math.floor(Math.random()*0x100000000));
  function caseGroupKey(q:Question){return q.caseStudyId??(q.format==="case-study"&&q.caseStudy?`case:${q.caseStudy}`:undefined);}
 function expandCaseStudyGroups(items:Question[],publishedItems:Question[]){const emitted=new Set<string>();const output:Question[]=[];for(const q of items){if(emitted.has(q.id))continue;const key=caseGroupKey(q);const group=key?publishedItems.filter(candidate=>caseGroupKey(candidate)===key):[q];for(const member of group){if(!emitted.has(member.id)){output.push(member);emitted.add(member.id);}}}return output;}
 function seededShuffle<T>(items:T[],seed:number){const out=[...items];let state=(seed>>>0)||0x9e3779b9;const random=()=>{state=(state+0x6D2B79F5)>>>0;let t=state;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return ((t^(t>>>14))>>>0)/4294967296;};for(let i=out.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
