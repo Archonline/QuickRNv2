@@ -543,48 +543,160 @@ const categoryAliases:Record<string,string>={
  "Pediatrics / Growth and Development":"Pediatrics / Growth and Development",
  "Fundamentals / Safety / Ethics / Delegation":"Fundamentals / Safety / Ethics / Delegation"
 };
-function make(b:B,i:number,global:number):Question{
-const topic=b.topics[i%b.topics.length];
-const occurrence=generatedTopicOccurrences[topic]??0;
-generatedTopicOccurrences[topic]=occurrence+1;
-const alias:Record<string,string>={"Digoxin toxicity":"Digoxin","Magnesium sulfate toxicity":"Magnesium sulfate","Hemodialysis hypotension":"Hemodialysis","C. difficile precautions":"C. difficile","Neutropenic fever":"Neutropenia","Delegation":"UAP delegation"};
-const clinical=topicClinicalOverrides[topic]??topicClinicalOverrides[alias[topic]??""]??first300TopicOverrides[topic]??additionalTopicOverrides[topic]??cardiovascularTopicOverrides[topic]??respiratoryTopicOverrides[topic]??second300TopicOverrides[topic]??{};
-const source:B & {caseRecord?:Question["caseRecord"];prompt?:string}={...b,...clinical};
-const age=18+(i*7+global*3)%69;
-const lensPool=clinicalCaseLenses[categoryAliases[b.category]??"Pharmacology / Medication Teaching"]??clinicalCaseLenses["Pharmacology / Medication Teaching"];
-const lens=lensPool[occurrence%lensPool.length];
-const prompt=global<136?(source.prompt??"Based on the client assessment, which nursing action should the nurse take first?"):lens.prompt+" for a client with "+topic.toLowerCase()+(occurrence>=lensPool.length?" during a separate subsequent presentation.":" in this clinical presentation.");
-const answerText=source.priority;
-const distractors=source.distractors??b.distractors;
-const mode=(global+occurrence)%distractors.length;
-const answerWordCount=answerText.trim().split(/\s+/).length;
-const balanceDistractor=(value:string)=>{const words=value.trim().split(/\s+/).length;if(answerWordCount-words<6)return value;const suffix=/\b(wait|delay|defer|next routine)\b/i.test(value)?" and postpone escalation despite the abnormal findings":/\b(administer|give|perform|apply|encourage|place)\b/i.test(value)?" before confirming stability and checking contraindications":/\b(reassure|continue|leave|stop)\b/i.test(value)?" without reassessing the acute findings or notifying the responsible clinician":" while deferring reassessment despite the clinical change";return value+suffix;};
-const base=[answerText,balanceDistractor(distractors[mode]),balanceDistractor(distractors[(mode+1)%distractors.length]),balanceDistractor(distractors[(mode+2)%distractors.length])];
-const shift=(global+occurrence)%4;
-const opts=base.slice(shift).concat(base.slice(0,shift));
-const careContexts=["during the initial emergency assessment","during a focused inpatient reassessment","before the next scheduled treatment","during discharge-readiness review","after a change in the client condition","during medication-safety verification","at an urgent bedside handoff","during follow-up after the initial intervention"];
-const scenario=global<136?(source.scenario??("A "+age+"-year-old client is receiving care for "+topic.toLowerCase()+".")):(source.scenario??("A "+age+"-year-old client is receiving care for "+topic.toLowerCase()+"."))+"\n\nClinical context: "+careContexts[occurrence%careContexts.length]+". "+lens.cue;
-const record=source.record??b.record;
-const rationale=source.rationale;
-return {
- id:"qrn-"+String(global+1).padStart(4,"0"),
- category:b.category,
- topic,
- difficulty:i%5===0?"Advanced":i%3===0?"Foundational":"Intermediate",
- prompt,
- options:opts,
- answer:opts.indexOf(answerText),
- rationale:global<136?rationale:rationale+" The nurse should use the current assessment and the topic-specific clinical evidence in the case to prioritize this response over routine or delayed interventions.",
- interaction:{instruction:"Select the one best response.",choices:opts,correctResponse:[String(opts.indexOf(answerText))],optionRationales:opts.map((choice,index)=>index===opts.indexOf(answerText)?"Correct. "+rationale:"This option does not address the priority finding as safely or promptly as the keyed response: "+choice)},
- status:"published",
- format:"single",
- contentVersion:3,
- reviewStatus:"generated",
- clinicalScenario:scenario,
- exhibit:undefined,
- caseRecord:source.caseRecord??{progressNotes:record,labs:"",flowSheet:""},
- caseStudyId:undefined
+// The requested endocrine, renal, neurologic, musculoskeletal, hematology and
+// infectious-disease profiles are already curated in the override maps above.
+// Fail loudly if a requested topic ever loses its dedicated clinical profile.
+const requiredTopicProfileKeys = [
+  "Addison disease",
+  "Cushing syndrome",
+  "Diabetic ketoacidosis",
+  "Diabetes mellitus",
+  "Thyroid storm",
+  "Hypothyroidism",
+  "Thyroidectomy complications",
+  "Hyperkalemia",
+  "Hypoglycemia",
+  "ABG interpretation",
+  "Dialysis access",
+  "UTI in older adults",
+  "Post-TURP care",
+  "Acute kidney injury",
+  "Chronic kidney disease",
+  "Electrolyte changes",
+  "Renal diet teaching",
+  "Acute stroke",
+  "Severe headache after lumbar puncture",
+  "Seizure",
+  "Autonomic dysreflexia",
+  "Alzheimer disease",
+  "Cerebral palsy",
+  "Guillain-Barré syndrome",
+  "Meningitis",
+  "Aphasia",
+  "Increased intracranial pressure",
+  "Buck traction",
+  "Compartment syndrome",
+  "Long-bone fracture",
+  "Fat embolism",
+  "Total hip replacement",
+  "Osteoporosis",
+  "Sickle cell crisis",
+  "Ventrogluteal injection",
+  "Neurovascular assessment",
+  "Hemophilia",
+  "Iron deficiency",
+  "Sickle cell anemia",
+  "Latex allergy",
+  "Mantoux testing",
+  "AFB testing",
+  "Thrombocytopenia",
+  "Diphtheria",
+  "Pertussis",
+  "Botulism",
+  "Measles",
+  "RSV",
+  "Herpes zoster",
+  "Impetigo",
+  "Tuberculosis"
+] as const;
+const availableTopicProfiles: Record<string, ClinicalOverride> = {
+  ...topicClinicalOverrides,
+  ...first300TopicOverrides,
+  ...additionalTopicOverrides,
+  ...cardiovascularTopicOverrides,
+  ...respiratoryTopicOverrides,
+  ...second300TopicOverrides,
 };
+for (const key of requiredTopicProfileKeys) {
+  const profile = availableTopicProfiles[key];
+  if (!profile || !profile.prompt || !profile.scenario || !profile.priority ||
+      !profile.rationale || !profile.record || !profile.distractors ||
+      profile.distractors.length < 3) {
+    throw new Error(`Missing or incomplete topic-specific clinical profile: ${key}`);
+  }
+}
+
+function make(b: B, i: number, global: number): Question {
+  const topic = b.topics[i % b.topics.length];
+  const occurrence = generatedTopicOccurrences[topic] ?? 0;
+  generatedTopicOccurrences[topic] = occurrence + 1;
+
+  const alias: Record<string, string> = {
+    "Digoxin toxicity": "Digoxin",
+    "Magnesium sulfate toxicity": "Magnesium sulfate",
+    "Hemodialysis hypotension": "Hemodialysis",
+    "C. difficile precautions": "C. difficile",
+    "Neutropenic fever": "Neutropenia",
+    "Delegation": "UAP delegation",
+  };
+
+  const clinical =
+    availableTopicProfiles[topic] ??
+    availableTopicProfiles[alias[topic] ?? ""] ??
+    {};
+
+  const source: B & {
+    caseRecord?: Question["caseRecord"];
+    prompt?: string;
+  } = { ...b, ...clinical };
+
+  const lensPool =
+    clinicalCaseLenses[categoryAliases[b.category] ?? "Pharmacology / Medication Teaching"] ??
+    clinicalCaseLenses["Pharmacology / Medication Teaching"];
+  const lens = lensPool[occurrence % lensPool.length];
+
+  // Always honor an authored topic-specific prompt before using a category lens.
+  const prompt =
+    source.prompt ??
+    `${lens.prompt} for a client with ${topic.toLowerCase()}.`;
+
+  const answerText = source.priority;
+  const distractors = source.distractors ?? b.distractors;
+  if (distractors.length < 3) {
+    throw new Error(`At least three clinical distractors are required for topic: ${topic}`);
+  }
+
+  // Use three authored distractors without adding synthetic wording or length padding.
+  const distractorStart = (global + occurrence) % distractors.length;
+  const selectedDistractors = Array.from(
+    { length: 3 },
+    (_, offset) => distractors[(distractorStart + offset) % distractors.length],
+  );
+  const base = [answerText, ...selectedDistractors];
+
+  const shift = (global + occurrence) % base.length;
+  const opts = base.slice(shift).concat(base.slice(0, shift));
+  const answerIdx = opts.indexOf(answerText);
+
+  const scenario =
+    source.scenario ??
+    `A client is receiving care for ${topic.toLowerCase()}. ${lens.cue}`;
+  const record = source.record ?? b.record;
+  const rationale = source.rationale;
+
+  return {
+    id: "qrn-" + String(global + 1).padStart(4, "0"),
+    category: b.category,
+    topic,
+    difficulty: i % 5 === 0 ? "Advanced" : i % 3 === 0 ? "Foundational" : "Intermediate",
+    prompt,
+    options: opts,
+    answer: answerIdx,
+    rationale,
+    interaction: {
+      instruction: "Select the one best response.",
+      choices: opts,
+      correctResponse: [String(answerIdx)],
+    },
+    status: "published",
+    format: "single",
+    contentVersion: 3,
+    reviewStatus: "generated",
+    clinicalScenario: scenario,
+    exhibit: undefined,
+    caseRecord: source.caseRecord ?? { progressNotes: record, labs: "", flowSheet: "" },
+    caseStudyId: undefined,
+  };
 }
 
 const all:Question[]=[];for(const b of B){for(let i=0;i<b.count;i++)all.push(make(b,i,all.length));}
