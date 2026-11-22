@@ -351,7 +351,7 @@ function curatedTraditionalQuestion(raw:CuratedTraditionalItem,index:number):Que
   const difficulty=raw.difficulty.toLowerCase();
   const clinicalScenario=formatCuratedScenario(raw.clinical_scenario);
   const rationale=rationales.summary??rationales.calculation??rationales.condition??rationales.correct??"";
-  const prompt=/^which action should the nurse take (first|immediately)\?$/i.test(raw.stem.trim())?"Which nursing action should the nurse take "+raw.stem.trim().replace(/^which action should the nurse take /i,"").replace(/\?$/,"")+" for this client with "+raw.subtopic.toLowerCase()+"?":raw.stem;
+  const prompt=raw.stem.trim();
   const cj:Record<string,Question["clinicalJudgmentStep"]>={
     recognize_cues:"recognize-cues",analyze_cues:"analyze-cues",prioritize_hypotheses:"prioritize-hypotheses",
     generate_solutions:"generate-solutions",take_action:"take-action",evaluate_outcomes:"evaluate-outcomes"
@@ -383,7 +383,7 @@ function curatedTraditionalQuestion(raw:CuratedTraditionalItem,index:number):Que
     const actions=Array.isArray(source.actions)?source.actions as string[]:[];
     const parameters=Array.isArray(source.parameters)?source.parameters as string[]:[];
     const key=correct as {condition?:string;actions?:string[];parameters?:string[]};
-    const correctCondition=Math.max(0,conditions.indexOf(String(key.condition??"")));
+    const correctCondition=conditions.indexOf(String(key.condition??""));
     const correctActions=(key.actions??[]).map(item=>actions.indexOf(item)).filter(value=>value>=0);
     const correctMonitoring=(key.parameters??[]).map(item=>parameters.indexOf(item)).filter(value=>value>=0);
     itemType="bow-tie";outputOptions=[];answer=correctCondition;
@@ -393,7 +393,9 @@ function curatedTraditionalQuestion(raw:CuratedTraditionalItem,index:number):Que
     const rows=Array.isArray(source.rows)?source.rows as {id:string;text:string}[]:[];
     const columns=Array.isArray(source.columns)?source.columns as string[]:[];
     const key=correct as Record<string,string>;
-    const expected=rows.map((row,index)=>index+":"+Math.max(0,columns.indexOf(String(key[row.id]??""))));
+    const selectedColumns=rows.map(row=>columns.indexOf(String(key[row.id]??"")));
+    if(rows.length<3||columns.length<2||selectedColumns.some(value=>value<0))throw new Error(`Curated matrix ${raw.id} has incomplete rows, columns, or answer keys.`);
+    const expected=selectedColumns.map((column,index)=>index+":"+column);
     itemType="matrix-single";outputOptions=[];answer=0;
     interaction={instruction:"Select the best classification for each clinical finding.",choices:[],rows:rows.map(row=>row.text),columns,matrixMode:"single",correctResponse:expected,correctMatrix:Object.fromEntries(rows.map((row,index)=>[String(index),String(key[row.id]??"")]))};
   }
