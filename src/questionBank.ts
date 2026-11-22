@@ -330,6 +330,7 @@ type CuratedTraditionalItem = {
   topic:string; subtopic:string; difficulty:string; question_type:string; stem:string;
   clinical_scenario:unknown; interaction:Record<string,unknown>; correct_response:unknown;
   rationales:Record<string,string|undefined>; clinical_judgment:string; scoring:Record<string,unknown>;
+  review_metadata?:{status?:string;references?:string[];verified_at?:string;publication_status?:string};
 };
 const curatedTraditionalRaw=(curatedTraditionalBatch as {questions:CuratedTraditionalItem[]}).questions;
 function formatCuratedScenario(value:unknown):string {
@@ -363,7 +364,9 @@ function curatedTraditionalQuestion(raw:CuratedTraditionalItem,index:number):Que
     const ids=Array.isArray(correct)?correct as unknown[]:[];
     const indexes=ids.map(optionIndex).filter(value=>value>=0);
     itemType=raw.question_type==="multiple_response"?"multiple-response":"single-response";
-    interaction={instruction:itemType==="multiple-response"?"Select all responses that apply.":"Select the one best response.",choices:optionTexts,correctResponse:indexes.map(String),optionRationales:options.map(option=>rationales[option.id]??"Review the clinical rationale and compare this option with the documented assessment, risks, and prescribed plan.")};
+    if(!indexes.length||indexes.length!==ids.length)throw new Error(`Curated item ${raw.id} has an invalid or missing authored answer key.`);
+    const optionRationales=options.map(option=>{const value=rationales[option.id];if(typeof value!=="string"||!value.trim())throw new Error(`Curated item ${raw.id} is missing the authored rationale for option ${option.id}.`);return value;});
+    interaction={instruction:itemType==="multiple-response"?"Select all responses that apply.":"Select the one best response.",choices:optionTexts,correctResponse:indexes.map(String),optionRationales};
     answer=indexes[0]??0;
   } else if(raw.question_type==="ordered_response"){
     const items=Array.isArray(source.items)?source.items as string[]:[];
@@ -384,6 +387,7 @@ function curatedTraditionalQuestion(raw:CuratedTraditionalItem,index:number):Que
     const correctActions=(key.actions??[]).map(item=>actions.indexOf(item)).filter(value=>value>=0);
     const correctMonitoring=(key.parameters??[]).map(item=>parameters.indexOf(item)).filter(value=>value>=0);
     itemType="bow-tie";outputOptions=[];answer=correctCondition;
+    if(!conditions.length||!actions.length||!parameters.length||correctCondition<0||correctActions.length!==2||correctMonitoring.length!==2)throw new Error(`Curated bow-tie ${raw.id} has incomplete authored choices or answer keys.`);
     interaction={instruction:"Identify the most likely condition, two priority actions, and two parameters to monitor.",choices:[],correctResponse:["c"+correctCondition,...correctActions.map((value,i)=>"a"+i+"-"+value),...correctMonitoring.map((value,i)=>"m"+i+"-"+value)],bowTie:{conditions,actions,monitoring:parameters,correctCondition,correctActions,correctMonitoring},optionRationales:[rationales.condition??"",rationales.actions??"",rationales.parameters??""]};
   } else if(raw.question_type==="matrix_grid"){
     const rows=Array.isArray(source.rows)?source.rows as {id:string;text:string}[]:[];
@@ -398,12 +402,15 @@ function curatedTraditionalQuestion(raw:CuratedTraditionalItem,index:number):Que
     difficulty:difficulty==="easy"?"Foundational":difficulty==="hard"?"Advanced":"Intermediate",
     prompt,options:outputOptions,answer,rationale,status:"published",
     format:itemType==="multiple-response"?"multiple":"single",itemType,interaction,
-    clinicalScenario,contentVersion:3,reviewStatus:"generated",
+    clinicalScenario,contentVersion:3,
+    reviewStatus:raw.review_metadata?.status==="clinically_verified"?"clinically-reviewed":raw.review_metadata?.status==="editorially_reviewed"?"editorially-reviewed":"generated",
+    reviewMetadata:{status:raw.review_metadata?.status==="clinically_verified"?"clinically-verified":raw.review_metadata?.status==="editorially_reviewed"?"editorially-reviewed":"not-clinically-verified",references:raw.review_metadata?.references??[],verifiedAt:raw.review_metadata?.verified_at,publicationStatus:raw.review_metadata?.publication_status==="draft"?"draft":"published"},
     clinicalJudgmentStep:cj[raw.clinical_judgment]
   };
 }
 const curatedTraditionalQuestions:Question[]=curatedTraditionalRaw.map(curatedTraditionalQuestion);
-if(curatedTraditionalQuestions.length!==100||new Set(curatedTraditionalQuestions.map(q=>q.prompt)).size!==100)throw new Error("Curated traditional batch must contain 100 distinct questions.");
+const normalizeQuestionText=(value:string)=>value.toLowerCase().replace(/[^a-z0-9]+/g," ").trim().replace(/\s+/g," ");
+if(curatedTraditionalQuestions.length!==100||new Set(curatedTraditionalQuestions.map(q=>normalizeQuestionText(q.prompt))).size!==100)throw new Error("Curated traditional batch must contain 100 distinct authored stems.");
 
 const generatedTopicOccurrences:Record<string,number>={};
 /**
