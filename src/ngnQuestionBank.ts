@@ -36,8 +36,7 @@ const formatInstructions: Record<CanonicalNclexItemType,string> = {
 "ordered-response":"Arrange the actions in the safest sequence.",
 "bow-tie":"Choose the most likely condition, two priority actions and two parameters to monitor.",
 "drag-drop":"Complete the clinical statement.",
-"trend":"Interpret the change in the clinical findings over time.",
-"graphics-based":"Interpret the clinical graphic and select the indicated response."
+"trend":"Interpret the change in the clinical findings over time.",\n"graphics-based":"Interpret the clinical graphic and select the indicated response."
 };
 
 function promptForType(type:CanonicalNclexItemType,seed:Seed):string {
@@ -67,8 +66,7 @@ function clinicalRecordFor(seed:Seed):string {
     "Focused assessment and documented findings: "+focused,
     "Chart review: Reconcile the documented history, current medications, allergies, vital signs, relevant diagnostic results, and active provider orders before selecting nursing priorities."
   ];
-  return lines.join("
-");
+  return lines.join("\n");
 }
 
 function conciseRecord(seed:Seed):string {
@@ -92,8 +90,7 @@ function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
   if(type==="drop-down-rationale"&&seed.topic==="Heart failure") return {...common,correctResponse:["0","0"],rationaleTemplate:"The nurse should [BLANK_1] because the oxygen saturation of 88%, orthopnea, and bilateral crackles indicate [BLANK_2].",rationaleChoicesByBlank:[["position the client upright, support oxygenation, and escalate the acute change","continue routine teaching and reassess at the end of the shift","encourage oral fluids and ambulation"],["acute pulmonary congestion with impaired oxygenation","stable chronic heart failure without acute change","isolated peripheral edema without respiratory compromise"]]};
   if(type==="drop-down-rationale") { const actionVerbs=/^(assess|activate|administer|apply|avoid|begin|check|continue|discontinue|document|elevate|encourage|hold|initiate|maintain|monitor|notify|obtain|place|position|prepare|provide|reassess|report|remove|stop|support|use|verify|withhold|insert|start|turn)\b/i; const actionChoices=choices.map(choice=>{const value=choice.trim();const lower=value.charAt(0).toLowerCase()+value.slice(1);return actionVerbs.test(value)?lower:"implement "+lower.charAt(0).toLowerCase()+lower.slice(1);}); return {...common,correctResponse:[correct,"0"],rationaleTemplate:"The nurse should [BLANK_1] because the findings are consistent with [BLANK_2], which places the client at risk for further deterioration.",rationaleChoicesByBlank:[actionChoices,[seed.topic,"an expected response to treatment","an unrelated finding"]]}; }
   if(type==="highlight-text") {
-    const statements=[seed.patient,seed.record].filter(Boolean).flatMap(value=>value.split(/(?<=[.!?])\s+|
-+|;\s*/)).map(value=>value.trim()).filter(value=>value.length>=18);
+    const statements=[seed.patient,seed.record].filter(Boolean).flatMap(value=>value.split(/(?<=[.!?])\s+|\n+|;\s*/)).map(value=>value.trim()).filter(value=>value.length>=18);
     const unique=[...new Set(statements)].filter(value=>!(/\b(?:RR|respiratory rate)\b/i.test(value)&&!/(dyspnea|hypox|respiratory distress|accessory muscle|increased work of breathing)/i.test(value)));
     const highlightableSegments=unique.slice(0,14);
     const keyPattern=/(?:acute|sudden|new onset|worsen(?:ing|ed)?|severe|distress|hypox|dyspnea|shortness of breath|chest pain|pleuritic|stridor|cyanosis|hypotension|hypertension|tachycardia|bradycardia|fever|positive|elevated|increased|decreased|low|high|abnormal|bleeding|hematuria|oliguria|anuria|confusion|lethargy|seizure|weakness|rash|petechiae|stiffness|rigidity|vomiting|diarrhea|dehydration|guarding|rebound|distention|tenderness|crackles|wheezing|edema|ascites|asterixis|SpO2|oxygen saturation|blood pressure|heart rate|urine output|capillary refill|lactate|creatinine|glucose|potassium|hemoglobin|platelets|INR|aPTT|WBC|ANC)/i;
@@ -159,188 +156,64 @@ function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
     return {...common,correctResponse:["c0","a0-0","a1-1","m0-0","m1-1"],bowTie:{conditions,actions,monitoring:individualizedMonitoring,correctCondition:0,correctActions:[0,1],correctMonitoring:[0,1]}};
   }
   if(type==="trend"&&/aripiprazole/i.test(seed.topic)) return {...common,correctResponse:[String(seed.answer)],trend:[
-   {time:"0800 · Initial assessment",findings:"NURSING FLOWSHEET · 0800
-Client started aripiprazole 5 days ago. Reports new generalized muscle stiffness and fatigue since yesterday. Alert and oriented; no tremor or clonus.
-Vital signs: T 37.4°C · HR 96/min · BP 132/80 mm Hg · RR 18/min.
-Nursing note: Review recent antipsychotic dose changes and other dopamine-blocking medications. Document baseline mental status, muscle tone, temperature, hydration, and vital signs."},
-   {time:"0900 · Reassessment",findings:"NURSING FLOWSHEET · 0900
-Client is increasingly restless and diaphoretic. Muscle rigidity is more pronounced in the neck and upper extremities. Responses are slower than at baseline.
-Vital signs: T 38.2°C · HR 112/min · BP 148/88 mm Hg · RR 22/min.
-Nursing note: Acute fever, rigidity, and mental-status change after antipsychotic exposure require immediate provider notification and urgent reassessment; do not administer the next dose pending evaluation."},
-   {time:"1000 · Acute deterioration",findings:"NURSING FLOWSHEET · 1000
-Client is confused and has severe generalized rigidity. Skin is hot and diaphoretic.
-Vital signs: T 39.3°C · HR 128/min · BP 166/96 mm Hg · RR 26/min.
-Laboratory results: Creatine kinase 2,800 U/L; creatinine 1.4 mg/dL; potassium 4.9 mEq/L.
-Nursing note: Findings are strongly concerning for neuroleptic malignant syndrome. Hold aripiprazole, activate urgent clinical evaluation, and anticipate supportive treatment and close monitoring."},
-   {time:"1100 · Ongoing emergency monitoring",findings:"NURSING FLOWSHEET · 1100
-Severe rigidity and altered mental status persist. Urine output has decreased; urine is dark amber.
-Vital signs: T 39.7°C · HR 136/min · BP 174/100 mm Hg · RR 28/min.
-Laboratory results: Creatine kinase 5,600 U/L; creatinine 1.8 mg/dL; potassium 5.2 mEq/L.
-Nursing note: Continue emergency supportive care as prescribed. Monitor temperature, cardiac rhythm, renal function, potassium, creatine kinase, hydration, urine output, and neurologic status."}
+   {time:"0800 · Initial assessment",findings:"NURSING FLOWSHEET · 0800\nClient started aripiprazole 5 days ago. Reports new generalized muscle stiffness and fatigue since yesterday. Alert and oriented; no tremor or clonus.\nVital signs: T 37.4°C · HR 96/min · BP 132/80 mm Hg · RR 18/min.\nNursing note: Review recent antipsychotic dose changes and other dopamine-blocking medications. Document baseline mental status, muscle tone, temperature, hydration, and vital signs."},
+   {time:"0900 · Reassessment",findings:"NURSING FLOWSHEET · 0900\nClient is increasingly restless and diaphoretic. Muscle rigidity is more pronounced in the neck and upper extremities. Responses are slower than at baseline.\nVital signs: T 38.2°C · HR 112/min · BP 148/88 mm Hg · RR 22/min.\nNursing note: Acute fever, rigidity, and mental-status change after antipsychotic exposure require immediate provider notification and urgent reassessment; do not administer the next dose pending evaluation."},
+   {time:"1000 · Acute deterioration",findings:"NURSING FLOWSHEET · 1000\nClient is confused and has severe generalized rigidity. Skin is hot and diaphoretic.\nVital signs: T 39.3°C · HR 128/min · BP 166/96 mm Hg · RR 26/min.\nLaboratory results: Creatine kinase 2,800 U/L; creatinine 1.4 mg/dL; potassium 4.9 mEq/L.\nNursing note: Findings are strongly concerning for neuroleptic malignant syndrome. Hold aripiprazole, activate urgent clinical evaluation, and anticipate supportive treatment and close monitoring."},
+   {time:"1100 · Ongoing emergency monitoring",findings:"NURSING FLOWSHEET · 1100\nSevere rigidity and altered mental status persist. Urine output has decreased; urine is dark amber.\nVital signs: T 39.7°C · HR 136/min · BP 174/100 mm Hg · RR 28/min.\nLaboratory results: Creatine kinase 5,600 U/L; creatinine 1.8 mg/dL; potassium 5.2 mEq/L.\nNursing note: Continue emergency supportive care as prescribed. Monitor temperature, cardiac rhythm, renal function, potassium, creatine kinase, hydration, urine output, and neurologic status."}
   ]};
   if(type==="trend"&&seed.topic==="Bowel obstruction") return {...common,correctResponse:["0"],trend:[
-   {time:"0800 · Admission",findings:"NURSING FLOWSHEET · 0800
-64-year-old client reports intermittent cramping abdominal pain, progressive distention, nausea, and repeated bilious vomiting. No stool or flatus for 18 hours. Abdomen distended; high-pitched bowel sounds; pain 6/10.
-Vital signs: BP 132/78 mm Hg · HR 96/min · RR 18/min · T 37.2°C. WBC 11,800/mm³; lactate 1.4 mmol/L. Radiograph: dilated small-bowel loops with air-fluid levels.
-Nursing note: NPO; IV access established; intake/output and abdominal findings recorded. Provider notified."},
-   {time:"0900 · Reassessment",findings:"NURSING FLOWSHEET · 0900
-Pain remains intermittent but has increased to 7/10. Abdomen is more distended; bilious emesis continues. High-pitched bowel sounds remain present. No stool or flatus.
-Vital signs: BP 126/74 mm Hg · HR 104/min · RR 20/min · T 37.6°C.
-Nursing note: Emesis measured; nasogastric decompression performed as prescribed. IV fluids continued; abdominal girth, pain, and urine output reassessed."},
-   {time:"1000 · Acute clinical change",findings:"NURSING FLOWSHEET · 1000
-Client now reports constant abdominal pain 9/10 rather than intermittent cramping. Abdomen markedly distended with involuntary guarding; bowel sounds markedly diminished. Client pale and diaphoretic.
-Vital signs: BP 96/58 mm Hg · HR 128/min · RR 26/min · T 38.5°C. WBC 18,600/mm³; lactate 3.8 mmol/L.
-Nursing note: Findings suggest possible bowel ischemia/strangulation and evolving shock. Rapid response and surgical team notified; continuous monitoring initiated."},
-   {time:"1100 · Post-escalation reassessment",findings:"NURSING FLOWSHEET · 1100
-Client remains pale; constant abdominal pain and guarding persist. No stool or flatus. Nasogastric drainage is bilious. Peripheral pulses weak; capillary refill 4 seconds.
-Vital signs: BP 88/52 mm Hg · HR 136/min · RR 28/min · T 38.7°C. Lactate 4.6 mmol/L.
-Nursing note: Hemodynamic instability is worsening. Emergency surgical evaluation and resuscitation are underway; reassess perfusion, mental status, urine output, abdominal findings, and response to interventions continuously."}
+   {time:"0800 · Admission",findings:"NURSING FLOWSHEET · 0800\n64-year-old client reports intermittent cramping abdominal pain, progressive distention, nausea, and repeated bilious vomiting. No stool or flatus for 18 hours. Abdomen distended; high-pitched bowel sounds; pain 6/10.\nVital signs: BP 132/78 mm Hg · HR 96/min · RR 18/min · T 37.2°C. WBC 11,800/mm³; lactate 1.4 mmol/L. Radiograph: dilated small-bowel loops with air-fluid levels.\nNursing note: NPO; IV access established; intake/output and abdominal findings recorded. Provider notified."},
+   {time:"0900 · Reassessment",findings:"NURSING FLOWSHEET · 0900\nPain remains intermittent but has increased to 7/10. Abdomen is more distended; bilious emesis continues. High-pitched bowel sounds remain present. No stool or flatus.\nVital signs: BP 126/74 mm Hg · HR 104/min · RR 20/min · T 37.6°C.\nNursing note: Emesis measured; nasogastric decompression performed as prescribed. IV fluids continued; abdominal girth, pain, and urine output reassessed."},
+   {time:"1000 · Acute clinical change",findings:"NURSING FLOWSHEET · 1000\nClient now reports constant abdominal pain 9/10 rather than intermittent cramping. Abdomen markedly distended with involuntary guarding; bowel sounds markedly diminished. Client pale and diaphoretic.\nVital signs: BP 96/58 mm Hg · HR 128/min · RR 26/min · T 38.5°C. WBC 18,600/mm³; lactate 3.8 mmol/L.\nNursing note: Findings suggest possible bowel ischemia/strangulation and evolving shock. Rapid response and surgical team notified; continuous monitoring initiated."},
+   {time:"1100 · Post-escalation reassessment",findings:"NURSING FLOWSHEET · 1100\nClient remains pale; constant abdominal pain and guarding persist. No stool or flatus. Nasogastric drainage is bilious. Peripheral pulses weak; capillary refill 4 seconds.\nVital signs: BP 88/52 mm Hg · HR 136/min · RR 28/min · T 38.7°C. Lactate 4.6 mmol/L.\nNursing note: Hemodynamic instability is worsening. Emergency surgical evaluation and resuscitation are underway; reassess perfusion, mental status, urine output, abdominal findings, and response to interventions continuously."}
   ]};
   if(type==="trend"&&/^(?:Hepatic encephalopathy|Asterixis)$/i.test(seed.topic)) return {...common,correctResponse:[String(seed.answer)],trend:[
-   {time:"0800 · Baseline",findings:"NURSING FLOWSHEET · 0800
-Neurologic: Alert and oriented to person, place, and time; follows commands. No asterixis at baseline.
-GI: No bowel movement for 48 hours; abdomen soft, nondistended.
-Laboratory: Ammonia 68 µmol/L; sodium 136 mEq/L; potassium 3.8 mEq/L.
-Nursing note: Review bowel pattern, medication adherence, hydration, infection symptoms, and possible gastrointestinal bleeding."},
-   {time:"0900 · Reassessment",findings:"NURSING FLOWSHEET · 0900
-Neurologic: Slower responses and new difficulty sustaining attention; mild asterixis noted.
-GI: No bowel movement during the shift; oral intake reduced.
-Vital signs: T 37.6°C · HR 98/min · BP 108/66 mm Hg.
-Nursing note: Notify the provider of the acute mental-status change; assess for constipation, infection, bleeding, dehydration, and sedating medications."},
-   {time:"1000 · Clinical deterioration",findings:"NURSING FLOWSHEET · 1000
-Neurologic: Disoriented to date and place; asterixis more pronounced. Responds to voice but needs repeated cues.
-GI: No stool for approximately 72 hours.
-Laboratory: Ammonia 96 µmol/L; potassium 3.4 mEq/L.
-Nursing note: Aspiration and fall precautions reinforced. Prescribed lactulose administered; monitor stool output, hydration, electrolytes, and neurologic response."},
-   {time:"1100 · Treatment response",findings:"NURSING FLOWSHEET · 1100
-Neurologic: More alert, correctly identifies location, and follows two-step commands; mild asterixis persists.
-GI: Two soft stools since lactulose administration; no diarrhea or abdominal pain.
-Vital signs: T 37.3°C · HR 90/min · BP 112/70 mm Hg.
-Nursing note: Continue prescribed therapy and monitor mental status, stool frequency, fluid balance, and electrolytes; report recurrent confusion or excessive stool losses."}
+   {time:"0800 · Baseline",findings:"NURSING FLOWSHEET · 0800\nNeurologic: Alert and oriented to person, place, and time; follows commands. No asterixis at baseline.\nGI: No bowel movement for 48 hours; abdomen soft, nondistended.\nLaboratory: Ammonia 68 µmol/L; sodium 136 mEq/L; potassium 3.8 mEq/L.\nNursing note: Review bowel pattern, medication adherence, hydration, infection symptoms, and possible gastrointestinal bleeding."},
+   {time:"0900 · Reassessment",findings:"NURSING FLOWSHEET · 0900\nNeurologic: Slower responses and new difficulty sustaining attention; mild asterixis noted.\nGI: No bowel movement during the shift; oral intake reduced.\nVital signs: T 37.6°C · HR 98/min · BP 108/66 mm Hg.\nNursing note: Notify the provider of the acute mental-status change; assess for constipation, infection, bleeding, dehydration, and sedating medications."},
+   {time:"1000 · Clinical deterioration",findings:"NURSING FLOWSHEET · 1000\nNeurologic: Disoriented to date and place; asterixis more pronounced. Responds to voice but needs repeated cues.\nGI: No stool for approximately 72 hours.\nLaboratory: Ammonia 96 µmol/L; potassium 3.4 mEq/L.\nNursing note: Aspiration and fall precautions reinforced. Prescribed lactulose administered; monitor stool output, hydration, electrolytes, and neurologic response."},
+   {time:"1100 · Treatment response",findings:"NURSING FLOWSHEET · 1100\nNeurologic: More alert, correctly identifies location, and follows two-step commands; mild asterixis persists.\nGI: Two soft stools since lactulose administration; no diarrhea or abdominal pain.\nVital signs: T 37.3°C · HR 90/min · BP 112/70 mm Hg.\nNursing note: Continue prescribed therapy and monitor mental status, stool frequency, fluid balance, and electrolytes; report recurrent confusion or excessive stool losses."}
   ]};
   if(type==="trend"&&/herpes zoster/i.test(seed.topic)) return {...common,correctResponse:[String(seed.answer)],trend:[
-   {time:"0800 · Initial assessment",findings:"NURSING FLOWSHEET · 0800
-Client reports burning pain and grouped vesicles in a unilateral thoracic dermatome for 2 days. Temperature 37.4°C; pain 5/10. No lesions near the eye; vision unchanged.
-History: Receiving immunosuppressive therapy.
-Nursing note: Assess lesion distribution, pain, immune status, and risk of dissemination; initiate appropriate transmission-based precautions based on lesion status and host risk."},
-   {time:"0900 · Reassessment",findings:"NURSING FLOWSHEET · 0900
-New vesicles noted along the same dermatome; pain increases to 6/10. Lesions remain localized and covered. Client denies eye pain or visual change.
-Vital signs: T 37.6°C · HR 92/min.
-Nursing note: Continue skin assessment and prescribed antiviral plan; reinforce hand hygiene and avoiding contact with susceptible high-risk individuals."},
-   {time:"1000 · New finding",findings:"NURSING FLOWSHEET · 1000
-Client reports new left-eye pain and blurred vision. Vesicular lesions are now visible near the left forehead and upper eyelid.
-Assessment: Conjunctival redness and photophobia observed.
-Nursing note: Notify the provider urgently and arrange prompt ophthalmic evaluation; possible ophthalmic involvement threatens vision."},
-   {time:"1100 · Escalation",findings:"NURSING FLOWSHEET · 1100
-Eye pain and blurred vision persist. Additional lesions remain near the left eye; no respiratory compromise.
-Nursing note: Urgent provider and ophthalmology evaluation in progress. Continue prescribed antiviral treatment and monitor visual acuity, ocular symptoms, pain, and for disseminated lesions."}
+   {time:"0800 · Initial assessment",findings:"NURSING FLOWSHEET · 0800\nClient reports burning pain and grouped vesicles in a unilateral thoracic dermatome for 2 days. Temperature 37.4°C; pain 5/10. No lesions near the eye; vision unchanged.\nHistory: Receiving immunosuppressive therapy.\nNursing note: Assess lesion distribution, pain, immune status, and risk of dissemination; initiate appropriate transmission-based precautions based on lesion status and host risk."},
+   {time:"0900 · Reassessment",findings:"NURSING FLOWSHEET · 0900\nNew vesicles noted along the same dermatome; pain increases to 6/10. Lesions remain localized and covered. Client denies eye pain or visual change.\nVital signs: T 37.6°C · HR 92/min.\nNursing note: Continue skin assessment and prescribed antiviral plan; reinforce hand hygiene and avoiding contact with susceptible high-risk individuals."},
+   {time:"1000 · New finding",findings:"NURSING FLOWSHEET · 1000\nClient reports new left-eye pain and blurred vision. Vesicular lesions are now visible near the left forehead and upper eyelid.\nAssessment: Conjunctival redness and photophobia observed.\nNursing note: Notify the provider urgently and arrange prompt ophthalmic evaluation; possible ophthalmic involvement threatens vision."},
+   {time:"1100 · Escalation",findings:"NURSING FLOWSHEET · 1100\nEye pain and blurred vision persist. Additional lesions remain near the left eye; no respiratory compromise.\nNursing note: Urgent provider and ophthalmology evaluation in progress. Continue prescribed antiviral treatment and monitor visual acuity, ocular symptoms, pain, and for disseminated lesions."}
   ]};
   if(type==="trend"&&/chlordiazepoxide/i.test(seed.topic)) return {...common,correctResponse:[String(seed.answer)],trend:[
-   {time:"0800 · Withdrawal assessment",findings:"NURSING FLOWSHEET · 0800
-Client is 18 hours from last alcohol intake. Tremor, diaphoresis, nausea, and anxiety present; oriented to person, place, and time. CIWA-Ar 12.
-Vital signs: BP 148/88 mm Hg · HR 108/min · RR 20/min · T 37.8°C · SpO2 97% on room air.
-Nursing note: Initiate seizure and fall precautions; assess withdrawal score and follow the prescribed symptom-triggered medication protocol."},
-   {time:"0900 · Reassessment",findings:"NURSING FLOWSHEET · 0900
-Tremors and agitation increase; client reports seeing shadows but remains redirectable. CIWA-Ar 18.
-Vital signs: BP 158/94 mm Hg · HR 116/min · RR 22/min · T 38.0°C.
-Nursing note: Notify the provider of increasing withdrawal severity; administer prescribed chlordiazepoxide according to protocol and reassess sedation and respiratory status."},
-   {time:"1000 · Severe symptoms",findings:"NURSING FLOWSHEET · 1000
-Client is disoriented to date, markedly diaphoretic, and reports visual hallucinations. CIWA-Ar 24.
-Vital signs: BP 170/98 mm Hg · HR 126/min · RR 24/min · T 38.4°C.
-Nursing note: Severe withdrawal requires urgent provider evaluation and close monitoring for seizures, dysrhythmias, and delirium tremens; maintain a low-stimulation, safe environment."},
-   {time:"1100 · Post-intervention",findings:"NURSING FLOWSHEET · 1100
-After prescribed treatment, client is less tremulous and follows commands; CIWA-Ar 15. Drowsy but arousable.
-Vital signs: BP 146/86 mm Hg · HR 104/min · RR 16/min · SpO2 95% on room air.
-Nursing note: Continue protocol-based reassessment; monitor respiratory rate, oxygenation, level of consciousness, and recurrent withdrawal symptoms before additional sedative doses."}
+   {time:"0800 · Withdrawal assessment",findings:"NURSING FLOWSHEET · 0800\nClient is 18 hours from last alcohol intake. Tremor, diaphoresis, nausea, and anxiety present; oriented to person, place, and time. CIWA-Ar 12.\nVital signs: BP 148/88 mm Hg · HR 108/min · RR 20/min · T 37.8°C · SpO2 97% on room air.\nNursing note: Initiate seizure and fall precautions; assess withdrawal score and follow the prescribed symptom-triggered medication protocol."},
+   {time:"0900 · Reassessment",findings:"NURSING FLOWSHEET · 0900\nTremors and agitation increase; client reports seeing shadows but remains redirectable. CIWA-Ar 18.\nVital signs: BP 158/94 mm Hg · HR 116/min · RR 22/min · T 38.0°C.\nNursing note: Notify the provider of increasing withdrawal severity; administer prescribed chlordiazepoxide according to protocol and reassess sedation and respiratory status."},
+   {time:"1000 · Severe symptoms",findings:"NURSING FLOWSHEET · 1000\nClient is disoriented to date, markedly diaphoretic, and reports visual hallucinations. CIWA-Ar 24.\nVital signs: BP 170/98 mm Hg · HR 126/min · RR 24/min · T 38.4°C.\nNursing note: Severe withdrawal requires urgent provider evaluation and close monitoring for seizures, dysrhythmias, and delirium tremens; maintain a low-stimulation, safe environment."},
+   {time:"1100 · Post-intervention",findings:"NURSING FLOWSHEET · 1100\nAfter prescribed treatment, client is less tremulous and follows commands; CIWA-Ar 15. Drowsy but arousable.\nVital signs: BP 146/86 mm Hg · HR 104/min · RR 16/min · SpO2 95% on room air.\nNursing note: Continue protocol-based reassessment; monitor respiratory rate, oxygenation, level of consciousness, and recurrent withdrawal symptoms before additional sedative doses."}
   ]};
   if(type==="trend"&&/elder abuse/i.test(seed.topic)) return {...common,correctResponse:[String(seed.answer)],trend:[
-   {time:"0800 · Admission",findings:"NURSING FLOWSHEET · 0800
-Older adult arrives with bruising to upper arms and trunk. Explanations for injuries change during intake; accompanying person answers questions for the client.
-Nursing note: Document objective findings, use nonjudgmental communication, and arrange a private interview without the accompanying person."},
-   {time:"0900 · Private interview",findings:"NURSING FLOWSHEET · 0900
-When interviewed alone, client becomes tearful and states, 'I do not feel safe at home.' Bruises are in different stages of healing.
-Assessment: Client is alert, understands questions, and requests that the accompanying person not be told about the disclosure.
-Nursing note: Assess immediate safety and urgent medical needs; do not confront the suspected person."},
-   {time:"1000 · Safety escalation",findings:"NURSING FLOWSHEET · 1000
-Client confirms fear of returning home and identifies the accompanying person as the source of harm. No acute neurologic deficit or hemodynamic instability.
-Nursing note: Follow facility safeguarding and mandatory-reporting requirements; notify the designated social worker or safeguarding lead and preserve confidentiality within legal limits."},
-   {time:"1100 · Ongoing plan",findings:"NURSING FLOWSHEET · 1100
-Client remains in a private, supervised setting and agrees to speak with the social worker. Objective injury documentation and client statements are recorded verbatim where possible.
-Nursing note: Coordinate a safe disposition; do not discharge the client to an unsafe setting or promise secrecy that conflicts with reporting obligations."}
+   {time:"0800 · Admission",findings:"NURSING FLOWSHEET · 0800\nOlder adult arrives with bruising to upper arms and trunk. Explanations for injuries change during intake; accompanying person answers questions for the client.\nNursing note: Document objective findings, use nonjudgmental communication, and arrange a private interview without the accompanying person."},
+   {time:"0900 · Private interview",findings:"NURSING FLOWSHEET · 0900\nWhen interviewed alone, client becomes tearful and states, 'I do not feel safe at home.' Bruises are in different stages of healing.\nAssessment: Client is alert, understands questions, and requests that the accompanying person not be told about the disclosure.\nNursing note: Assess immediate safety and urgent medical needs; do not confront the suspected person."},
+   {time:"1000 · Safety escalation",findings:"NURSING FLOWSHEET · 1000\nClient confirms fear of returning home and identifies the accompanying person as the source of harm. No acute neurologic deficit or hemodynamic instability.\nNursing note: Follow facility safeguarding and mandatory-reporting requirements; notify the designated social worker or safeguarding lead and preserve confidentiality within legal limits."},
+   {time:"1100 · Ongoing plan",findings:"NURSING FLOWSHEET · 1100\nClient remains in a private, supervised setting and agrees to speak with the social worker. Objective injury documentation and client statements are recorded verbatim where possible.\nNursing note: Coordinate a safe disposition; do not discharge the client to an unsafe setting or promise secrecy that conflicts with reporting obligations."}
   ]};
   if(type==="trend"&&/statins/i.test(seed.topic)) return {...common,correctResponse:[String(seed.answer)],trend:[
-   {time:"0800 · Initial assessment",findings:"NURSING FLOWSHEET · 0800
-Client taking a prescribed statin reports new bilateral thigh pain and weakness for 2 days. No recent strenuous exercise or trauma.
-Laboratory: Creatine kinase 680 U/L; creatinine 1.0 mg/dL; potassium 4.2 mEq/L. Urine clear yellow.
-Nursing note: Assess muscle symptoms, medication dose and interactions; notify the prescriber of new unexplained muscle pain."},
-   {time:"0900 · Reassessment",findings:"NURSING FLOWSHEET · 0900
-Client reports worsening muscle pain and difficulty rising from a chair. Urine output remains adequate; urine appears darker than baseline.
-Laboratory: Creatine kinase 1,450 U/L.
-Nursing note: Hold further statin doses pending urgent prescriber review; assess hydration, urine characteristics, and renal function."},
-   {time:"1000 · Laboratory deterioration",findings:"NURSING FLOWSHEET · 1000
-Marked proximal muscle tenderness and weakness. Urine is tea-colored.
-Laboratory: Creatine kinase 4,800 U/L; creatinine 1.6 mg/dL; potassium 5.1 mEq/L.
-Nursing note: Findings are concerning for rhabdomyolysis with acute kidney injury; notify the provider urgently and anticipate IV fluid and electrolyte management orders."},
-   {time:"1100 · Ongoing monitoring",findings:"NURSING FLOWSHEET · 1100
-Statin remains withheld. Client reports persistent weakness; urine output and color are monitored closely.
-Laboratory: Creatine kinase remains elevated; repeat renal function and electrolytes are pending.
-Nursing note: Continue strict intake/output, cardiac monitoring as indicated, and surveillance for hyperkalemia and worsening renal injury."}
+   {time:"0800 · Initial assessment",findings:"NURSING FLOWSHEET · 0800\nClient taking a prescribed statin reports new bilateral thigh pain and weakness for 2 days. No recent strenuous exercise or trauma.\nLaboratory: Creatine kinase 680 U/L; creatinine 1.0 mg/dL; potassium 4.2 mEq/L. Urine clear yellow.\nNursing note: Assess muscle symptoms, medication dose and interactions; notify the prescriber of new unexplained muscle pain."},
+   {time:"0900 · Reassessment",findings:"NURSING FLOWSHEET · 0900\nClient reports worsening muscle pain and difficulty rising from a chair. Urine output remains adequate; urine appears darker than baseline.\nLaboratory: Creatine kinase 1,450 U/L.\nNursing note: Hold further statin doses pending urgent prescriber review; assess hydration, urine characteristics, and renal function."},
+   {time:"1000 · Laboratory deterioration",findings:"NURSING FLOWSHEET · 1000\nMarked proximal muscle tenderness and weakness. Urine is tea-colored.\nLaboratory: Creatine kinase 4,800 U/L; creatinine 1.6 mg/dL; potassium 5.1 mEq/L.\nNursing note: Findings are concerning for rhabdomyolysis with acute kidney injury; notify the provider urgently and anticipate IV fluid and electrolyte management orders."},
+   {time:"1100 · Ongoing monitoring",findings:"NURSING FLOWSHEET · 1100\nStatin remains withheld. Client reports persistent weakness; urine output and color are monitored closely.\nLaboratory: Creatine kinase remains elevated; repeat renal function and electrolytes are pending.\nNursing note: Continue strict intake/output, cardiac monitoring as indicated, and surveillance for hyperkalemia and worsening renal injury."}
   ]};
   if(type==="trend"&&/antibiotic safety/i.test(seed.topic)) return {...common,correctResponse:[String(seed.answer)],trend:[
-   {time:"0800 · Before administration",findings:"NURSING FLOWSHEET · 0800
-Client is prescribed an IV antibiotic. Allergy history reviewed; client reports no known allergy to the ordered medication. Baseline skin clear, lungs without wheezing, BP 122/74 mm Hg, HR 84/min, RR 16/min.
-Nursing note: Verify medication, dose, route, compatibility, allergies, and baseline assessment before infusion."},
-   {time:"0900 · During infusion",findings:"NURSING FLOWSHEET · 0900
-Ten minutes after infusion begins, client reports generalized itching and throat tightness. Diffuse urticaria appears on the trunk.
-Vital signs: BP 98/60 mm Hg · HR 112/min · RR 24/min.
-Nursing note: Stop the infusion immediately, maintain IV access with compatible fluid per protocol, assess airway and breathing, and activate emergency response."},
-   {time:"1000 · Acute reaction",findings:"NURSING FLOWSHEET · 1000
-Client develops audible wheezing, lip swelling, and increasing difficulty speaking. BP 82/48 mm Hg · HR 132/min · SpO2 90%.
-Nursing note: Findings indicate anaphylaxis. Administer prescribed emergency treatment, including IM epinephrine per protocol, support airway/oxygenation, and continue emergency escalation."},
-   {time:"1100 · Post-treatment",findings:"NURSING FLOWSHEET · 1100
-Wheezing and throat tightness are improving after emergency treatment. BP 104/66 mm Hg · HR 106/min · SpO2 96% with oxygen.
-Nursing note: Continue close observation for biphasic reaction, document the suspected medication allergy, and ensure the prescriber and pharmacy are notified before future doses."}
+   {time:"0800 · Before administration",findings:"NURSING FLOWSHEET · 0800\nClient is prescribed an IV antibiotic. Allergy history reviewed; client reports no known allergy to the ordered medication. Baseline skin clear, lungs without wheezing, BP 122/74 mm Hg, HR 84/min, RR 16/min.\nNursing note: Verify medication, dose, route, compatibility, allergies, and baseline assessment before infusion."},
+   {time:"0900 · During infusion",findings:"NURSING FLOWSHEET · 0900\nTen minutes after infusion begins, client reports generalized itching and throat tightness. Diffuse urticaria appears on the trunk.\nVital signs: BP 98/60 mm Hg · HR 112/min · RR 24/min.\nNursing note: Stop the infusion immediately, maintain IV access with compatible fluid per protocol, assess airway and breathing, and activate emergency response."},
+   {time:"1000 · Acute reaction",findings:"NURSING FLOWSHEET · 1000\nClient develops audible wheezing, lip swelling, and increasing difficulty speaking. BP 82/48 mm Hg · HR 132/min · SpO2 90%.\nNursing note: Findings indicate anaphylaxis. Administer prescribed emergency treatment, including IM epinephrine per protocol, support airway/oxygenation, and continue emergency escalation."},
+   {time:"1100 · Post-treatment",findings:"NURSING FLOWSHEET · 1100\nWheezing and throat tightness are improving after emergency treatment. BP 104/66 mm Hg · HR 106/min · SpO2 96% with oxygen.\nNursing note: Continue close observation for biphasic reaction, document the suspected medication allergy, and ensure the prescriber and pharmacy are notified before future doses."}
   ]};
   if(type==="trend"&&/tuberculosis/i.test(seed.topic)) return {...common,correctResponse:["0"],trend:[
-   {time:"0800 · Admission assessment",findings:"NURSING FLOWSHEET · 0800
-Respiratory: Persistent cough for 3 weeks; fatigue, reduced appetite, and 3-kg unintentional weight loss. Scant blood-streaked sputum reported this morning. Breath sounds diminished at the right upper lobe.
-Vital signs: T 38.1°C · HR 108/min · RR 24/min · BP 118/72 mm Hg · SpO2 93% on room air.
-Diagnostics: Chest radiograph shows right upper-lobe cavitary opacity. Sputum specimens ordered for AFB smear/culture and nucleic acid amplification.
-Nursing note: Client placed in airborne infection isolation; fit-tested N95 respirator used for room entry. Specimen collection and infection-prevention notification initiated."},
-   {time:"0900 · Focused reassessment",findings:"NURSING FLOWSHEET · 0900
-Respiratory: Frequent productive cough continues; sputum yellow with occasional blood streaks. Client becomes short of breath walking to the bathroom. Right upper-lobe crackles persist.
-Vital signs: T 38.2°C · HR 110/min · RR 25/min · BP 116/70 mm Hg · SpO2 92% on room air.
-Diagnostics: First sputum specimen collected and sent; result pending.
-Nursing note: Airborne isolation maintained. Activity clustered to reduce exertion; oral fluids offered and intake documented."},
-   {time:"1000 · Diagnostic update",findings:"NURSING FLOWSHEET · 1000
-Respiratory: Cough and fatigue persist. Client reports mild pleuritic discomfort with coughing; no acute respiratory distress at rest. Breath sounds remain diminished over the right upper lobe.
-Vital signs: T 38.0°C · HR 106/min · RR 23/min · BP 118/74 mm Hg · SpO2 93% on room air.
-Diagnostics: Sputum nucleic acid amplification is positive for Mycobacterium tuberculosis; drug-susceptibility testing pending.
-Nursing note: Provider and infection-prevention team notified. Airborne precautions continued; client instructed to cover cough and wear a surgical mask during essential transport."},
-   {time:"1100 · Ongoing evaluation",findings:"NURSING FLOWSHEET · 1100
-Respiratory: Client alert, speaks in full sentences, and reports less breathlessness at rest. Productive cough remains; no additional hemoptysis observed during this hour.
-Vital signs: T 37.8°C · HR 102/min · RR 21/min · BP 120/76 mm Hg · SpO2 94% on room air.
-Diagnostics: AFB smear result pending; culture and susceptibility testing remain in progress.
-Nursing note: Airborne isolation maintained. Respiratory status, oxygen saturation, sputum characteristics, hydration, and medication tolerance to be reassessed; prescribed multidrug therapy to begin when ordered."}
+   {time:"0800 · Admission assessment",findings:"NURSING FLOWSHEET · 0800\nRespiratory: Persistent cough for 3 weeks; fatigue, reduced appetite, and 3-kg unintentional weight loss. Scant blood-streaked sputum reported this morning. Breath sounds diminished at the right upper lobe.\nVital signs: T 38.1°C · HR 108/min · RR 24/min · BP 118/72 mm Hg · SpO2 93% on room air.\nDiagnostics: Chest radiograph shows right upper-lobe cavitary opacity. Sputum specimens ordered for AFB smear/culture and nucleic acid amplification.\nNursing note: Client placed in airborne infection isolation; fit-tested N95 respirator used for room entry. Specimen collection and infection-prevention notification initiated."},
+   {time:"0900 · Focused reassessment",findings:"NURSING FLOWSHEET · 0900\nRespiratory: Frequent productive cough continues; sputum yellow with occasional blood streaks. Client becomes short of breath walking to the bathroom. Right upper-lobe crackles persist.\nVital signs: T 38.2°C · HR 110/min · RR 25/min · BP 116/70 mm Hg · SpO2 92% on room air.\nDiagnostics: First sputum specimen collected and sent; result pending.\nNursing note: Airborne isolation maintained. Activity clustered to reduce exertion; oral fluids offered and intake documented."},
+   {time:"1000 · Diagnostic update",findings:"NURSING FLOWSHEET · 1000\nRespiratory: Cough and fatigue persist. Client reports mild pleuritic discomfort with coughing; no acute respiratory distress at rest. Breath sounds remain diminished over the right upper lobe.\nVital signs: T 38.0°C · HR 106/min · RR 23/min · BP 118/74 mm Hg · SpO2 93% on room air.\nDiagnostics: Sputum nucleic acid amplification is positive for Mycobacterium tuberculosis; drug-susceptibility testing pending.\nNursing note: Provider and infection-prevention team notified. Airborne precautions continued; client instructed to cover cough and wear a surgical mask during essential transport."},
+   {time:"1100 · Ongoing evaluation",findings:"NURSING FLOWSHEET · 1100\nRespiratory: Client alert, speaks in full sentences, and reports less breathlessness at rest. Productive cough remains; no additional hemoptysis observed during this hour.\nVital signs: T 37.8°C · HR 102/min · RR 21/min · BP 120/76 mm Hg · SpO2 94% on room air.\nDiagnostics: AFB smear result pending; culture and susceptibility testing remain in progress.\nNursing note: Airborne isolation maintained. Respiratory status, oxygen saturation, sputum characteristics, hydration, and medication tolerance to be reassessed; prescribed multidrug therapy to begin when ordered."}
   ]};
   if(type==="trend") return {...common,trend:[
-   {time:"0800 · Initial charting",findings:"NURSING FLOWSHEET · 0800
-Presenting concern: "+seed.patient+"
-Focused assessment: "+seed.record+"
-Vital signs: T 37.8°C · HR 104/min · RR 22/min · BP 118/74 mm Hg · SpO2 94% on room air.
-Nursing note: Baseline symptoms, focused assessment, intake/output, and safety risks documented. Provider orders reviewed; indicated specimens and baseline investigations obtained."},
-   {time:"0900 · One-hour reassessment",findings:"NURSING FLOWSHEET · 0900
-Focused assessment: Symptoms persist. Client alert and answers questions appropriately; reassess pain, work of breathing, skin color, perfusion, and the affected system. "+seed.record+"
-Vital signs: T 38.0°C · HR 108/min · RR 24/min · BP 114/70 mm Hg · SpO2 93% on room air.
-Nursing note: Ordered intervention initiated. Response and adverse effects assessed; abnormal findings communicated to the responsible clinician."},
-   {time:"1000 · Two-hour reassessment",findings:"NURSING FLOWSHEET · 1000
-Focused assessment: Client reports increased fatigue and persistent symptoms. Repeat the focused examination and compare with the 0800 baseline; assess for new confusion, worsening pain, respiratory effort, perfusion, and urine output as relevant to the presentation.
-Vital signs: T 38.3°C · HR 112/min · RR 25/min · BP 108/66 mm Hg · SpO2 92% on room air.
-Nursing note: Findings and response to treatment documented. Repeat ordered laboratory or diagnostic studies reviewed when available; escalation criteria reassessed."},
-   {time:"1100 · Three-hour reassessment",findings:"NURSING FLOWSHEET · 1100
-Focused assessment: "+seed.record+" Client remains under observation; document whether the presenting symptom is improving, unchanged, or worsening and reassess for complications associated with "+seed.topic.toLowerCase()+".
-Vital signs: T 38.1°C · HR 106/min · RR 22/min · BP 112/70 mm Hg · SpO2 94% on room air.
-Nursing note: Compare all four hourly assessments, trend vital signs and diagnostic results, evaluate treatment response, and update the plan with the provider as indicated."}
+   {time:"0800 · Initial charting",findings:"NURSING FLOWSHEET · 0800\nPresenting concern: "+seed.patient+"\nFocused assessment: "+seed.record+"\nVital signs: T 37.8°C · HR 104/min · RR 22/min · BP 118/74 mm Hg · SpO2 94% on room air.\nNursing note: Baseline symptoms, focused assessment, intake/output, and safety risks documented. Provider orders reviewed; indicated specimens and baseline investigations obtained."},
+   {time:"0900 · One-hour reassessment",findings:"NURSING FLOWSHEET · 0900\nFocused assessment: Symptoms persist. Client alert and answers questions appropriately; reassess pain, work of breathing, skin color, perfusion, and the affected system. "+seed.record+"\nVital signs: T 38.0°C · HR 108/min · RR 24/min · BP 114/70 mm Hg · SpO2 93% on room air.\nNursing note: Ordered intervention initiated. Response and adverse effects assessed; abnormal findings communicated to the responsible clinician."},
+   {time:"1000 · Two-hour reassessment",findings:"NURSING FLOWSHEET · 1000\nFocused assessment: Client reports increased fatigue and persistent symptoms. Repeat the focused examination and compare with the 0800 baseline; assess for new confusion, worsening pain, respiratory effort, perfusion, and urine output as relevant to the presentation.\nVital signs: T 38.3°C · HR 112/min · RR 25/min · BP 108/66 mm Hg · SpO2 92% on room air.\nNursing note: Findings and response to treatment documented. Repeat ordered laboratory or diagnostic studies reviewed when available; escalation criteria reassessed."},
+   {time:"1100 · Three-hour reassessment",findings:"NURSING FLOWSHEET · 1100\nFocused assessment: "+seed.record+" Client remains under observation; document whether the presenting symptom is improving, unchanged, or worsening and reassess for complications associated with "+seed.topic.toLowerCase()+".\nVital signs: T 38.1°C · HR 106/min · RR 22/min · BP 112/70 mm Hg · SpO2 94% on room air.\nNursing note: Compare all four hourly assessments, trend vital signs and diagnostic results, evaluate treatment response, and update the plan with the provider as indicated."}
   ]};
   return common;
 }
@@ -356,85 +229,12 @@ const caseStudySeeds:Seed[]=[
  {category:"Cardiovascular",topic:"Acute pulmonary embolism",patient:caseStudyPatient,question:"Highlight the current findings that demonstrate the client is responding to treatment.",choices:["SpO2 95% with supplemental oxygen","HR 98/min","RR 20/min","No bleeding observed"],answer:0,rationale:"Improving oxygen saturation with supplemental oxygen, a decreasing heart rate, a lower respiratory rate, and no observed bleeding indicate a favorable response to current treatment. Continue monitoring because anticoagulation and the recent pulmonary embolism still carry clinical risks.",record:"0900: Dyspnea has decreased. SpO2 95% with supplemental oxygen; HR 98/min; RR 20/min. No bleeding observed."}
 ];
 const caseRecords=[
- {progressNotes:"0810: Sudden dyspnea and pleuritic chest pain. Client is restless and pale.",history:"Total hip arthroplasty 2 days ago. Mobility has been limited since surgery. No known bleeding disorder documented.",medicationList:"MEDICATION RECONCILIATION · 0810
-Enoxaparin 40 mg subcutaneously daily for postoperative thromboprophylaxis — last dose 2000 yesterday.
-Acetaminophen 650 mg PO every 6 hr as needed for pain — last dose 0600.
-Oxycodone 5 mg PO every 4 hr as needed for pain — no dose this shift.
-Senna 8.6 mg PO nightly.
-Home atorvastatin 20 mg PO nightly and levothyroxine 75 mcg PO daily.
-No therapeutic anticoagulant infusion is active. Verify allergies, last doses, renal function, and bleeding history.",assessment:"INITIAL NURSING ASSESSMENT · 0810
-Appearance: Pale, restless, and sitting upright; skin cool and mildly diaphoretic.
-Verbal report: States, 'I suddenly cannot catch my breath,' and describes sharp right-sided chest pain that worsens with inspiration. Rates pain 7/10.
-Observed assessment: Speaks in short phrases; respiratory effort increased with accessory-muscle use. Breath sounds present bilaterally; no stridor. Left calf appears larger than right.
-Assess airway, breathing, circulation, chest pain, peripheral perfusion, and signs of venous thrombosis; stay with the client and escalate immediately.",vitalSigns:"BP 108/68 mm Hg
-HR 132/min
-RR 32/min
-SpO2 84% on room air
-Temperature 37.0C",labs:"Baseline CBC and coagulation profile requested. No results available yet.",providerOrders:"Activate rapid response. Apply oxygen, obtain IV access, and begin continuous cardiac and pulse-oximetry monitoring."},
- {progressNotes:"0815: Left calf is swollen and tender compared with the right. Sudden dyspnea persists.",history:"Total hip arthroplasty 2 days ago. Reduced mobility since surgery. No known bleeding disorder documented.",medicationList:"MEDICATION RECONCILIATION · 0815
-Enoxaparin 40 mg subcutaneously daily for postoperative thromboprophylaxis — last dose 2000 yesterday.
-Acetaminophen 650 mg PO as needed — last dose 0600.
-Oxycodone 5 mg PO as needed — none administered this shift.
-Senna 8.6 mg PO nightly.
-Home atorvastatin 20 mg nightly and levothyroxine 75 mcg daily.
-No therapeutic heparin infusion yet. Confirm allergies, last prophylaxis dose, and bleeding risk.",assessment:"FOCUSED ASSESSMENT · 0815
-Visual: Left calf circumference is 3 cm greater than the right; mild unilateral swelling is visible.
-Palpation: Left calf is warm and tender; do not massage the extremity.
-Verbal: Client reports persistent pleuritic chest pain and breathlessness; denies recent fall or visible bleeding.
-Observed: Restless, tachycardic, and tachypneic; continues to speak in short phrases. Reassess respiratory effort, oxygenation, perfusion, and neurologic status while escalating findings.",vitalSigns:"BP 106/66 mm Hg
-HR 128/min
-RR 30/min
-SpO2 86% on room air",labs:"CBC and coagulation studies are being collected. Imaging is requested by the provider.",providerOrders:"Continue oxygen and emergency monitoring. Notify the provider of unilateral calf findings and respiratory deterioration."},
- {progressNotes:"0820: CT pulmonary angiography confirms acute pulmonary embolism. Provider and rapid response team are at the bedside.",history:"Recent total hip arthroplasty and limited postoperative mobility are relevant thromboembolic risk factors.",medicationList:"MEDICATION RECONCILIATION · 0820
-Enoxaparin 40 mg subcutaneously daily — last dose 2000 yesterday; prophylactic dose only.
-Acetaminophen 650 mg PO as needed — last dose 0600.
-Oxycodone 5 mg PO as needed — no dose this shift.
-Senna 8.6 mg PO nightly.
-Home atorvastatin 20 mg nightly and levothyroxine 75 mcg daily.
-Therapeutic heparin has not yet started. Allergy review and baseline CBC/coagulation results checked; assess recent surgery and bleeding risk before the ordered anticoagulation plan.",assessment:"POST-DIAGNOSTIC ASSESSMENT · 0820
-Visual: Client remains pale and anxious; no cyanosis or active external bleeding observed.
-Verbal: Reports persistent pleuritic chest pain and dyspnea; answers questions appropriately.
-Respiratory: Tachypnea with diminished activity tolerance; assess work of breathing and lung sounds.
-Cardiovascular: Tachycardia with borderline blood pressure; assess peripheral pulses, capillary refill, skin temperature, and signs of right-heart strain. Continue frequent neurologic, respiratory, and hemodynamic reassessment.",vitalSigns:"BP 104/64 mm Hg
-HR 124/min
-RR 28/min
-SpO2 89% with supplemental oxygen",labs:"Baseline aPTT 30 seconds
-Platelets 224,000/mm3
-Hemoglobin 12.1 g/dL
-CT pulmonary angiography: acute pulmonary embolism",providerOrders:"Prepare to implement the prescribed anticoagulation plan after baseline laboratory results and bleeding-risk review."},
- {progressNotes:"0825: Oxygen applied and two peripheral IV lines secured. Continuous cardiac and oxygen-saturation monitoring initiated.",history:"Recent major orthopedic surgery increases venous thromboembolism risk. Continue to assess for bleeding risk.",medicationList:"MEDICATION ADMINISTRATION RECORD · 0825
-Unfractionated heparin bolus and IV infusion — ordered; verify dose, concentration, pump settings, and independent double-check before initiation.
-Enoxaparin prophylaxis — prior dose documented at 2000 yesterday; clarify further doses with the prescriber to avoid duplicate anticoagulation.
-Acetaminophen 650 mg PO as needed — last dose 0600.
-Oxycodone 5 mg PO as needed — none this shift.
-Senna 8.6 mg PO nightly; home atorvastatin and levothyroxine on hold pending reconciliation.",assessment:"REASSESSMENT · 0825
-Visual: Skin color improving; client less restless and no longer diaphoretic.
-Verbal: Reports that breathing is 'a little easier' but chest discomfort persists. Alert and follows commands.
-Respiratory: SpO2 improving with oxygen; assess respiratory rate, depth, accessory-muscle use, and breath sounds.
-Cardiovascular: HR remains elevated; reassess blood pressure, peripheral pulses, capillary refill, and chest pain. Confirm IV patency and response to oxygen.",vitalSigns:"BP 110/70 mm Hg
-HR 118/min
-RR 26/min
-SpO2 92% with supplemental oxygen",labs:"Baseline aPTT 30 seconds
-Platelets 224,000/mm3
-Hemoglobin 12.1 g/dL",providerOrders:"Begin prescribed unfractionated heparin bolus and infusion after baseline studies. Continue oxygen and monitoring."},
- {progressNotes:"0835: Prescribed heparin infusion initiated after baseline coagulation studies. No active bleeding noted.",history:"Postoperative day 2 following total hip arthroplasty. Maintain bleeding precautions while anticoagulated.",medicationList:"CURRENT MEDICATION ADMINISTRATION RECORD (0900)
-Unfractionated heparin IV infusion — active; titrate by aPTT protocol.
-Acetaminophen 650 mg PO every 6 hr as needed for postoperative pain — last given 0600.
-Cefazolin prophylaxis — completed after surgery.
-Docusate 100 mg PO daily — last given 0800.
-Home multivitamin — held during admission.
-Medication reconciliation: verify allergies, last doses, infusion concentration, pump settings, and any antiplatelet or anticoagulant use before administering additional medication.",assessment:"Focused assessment at 0835: Client is awake and answers questions appropriately; reports less chest tightness but remains mildly dyspneic. Skin is warm and dry without new ecchymosis. Inspect gums, nares, IV sites, surgical dressing, urine, and stool for bleeding; ask about headache, dizziness, flank pain, and black stools. Reassess work of breathing, lung sounds, chest pain, peripheral perfusion, and level of consciousness. Escalate new bleeding, neurologic change, hypotension, or worsening hypoxemia.",vitalSigns:"BP 112/72 mm Hg
-HR 106/min
-RR 22/min
-SpO2 94% with supplemental oxygen",labs:"Repeat aPTT per heparin protocol. Trend CBC, hemoglobin, and platelet count.",providerOrders:"Titrate heparin according to institutional protocol. Monitor aPTT, CBC, and signs of bleeding."},
- {progressNotes:"0900: Client reports less dyspnea. SpO2 95% with supplemental oxygen; HR 98/min; RR 20/min. No new chest pain or bleeding. Oxygen saturation and heart rate have improved.",history:"Recent total hip arthroplasty remains relevant to mobility and thrombosis prevention planning.",medicationList:"Continue prescribed anticoagulation. Review the medication plan and bleeding precautions before transfer or discharge planning.",assessment:"FOLLOW-UP ASSESSMENT · 0900
-Visual: Client appears less anxious; skin warm and dry. Inspect gums, nares, IV sites, surgical dressing, urine, and stool for bleeding or new ecchymosis.
-Verbal: Reports less dyspnea and no new chest pain; denies headache, dizziness, or flank pain. Alert and oriented.
-Respiratory: Speaks in full sentences; work of breathing reduced. Reassess lung sounds and oxygen requirement.
-Cardiovascular: HR and BP improving; assess peripheral perfusion and neurologic status. Continue surveillance for occult bleeding and recurrent hypoxemia.",vitalSigns:"BP 116/74 mm Hg
-HR 98/min
-RR 20/min
-SpO2 95% with supplemental oxygen",labs:"aPTT is within the prescribed therapeutic range. Hemoglobin is stable; no evidence of bleeding.",providerOrders:"Continue anticoagulation and oxygen as prescribed. Reassess respiratory status and hemodynamic stability."}
+ {progressNotes:"0810: Sudden dyspnea and pleuritic chest pain. Client is restless and pale.",history:"Total hip arthroplasty 2 days ago. Mobility has been limited since surgery. No known bleeding disorder documented.",medicationList:"MEDICATION RECONCILIATION · 0810\nEnoxaparin 40 mg subcutaneously daily for postoperative thromboprophylaxis — last dose 2000 yesterday.\nAcetaminophen 650 mg PO every 6 hr as needed for pain — last dose 0600.\nOxycodone 5 mg PO every 4 hr as needed for pain — no dose this shift.\nSenna 8.6 mg PO nightly.\nHome atorvastatin 20 mg PO nightly and levothyroxine 75 mcg PO daily.\nNo therapeutic anticoagulant infusion is active. Verify allergies, last doses, renal function, and bleeding history.",assessment:"INITIAL NURSING ASSESSMENT · 0810\nAppearance: Pale, restless, and sitting upright; skin cool and mildly diaphoretic.\nVerbal report: States, 'I suddenly cannot catch my breath,' and describes sharp right-sided chest pain that worsens with inspiration. Rates pain 7/10.\nObserved assessment: Speaks in short phrases; respiratory effort increased with accessory-muscle use. Breath sounds present bilaterally; no stridor. Left calf appears larger than right.\nAssess airway, breathing, circulation, chest pain, peripheral perfusion, and signs of venous thrombosis; stay with the client and escalate immediately.",vitalSigns:"BP 108/68 mm Hg\nHR 132/min\nRR 32/min\nSpO2 84% on room air\nTemperature 37.0C",labs:"Baseline CBC and coagulation profile requested. No results available yet.",providerOrders:"Activate rapid response. Apply oxygen, obtain IV access, and begin continuous cardiac and pulse-oximetry monitoring."},
+ {progressNotes:"0815: Left calf is swollen and tender compared with the right. Sudden dyspnea persists.",history:"Total hip arthroplasty 2 days ago. Reduced mobility since surgery. No known bleeding disorder documented.",medicationList:"MEDICATION RECONCILIATION · 0815\nEnoxaparin 40 mg subcutaneously daily for postoperative thromboprophylaxis — last dose 2000 yesterday.\nAcetaminophen 650 mg PO as needed — last dose 0600.\nOxycodone 5 mg PO as needed — none administered this shift.\nSenna 8.6 mg PO nightly.\nHome atorvastatin 20 mg nightly and levothyroxine 75 mcg daily.\nNo therapeutic heparin infusion yet. Confirm allergies, last prophylaxis dose, and bleeding risk.",assessment:"FOCUSED ASSESSMENT · 0815\nVisual: Left calf circumference is 3 cm greater than the right; mild unilateral swelling is visible.\nPalpation: Left calf is warm and tender; do not massage the extremity.\nVerbal: Client reports persistent pleuritic chest pain and breathlessness; denies recent fall or visible bleeding.\nObserved: Restless, tachycardic, and tachypneic; continues to speak in short phrases. Reassess respiratory effort, oxygenation, perfusion, and neurologic status while escalating findings.",vitalSigns:"BP 106/66 mm Hg\nHR 128/min\nRR 30/min\nSpO2 86% on room air",labs:"CBC and coagulation studies are being collected. Imaging is requested by the provider.",providerOrders:"Continue oxygen and emergency monitoring. Notify the provider of unilateral calf findings and respiratory deterioration."},
+ {progressNotes:"0820: CT pulmonary angiography confirms acute pulmonary embolism. Provider and rapid response team are at the bedside.",history:"Recent total hip arthroplasty and limited postoperative mobility are relevant thromboembolic risk factors.",medicationList:"MEDICATION RECONCILIATION · 0820\nEnoxaparin 40 mg subcutaneously daily — last dose 2000 yesterday; prophylactic dose only.\nAcetaminophen 650 mg PO as needed — last dose 0600.\nOxycodone 5 mg PO as needed — no dose this shift.\nSenna 8.6 mg PO nightly.\nHome atorvastatin 20 mg nightly and levothyroxine 75 mcg daily.\nTherapeutic heparin has not yet started. Allergy review and baseline CBC/coagulation results checked; assess recent surgery and bleeding risk before the ordered anticoagulation plan.",assessment:"POST-DIAGNOSTIC ASSESSMENT · 0820\nVisual: Client remains pale and anxious; no cyanosis or active external bleeding observed.\nVerbal: Reports persistent pleuritic chest pain and dyspnea; answers questions appropriately.\nRespiratory: Tachypnea with diminished activity tolerance; assess work of breathing and lung sounds.\nCardiovascular: Tachycardia with borderline blood pressure; assess peripheral pulses, capillary refill, skin temperature, and signs of right-heart strain. Continue frequent neurologic, respiratory, and hemodynamic reassessment.",vitalSigns:"BP 104/64 mm Hg\nHR 124/min\nRR 28/min\nSpO2 89% with supplemental oxygen",labs:"Baseline aPTT 30 seconds\nPlatelets 224,000/mm3\nHemoglobin 12.1 g/dL\nCT pulmonary angiography: acute pulmonary embolism",providerOrders:"Prepare to implement the prescribed anticoagulation plan after baseline laboratory results and bleeding-risk review."},
+ {progressNotes:"0825: Oxygen applied and two peripheral IV lines secured. Continuous cardiac and oxygen-saturation monitoring initiated.",history:"Recent major orthopedic surgery increases venous thromboembolism risk. Continue to assess for bleeding risk.",medicationList:"MEDICATION ADMINISTRATION RECORD · 0825\nUnfractionated heparin bolus and IV infusion — ordered; verify dose, concentration, pump settings, and independent double-check before initiation.\nEnoxaparin prophylaxis — prior dose documented at 2000 yesterday; clarify further doses with the prescriber to avoid duplicate anticoagulation.\nAcetaminophen 650 mg PO as needed — last dose 0600.\nOxycodone 5 mg PO as needed — none this shift.\nSenna 8.6 mg PO nightly; home atorvastatin and levothyroxine on hold pending reconciliation.",assessment:"REASSESSMENT · 0825\nVisual: Skin color improving; client less restless and no longer diaphoretic.\nVerbal: Reports that breathing is 'a little easier' but chest discomfort persists. Alert and follows commands.\nRespiratory: SpO2 improving with oxygen; assess respiratory rate, depth, accessory-muscle use, and breath sounds.\nCardiovascular: HR remains elevated; reassess blood pressure, peripheral pulses, capillary refill, and chest pain. Confirm IV patency and response to oxygen.",vitalSigns:"BP 110/70 mm Hg\nHR 118/min\nRR 26/min\nSpO2 92% with supplemental oxygen",labs:"Baseline aPTT 30 seconds\nPlatelets 224,000/mm3\nHemoglobin 12.1 g/dL",providerOrders:"Begin prescribed unfractionated heparin bolus and infusion after baseline studies. Continue oxygen and monitoring."},
+ {progressNotes:"0835: Prescribed heparin infusion initiated after baseline coagulation studies. No active bleeding noted.",history:"Postoperative day 2 following total hip arthroplasty. Maintain bleeding precautions while anticoagulated.",medicationList:"CURRENT MEDICATION ADMINISTRATION RECORD (0900)\nUnfractionated heparin IV infusion — active; titrate by aPTT protocol.\nAcetaminophen 650 mg PO every 6 hr as needed for postoperative pain — last given 0600.\nCefazolin prophylaxis — completed after surgery.\nDocusate 100 mg PO daily — last given 0800.\nHome multivitamin — held during admission.\nMedication reconciliation: verify allergies, last doses, infusion concentration, pump settings, and any antiplatelet or anticoagulant use before administering additional medication.",assessment:"Focused assessment at 0835: Client is awake and answers questions appropriately; reports less chest tightness but remains mildly dyspneic. Skin is warm and dry without new ecchymosis. Inspect gums, nares, IV sites, surgical dressing, urine, and stool for bleeding; ask about headache, dizziness, flank pain, and black stools. Reassess work of breathing, lung sounds, chest pain, peripheral perfusion, and level of consciousness. Escalate new bleeding, neurologic change, hypotension, or worsening hypoxemia.",vitalSigns:"BP 112/72 mm Hg\nHR 106/min\nRR 22/min\nSpO2 94% with supplemental oxygen",labs:"Repeat aPTT per heparin protocol. Trend CBC, hemoglobin, and platelet count.",providerOrders:"Titrate heparin according to institutional protocol. Monitor aPTT, CBC, and signs of bleeding."},
+ {progressNotes:"0900: Client reports less dyspnea. SpO2 95% with supplemental oxygen; HR 98/min; RR 20/min. No new chest pain or bleeding. Oxygen saturation and heart rate have improved.",history:"Recent total hip arthroplasty remains relevant to mobility and thrombosis prevention planning.",medicationList:"Continue prescribed anticoagulation. Review the medication plan and bleeding precautions before transfer or discharge planning.",assessment:"FOLLOW-UP ASSESSMENT · 0900\nVisual: Client appears less anxious; skin warm and dry. Inspect gums, nares, IV sites, surgical dressing, urine, and stool for bleeding or new ecchymosis.\nVerbal: Reports less dyspnea and no new chest pain; denies headache, dizziness, or flank pain. Alert and oriented.\nRespiratory: Speaks in full sentences; work of breathing reduced. Reassess lung sounds and oxygen requirement.\nCardiovascular: HR and BP improving; assess peripheral perfusion and neurologic status. Continue surveillance for occult bleeding and recurrent hypoxemia.",vitalSigns:"BP 116/74 mm Hg\nHR 98/min\nRR 20/min\nSpO2 95% with supplemental oxygen",labs:"aPTT is within the prescribed therapeutic range. Hemoglobin is stable; no evidence of bleeding.",providerOrders:"Continue anticoagulation and oxygen as prescribed. Reassess respiratory status and hemodynamic stability."}
 ];
 const caseInteractions:QuestionInteraction[]=[
  {instruction:"Select the one finding that requires immediate nursing action.",choices:caseStudySeeds[0].choices,correctResponse:["0"],optionRationales:["Hypoxemia is an immediate threat to oxygenation.","Mild incisional pain is not the priority over acute respiratory compromise.","The temperature is within the stated normal range.","A dry dressing does not explain the acute respiratory symptoms."]},
@@ -467,13 +267,7 @@ const extension: Question[] = Array.from({length:100},(_,i)=>{
     interaction,
     clinicalScenario:isCaseScreen?undefined:type==="bow-tie"&&seed.topic==="Measles"?"A 7-year-old child with incomplete immunizations is brought to urgent care after four days of high fever, cough, coryza, and red watery eyes. A blotchy maculopapular rash began at the hairline and is spreading downward; Koplik spots are visible on the buccal mucosa. The child is tired but alert, with temperature 39.4°C, HR 126/min, RR 24/min, and SpO2 96% on room air. Several children shared the waiting area before the rash was recognized.":seed.patient,
     caseStudy:isCaseScreen?caseStudyPatient:undefined,
-    exhibit:isCaseScreen?caseRecords[i].labs+"
-"+caseRecords[i].providerOrders:type==="bow-tie"&&seed.topic==="GI bleeding"?"EMERGENCY DEPARTMENT RECORD · 0900
-Presenting concern: 68-year-old client reports two episodes of coffee-ground emesis and three black, tarry stools since 0600. Reports dizziness when standing and worsening weakness.
-Focused assessment: Pale, cool skin; delayed capillary refill; epigastric tenderness without rigid abdomen. Ongoing melena observed. No bright-red rectal bleeding documented.
-Vital signs: BP 88/54 mm Hg · HR 124/min · RR 24/min · SpO2 97% on room air · T 36.8°C.
-Laboratory results: Hemoglobin 7.6 g/dL · Hematocrit 23% · Platelets 188,000/mm³ · BUN 38 mg/dL · Creatinine 1.1 mg/dL · INR 1.2.
-Initial orders: Keep NPO; obtain two large-bore IV lines; type and crossmatch; repeat CBC and coagulation studies; prepare for prescribed IV fluid/blood-product resuscitation and urgent endoscopy.":type==="bow-tie"?clinicalRecordFor(seed):type==="trend"?clinicalRecordFor(seed):undefined,
+    exhibit:isCaseScreen?caseRecords[i].labs+"\n"+caseRecords[i].providerOrders:type==="bow-tie"&&seed.topic==="GI bleeding"?"EMERGENCY DEPARTMENT RECORD · 0900\nPresenting concern: 68-year-old client reports two episodes of coffee-ground emesis and three black, tarry stools since 0600. Reports dizziness when standing and worsening weakness.\nFocused assessment: Pale, cool skin; delayed capillary refill; epigastric tenderness without rigid abdomen. Ongoing melena observed. No bright-red rectal bleeding documented.\nVital signs: BP 88/54 mm Hg · HR 124/min · RR 24/min · SpO2 97% on room air · T 36.8°C.\nLaboratory results: Hemoglobin 7.6 g/dL · Hematocrit 23% · Platelets 188,000/mm³ · BUN 38 mg/dL · Creatinine 1.1 mg/dL · INR 1.2.\nInitial orders: Keep NPO; obtain two large-bore IV lines; type and crossmatch; repeat CBC and coagulation studies; prepare for prescribed IV fluid/blood-product resuscitation and urgent endoscopy.":type==="bow-tie"?clinicalRecordFor(seed):type==="trend"?clinicalRecordFor(seed):undefined,
     caseRecord:isCaseScreen?caseRecords[i]:seed.caseRecord,
     caseStudyId:isCaseScreen?"ngn-case-01":undefined,
     clinicalJudgmentStep:(["recognize-cues","analyze-cues","prioritize-hypotheses","generate-solutions","take-action","evaluate-outcomes"] as const)[i%6],
@@ -488,18 +282,15 @@ const curatedNgnRaw=(curatedNgnBatch as {questions:CuratedNgnItem[]}).questions;
 function formatNgnContent(value:any):string{
  if(value===null||value===undefined)return "";
  if(typeof value==="string")return value;
- if(Array.isArray(value))return value.map(formatNgnContent).filter(Boolean).join("
-");
+ if(Array.isArray(value))return value.map(formatNgnContent).filter(Boolean).join("\n");
  if(typeof value==="object")return Object.entries(value).map(([key,entry])=>{
   const label=key.replace(/_/g," ").replace(/\b\w/g,char=>char.toUpperCase());
   const text=formatNgnContent(entry);return text?label+": "+text:"";
- }).filter(Boolean).join("
-");
+ }).filter(Boolean).join("\n");
  return String(value);
 }
 function curatedCaseRecord(record:any,follow:any){
- const progress=[formatNgnContent(follow?.clinical_development),formatNgnContent(follow?.new_information)].filter(Boolean).join("
-");
+ const progress=[formatNgnContent(follow?.clinical_development),formatNgnContent(follow?.new_information)].filter(Boolean).join("\n");
  return {progressNotes:progress||"Clinical progression documented in the case exhibit.",history:formatNgnContent(record?.patient_profile),medicationList:formatNgnContent(record?.medications),assessment:formatNgnContent(record?.assessment),vitalSigns:formatNgnContent(record?.vital_signs),labs:formatNgnContent(record?.laboratory_results),providerOrders:formatNgnContent(record?.provider_orders),flowSheet:formatNgnContent(follow)};
 }
 function curateNgnQuestion(raw:CuratedNgnItem,index:number):Question{
@@ -596,16 +387,14 @@ function curateNgnQuestion(raw:CuratedNgnItem,index:number):Question{
  const caseText=patientRecord?formatNgnContent(patientRecord.patient_profile):"";
  const record=patientRecord?curatedCaseRecord(patientRecord,follow):undefined;
  const clinicalScenario=isGroupedCase?undefined:(scenario||(patientRecord?formatNgnContent(patientRecord):""));
- const exhibit=(itemType==="bow-tie"||itemType==="trend")?"CLINICAL RECORD
-"+(clinicalScenario??formatNgnContent(patientRecord??raw.clinical_scenario)):formatNgnContent((raw.clinical_scenario as any)?.laboratory_results);
+ const exhibit=(itemType==="bow-tie"||itemType==="trend")?"CLINICAL RECORD\n"+(clinicalScenario??formatNgnContent(patientRecord??raw.clinical_scenario)):formatNgnContent((raw.clinical_scenario as any)?.laboratory_results);
  const cjMap:Record<string,Question["clinicalJudgmentStep"]>={recognize_cues:"recognize-cues",analyze_cues:"analyze-cues",prioritize_hypotheses:"prioritize-hypotheses",generate_solutions:"generate-solutions",take_action:"take-action",evaluate_outcomes:"evaluate-outcomes"};
  const difficulty=raw.difficulty==="very_difficult"||raw.difficulty==="difficult"?"Advanced":raw.difficulty==="easy"?"Foundational":"Intermediate";
  const isMultiple=itemType==="multiple-response"||itemType==="extended-multiple-response"||itemType==="select-n";
  return {id:"ngn-"+String(index+1).padStart(3,"0"),category:raw.topic,topic:raw.subtopic,difficulty,prompt,options,answer,rationale:String(r.correct??r.summary??r.calculation??""),status:"published",format:isGroupedCase?"case-study":isMultiple?"multiple":"single",itemType,interaction,clinicalScenario,caseStudy:isGroupedCase?caseText:undefined,caseRecord:record,caseStudyId:isGroupedCase?group:undefined,exhibit:exhibit||undefined,clinicalJudgmentStep:cjMap[String(raw.clinical_judgment?.skill??"")],contentVersion:3,reviewStatus:"generated"};
 }
 function customNgnQuestion(id:string,category:string,topic:string,difficulty:Question["difficulty"],prompt:string,scenario:string,rationale:string,itemType:NclexItemType,interaction:QuestionInteraction):Question{
- return {id,category,topic,difficulty,prompt,options:interaction.choices??[],answer:0,rationale,status:"published",format:itemType==="multiple-response"||itemType==="select-n"||itemType==="extended-multiple-response"?"multiple":"single",itemType,interaction,clinicalScenario:scenario,exhibit:"CLINICAL RECORD
-"+scenario,contentVersion:3,reviewStatus:"generated",clinicalJudgmentStep:"analyze-cues"};
+ return {id,category,topic,difficulty,prompt,options:interaction.choices??[],answer:0,rationale,status:"published",format:itemType==="multiple-response"||itemType==="select-n"||itemType==="extended-multiple-response"?"multiple":"single",itemType,interaction,clinicalScenario:scenario,exhibit:"CLINICAL RECORD\n"+scenario,contentVersion:3,reviewStatus:"generated",clinicalJudgmentStep:"analyze-cues"};
 }
 function buildCuratedExtension():Question[]{
  const replacementA=extension.find(q=>q.itemType==="drop-down-rationale"),replacementB=extension.find(q=>q.itemType==="drag-drop"),replacementC=extension.find(q=>q.itemType==="matrix-multiple");
