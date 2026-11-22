@@ -89,6 +89,20 @@ The exam renderer follows the supplied NCLEX/NGN screenshot references. Author t
 
 Do not display category, topic, difficulty, item-type names, or clinical-judgment labels as hints in the active examination. Do not repeat selection instructions in both the stem and the interaction panel. Keep text concise but large enough to read comfortably.
 
+
+### Global review-feedback rules (apply to every item, not only named IDs)
+
+- Apply the same corrections across the entire existing bank and every future generated batch. A review note attached to one ID is a global renderer/content rule unless it explicitly says otherwise.
+- A chart-driven question has exactly one coherent patient scenario in the left pane. The right pane contains only the question task, response instruction (once), and answer interaction. Never show a second patient scenario, duplicate demographics/vital signs, topic/category/difficulty labels, or item-type labels as clues.
+- Do not show decorative headings such as “CLIENT CHART,” “Patient clinical record,” or “Clinical information.” Show only the clinical scenario and actual chart sections that have data. Hide empty tabs; never fill missing data with fabricated notes, labs, or provider orders.
+- Keep laboratory results in the laboratory section only. Provider orders must read like explicit, plausible orders entered by the responsible prescriber, with dose/route/frequency/time when relevant. Flow sheets should be chronological and show real reassessment/administration values rather than repeating the same generic note.
+- Put trend observations in the left pane immediately below the scenario. Use meaningful timestamps, serial values, units, and a clinically interpretable change; do not use “nursing interpretation” as a fake time point.
+- Bow-tie geometry: two action slots stacked vertically on the left, one potential-condition slot in the center, and two monitoring slots stacked vertically on the right, with connecting lines. Provide clinically similar condition distractors and monitoring choices that do not give away the diagnosis by repeating its name. Do not show a separate “Clinical information” box in the right pane.
+- Distractors must be credible near-misses. Vary timing, sequencing, monitoring, escalation, contraindications, and incomplete interventions. Avoid absurd or unrelated choices that can be eliminated without clinical reasoning.
+- Cloze and rationale items use one instruction only. The first rationale blank must be a grammatical action phrase after “The nurse should”; every selected phrase must make the complete sentence clinically and grammatically correct.
+- Highlight-text items split the passage into individually clickable words/short phrases. Key only the clinically significant cues (not an entire sentence); include plausible distractor words. Do not show a “Clear highlights” button.
+- At exam setup, provide a reset control for all saved item-feedback notes on the current device, with confirmation before deletion.
+
 ## Supported question formats
 
 Use exactly these `question_type` values and their corresponding interaction structures:
