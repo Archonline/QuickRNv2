@@ -276,6 +276,7 @@ const extension: Question[] = Array.from({length:100},(_,i)=>{
 });
 
 function migrateLegacy(q:Question):Question {
+  if(q.itemType&&q.interaction)return {...q,contentVersion:3,reviewStatus:q.reviewStatus??"generated"};
   const itemType:NclexItemType=q.format==="multiple"?"multiple-response":"single-response";
   return {...q,itemType,interaction:{instruction:itemType==="multiple-response"?"Select all responses that apply.":"Select the one best response.",choices:q.options,correctResponse:[String(q.answer)]},contentVersion:3,reviewStatus:"generated"};
 }
