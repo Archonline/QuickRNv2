@@ -37,7 +37,7 @@ export type QuestionInteraction = {
   correctOrder?: number[];
   bowTie?: { conditions: string[]; actions: string[]; monitoring: string[]; correctCondition: number; correctActions: number[]; correctMonitoring: number[] };
   trend?: { time: string; findings: string }[];
-  graphic?: { title: string; description: string; labels: string[]; correctLabels: number[] };
+  graphic?: { title: string; description: string; labels: string[]; correctLabels: number[]; hotspots?: { x:number; y:number; label:string }[] };
 };
 
 export type Question = {
