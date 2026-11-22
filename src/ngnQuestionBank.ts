@@ -117,11 +117,11 @@ const caseInteractions:QuestionInteraction[]=[
 ];
 const prompts = [
   (s:Seed)=>s.question,
-  (s:Seed)=>"Which additional assessment finding would most strongly support the priority concern in this client? "+s.patient,
-  (s:Seed)=>"Which provider order should the nurse clarify before implementation? "+s.patient,
-  (s:Seed)=>"Which change best indicates that the immediate intervention has been effective? "+s.patient,
-  (s:Seed)=>"Which information should the nurse communicate during an urgent handoff? "+s.patient,
-  (s:Seed)=>"After the nursing interventions are implemented, which outcome should the nurse evaluate first? "+s.patient
+  (s:Seed)=>"Which additional assessment finding would most strongly support the priority concern in this client?",
+  (s:Seed)=>"Which provider order should the nurse clarify before implementation?",
+  (s:Seed)=>"Which change best indicates that the immediate intervention has been effective?",
+  (s:Seed)=>"Which information should the nurse communicate during an urgent handoff?",
+  (s:Seed)=>"After the nursing interventions are implemented, which outcome should the nurse evaluate first?"
 ];
 const matrixMultiInteraction:QuestionInteraction={
  instruction:formatInstructions["matrix-multiple"],
@@ -136,7 +136,7 @@ const extension: Question[] = Array.from({length:100},(_,i)=>{
   const isMatrixMultiple=type==="matrix-multiple";
   const isNumeric=type==="numeric-entry";
   const seed=isCaseScreen?caseStudySeeds[i]:isMatrixMultiple?matrixMultiSeed:isNumeric?numericSeed:seeds[i%seeds.length];
-  const prompt=isCaseScreen?seed.question:isMatrixMultiple?matrixMultiSeed.patient+" "+matrixMultiSeed.question:isNumeric?numericSeed.patient+" "+numericSeed.question:prompts[Math.floor(i/seeds.length)%prompts.length](seed);
+  const prompt=isCaseScreen?seed.question:isMatrixMultiple?matrixMultiSeed.question:isNumeric?numericSeed.question:prompts[Math.floor(i/seeds.length)%prompts.length](seed);
   const interaction=isCaseScreen?caseInteractions[i]:isMatrixMultiple?matrixMultiInteraction:buildInteraction(type,seed);
   return {
     id:"ngn-"+String(i+1).padStart(3,"0"),
