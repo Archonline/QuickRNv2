@@ -5,7 +5,7 @@ import { questionBank500 } from "./questionBank";
 export const NCLEX_ITEM_TYPES: CanonicalNclexItemType[] = [
   "single-response","multiple-response","select-n","drop-down-cloze","drop-down-rationale",
   "highlight-text","matrix-multiple","matrix-single","numeric-entry","ordered-response",
-  "bow-tie","drag-drop","trend"
+  "bow-tie","drag-drop","trend","graphics-based"
 ];
 
 type Seed = { category:string; topic:string; patient:string; question:string; choices:string[]; answer:number; rationale:string; record:string; unit?:string; caseRecord?:Question["caseRecord"] };
@@ -434,6 +434,7 @@ const invalidFormatItems=questionBank100.filter(q=>{
   case "bow-tie": return !d.bowTie||d.bowTie.conditions.length<3||d.bowTie.actions.length<4||d.bowTie.monitoring.length<4||d.bowTie.correctActions.length!==2||d.bowTie.correctMonitoring.length!==2;
   case "drag-drop": return !d.dragDropTemplate?.includes("[BLANK_3]")||!d.dragDropChoices||d.dragDropChoices.length<5;
   case "trend": return !d.trend||d.trend.length<3;
+  case "graphics-based": return !d.graphic?.hotspots?.length||d.graphic.hotspots.length<4||!d.correctResponse?.length;
   default: return true;
  }
 });
