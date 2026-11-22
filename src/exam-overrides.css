@@ -384,3 +384,5 @@
 
 /* The left clinical record and right question prompt share identical typography in split-screen exams. */
 .exam-layout-case .exam-record-panel .exam-left-scenario p,.exam-layout-case .exam-record-panel .exam-left-exhibit p,.exam-layout-case .exam-main .exam-stem{font-family:inherit;font-size:15px;font-weight:400;line-height:1.7;color:#303c49;letter-spacing:normal;}
+
+.ngn-bowtie-diagram:before{display:none!important;}
