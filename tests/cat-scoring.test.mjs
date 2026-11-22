@@ -12,8 +12,8 @@ test("CAT ability estimate increases with earned response credit", () => {
 });
 
 test("CAT ability estimate accounts for provisional item difficulty", () => {
-  const foundational = estimateCatAbility(Array.from({ length: 12 }, () => ({ earned: 1, difficulty: "Foundational" })));
-  const advanced = estimateCatAbility(Array.from({ length: 12 }, () => ({ earned: 1, difficulty: "Advanced" })));
+  const foundational = estimateCatAbility(Array.from({ length: 12 }, () => ({ earned: 0.8, difficulty: "Foundational" })));
+  const advanced = estimateCatAbility(Array.from({ length: 12 }, () => ({ earned: 0.8, difficulty: "Advanced" })));
   assert.ok(advanced > foundational);
 });
 
