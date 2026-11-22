@@ -410,3 +410,13 @@
  .ngn-bowtie-actions,.ngn-bowtie-monitors{grid-column:1!important;grid-row:auto!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto repeat(2,minmax(72px,auto))!important;}
  .ngn-bowtie-condition{grid-column:1!important;grid-row:auto!important;width:100%!important;}
 }
+
+/* Latest NGN review fixes: remove the connector under the bow-tie condition
+   and let trend response cards fill the entire right-hand exam pane. */
+.ngn-bowtie-condition:after{display:none!important;content:none!important;}
+.exam-layout-case .exam-main{width:100%;min-width:0;box-sizing:border-box;}
+.exam-main-case .exam-question-card,
+.exam-main-case .ngn-trend-response,
+.exam-main-case .ngn-trend-response .exam-options{display:block;width:100%;max-width:none;min-width:0;box-sizing:border-box;}
+.exam-main-case .ngn-trend-response .exam-options{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:11px;width:100%!important;margin:18px 0;}
+.exam-main-case .ngn-trend-response .exam-option{display:flex;width:100%!important;max-width:none!important;min-width:0;grid-column:1/-1;box-sizing:border-box;}
