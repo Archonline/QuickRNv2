@@ -378,5 +378,22 @@
     "reset_control_at_exam_setup": true,
     "confirm_before_clearing": true,
     "clear_all_saved_item_feedback_for_current_device": true
+  },
+  "published_bank": {
+    "expected_total": 600,
+    "segments": {
+      "core_question_bank": {
+        "export": "questionBank500",
+        "count": 500
+      },
+      "ngn_extension": {
+        "export": "questionBank100",
+        "count": 100
+      }
+    },
+    "combined_export": "questionBank600",
+    "reconciliation_required": true,
+    "count_rule": "All inventory, revision, and release reports must count the combined export and report both segments separately.",
+    "content_quality_rule": "A valid count or schema does not establish topic-specific clinical coherence; audit scenario, findings, answer, rationale, and every distractor for each item."
   }
 }
