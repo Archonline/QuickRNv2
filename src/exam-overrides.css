@@ -381,3 +381,6 @@
 .ngn-bowtie-drop-slot button{width:100%;min-height:56px;white-space:normal;line-height:1.4;}
 .ngn-bowtie-bank{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px;margin-top:18px;}
 @media(max-width:720px){.ngn-bowtie-diagram{grid-template-columns:1fr!important;gap:10px!important}.ngn-bowtie-actions,.ngn-bowtie-monitors{grid-column:1!important;grid-template-columns:1fr!important}.ngn-bowtie-condition{grid-column:1!important;grid-row:auto!important;width:100%!important}.ngn-bowtie-actions:after,.ngn-bowtie-condition:after{display:none}.ngn-bowtie-bank{grid-template-columns:1fr!important}}
+
+/* The left clinical record and right question prompt share identical typography in split-screen exams. */
+.exam-layout-case .exam-record-panel .exam-left-scenario p,.exam-layout-case .exam-record-panel .exam-left-exhibit p,.exam-layout-case .exam-main .exam-stem{font-family:inherit;font-size:15px;font-weight:400;line-height:1.7;color:#303c49;letter-spacing:normal;}
