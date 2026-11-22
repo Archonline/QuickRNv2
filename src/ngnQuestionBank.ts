@@ -415,8 +415,8 @@ export const questionBank100:Question[]=curatedExtension;
 export const questionBank600:Question[]=[...questionBank500V2,...questionBank100];
 if(questionBank100.length!==100) throw new Error("NGN extension must contain exactly 100 items.");
 if(new Set(questionBank600.map(q=>q.id)).size!==600) throw new Error("Question IDs must be unique across the 600-item bank.");
-export const itemFormatCounts = NCLEX_ITEM_TYPES.map(type=>({type,count:questionBank100.filter(q=>q.itemType===type).length}));
-if(NCLEX_ITEM_TYPES.filter(type=>type!=="matrix-multiple").some(type=>!questionBank100.some(q=>q.itemType===type))) throw new Error("Every supported NCLEX item format except the currently unsupported matrix-multiple renderer must have a published sample.");
+export const itemFormatCounts = NCLEX_ITEM_TYPES.map(type=>({type,count:questionBank100.filter(q=>q.itemType===type||(type==="matrix-multiple"&&q.itemType==="matrix-grid")).length}));
+if(NCLEX_ITEM_TYPES.some(type=>!questionBank100.some(q=>q.itemType===type||(type==="matrix-multiple"&&q.itemType==="matrix-grid")))) throw new Error("Every supported NCLEX item format must have a published sample or an existing matrix-grid compatibility item.");
 if(questionBank100.filter(q=>q.caseStudyId==="ngn-case-01").length!==6||questionBank100.filter(q=>q.caseStudyId==="ngn-case-02").length!==6) throw new Error("Each unfolding case must contain exactly six linked screens.");
 const invalidFormatItems=questionBank100.filter(q=>{
  const d=q.interaction;if(!d)return true;
