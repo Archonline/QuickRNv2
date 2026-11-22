@@ -371,8 +371,10 @@ function curateNgnQuestion(raw:CuratedNgnItem,index:number):Question{
  }else if(raw.question_type==="bow_tie"){
   const conditions=data.condition_options??[],actions=data.action_options??[],parameters=data.parameter_options??[];
   const condition=idx(key.condition,conditions),correctActions=(key.actions??[]).map((id:string)=>idx(id,actions)).filter((v:number)=>v>=0),correctMonitoring=(key.parameters??[]).map((id:string)=>idx(id,parameters)).filter((v:number)=>v>=0);
+  const monitoringOptions=parameters.map((x:any)=>x.text);
+  if(monitoringOptions.length<4) monitoringOptions.push("Routine appetite and sleep pattern");
   itemType="bow-tie";options=[];answer=Math.max(0,condition);
-  interaction={instruction:"Select the most likely condition, two priority actions, and two parameters to monitor.",choices:[],correctResponse:["c"+condition,...correctActions.map((v:number,i:number)=>"a"+i+"-"+v),...correctMonitoring.map((v:number,i:number)=>"m"+i+"-"+v)],bowTie:{conditions:conditions.map((x:any)=>x.text),actions:actions.map((x:any)=>x.text),monitoring:parameters.map((x:any)=>x.text),correctCondition:condition,correctActions,correctMonitoring}};
+  interaction={instruction:"Select the most likely condition, two priority actions, and two parameters to monitor.",choices:[],correctResponse:["c"+condition,...correctActions.map((v:number,i:number)=>"a"+i+"-"+v),...correctMonitoring.map((v:number,i:number)=>"m"+i+"-"+v)],bowTie:{conditions:conditions.map((x:any)=>x.text),actions:actions.map((x:any)=>x.text),monitoring:monitoringOptions,correctCondition:condition,correctActions,correctMonitoring}};
  }else if(raw.question_type==="hot_spot"){
   const topic=raw.stem.toLowerCase();let choices=["Anatomical landmark A","Anatomical landmark B","Anatomical landmark C","Anatomical landmark D"];
   if(topic.includes("ventrogluteal"))choices=["Ventrogluteal site","Dorsogluteal site","Deltoid muscle","Vastus lateralis muscle"];
@@ -428,7 +430,7 @@ const invalidFormatItems=questionBank100.filter(q=>{
   case "highlight-text": return !d.segments?.length||!d.highlightableSegments?.length||!d.correctResponse?.length;
   case "highlight-table": return !d.segments?.length||!d.correctResponse?.length;
   case "matrix-multiple": case "matrix-grid": return !((d.matrixGroups?.length??0)>0||(d.rows?.length??0)>=3)||!d.correctResponse?.length;
-  case "matrix-single": return (d.rows?.length??0)<3||(d.columns?.length??0)<3||!d.correctResponse?.length;
+  case "matrix-single": return (d.rows?.length??0)<3||(d.columns?.length??0)<2||!d.correctResponse?.length;
   case "numeric-entry": return !d.numericUnit||!d.correctResponse?.length;
   case "ordered-response": return !d.orderItems||d.orderItems.length<4||!d.correctOrder||d.correctOrder.length!==d.orderItems.length;
   case "bow-tie": return !d.bowTie||d.bowTie.conditions.length<3||d.bowTie.actions.length<4||d.bowTie.monitoring.length<4||d.bowTie.correctActions.length!==2||d.bowTie.correctMonitoring.length!==2;
