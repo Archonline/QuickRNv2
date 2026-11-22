@@ -6,7 +6,7 @@ import { responseScore } from "./examScoring.js";
 
 type Props={questions:Question[];onExit:()=>void};
 const LETTERS=["A","B","C","D","E","F","G","H"];
-const FORMAT_SAMPLER_TYPES:CanonicalNclexItemType[]=["single-response","multiple-response","select-n","drop-down-cloze","drop-down-rationale","highlight-text","matrix-multiple","matrix-single","numeric-entry","ordered-response","bow-tie","drag-drop","trend"];
+const FORMAT_SAMPLER_TYPES:CanonicalNclexItemType[]=["single-response","multiple-response","select-n","drop-down-cloze","drop-down-rationale","highlight-text","matrix-multiple","matrix-single","numeric-entry","ordered-response","bow-tie","drag-drop","trend","graphics-based"];
 
 
 export default function ExamPage({questions,onExit}:Props){
