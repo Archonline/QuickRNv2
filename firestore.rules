@@ -25,6 +25,16 @@ service cloud.firestore {
         allow delete: if isOwner(uid);
       }
 
+      match /savedQuestions/{savedId} {
+        allow read: if isOwner(uid);
+        allow create, update: if isOwner(uid)
+          && savedId == 'default'
+          && request.resource.data.keys().hasOnly(['questionIds','updatedAt'])
+          && request.resource.data.questionIds is list
+          && request.resource.data.questionIds.size() <= 6000;
+        allow delete: if isOwner(uid);
+      }
+
       match /settings/{settingsId} {
         allow read: if isOwner(uid);
         allow create, update: if isOwner(uid)
