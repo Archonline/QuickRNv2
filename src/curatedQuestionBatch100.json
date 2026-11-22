@@ -126,7 +126,12 @@
         "medication_safety"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000002",
@@ -237,7 +242,12 @@
         "electrolytes"
       ],
       "estimated_time_seconds": 90,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000003",
@@ -347,7 +357,12 @@
         "neurology"
       ],
       "estimated_time_seconds": 100,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000004",
@@ -451,7 +466,12 @@
         "respiratory_failure"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000005",
@@ -547,7 +567,12 @@
         "renal"
       ],
       "estimated_time_seconds": 90,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000006",
@@ -635,7 +660,12 @@
         "priority"
       ],
       "estimated_time_seconds": 85,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000007",
@@ -722,7 +752,12 @@
         "fetal_bradycardia"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000008",
@@ -809,7 +844,12 @@
         "patient_safety"
       ],
       "estimated_time_seconds": 75,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000009",
@@ -934,7 +974,12 @@
         "pharmacology"
       ],
       "estimated_time_seconds": 85,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000010",
@@ -997,7 +1042,8 @@
           },
           {
             "id": "B",
-            "text": "Administer benztropine 2 mg IM to relieve acute extrapyramidal muscle rigidity"          },
+            "text": "Administer benztropine 2 mg IM to relieve acute extrapyramidal muscle rigidity"
+          },
           {
             "id": "C",
             "text": "Administer cyproheptadine 12 mg PO to block central serotonin receptors"
@@ -1043,7 +1089,12 @@
         "rhabdomyolysis"
       ],
       "estimated_time_seconds": 90,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000011",
@@ -1131,7 +1182,12 @@
         "patient_safety"
       ],
       "estimated_time_seconds": 75,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000012",
@@ -1209,7 +1265,12 @@
         "leadership"
       ],
       "estimated_time_seconds": 75,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000013",
@@ -1304,7 +1365,12 @@
         "infection_control"
       ],
       "estimated_time_seconds": 70,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000014",
@@ -1416,7 +1482,12 @@
         "ammonia"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000015",
@@ -1518,7 +1589,12 @@
         "airway"
       ],
       "estimated_time_seconds": 85,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000016",
@@ -1647,7 +1723,12 @@
         "calcium_gluconate"
       ],
       "estimated_time_seconds": 120,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000017",
@@ -1789,7 +1870,12 @@
         "patient_safety"
       ],
       "estimated_time_seconds": 115,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000018",
@@ -1901,7 +1987,12 @@
         "hour_1_bundle"
       ],
       "estimated_time_seconds": 110,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000019",
@@ -1996,10 +2087,16 @@
       },
       "tags": [
         "tpn",
-        "rebound_hypoglycemia",        "central_line"
+        "rebound_hypoglycemia",
+        "central_line"
       ],
       "estimated_time_seconds": 100,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000020",
@@ -2095,7 +2192,12 @@
         "psychiatric_safety"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000021",
@@ -2218,7 +2320,12 @@
         "thrombocytopenia"
       ],
       "estimated_time_seconds": 120,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000022",
@@ -2331,7 +2438,12 @@
         "pediatrics"
       ],
       "estimated_time_seconds": 110,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000023",
@@ -2436,7 +2548,12 @@
         "fluid_resuscitation"
       ],
       "estimated_time_seconds": 120,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000024",
@@ -2535,7 +2652,12 @@
         "patient_advocacy"
       ],
       "estimated_time_seconds": 90,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000025",
@@ -2632,7 +2754,12 @@
         "ng_tube"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000026",
@@ -2736,7 +2863,12 @@
         "critical_care"
       ],
       "estimated_time_seconds": 120,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000027",
@@ -2874,7 +3006,12 @@
         "hyperkalemia"
       ],
       "estimated_time_seconds": 130,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000028",
@@ -2995,8 +3132,14 @@
         "postpartum_hemorrhage",
         "uterine_atony",
         "uterotonics"
-      ],      "estimated_time_seconds": 125,
-      "case_study_id": null
+      ],
+      "estimated_time_seconds": 125,
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000029",
@@ -3129,7 +3272,12 @@
         "osmotic_demyelination"
       ],
       "estimated_time_seconds": 120,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000030",
@@ -3248,7 +3396,12 @@
         "hyponatremia"
       ],
       "estimated_time_seconds": 120,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000031",
@@ -3351,7 +3504,12 @@
         "airway_management"
       ],
       "estimated_time_seconds": 100,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000032",
@@ -3474,7 +3632,12 @@
         "diabetes_mellitus"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000033",
@@ -3563,7 +3726,12 @@
         "obstetrics"
       ],
       "estimated_time_seconds": 90,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000034",
@@ -3673,7 +3841,12 @@
         "copd"
       ],
       "estimated_time_seconds": 105,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000035",
@@ -3762,7 +3935,12 @@
         "pediatric_respiratory"
       ],
       "estimated_time_seconds": 90,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000036",
@@ -3859,7 +4037,12 @@
         "neuro_critical_care"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000037",
@@ -3956,7 +4139,12 @@
         "hand_hygiene"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000038",
@@ -3994,7 +4182,8 @@
             "id": "S1",
             "text_before": "The patient is most likely experiencing",
             "text_after": ",",
-            "options": [              {
+            "options": [
+              {
                 "id": "A",
                 "text": "acute cardiac tamponade"
               },
@@ -4053,7 +4242,12 @@
         "becks_triad"
       ],
       "estimated_time_seconds": 90,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000039",
@@ -4152,7 +4346,12 @@
         "veal_chop"
       ],
       "estimated_time_seconds": 85,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000040",
@@ -4258,7 +4457,12 @@
         "n_acetylcysteine"
       ],
       "estimated_time_seconds": 75,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000041",
@@ -4371,7 +4575,12 @@
         "anticoagulation"
       ],
       "estimated_time_seconds": 85,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000042",
@@ -4469,7 +4678,12 @@
         "droplet_precautions"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000043",
@@ -4582,7 +4796,12 @@
         "retroperitoneal_bleeding"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000044",
@@ -4676,7 +4895,12 @@
         "unilateral_neglect"
       ],
       "estimated_time_seconds": 85,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000045",
@@ -4766,7 +4990,12 @@
         "gestational_diabetes"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000046",
@@ -4853,7 +5082,12 @@
         "drug_allergy"
       ],
       "estimated_time_seconds": 75,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000047",
@@ -4943,7 +5177,12 @@
         "hyperthyroidism"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000048",
@@ -4993,7 +5232,8 @@
             "text": "new crackles in the right lower lung field"
           },
           {
-            "id": "T5",            "text": "bilateral femur pain has improved from 9/10 to 4/10"
+            "id": "T5",
+            "text": "bilateral femur pain has improved from 9/10 to 4/10"
           }
         ],
         "selection_mode": "multiple"
@@ -5029,7 +5269,12 @@
         "hematology"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000049",
@@ -5111,7 +5356,12 @@
         "postoperative"
       ],
       "estimated_time_seconds": 75,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000050",
@@ -5260,7 +5510,12 @@
         "critical_labs"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000051",
@@ -5388,7 +5643,12 @@
         "nephrotoxicity"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000052",
@@ -5529,7 +5789,12 @@
         "obstetric_emergency"
       ],
       "estimated_time_seconds": 85,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000053",
@@ -5669,7 +5934,12 @@
         "obstetrics"
       ],
       "estimated_time_seconds": 85,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000054",
@@ -5796,7 +6066,12 @@
         "hyponatremia"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000055",
@@ -5926,7 +6201,12 @@
         "vancomycin"
       ],
       "estimated_time_seconds": 90,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000056",
@@ -5992,7 +6272,8 @@
             "id": "A4",
             "text": "Administer IV atropine 1 mg push for reflex bradycardia"
           }
-        ],        "parameter_options": [
+        ],
+        "parameter_options": [
           {
             "id": "P1",
             "text": "Blood pressure every 2 to 5 minutes"
@@ -6041,7 +6322,12 @@
         "hypertensive_crisis"
       ],
       "estimated_time_seconds": 120,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000057",
@@ -6164,7 +6450,12 @@
         "magnesium_sulfate"
       ],
       "estimated_time_seconds": 115,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000058",
@@ -6193,7 +6484,7 @@
         "laboratory_results": [
           {
             "name": "TSH",
-            "value": 84.0,
+            "value": 84,
             "unit": "mIU/L",
             "reference_range": "0.4-4.0",
             "interpretation": "Critically elevated"
@@ -6300,7 +6591,12 @@
         "levothyroxine"
       ],
       "estimated_time_seconds": 120,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000059",
@@ -6415,7 +6711,12 @@
         "obstructive_shock"
       ],
       "estimated_time_seconds": 110,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000060",
@@ -6551,7 +6852,12 @@
         "pediatrics"
       ],
       "estimated_time_seconds": 115,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000061",
@@ -6666,7 +6972,12 @@
         "drug_interaction"
       ],
       "estimated_time_seconds": 115,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000062",
@@ -6794,7 +7105,12 @@
         "electrolytes"
       ],
       "estimated_time_seconds": 110,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000063",
@@ -6911,7 +7227,12 @@
         "stroke"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000064",
@@ -6991,7 +7312,8 @@
             "text": "Compensated Class II hemorrhagic shock due to active recurrent upper GI bleeding"
           },
           {
-            "id": "B",            "text": "Hemodynamic stability confirmed by systolic blood pressure remaining above 110 mmHg"
+            "id": "B",
+            "text": "Hemodynamic stability confirmed by systolic blood pressure remaining above 110 mmHg"
           },
           {
             "id": "C",
@@ -7038,7 +7360,12 @@
         "trend_analysis"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000065",
@@ -7160,7 +7487,12 @@
         "cesarean"
       ],
       "estimated_time_seconds": 85,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000066",
@@ -7196,7 +7528,7 @@
             "laboratory_results": [
               {
                 "name": "Creatinine",
-                "value": 1.0,
+                "value": 1,
                 "unit": "mg/dL"
               },
               {
@@ -7303,7 +7635,12 @@
         "gentamicin"
       ],
       "estimated_time_seconds": 90,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000067",
@@ -7449,7 +7786,12 @@
         "dextrose"
       ],
       "estimated_time_seconds": 90,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000068",
@@ -7565,7 +7907,12 @@
         "fluid_bolus"
       ],
       "estimated_time_seconds": 85,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000069",
@@ -7644,7 +7991,12 @@
         "knee_to_chest"
       ],
       "estimated_time_seconds": 90,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000070",
@@ -7723,7 +8075,12 @@
         "patient_safety"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000071",
@@ -7793,7 +8150,12 @@
         "cdc_guidelines"
       ],
       "estimated_time_seconds": 75,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000072",
@@ -7872,7 +8234,12 @@
         "obstetric_emergency"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000073",
@@ -7942,7 +8309,12 @@
         "cauti_prevention"
       ],
       "estimated_time_seconds": 75,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000074",
@@ -7990,7 +8362,8 @@
           },
           {
             "id": "I4",
-            "text": "Administer epinephrine 1 mg IV/IO after the second shock, followed by amiodarone 300 mg IV/IO if refractory"          }
+            "text": "Administer epinephrine 1 mg IV/IO after the second shock, followed by amiodarone 300 mg IV/IO if refractory"
+          }
         ],
         "instruction": "Place the nursing actions in the correct order."
       },
@@ -8021,7 +8394,12 @@
         "cardiac_arrest"
       ],
       "estimated_time_seconds": 85,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000075",
@@ -8069,7 +8447,7 @@
         "tolerance": 0.1
       },
       "correct_response": {
-        "value": 45.0,
+        "value": 45,
         "unit": "mL/hr"
       },
       "scoring": {
@@ -8090,7 +8468,12 @@
         "critical_care"
       ],
       "estimated_time_seconds": 110,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000076",
@@ -8159,7 +8542,12 @@
         "dosage"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000077",
@@ -8228,7 +8616,12 @@
         "fluid_calculation"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000078",
@@ -8292,7 +8685,12 @@
         "pharmacology"
       ],
       "estimated_time_seconds": 75,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000079",
@@ -8356,7 +8754,12 @@
         "calculation"
       ],
       "estimated_time_seconds": 75,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000080",
@@ -8414,7 +8817,12 @@
         "sepsis"
       ],
       "estimated_time_seconds": 70,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000081",
@@ -8478,7 +8886,12 @@
         "anatomy"
       ],
       "estimated_time_seconds": 75,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000082",
@@ -8542,7 +8955,12 @@
         "physical_assessment"
       ],
       "estimated_time_seconds": 70,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000083",
@@ -8606,7 +9024,12 @@
         "anatomy"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000084",
@@ -8670,7 +9093,12 @@
         "assessment"
       ],
       "estimated_time_seconds": 70,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000085",
@@ -8734,7 +9162,12 @@
         "emergency"
       ],
       "estimated_time_seconds": 80,
-      "case_study_id": null
+      "case_study_id": null,
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000086",
@@ -8948,7 +9381,12 @@
         "ngn_6_skills"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0001"
+      "case_study_id": "QRN-CASE-0001",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000087",
@@ -8989,7 +9427,8 @@
             "unit": "mEq/L",
             "reference_range": "3.5-5.0",
             "interpretation": "Low-normal"
-          },          {
+          },
+          {
             "name": "Serum Creatinine",
             "value": 1.8,
             "unit": "mg/dL",
@@ -9148,7 +9587,12 @@
         "ngn_6_skills"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0001"
+      "case_study_id": "QRN-CASE-0001",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000088",
@@ -9352,7 +9796,12 @@
         "ngn_6_skills"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0001"
+      "case_study_id": "QRN-CASE-0001",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000089",
@@ -9564,7 +10013,12 @@
         "ngn_6_skills"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0001"
+      "case_study_id": "QRN-CASE-0001",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000090",
@@ -9767,7 +10221,12 @@
         "ngn_6_skills"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0001"
+      "case_study_id": "QRN-CASE-0001",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000091",
@@ -9970,7 +10429,12 @@
         "ngn_6_skills"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0001"
+      "case_study_id": "QRN-CASE-0001",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000092",
@@ -9988,7 +10452,8 @@
         "assessment": {
           "neurological": "New confusion and restlessness",
           "gastrointestinal": "Abdominal tenderness with guarding, erythematous surgical incision"
-        },        "vital_signs": {
+        },
+        "vital_signs": {
           "BP": "86/48 mmHg",
           "HR": "128 bpm",
           "RR": "28/min",
@@ -10135,7 +10600,12 @@
         "ngn_6_skills"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0002"
+      "case_study_id": "QRN-CASE-0002",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000093",
@@ -10292,7 +10762,12 @@
         "ngn_6_skills"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0002"
+      "case_study_id": "QRN-CASE-0002",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000094",
@@ -10453,7 +10928,12 @@
         "ngn_6_skills"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0002"
+      "case_study_id": "QRN-CASE-0002",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000095",
@@ -10621,7 +11101,12 @@
         "ngn_6_skills"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0002"
+      "case_study_id": "QRN-CASE-0002",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000096",
@@ -10781,7 +11266,12 @@
         "ngn_6_skills"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0002"
+      "case_study_id": "QRN-CASE-0002",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000097",
@@ -10950,7 +11440,12 @@
         "ngn_6_skills"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0002"
+      "case_study_id": "QRN-CASE-0002",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000098",
@@ -10987,7 +11482,8 @@
           },
           {
             "name": "Arterial pH",
-            "value": 7.14,            "unit": "",
+            "value": 7.14,
+            "unit": "",
             "reference_range": "7.35-7.45",
             "interpretation": "Severe metabolic acidosis"
           },
@@ -11117,7 +11613,12 @@
         "insulin_transition"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0003"
+      "case_study_id": "QRN-CASE-0003",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000099",
@@ -11288,7 +11789,12 @@
         "insulin_transition"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0003"
+      "case_study_id": "QRN-CASE-0003",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     },
     {
       "id": "QRN-000100",
@@ -11460,7 +11966,12 @@
         "insulin_transition"
       ],
       "estimated_time_seconds": 95,
-      "case_study_id": "QRN-CASE-0003"
+      "case_study_id": "QRN-CASE-0003",
+      "review_metadata": {
+        "status": "not_clinically_verified",
+        "references": [],
+        "publication_status": "published"
+      }
     }
   ]
 }
