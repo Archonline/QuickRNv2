@@ -1,6 +1,6 @@
 # QuickRN Question Bank Blueprint
-Version: 1.0
-Purpose: Source taxonomy and generation specification for the initial 500-question NCLEX/NGN-style bank.
+Version: 1.1
+Purpose: Source taxonomy for the 600-question published bank: 500 core topic-bank items plus 100 NGN-format extension items.
 
 ## 1. Generation policy
 - Treat this document as a topic blueprint, not as an answer key or proof that a recalled answer is correct.
@@ -9,7 +9,7 @@ Purpose: Source taxonomy and generation specification for the initial 500-questi
 - Do not infer missing answer choices or missing case details from examinee recollections.
 - Preserve the intended learning objective when normalizing spelling or terminology.
 - Avoid duplicate questions. A topic may produce multiple distinct questions only when they assess different objectives, patient populations, settings, or clinical-judgment steps.
-- Balance the 500-question bank across the categories below. Use the topic list as a coverage map, not a requirement to give every bullet equal weight.
+- Balance the 500-item core bank across the categories below. The published runtime bank also includes 100 NGN extension items (600 total); do not describe the core count as the total published count. Use the topic list as a coverage map, not a requirement to give every bullet equal weight.
 - Each item must include: specialty/category, topic tags, client need/clinical concept, cognitive level, format, stem, options or response structure, keyed answer, rationale for every option where applicable, and source/reference metadata.
 - Use safe, unambiguous wording, realistic vital signs/labs, age/context where clinically relevant, and one defensible best answer unless the item is explicitly select-all-that-apply or another NGN format.
 
