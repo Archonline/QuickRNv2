@@ -86,7 +86,7 @@ function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
     const tokens=passage.match(/\S+\s*/g)??[passage];
     const cuePattern=/(?:chemotherapy|temperature|38[.]4°C|380|mm³|ANC|lactate|2[.]4|mmol|SpO2|oxygen saturation|BP|HR|RR|glucose|potassium)/gi;
     const matched=[...passage.matchAll(cuePattern)].map(match=>match[0]);
-    const keyTokens=tokens.filter(token=>matched.some(cue=>cue.toLowerCase().includes(token.trim().replace(/[.,;:]/g,"").toLowerCase())&&token.trim().length>1)).map(token=>token.trim());
+    const keyTokens=tokens.filter(token=>matched.some(cue=>{const word=token.trim().replace(/[.,;:]/g,"").toLowerCase();const match=cue.toLowerCase();return word.length>1&&(match.includes(word)||word.includes(match));})).map(token=>token.trim());
     return {...common,correctResponse:keyTokens.length?keyTokens:[tokens[0]?.trim()??""],segments:tokens};
   }
   if(type==="matrix-multiple") return {...common,correctResponse:["0:1","1:0","1:1","2:1"],matrixMode:"multiple",rows:["Wear gown and gloves on room entry","Perform soap-and-water hand hygiene after care","Use dedicated client-care equipment","Place the client in a negative-pressure room"],columns:["Standard","Contact/Enteric","Droplet","Airborne"]};
