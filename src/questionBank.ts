@@ -511,6 +511,22 @@ const clinicalCaseLenses:Record<string,Array<{cue:string;prompt:string}>>={
   {cue:"The client develops an unexpected change in vital signs or level of consciousness after receiving the medication.",prompt:"Which response is the immediate priority?"}
  ]
 };
+clinicalCaseLenses["Pediatrics / Growth and Development"]=[
+ {cue:"The child’s behavior, intake, activity, and vital signs are compared with the expected age-specific baseline; the caregiver provides additional history.",prompt:"Which nursing action should be prioritized for this pediatric client"},
+ {cue:"The child develops a new change in breathing, hydration, activity, or responsiveness. The nurse reassesses using age-appropriate parameters.",prompt:"Which immediate nursing response is most appropriate for this pediatric presentation"},
+ {cue:"The caregiver describes the home medication or safety plan, and the nurse identifies a potential risk related to the child’s age or developmental stage.",prompt:"Which nursing action best addresses the priority safety concern for this child"},
+ {cue:"The latest weight, intake and output, and age-specific assessment findings are available before the next intervention.",prompt:"Which action should the nurse prioritize based on this pediatric assessment"},
+ {cue:"The child’s condition has changed since the previous assessment, and the nurse must identify early signs of deterioration.",prompt:"Which response should the nurse initiate first for this child"},
+ {cue:"The caregiver reports a new symptom and the child is less active than usual; the nurse must distinguish an expected finding from an urgent complication.",prompt:"Which nursing action takes priority in this pediatric case"}
+];
+clinicalCaseLenses["Fundamentals / Safety / Ethics / Delegation"]=[
+ {cue:"The nurse reviews the client’s immediate safety risks, current orders, and available team members before assigning or performing care.",prompt:"Which nursing action should be prioritized to maintain client safety"},
+ {cue:"A change in the client’s condition requires the nurse to determine whether to intervene, delegate, or escalate care.",prompt:"Which action is the nurse’s priority in this situation"},
+ {cue:"The nurse identifies a potential break in infection prevention, fall prevention, or medication safety during routine care.",prompt:"Which response should the nurse implement first to reduce harm"},
+ {cue:"The client’s rights, decision-making capacity, and stated preferences must be considered before the planned intervention proceeds.",prompt:"Which nursing action best protects the client while addressing the immediate concern"},
+ {cue:"Several clients require attention at the same time. The nurse compares acuity, instability, and time-sensitive risks before setting priorities.",prompt:"Which client or task should the nurse address first"},
+ {cue:"The nurse receives a request to delegate a task and must consider client stability, task predictability, and staff competency.",prompt:"Which action is the safest priority before delegating this care"}
+];
 const categoryAliases:Record<string,string>={
  "Maternal-Newborn / Obstetrics":"Maternal-Newborn / Obstetrics",
  "Cardiovascular / Perfusion":"Cardiovascular / Perfusion",
@@ -523,7 +539,9 @@ const categoryAliases:Record<string,string>={
  "Infection Control / Infectious Disease":"Infection Control / Infectious Disease",
  "GI / Hepatic":"GI / Hepatic",
  "Behavioral Health / Substance Use":"Behavioral Health / Substance Use",
- "Pharmacology / Medication Teaching":"Pharmacology / Medication Teaching"
+ "Pharmacology / Medication Teaching":"Pharmacology / Medication Teaching",
+ "Pediatrics / Growth and Development":"Pediatrics / Growth and Development",
+ "Fundamentals / Safety / Ethics / Delegation":"Fundamentals / Safety / Ethics / Delegation"
 };
 function make(b:B,i:number,global:number):Question{
 const topic=b.topics[i%b.topics.length];
