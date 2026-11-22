@@ -55,6 +55,26 @@ function promptForType(type:CanonicalNclexItemType,seed:Seed):string {
   }
 }
 
+function clinicalRecordFor(seed:Seed):string {
+  const rawRecord=(seed.record??"").trim();
+  const isPlaceholder=/^(review the current assessment|clinical record not available|no clinical record)/i.test(rawRecord);
+  const focused=isPlaceholder?seed.patient:rawRecord;
+  const lines=[
+    "CLINICAL RECORD · "+seed.topic.toUpperCase(),
+    "Presenting concern: "+seed.patient,
+    "Focused assessment and documented findings: "+focused,
+    "Chart review: Reconcile the documented history, current medications, allergies, vital signs, relevant diagnostic results, and active provider orders before selecting nursing priorities."
+  ];
+  return lines.join("\\n");
+}
+
+function conciseRecord(seed:Seed):string {
+  const raw=(seed.record??"").trim();
+  return raw && !/^(review the current assessment|clinical record not available)/i.test(raw)
+    ? raw.slice(0,180)
+    : seed.patient.slice(0,180);
+}
+
 function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
   const correct=String(seed.answer);
   const choices=seed.choices;
@@ -121,8 +141,20 @@ function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
     const profile=profiles[seed.topic];
     const monitoring=profile?.monitoring??(category.includes("respiratory")||category.includes("airway")?["Respiratory effort, rate, and oxygen saturation","Level of consciousness and ordered blood-gas results","Routine appetite","Unrelated skin assessment"]:category.includes("cardiovascular")?["Heart rhythm, heart rate, and blood pressure","Peripheral perfusion and relevant cardiac biomarkers","Routine appetite","Unrelated skin assessment"]:category.includes("renal")?["Urine output and fluid balance","Potassium, creatinine, and relevant renal trends","Routine appetite","Unrelated skin assessment"]:category.includes("infection")?["Temperature and respiratory status","Organism-specific diagnostic results and clinical response","Routine appetite","Unrelated musculoskeletal assessment"]:["Vital signs and focused assessment findings","Relevant laboratory and diagnostic trends for "+seed.topic,"Routine appetite","Unrelated skin assessment"]);
     const conditions=profile?.conditions??[seed.topic,"Adverse effect of prescribed therapy","Acute manifestation of a coexisting condition"];
-    const actions=profile?.actions??[choices[seed.answer]??choices[0],"Notify the responsible clinician and initiate the indicated response","Delay intervention until routine reassessment","Continue the current plan without reassessment"];
-    return {...common,correctResponse:["c0","a0-0","a1-1","m0-0","m1-1"],bowTie:{conditions,actions,monitoring,correctCondition:0,correctActions:[0,1],correctMonitoring:[0,1]}};
+    const recordCue=conciseRecord(seed);
+    const actions=profile?.actions??[
+      choices[seed.answer]??("Implement the priority intervention for "+seed.topic),
+      "Escalate the documented "+seed.topic+" findings ("+recordCue+") and carry out the indicated provider-directed response",
+      "Delay intervention until the next routine reassessment",
+      "Continue the current plan without evaluating the acute findings"
+    ];
+    const individualizedMonitoring=profile?.monitoring??[
+      "Trend the documented "+seed.topic+" findings: "+recordCue,
+      "Reassess the client's response to the "+seed.topic+" intervention using focused assessment and relevant vital signs or diagnostics",
+      "Routine appetite and sleep pattern",
+      "Unrelated skin assessment"
+    ];
+    return {...common,correctResponse:["c0","a0-0","a1-1","m0-0","m1-1"],bowTie:{conditions,actions,monitoring:individualizedMonitoring,correctCondition:0,correctActions:[0,1],correctMonitoring:[0,1]}};
   }
   if(type==="trend"&&seed.topic==="Bowel obstruction") return {...common,correctResponse:["0"],trend:[
    {time:"0800 · Admission",findings:"NURSING FLOWSHEET · 0800\n64-year-old client reports intermittent cramping abdominal pain, progressive distention, nausea, and repeated bilious vomiting. No stool or flatus for 18 hours. Abdomen distended; high-pitched bowel sounds; pain 6/10.\nVital signs: BP 132/78 mm Hg · HR 96/min · RR 18/min · T 37.2°C. WBC 11,800/mm³; lactate 1.4 mmol/L. Radiograph: dilated small-bowel loops with air-fluid levels.\nNursing note: NPO; IV access established; intake/output and abdominal findings recorded. Provider notified."},
@@ -230,7 +262,7 @@ const extension: Question[] = Array.from({length:100},(_,i)=>{
     interaction,
     clinicalScenario:isCaseScreen?undefined:type==="bow-tie"&&seed.topic==="Measles"?"A 7-year-old child with incomplete immunizations is brought to urgent care after four days of high fever, cough, coryza, and red watery eyes. A blotchy maculopapular rash began at the hairline and is spreading downward; Koplik spots are visible on the buccal mucosa. The child is tired but alert, with temperature 39.4°C, HR 126/min, RR 24/min, and SpO2 96% on room air. Several children shared the waiting area before the rash was recognized.":seed.patient,
     caseStudy:isCaseScreen?caseStudyPatient:undefined,
-    exhibit:isCaseScreen?caseRecords[i].labs+"\\n"+caseRecords[i].providerOrders:type==="bow-tie"&&seed.topic==="GI bleeding"?"EMERGENCY DEPARTMENT RECORD · 0900\\nPresenting concern: 68-year-old client reports two episodes of coffee-ground emesis and three black, tarry stools since 0600. Reports dizziness when standing and worsening weakness.\\nFocused assessment: Pale, cool skin; delayed capillary refill; epigastric tenderness without rigid abdomen. Ongoing melena observed. No bright-red rectal bleeding documented.\\nVital signs: BP 88/54 mm Hg · HR 124/min · RR 24/min · SpO2 97% on room air · T 36.8°C.\\nLaboratory results: Hemoglobin 7.6 g/dL · Hematocrit 23% · Platelets 188,000/mm³ · BUN 38 mg/dL · Creatinine 1.1 mg/dL · INR 1.2.\\nInitial orders: Keep NPO; obtain two large-bore IV lines; type and crossmatch; repeat CBC and coagulation studies; prepare for prescribed IV fluid/blood-product resuscitation and urgent endoscopy.":type==="bow-tie"&&seed.topic==="Measles"?"Triage record: Temperature 39.4°C; HR 126/min; RR 24/min; SpO2 96% on room air. Immunizations incomplete. Fever, cough, coryza, conjunctivitis, Koplik spots, and descending maculopapular rash. Suspected measles; initiate airborne precautions and notify infection prevention/public health.":type==="bow-tie"?seed.record:undefined,
+    exhibit:isCaseScreen?caseRecords[i].labs+"\\n"+caseRecords[i].providerOrders:type==="bow-tie"&&seed.topic==="GI bleeding"?"EMERGENCY DEPARTMENT RECORD · 0900\\nPresenting concern: 68-year-old client reports two episodes of coffee-ground emesis and three black, tarry stools since 0600. Reports dizziness when standing and worsening weakness.\\nFocused assessment: Pale, cool skin; delayed capillary refill; epigastric tenderness without rigid abdomen. Ongoing melena observed. No bright-red rectal bleeding documented.\\nVital signs: BP 88/54 mm Hg · HR 124/min · RR 24/min · SpO2 97% on room air · T 36.8°C.\\nLaboratory results: Hemoglobin 7.6 g/dL · Hematocrit 23% · Platelets 188,000/mm³ · BUN 38 mg/dL · Creatinine 1.1 mg/dL · INR 1.2.\\nInitial orders: Keep NPO; obtain two large-bore IV lines; type and crossmatch; repeat CBC and coagulation studies; prepare for prescribed IV fluid/blood-product resuscitation and urgent endoscopy.":type==="bow-tie"?clinicalRecordFor(seed):type==="trend"?clinicalRecordFor(seed):undefined,
     caseRecord:isCaseScreen?caseRecords[i]:seed.caseRecord,
     caseStudyId:isCaseScreen?"ngn-case-01":undefined,
     clinicalJudgmentStep:(["recognize-cues","analyze-cues","prioritize-hypotheses","generate-solutions","take-action","evaluate-outcomes"] as const)[i%6],
