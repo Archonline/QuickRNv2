@@ -14,9 +14,8 @@ The app currently runs with a small local development question set. Items are ex
 The Firebase initialization is optional until environment variables are configured. Existing project ID is prefilled as `quickrn-e4d45`; no Firebase resources, rules, data, or authentication settings were changed by this starter commit.
 
 ## Next implementation milestones
-- Configure Firebase Authentication and role claims.
+- Configure Firebase Authentication.
 - Add Firestore question and attempt repositories with least-privilege rules.
-- Add admin authoring/import workflow and review-state metadata.
 - Add test coverage, analytics, accessibility checks, and deployment environment configuration.
 
 Do not place service-account credentials or private keys in Vite environment variables. VITE-prefixed values are public client configuration.
