@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { DragEvent } from "react";
 import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, X, Calculator, FileText, AlertCircle, ClipboardList } from "lucide-react";
-import type { CanonicalNclexItemType, NclexItemType, Question, QuestionInteraction } from "./questions";
+import type { CanonicalNclexItemType, Question, QuestionInteraction } from "./questions";
 import { responseIsCorrect } from "./examScoring.js";
 
 type Props={questions:Question[];onExit:()=>void};
