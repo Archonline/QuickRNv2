@@ -97,7 +97,7 @@ function curateNgnQuestion(raw:CuratedNgnItem,index:number):Question{
  }else if(raw.question_type==="ordered_response"){
   const items=Array.isArray(data.items)?data.items as {id:string;text:string}[]:[];
   const ordered=key.ordered_items??[],orderIndexes=ordered.map((id:string)=>items.findIndex(item=>item.id===id));
-  if(items.length<4||!ordered.length||orderIndexes.some(value=>value<0))throw new Error(`NGN ordered-response ${raw.id} has incomplete items or answer key.`);
+  if(items.length<4||!ordered.length||orderIndexes.some((value:number)=>value<0))throw new Error(`NGN ordered-response ${raw.id} has incomplete items or answer key.`);
   const correctOrder=orderIndexes;
   itemType="ordered-response";options=items.map(item=>item.text);answer=correctOrder[0]??0;
   interaction={instruction:"Arrange the nursing actions in the safest order.",choices:options,orderItems:options,correctOrder,correctResponse:correctOrder.map(String)};
