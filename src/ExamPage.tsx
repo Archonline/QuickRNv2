@@ -56,9 +56,7 @@ const exam=useMemo(()=>{const formatType=(q:Question)=>q.itemType??(q.format==="
  const currentCaseItems=isUnfoldingCase?exam.filter(q=>caseGroupKey(q)===caseGroupKey(item!)):[ ];
  const caseScreen=isUnfoldingCase?currentCaseItems.findIndex(q=>q.id===item!.id)+1:0;
  const recordText=item?.caseStudy??"";
- const exhibitText=item?.exhibit??"";
  const vitalLines=[...recordText.matchAll(/(?:BP|HR|RR|SpO2|temperature|Temp|O2 saturation)[^\n.]*(?:\.|$)/gi)].map(m=>m[0].trim());
- const orderText=(exhibitText.match(/(?:Orders?(?: include|:)?)[\s\S]*/i)?.[0]??"No separate provider orders are listed in this exhibit.");
  const caseRecord=item?.caseRecord;
  const recordTabs:{key:typeof activeRecordTab;label:string;content:string}[]=caseRecord?[
   {key:"notes",label:"Progress Notes",content:caseRecord.progressNotes??recordText},
