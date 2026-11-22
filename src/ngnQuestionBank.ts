@@ -84,9 +84,9 @@ function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
   if(type==="highlight-text") {
     const passage=[seed.patient,seed.record].filter(Boolean).join(" ");
     const tokens=passage.match(/\S+\s*/g)??[passage];
-    const cuePattern=/(?:chemotherapy|temperature|38\\.4°C|380\\/mm³|ANC|lactate|2\\.4|mmol\\/L|SpO2|oxygen saturation|BP|HR|RR|glucose|potassium)/gi;
+    const cuePattern=/(?:chemotherapy|temperature|38[.]4°C|380[/]mm³|ANC|lactate|2[.]4|mmol[/]L|SpO2|oxygen saturation|BP|HR|RR|glucose|potassium)/gi;
     const matched=[...passage.matchAll(cuePattern)].map(match=>match[0]);
-    const keyTokens=tokens.filter(token=>matched.some(cue=>cue.toLowerCase().includes(token.trim().toLowerCase())&&token.trim().length>1)).map(token=>token.trim());
+    const keyTokens=tokens.filter(token=>matched.some(cue=>cue.toLowerCase().includes(token.trim().replace(/[.,;:]/g,"").toLowerCase())&&token.trim().length>1)).map(token=>token.trim());
     return {...common,correctResponse:keyTokens.length?keyTokens:[tokens[0]?.trim()??""],segments:tokens};
   }
   if(type==="matrix-multiple") return {...common,correctResponse:["0:1","1:0","1:1","2:1"],matrixMode:"multiple",rows:["Wear gown and gloves on room entry","Perform soap-and-water hand hygiene after care","Use dedicated client-care equipment","Place the client in a negative-pressure room"],columns:["Standard","Contact/Enteric","Droplet","Airborne"]};
