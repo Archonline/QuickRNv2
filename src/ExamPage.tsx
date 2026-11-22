@@ -62,12 +62,12 @@ const exam=useMemo(()=>{const formatType=(q:Question)=>q.itemType??(q.format==="
  const caseRecord=item?.caseRecord;
  const recordTabs:{key:typeof activeRecordTab;label:string;content:string}[]=caseRecord?[
   {key:"notes",label:"Progress Notes",content:caseRecord.progressNotes??recordText},
-  {key:"history",label:"History",content:caseRecord.history??"No additional history is documented."},
-  {key:"medications",label:"Medication List",content:caseRecord.medicationList??"No medication list is documented."},
-  {key:"assessment",label:"Assessment",content:caseRecord.assessment??"No separate assessment is documented."},
+  {key:"history",label:"History",content:caseRecord.history??""},
+  {key:"medications",label:"Medication List",content:caseRecord.medicationList??""},
+  {key:"assessment",label:"Assessment",content:caseRecord.assessment??""},
   {key:"vitals",label:"Vital Signs",content:caseRecord.vitalSigns??vitalLines.join("\n")},
-  {key:"labs",label:"Lab Results",content:caseRecord.labs??exhibitText},
-  {key:"orders",label:"Provider Orders",content:caseRecord.providerOrders??orderText},
+  {key:"labs",label:"Lab Results",content:caseRecord.labs??""},
+  {key:"orders",label:"Provider Orders",content:caseRecord.providerOrders??""},
   {key:"flowsheet",label:"Flow Sheet",content:caseRecord.flowSheet??(currentCaseItems.slice(0,caseScreen).map((entry,index)=>"Screen "+(index+1)+" · "+(entry.caseRecord?.progressNotes??"Clinical update")+"\n"+(entry.caseRecord?.vitalSigns??"")).join("\n\n")+(caseRecord.assessment?"\n\nCurrent assessment\n"+caseRecord.assessment:"")+(caseRecord.labs?"\n\nCurrent labs\n"+caseRecord.labs:"")||"No additional flow-sheet observations are documented.")}
  ]:[];
  const visibleRecordTabs=recordTabs.filter(tab=>!!tab.content?.trim()&&!/^No (?:additional|separate|laboratory)/i.test(tab.content.trim()));
