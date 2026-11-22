@@ -249,3 +249,31 @@
 .ngn-trend th,.ngn-trend td{padding:12px 14px;border:1px solid #d5dee8;text-align:left;vertical-align:top;line-height:1.55}
 .ngn-trend th{background:#edf2f7;color:#334b64}
 @media(max-width:720px){.ngn-bowtie-bank{grid-template-columns:1fr}}
+
+/* Global review-feedback patches: uncluttered chart pane and NCLEX bow-tie geometry */
+.exam-feedback-reset{display:block;width:100%;margin:14px 0 4px;padding:10px 13px;border:1px solid #bdc8d4;background:#fff;color:#4b6076;font-size:12px;font-weight:700;cursor:pointer}
+.exam-feedback-reset:hover{background:#f1f5f9}
+.exam-record-heading{padding-bottom:12px;border-bottom:1px solid #d8e0e8}
+.exam-record-heading span{font-size:10px;letter-spacing:.08em}
+.exam-record-heading strong{font-size:14px}
+.exam-record-client{display:none!important}
+.exam-left-scenario{margin:12px 0 16px;padding:14px 15px}
+.exam-left-scenario p{margin:0;font-size:14px;line-height:1.7;color:#33485e;white-space:pre-line}
+.exam-trend-left{margin:16px 0}
+.exam-trend-left h3{font-size:14px;margin:0 0 10px;color:#294661}
+.exam-trend-left .ngn-trend th,.exam-trend-left .ngn-trend td{font-size:12px;padding:9px 10px}
+.ngn-bowtie-workspace{display:block!important;margin:14px 0 20px}
+.ngn-bowtie-context{display:none!important}
+.ngn-bowtie-layout{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(145px,.8fr) minmax(0,1fr);align-items:center;gap:22px;position:relative}
+.ngn-bowtie-diagram{display:contents!important}
+.ngn-bowtie-slot{display:grid;grid-template-rows:auto auto auto;gap:10px;position:relative;z-index:1}
+.ngn-bowtie-slot>strong{grid-row:1;text-align:center;font-size:12px;color:#334b64}
+.ngn-bowtie-slot .ngn-bowtie-drop-slot{min-height:70px;border:1px solid #9fb2c6;background:#fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:9px;font-size:12px}
+.ngn-bowtie-condition{min-height:130px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;border:2px solid #6f8ba8;border-radius:50%;padding:16px;background:#edf3f8}
+.ngn-bowtie-condition .ngn-bowtie-drop-slot{min-height:58px;background:#fff;border:1px solid #9fb2c6;padding:8px;font-size:11px}
+.ngn-bowtie-layout:before,.ngn-bowtie-layout:after{content:"";position:absolute;top:50%;width:calc((100% - 44px)*.28);height:2px;background:#8ea5bc;z-index:0}
+.ngn-bowtie-layout:before{left:27%}.ngn-bowtie-layout:after{right:27%}
+.ngn-bowtie-bank{margin-top:18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ngn-bowtie-remove-hint{display:none!important}
+.ngn-highlight-selections{display:none!important}
+@media(max-width:720px){.ngn-bowtie-layout{grid-template-columns:1fr;gap:12px}.ngn-bowtie-condition{border-radius:8px;min-height:95px}.ngn-bowtie-layout:before,.ngn-bowtie-layout:after{display:none}.ngn-bowtie-bank{grid-template-columns:1fr}}
