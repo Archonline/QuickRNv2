@@ -301,13 +301,20 @@
       "relevant_tabs_must_not_be_empty": true,
       "labs_tab_contains_laboratory_data_only": true,
       "provider_orders_must_be_explicit_and_plausible": true,
-      "flow_sheet_must_show_time_ordered_changes_when_case_evolves": true
+      "flow_sheet_must_show_time_ordered_changes_when_case_evolves": true,
+      "hide_tabs_without_data": true,
+      "never_fabricate_missing_chart_data": true,
+      "flow_sheet_must_be_chronological": true
     },
     "layout": {
       "chart_driven_and_trend_items": "two_pane",
       "ordinary_standalone_items": "single_column",
       "do_not_repeat_full_scenario_in_question_stem_when_chart_pane_is_present": true,
-      "hide_category_topic_difficulty_and_item_type_clues_in_active_exam": true
+      "hide_category_topic_difficulty_and_item_type_clues_in_active_exam": true,
+      "single_coherent_scenario_left_pane": true,
+      "right_pane_contains_task_and_response_only": true,
+      "hide_client_chart_and_clinical_information_decorative_headings": true,
+      "do_not_duplicate_scenario_or_patient_demographics": true
     },
     "matrix": {
       "no_placeholder_rows": true,
@@ -326,33 +333,50 @@
     },
     "bow_tie": {
       "diagram_precedes_choice_bank": true,
-      "specific_condition_required": true,
-      "actions_and_monitoring_must_be_topic_specific": true,
-      "drag_selected_choice_to_remove": true
+      "layout": "two_vertical_action_slots_left_condition_center_two_vertical_monitoring_slots_right",
+      "connecting_lines_required": true,
+      "condition_distractors_must_be_clinically_similar": true,
+      "monitoring_options_must_not_name_or_give_away_condition": true,
+      "drag_selected_choice_to_remove": true,
+      "no_separate_clinical_information_box": true
     },
     "drag_drop": {
       "complete_grammatical_clinical_statement_required": true,
       "each_blank_has_one_keyed_response": true
     },
     "trend": {
+      "render_location": "left_pane_below_scenario",
       "minimum_time_points": 2,
       "time_stamps_required": true,
-      "meaningful_clinical_change_required": true,
-      "two_pane_chart_layout": true
+      "serial_values_and_units_required": true,
+      "no_fake_interpretation_timepoint": true
     },
     "cloze": {
       "complete_contextual_sentence_or_paragraph_required": true,
-      "choices_must_fit_grammatically_and_clinically": true
+      "choices_must_fit_grammatically_and_clinically": true,
+      "one_instruction_only": true,
+      "first_rationale_blank_must_be_action_phrase": true
     },
     "highlight_text": {
-      "clickable_word_or_phrase_toggle": true,
-      "long_passage_with_relevant_cues_and_distractors": true,
-      "checkbox_substitution_not_allowed": true
+      "clickable_word_or_short_phrase_toggle": true,
+      "select_only_key_clinical_cues": true,
+      "include_plausible_distractor_words": true,
+      "clear_highlights_button": false
     },
     "case_study": {
       "exactly_six_linked_screens": true,
       "one_patient_and_continuous_timeline": true,
       "chart_updates_at_each_stage": true
+    },
+    "distractors": {
+      "plausible_near_miss_required": true,
+      "include_subtle_timing_sequence_monitoring_or_escalation_errors": true,
+      "obviously_unrelated_or_absurd_options_prohibited": true
     }
+  },
+  "feedback": {
+    "reset_control_at_exam_setup": true,
+    "confirm_before_clearing": true,
+    "clear_all_saved_item_feedback_for_current_device": true
   }
 }
