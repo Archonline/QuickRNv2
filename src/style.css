@@ -329,3 +329,32 @@
 .exam-launch-page .notice{margin-top:20px}
 .exam-main-top .exam-countdown{margin-left:12px}
 @media(max-width:720px){.exam-mode-grid{grid-template-columns:1fr}.exam-countdown{margin:8px 0 0 0!important;font-size:10px}.exam-main-top>div:first-child{display:flex;align-items:center;flex-wrap:wrap;gap:5px}}
+
+
+/* Completed CAT/readiness pass-probability trend */
+.pass-probability-card{padding:22px 24px;margin:18px 0 20px;overflow:hidden}
+.pass-probability-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+.pass-probability-heading h2{font:700 15px Manrope,sans-serif;color:#343752;margin:5px 0 4px}
+.pass-probability-heading p{font-size:10px;color:#9295a6;margin:0}
+.pass-probability-current{text-align:right;flex-shrink:0}
+.pass-probability-current strong{display:block;font:800 30px/1 Manrope,sans-serif;letter-spacing:-1px;color:#6558dc}
+.pass-probability-current span,.pass-probability-current small{display:block;font-size:10px;color:#85899d;margin-top:5px}
+.pass-probability-current small.trend-up{color:#269b76}
+.pass-probability-current small.trend-down{color:#d16a72}
+.pass-probability-chart-wrap{width:100%;overflow:hidden;margin:16px 0 0}
+.pass-probability-chart{display:block;width:100%;height:auto;min-height:180px;overflow:visible}
+.pass-chart-grid{stroke:#ececf3;stroke-width:1;stroke-dasharray:3 5}
+.pass-chart-axis{fill:#9a9daf;font:10px 'DM Sans',sans-serif}
+.pass-chart-date{fill:#85899d;font:10px 'DM Sans',sans-serif}
+.pass-chart-line{fill:none;stroke:#6558dc;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.pass-chart-point-halo{fill:#6558dc;fill-opacity:.13}
+.pass-chart-point{fill:#fff;stroke:#6558dc;stroke-width:3}
+.pass-probability-legend{display:flex;justify-content:space-between;align-items:center;gap:10px;color:#9295a6;font-size:10px;margin:4px 0 12px}
+.pass-probability-legend>span:first-child{display:flex;align-items:center;gap:7px}
+.pass-probability-legend i{display:inline-block;width:18px;height:3px;border-radius:4px;background:#6558dc}
+.pass-probability-disclaimer{border-top:1px solid #f0f0f5;padding-top:10px;color:#9a9daf;font-size:9px;line-height:1.55}
+.pass-probability-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:170px;padding:20px;text-align:center}
+.pass-probability-empty-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#f0efff;color:#6558dc;font-size:22px}
+.pass-probability-empty strong{font:700 12px Manrope,sans-serif;color:#454962}
+.pass-probability-empty>span:last-child{max-width:430px;color:#9295a6;font-size:10px;line-height:1.6}
+@media(max-width:600px){.pass-probability-card{padding:17px 14px}.pass-probability-current strong{font-size:25px}.pass-probability-chart{min-width:520px}.pass-probability-chart-wrap{overflow-x:auto}.pass-probability-legend{align-items:flex-start;flex-direction:column}}
