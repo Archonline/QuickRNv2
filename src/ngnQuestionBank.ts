@@ -101,8 +101,8 @@ function curateNgnQuestion(raw:CuratedNgnItem,index:number):Question{
   const conditions=data.condition_options??[],actions=data.action_options??[],parameters=data.parameter_options??[];
   const condition=idx(key.condition,conditions),correctActions=(key.actions??[]).map((id:string)=>idx(id,actions)).filter((v:number)=>v>=0),correctMonitoring=(key.parameters??[]).map((id:string)=>idx(id,parameters)).filter((v:number)=>v>=0);
   const monitoringOptions=parameters.map((x:any)=>x.text);
-  if(monitoringOptions.length<4||new Set(monitoringOptions).size!==monitoringOptions.length) throw new Error(`NGN bow-tie ${raw.id} requires at least four distinct authored monitoring parameters.`);
-  if(monitoringOptions.length<4||new Set(monitoringOptions).size!==monitoringOptions.length) throw new Error(`NGN bow-tie ${raw.id} requires at least four distinct authored monitoring parameters.`);
+  if(conditions.length<3||actions.length<4||monitoringOptions.length<4||new Set(monitoringOptions).size!==monitoringOptions.length) throw new Error(`NGN bow-tie ${raw.id} requires three authored conditions, four actions, and four distinct monitoring parameters.`);
+  if(condition<0||correctActions.length!==2||correctMonitoring.length!==2) throw new Error(`NGN bow-tie ${raw.id} has an incomplete or invalid answer key.`);
   itemType="bow-tie";options=[];answer=Math.max(0,condition);
   interaction={instruction:"Select the most likely condition, two priority actions, and two parameters to monitor.",choices:[],correctResponse:["c"+condition,...correctActions.map((v:number,i:number)=>"a"+i+"-"+v),...correctMonitoring.map((v:number,i:number)=>"m"+i+"-"+v)],bowTie:{conditions:conditions.map((x:any)=>x.text),actions:actions.map((x:any)=>x.text),monitoring:monitoringOptions,correctCondition:condition,correctActions,correctMonitoring}};
  }else if(raw.question_type==="hot_spot"){
