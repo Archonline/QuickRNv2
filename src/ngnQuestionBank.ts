@@ -104,12 +104,13 @@ const caseInteractions:QuestionInteraction[]=[
  {instruction:"Complete the rationale by choosing the best response in each blank.",choices:caseStudySeeds[4].choices,correctResponse:["0","0"],rationaleTemplate:"The nurse should [BLANK_1] because [BLANK_2].",rationaleChoicesByBlank:[["Assess for new or ongoing bleeding","Encourage ambulation","Stop monitoring"],["heparin increases bleeding risk","the client is ready for discharge","the temperature is normal"]]},
  {instruction:"Highlight the current findings that demonstrate the client is responding to treatment.",choices:caseStudySeeds[5].choices,correctResponse:["SpO2","95%","oxygen","HR","98/min","RR","20/min"],segments:["SpO2","95%","with","supplemental","oxygen","HR","98/min","RR","20/min","No","bleeding","observed"]}
 ];
+const ngnCoreSeeds:Seed[]=questionBank500.slice(300,400).map(q=>({category:q.category,topic:q.topic,patient:q.clinicalScenario??q.caseStudy??("Clinical scenario: "+q.topic),question:q.prompt,choices:q.options,answer:q.answer,rationale:q.rationale,record:q.exhibit??q.caseRecord?.labs??("Review the current assessment and record for "+q.topic+".")}));
 const extension: Question[] = Array.from({length:100},(_,i)=>{
   const isCaseScreen=i<6;
   const type:CanonicalNclexItemType=isCaseScreen&&i===3?"matrix-multiple":NCLEX_ITEM_TYPES[i%NCLEX_ITEM_TYPES.length];
   const isNumeric=type==="numeric-entry";
   const seed=isCaseScreen?caseStudySeeds[i]:isNumeric?numericSeedFor(i):ngnCoreSeeds[(i-6)%ngnCoreSeeds.length];
-  const prompt=isCaseScreen?seed.question:isNumeric?numericSeed.question:seed.question;
+  const prompt=seed.question;
   const interaction=isCaseScreen?caseInteractions[i]:buildInteraction(type,seed);
   return {
     id:"ngn-"+String(i+1).padStart(3,"0"),
