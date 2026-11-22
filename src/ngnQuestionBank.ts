@@ -7,16 +7,19 @@ export const NCLEX_ITEM_TYPES: CanonicalNclexItemType[] = [
   "bow-tie","drag-drop","trend"
 ];
 
-type Seed = { category:string; topic:string; patient:string; question:string; choices:string[]; answer:number; rationale:string; record:string };
-const numericSeed:Seed={
- category:"Pharmacology",
- topic:"Weight-based medication calculation",
- patient:"A client weighs 70 kg. The prescription is 0.1 mg/kg per dose.",
- question:"How many milligrams should the nurse administer per dose?",
- choices:[],
- answer:7,
- rationale:"Multiply the prescribed dose by the client's weight: 0.1 mg/kg × 70 kg = 7 mg per dose.",
- record:"Weight: 70 kg. Prescribed dose: 0.1 mg/kg per dose."
+type Seed = { category:string; topic:string; patient:string; question:string; choices:string[]; answer:number; rationale:string; record:string; unit?:string };
+const numericSeedFor=(n:number):Seed=>{
+ const variants:Seed[]=[
+ {category:"Pharmacology",topic:"Weight-based medication calculation",patient:"A client weighs 55 kg. The prescription is 0.08 mg/kg per dose.",question:"How many milligrams should the nurse administer per dose?",choices:[],answer:4.4,rationale:"Multiply 55 kg by 0.08 mg/kg to obtain 4.4 mg per dose.",record:"Weight 55 kg; prescribed dose 0.08 mg/kg.",unit:"mg"},
+ {category:"Fundamentals",topic:"IV infusion rate",patient:"The provider prescribes 1,200 mL of isotonic IV fluid over 10 hours using an infusion pump.",question:"At what rate should the nurse program the infusion pump in mL/hr?",choices:[],answer:120,rationale:"Divide 1,200 mL by 10 hours to calculate 120 mL/hr.",record:"Volume 1,200 mL; infusion time 10 hours.",unit:"mL/hr"},
+ {category:"Pharmacology",topic:"Oral liquid medication calculation",patient:"The prescription is 375 mg of an oral medication. The available solution contains 250 mg per 5 mL.",question:"How many milliliters should the nurse administer for one dose?",choices:[],answer:7.5,rationale:"375 mg ÷ 250 mg × 5 mL = 7.5 mL.",record:"Prescribed 375 mg; supply 250 mg/5 mL.",unit:"mL"},
+ {category:"Pharmacology",topic:"Heparin infusion calculation",patient:"A client weighs 80 kg. The heparin protocol prescribes 18 units/kg/hr. The infusion concentration is 25,000 units in 500 mL.",question:"What pump rate in mL/hr delivers the prescribed dose?",choices:[],answer:28.8,rationale:"80 kg × 18 units/kg/hr = 1,440 units/hr. The concentration is 50 units/mL; 1,440 ÷ 50 = 28.8 mL/hr.",record:"Weight 80 kg; prescribed 18 units/kg/hr; concentration 25,000 units/500 mL.",unit:"mL/hr"},
+ {category:"Pediatrics",topic:"Pediatric weight-based dose",patient:"A child weighs 18 kg. The prescribed medication dose is 15 mg/kg/day divided into 3 equal doses.",question:"How many milligrams should the nurse administer per dose?",choices:[],answer:90,rationale:"18 kg × 15 mg/kg/day = 270 mg/day. Divide by 3 doses to obtain 90 mg per dose.",record:"Weight 18 kg; total daily dose 15 mg/kg/day; 3 doses/day.",unit:"mg"},
+ {category:"Fundamentals",topic:"Intake and output calculation",patient:"During a shift, a client drinks 240 mL of water and 180 mL of juice and receives 500 mL IV fluid. Urine output is 350 mL and emesis is 120 mL.",question:"What is the net fluid balance in milliliters for this shift?",choices:[],answer:450,rationale:"Total intake is 240 + 180 + 500 = 920 mL. Total output is 350 + 120 = 470 mL. Net balance is +450 mL.",record:"Intake 920 mL; output 470 mL.",unit:"mL"},
+ {category:"Pharmacology",topic:"IV gravity infusion calculation",patient:"The prescription is 500 mL IV fluid over 4 hours. The tubing drop factor is 15 gtt/mL.",question:"How many drops per minute should the nurse regulate?",choices:[],answer:31,rationale:"500 mL × 15 gtt/mL ÷ 240 minutes = 31.25, rounded to 31 gtt/min.",record:"Volume 500 mL; time 4 hours; drop factor 15 gtt/mL.",unit:"gtt/min"},
+ {category:"Pharmacology",topic:"Insulin dose calculation",patient:"The blood glucose is 286 mg/dL. The prescribed correction scale is 2 units for each 50 mg/dL above 150 mg/dL; round down to the completed 50-mg/dL increment.",question:"How many units of correction insulin should the nurse administer?",choices:[],answer:4,rationale:"286 − 150 = 136 mg/dL, which contains two completed 50-mg/dL increments. 2 units × 2 = 4 units.",record:"Glucose 286 mg/dL; correction scale 2 units per completed 50 mg/dL above 150 mg/dL.",unit:"units"}
+ ];
+ return variants[n%variants.length];
 };
 
 const formatInstructions: Record<CanonicalNclexItemType,string> = {
@@ -63,7 +66,7 @@ function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
     while(rows.length<3)rows.push("Additional assessment: "+seed.topic);
     return {...common,correctResponse:["0:2","1:1","2:1"],matrixMode:"single",rows,columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Needs follow-up","2":"Needs follow-up"}};
   }
-  if(type==="numeric-entry") return {...common,correctResponse:[String(seed.answer)],numericUnit:"mg",numericTolerance:0};
+  if(type==="numeric-entry") return {...common,correctResponse:[String(seed.answer)],numericUnit:seed.unit??"mg",numericTolerance:0};
   if(type==="ordered-response"&&seed.topic==="Hemodialysis hypotension") return {...common,correctResponse:["0","1","2","3"],orderItems:["Stop or reduce ultrafiltration according to the dialysis-unit protocol","Position the client safely and reassess blood pressure and symptoms","Notify the dialysis clinician and implement prescribed treatment for hypotension","Reassess hemodynamic response and document the event"],correctOrder:[0,1,2,3]};
   if(type==="ordered-response") return {...common,correctResponse:["0","1","2","3"],orderItems:["Assess airway, breathing, circulation, and immediate safety","Activate the appropriate urgent response and notify the responsible clinician","Implement the prescribed or protocol-authorized intervention","Reassess the client's response and document the outcome"],correctOrder:[0,1,2,3]};
   if(type==="drag-drop"&&seed.topic==="Newborn hypoglycemia") return {...common,correctResponse:["0","1","2"],dragDropTemplate:"For this symptomatic newborn, the nurse should first [BLANK_1], then [BLANK_2], and recheck the [BLANK_3].",dragDropChoices:["Initiate the newborn hypoglycemia protocol","Provide prompt glucose treatment as indicated by the protocol","Blood glucose","Wait until the next scheduled feeding","Give sterile water"]};
@@ -105,7 +108,7 @@ const extension: Question[] = Array.from({length:100},(_,i)=>{
   const isCaseScreen=i<6;
   const type:CanonicalNclexItemType=isCaseScreen&&i===3?"matrix-multiple":NCLEX_ITEM_TYPES[i%NCLEX_ITEM_TYPES.length];
   const isNumeric=type==="numeric-entry";
-  const seed=isCaseScreen?caseStudySeeds[i]:isNumeric?numericSeed:ngnCoreSeeds[(i-6)%ngnCoreSeeds.length];
+  const seed=isCaseScreen?caseStudySeeds[i]:isNumeric?numericSeedFor(i):ngnCoreSeeds[(i-6)%ngnCoreSeeds.length];
   const prompt=isCaseScreen?seed.question:isNumeric?numericSeed.question:seed.question;
   const interaction=isCaseScreen?caseInteractions[i]:buildInteraction(type,seed);
   return {
