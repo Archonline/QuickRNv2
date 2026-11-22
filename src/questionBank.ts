@@ -692,6 +692,7 @@ function make(b: B, i: number, global: number): Question {
     format: "single",
     contentVersion: 3,
     reviewStatus: "generated",
+    reviewMetadata: { status: "not-clinically-verified", references: [], publicationStatus: "published" },
     clinicalScenario: scenario,
     exhibit: undefined,
     caseRecord: source.caseRecord ?? { progressNotes: record, labs: "", flowSheet: "" },
