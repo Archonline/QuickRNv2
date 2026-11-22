@@ -291,5 +291,65 @@
     "hot_spot_asset_must_be_ready": true,
     "automated_validation_is_not_human_clinical_review": true,
     "official_nclex_endorsement_must_not_be_claimed": true
+  },
+  "nclex_rendering_contract": {
+    "clinical_record_pane": {
+      "required_for_chart_driven_items": true,
+      "relevant_tabs_must_not_be_empty": true,
+      "labs_tab_contains_laboratory_data_only": true,
+      "provider_orders_must_be_explicit_and_plausible": true,
+      "flow_sheet_must_show_time_ordered_changes_when_case_evolves": true
+    },
+    "layout": {
+      "chart_driven_and_trend_items": "two_pane",
+      "ordinary_standalone_items": "single_column",
+      "do_not_repeat_full_scenario_in_question_stem_when_chart_pane_is_present": true,
+      "hide_category_topic_difficulty_and_item_type_clues_in_active_exam": true
+    },
+    "matrix": {
+      "no_placeholder_rows": true,
+      "single_mode_one_response_per_row": true,
+      "multiple_mode_all_applicable_responses_per_row": true,
+      "column_headings_must_be_clinically_meaningful": true
+    },
+    "numeric_entry": {
+      "do_not_duplicate_numeric_entry_instructions": true,
+      "required_units_and_calculation_data": true
+    },
+    "ordered_response": {
+      "drag_only": true,
+      "no_arrow_controls": true,
+      "sequence_must_match_patient_condition": true
+    },
+    "bow_tie": {
+      "diagram_precedes_choice_bank": true,
+      "specific_condition_required": true,
+      "actions_and_monitoring_must_be_topic_specific": true,
+      "drag_selected_choice_to_remove": true
+    },
+    "drag_drop": {
+      "complete_grammatical_clinical_statement_required": true,
+      "each_blank_has_one_keyed_response": true
+    },
+    "trend": {
+      "minimum_time_points": 2,
+      "time_stamps_required": true,
+      "meaningful_clinical_change_required": true,
+      "two_pane_chart_layout": true
+    },
+    "cloze": {
+      "complete_contextual_sentence_or_paragraph_required": true,
+      "choices_must_fit_grammatically_and_clinically": true
+    },
+    "highlight_text": {
+      "clickable_word_or_phrase_toggle": true,
+      "long_passage_with_relevant_cues_and_distractors": true,
+      "checkbox_substitution_not_allowed": true
+    },
+    "case_study": {
+      "exactly_six_linked_screens": true,
+      "one_patient_and_continuous_timeline": true,
+      "chart_updates_at_each_stage": true
+    }
   }
 }
