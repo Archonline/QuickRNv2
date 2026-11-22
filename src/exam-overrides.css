@@ -277,3 +277,6 @@
 .ngn-bowtie-remove-hint{display:none!important}
 .ngn-highlight-selections{display:none!important}
 @media(max-width:720px){.ngn-bowtie-layout{grid-template-columns:1fr;gap:12px}.ngn-bowtie-condition{border-radius:8px;min-height:95px}.ngn-bowtie-layout:before,.ngn-bowtie-layout:after{display:none}.ngn-bowtie-bank{grid-template-columns:1fr}}
+
+/* Chronological trend exhibits in NGN question and review panes */
+.ngn-trend>ol{list-style:none;margin:0;padding:0;display:grid;gap:9px}.ngn-trend>ol>li{padding:11px 13px;border-left:3px solid #52779c;background:#f4f7fa}.ngn-trend>ol>li strong{font-size:11px;color:#31577e}.ngn-trend>ol>li p{margin:5px 0 0;font-size:12px;line-height:1.55;color:#3b4e63}.ngn-trend>h3{margin:0 0 8px;font-size:13px;color:#314963}.ngn-trend .exam-options{margin-top:12px}
