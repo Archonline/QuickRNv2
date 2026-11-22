@@ -128,7 +128,7 @@ const caseInteractions:QuestionInteraction[]=[
 ];
 const prompts = [
   (s:Seed)=>s.question,
-  (s:Seed)=>"Which additional assessment finding would most strongly support the priority concern in this client?",
+  (_s:Seed)=>"Which additional assessment finding would most strongly support the priority concern in this client?",
   ()=> "Which provider order should the nurse clarify before implementation?",
   ()=> "Which change best indicates that the immediate intervention has been effective?",
   ()=> "Which information should the nurse communicate during an urgent handoff?",
