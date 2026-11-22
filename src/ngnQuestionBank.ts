@@ -71,7 +71,7 @@ const formatInstructions: Record<CanonicalNclexItemType,string> = {
 function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
   const correct=String(seed.answer);
   const choices=seed.choices;
-  const common={instruction:formatInstructions[type],choices,correctResponse:[correct]};
+  const common={instruction:type==="select-n"?"Select exactly 2 responses.":formatInstructions[type],choices,correctResponse:[correct]};
   const clinicalCues=[...seed.patient.split(/(?<=[.!?])\\s+/),...seed.record.split(/;\\s*/)].map(x=>x.trim()).filter(Boolean);
   if(type==="multiple-response"||type==="select-n") {
     const multiChoices=[...choices,"Reassess the client after the immediate intervention and document the response."];
