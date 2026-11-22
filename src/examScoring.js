@@ -43,3 +43,27 @@ export function responseScore(type, actual, expected, tolerance = 0) {
 export function responseIsCorrect(type, actual, expected, tolerance = 0) {
   return responseScore(type, actual, expected, tolerance) === 1;
 }
+
+
+/**
+ * Uncalibrated Rasch-style practice ability estimate.
+ * Difficulty labels are mapped to provisional logits; this is not NCSBN/NCLEX IRT scoring.
+ */
+export function estimateCatAbility(responses) {
+  if (!Array.isArray(responses) || responses.length === 0) return 0;
+  const difficulty = value => value === "Foundational" ? -1 : value === "Advanced" ? 1 : 0;
+  let theta = 0;
+  for (let iteration = 0; iteration < 8; iteration += 1) {
+    let residual = 0;
+    let information = 0;
+    for (const response of responses) {
+      const earned = Math.max(0, Math.min(1, Number(response.earned) || 0));
+      const p = 1 / (1 + Math.exp(-(theta - difficulty(response.difficulty))));
+      residual += earned - p;
+      information += p * (1 - p);
+    }
+    if (information < 1e-8) break;
+    theta = Math.max(-4, Math.min(4, theta + Math.max(-0.5, Math.min(0.5, residual / information))));
+  }
+  return Number(theta.toFixed(3));
+}

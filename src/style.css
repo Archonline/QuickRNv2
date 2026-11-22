@@ -314,3 +314,18 @@
 @media(max-width:520px){.analytics-summary{grid-template-columns:1fr}.analytics-bar-row>div:first-child{align-items:flex-start;flex-direction:column}.history-date{display:block;margin:5px 0 0}.history-card{padding:14px}}
 
 .webmaster-placeholder{display:flex;flex-direction:column;gap:7px;margin-top:22px;padding:22px}.webmaster-placeholder span{color:#687086;font-size:13px}
+
+
+/* Timed CAT and readiness controls share the NCLEX-style exam workspace. */
+.exam-countdown{display:inline-flex;align-items:center;margin-left:18px;padding:7px 11px;border:1px solid #cbd5e1;border-radius:3px;background:#fff;color:#263b55;font:700 12px/1.2 Arial,sans-serif;letter-spacing:.08em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.exam-mode-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:24px 0}
+.exam-mode-card{display:flex;align-items:stretch;min-height:220px}
+.exam-mode-card>div{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.exam-mode-card h2{margin:5px 0 0;font:700 17px Manrope,sans-serif;color:#292d47}
+.exam-mode-card p{margin:0 0 12px;color:#85899d;font-size:12px;line-height:1.7}
+.exam-mode-card .button{margin-top:auto}
+.exam-launch-page>h1{font:800 27px Manrope,sans-serif;letter-spacing:-.7px;color:#252943;margin:0}
+.exam-launch-page>.subheading{max-width:760px;line-height:1.7}
+.exam-launch-page .notice{margin-top:20px}
+.exam-main-top .exam-countdown{margin-left:12px}
+@media(max-width:720px){.exam-mode-grid{grid-template-columns:1fr}.exam-countdown{margin:8px 0 0 0!important;font-size:10px}.exam-main-top>div:first-child{display:flex;align-items:center;flex-wrap:wrap;gap:5px}}
