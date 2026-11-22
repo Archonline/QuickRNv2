@@ -25,6 +25,31 @@ service cloud.firestore {
         allow delete: if isOwner(uid);
       }
 
+      match /examHistory/{historyId} {
+        allow read: if isOwner(uid);
+        allow create: if isOwner(uid)
+          && request.resource.data.keys().hasOnly(['mode','questionCount','answeredCount','correctCount','incorrectCount','unansweredCount','earnedPoints','possiblePoints','scorePercent','durationSeconds','questionResults','completedAt'])
+          && request.resource.data.mode == 'self-study'
+          && request.resource.data.questionCount is int
+          && request.resource.data.questionCount > 0
+          && request.resource.data.questionCount <= 600
+          && request.resource.data.answeredCount is int
+          && request.resource.data.correctCount is int
+          && request.resource.data.incorrectCount is int
+          && request.resource.data.unansweredCount is int
+          && request.resource.data.earnedPoints is number
+          && request.resource.data.possiblePoints is int
+          && request.resource.data.scorePercent is int
+          && request.resource.data.scorePercent >= 0
+          && request.resource.data.scorePercent <= 100
+          && request.resource.data.durationSeconds is int
+          && request.resource.data.durationSeconds >= 0
+          && request.resource.data.questionResults is list
+          && request.resource.data.questionResults.size() == request.resource.data.questionCount
+          && request.resource.data.completedAt is timestamp;
+        allow update, delete: if false;
+      }
+
       match /savedQuestions/{savedId} {
         allow read: if isOwner(uid);
         allow create, update: if isOwner(uid)
