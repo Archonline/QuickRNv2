@@ -212,3 +212,24 @@
  .ngn-bowtie{grid-template-columns:repeat(2,minmax(0,1fr))}
  .ngn-bowtie-diagram{grid-template-columns:1fr}
 }
+
+/* NGN review refinements */
+.exam-layout-case{grid-template-columns:minmax(310px,42%) minmax(0,58%)}
+.exam-record-panel{min-width:0}
+.exam-left-scenario{margin:14px 0 16px;padding:17px;background:#fff}
+.exam-left-scenario p{font-size:15px;line-height:1.7}
+.exam-main-case .exam-question-card{padding:28px 32px}
+.exam-main-case .exam-stem{font-size:19px;line-height:1.65}
+.ngn-matrix th:not(:first-child),.ngn-matrix td{text-align:center;vertical-align:middle}
+.ngn-matrix th:not(:first-child){text-align:center}
+.ngn-bowtie-paradigm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0;padding:13px;background:#f1f5f9;border:1px solid #d7e0e9}
+.ngn-bowtie-paradigm>div{display:grid;gap:5px;text-align:center;padding:9px;background:#fff;border:1px solid #cbd5e1}
+.ngn-bowtie-paradigm strong{font-size:14px;color:#263b55}
+.ngn-bowtie-paradigm span{font-size:12px;color:#64748b}
+.ngn-order-row button{display:none!important}
+.exam-item-feedback{background:#fff;border:1px solid #cfd8e3;border-radius:4px;padding:18px 20px;margin:20px 0}
+.exam-item-feedback>div{display:grid;gap:5px;margin-bottom:10px}
+.exam-item-feedback strong{font-size:15px;color:#243b55}
+.exam-item-feedback span,.exam-item-feedback small{font-size:12px;color:#64748b;line-height:1.5}
+.exam-item-feedback textarea{width:100%;resize:vertical;border:1px solid #bfcbd8;border-radius:4px;padding:12px;font:14px/1.6 Arial,sans-serif;color:#243449}
+@media(max-width:850px){.exam-layout-case{grid-template-columns:1fr}.ngn-bowtie-paradigm{grid-template-columns:1fr}}
