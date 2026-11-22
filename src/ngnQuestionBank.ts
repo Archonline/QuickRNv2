@@ -148,3 +148,4 @@ if(new Set(questionBank600.map(q=>q.id)).size!==600) throw new Error("Question I
 export const itemFormatCounts = NCLEX_ITEM_TYPES.map(type=>({type,count:questionBank100.filter(q=>q.itemType===type).length}));
 if(NCLEX_ITEM_TYPES.some(type=>!questionBank100.some(q=>q.itemType===type))) throw new Error("Every supported NCLEX item format must have a published sample.");
 if(extension.filter(q=>q.caseStudyId==="ngn-case-01").length!==6) throw new Error("The unfolding case must contain exactly six linked screens.");
+if(questionBank600.some(q=>q.status!=="published"||!q.prompt.trim()||!q.rationale.trim()||!q.topic.trim()||!q.category.trim()||!q.itemType||!q.interaction||(!q.clinicalScenario&&!q.caseStudy))) throw new Error("Every published question must have a renderable prompt, rationale, topic, category, interaction, and clinical scenario or case record.");
