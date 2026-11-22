@@ -144,7 +144,7 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
   const reviewRecordActive=reviewRecordTabs.find(tab=>tab.key===activeRecordTab)??reviewRecordTabs[0];
   const actualLabels=reviewLabels(q,response);
   const correctLabels=reviewLabels(q,expectedResponse);
-  const credit=responseScore(q.itemType??(q.format==="multiple"?"multiple-response":"single-response"),response,expectedResponse);const status=response.every(value=>value==="")?"Unanswered":credit===1?"Correct":credit>0?"Partially correct":"Incorrect";
+  const credit=itemCredit(q,response);const status=response.every(value=>value==="")?"Unanswered":credit===1?"Correct":credit>0?"Partially correct":"Incorrect";
   return <div className="exam-screen exam-review-screen">
    <header className="exam-header"><div className="exam-brand"><span className="exam-brand-mark">Q</span><div><strong>QuickRN</strong><small>RN LICENSURE PRACTICE</small></div></div><div className="exam-header-center"><strong>Examination Review</strong><span>Submitted responses and rationales</span></div><button type="button" className="exam-exit" onClick={onExit}>Return to dashboard</button></header>
    <section className="exam-review-summary"><div><span>EXAMINATION COMPLETE</span><h1>Review your performance</h1><p>Review each item, compare your response with the keyed answer, and read the rationale.</p></div><div className="exam-review-score"><strong>{score}/{exam.length}</strong><span>{Math.round(score/exam.length*100)}% partial-credit score</span></div></section>
