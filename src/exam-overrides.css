@@ -358,3 +358,26 @@
 .exam-main-case .ngn-cloze-sentence{font-size:15px;line-height:2.2;}
 .exam-main-case .ngn-cloze-sentence select{max-width:100%;min-width:180px;}
 @media(max-width:720px){.ngn-bowtie-diagram{grid-template-columns:1fr!important;gap:10px!important}.ngn-bowtie-actions,.ngn-bowtie-monitors{grid-column:1!important;grid-template-columns:1fr!important}.ngn-bowtie-condition{grid-column:1!important;grid-row:auto!important}.ngn-bowtie-actions:after,.ngn-bowtie-condition:after{display:none;}}
+
+
+/* Consistent typography between clinical paragraph and question stem across all item formats. */
+.exam-main-case .exam-left-scenario p,.exam-main-case .exam-left-exhibit p,.exam-main-case .exam-stem,.exam-question-card .exam-inline-scenario p,.exam-question-card .exam-stem{font-family:inherit;font-size:15px;font-weight:400;line-height:1.7;color:#303c49;letter-spacing:normal;}
+.exam-main-case .exam-stem{margin-top:16px;margin-bottom:14px;}
+/* Trend response choices must use the complete width of the right-hand pane. */
+.exam-main-case .ngn-trend-response,.exam-main-case .ngn-trend-response .exam-options,.exam-main-case .ngn-trend-response .exam-option{width:100%;max-width:none;min-width:0;box-sizing:border-box;}
+.exam-main-case .ngn-trend-response .exam-option{display:flex;}
+/* Highlight-text selections use a bright yellow marker. */
+.ngn-highlight-passage button.selected{background:#ffeb3b!important;border:1px solid #d4b500!important;color:#1f2933!important;box-shadow:inset 0 -2px #c4a500!important;border-radius:2px;padding:1px 3px;}
+/* Preserve the NCLEX bow-tie: two actions, one central condition, two monitors. */
+.ngn-bowtie-workspace{display:block!important;width:100%;}
+.ngn-bowtie-diagram{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:auto auto auto!important;gap:14px 18px!important;align-items:center!important;position:relative;padding:18px 20px!important;overflow:visible;background:#f7f9fb;border:1px solid #d3dce5;}
+.ngn-bowtie-actions{grid-column:1/-1!important;grid-row:1!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px;}
+.ngn-bowtie-actions>strong,.ngn-bowtie-monitors>strong{grid-column:1/-1;text-align:center;}
+.ngn-bowtie-actions .ngn-bowtie-drop-slot,.ngn-bowtie-monitors .ngn-bowtie-drop-slot{min-height:76px;}
+.ngn-bowtie-condition{grid-column:1/-1!important;grid-row:2!important;justify-self:center!important;width:min(100%,390px)!important;min-height:112px!important;border-radius:8px!important;}
+.ngn-bowtie-monitors{grid-column:1/-1!important;grid-row:3!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px;}
+.ngn-bowtie-actions:after{content:"";position:absolute;left:25%;right:25%;bottom:-9px;border-bottom:2px solid #8ea5bc;pointer-events:none;}
+.ngn-bowtie-condition:after{content:"";position:absolute;left:50%;top:100%;height:14px;border-left:2px solid #8ea5bc;}
+.ngn-bowtie-drop-slot button{width:100%;min-height:56px;white-space:normal;line-height:1.4;}
+.ngn-bowtie-bank{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px;margin-top:18px;}
+@media(max-width:720px){.ngn-bowtie-diagram{grid-template-columns:1fr!important;gap:10px!important}.ngn-bowtie-actions,.ngn-bowtie-monitors{grid-column:1!important;grid-template-columns:1fr!important}.ngn-bowtie-condition{grid-column:1!important;grid-row:auto!important;width:100%!important}.ngn-bowtie-actions:after,.ngn-bowtie-condition:after{display:none}.ngn-bowtie-bank{grid-template-columns:1fr!important}}
