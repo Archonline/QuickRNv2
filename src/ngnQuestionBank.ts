@@ -72,20 +72,31 @@ function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
   const correct=String(seed.answer);
   const choices=seed.choices;
   const common={instruction:formatInstructions[type],choices,correctResponse:[correct]};
+  const clinicalCues=[...seed.patient.split(/(?<=[.!?])\\s+/),...seed.record.split(/;\\s*/)].map(x=>x.trim()).filter(Boolean);
   if(type==="multiple-response"||type==="select-n") {
     const multiChoices=[...choices,"Reassess the client after the immediate intervention and document the response."];
     return {...common,choices:multiChoices,correctResponse:[correct,"4"],selectCount:type==="select-n"?2:undefined};
   }
-  if(type==="drop-down-cloze") return {...common,correctResponse:[correct],clozeTemplate:"The priority nursing response is [BLANK_1].",clozeChoices:choices};
-  if(type==="drop-down-rationale") return {...common,correctResponse:[correct,"0"],rationaleTemplate:"The nurse should [BLANK_1] because [BLANK_2].",rationaleChoicesByBlank:[choices,["the client has an acute clinical concern","the finding is expected","the finding is unrelated"]]};
-  if(type==="highlight-text") {const segments=[...seed.patient.split(". "),...seed.record.split("; ")];return {...common,correctResponse:[segments[0]],segments};}
+  if(type==="drop-down-cloze") return {...common,correctResponse:[correct],clozeTemplate:"In this client's current condition, the nurse should [BLANK_1] as the priority response.",clozeChoices:choices};
+  if(type==="drop-down-rationale") return {...common,correctResponse:[correct,"0"],rationaleTemplate:"The nurse should [BLANK_1] because the client's presentation is consistent with [BLANK_2].",rationaleChoicesByBlank:[choices,[seed.topic,"an expected response to treatment","an unrelated finding"]]};
+  if(type==="highlight-text") {
+    const passage=[seed.patient,seed.record].filter(Boolean).join(" ");
+    const tokens=passage.match(/\\S+\\s*/g)??[passage];
+    const urgent=(seed.patient.match(/(?:BP|HR|RR|SpO2|temperature|glucose|potassium|sodium|pain|fetal|oxygen|bleeding)[^,.]*/gi)??[])[0]??clinicalCues[0]??"";
+    const keyTokens=tokens.filter(t=>urgent.toLowerCase().includes(t.trim().toLowerCase())&&t.trim().length>1).map(t=>t.trim());
+    return {...common,correctResponse:keyTokens.length?keyTokens:[tokens[0]?.trim()??""],segments:tokens};
+  }
   if(type==="matrix-multiple") return {...common,correctResponse:["0:1","1:0","1:1","2:1"],matrixMode:"multiple",rows:["Wear gown and gloves on room entry","Perform soap-and-water hand hygiene after care","Use dedicated client-care equipment","Place the client in a negative-pressure room"],columns:["Standard","Contact/Enteric","Droplet","Airborne"]};
-  if(type==="matrix-single") return {...common,correctResponse:["0:2","1:2","2:1"],matrixMode:"single",rows:["Finding 1: "+seed.topic,"Finding 2: vital-sign change","Finding 3: diagnostic result"],columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Emergency","2":"Needs follow-up"}};
+  if(type==="matrix-single") {
+    const rows=clinicalCues.slice(0,3).map((cue,i)=>cue.length>95?cue.slice(0,92)+"…":cue);
+    while(rows.length<3)rows.push("Additional assessment: "+seed.topic);
+    return {...common,correctResponse:["0:2","1:1","2:1"],matrixMode:"single",rows,columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Needs follow-up","2":"Needs follow-up"}};
+  }
   if(type==="numeric-entry") return {...common,correctResponse:[String(seed.answer)],numericUnit:"mg",numericTolerance:0};
-  if(type==="ordered-response") return {...common,correctResponse:["0","1","2","3"],orderItems:["Assess immediate safety and airway","Initiate the indicated emergency response","Carry out prescribed/authorized intervention","Reassess and document response"],correctOrder:[0,1,2,3]};
-  if(type==="drag-drop") return {...common,correctResponse:["0","1"],dragDropTemplate:"The nurse should first [BLANK_1] and then [BLANK_2].",dragDropChoices:["Assess immediate safety and airway","Activate the indicated emergency response","Complete routine documentation","Provide routine education"]};
-  if(type==="bow-tie") return {...common,correctResponse:["c0","a0-0","a1-1","m0-0","m1-1"],bowTie:{conditions:["Acute deterioration related to "+seed.topic,"Expected recovery finding","Chronic stable condition"],actions:choices,monitoring:["Vital signs and oxygenation","Relevant laboratory trend","Routine appetite","Hair and skin changes"],correctCondition:0,correctActions:[0,1],correctMonitoring:[0,1]}};
-  if(type==="trend") return {...common,trend:[{time:"Initial",findings:seed.patient},{time:"Current",findings:seed.record}]};
+  if(type==="ordered-response") return {...common,correctResponse:["0","1","2","3"],orderItems:["Assess airway, breathing, circulation, and immediate safety","Activate the appropriate urgent response and notify the responsible clinician","Implement the prescribed or protocol-authorized intervention","Reassess the client's response and document the outcome"],correctOrder:[0,1,2,3]};
+  if(type==="drag-drop") return {...common,correctResponse:["0","1","2"],dragDropTemplate:"Based on the client's presentation, the nurse should first [BLANK_1], then [BLANK_2], and next [BLANK_3].",dragDropChoices:["Assess the immediate clinical threat","Initiate the appropriate urgent response","Implement the prescribed or protocol-based intervention","Complete routine documentation","Provide discharge teaching"]};
+  if(type==="bow-tie") return {...common,correctResponse:["c0","a0-0","a1-1","m0-0","m1-1"],bowTie:{conditions:[seed.topic+" with acute clinical deterioration","Expected response to routine care","Stable chronic condition unrelated to the presentation"],actions:[...choices,"Reassess after the immediate intervention"],monitoring:["Vital signs and oxygenation","The clinical indicator most directly related to "+seed.topic,"Routine appetite","Unrelated skin assessment"],correctCondition:0,correctActions:[0,1],correctMonitoring:[0,1]}};
+  if(type==="trend") return {...common,trend:[{time:"Initial assessment",findings:seed.patient},{time:"Current assessment",findings:seed.record},{time:"Nursing interpretation",findings:"Compare the direction of change with the client's symptoms and response to the intervention."}]};
   return common;
 }
 
@@ -118,10 +129,10 @@ const caseInteractions:QuestionInteraction[]=[
 const prompts = [
   (s:Seed)=>s.question,
   (s:Seed)=>"Which additional assessment finding would most strongly support the priority concern in this client?",
-  (s:Seed)=>"Which provider order should the nurse clarify before implementation?",
-  (s:Seed)=>"Which change best indicates that the immediate intervention has been effective?",
-  (s:Seed)=>"Which information should the nurse communicate during an urgent handoff?",
-  (s:Seed)=>"After the nursing interventions are implemented, which outcome should the nurse evaluate first?"
+  ()=> "Which provider order should the nurse clarify before implementation?",
+  ()=> "Which change best indicates that the immediate intervention has been effective?",
+  ()=> "Which information should the nurse communicate during an urgent handoff?",
+  ()=> "After the nursing interventions are implemented, which outcome should the nurse evaluate first?"
 ];
 const matrixMultiInteraction:QuestionInteraction={
  instruction:formatInstructions["matrix-multiple"],
