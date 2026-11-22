@@ -65,7 +65,7 @@ function clinicalRecordFor(seed:Seed):string {
     "Focused assessment and documented findings: "+focused,
     "Chart review: Reconcile the documented history, current medications, allergies, vital signs, relevant diagnostic results, and active provider orders before selecting nursing priorities."
   ];
-  return lines.join("\\n");
+  return lines.join("\n");
 }
 
 function conciseRecord(seed:Seed):string {
@@ -262,7 +262,7 @@ const extension: Question[] = Array.from({length:100},(_,i)=>{
     interaction,
     clinicalScenario:isCaseScreen?undefined:type==="bow-tie"&&seed.topic==="Measles"?"A 7-year-old child with incomplete immunizations is brought to urgent care after four days of high fever, cough, coryza, and red watery eyes. A blotchy maculopapular rash began at the hairline and is spreading downward; Koplik spots are visible on the buccal mucosa. The child is tired but alert, with temperature 39.4°C, HR 126/min, RR 24/min, and SpO2 96% on room air. Several children shared the waiting area before the rash was recognized.":seed.patient,
     caseStudy:isCaseScreen?caseStudyPatient:undefined,
-    exhibit:isCaseScreen?caseRecords[i].labs+"\\n"+caseRecords[i].providerOrders:type==="bow-tie"&&seed.topic==="GI bleeding"?"EMERGENCY DEPARTMENT RECORD · 0900\\nPresenting concern: 68-year-old client reports two episodes of coffee-ground emesis and three black, tarry stools since 0600. Reports dizziness when standing and worsening weakness.\\nFocused assessment: Pale, cool skin; delayed capillary refill; epigastric tenderness without rigid abdomen. Ongoing melena observed. No bright-red rectal bleeding documented.\\nVital signs: BP 88/54 mm Hg · HR 124/min · RR 24/min · SpO2 97% on room air · T 36.8°C.\\nLaboratory results: Hemoglobin 7.6 g/dL · Hematocrit 23% · Platelets 188,000/mm³ · BUN 38 mg/dL · Creatinine 1.1 mg/dL · INR 1.2.\\nInitial orders: Keep NPO; obtain two large-bore IV lines; type and crossmatch; repeat CBC and coagulation studies; prepare for prescribed IV fluid/blood-product resuscitation and urgent endoscopy.":type==="bow-tie"?clinicalRecordFor(seed):type==="trend"?clinicalRecordFor(seed):undefined,
+    exhibit:isCaseScreen?caseRecords[i].labs+"\n"+caseRecords[i].providerOrders:type==="bow-tie"&&seed.topic==="GI bleeding"?"EMERGENCY DEPARTMENT RECORD · 0900\nPresenting concern: 68-year-old client reports two episodes of coffee-ground emesis and three black, tarry stools since 0600. Reports dizziness when standing and worsening weakness.\nFocused assessment: Pale, cool skin; delayed capillary refill; epigastric tenderness without rigid abdomen. Ongoing melena observed. No bright-red rectal bleeding documented.\nVital signs: BP 88/54 mm Hg · HR 124/min · RR 24/min · SpO2 97% on room air · T 36.8°C.\nLaboratory results: Hemoglobin 7.6 g/dL · Hematocrit 23% · Platelets 188,000/mm³ · BUN 38 mg/dL · Creatinine 1.1 mg/dL · INR 1.2.\nInitial orders: Keep NPO; obtain two large-bore IV lines; type and crossmatch; repeat CBC and coagulation studies; prepare for prescribed IV fluid/blood-product resuscitation and urgent endoscopy.":type==="bow-tie"?clinicalRecordFor(seed):type==="trend"?clinicalRecordFor(seed):undefined,
     caseRecord:isCaseScreen?caseRecords[i]:seed.caseRecord,
     caseStudyId:isCaseScreen?"ngn-case-01":undefined,
     clinicalJudgmentStep:(["recognize-cues","analyze-cues","prioritize-hypotheses","generate-solutions","take-action","evaluate-outcomes"] as const)[i%6],
