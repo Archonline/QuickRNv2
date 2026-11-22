@@ -319,3 +319,22 @@
   .ngn-bowtie-condition{width:100%}
   .ngn-bowtie-diagram:before{display:none}
 }
+
+
+/* Two-pane NGN question workspace: match the Performance Review split layout. */
+.exam-layout-case{grid-template-columns:minmax(320px,1.05fr) minmax(0,.95fr);max-width:1400px;margin:0 auto;background:#fff;border:1px solid #dfe6ec;}
+.exam-layout-case .exam-record-panel{background:#fff;border-right:1px solid #dfe6ec;padding:24px 27px;}
+.exam-layout-case .exam-main{background:#fbfcfd;min-width:0;padding:24px 27px;}
+.exam-layout-case .exam-question-card{background:#fff;border:1px solid #e1e7ed;padding:22px;margin-top:14px;}
+.exam-left-scenario,.exam-left-exhibit{margin:16px 0;padding:14px 16px;background:#f7f9fb;border:1px solid #e0e7ee;border-radius:3px;}
+.exam-left-scenario p,.exam-left-exhibit p{white-space:pre-line;line-height:1.65;}
+.ngn-trend-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;}
+.ngn-trend-tabs button{border:1px solid #cbd7e2;background:#fff;color:#40566d;border-radius:3px;padding:9px 12px;font-size:11px;font-weight:700;cursor:pointer;}
+.ngn-trend-tabs button.active{background:#eaf1f7;border-color:#6f91b0;color:#244f78;box-shadow:inset 0 -2px #315f91;}
+.ngn-trend-current{margin-top:0;padding:14px 15px;border:1px solid #dce5ed;background:#fff;min-height:100px;}
+.ngn-trend-current strong{font-size:12px;color:#31577e;}
+.ngn-trend-current p{font-size:12px;line-height:1.7;color:#3b4e63;white-space:pre-line;margin:8px 0 0;}
+.exam-review-trend{margin:14px 0 20px;}
+.ngn-highlight-passage button:not(.selected){border-color:transparent;background:transparent;}
+.ngn-highlight-passage button.highlight-disabled{cursor:default;pointer-events:none;color:inherit;}
+@media(max-width:850px){.exam-layout-case{grid-template-columns:minmax(0,1fr);}.exam-layout-case .exam-record-panel{position:relative;top:auto;height:auto;min-height:0;max-height:none;border-right:0;border-bottom:1px solid #dfe6ec;}.exam-layout-case .exam-main{padding:18px;}}
