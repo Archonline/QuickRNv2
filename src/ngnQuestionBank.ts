@@ -77,8 +77,8 @@ function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
     const multiChoices=[...choices,"Reassess the client after the immediate intervention and document the response."];
     return {...common,choices:multiChoices,correctResponse:[correct,"4"],selectCount:type==="select-n"?2:undefined};
   }
-  if(type==="drop-down-cloze") return {...common,correctResponse:[correct],clozeTemplate:"In this client's current condition, the nurse should [BLANK_1] as the priority response.",clozeChoices:choices};
-  if(type==="drop-down-rationale") return {...common,correctResponse:[correct,"0"],rationaleTemplate:"The nurse should [BLANK_1] because the client's presentation is consistent with [BLANK_2].",rationaleChoicesByBlank:[choices,[seed.topic,"an expected response to treatment","an unrelated finding"]]};
+  if(type==="drop-down-cloze") return {...common,correctResponse:[correct],clozeTemplate:"Given the current assessment findings, the nurse should [BLANK_1] before proceeding with routine care.",clozeChoices:choices};
+  if(type==="drop-down-rationale") return {...common,correctResponse:[correct,"0"],rationaleTemplate:"The nurse should [BLANK_1] because the findings are consistent with [BLANK_2], which places the client at risk for further deterioration.",rationaleChoicesByBlank:[choices,[seed.topic,"an expected response to treatment","an unrelated finding"]]};
   if(type==="highlight-text") {
     const passage=[seed.patient,seed.record].filter(Boolean).join(" ");
     const tokens=passage.match(/\\S+\\s*/g)??[passage];
@@ -88,7 +88,7 @@ function buildInteraction(type:CanonicalNclexItemType, seed:Seed) {
   }
   if(type==="matrix-multiple") return {...common,correctResponse:["0:1","1:0","1:1","2:1"],matrixMode:"multiple",rows:["Wear gown and gloves on room entry","Perform soap-and-water hand hygiene after care","Use dedicated client-care equipment","Place the client in a negative-pressure room"],columns:["Standard","Contact/Enteric","Droplet","Airborne"]};
   if(type==="matrix-single") {
-    const rows=clinicalCues.slice(0,3).map((cue,i)=>cue.length>95?cue.slice(0,92)+"…":cue);
+    const rows=clinicalCues.slice(0,3).map(cue=>cue.length>95?cue.slice(0,92)+"…":cue);
     while(rows.length<3)rows.push("Additional assessment: "+seed.topic);
     return {...common,correctResponse:["0:2","1:1","2:1"],matrixMode:"single",rows,columns:["Expected","Needs follow-up","Emergency"],correctMatrix:{"0":"Emergency","1":"Needs follow-up","2":"Needs follow-up"}};
   }
