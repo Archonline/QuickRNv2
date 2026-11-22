@@ -22,10 +22,10 @@ const ORDER_SCORED = new Set([
 export function responseScore(type, actual, expected, tolerance = 0) {
   if (!Array.isArray(actual) || !Array.isArray(expected) || expected.length === 0) return 0;
   if (type === "numeric-entry") {
-    if (actual.length !== 1 || expected.length !== 1) return false;
+    if (actual.length !== 1 || expected.length !== 1) return 0;
     const value = Number(actual[0]);
     const target = Number(expected[0]);
-    return Number.isFinite(value) && Number.isFinite(target) && Math.abs(value - target) <= tolerance;
+    return Number.isFinite(value) && Number.isFinite(target) && Math.abs(value - target) <= tolerance ? 1 : 0;
   }
   if (ORDER_SCORED.has(type)) {
     return actual.length === expected.length && actual.every((value, index) => value === expected[index]) ? 1 : 0;
