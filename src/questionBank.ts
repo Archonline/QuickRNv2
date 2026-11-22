@@ -534,8 +534,8 @@ const clinical=topicClinicalOverrides[topic]??topicClinicalOverrides[alias[topic
 const source:B & {caseRecord?:Question["caseRecord"];prompt?:string}={...b,...clinical};
 const age=18+(i*7+global*3)%69;
 const lensPool=clinicalCaseLenses[categoryAliases[b.category]??"Pharmacology / Medication Teaching"]??clinicalCaseLenses["Pharmacology / Medication Teaching"];
-const lens=lensPool[(global+occurrence)%lensPool.length];
-const prompt=global<136?(source.prompt??"Based on the client's current assessment findings, which nursing action should the nurse take first?"):lens.prompt;
+const lens=lensPool[occurrence%lensPool.length];
+const prompt=global<136?(source.prompt??"Based on the client assessment, which nursing action should the nurse take first?"):lens.prompt+" for a client with "+topic.toLowerCase()+(occurrence>=lensPool.length?" during a separate subsequent presentation.":" in this clinical presentation.");
 const answerText=source.priority;
 const distractors=source.distractors??b.distractors;
 const mode=(global+occurrence)%distractors.length;
@@ -545,7 +545,8 @@ const base=[answerText,balanceDistractor(distractors[mode]),balanceDistractor(di
 const shift=(global+occurrence)%4;
 const opts=base.slice(shift).concat(base.slice(0,shift));
 const patientAge=clinical.scenario?undefined:age;
-const scenario=global<136?(source.scenario??("A "+age+"-year-old client is receiving care for "+topic.toLowerCase()+".")):(source.scenario??("A "+age+"-year-old client is receiving care for "+topic.toLowerCase()+"."))+"\n\n"+lens.cue;
+const careContexts=["during the initial emergency assessment","during a focused inpatient reassessment","before the next scheduled treatment","during discharge-readiness review","after a change in the client condition","during medication-safety verification","at an urgent bedside handoff","during follow-up after the initial intervention"];
+const scenario=global<136?(source.scenario??("A "+age+"-year-old client is receiving care for "+topic.toLowerCase()+".")):(source.scenario??("A "+age+"-year-old client is receiving care for "+topic.toLowerCase()+"."))+"\n\nClinical context: "+careContexts[occurrence%careContexts.length]+". "+lens.cue;
 const record=source.record??b.record;
 const rationale=source.rationale;
 return {
