@@ -406,22 +406,168 @@ const curatedTraditionalQuestions:Question[]=curatedTraditionalRaw.map(curatedTr
 if(curatedTraditionalQuestions.length!==100||new Set(curatedTraditionalQuestions.map(q=>q.prompt)).size!==100)throw new Error("Curated traditional batch must contain 100 distinct questions.");
 
 const generatedTopicOccurrences:Record<string,number>={};
-const generatedQuestionLenses=[
-  (topic:string)=>({prompt:"Given the current assessment, which nursing action is the highest priority for the client with "+topic.toLowerCase()+"?"}),
-  (topic:string)=>({prompt:"Which intervention should the nurse implement first to reduce the immediate risk associated with "+topic.toLowerCase()+"?"}),
-  (topic:string)=>({prompt:"The nurse identifies the findings below in a client with "+topic.toLowerCase()+". Which response is most urgent?"}),
-  (topic:string)=>({prompt:"Which nursing action best addresses the most time-sensitive clinical problem in this "+topic.toLowerCase()+" presentation?"}),
-  (topic:string)=>({prompt:"Which action should the nurse take now to prevent further deterioration related to "+topic.toLowerCase()+"?"}),
-  (topic:string)=>({prompt:"After reviewing the client's current findings, which action should the nurse prioritize for "+topic.toLowerCase()+"?"})
-];
+/**
+ * The 364 records at qrn-0137..qrn-0500 are built as independent clinical
+ * items. The curriculum category and topic select the clinical content;
+ * the case lens changes the decision point, evidence and teaching focus.
+ * The original first 36 unfolding-case screens and curated 100 are replaced
+ * after generation below and are not altered by this builder.
+ */
+const clinicalCaseLenses:Record<string,Array<{cue:string;prompt:string}>>={
+ "Maternal-Newborn / Obstetrics":[
+  {cue:"The client reports a sudden change from the previous assessment; quantify bleeding, assess uterine tone and pain, and evaluate the fetal tracing before routine care continues.",prompt:"Which nursing response best addresses the most urgent maternal-fetal risk in this presentation?"},
+  {cue:"A new fetal-monitoring change is documented while maternal vital signs are being repeated. The client remains in the birthing area and the obstetric team has not yet been notified.",prompt:"Which action should the nurse take first to protect maternal and fetal status?"},
+  {cue:"The client is receiving an obstetric medication and develops a new finding that may indicate an adverse effect. The infusion and maternal-fetal response require immediate review.",prompt:"Which assessment and intervention should the nurse prioritize now?"},
+  {cue:"The postpartum or newborn assessment reveals a change from the expected transition. The nurse must distinguish an urgent complication from routine recovery.",prompt:"Which finding requires the nurse's immediate response and what action takes priority?"},
+  {cue:"The client asks whether the current symptom is expected. The nurse identifies a time-sensitive complication risk in the assessment record.",prompt:"Which response by the nurse is the safest priority action?"},
+  {cue:"The latest laboratory and bedside findings are available, and the nurse must act before the next scheduled reassessment.",prompt:"Which intervention should the nurse implement first based on these findings?"}
+ ],
+ "Cardiovascular / Perfusion":[
+  {cue:"The client reports a new change in chest discomfort or perfusion. Repeat vital signs and the rhythm strip are available for comparison with baseline.",prompt:"Which nursing action is the highest priority to prevent cardiovascular deterioration?"},
+  {cue:"The assessment shows a possible reduction in cardiac output. The client has not yet received the next scheduled medication dose.",prompt:"Which action should the nurse take before proceeding with the routine medication plan?"},
+  {cue:"A new rhythm or perfusion abnormality appears during monitoring. The client requires immediate evaluation rather than routine observation.",prompt:"Which response should the nurse initiate first?"},
+  {cue:"The client has a new symptom that may indicate embolic, ischemic, or bleeding complications of the current condition or therapy.",prompt:"Which finding-action combination requires the most urgent nursing response?"},
+  {cue:"The client is preparing for transfer or discharge and asks about a symptom or medication-related warning sign.",prompt:"Which teaching point is essential to reduce the risk of a serious complication?"},
+  {cue:"The latest assessment differs from baseline despite the current treatment plan. The nurse must decide whether to continue, hold, or escalate care.",prompt:"Which action best addresses the immediate safety concern?"}
+ ],
+ "Respiratory / Airway":[
+  {cue:"The client develops a change in work of breathing. Compare respiratory effort, mental status, oxygen saturation and breath sounds rather than relying on saturation alone.",prompt:"Which nursing intervention should be prioritized to protect the airway and support ventilation?"},
+  {cue:"The client has received the prescribed respiratory treatment, but the reassessment does not show the expected response.",prompt:"Which action should the nurse take next?"},
+  {cue:"A new airway secretion, tube, or oxygen-delivery concern is identified during bedside assessment.",prompt:"Which action is essential to maintain a patent airway and prevent deterioration?"},
+  {cue:"The client is increasingly fatigued and is less able to speak in complete sentences. The nurse must not interpret reduced audible wheezing as improvement.",prompt:"Which finding requires immediate escalation?"},
+  {cue:"The client or caregiver demonstrates the home respiratory treatment and makes an error that could compromise medication delivery or airway safety.",prompt:"Which correction should the nurse provide first?"},
+  {cue:"The client has a new respiratory symptom after a procedure or period of immobility. The nurse must rapidly evaluate for a potentially life-threatening cause.",prompt:"Which action should the nurse initiate first?"}
+ ],
+ "Endocrine / Metabolic":[
+  {cue:"The client has a new change in level of consciousness. Review bedside glucose, electrolytes, acid-base status and the prescribed treatment sequence.",prompt:"Which action should the nurse take first to correct the immediate metabolic threat?"},
+  {cue:"A laboratory result has changed since the previous draw and may make the next scheduled medication unsafe.",prompt:"Which medication or intervention decision should the nurse prioritize?"},
+  {cue:"The client is receiving treatment that can rapidly shift serum electrolytes or glucose. Reassessment is needed before the next dose or rate adjustment.",prompt:"Which assessment finding must guide the nurse's next action?"},
+  {cue:"The client reports symptoms that may indicate an endocrine crisis rather than a routine fluctuation in the chronic condition.",prompt:"Which response is the safest immediate nursing action?"},
+  {cue:"The client is preparing to manage the condition at home and describes a plan for sick days, meals, or medication timing.",prompt:"Which instruction is most important to correct before discharge?"},
+  {cue:"The client remains symptomatic despite initial treatment. The nurse must identify the next priority rather than repeat an ineffective intervention.",prompt:"Which action should the nurse take next?"}
+ ],
+ "Renal / Urinary":[
+  {cue:"Urine output, fluid balance and the latest electrolyte results are available. The nurse must evaluate for a complication before continuing routine fluid or medication orders.",prompt:"Which action should the nurse prioritize to prevent renal or electrolyte deterioration?"},
+  {cue:"The client reports a new symptom during or after a renal procedure or treatment. Assess hemodynamic stability and protect the access or drainage system.",prompt:"Which intervention should the nurse perform first?"},
+  {cue:"The latest laboratory results may alter the safety of a scheduled medication. The nurse must reconcile renal function and the prescription.",prompt:"Which action is necessary before administering the medication?"},
+  {cue:"The client has a change in urine appearance, volume, or drainage accompanied by a new assessment finding.",prompt:"Which finding requires immediate follow-up?"},
+  {cue:"The client is reviewing a home plan involving fluid, sodium, potassium, or medication restrictions.",prompt:"Which statement indicates the client needs further teaching?"},
+  {cue:"The client develops dizziness or weakness during treatment. Repeat vital signs and review the amount of fluid removed or administered.",prompt:"Which action should the nurse take immediately?"}
+ ],
+ "Neurologic":[
+  {cue:"The client develops an acute neurologic change. Establish the exact time last known at baseline and protect airway, circulation and safety while escalating care.",prompt:"Which action should the nurse take first?"},
+  {cue:"The client has a change in consciousness, pupil response, motor strength, or speech compared with the documented baseline.",prompt:"Which finding signals a time-critical neurologic complication?"},
+  {cue:"The client is receiving neurologic medication or treatment and develops a possible adverse effect.",prompt:"Which assessment should the nurse perform before continuing the treatment?"},
+  {cue:"A seizure or sudden loss of protective reflexes is possible. The nurse must prevent injury and maintain airway safety.",prompt:"Which intervention is the immediate priority?"},
+  {cue:"The client has a new headache, weakness, sensory change, or autonomic symptom after a procedure or injury.",prompt:"Which response best reduces the risk of secondary neurologic injury?"},
+  {cue:"The client or caregiver describes a home safety plan for a chronic neurologic condition.",prompt:"Which instruction is most important to reinforce?"}
+ ],
+ "Musculoskeletal / Mobility":[
+  {cue:"The client reports pain or altered sensation that is different from the previous neurovascular assessment. Compare color, temperature, movement, sensation and pulses.",prompt:"Which action should the nurse take first to protect the affected extremity?"},
+  {cue:"The client develops sudden respiratory or neurologic symptoms after a fracture, surgery, or period of immobility.",prompt:"Which complication should the nurse suspect and what action takes priority?"},
+  {cue:"The prescribed mobility plan is being implemented, but the client demonstrates a movement that places the operative or injured area at risk.",prompt:"Which correction should the nurse make immediately?"},
+  {cue:"The client reports increasing pain despite analgesia. The nurse must evaluate for a complication rather than assume the pain is expected.",prompt:"Which assessment finding requires urgent escalation?"},
+  {cue:"The client is preparing for discharge with mobility equipment and activity restrictions.",prompt:"Which instruction is essential to prevent injury or disruption of healing?"},
+  {cue:"A medication or positioning intervention is planned for the client with impaired mobility.",prompt:"Which safety check should the nurse complete before proceeding?"}
+ ],
+ "Hematology / Immune":[
+  {cue:"The client develops a new bleeding, fever, pain, or oxygenation concern. Review the blood count and immune status before routine care continues.",prompt:"Which nursing action should be prioritized to prevent a serious hematologic complication?"},
+  {cue:"A scheduled procedure or injection is planned despite a laboratory result that may increase bleeding risk.",prompt:"Which action should the nurse take before the procedure?"},
+  {cue:"The client receiving immune-suppressing or cytotoxic treatment reports a new symptom that may signal infection.",prompt:"Which action should the nurse initiate first?"},
+  {cue:"The client has a new symptom that may indicate a transfusion or medication reaction.",prompt:"Which response is the immediate priority?"},
+  {cue:"The client asks how to reduce infection or bleeding risk at home.",prompt:"Which instruction should the nurse emphasize?"},
+  {cue:"The client has persistent symptoms despite initial supportive treatment. The nurse must evaluate for a life-threatening complication.",prompt:"Which assessment finding requires immediate escalation?"}
+ ],
+ "Infection Control / Infectious Disease":[
+  {cue:"The client has a new symptom pattern that may indicate a transmissible infection. Initiate the appropriate precautions while diagnostic confirmation is pending.",prompt:"Which infection-control action should the nurse take first?"},
+  {cue:"A high-risk client develops fever or a change in mental status. The nurse must not delay evaluation while waiting for routine test results.",prompt:"Which action is the priority?"},
+  {cue:"The client is being transported for a diagnostic procedure while isolation precautions are in effect.",prompt:"Which measure is necessary to prevent transmission during transport?"},
+  {cue:"The client or caregiver describes a home plan that may expose others to infection.",prompt:"Which teaching point should the nurse correct?"},
+  {cue:"A new rash, respiratory symptom, or gastrointestinal symptom appears after admission.",prompt:"Which action should the nurse implement while the cause is being evaluated?"},
+  {cue:"The client is receiving antimicrobial therapy and develops a possible adverse reaction or clinical deterioration.",prompt:"Which action should the nurse take immediately?"}
+ ],
+ "GI / Hepatic":[
+  {cue:"The client develops a new change in abdominal pain, bowel function, bleeding, or mental status. Compare the finding with the baseline and review relevant laboratory results.",prompt:"Which action should the nurse prioritize?"},
+  {cue:"The client is receiving enteral nutrition or gastrointestinal medication and develops a possible complication.",prompt:"Which assessment should the nurse perform before continuing the treatment?"},
+  {cue:"The client has a new symptom that may indicate fluid loss, internal bleeding, obstruction, or perforation.",prompt:"Which finding requires immediate escalation?"},
+  {cue:"The client is preparing for a diagnostic procedure and describes the preparation plan incorrectly.",prompt:"Which instruction should the nurse reinforce first?"},
+  {cue:"The client with hepatic or pancreatic disease develops a change in cognition, perfusion, or pain.",prompt:"Which action should the nurse take first?"},
+  {cue:"The client is being discharged with a nutrition and medication plan.",prompt:"Which statement indicates the need for additional teaching?"}
+ ],
+ "Behavioral Health / Substance Use":[
+  {cue:"The client demonstrates a sudden change in behavior or cognition with a possible medical or substance-related cause. Assess immediate safety and physiologic stability.",prompt:"Which nursing action should be prioritized?"},
+  {cue:"The client expresses a potential risk of harm. The nurse must use direct assessment and the least restrictive safe intervention.",prompt:"Which response should the nurse make first?"},
+  {cue:"The client is receiving psychotropic or withdrawal medication and develops a possible adverse effect.",prompt:"Which assessment finding requires immediate follow-up?"},
+  {cue:"The client is increasingly agitated and has abnormal vital signs. The nurse must distinguish behavioral escalation from a medical emergency.",prompt:"Which action should the nurse take first?"},
+  {cue:"The client or caregiver describes a medication plan that may cause abrupt discontinuation or an unsafe interaction.",prompt:"Which teaching point is most important?"},
+  {cue:"The client is preparing for discharge and identifies a trigger or relapse warning sign.",prompt:"Which response best supports immediate safety and continuity of care?"}
+ ],
+ "Pharmacology / Medication Teaching":[
+  {cue:"The client is due for the next medication dose. Review the indication, latest assessment, relevant laboratory values and hold parameters before administration.",prompt:"Which nursing action is required before giving the medication?"},
+  {cue:"The client reports a new symptom after a medication change. Determine whether it represents an expected effect, toxicity, allergy, or serious adverse reaction.",prompt:"Which action should the nurse take first?"},
+  {cue:"The medication record contains a potential interaction, duplicate therapy, or contraindication.",prompt:"Which action should the nurse take to prevent a medication error?"},
+  {cue:"The client describes how the medication will be taken at home and identifies a possible adverse effect.",prompt:"Which statement requires correction before discharge?"},
+  {cue:"A high-alert medication is prescribed and the dose, route, or monitoring parameter needs verification.",prompt:"Which safety check should the nurse complete before administration?"},
+  {cue:"The client develops an unexpected change in vital signs or level of consciousness after receiving the medication.",prompt:"Which response is the immediate priority?"}
+ ]
+};
+const categoryAliases:Record<string,string>={
+ "Maternal-Newborn / Obstetrics":"Maternal-Newborn / Obstetrics",
+ "Cardiovascular / Perfusion":"Cardiovascular / Perfusion",
+ "Respiratory / Airway":"Respiratory / Airway",
+ "Endocrine / Metabolic":"Endocrine / Metabolic",
+ "Renal / Urinary":"Renal / Urinary",
+ "Neurologic":"Neurologic",
+ "Musculoskeletal / Mobility":"Musculoskeletal / Mobility",
+ "Hematology / Immune":"Hematology / Immune",
+ "Infection Control / Infectious Disease":"Infection Control / Infectious Disease",
+ "GI / Hepatic":"GI / Hepatic",
+ "Behavioral Health / Substance Use":"Behavioral Health / Substance Use",
+ "Pharmacology / Medication Teaching":"Pharmacology / Medication Teaching"
+};
 function make(b:B,i:number,global:number):Question{
-const topic=b.topics[i%b.topics.length],occurrence=generatedTopicOccurrences[topic]??0;
+const topic=b.topics[i%b.topics.length];
+const occurrence=generatedTopicOccurrences[topic]??0;
 generatedTopicOccurrences[topic]=occurrence+1;
-const alias:Record<string,string>={"Digoxin toxicity":"Digoxin","Magnesium sulfate toxicity":"Magnesium sulfate","Hemodialysis hypotension":"Hemodialysis","C. difficile precautions":"C. difficile","Neutropenic fever":"Neutropenia","Delegation":"UAP delegation"},clinical=topicClinicalOverrides[topic]??topicClinicalOverrides[alias[topic]??""]??first300TopicOverrides[topic]??additionalTopicOverrides[topic]??cardiovascularTopicOverrides[topic]??respiratoryTopicOverrides[topic]??second300TopicOverrides[topic]??{},source: B & {caseRecord?:Question["caseRecord"];prompt?:string}={...b,...clinical},age=18+(i*7+global*3)%69,hr=76+(i*11+global*3)%61,sbp=98+(i*13+global*5)%78,dbp=58+(i*7+global*2)%42,rr=14+(i*3+global)%19,spo=88+(i*5+global*2)%12,temp=(36.4+((i*17+global*3)%27)/10).toFixed(1);
-const mode=i%4;const lens=generatedQuestionLenses[occurrence%generatedQuestionLenses.length](topic);const prompt=occurrence===0?(source.prompt??"Based on the client's current assessment findings, which nursing action should the nurse take first?"):lens.prompt;
-const answerText=source.priority;const distractors=source.distractors??b.distractors;const answerWordCount=answerText.trim().split(/\s+/).length;const balanceDistractor=(value:string)=>{const words=value.trim().split(/\s+/).length;if(answerWordCount-words<6)return value;const suffix=/\b(wait|delay|defer|next routine)\b/i.test(value)?" and postpone escalation despite the new abnormal findings":/\b(administer|give|perform|apply|encourage|place)\b/i.test(value)?" before confirming the client’s stability and checking relevant contraindications":/\b(reassure|continue|leave|stop)\b/i.test(value)?" without reassessing the acute findings or notifying the responsible clinician":" while deferring reassessment despite the acute clinical change";return value+suffix;};const base=[answerText,balanceDistractor(distractors[(i+mode)%distractors.length]),balanceDistractor(distractors[(i+mode+1)%distractors.length]),balanceDistractor(distractors[(i+mode+2)%distractors.length])];const longestDistractorIndex=1+[1,2,3].reduce((best,index)=>base[index].trim().split(/\s+/).length>base[best].trim().split(/\s+/).length?index:best,1)-1;if(answerWordCount>=Math.max(...base.slice(1).map(value=>value.trim().split(/\s+/).length)))base[longestDistractorIndex]+=" without addressing the immediate risk or reassessing the client’s response";const shift=(i+global)%4;const opts=base.slice(shift).concat(base.slice(0,shift));
-return {id:"qrn-"+String(global+1).padStart(4,"0"),category:b.category,topic,difficulty:i%5===0?"Advanced":i%3===0?"Foundational":"Intermediate",prompt,options:opts,answer:opts.indexOf(answerText),rationale:source.rationale+(clinical.rationale?"":" Patient-specific record: age "+age+" years; BP "+sbp+"/"+dbp+" mm Hg; HR "+hr+"/min; RR "+rr+"/min; temperature "+temp+"°C; SpO2 "+spo+"%. Reconcile the entire assessment, trend, diagnostic data and prescribed orders."),status:"published",format:"single",contentVersion:3,reviewStatus:"generated",clinicalScenario:(source.scenario??("A "+age+"-year-old client is receiving care for "+topic.toLowerCase()+". During reassessment, BP is "+sbp+"/"+dbp+" mm Hg, HR "+hr+"/min, RR "+rr+"/min, temperature "+temp+"°C, and SpO2 "+spo+"% on room air."))+(occurrence>0?"\n\nFocused reassessment "+(occurrence+1)+": Recheck the client's response to the current plan, compare the latest findings with baseline, and identify whether the documented priority risk remains unresolved.":""),exhibit:undefined,caseRecord:source.caseRecord,caseStudyId:undefined};
+const alias:Record<string,string>={"Digoxin toxicity":"Digoxin","Magnesium sulfate toxicity":"Magnesium sulfate","Hemodialysis hypotension":"Hemodialysis","C. difficile precautions":"C. difficile","Neutropenic fever":"Neutropenia","Delegation":"UAP delegation"};
+const clinical=topicClinicalOverrides[topic]??topicClinicalOverrides[alias[topic]??""]??first300TopicOverrides[topic]??additionalTopicOverrides[topic]??cardiovascularTopicOverrides[topic]??respiratoryTopicOverrides[topic]??second300TopicOverrides[topic]??{};
+const source:B & {caseRecord?:Question["caseRecord"];prompt?:string}={...b,...clinical};
+const age=18+(i*7+global*3)%69;
+const lensPool=clinicalCaseLenses[categoryAliases[b.category]??"Pharmacology / Medication Teaching"]??clinicalCaseLenses["Pharmacology / Medication Teaching"];
+const lens=lensPool[(global+occurrence)%lensPool.length];
+const prompt=global<136?(source.prompt??"Based on the client's current assessment findings, which nursing action should the nurse take first?"):lens.prompt;
+const answerText=source.priority;
+const distractors=source.distractors??b.distractors;
+const mode=(global+occurrence)%distractors.length;
+const answerWordCount=answerText.trim().split(/\s+/).length;
+const balanceDistractor=(value:string)=>{const words=value.trim().split(/\s+/).length;if(answerWordCount-words<6)return value;const suffix=/\b(wait|delay|defer|next routine)\b/i.test(value)?" and postpone escalation despite the abnormal findings":/\b(administer|give|perform|apply|encourage|place)\b/i.test(value)?" before confirming stability and checking contraindications":/\b(reassure|continue|leave|stop)\b/i.test(value)?" without reassessing the acute findings or notifying the responsible clinician":" while deferring reassessment despite the clinical change";return value+suffix;};
+const base=[answerText,balanceDistractor(distractors[mode]),balanceDistractor(distractors[(mode+1)%distractors.length]),balanceDistractor(distractors[(mode+2)%distractors.length])];
+const shift=(global+occurrence)%4;
+const opts=base.slice(shift).concat(base.slice(0,shift));
+const patientAge=clinical.scenario?undefined:age;
+const scenario=global<136?(source.scenario??("A "+age+"-year-old client is receiving care for "+topic.toLowerCase()+".")):(source.scenario??("A "+age+"-year-old client is receiving care for "+topic.toLowerCase()+"."))+"\n\n"+lens.cue;
+const record=source.record??b.record;
+const rationale=source.rationale;
+return {
+ id:"qrn-"+String(global+1).padStart(4,"0"),
+ category:b.category,
+ topic,
+ difficulty:i%5===0?"Advanced":i%3===0?"Foundational":"Intermediate",
+ prompt,
+ options:opts,
+ answer:opts.indexOf(answerText),
+ rationale:global<136?rationale:rationale+" The nurse should use the current assessment and the topic-specific clinical evidence in the case to prioritize this response over routine or delayed interventions.",
+ status:"published",
+ format:"single",
+ contentVersion:3,
+ reviewStatus:"generated",
+ clinicalScenario:scenario,
+ exhibit:undefined,
+ caseRecord:source.caseRecord??{progressNotes:record,labs:"",flowSheet:""},
+ caseStudyId:undefined
+};
 }
+
 const all:Question[]=[];for(const b of B){for(let i=0;i<b.count;i++)all.push(make(b,i,all.length));}
 for(let c=0;c<cases.length;c++){for(let j=0;j<6;j++){const q=all[c*6+j],f=caseSpecificFollowups[c]?.[j]??followups[j],file=cases[c];if(q)all[c*6+j]={...q,id:"qrn-case-"+(c+1)+"-"+(j+1),topic:file.name,format:"case-study",difficulty:j===0||j===3?"Advanced":"Intermediate",caseStudy:file.record,exhibit:file.exhibit,caseRecord:{progressNotes:file.record,labs:file.exhibit,flowSheet:""},prompt:f.prompt,options:f.options,answer:f.answer,rationale:f.rationale,status:"published",clinicalScenario:undefined};}}
 for(let i=0;i<curatedTraditionalQuestions.length;i++)all[36+i]=curatedTraditionalQuestions[i];
