@@ -408,7 +408,7 @@ const curatedExtension:Question[]=buildCuratedExtension();
 function migrateLegacy(q:Question):Question {
   if(q.itemType&&q.interaction)return {...q,contentVersion:3,reviewStatus:q.reviewStatus??"generated"};
   const itemType:NclexItemType=q.format==="multiple"?"multiple-response":"single-response";
-  return {...q,itemType,interaction:{instruction:itemType==="multiple-response"?"Select all responses that apply.":"Select the one best response.",choices:q.options,correctResponse:[String(q.answer)]},contentVersion:3,reviewStatus:"generated"};
+  return {...q,itemType,interaction:{...q.interaction,instruction:q.interaction?.instruction??(itemType==="multiple-response"?"Select all responses that apply.":"Select the one best response."),choices:q.interaction?.choices??q.options,correctResponse:q.interaction?.correctResponse??[String(q.answer)],optionRationales:q.interaction?.optionRationales},contentVersion:3,reviewStatus:"generated"};
 }
 export const questionBank500V2:Question[]=questionBank500.map(migrateLegacy);
 export const questionBank100:Question[]=curatedExtension;
