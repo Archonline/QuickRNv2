@@ -7,14 +7,7 @@ import { responseIsCorrect } from "./examScoring.js";
 type Props={questions:Question[];onExit:()=>void};
 const LETTERS=["A","B","C","D","E","F","G","H"];
 const FORMAT_SAMPLER_TYPES:CanonicalNclexItemType[]=["single-response","multiple-response","select-n","drop-down-cloze","drop-down-rationale","highlight-text","matrix-multiple","matrix-single","numeric-entry","ordered-response","bow-tie","drag-drop","trend"];
-const LABELS:Record<NclexItemType,string>={
- "single-response":"Single choice","multiple-response":"Select all that apply","select-n":"Select N",
- "drop-down-cloze":"Dropdown cloze","drop-down-rationale":"Dropdown rationale","highlight-text":"Highlight text",
- "matrix-multiple":"Matrix multiple","matrix-single":"Matrix single","numeric-entry":"Numeric entry",
- "ordered-response":"Ordered response","bow-tie":"Bow-tie","drag-drop":"Drag and drop","trend":"Trend",
- "extended-multiple-response":"Select all that apply","drop-down-table":"Dropdown table","highlight-table":"Highlight table",
- "matrix-grid":"Matrix / grid","extended-drag-drop":"Drag and drop","graphics-based":"Graphics-based"
-};
+
 
 export default function ExamPage({questions,onExit}:Props){
  const published=useMemo(()=>questions.filter(q=>q.status==="published"),[questions]);
