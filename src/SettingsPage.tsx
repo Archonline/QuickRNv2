@@ -19,7 +19,7 @@ export default function SettingsPage({ user }: { user: User | null }) {
   useEffect(() => {
     try {
       const raw = localStorage.getItem(key);
-      if (raw) setPrefs({ ...defaults, ...JSON.parse(raw) as Partial<Preferences> });
+      if (raw) { const loaded = { ...defaults, ...JSON.parse(raw) as Partial<Preferences> }; setPrefs(loaded); document.documentElement.classList.toggle("qr-large-text", loaded.largerText); document.documentElement.classList.toggle("qr-compact-layout", loaded.compactLayout); }
     } catch (error) { console.warn("Could not load QuickRN preferences", error); }
   }, []);
   function update<K extends keyof Preferences>(field: K, value: Preferences[K]) {
