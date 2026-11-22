@@ -70,6 +70,25 @@ Severe headache after lumbar puncture; Buck's traction; severe pain with suspect
 
 This list is a seed blueprint, not a limit. Maintain broad NCLEX client-needs coverage. Do not overconcentrate on seed topics.
 
+## NCLEX-style screen and interaction contract
+
+The exam renderer follows the supplied NCLEX/NGN screenshot references. Author the item data to support the actual screen structure; do not compensate for missing clinical content with generic helper text.
+
+- **Clinical record pane:** For case-based and chart-driven items, provide a coherent patient chart with relevant progress/nursing notes, history, medication list, assessment, vital signs, laboratory results, and authentic, internally consistent provider orders. Do not leave relevant tabs empty or put non-laboratory content in the laboratory section. Include a meaningful flow-sheet timeline when the case evolves.
+- **Two-pane layout:** Use a persistent left clinical-record/scenario pane and a right question/task pane for unfolding case studies, trend items, and chart-driven standalone items. Keep the right pane focused on the task and learner response. Do not repeat the entire patient scenario in the question stem when it is already visible in the left pane.
+- **Single-column layout:** Use one continuous column for ordinary standalone multiple-choice and multiple-response items when no chart/exhibit is required.
+- **Matrix:** Provide concise, clinically meaningful rows and clear column headings (for example Expected, Needs follow-up, Emergency). Do not use placeholder rows such as “Finding 1.” Align column headings and response controls consistently. A matrix-single row accepts one classification; a matrix-multiple row may accept more than one where clinically appropriate.
+- **Numeric entry:** State the calculation in the clinical context. Supply all required weight, concentration, dose, route, and unit data. Do not repeat “enter numeric answer” in both the stem and control label.
+- **Ordered response:** Describe the actual patient condition and order clinically appropriate actions. The learner must reorder the items by dragging; do not add arrow buttons or duplicate instructions.
+- **Bow-tie:** Supply one defensible condition, distinct action options, and relevant monitoring parameters. Display the complete bow-tie diagram (condition in the center, actions and monitoring on either side) before the choice bank. The learner drags choices into slots; dragging a selected choice away clears it. Never use generic filler such as “acute deterioration related to [topic]” when a specific diagnosis is available.
+- **Drag-and-drop:** Write a complete, grammatical clinical statement or paragraph with meaningful blanks and plausible distractors. Each blank must have a unique, explicit keyed answer.
+- **Trend:** Supply at least two time-stamped observations that show a meaningful clinical change, with units and relevant interventions. Use a chart/table in the clinical record pane and ask the learner to interpret the direction and significance of the trend.
+- **Drop-down cloze/rationale:** Use a complete, context-rich sentence or paragraph with blanks embedded in the text. Choices must fit grammatically and clinically. Avoid a one-line generic template.
+- **Highlight text:** Supply a sufficiently long clinical note containing relevant cues and plausible distractors. The learner must be able to click individual words or phrases to toggle highlights; do not substitute a checkbox list or rely only on browser text selection.
+- **Unfolding case study:** Use exactly six linked screens for a complete case. Maintain one patient and a coherent timeline; update the chart and question task at each stage. Avoid reusing the same static chart as six separate questions.
+
+Do not display category, topic, difficulty, item-type names, or clinical-judgment labels as hints in the active examination. Do not repeat selection instructions in both the stem and the interaction panel. Keep text concise but large enough to read comfortably.
+
 ## Supported question formats
 
 Use exactly these `question_type` values and their corresponding interaction structures:
