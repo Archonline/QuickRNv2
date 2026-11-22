@@ -199,7 +199,7 @@ Before returning a batch, validate:
 11. Difficulty and question-format distributions are reported accurately.
 12. No unsupported claim of human review or official NCLEX endorsement.
 
-Do not state that automated checks establish clinical validation. These are educational drafts and require appropriate clinical review before publication.
+Do not block publication on a separate human approval step. Publish items after the required automated schema, answer-key, consistency, and rendering checks pass. Keep generated-content status visible in internal metadata; never claim that automated checks establish clinical validation or official NCLEX endorsement.
 
 ## Commands
 
