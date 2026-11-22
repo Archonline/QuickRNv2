@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { DragEvent } from "react";
 import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, X, Calculator, FileText, AlertCircle, ClipboardList } from "lucide-react";
 import type { CanonicalNclexItemType, Question, QuestionInteraction } from "./questions";
-import { responseIsCorrect } from "./examScoring.js";
+import { responseScore } from "./examScoring.js";
 
 type Props={questions:Question[];onExit:()=>void};
 const LETTERS=["A","B","C","D","E","F","G","H"];
@@ -17,8 +17,12 @@ export default function ExamPage({questions,onExit}:Props){
  const [samplerSeed,setSamplerSeed]=useState(0);
  function caseGroupKey(q:Question){return q.caseStudyId??(q.format==="case-study"&&q.caseStudy?`case:${q.caseStudy}`:undefined);}
 function expandCaseStudyGroups(items:Question[],publishedItems:Question[]){const emitted=new Set<string>();const output:Question[]=[];for(const q of items){if(emitted.has(q.id))continue;const key=caseGroupKey(q);const group=key?publishedItems.filter(candidate=>caseGroupKey(candidate)===key):[q];for(const member of group){if(!emitted.has(member.id)){output.push(member);emitted.add(member.id);}}}return output;}
-function selectExamItems(publishedItems:Question[],count:number){const itemType=(q:Question)=>q.itemType??(q.format==="multiple"?"multiple-response":"single-response");const ngn=publishedItems.filter(q=>!!caseGroupKey(q)||itemType(q)!=="single-response");const traditional=publishedItems.filter(q=>!caseGroupKey(q)&&itemType(q)==="single-response");const ngnTarget=Math.min(ngn.length,Math.max(count>=6?6:1,Math.ceil(count*.35)));const traditionalTarget=Math.max(0,count-ngnTarget);return expandCaseStudyGroups([...traditional.slice(0,traditionalTarget),...ngn.slice(0,ngnTarget)],publishedItems);}
-const exam=useMemo(()=>{const formatType=(q:Question)=>q.itemType??(q.format==="multiple"?"multiple-response":"single-response");if(formatSampler){const selected:Question[]=[];const used=new Set<string>();for(const type of FORMAT_SAMPLER_TYPES){const preferred=published.filter(q=>!caseGroupKey(q)&&formatType(q)===type&&!used.has(q.id));const fallback=published.filter(q=>formatType(q)===type&&!used.has(q.id));const candidates=[...preferred];for(const q of fallback)if(!candidates.some(candidate=>candidate.id===q.id))candidates.push(q);for(let i=candidates.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[candidates[i],candidates[j]]=[candidates[j],candidates[i]];}const picked=candidates[0];if(picked){selected.push(picked);used.add(picked.id);}}return selected;}if(questionCount==="all")return expandCaseStudyGroups(published,published);const count=Number(questionCount);return selectExamItems(published,count);},[published,questionCount,formatSampler,samplerSeed]);
+function seededShuffle<T>(items:T[],seed:number){const out=[...items];let state=(seed>>>0)||0x9e3779b9;const random=()=>{state=(state+0x6D2B79F5)>>>0;let t=state;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return ((t^(t>>>14))>>>0)/4294967296;};for(let i=out.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
+function normalizedType(q:Question){const t=q.itemType??(q.format==="multiple"?"multiple-response":"single-response");return t==="matrix-grid"?"matrix-multiple":t;}
+function selectExamItems(publishedItems:Question[],count:number,seed:number){const shuffled=seededShuffle(publishedItems,seed);const cases=new Map<string,Question[]>();for(const q of shuffled){const key=caseGroupKey(q);if(key){const group=cases.get(key)??[];group.push(q);cases.set(key,group);}}
+ const caseGroups=seededShuffle([...cases.values()],seed+101);const caseScreens=Math.min(count>=6?12:0,caseGroups.reduce((n,g)=>n+g.length,0));const chosenCases:Question[]=[];let screens=0;for(const group of caseGroups){if(screens>=caseScreens)break;if(screens+group.length<=caseScreens){chosenCases.push(...group);screens+=group.length;}}
+ const standaloneNgn=shuffled.filter(q=>!caseGroupKey(q)&&normalizedType(q)!=="single-response");const ngnTarget=Math.min(count,Math.max(count>=6?Math.ceil(count*.35):1,chosenCases.length));const ngnStandaloneTarget=Math.max(0,ngnTarget-chosenCases.length);const chosenNgn=seededShuffle(standaloneNgn,seed+211).slice(0,ngnStandaloneTarget);const traditional=shuffled.filter(q=>!caseGroupKey(q)&&normalizedType(q)==="single-response");const traditionalTarget=Math.max(0,count-chosenCases.length-chosenNgn.length);const chosenTraditional=seededShuffle(traditional,seed+307).slice(0,traditionalTarget);return [...chosenTraditional,...chosenCases,...chosenNgn];}
+const exam=useMemo(()=>{const formatType=(q:Question)=>normalizedType(q);if(formatSampler){const selected:Question[]=[];const used=new Set<string>();for(const type of FORMAT_SAMPLER_TYPES){const preferred=published.filter(q=>!caseGroupKey(q)&&formatType(q)===type&&!used.has(q.id));const fallback=published.filter(q=>formatType(q)===type&&!used.has(q.id));const candidates=[...preferred];for(const q of fallback)if(!candidates.some(candidate=>candidate.id===q.id))candidates.push(q);const randomized=seededShuffle(candidates,samplerSeed+FORMAT_SAMPLER_TYPES.indexOf(type)+1);const picked=randomized[0];if(picked){selected.push(picked);used.add(picked.id);}}return selected;}if(questionCount==="all")return expandCaseStudyGroups(published,published);const count=Number(questionCount);return selectExamItems(published,count,samplerSeed);},[published,questionCount,formatSampler,samplerSeed]);
  const [answers,setAnswers]=useState<Record<string,string[]>>({});
  const [current,setCurrent]=useState(0);
  const [flagged,setFlagged]=useState<string[]>([]);
@@ -44,9 +48,10 @@ const exam=useMemo(()=>{const formatType=(q:Question)=>q.itemType??(q.format==="
 
  const done=Object.keys(answers).filter(k=>(answers[k]??[]).some(value=>value!=="")).length;
  const expected=(q:Question)=>q.interaction?.correctResponse??[String(q.answer)];
- const isQuestionCorrect=(q:Question,actual:string[])=>{const itemType=q.itemType??(q.format==="multiple"?"multiple-response":"single-response");const target=expected(q);if(itemType==="numeric-entry"){if(actual.length!==1||target.length!==1)return false;const value=Number(actual[0]),key=Number(target[0]);return Number.isFinite(value)&&Number.isFinite(key)&&Math.abs(value-key)<=(q.interaction?.numericTolerance??0);}return responseIsCorrect(itemType,actual,target);};
+ const itemCredit=(q:Question,actual:string[])=>{const itemType=q.itemType??(q.format==="multiple"?"multiple-response":"single-response");const target=expected(q);if(itemType==="numeric-entry"){if(actual.length!==1||target.length!==1)return 0;const value=Number(actual[0]),key=Number(target[0]);return Number.isFinite(value)&&Number.isFinite(key)&&Math.abs(value-key)<=(q.interaction?.numericTolerance??0)?1:0;}return responseScore(itemType,actual,target);};
+ const isQuestionCorrect=(q:Question,actual:string[])=>itemCredit(q,actual)===1;
  const correct=(q:Question)=>isQuestionCorrect(q,answers[q.id]??[]);
- const score=exam.reduce((n,q)=>n+(correct(q)?1:0),0);
+ const score=exam.reduce((n,q)=>n+itemCredit(q,answers[q.id]??[]),0);
  const selected=item?(answers[item.id]??[]):[];
  const setResponse=(values:string[])=>{if(item)setAnswers(old=>({...old,[item.id]:values}));};
  const setIndexedResponse=(index:number,value:string)=>{const next=[...selected];while(next.length<=index)next.push("");next[index]=value;setResponse(next);};
@@ -139,10 +144,10 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
   const reviewRecordActive=reviewRecordTabs.find(tab=>tab.key===activeRecordTab)??reviewRecordTabs[0];
   const actualLabels=reviewLabels(q,response);
   const correctLabels=reviewLabels(q,expectedResponse);
-  const status=response.every(value=>value==="")?"Unanswered":isCorrect?"Correct":"Incorrect";
+  const credit=responseScore(q.itemType??(q.format==="multiple"?"multiple-response":"single-response"),response,expectedResponse);const status=response.every(value=>value==="")?"Unanswered":credit===1?"Correct":credit>0?"Partially correct":"Incorrect";
   return <div className="exam-screen exam-review-screen">
    <header className="exam-header"><div className="exam-brand"><span className="exam-brand-mark">Q</span><div><strong>QuickRN</strong><small>RN LICENSURE PRACTICE</small></div></div><div className="exam-header-center"><strong>Examination Review</strong><span>Submitted responses and rationales</span></div><button type="button" className="exam-exit" onClick={onExit}>Return to dashboard</button></header>
-   <section className="exam-review-summary"><div><span>EXAMINATION COMPLETE</span><h1>Review your performance</h1><p>Review each item, compare your response with the keyed answer, and read the rationale.</p></div><div className="exam-review-score"><strong>{score}/{exam.length}</strong><span>{Math.round(score/exam.length*100)}% exact-match accuracy</span></div></section>
+   <section className="exam-review-summary"><div><span>EXAMINATION COMPLETE</span><h1>Review your performance</h1><p>Review each item, compare your response with the keyed answer, and read the rationale.</p></div><div className="exam-review-score"><strong>{score}/{exam.length}</strong><span>{Math.round(score/exam.length*100)}% partial-credit score</span></div></section>
    <div className="exam-review-progress"><span style={{width:((reviewIndex+1)/exam.length*100)+"%"}}/></div>
    <div className="exam-review-workspace">
     <main className="exam-review-left">
