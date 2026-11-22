@@ -327,7 +327,7 @@ const second300TopicOverrides:Record<string,ClinicalOverride>={
 };
 
 type CuratedTraditionalItem = {
-  topic:string; subtopic:string; difficulty:string; question_type:string; stem:string;
+  id:string; topic:string; subtopic:string; difficulty:string; question_type:string; stem:string;
   clinical_scenario:unknown; interaction:Record<string,unknown>; correct_response:unknown;
   rationales:Record<string,string|undefined>; clinical_judgment:string; scoring:Record<string,unknown>;
   review_metadata?:{status?:string;references?:string[];verified_at?:string;publication_status?:string};
