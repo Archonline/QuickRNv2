@@ -389,7 +389,7 @@ function curatedTraditionalQuestion(raw:CuratedTraditionalItem,index:number):Que
     const columns=Array.isArray(source.columns)?source.columns as string[]:[];
     const key=correct as Record<string,string>;
     const expected=rows.map((row,index)=>index+":"+Math.max(0,columns.indexOf(String(key[row.id]??""))));
-    itemType="matrix-grid";outputOptions=[];answer=0;
+    itemType="matrix-single";outputOptions=[];answer=0;
     interaction={instruction:"Select the best classification for each clinical finding.",choices:[],rows:rows.map(row=>row.text),columns,matrixMode:"single",correctResponse:expected,correctMatrix:Object.fromEntries(rows.map((row,index)=>[String(index),String(key[row.id]??"")]))};
   }
   return {
