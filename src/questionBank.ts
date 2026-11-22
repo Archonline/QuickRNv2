@@ -32,11 +32,86 @@ const followups=[
 {prompt:"Which finding best indicates that the prescribed intervention is effective?",options:["The room is quieter","A single isolated value changes without clinical improvement","The client asks when discharge will occur","The relevant physiologic trend improves with better function or perfusion"],answer:3,rationale:"Effectiveness is demonstrated by a clinically meaningful trend in the targeted physiologic problem, not by an unrelated preference or isolated datum."},
 {prompt:"Which handoff statement best communicates the remaining priority?",options:["The client is stable because one measurement improved","The acute diagnosis, current trend, intervention response and explicit escalation threshold","Only the medication list without current assessment findings","The original symptoms without the current status"],answer:1,rationale:"A safe handoff communicates the problem, objective trend, actions taken, response and criteria for escalation."}
 ];
+type ClinicalOverride = Partial<B> & {prompt?:string; caseRecord?:Question["caseRecord"]};
+const topicClinicalOverrides:Record<string,ClinicalOverride>={
+ "Rh incompatibility":{
+  prompt:"Which nursing action is appropriate for this client?",
+  scenario:"A 27-year-old client, G2P1, is at 28 weeks of gestation and has blood type O Rh-negative. The antibody screen is negative. The biologic partner is Rh-positive. The client has no history of receiving Rh(D) immune globulin during this pregnancy and reports no vaginal bleeding, abdominal trauma, or invasive prenatal procedure.",
+  priority:"Verify the negative antibody screen and administer the prescribed 300-microgram Rh(D) immune globulin intramuscularly at 28 weeks. Document administration and plan postpartum testing and prophylaxis according to the newborn's Rh status.",
+  distractors:["Administer Rh(D) immune globulin only if the current antibody screen is positive","Wait until labor begins because antepartum prophylaxis is not indicated","Administer the live rubella vaccine during pregnancy","Give the client an Rh-positive blood product to prevent sensitization"],
+  rationale:"An unsensitized Rh-negative pregnant client should receive routine antepartum Rh(D) immune globulin at about 28 weeks and additional prophylaxis after a sensitizing event. Postpartum prophylaxis is indicated when the newborn is Rh-positive or status requires it. Rh(D) immune globulin prevents maternal sensitization; it does not treat established alloimmunization.",
+  record:"Prenatal laboratory results: ABO group O; Rh(D) negative; indirect antiglobulin (antibody) screen negative at 27 weeks 6 days; partner reported Rh-positive. Hemoglobin 11.4 g/dL; platelets 238,000/mm³. Vital signs: BP 112/68 mm Hg, HR 82/min, RR 16/min, temperature 36.8°C. Provider orders: Rh(D) immune globulin 300 micrograms IM at 28 weeks; repeat antibody screen and assess for sensitizing events; after birth, determine newborn Rh(D) type and administer postpartum Rh(D) immune globulin within 72 hours if indicated.",
+  caseRecord:{progressNotes:"28 weeks 0 days: Client presents for routine prenatal visit. Denies vaginal bleeding, abdominal trauma, contractions, or recent invasive procedure. No Rh(D) immune globulin documented during this pregnancy.",history:"G2P1. Prior pregnancy without documented alloimmunization. No transfusion history reported. Partner reports Rh-positive blood type.",medicationList:"Prenatal vitamin daily. Rh(D) immune globulin 300 micrograms IM ordered for today's visit.",assessment:"Unsensitized Rh-negative pregnant client at 28 weeks. No current evidence of a sensitizing event or obstetric emergency.",vitalSigns:"BP 112/68 mm Hg\nHR 82/min\nRR 16/min\nTemperature 36.8°C",labs:"ABO group: O\nRh(D): Negative\nIndirect antiglobulin screen: Negative\nHemoglobin: 11.4 g/dL\nPlatelets: 238,000/mm³",providerOrders:"Administer Rh(D) immune globulin 300 micrograms IM at 28 weeks. If a sensitizing event occurs, evaluate promptly and administer an additional dose as prescribed. After birth, determine newborn Rh(D) type; administer postpartum Rh(D) immune globulin within 72 hours if the newborn is Rh-positive and the parent remains unsensitized.",assessmentNotes:"Teach the client to report vaginal bleeding, abdominal trauma, or invasive procedures promptly. Explain the purpose of antepartum and postpartum prophylaxis."}
+ },
+ "C. difficile":{
+  prompt:"Which infection-prevention actions should the nurse implement?",
+  scenario:"A hospitalized adult has six watery stools in 12 hours after completing clindamycin. Stool testing is positive for Clostridioides difficile toxin. The client is alert, BP 118/72 mm Hg, HR 104/min, temperature 38.1°C, and reports abdominal cramping.",
+  priority:"Initiate contact/enteric precautions, use gown and gloves on room entry, dedicate equipment, clean the environment with a sporicidal product, and perform hand hygiene with soap and water after care.",
+  distractors:["Use alcohol-based hand rub as the only hand hygiene method","Place the client in a negative-pressure room for airborne isolation","Discontinue contact precautions as soon as the first dose of treatment is given","Share a commode after wiping it with a routine disinfectant"],
+  rationale:"C. difficile spores persist in the environment and are not reliably removed by alcohol-based hand rub. Use contact/enteric precautions, dedicated equipment, sporicidal environmental cleaning, and soap-and-water hand hygiene."
+ },
+ "Hemodialysis":{
+  prompt:"Which action should the nurse take first?",
+  scenario:"During hemodialysis, a client becomes pale, nauseated, and dizzy. Blood pressure falls from 150/82 to 84/48 mm Hg after 2.9 L of ultrafiltration. Heart rate is 116/min. The client is alert and the arteriovenous fistula has a palpable thrill.",
+  priority:"Stop or reduce ultrafiltration according to the dialysis-unit hypotension protocol, position the client safely, reassess vital signs, and notify the dialysis clinician.",
+  distractors:["Increase ultrafiltration to reach the prescribed target weight","Ask the client to stand and walk to improve circulation","Compress the fistula until the blood pressure returns to baseline","Continue the treatment unchanged and reassess at the end of dialysis"],
+  rationale:"The acute blood-pressure drop with dizziness and nausea is consistent with intradialytic hypotension. Stop or reduce fluid removal and follow the unit response protocol while reassessing perfusion."
+ },
+ "Digoxin":{
+  prompt:"Which action should the nurse take?",
+  scenario:"A 76-year-old client taking digoxin and furosemide reports nausea, poor appetite, and yellow halos around lights. Apical pulse is 46/min and irregular. Potassium is 2.8 mEq/L and creatinine is 1.8 mg/dL.",
+  priority:"Withhold the scheduled digoxin dose, promptly notify the prescriber, and anticipate ECG assessment and a properly timed serum digoxin level.",
+  distractors:["Administer the scheduled dose with food","Give an additional dose because the client has nausea","Encourage the client to take an over-the-counter antacid and continue therapy","Document the visual changes as an expected effect and reassess tomorrow"],
+  rationale:"Bradycardia, visual disturbance, nausea, renal impairment, and hypokalemia suggest digoxin toxicity. Hypokalemia increases myocardial sensitivity to digoxin; withhold the dose and urgently evaluate."
+ },
+ "Newborn hypoglycemia":{
+  prompt:"Which action should the nurse take first?",
+  scenario:"A 2-hour-old newborn of a parent with diabetes is jittery, has a weak cry, and is unable to maintain an effective latch. Point-of-care glucose is 28 mg/dL and axillary temperature is 36.2°C.",
+  priority:"Initiate the newborn hypoglycemia protocol immediately, provide prompt glucose treatment appropriate to the symptomatic newborn, support thermal stability, and recheck glucose at the protocol-defined interval.",
+  distractors:["Wait until the next scheduled feeding before repeating the glucose","Give sterile water and reassess in one hour","Place the newborn unwrapped under a fan","Document the jitteriness as a normal transition finding"],
+  rationale:"A symptomatic newborn with a glucose of 28 mg/dL requires immediate protocol-based treatment and reassessment. Do not delay treatment for a routine feeding schedule."
+ },
+ "Hepatic encephalopathy":{
+  prompt:"Which intervention should the nurse anticipate?",
+  scenario:"A client with cirrhosis becomes disoriented and has asterixis after three days without a bowel movement. The client is drowsy but arousable. Ammonia is 92 micromol/L, INR 1.9, and sodium 132 mEq/L.",
+  priority:"Administer prescribed lactulose and monitor mental status, stool frequency, hydration, and electrolytes while assessing for precipitating causes.",
+  distractors:["Administer a sedative to suppress the confusion","Permanently eliminate all dietary protein","Withhold treatment until the ammonia level doubles","Restrict all fluids without evaluating volume status"],
+  rationale:"New confusion and asterixis in a client with cirrhosis suggest hepatic encephalopathy. Lactulose reduces intestinal ammonia absorption; monitor clinical response and fluid/electrolyte balance."
+ },
+ "UAP delegation":{
+  prompt:"Which task is appropriate for the RN to delegate to the UAP?",
+  scenario:"The RN is caring for four stable adult clients. A trained UAP is available. One client needs routine vital signs before breakfast; another requires an initial assessment, a third needs discharge teaching, and a fourth has a new change in respiratory status.",
+  priority:"Delegate routine vital-sign collection for the stable client and instruct the UAP to report abnormal findings promptly.",
+  distractors:["Ask the UAP to perform the initial admission assessment","Delegate evaluation of the client's response to a new medication","Ask the UAP to assess the client with new respiratory symptoms","Delegate development of the nursing care plan"],
+  rationale:"A UAP may collect routine data from a stable client. Initial assessment, clinical judgment, teaching, care planning, and evaluation remain RN responsibilities."
+ },
+ "Magnesium sulfate":{
+  prompt:"Which action should the nurse take immediately?",
+  scenario:"A client receiving magnesium sulfate for preeclampsia with severe features has a respiratory rate of 10/min, absent patellar reflexes, and urine output of 20 mL/hr. The client is increasingly drowsy.",
+  priority:"Stop the magnesium sulfate infusion, summon urgent assistance, notify the provider, support airway and breathing, and prepare the prescribed calcium gluconate antidote.",
+  distractors:["Increase the infusion rate to prevent seizures","Administer an additional magnesium bolus","Encourage ambulation to improve urine output","Continue the infusion and recheck reflexes in one hour"],
+  rationale:"Respiratory depression, absent deep-tendon reflexes, oliguria, and altered alertness indicate magnesium toxicity. Stop the infusion and initiate emergency management."
+ },
+ "Heart failure":{
+  prompt:"Which finding requires immediate nursing action?",
+  scenario:"A client with chronic heart failure has gained 2.4 kg in three days and reports worsening orthopnea. The client has crackles halfway up both lungs, respiratory rate 30/min, and SpO2 88% on room air.",
+  priority:"Prioritize breathing: position upright, initiate oxygen as prescribed or per protocol, assess respiratory status, and promptly escalate acute pulmonary congestion.",
+  distractors:["Reassure the client that the weight gain is expected","Encourage oral fluids to improve circulation","Delay intervention until the next scheduled weight","Focus on routine low-sodium diet teaching before addressing hypoxemia"],
+  rationale:"Hypoxemia, orthopnea, crackles, and rapid weight gain indicate acute decompensated heart failure with pulmonary congestion. Stabilize breathing and escalate promptly."
+ },
+ "Neutropenia":{
+  prompt:"Which action is the priority?",
+  scenario:"A client receiving chemotherapy reports chills and has an oral temperature of 38.4°C. Absolute neutrophil count is 380/mm³, BP 98/60 mm Hg, and HR 118/min.",
+  priority:"Notify the oncology team immediately and initiate the febrile-neutropenia pathway, including prompt cultures and empiric broad-spectrum antibiotics as ordered.",
+  distractors:["Wait for the next scheduled CBC before notifying the provider","Administer a rectal suppository for fever","Place fresh flowers in the client's room","Recheck the temperature in four hours before taking action"],
+  rationale:"Fever with severe neutropenia is an oncologic emergency. Rapid evaluation and timely empiric antimicrobial therapy are essential; avoid rectal procedures and potential infection exposures."
+ }
+};
 function make(b:B,i:number,global:number):Question{
-const topic=b.topics[i%b.topics.length],age=18+(i*7+global*3)%69,hr=76+(i*11+global*3)%61,sbp=98+(i*13+global*5)%78,dbp=58+(i*7+global*2)%42,rr=14+(i*3+global)%19,spo=88+(i*5+global*2)%12,temp=(36.4+((i*17+global*3)%27)/10).toFixed(1);
-const mode=i%4;const prompt=mode===0?"A "+age+"-year-old client being treated for "+topic.toLowerCase()+" has BP "+sbp+"/"+dbp+" mm Hg, HR "+hr+"/min, RR "+rr+"/min, temperature "+temp+"°C and SpO2 "+spo+"%. The clinical record and orders are shown. Which nursing action is the priority?":mode===1?"During reassessment of a "+age+"-year-old client with "+topic.toLowerCase()+", BP is "+sbp+"/"+dbp+" mm Hg, HR "+hr+"/min, RR "+rr+"/min and SpO2 "+spo+"%. Which interpretation should guide the next action?":mode===2?"A "+age+"-year-old client with "+topic.toLowerCase()+" has a new change from baseline. Current BP is "+sbp+"/"+dbp+" mm Hg, HR "+hr+"/min, RR "+rr+"/min, temperature "+temp+"°C. Which nursing action should the nurse take first?":"The nurse receives handoff about a "+age+"-year-old client with "+topic.toLowerCase()+". BP is "+sbp+"/"+dbp+" mm Hg, HR "+hr+"/min, RR "+rr+"/min and SpO2 "+spo+"%. Which finding requires immediate reassessment?";
-const answerText=b.priority;const base=[answerText,b.distractors[(i+mode)%4],b.distractors[(i+mode+1)%4],b.distractors[(i+mode+2)%4]];const shift=(i+global)%4;const opts=base.slice(shift).concat(base.slice(0,shift));
-return {id:"qrn-"+String(global+1).padStart(4,"0"),category:b.category,topic,difficulty:i%5===0?"Advanced":i%3===0?"Foundational":"Intermediate",prompt,options:opts,answer:opts.indexOf(answerText),rationale:b.rationale+" Patient-specific record: age "+age+" years; BP "+sbp+"/"+dbp+" mm Hg; HR "+hr+"/min; RR "+rr+"/min; temperature "+temp+"°C; SpO2 "+spo+"%. Reconcile the entire assessment, trend, diagnostic data and prescribed orders.",status:"published",format:"single",exhibit:b.scenario+"\n\nDiagnostic/laboratory record: "+b.record+"\n\nCurrent orders: focused reassessment, appropriate monitoring and escalation for deterioration."};
+const topic=b.topics[i%b.topics.length],clinical=topicClinicalOverrides[topic]??{},source={...b,...clinical},age=18+(i*7+global*3)%69,hr=76+(i*11+global*3)%61,sbp=98+(i*13+global*5)%78,dbp=58+(i*7+global*2)%42,rr=14+(i*3+global)%19,spo=88+(i*5+global*2)%12,temp=(36.4+((i*17+global*3)%27)/10).toFixed(1);
+const mode=i%4;const prompt=source.prompt??(mode===0?"A "+age+"-year-old client being treated for "+topic.toLowerCase()+" has BP "+sbp+"/"+dbp+" mm Hg, HR "+hr+"/min, RR "+rr+"/min, temperature "+temp+"°C and SpO2 "+spo+"%. The clinical record and orders are shown. Which nursing action is the priority?":mode===1?"During reassessment of a "+age+"-year-old client with "+topic.toLowerCase()+", BP is "+sbp+"/"+dbp+" mm Hg, HR "+hr+"/min, RR "+rr+"/min and SpO2 "+spo+"%. Which interpretation should guide the next action?":mode===2?"A "+age+"-year-old client with "+topic.toLowerCase()+" has a new change from baseline. Current BP is "+sbp+"/"+dbp+" mm Hg, HR "+hr+"/min, RR "+rr+"/min, temperature "+temp+"°C. Which nursing action should the nurse take first?":"The nurse receives handoff about a "+age+"-year-old client with "+topic.toLowerCase()+". BP is "+sbp+"/"+dbp+" mm Hg, HR "+hr+"/min, RR "+rr+"/min and SpO2 "+spo+"%. Which finding requires immediate reassessment?");
+const answerText=source.priority;const distractors=source.distractors??b.distractors;const base=[answerText,distractors[(i+mode)%distractors.length],distractors[(i+mode+1)%distractors.length],distractors[(i+mode+2)%distractors.length]];const shift=(i+global)%4;const opts=base.slice(shift).concat(base.slice(0,shift));
+return {id:"qrn-"+String(global+1).padStart(4,"0"),category:b.category,topic,difficulty:i%5===0?"Advanced":i%3===0?"Foundational":"Intermediate",prompt,options:opts,answer:opts.indexOf(answerText),rationale:source.rationale+" Patient-specific record: age "+age+" years; BP "+sbp+"/"+dbp+" mm Hg; HR "+hr+"/min; RR "+rr+"/min; temperature "+temp+"°C; SpO2 "+spo+"%. Reconcile the entire assessment, trend, diagnostic data and prescribed orders.",status:"published",format:"single",exhibit:b.scenario+"\n\nDiagnostic/laboratory record: "+b.record+"\n\nCurrent orders: focused reassessment, appropriate monitoring and escalation for deterioration."};
 }
 const all:Question[]=[];for(const b of B){for(let i=0;i<b.count;i++)all.push(make(b,i,all.length));}
 for(let c=0;c<cases.length;c++){for(let j=0;j<6;j++){const q=all[c*6+j],f=followups[j],file=cases[c];if(q)all[c*6+j]={...q,id:"qrn-case-"+(c+1)+"-"+(j+1),topic:file.name,format:"case-study",difficulty:j===0||j===3?"Advanced":"Intermediate",caseStudy:file.name+"\n\n"+file.record,exhibit:file.exhibit,prompt:f.prompt,options:f.options,answer:f.answer,rationale:f.rationale,status:"published"};}}
