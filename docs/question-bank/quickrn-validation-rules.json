@@ -5,7 +5,7 @@
     "json_parse",
     "schema_validation",
     "semantic_validation",
-    "clinical_consistency_review",
+    "clinical_consistency_validation",
     "asset_readiness",
     "duplicate_detection",
     "render_smoke_test"
@@ -284,13 +284,16 @@
       "semantic_validation",
       "answer_key_validation",
       "rationale_validation",
-      "clinical_consistency_review",
+      "clinical_consistency_validation",
       "duplicate_detection",
       "render_smoke_test"
     ],
     "hot_spot_asset_must_be_ready": true,
     "automated_validation_is_not_human_clinical_review": true,
-    "official_nclex_endorsement_must_not_be_claimed": true
+    "official_nclex_endorsement_must_not_be_claimed": true,
+    "human_approval_required": false,
+    "publish_after_automated_checks": true,
+    "generated_status_must_be_retained": true
   },
   "nclex_rendering_contract": {
     "clinical_record_pane": {
