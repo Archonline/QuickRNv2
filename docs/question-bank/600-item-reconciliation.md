@@ -45,3 +45,19 @@ These are topic-specific profiles, not a claim that every item has an individual
 **Remaining work:** author topic profiles for the other core-bank topics; rewrite all six unfolding case studies screen-by-screen; then replace the cyclic NGN seed set with topic-specific NGN cases and item tasks. Run TypeScript/build/tests and clinical consistency checks after the full remediation pass.
 
 **Status:** Count reconciled; 41 new topic profiles committed, with pre-existing topic overrides retained. The full 600-item clinical remediation remains in progress and is not certified as complete or clinically validated.
+
+
+## Bank-wide remediation — 2026-11-22
+
+The shared source and publishing pipeline have now been updated for the full 600-item export:
+
+- All 500 core items are generated with content version 3. The 150 distinct core topics are covered by topic-specific clinical profiles; repeated items within a topic still reuse that topic profile and are not represented as 500 individually authored vignettes.
+- All 100 NGN items use content version 3 and receive prompts aligned to their actual interaction type. The NGN generator now checks format-specific data before the bank can be exported: highlight passages and scoring keys, cloze/rationale blanks, matrix rows, ordered-response steps, bow-tie slots, drag-drop blanks, numeric units, and four-point trend records.
+- Trend items now use four hourly chart entries, including topic-specific records for tuberculosis, hepatic encephalopathy/asterixis, herpes zoster, alcohol withdrawal, elder safety, statin-associated muscle injury, and antibiotic anaphylaxis. Existing bowel-obstruction and tuberculosis chart cases remain four-point trends.
+- Bow-tie content includes topic-specific profiles for high-risk examples such as bowel obstruction, ulcerative colitis, sedative-related respiratory depression, neuroleptic malignant syndrome, autism-related sensory overload, and opioid-related respiratory depression. The shared renderer retains the three-column, 2-action / 1-condition / 2-monitor layout.
+- Highlight items use selectable clinical statements rather than isolated tokens; standalone RR labels are excluded unless part of a broader respiratory emergency finding. Drop-down prompts are aligned with their blank templates, and drag-drop items use three sequenced blanks with distractors.
+- The Admin Panel's full-bank publisher now persists clinicalScenario and caseRecord as well as the existing question, exhibit, and interaction fields. It writes all 600 IDs in safe batches and updates the content version to 3.
+
+**Publication requirement:** run the Admin Panel's **Publish all 600 questions** action after deploying the updated main branch. The source changes do not modify already-stored Firestore documents until this publication runs.
+
+**Review boundary:** these changes apply the shared content and rendering patches across the full export and add structural NGN checks. They do not constitute independent clinical validation of every answer key or a claim that every repeated core topic has a unique vignette. Continue clinical/editorial review before representing the bank as clinically validated.
