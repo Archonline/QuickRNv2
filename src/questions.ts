@@ -14,7 +14,7 @@ export type QuestionInteraction = {
   instruction?: string;
   choices?: string[];
   correctResponse?: string[];
-  segments?: string[];
+  segments?: string[];\n  highlightableSegments?: string[];
   rows?: string[];
   columns?: string[];
   matrixGroups?: { label: string; options: string[] }[];
