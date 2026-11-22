@@ -36,7 +36,8 @@ const formatInstructions: Record<CanonicalNclexItemType,string> = {
 "ordered-response":"Arrange the actions in the safest sequence.",
 "bow-tie":"Choose the most likely condition, two priority actions and two parameters to monitor.",
 "drag-drop":"Complete the clinical statement.",
-"trend":"Interpret the change in the clinical findings over time."
+"trend":"Interpret the change in the clinical findings over time.",
+"graphics-based":"Interpret the clinical graphic and select the indicated response."
 };
 
 function promptForType(type:CanonicalNclexItemType,seed:Seed):string {

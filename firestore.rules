@@ -24,6 +24,20 @@ service cloud.firestore {
           && request.resource.data.correctQuestionIds.size() <= 10000;
         allow delete: if isOwner(uid);
       }
+
+      match /settings/{settingsId} {
+        allow read: if isOwner(uid);
+        allow create, update: if isOwner(uid)
+          && settingsId == 'preferences'
+          && request.resource.data.keys().hasOnly(['dailyGoal','defaultExamLength','showRationales','compactLayout','largerText','studyReminders','updatedAt'])
+          && request.resource.data.dailyGoal in [10, 20, 30, 50, 75]
+          && request.resource.data.defaultExamLength in [20, 60, 85, 150, 600]
+          && request.resource.data.showRationales is bool
+          && request.resource.data.compactLayout is bool
+          && request.resource.data.largerText is bool
+          && request.resource.data.studyReminders is bool;
+        allow delete: if false;
+      }
     }
 
     match /questions/{questionId} {

@@ -4,14 +4,15 @@ import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, X, Calculator, FileText
 import type { CanonicalNclexItemType, Question, QuestionInteraction } from "./questions";
 import { responseScore } from "./examScoring.js";
 
-type Props={questions:Question[];onExit:()=>void};
+type Props={questions:Question[];onExit:()=>void;defaultQuestionCount?:number};
 const LETTERS=["A","B","C","D","E","F","G","H"];
 const FORMAT_SAMPLER_TYPES:CanonicalNclexItemType[]=["single-response","multiple-response","select-n","drop-down-cloze","drop-down-rationale","highlight-text","matrix-multiple","matrix-single","numeric-entry","ordered-response","bow-tie","drag-drop","trend","graphics-based"];
 
 
-export default function ExamPage({questions,onExit}:Props){
+export default function ExamPage({questions,onExit,defaultQuestionCount=85}:Props){
  const published=useMemo(()=>questions.filter(q=>q.status==="published"),[questions]);
- const [questionCount,setQuestionCount]=useState("85");
+ const [questionCount,setQuestionCount]=useState(String(defaultQuestionCount));
+ useEffect(()=>{setQuestionCount(defaultQuestionCount===600?"all":String(defaultQuestionCount));},[defaultQuestionCount]);
  const [started,setStarted]=useState(false);
  const [formatSampler,setFormatSampler]=useState(false);
  const [samplerSeed,setSamplerSeed]=useState(()=>Math.floor(Math.random()*0x100000000));
