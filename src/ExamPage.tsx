@@ -12,7 +12,7 @@ const LETTERS=["A","B","C","D","E","F","G","H"];
 const FORMAT_SAMPLER_TYPES:CanonicalNclexItemType[]=["single-response","multiple-response","select-n","drop-down-cloze","drop-down-rationale","highlight-text","matrix-multiple","matrix-single","numeric-entry","ordered-response","bow-tie","drag-drop","trend","graphics-based"];
 
 
-export default function ExamPage({questions,onExit,defaultQuestionCount=85,savedQuestionIds=[],onToggleSaved,onComplete,onReportFeedback,mode="self-study"}:Props){
+export default function ExamPage({questions,onExit,defaultQuestionCount=85,onComplete,onReportFeedback,mode="self-study"}:Props){
  const published=useMemo(()=>questions.filter(q=>q.status==="published"),[questions]);
  const [questionCount,setQuestionCount]=useState(String(defaultQuestionCount));
  useEffect(()=>{setQuestionCount(defaultQuestionCount===600?"all":String(defaultQuestionCount));},[defaultQuestionCount]);
