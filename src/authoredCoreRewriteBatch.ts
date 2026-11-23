@@ -61,11 +61,11 @@ export const authoredCoreRewriteBatch: Question[] = [
     "Intermediate",
     "A client with a chest tube for a spontaneous pneumothorax is repositioned in bed. The nurse notices that the tubing has become disconnected from the drainage system. The client is anxious but has SpO2 94%, RR 24/min, and no sudden respiratory distress.",
     "What should the nurse do immediately?",
-    ["Reconnect the tubing immediately with a sterile connector, then verify that the water-seal chamber is functioning", "Place the exposed tube end in sterile water according to emergency protocol and reconnect to a new sterile system", "Clamp the tube briefly while preparing the replacement drainage system, then remove the clamp promptly", "Cover the insertion site with an occlusive dressing and await the provider before restoring the drainage system"],
+    ["Clamp the chest tube while obtaining a replacement drainage system", "Place the exposed tube end in sterile water according to emergency protocol and reconnect to a new sterile system", "Clamp the tube briefly while preparing the replacement drainage system, then remove the clamp promptly", "Cover the insertion site with an occlusive dressing and await the provider before restoring the drainage system"],
     1,
     "A disconnected drainage system can allow air to enter the pleural space. Follow the facility's emergency chest-drain protocol; a temporary sterile-water seal may be used while a new drainage system is obtained. Avoid routine clamping or stripping because these actions can create dangerous pressure changes.",
     "take-action",
-    ["Prolonged clamping can cause tension physiology and should not be left in place.", "Correct. A temporary water seal is an accepted emergency measure while restoring the closed drainage system.", "Stripping can generate excessive negative pressure and is not routine practice.", "The tube must not be removed by the nurse as a response to disconnection."],
+    ["A brief clamp may be used only when specifically directed by the emergency protocol; leaving the tube clamped can trap air and cause tension physiology, so restoring a water seal is preferred.", "Correct. A temporary sterile-water seal limits air entry while a new closed drainage system is obtained, following facility protocol.", "Stripping does not restore a disconnected closed system and can generate harmful pressure changes.", "Removing the tube is not indicated; restore the drainage system and assess the client's respiratory status."],
   ),
   single(
     "qrn-0140", "Endocrine / Metabolic", "Adrenal crisis",
