@@ -76,7 +76,7 @@ for (const name of files) {
     const stem = norm(q.prompt);
     if (!stem || usedStems.has(stem) || localStems.has(stem)) fail(file, `[${tag}] duplicate or empty normalized prompt.`);
     localStems.add(stem);
-    if (!q.clinicalScenario || q.clinicalScenario.trim().length < 80) fail(file, `[${tag}] requires a sufficiently specific clinical scenario.`);
+    if (typeof q.clinicalScenario !== "string" || q.clinicalScenario.trim().length < 80) fail(file, `[${tag}] requires a sufficiently specific clinical scenario string.`);
     if (!q.clinicalJudgmentStep) warn(file, `[${tag}] clinical judgment mapping is absent.`);
 
     // Mandatory authoring record: these are evidence/provenance fields, not claims of clinical approval.
