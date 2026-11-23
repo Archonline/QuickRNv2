@@ -5,6 +5,7 @@ const ROOT = process.cwd();
 const RULES_PATH = path.join(ROOT, "docs/question-bank/quickrn-validation-rules.json");
 const REWRITE_BATCH_PATH = path.join(ROOT, "src/authoredCoreRewriteBatch.ts");
 const REWRITE_BATCH_2_PATH = path.join(ROOT, "src/authoredCoreRewriteBatch2.ts");
+const REWRITE_BATCH_3_PATH = path.join(ROOT, "src/authoredCoreRewriteBatch3.ts");
 const QUESTION_BANK_PATH = path.join(ROOT, "src/questionBank.ts");
 const NGN_BATCH_PATH = path.join(ROOT, "src/curatedQuestionBatch100.json");
 const NGN_BANK_PATH = path.join(ROOT, "src/ngnQuestionBank.ts");
@@ -63,7 +64,7 @@ function auditAuthoredCoreRewriteBatch(source, rules, findings) {
     if (!source.includes(field)) finding(findings, "error", REWRITE_BATCH_PATH, `Missing required authoring metadata: ${field}`);
   }
   const bank = readText(QUESTION_BANK_PATH);
-  if (!bank?.includes("authoredCoreRewriteBatch") || !bank?.includes("authoredCoreRewriteBatch2")) finding(findings, "error", QUESTION_BANK_PATH, "Both authored replacement batches must be integrated into the runtime question bank.");
+  if (!bank?.includes("authoredCoreRewriteBatch") || !bank?.includes("authoredCoreRewriteBatch2") || !bank?.includes("authoredCoreRewriteBatch3")) finding(findings, "error", QUESTION_BANK_PATH, "All authored replacement batches must be integrated into the runtime question bank.");
   if (!/questionBank500\s*:\s*Question\[\]\s*=\s*all\.slice\(0,\s*500\)/.test(bank ?? "")) finding(findings, "error", QUESTION_BANK_PATH, "Existing 500-item core bank invariant is missing.");
   if (!/new Set\(questionBank500\.map\(\(question\)\s*=>\s*question\.id\)\)\.size\s*!==\s*500/.test(bank ?? "")) finding(findings, "error", QUESTION_BANK_PATH, "Existing unique core question ID invariant is missing.");
   const ngnBank = readText(NGN_BANK_PATH);
@@ -266,13 +267,13 @@ function auditCoreGenerator(rules, findings) {
       `Topics reused across category profiles still need distinct category-specific scenarios: ${repeatedTopicsMissingVariants.map(([topic, categories]) => `${topic} (${categories.join(" / ")})`).join("; ")}.`);
   }
   const candidateCount = [...categoryBlock.matchAll(/count:(\d+)/g)].reduce((total, match) => total + Number(match[1]), 0);
-  const rewriteSource = (readText(REWRITE_BATCH_PATH) ?? "") + "\n" + (readText(REWRITE_BATCH_2_PATH) ?? "");
+  const rewriteSource = (readText(REWRITE_BATCH_PATH) ?? "") + "\n" + (readText(REWRITE_BATCH_2_PATH) ?? "") + "\n" + (readText(REWRITE_BATCH_3_PATH) ?? "");
   const authoredCount = [...rewriteSource.matchAll(/\bsingle\(\s*"([^"]+)"/g)].length;
   const caseScreens = 36;
   const curatedTraditional = 100;
   const generatedCount = candidateCount - caseScreens - curatedTraditional - authoredCount;
-  if (candidateCount !== 500 || authoredCount !== 120 || generatedCount !== 244) {
-    finding(findings, "error", QUESTION_BANK_PATH, `Core inventory mismatch: candidates=${candidateCount}, unfolding=${caseScreens}, curated=${curatedTraditional}, authored=${authoredCount}, topic-profile generated=${generatedCount}.`);
+  if (candidateCount !== 500 || authoredCount !== 364 || generatedCount !== 0) {
+    finding(findings, "error", QUESTION_BANK_PATH, `Core inventory mismatch: candidates=${candidateCount}, unfolding=${caseScreens}, curated=${curatedTraditional}, authored=${authoredCount}, topic-profile generated=${generatedCount}. Expected 364 authored replacements and zero remaining profile-generated questions.`);
   }
   console.log("Core inventory:", JSON.stringify({ total: candidateCount, unfoldingCaseScreens: caseScreens, curatedTraditional, authoredReplacements: authoredCount, topicProfileGenerated: generatedCount }));
   if (source.includes("not-clinically-verified")) finding(findings, "warning", QUESTION_BANK_PATH, "Generated core items remain tagged not-clinically-verified; human clinical and distractor review is required before final release.");
