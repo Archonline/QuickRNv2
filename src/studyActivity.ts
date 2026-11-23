@@ -1,4 +1,4 @@
-import { arrayUnion, collection, doc, getDocs, increment, limit, setDoc } from "firebase/firestore";
+import { arrayUnion, collection, doc, getDocs, increment, limit, query as firestoreQuery, setDoc } from "firebase/firestore";
 import type { User } from "firebase/auth";
 import { db } from "./firebase";
 
@@ -37,7 +37,7 @@ export async function recordExamCompletionActivity(user: User | null, answeredCo
 
 export async function loadDailyActivity(user: User): Promise<DailyActivity[]> {
   if (!db) return [];
-  const snapshot = await getDocs(collection(db, "users", user.uid, "dailyActivity"));
+  const snapshot = await getDocs(firestoreQuery(collection(db, "users", user.uid, "dailyActivity"), limit(90)));
   return snapshot.docs
     .map(item => item.data() as DailyActivity)
     .filter(item => /^\d{4}-\d{2}-\d{2}$/.test(item.dateKey))
