@@ -108,9 +108,22 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    function isWebmaster() { return signedIn() && request.auth.token.admin == true; }
+
+    match /questionDrafts/{draftId} {
+      allow read, create, update, delete: if isWebmaster();
+    }
+
+    match /webmasterAuditLog/{entryId} {
+      allow read: if isWebmaster();
+      allow create: if isWebmaster();
+      allow update, delete: if false;
+    }
+
     match /questions/{questionId} {
       allow read: if signedIn() && resource.data.status == 'published';
-      allow create, update, delete: if false;
+      allow create, update: if isWebmaster();
+      allow delete: if false;
     }
 
     match /{document=**} { allow read, write: if false; }
