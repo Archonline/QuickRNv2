@@ -967,7 +967,7 @@
           "Strict hourly I&O"
         ]
       },
-      "stem": "Complete the bowtie by identifying the most likely condition, two priority nursing/medical interventions, and two parameters to monitor.",
+      "stem": "Complete the bowtie using the client's post-MI findings: identify the most likely hemodynamic problem, select two immediate interventions, and select two measures that best show whether perfusion is improving.",
       "interaction": {
         "conditions": [
           "Cardiogenic shock",
@@ -1005,10 +1005,9 @@
         "max_points": 5
       },
       "rationales": {
-        "summary": "Post-MI pump failure with hypotension, pulmonary edema, JVD, and oliguria defines cardiogenic shock requiring inotropic/vasopressor support and oxygenation.",
-        "condition": "Cardiogenic shock is evidenced by LVEF 20%, pulmonary crackles, JVD, hypotension, and end-organ hypoperfusion (oliguria, elevated lactate).",
-        "actions": "Inotropes (dobutamine) and vasopressors (norepinephrine) restore contractility and coronary perfusion pressure, while supplemental oxygen corrects hypoxemia. Large fluid boluses worsen pulmonary edema, and IV diuretics before BP support worsen hypotension.",
-        "parameters": "Hourly urine output (>=30 mL/hr), lactate clearance, MAP (>=65 mmHg), and pulmonary crackles track tissue perfusion and fluid tolerance."
+        "condition": "Severe LV dysfunction after MI, hypotension, elevated lactate, oliguria, JVD, and crackles indicate cardiogenic rather than hypovolemic or distributive shock.",
+        "actions": "Prescribed inotropic and vasopressor support can improve contractility and perfusion pressure; oxygenation support addresses hypoxemia. A large unassessed crystalloid bolus can worsen pulmonary edema.",
+        "parameters": "Urine output and lactate trend reflect end-organ perfusion; MAP and lung findings help evaluate perfusion pressure and pulmonary congestion."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -1114,7 +1113,7 @@
       "topic": "Cardiovascular Disorders",
       "subtopic": "Post-Cardiac Catheterization Care",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "ordered_response",
       "clinical_scenario": {
         "patient_profile": "57-year-old male returned to the step-down unit 30 minutes ago following right femoral artery coronary angiography with stent placement.",
@@ -1141,7 +1140,7 @@
           "Neurovascular checks every 15 minutes x 4"
         ]
       },
-      "stem": "Place the nurse's actions in the correct order of priority from first to last.",
+      "stem": "Thirty minutes after femoral coronary angiography, the nurse finds active bright-red bleeding beneath the groin dressing. Place the actions in the safest sequence, maintaining pressure while assistance is obtained.",
       "interaction": {
         "items": [
           "Don sterile gloves and apply firm manual pressure 1 to 2 cm above the percutaneous puncture site",
@@ -1161,11 +1160,11 @@
         "max_points": 1
       },
       "rationales": {
-        "1": "Direct pressure 1-2 cm above the skin puncture site compresses the actual arterial arteriotomy and stops hemorrhage immediately.",
-        "2": "Summoning help without leaving the bedside ensures continuous hemostatic pressure while alerting the provider.",
-        "3": "Assessing hemodynamics and distal perfusion verifies systemic stability and limb viability during compression.",
-        "4": "Securing a pressure dressing and documenting completes post-event stabilization.",
-        "summary": "Active arterial hemorrhage requires immediate direct manual pressure slightly proximal to the skin entry site (where the artery was punctured) before calling for help."
+        "1": "Immediate firm pressure proximal to the skin entry point compresses the arterial puncture and limits blood loss.",
+        "2": "Summon help and notify the procedural team while maintaining continuous pressure at the bedside.",
+        "3": "Assess hemodynamic stability and distal perfusion without interrupting hemostasis.",
+        "4": "After bleeding is controlled, apply the prescribed dressing and document the event and neurovascular findings.",
+        "summary": "Active arterial bleeding requires immediate sustained direct pressure; additional assessment and escalation occur without releasing pressure."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -2099,7 +2098,7 @@
       "topic": "Respiratory Disorders",
       "subtopic": "Thoracentesis",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "59-year-old male undergoing bedside ultrasound-guided right thoracentesis for a large malignant pleural effusion.",
@@ -2126,7 +2125,7 @@
           "Limit fluid removal to <= 1,000-1,500 mL per session"
         ]
       },
-      "stem": "The client suddenly begins coughing incessantly and reports chest tightness during fluid removal. Which action should the nurse take first?",
+      "stem": "During ultrasound-guided thoracentesis, the client develops persistent coughing, chest tightness, and a sudden drop in oxygen saturation from 96% to 88%. What should the nurse do first?",
       "interaction": {
         "options": [
           {
@@ -2155,11 +2154,10 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Incessant coughing, chest tightness, or hypotension after removing >1,000 mL of pleural fluid signals re-expansion pulmonary edema or pneumothorax.",
-        "A": "Correct. Rapid removal of large effusion volumes can trigger re-expansion pulmonary edema or mediastinal shift; drainage must be stopped immediately.",
-        "B": "Incorrect. Continuing drainage worsens re-expansion pulmonary edema.",
-        "C": "Incorrect. Supine positioning impairs ventilation in a dyspneic patient.",
-        "D": "Incorrect. Masking the cough with antitussives ignores a serious mechanical/pulmonary complication."
+        "0": "New respiratory symptoms and desaturation during thoracentesis require stopping fluid removal and immediate assessment for complications.",
+        "1": "Continuing drainage may worsen the complication and delay treatment.",
+        "2": "Supine positioning may worsen breathing and suppressing cough does not address the cause.",
+        "3": "An oral antitussive delays assessment and is inappropriate during acute respiratory deterioration."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
@@ -2180,7 +2178,7 @@
       "topic": "Respiratory Disorders",
       "subtopic": "Cystic Fibrosis",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "23-year-old male with cystic fibrosis admitted for an acute pulmonary exacerbation.",
@@ -2210,7 +2208,7 @@
           "High-calorie, high-protein diet"
         ]
       },
-      "stem": "Which nursing interventions are appropriate for managing this client's respiratory and nutritional needs? Select all that apply.",
+      "stem": "A client with cystic fibrosis is admitted with increased sputum, weight loss, and frequent bulky stools. Which interventions address the client's airway clearance and malabsorption? Select all that apply.",
       "interaction": {
         "options": [
           {
@@ -2238,19 +2236,19 @@
       "correct_response": [
         "A",
         "B",
-        "D"
+        "C",
+        "E"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 3
       },
       "rationales": {
-        "summary": "Cystic fibrosis care requires bronchodilation prior to airway clearance, pancreatic enzyme replacement with meals/snacks, and fat-soluble vitamin supplementation.",
-        "A": "Correct. Bronchodilators open airways prior to airway clearance techniques.",
-        "B": "Correct. Pancreatic enzymes must be taken with all meals and snacks to digest fats, proteins, and carbohydrates.",
-        "C": "Incorrect. Chest physiotherapy should be performed at least 1-2 hours after meals to prevent vomiting and aspiration.",
-        "D": "Correct. Pancreatic insufficiency causes malabsorption of fat-soluble vitamins A, D, E, and K.",
-        "E": "Incorrect. Liberal fluids are needed to hydrate secretions, and CF clients lose excess sodium in sweat."
+        "0": "Bronchodilation before airway clearance can improve airflow and secretion mobilization.",
+        "1": "Pancreatic enzymes must be taken with food to aid digestion and absorption.",
+        "2": "Increased energy needs and fat malabsorption often require calorie-dense nutrition and vitamins A, D, E, and K.",
+        "3": "Airway clearance immediately after meals may provoke vomiting; schedule around meals according to tolerance.",
+        "4": "Weight and stool trends help assess nutrition and enzyme effectiveness; respiratory reassessment evaluates treatment response."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -2298,7 +2296,7 @@
           "Notify anesthesia/critical care team"
         ]
       },
-      "stem": "How should the nurse interpret the sudden disappearance of wheezing alongside a rising PaCO2 of 52 mmHg?",
+      "stem": "A client in status asthmaticus initially had loud wheezing but now has minimal air movement, increasing fatigue, and PaCO2 rising from 28 to 52 mmHg. How should the nurse interpret this change?",
       "interaction": {
         "options": [
           {
@@ -2327,11 +2325,10 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "In severe asthma, a 'silent chest' and normal-to-elevated PaCO2 indicate minimal air movement and exhausting respiratory muscles requiring emergent intubation.",
-        "A": "Correct. Wheezing requires airflow; when airflow drops to near zero ('silent chest') and PaCO2 rises from hypocapnia into hypercapnia, respiratory arrest is imminent.",
-        "B": "Incorrect. Clinical improvement would be accompanied by improved air entry, speaking in phrases, and falling respiratory rate.",
-        "C": "Incorrect. Hyperventilation lowers PaCO2; a rising PaCO2 indicates hypoventilation.",
-        "D": "Incorrect. While pneumothorax can occur, bilateral silent chest with hypercapnia specifically reflects end-stage status asthmaticus."
+        "0": "A quiet chest with rising CO2 and fatigue indicates poor ventilation and impending respiratory failure; prepare for urgent escalation and airway support.",
+        "1": "Wheezing may disappear when airflow becomes critically low, not because obstruction has resolved.",
+        "2": "Rising PaCO2 in severe asthma is a danger sign, not a benign medication effect.",
+        "3": "The client is retaining CO2 because ventilation is failing, not hyperventilating effectively."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -2353,7 +2350,7 @@
       "topic": "Respiratory Disorders",
       "subtopic": "Obstructive Sleep Apnea",
       "specialty": "Adult Health",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "54-year-old male admitted for laparoscopic cholecystectomy with a documented history of severe obstructive sleep apnea (OSA).",
@@ -2379,7 +2376,7 @@
           "Use home CPAP machine during all sleep periods"
         ]
       },
-      "stem": "Which postoperative nursing measure is highest priority to prevent airway obstruction and respiratory depression in this client?",
+      "stem": "A client with severe obstructive sleep apnea is recovering from abdominal surgery and has received IV opioids. The client is drowsy but arousable, with intermittent obstructive snoring and desaturation during sleep. Which action is the priority?",
       "interaction": {
         "options": [
           {
@@ -2408,11 +2405,10 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Clients with OSA are highly sensitive to opioid-induced pharyngeal collapse and respiratory depression; CPAP and opioid-sparing multimodal analgesia protect airway patency.",
-        "A": "Correct. Positive airway pressure splints the upper airway open, and minimizing opioids reduces central respiratory depression.",
-        "B": "Incorrect. Supine positioning allows the tongue and soft palate to fall posteriorly, worsening airway collapse; lateral or semi-Fowler positioning is preferred.",
-        "C": "Incorrect. Sedative-hypnotics exacerbate upper airway relaxation and apnea.",
-        "D": "Incorrect. Continuous oximetry/capnography monitoring is critical for detecting nocturnal desaturation."
+        "0": "OSA and opioids increase risk of obstruction and hypoventilation; airway positioning, prescribed CPAP, opioid-sparing analgesia, and monitoring are important.",
+        "1": "Sedatives can worsen airway obstruction and respiratory depression.",
+        "2": "Pain control remains necessary, but close monitoring and safer analgesic strategies are required.",
+        "3": "Flat positioning can worsen obstruction, and CPAP should not be stopped without clinical reason."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -2434,7 +2430,7 @@
       "topic": "Respiratory Disorders",
       "subtopic": "Smoking Cessation",
       "specialty": "Adult Health",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "48-year-old female with a 25-pack-year smoking history starting transdermal nicotine patch therapy (21 mg/24 hr).",
@@ -2459,7 +2455,7 @@
           "Tobacco cessation counseling"
         ]
       },
-      "stem": "Which instruction should the nurse include when teaching the client how to use the transdermal nicotine patch safely?",
+      "stem": "A client using a nicotine patch asks whether the patch should remain on while sleeping and whether smoking is permitted during treatment. Which teaching is most accurate?",
       "interaction": {
         "options": [
           {
@@ -2488,11 +2484,10 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Rotating clean, hairless application sites daily minimizes localized erythema and ensures steady transdermal nicotine absorption.",
-        "A": "Correct. Rotating sites daily (waiting at least 7 days before reusing a site) prevents contact dermatitis.",
-        "B": "Incorrect. Smoking while wearing a nicotine patch risks acute nicotine toxicity (tachycardia, hypertension, arrhythmias).",
-        "C": "Incorrect. Cutting matrix/reservoir patches can alter drug release kinetics; removing the patch at bedtime (if using a 16-hr schedule) or stepping down doses should be discussed with the provider.",
-        "D": "Incorrect. Reusing the same site daily causes local skin irritation."
+        "0": "Correct patch use includes removing the old patch, rotating clean dry sites, and following product-specific wear instructions; concurrent smoking can increase nicotine toxicity risk.",
+        "1": "Adding patches without direction can cause overdose.",
+        "2": "Patches should not be cut unless the product is specifically designed for it; irritated skin should be avoided.",
+        "3": "Leaving an old patch in place can cause excess nicotine exposure."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -2715,7 +2710,7 @@
           "Autonomic dysreflexia emergency protocol"
         ]
       },
-      "stem": "Place the nurse's interventions in the correct priority sequence from first to last.",
+      "stem": "A client with a C6 spinal cord injury develops a pounding headache, flushing above the lesion, bradycardia, and BP 214/118 mmHg. The Foley tubing is kinked and the bladder scan shows 580 mL. Place the interventions in priority order.",
       "interaction": {
         "items": [
           "Elevate the head of the bed to 90 degrees (high Fowler position) and lower the legs",
@@ -2735,11 +2730,11 @@
         "max_points": 1
       },
       "rationales": {
-        "1": "Sitting the client upright at 90 degrees immediately uses orthostatic pooling in the lower extremities to lower cerebral blood pressure and prevent hemorrhagic stroke.",
-        "2": "Loosening constrictive garments removes external cutaneous triggers and prevents blood pressure trapping.",
-        "3": "Bladder distension is the #1 trigger of autonomic dysreflexia; unkinking the catheter resolves the noxious afferent stimulus.",
-        "4": "Frequent BP monitoring and rapid-acting vasodilators are used if hypertension persists after removing the trigger.",
-        "summary": "Autonomic dysreflexia (lesions at or above T6) causes life-threatening reflex hypertension; immediate orthostatic blood pooling via upright positioning precedes removing noxious stimuli."
+        "1": "Sit the client upright with legs lowered to reduce blood pressure through orthostatic pooling while summoning assistance.",
+        "2": "Remove external constriction that may be contributing to the noxious stimulus.",
+        "3": "Bladder distention is a common trigger; correct the kink and allow drainage without forceful irrigation.",
+        "4": "Frequent blood-pressure reassessment is essential; give prescribed rapid-acting antihypertensive if severe hypertension persists after trigger removal.",
+        "summary": "Autonomic dysreflexia is a hypertensive emergency in a client with a lesion at or above T6. Reduce blood pressure promptly, remove constriction, and eliminate the triggering stimulus."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -4861,7 +4856,7 @@
       "topic": "Hematology & Oncology",
       "subtopic": "Blood Transfusion Reactions",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "ordered_response",
       "clinical_scenario": {
         "patient_profile": "61-year-old male receiving a unit of packed red blood cells (PRBCs) for symptomatic anemia (Hgb 6.8 g/dL).",
@@ -4886,7 +4881,7 @@
           "Transfuse 1 unit PRBCs over 2-4 hours"
         ]
       },
-      "stem": "Place the nurse's actions in the exact priority sequence from first to last.",
+      "stem": "Fifteen minutes after a PRBC transfusion begins, the client develops chills, back pain, fever, tachycardia, and hypotension. Place the nurse's actions in the correct order.",
       "interaction": {
         "items": [
           "Stop the blood transfusion immediately",
@@ -4906,11 +4901,11 @@
         "max_points": 1
       },
       "rationales": {
-        "1": "Stopping the infusion immediately prevents additional incompatible red cells from entering the circulation.",
-        "2": "Using new tubing prevents flushing the blood remaining in the old IV tubing into the client while maintaining IV patency for shock resuscitation.",
-        "3": "Evaluating vital signs and alerting the provider and blood bank initiates emergency medical treatment and crossmatch investigation.",
-        "4": "Returning the blood unit and sending blood/urine specimens confirms hemolysis (free hemoglobin, Coombs test) and prevents renal tubular damage.",
-        "summary": "In any suspected transfusion reaction, stopping further infusion of incompatible blood immediately prevents worsening hemolysis, followed by maintaining IV access with new saline tubing."
+        "1": "Stopping the transfusion prevents additional incompatible blood from entering the circulation.",
+        "2": "New tubing prevents residual blood in the original tubing from infusing while maintaining access with normal saline.",
+        "3": "Assess ABCs and hemodynamics and notify the provider and blood bank promptly.",
+        "4": "Return the unit and tubing and obtain ordered specimens to investigate hemolysis and guide treatment.",
+        "summary": "Suspected acute hemolytic reaction requires immediate cessation of the transfusion, preservation of IV access with new tubing, urgent assessment and notification, then investigation."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -5278,7 +5273,7 @@
       "topic": "Musculoskeletal & Integumentary Disorders",
       "subtopic": "Major Burn Resuscitation",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "fill_in_the_blank",
       "clinical_scenario": {
         "patient_profile": "40-year-old male weighing 80 kg brought to the burn center immediately after sustaining deep partial- and full-thickness thermal burns over 40% of his total body surface area (TBSA).",
@@ -5304,7 +5299,7 @@
           "Parkland formula fluid resuscitation: 4 mL x weight (kg) x %TBSA over 24 hours (half in first 8 hours)"
         ]
       },
-      "stem": "Using the Parkland formula (4 mL x 80 kg x 40% TBSA), calculate the hourly infusion rate in mL/hr for the first 8 hours following the burn injury. Enter a whole number only.",
+      "stem": "A client weighs 80 kg and has burns over 40% TBSA. Using the Parkland estimate of 4 mL × kg × %TBSA, calculate the initial hourly rate for the first 8 hours after the time of injury. Assume the client arrives immediately after the burn. Enter a whole number in mL/hr.",
       "interaction": {
         "unit": "mL/hr"
       },
@@ -5315,8 +5310,8 @@
         "tolerance": 0
       },
       "rationales": {
-        "summary": "Total 24-hour Parkland volume = 4 mL x 80 kg x 40 = 12,800 mL. Half (6,400 mL) is infused over the first 8 hours: 6,400 mL / 8 hr = 800 mL/hr.",
-        "calculation": "4 mL x 80 kg x 40 = 12,800 mL total in 24 hours. First 8 hours = 12,800 / 2 = 6,400 mL. Hourly rate = 6,400 mL / 8 hr = 800 mL/hr."
+        "summary": "The Parkland estimate is 4 × 80 × 40 = 12,800 mL over 24 hours. Half, 6,400 mL, is given during the first 8 hours from the time of injury: 6,400 ÷ 8 = 800 mL/hr.",
+        "calculation": "4 mL × 80 kg × 40 = 12,800 mL. First-half volume = 6,400 mL. 6,400 mL ÷ 8 hours = 800 mL/hr. Adjust actual fluids to perfusion and urine-output response; the formula is an initial estimate."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -5338,7 +5333,7 @@
       "topic": "Pharmacology & Parenteral Therapies",
       "subtopic": "Medication Dosage Calculation",
       "specialty": "Pharmacology",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "fill_in_the_blank",
       "clinical_scenario": {
         "patient_profile": "68-year-old female admitted with septic shock requiring continuous norepinephrine vasopressor support.",
@@ -5364,7 +5359,7 @@
           "Start norepinephrine at 8 mcg/min and titrate to maintain MAP >= 65 mmHg"
         ]
       },
-      "stem": "The pharmacy supplies norepinephrine 4 mg in 250 mL D5W. At what rate in mL/hr should the nurse program the infusion pump to deliver 8 mcg/min? Enter a whole number only.",
+      "stem": "Norepinephrine is supplied as 4 mg in 250 mL D5W. The prescribed starting dose is 8 mcg/min. What pump rate delivers this dose? Enter a whole number in mL/hr.",
       "interaction": {
         "unit": "mL/hr"
       },
@@ -5375,8 +5370,8 @@
         "tolerance": 0
       },
       "rationales": {
-        "summary": "Concentration = 4,000 mcg / 250 mL = 16 mcg/mL. Desired dose = 8 mcg/min x 60 min/hr = 480 mcg/hr. Rate = 480 mcg/hr / 16 mcg/mL = 30 mL/hr.",
-        "calculation": "4 mg = 4,000 mcg. 4,000 mcg / 250 mL = 16 mcg/mL. 8 mcg/min x 60 min = 480 mcg/hr. 480 / 16 = 30 mL/hr."
+        "summary": "The concentration is 16 mcg/mL. A dose of 8 mcg/min equals 480 mcg/hr; 480 ÷ 16 = 30 mL/hr.",
+        "calculation": "4 mg = 4,000 mcg. 4,000 mcg ÷ 250 mL = 16 mcg/mL. 8 mcg/min × 60 = 480 mcg/hr. 480 ÷ 16 = 30 mL/hr."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -7336,7 +7331,7 @@
           "Hypercyanotic ('Tet') spell emergency protocol"
         ]
       },
-      "stem": "An infant with unrepaired tetralogy of Fallot becomes deeply cyanotic and irritable during a procedure. Which sequence best prioritizes immediate actions while additional treatment is prepared?",
+      "stem": "During a procedure, an infant with unrepaired tetralogy of Fallot develops a hypercyanotic spell. Place the interventions in priority order, recognizing that oxygen and emergency assistance should be provided promptly.",
       "interaction": {
         "items": [
           "Place the infant immediately in the knee-chest position while calming the infant",
@@ -7346,21 +7341,21 @@
         ]
       },
       "correct_response": [
-        "Place the infant in the knee-chest position and calm the infant",
-        "Administer oxygen as tolerated",
-        "Administer prescribed morphine or other ordered medication to reduce agitation and infundibular spasm",
-        "Administer prescribed isotonic fluid bolus if indicated to improve preload"
+        "Place the infant immediately in the knee-chest position while calming the infant",
+        "Administer 100% blow-by or face-mask oxygen",
+        "Administer prescribed morphine sulfate to relax infundibular spasm and reduce agitation",
+        "Administer prescribed intravenous normal saline bolus to improve right ventricular filling and pulmonary blood flow"
       ],
       "scoring": {
         "method": "sequence",
         "max_points": 1
       },
       "rationales": {
-        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
-        "A": "Knee-chest positioning increases systemic vascular resistance and can reduce right-to-left shunting; calming limits oxygen demand.",
-        "B": "Supplemental oxygen is provided promptly, although positioning and calming are key immediate measures.",
-        "C": "Prescribed medication may reduce agitation and infundibular spasm under monitoring.",
-        "D": "Fluid may be indicated to improve preload when ordered; treatment is guided by the response and provider plan."
+        "1": "Knee-chest positioning increases systemic vascular resistance and can reduce right-to-left shunting; calm handling limits oxygen demand.",
+        "2": "Provide oxygen as tolerated while maintaining the position and summoning help.",
+        "3": "Prescribed morphine can reduce agitation and infundibular spasm; monitor respiratory status closely.",
+        "4": "A prescribed isotonic bolus may improve preload and pulmonary blood flow when indicated.",
+        "summary": "A hypercyanotic spell requires immediate reduction of right-to-left shunting and oxygen demand, followed by prescribed medication and fluid support while escalating to the provider."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -8196,7 +8191,7 @@
       "topic": "Safety & Infection Control",
       "subtopic": "Disaster Triage (START System)",
       "specialty": "Fundamentals & Safety",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "matrix_grid",
       "clinical_scenario": {
         "patient_profile": "Emergency department nurse performing START (Simple Triage and Rapid Treatment) mass-casualty triage following a multi-vehicle highway collision.",
@@ -8217,7 +8212,7 @@
           "Assign START triage color tags (Red/Immediate, Yellow/Delayed, Green/Minor, Black/Expectant)"
         ]
       },
-      "stem": "Assign the appropriate START mass-casualty triage tag to each victim.",
+      "stem": "Use START triage criteria to assign one tag to each victim. Apply the sequence: ambulatory status, respirations, perfusion, then ability to follow commands.",
       "interaction": {
         "rows": [
           {
@@ -8255,11 +8250,11 @@
         "max_points": 4
       },
       "rationales": {
-        "summary": "Under START triage: respiratory rate > 30, cap refill > 2 sec, or inability to follow commands = Red; persistent apnea after airway opening = Black; ambulatory = Green; non-ambulatory with normal RPM = Yellow.",
-        "V1": "Red (Immediate): Respiratory rate > 30 breaths/min (34/min) places the victim in the Immediate category.",
-        "V2": "Black (Expectant): Absence of spontaneous respirations after opening the airway classifies the victim as Expectant/Deceased in mass-casualty triage.",
-        "V3": "Green (Minor): Ambulatory ('walking wounded') with intact RPM parameters.",
-        "V4": "Yellow (Delayed): Unable to walk due to femur fractures, but RR < 30, cap refill <= 2 sec, and follows commands."
+        "summary": "START uses simple physiologic criteria to allocate resources rapidly. A respiratory rate above 30/min is red; apnea persisting after airway repositioning is black; ambulatory victims are green; nonambulatory victims with normal respirations, perfusion, and mental status are yellow.",
+        "V1": "Red: respiratory rate is 34/min, exceeding the START threshold of 30/min.",
+        "V2": "Black: the victim remains apneic after airway repositioning.",
+        "V3": "Green: the victim can walk and has reassuring respiratory, perfusion, and mental-status findings.",
+        "V4": "Yellow: the victim cannot walk but has RR below 30/min, capillary refill within 2 seconds, and follows commands."
       },
       "clinical_judgment": "prioritize_hypotheses",
       "tags": [
