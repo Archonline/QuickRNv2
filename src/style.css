@@ -679,3 +679,27 @@
  .exam-nav-state{font-size:7px;padding:4px 5px}
  .exam-review-list>button{gap:8px;padding:10px 8px}
 }
+
+/* NGN unfolding-case workspace: screen timeline and structured patient chart */
+.exam-case-timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(54px,1fr));gap:6px;margin:15px 0 13px;padding:11px;border:1px solid #e1e7ed;border-radius:7px;background:#f8fafc}
+.exam-case-timeline button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:51px;border:1px solid #dce3e9;border-radius:5px;background:#fff;color:#647487;cursor:pointer}
+.exam-case-timeline button>span{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#eef2f5;color:#586779;font-size:10px;font-weight:800}
+.exam-case-timeline button small{font-size:8px;line-height:1.1;font-weight:700}
+.exam-case-timeline button.current{border-color:#4d91b4;background:#edf6fa;color:#185d80;box-shadow:0 0 0 1px #4d91b433}
+.exam-case-timeline button.current>span{background:#1c729d;color:#fff}
+.exam-case-timeline button.answered:not(.current)>span{background:#e4f3eb;color:#27734e}
+.exam-case-timeline button:focus-visible,.exam-record-tabs button:focus-visible{outline:3px solid #70aaca;outline-offset:2px}
+.exam-record-tabs{position:sticky;top:0;z-index:2;background:#fff}
+.exam-record-content{background:#fff}
+.exam-record-content-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #e9edf1}
+.exam-record-content-heading strong{font-size:11px;color:#304357}
+.exam-record-content-heading span{padding:4px 6px;border-radius:3px;background:#f0f4f7;color:#708092;font-size:7px;font-weight:800;letter-spacing:.65px}
+.exam-record-content>p{white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:700px){
+ .exam-case-timeline{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:8px}
+ .exam-case-timeline button{min-height:44px;flex-direction:row;gap:6px}
+ .exam-case-timeline button>span{width:20px;height:20px;flex-shrink:0}
+ .exam-case-timeline button small{font-size:8px}
+ .exam-record-tabs{position:static}
+ .exam-record-content-heading{padding-bottom:8px}
+}
