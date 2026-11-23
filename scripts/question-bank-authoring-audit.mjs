@@ -270,7 +270,7 @@ function auditCoreGenerator(rules, findings) {
   const caseScreens = 36;
   const curatedTraditional = 100;
   const generatedCount = candidateCount - caseScreens - curatedTraditional - authoredCount;
-  if (candidateCount !== 500 || authoredCount !== 40 || generatedCount !== 324) {
+  if (candidateCount !== 500 || authoredCount !== 100 || generatedCount !== 264) {
     finding(findings, "error", QUESTION_BANK_PATH, `Core inventory mismatch: candidates=${candidateCount}, unfolding=${caseScreens}, curated=${curatedTraditional}, authored=${authoredCount}, topic-profile generated=${generatedCount}.`);
   }
   console.log("Core inventory:", JSON.stringify({ total: candidateCount, unfoldingCaseScreens: caseScreens, curatedTraditional, authoredReplacements: authoredCount, topicProfileGenerated: generatedCount }));
