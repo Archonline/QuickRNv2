@@ -1,5 +1,14 @@
 name: Question bank deadline automation
 on:
+  push:
+    branches:
+      - design/professional-quickrn
+    paths:
+      - ".github/workflows/question-bank-deadline-automation.yml"
+      - "scripts/question-bank-automation.mjs"
+      - "docs/question-bank/quickrn-question-schema.json"
+      - "docs/question-bank/quickrn-validation-rules.json"
+      - "docs/question-bank/quickrn-topic-blueprint.json"
   workflow_dispatch:
   schedule:
     - cron: "17 */3 * * *"
