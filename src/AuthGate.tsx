@@ -5,7 +5,6 @@ import LandingPage from "./LandingPage";
 import LegalPage from "./LegalPage";
 import { auth, db } from "./firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { signOut } from "firebase/auth";
 
 const TERMS_VERSION = "2026-11-23-v1";
 const PRIVACY_VERSION = "2026-11-23-v1";
@@ -60,7 +59,6 @@ function Gate({ children }: { children: ReactNode }) {
   const [demoMode, setDemoMode] = useState(false);
   const [legalAccepted, setLegalAccepted] = useState(false);
   const [legalPreview, setLegalPreview] = useState<"terms" | "privacy" | null>(null);
-  const [registrationPending, setRegistrationPending] = useState(false);
 
   function changeMode(nextMode: AuthMode) {
     setMode(nextMode);
@@ -125,7 +123,7 @@ function Gate({ children }: { children: ReactNode }) {
   if (loading) {
     return <div className="auth-screen"><div className="auth-loading"><span className="auth-spinner" />Loading your learning space…</div></div>;
   }
-  if ((user && !registrationPending) || demoMode) return <>{children}</>;
+  if (user || demoMode) return <>{children}</>;
   if (!showAuth) return <LandingPage onStart={() => { setShowAuth(true); changeMode("signin"); }} />;
 
   const isSignup = mode === "signup";
