@@ -53,12 +53,10 @@ export default function QuestionBankAutomationTracker({
   const plotRight = 690;
   const plotTop = 18;
   const plotBottom = 150;
-  const currentX = plotLeft;
   const milestoneCoreX = plotLeft + (remainingCore / Math.max(1, remainingTotal)) * (plotRight - plotLeft);
   const targetX = plotRight;
   const projectedY = (value: number) => plotBottom - (value / TOTAL_TARGET) * (plotBottom - plotTop);
   const actualY = projectedY(overall);
-  const lineEndX = plotRight;
   const coreProgress = Math.min(100, (coreCount / CORE_TARGET) * 100);
   const boosterProgress = Math.min(100, (boosterCount / BOOSTER_TARGET) * 100);
   const reviewedProgress = coreCount ? (clinicalReviewed / coreCount) * 100 : 0;
