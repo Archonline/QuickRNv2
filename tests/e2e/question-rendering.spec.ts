@@ -18,8 +18,8 @@ test("starts and renders a real published item for every supported NCLEX format"
   await expect(stem).toBeVisible();
   await expect(stem).not.toBeEmpty();
   await expect(page.locator(".exam-inline-scenario, .exam-left-scenario, .exam-record-panel").first()).toBeVisible();
-  const record=page.locator(".exam-record-panel");
-  if(await record.count()) await expect(record.locator(".exam-record-content p")).not.toBeEmpty();
+  const recordContent=page.locator(".exam-record-panel .exam-record-content p");
+  if(await recordContent.count()) await expect(recordContent).not.toBeEmpty();
   const rawType=(await page.locator(".exam-type-pill").innerText()).trim().replace(/\s+/g,"-");
   seen.add(rawType);
 
