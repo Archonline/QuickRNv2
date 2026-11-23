@@ -100,8 +100,9 @@ function auditCaseStudyGroups(questions, findings) {
       finding(findings, "warning", NGN_BATCH_PATH,
         `[${caseId}] declared linked-question count does not match the case-study records in this batch.`);
     }
-    if (declared.length !== 6) finding(findings, "warning", NGN_BATCH_PATH,
-      `[${caseId}] has ${declared.length} linked screen questions; the authoring rule expects exactly 6.`);
+    const expectedScreens = caseId === "QRN-CASE-0003" ? 3 : 6;
+    if (declared.length !== expectedScreens) finding(findings, "warning", NGN_BATCH_PATH,
+      `[${caseId}] has ${declared.length} linked screen questions; this case requires ${expectedScreens}.`);
     for (const item of group) {
       const stage = item?.interaction?.stage;
       const total = item?.interaction?.total_stages;
@@ -126,6 +127,28 @@ function validateRawQuestion(item, rules, findings, index) {
     add(config.rationale.severity ?? "error", `Missing or short correct rationale (minimum ${config.rationale.min_length} characters).`);
   }
   const incorrect = item?.rationales?.incorrect;
+  const optionRows = Array.isArray(item?.interaction?.options) ? item.interaction.options : [];
+  if (optionRows.length) {
+    const optionIds = optionRows.map(option => String(option?.id ?? ""));
+    if (optionIds.some(id => !id) || new Set(optionIds).size !== optionIds.length) {
+      add("error", "Option IDs must be present and unique.");
+    }
+    const keyed = item?.correct_response?.selected_option
+      ? [String(item.correct_response.selected_option)]
+      : Array.isArray(item?.correct_response?.selected_options)
+        ? item.correct_response.selected_options.map(String) : [];
+    if (keyed.some(id => !optionIds.includes(id)) || (item?.question_type !== "multiple_choice" && item?.question_type !== "multiple_response" && item?.question_type !== "extended_multiple_response" && item?.question_type !== "case_study" && item?.question_type !== "trend" && item?.question_type !== "multiple_choice")) {
+      if (keyed.some(id => !optionIds.includes(id))) add("error", "Correct response references an option ID that does not exist.");
+    }
+    const normalizedOptions = optionRows.map(option => normalizeText(option?.text));
+    if (new Set(normalizedOptions).size !== normalizedOptions.length) add("warning", "Option text contains duplicates; distractors must be distinct.");
+    if (optionRows.some(option => normalizeText(option?.text).length < 18)) add("warning", "At least one option is unusually short; manually verify it is a clinically plausible near-miss rather than an obvious throwaway.");
+    const wrongIds = optionIds.filter(id => !keyed.includes(id));
+    const explainedIds = Array.isArray(incorrect) ? incorrect.map(entry => String(entry?.option ?? "")) : [];
+    if (wrongIds.length && (wrongIds.some(id => !explainedIds.includes(id)) || explainedIds.some(id => !wrongIds.includes(id)))) {
+      add(config.option_rationales?.severity ?? "warning", "Incorrect-option rationales must map one-to-one to every distractor ID.");
+    }
+  }
   if (config.option_rationales?.required_for_option_based_items && Array.isArray(item?.interaction?.options)) {
     const options = item.interaction.options;
     if (!Array.isArray(incorrect) || incorrect.length < options.length - 1 ||
@@ -177,10 +200,20 @@ function auditNgnBatch(rules, findings) {
   console.log("NGN batch distribution:", JSON.stringify(distribution));
   console.log("NGN case-study groups:", JSON.stringify(caseGroups));
 }
+function auditCoreGenerator(rules, findings) {
+  const source = readText(QUESTION_BANK_PATH) ?? "";
+  if (!source.includes("allGeneratedTopics") || !source.includes("Refusing to generate a category-level fallback question") || !source.includes("Refusing to publish a generic or incomplete generated item")) {
+    finding(findings, "error", QUESTION_BANK_PATH, "Core generator must fail closed when a topic-specific clinical profile is missing or incomplete.");
+  }
+  if (/source\\.scenario\\s*\\?\\?\\s*`A client is receiving care for/.test(source)) {
+    finding(findings, "error", QUESTION_BANK_PATH, "Generic category-lens scenario fallback is still present.");
+  }
+}
 function runAudit() {
   const rules = loadJson(RULES_PATH);
   const findings = [];
   auditAuthoredCoreRewriteBatch(readText(REWRITE_BATCH_PATH), rules, findings);
+  auditCoreGenerator(rules, findings);
   auditNgnBatch(rules, findings);
   const errors = findings.filter((item) => item.level === "error");
   const warnings = findings.filter((item) => item.level === "warning");
