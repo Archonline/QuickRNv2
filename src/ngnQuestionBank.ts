@@ -31,7 +31,7 @@ function curateNgnQuestion(raw:CuratedNgnItem,index:number):Question{
  const idx=(id:unknown,options=optionRows)=>options.findIndex(option=>option.id===String(id));
  const scenario=formatNgnContent(raw.clinical_scenario);
  const patientRecord=data.patient_record,follow=data.follow_up;
- const group=raw.case_study_id==="QRN-CASE-0001"?"ngn-case-01":raw.case_study_id==="QRN-CASE-0002"?"ngn-case-02":undefined;
+ const group=raw.case_study_id==="QRN-CASE-0001"?"ngn-case-01":raw.case_study_id==="QRN-CASE-0002"?"ngn-case-02":raw.case_study_id==="QRN-CASE-0003"?"ngn-case-03":undefined;
  const isGroupedCase=raw.question_type==="case_study"&&!!group;
  let itemType:NclexItemType="single-response";
  let interaction:QuestionInteraction={instruction:"Select the one best response.",choices:optionTexts,correctResponse:["0"]};
@@ -167,7 +167,7 @@ if(questionBank100.length!==100) throw new Error("NGN extension must contain exa
 if(new Set(questionBank600.map(q=>q.id)).size!==600) throw new Error("Question IDs must be unique across the 600-item bank.");
 export const itemFormatCounts = NCLEX_ITEM_TYPES.map(type=>({type,count:questionBank100.filter(q=>q.itemType===type||(type==="matrix-multiple"&&q.itemType==="matrix-grid")).length}));
 if(NCLEX_ITEM_TYPES.some(type=>!questionBank100.some(q=>q.itemType===type||(type==="matrix-multiple"&&q.itemType==="matrix-grid")))) throw new Error("Every supported NCLEX item format must have a published sample or an existing matrix-grid compatibility item.");
-if(questionBank100.filter(q=>q.caseStudyId==="ngn-case-01").length!==6||questionBank100.filter(q=>q.caseStudyId==="ngn-case-02").length!==6) throw new Error("Each unfolding case must contain exactly six linked screens.");
+if(questionBank100.filter(q=>q.caseStudyId==="ngn-case-01").length!==6||questionBank100.filter(q=>q.caseStudyId==="ngn-case-02").length!==6||questionBank100.filter(q=>q.caseStudyId==="ngn-case-03").length!==3) throw new Error("Unfolding case groups must retain their authored linked screen counts (6, 6, and 3).");
 const invalidFormatItems=questionBank100.filter(q=>{
  const d=q.interaction;if(!d)return true;
  switch(q.itemType){
