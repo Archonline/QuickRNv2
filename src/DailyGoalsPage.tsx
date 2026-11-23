@@ -12,7 +12,7 @@ function shiftDate(key: string, offset: number): string {
 }
 function countForDay(entry?: DailyActivity): number {
   return (Array.isArray(entry?.practiceQuestionIds) ? new Set(entry.practiceQuestionIds).size : 0) +
-    (Number.isFinite(entry?.examQuestionCount) ? Math.max(0, Number(entry?.examQuestionCount)) : 0);
+    (typeof entry?.examQuestionCount === "number" && Number.isFinite(entry.examQuestionCount) ? Math.max(0, Number(entry?.examQuestionCount)) : 0);
 }
 function streakLength(activity: DailyActivity[], today: string): number {
   const active = new Set(activity.filter(item => countForDay(item) > 0).map(item => item.dateKey));
