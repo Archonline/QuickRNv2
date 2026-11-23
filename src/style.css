@@ -432,3 +432,46 @@
 .qb-tracker-footnote{font-size:9px;line-height:1.5;color:#999cad;margin:0}
 @media(max-width:950px){.qb-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.qb-operations-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.qb-automation-heading,.qb-card-title-row{align-items:flex-start;flex-direction:column}.qb-date-chip{width:100%}.qb-milestone-row{grid-template-columns:1fr}.qb-chart-caption{align-items:flex-start;flex-direction:column}}
+
+
+/* Exam workstation refinement: matched panes, compact EHR tabs, persistent navigation. */
+.exam-screen{--exam-divider:#cbd3db;background:#f4f6f8;color:#202b36}
+.exam-header{min-height:60px}
+.exam-header-center{display:none}
+.exam-session-bar{display:none!important}
+.exam-progress-track{height:3px}
+.exam-layout-case{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;align-items:stretch;min-height:calc(100vh - 63px);padding-bottom:82px!important}
+.exam-record-panel{box-sizing:border-box;min-width:0;min-height:calc(100vh - 63px);padding:24px 26px 100px!important;border:0!important;border-right:1px solid var(--exam-divider)!important;overflow:visible!important}
+.exam-main-case{box-sizing:border-box;min-width:0;padding:24px 26px 110px!important;border:0!important;margin:0!important}
+.exam-record-panel,.exam-main-case{font-family:inherit;color:#202b36}
+.exam-record-panel p,.exam-main-case p,.exam-record-content,.exam-stem,.exam-option,.exam-instruction{font-family:inherit}
+.exam-record-tabs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px!important;border:0!important;margin:12px 0 0!important}
+.exam-record-tabs button{min-width:0;min-height:34px;padding:7px 5px!important;border:1px solid #d5dce3!important;border-radius:4px!important;background:#f4f6f8!important;font-size:10px!important;line-height:1.2;white-space:normal}
+.exam-record-tabs button.active{background:#e8f2f8!important;border-color:#8da9bc!important;color:#173e58!important;margin:0!important}
+.exam-record-content{min-height:0!important;border:1px solid #d5dce3!important;border-radius:0 0 4px 4px;padding:13px 14px!important;font-size:11px!important;line-height:1.55!important}
+.exam-record-content p{white-space:pre-wrap!important;margin:0!important;line-height:1.55!important}
+.exam-record-footer{display:none}
+.exam-controls{position:fixed!important;left:0;right:0;bottom:0;z-index:30;box-sizing:border-box;width:100%;margin:0!important;padding:12px 24px calc(12px + env(safe-area-inset-bottom))!important;border-top:1px solid #cbd3db!important;background:#fff!important;box-shadow:0 -5px 18px #172b3d12;display:flex;align-items:center;gap:10px}
+.exam-controls>span{margin-left:auto}
+.exam-next{margin-left:0;min-width:112px;justify-content:center}
+.exam-main-case .exam-controls{margin-top:0!important}
+.exam-workspace-note{margin-bottom:92px}
+.exam-question-card{min-width:0}
+.exam-stem{font-size:16px!important;line-height:1.5!important}
+.exam-option{font-size:12px!important;line-height:1.5!important}
+.exam-inline-scenario,.exam-left-scenario{margin-top:12px}
+@media(max-width:850px){
+ .exam-layout-case{grid-template-columns:minmax(0,1fr)!important;min-height:auto}
+ .exam-record-panel{min-height:0!important;border-right:0!important;border-bottom:1px solid var(--exam-divider)!important;padding-bottom:18px!important}
+ .exam-main-case{padding:20px 18px 110px!important}
+ .exam-record-tabs{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
+@media(max-width:560px){
+ .exam-controls{padding:9px 10px calc(9px + env(safe-area-inset-bottom))!important;gap:6px}
+ .exam-controls>span{display:none}
+ .exam-prev,.exam-next{padding:10px 11px;font-size:10px}
+ .exam-nav-review{padding:9px 10px;font-size:10px}
+ .exam-record-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .exam-record-panel{padding:16px 13px 18px!important}
+ .exam-main-case{padding:18px 13px 100px!important}
+}
