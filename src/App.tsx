@@ -45,20 +45,18 @@ function getOptionRationales(question: Question): OptionRationaleItem[] {
 
 function isSelectionIncorrect(question: Question, selection: number | number[] | string | null | undefined): boolean {
   if (selection === null || selection === undefined) return false;
-  const correctResponse = question.interaction?.correctResponse;
-  if (Array.isArray(selection)) {
-    if (Array.isArray(correctResponse) && correctResponse.length > 0) {
-      const selectedTexts = selection.map((value) => typeof value === "number" ? question.options[value] : value)
-        .filter((value): value is string => typeof value === "string");
-      const expected = [...correctResponse].sort();
-      const actual = [...selectedTexts].sort();
-      return actual.length !== expected.length || actual.some((value, index) => value !== expected[index]);
-    }
-    return selection.length !== 1 || selection[0] !== question.answer;
-  }
-  if (typeof selection === "number") return selection !== question.answer;
-  if (Array.isArray(correctResponse)) return !correctResponse.includes(selection);
-  return selection !== String(question.answer);
+
+  // Option-based response keys in the current bank are stored as option indexes
+  // serialized to strings (for example, ["1", "3"]), not as option text.
+  const expected = question.interaction?.correctResponse?.length
+    ? question.interaction.correctResponse
+    : [String(question.answer)];
+  const actual = (Array.isArray(selection) ? selection : [selection]).map(String);
+  const expectedSet = new Set(expected);
+  const actualSet = new Set(actual);
+
+  return actualSet.size !== expectedSet.size ||
+    [...actualSet].some((value) => !expectedSet.has(value));
 }
 type ExamHistoryRecord=ExamCompletion&{id:string;completedAt?:{toDate?:()=>Date;seconds?:number};completedAtMs?:number};
 const NCLEX_CLIENT_NEEDS=["Management of Care","Safety and Infection Control","Health Promotion and Maintenance","Psychosocial Integrity","Basic Care and Comfort","Pharmacological and Parenteral Therapies","Reduction of Risk Potential","Physiological Adaptation"] as const;
