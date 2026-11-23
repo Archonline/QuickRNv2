@@ -1,6 +1,6 @@
 # Generated Core Bank Audit — 324 Items
 
-**Scope:** the 324 topic-profile-generated core items only. This excludes 36 unfolding-case screens, 100 curated traditional items, and 40 authored replacement drafts. The inventory arithmetic is reconstructed from the 500 source records and the stable replacement IDs.
+**Scope:** the 324 topic-profile-generated core items only. This baseline audit excludes 36 unfolding-case screens, 100 curated traditional items, and the 120 authored replacement drafts now integrated. The inventory arithmetic is reconstructed from the 500 source records and the stable replacement IDs.
 
 **Method:** deterministic source-level reconstruction of the generator's category/topic sequence and its item-construction logic. This is a reproducible structural audit, not a clinical review. The companion `scripts/audit-generated-core.mjs` prints the complete per-topic ID grouping and key findings; it is included in `npm run audit:question-bank`.
 
@@ -63,9 +63,9 @@ The generator now assigns these topic-profile-generated items `status: developme
 
 **Do not describe the 324 generated items as corrected, clinically reviewed, or release-ready.** The six cross-category variants are implemented, but the audit exposes a larger issue: 315 of 324 generated items repeat a topic-level scenario and all 324 lack per-option rationales and item-level evidence metadata. The structurally valid answer index is not clinical validation.
 
-The remaining 264 generated items must be replaced in controlled authored tranches. The current tranche has 60 of its 100 planned replacements authored (qrn-0177–qrn-0236); the remaining 40 are still pending. The next remediation must replace the repeated items with genuinely distinct case-specific clinical tasks, then write three distractor-specific rationales and attach traceable evidence for each item. A reviewer with appropriate clinical qualifications must adjudicate the key, distractors, and rationale before publication. Do not solve this by rephrasing stems or shuffling options.
+At the time of the baseline audit, 264 generated items remained after the first 100 authored replacements. A further 20 replacements (qrn-0237–qrn-0256) are now authored in a second tranche. The remaining generated items are qrn-0257–qrn-0500 (244 items). The next remediation must replace the repeated items with genuinely distinct case-specific clinical tasks, then write three distractor-specific rationales and attach traceable evidence for each item. A reviewer with appropriate clinical qualifications must adjudicate the key, distractors, and rationale before publication. Do not solve this by rephrasing stems or shuffling options.
 
 
 ## Inventory update — 23 November 2026
 
-The original 324-item audit cohort is now smaller because 100 IDs are authored replacement drafts: qrn-0137–qrn-0236. The source-level reconstruction now expects 264 topic-profile-generated items to remain (qrn-0237–qrn-0500). The first 40 authored items predate the current 100-item tranche; 60 of the current tranche's 100 replacements have now been authored. All replacement drafts remain unpublished pending evidence and qualified clinical review. The audit script's expected inventory and the validation rules' authored-replacement invariant have been updated accordingly.
+The original 324-item audit cohort is the baseline before the second replacement tranche. There are now 120 authored replacement drafts: qrn-0137–qrn-0256. The source-level reconstruction expects 244 topic-profile-generated items to remain (qrn-0257–qrn-0500). All replacement drafts remain unpublished pending item-level evidence and qualified clinical review. The audit script and validation rules now enforce the 120-item replacement inventory.
