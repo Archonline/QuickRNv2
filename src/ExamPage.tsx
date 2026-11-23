@@ -34,7 +34,8 @@ function selectExamItems(publishedItems:Question[],count:number,seed:number){con
 const selectedExam=useMemo(()=>{const formatType=(q:Question)=>normalizedType(q);if(practiceQuestion)return expandCaseStudyGroups([practiceQuestion],published);if(formatSampler){const selected:Question[]=[];const used=new Set<string>();for(const type of FORMAT_SAMPLER_TYPES){const preferred=published.filter(q=>!caseGroupKey(q)&&formatType(q)===type&&!used.has(q.id));const fallback=published.filter(q=>formatType(q)===type&&!used.has(q.id));const candidates=[...preferred];for(const q of fallback)if(!candidates.some(candidate=>candidate.id===q.id))candidates.push(q);const randomized=seededShuffle(candidates,samplerSeed+FORMAT_SAMPLER_TYPES.indexOf(type)+1);const picked=randomized[0];if(picked){selected.push(picked);used.add(picked.id);}}return selected;}if(questionCount==="all"&&mode==="self-study")return expandCaseStudyGroups(published,published);const count=mode==="readiness"?85:Number(questionCount);return selectExamItems(published,count,samplerSeed);},[published,questionCount,formatSampler,samplerSeed,mode,practiceQuestion]);
  const [catExam,setCatExam]=useState<Question[]>([]);
  const exam=mode==="cat"&&catExam.length?catExam:selectedExam;
- const [remainingSeconds,setRemainingSeconds]=useState(5*60*60);\n const [deadlineAt,setDeadlineAt]=useState<number|null>(null);
+ const [remainingSeconds,setRemainingSeconds]=useState(5*60*60);
+ const [deadlineAt,setDeadlineAt]=useState<number|null>(null);
  const [answers,setAnswers]=useState<Record<string,string[]>>({});
  const [current,setCurrent]=useState(0);
  const [flagged,setFlagged]=useState<string[]>([]);
@@ -76,17 +77,28 @@ const selectedExam=useMemo(()=>{const formatType=(q:Question)=>normalizedType(q)
  const currentCaseItems=isUnfoldingCase?exam.filter(q=>caseGroupKey(q)===caseGroupKey(item!)):[ ];
  const caseScreen=isUnfoldingCase?currentCaseItems.findIndex(q=>q.id===item!.id)+1:0;
  const recordText=item?.caseStudy??"";
- const vitalLines=[...recordText.matchAll(/(?:BP|HR|RR|SpO2|temperature|Temp|O2 saturation)[^\n.]*(?:\.|$)/gi)].map(m=>m[0].trim());
+ const vitalLines=[...recordText.matchAll(/(?:BP|HR|RR|SpO2|temperature|Temp|O2 saturation)[^
+.]*(?:\.|$)/gi)].map(m=>m[0].trim());
  const caseRecord=item?.caseRecord;
  const recordTabs:{key:typeof activeRecordTab;label:string;content:string}[]=caseRecord?[
   {key:"notes",label:"Progress Notes",content:caseRecord.progressNotes??recordText},
   {key:"history",label:"History",content:caseRecord.history??""},
   {key:"medications",label:"Medication List",content:caseRecord.medicationList??""},
   {key:"assessment",label:"Assessment",content:caseRecord.assessment??""},
-  {key:"vitals",label:"Vital Signs",content:caseRecord.vitalSigns??vitalLines.join("\n")},
+  {key:"vitals",label:"Vital Signs",content:caseRecord.vitalSigns??vitalLines.join("
+")},
   {key:"labs",label:"Lab Results",content:caseRecord.labs??""},
   {key:"orders",label:"Provider Orders",content:caseRecord.providerOrders??""},
-  {key:"flowsheet",label:"Flow Sheet",content:caseRecord.flowSheet??(currentCaseItems.slice(0,caseScreen).map((entry,index)=>"Screen "+(index+1)+" · "+(entry.caseRecord?.progressNotes??"Clinical update")+"\n"+(entry.caseRecord?.vitalSigns??"")).join("\n\n")+(caseRecord.assessment?"\n\nCurrent assessment\n"+caseRecord.assessment:"")+(caseRecord.labs?"\n\nCurrent labs\n"+caseRecord.labs:"")||"No additional flow-sheet observations are documented.")}
+  {key:"flowsheet",label:"Flow Sheet",content:caseRecord.flowSheet??(currentCaseItems.slice(0,caseScreen).map((entry,index)=>"Screen "+(index+1)+" · "+(entry.caseRecord?.progressNotes??"Clinical update")+"
+"+(entry.caseRecord?.vitalSigns??"")).join("
+
+")+(caseRecord.assessment?"
+
+Current assessment
+"+caseRecord.assessment:"")+(caseRecord.labs?"
+
+Current labs
+"+caseRecord.labs:"")||"No additional flow-sheet observations are documented.")}
  ]:[];
  const visibleRecordTabs=recordTabs.filter(tab=>!!tab.content?.trim()&&!/^No (?:additional|separate|laboratory)/i.test(tab.content.trim()));
  const selectedRecordTab=visibleRecordTabs.find(tab=>tab.key===activeRecordTab)??visibleRecordTabs[0];
@@ -153,7 +165,10 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
    {key:"vitals",label:"Vital Signs",content:q.caseRecord.vitalSigns??"No separate vital-sign record is documented."},
    {key:"labs",label:"Lab Results",content:q.caseRecord.labs??q.exhibit??"No laboratory results are documented."},
    {key:"orders",label:"Provider Orders",content:q.caseRecord.providerOrders??"No separate provider orders are documented."},
-   {key:"flowsheet",label:"Flow Sheet",content:q.caseRecord.flowSheet??exam.filter(entry=>entry.caseStudyId===q.caseStudyId&&exam.indexOf(entry)<=reviewIndex).map((entry,index)=>"Screen "+(index+1)+" · "+(entry.caseRecord?.progressNotes??"Clinical update")+"\n"+(entry.caseRecord?.vitalSigns??"")).join("\n\n")}
+   {key:"flowsheet",label:"Flow Sheet",content:q.caseRecord.flowSheet??exam.filter(entry=>entry.caseStudyId===q.caseStudyId&&exam.indexOf(entry)<=reviewIndex).map((entry,index)=>"Screen "+(index+1)+" · "+(entry.caseRecord?.progressNotes??"Clinical update")+"
+"+(entry.caseRecord?.vitalSigns??"")).join("
+
+")}
   ]:[];
   const reviewRecordActive=reviewRecordTabs.find(tab=>tab.key===activeRecordTab)??reviewRecordTabs[0];
   const actualLabels=reviewLabels(q,response);
