@@ -73,7 +73,7 @@ function valueAt(object, dottedPath) {
   return dottedPath.split(".").reduce((value, key) => value == null ? undefined : value[key], object);
 }
 function normalizeText(value) {
-  return typeof value === "string" ? value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().replace(/\\s+/g, " ") : "";
+  return typeof value === "string" ? value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().replace(/\s+/g, " ") : "";
 }
 function auditBatchDistribution(questions, rules, findings) {
   const config = rules.batch_distribution ?? {};
