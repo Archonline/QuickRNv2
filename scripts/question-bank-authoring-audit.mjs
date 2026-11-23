@@ -246,7 +246,7 @@ function auditCoreGenerator(rules, findings) {
   }
   const categoryBlock = source.slice(source.indexOf("const B:B[]="), source.indexOf("const cases="));
   const topicCategories = new Map();
-  for (const match of categoryBlock.matchAll(/\\{category:"([^"]+)",count:\\d+,topics:\\[([\\s\\S]*?)\\],scenario:/g)) {
+  for (const match of categoryBlock.matchAll(/\{category:"([^"]+)",count:\d+,topics:\[([\s\S]*?)\],scenario:/g)) {
     const category = match[1];
     for (const topicMatch of match[2].matchAll(/"([^"]+)"/g)) {
       const topic = topicMatch[1];
