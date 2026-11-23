@@ -149,7 +149,14 @@ function validateRawQuestion(item, rules, findings, index) {
   }
   if (config.option_rationales?.required_for_option_based_items && Array.isArray(item?.interaction?.options)) {
     const options = item.interaction.options;
-    if (!Array.isArray(incorrect) || incorrect.length < options.length - 1 ||
+    const correctIds = item?.correct_response?.selected_option
+      ? [String(item.correct_response.selected_option)]
+      : Array.isArray(item?.correct_response?.selected_options)
+        ? item.correct_response.selected_options.map(String) : [];
+    const requiredIncorrectCount = correctIds.length
+      ? options.filter(option => !correctIds.includes(String(option?.id ?? ""))).length
+      : options.length - 1;
+    if (!Array.isArray(incorrect) || incorrect.length < requiredIncorrectCount ||
         incorrect.some((entry) => typeof entry?.rationale !== "string" || entry.rationale.trim().length < (config.option_rationales.min_length_per_rationale ?? 1))) {
       add(config.option_rationales.severity ?? "warning", "Missing or incomplete incorrect-option rationales.");
     }
