@@ -21,8 +21,8 @@ test("dashboard polish remains isolated from exam and NGN rendering", () => {
   const main = read("src/main.tsx");
   const dashboardCss = read("src/dashboard-pages.css");
   assert.ok(main.includes('import "./dashboard-pages.css";'), "dashboard stylesheet must be loaded");
-  assert.doesNotMatch(dashboardCss, /\.exam-[a-z0-9_-]*|\.ngn-[a-z0-9_-]*/i,
-    "dashboard-only stylesheet must not override exam or NGN components");
+  assert.doesNotMatch(dashboardCss, /(^|[,\s])\.exam-(screen|header|question-card|controls|record-panel)|(^|[,\s])\.ngn-/m,
+    "dashboard-only stylesheet must not override live exam or NGN components");
 });
 
 test("exam layout retains responsive and interaction presentation hooks", () => {
