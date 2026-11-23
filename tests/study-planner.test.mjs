@@ -26,5 +26,5 @@ test("planner recommendations use assessment category accuracy without touching 
   assert.match(planner, /Rebuild core concepts/);
   assert.match(main, /dashboard-pages\.css/);
   assert.match(main, /dashboard-pages\.css";\s*import "\.\/exam-overrides\.css"/);
-  assert.doesNotMatch(plannerStyles.replace(/\/\*[\\s\\S]*?\\*\//g, ""), /\\.exam-(?:screen|layout|main|question-card|stem|controls)|\\.ngn-/);
+  assert.doesNotMatch(plannerStyles.replace(/\/\*[\s\S]*?\*\//g, ""), /\.exam-(?:screen|layout|main|question-card|stem|controls)|\.ngn-/);
 });
