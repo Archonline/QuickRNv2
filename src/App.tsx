@@ -14,7 +14,6 @@ import { buildPassProbabilitySeries } from "./passProbability.js";
 import { questionBank600 } from "./ngnQuestionBank";
 
 import { responseScore } from "./examScoring.js";
-import { authoredCoreRewriteBatch } from "./authoredCoreRewriteBatch";
 import QuestionBankAutomationTracker from "./QuestionBankAutomationTracker";
 import { Settings, Bookmark, BookmarkCheck, ClipboardList, BrainCircuit } from "lucide-react";
 type Page="overview"|"practice"|"simulator"|"cat-readiness"|"progress"|"history"|"calendar"|"saved"|"settings"|"webmaster"|"legal";
