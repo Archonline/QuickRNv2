@@ -251,3 +251,16 @@ const invalidPublishedQuestions=questionBank600.flatMap(q=>{
  return missing.length?[{id:q.id,missing}]:[];
 });
 if(invalidPublishedQuestions.length)throw new Error("Published questions are not renderable: "+invalidPublishedQuestions.map(q=>q.id+" ["+q.missing.join(", ")+"]").join("; "));
+
+// Validate choice-based interactions across the complete published bank, not only
+// the curated NGN extension. This catches empty option lists and out-of-range keys
+// before a malformed item can reach the exam renderer.
+const choiceBasedTypes=new Set<NclexItemType>(["single-response","multiple-response","extended-multiple-response","select-n","trend","graphics-based"]);
+const invalidPublishedChoiceItems=questionBank600.filter(q=>{
+ if(q.status!=="published"||!choiceBasedTypes.has(q.itemType??"single-response"))return false;
+ const choices=q.interaction?.choices??q.options??[];
+ const correct=q.interaction?.correctResponse??[];
+ return choices.length<2||!correct.length||correct.some(value=>!/^\\d+$/.test(value)||Number(value)<0||Number(value)>=choices.length);
+});
+if(invalidPublishedChoiceItems.length)throw new Error("Published choice-based questions have missing choices or invalid answer keys: "+invalidPublishedChoiceItems.map(q=>q.id+" ("+q.itemType+")").join(", "));
+
