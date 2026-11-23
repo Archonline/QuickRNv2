@@ -49,6 +49,68 @@ function auditAuthoredCoreRewriteBatch(source, rules, findings) {
 function valueAt(object, dottedPath) {
   return dottedPath.split(".").reduce((value, key) => value == null ? undefined : value[key], object);
 }
+function normalizeText(value) {
+  return typeof value === "string" ? value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().replace(/\\s+/g, " ") : "";
+}
+function auditBatchDistribution(questions, rules, findings) {
+  const config = rules.batch_distribution ?? {};
+  const targets = config.difficulty_targets_per_100 ?? {};
+  const difficultyCounts = Object.fromEntries(Object.keys(targets).map((key) => [key, 0]));
+  const typeCounts = {};
+  for (const item of questions) {
+    if (item?.difficulty in difficultyCounts) difficultyCounts[item.difficulty] += 1;
+    typeCounts[item?.question_type ?? "unknown"] = (typeCounts[item?.question_type ?? "unknown"] ?? 0) + 1;
+  }
+  for (const [difficulty, target] of Object.entries(targets)) {
+    if (difficultyCounts[difficulty] !== target) {
+      finding(findings, "warning", NGN_BATCH_PATH,
+        `Difficulty distribution differs from target: ${difficulty} ${difficultyCounts[difficulty] ?? 0}/${target}.`);
+    }
+  }
+  const minimum = config.minimum_target_per_question_format_per_100 ?? 0;
+  for (const [type, count] of Object.entries(typeCounts)) {
+    if (count < minimum) finding(findings, "warning", NGN_BATCH_PATH,
+      `Question format ${type} has ${count} item(s), below the per-100 minimum of ${minimum}.`);
+  }
+  return { difficultyCounts, typeCounts };
+}
+function auditCaseStudyGroups(questions, findings) {
+  const groups = new Map();
+  const ids = new Set(questions.map((item) => item?.id).filter(Boolean));
+  for (const item of questions) {
+    if (!item?.case_study_id) continue;
+    const group = groups.get(item.case_study_id) ?? [];
+    group.push(item);
+    groups.set(item.case_study_id, group);
+  }
+  const config = [];
+  for (const [caseId, group] of groups) {
+    const declared = group[0]?.interaction?.linked_question_ids ?? [];
+    const declaredSet = new Set(declared);
+    if (declared.some((id) => !ids.has(id))) finding(findings, "error", NGN_BATCH_PATH,
+      `[${caseId}] linked_question_ids references an ID outside this batch.`);
+    if (group.some((item) => {
+      const linked = item?.interaction?.linked_question_ids ?? [];
+      return linked.length !== declared.length || linked.some((id, index) => id !== declared[index]);
+    })) finding(findings, "error", NGN_BATCH_PATH,
+      `[${caseId}] linked question lists are inconsistent across case stages.`);
+    if (declaredSet.size !== group.length || [...declaredSet].some((id) => !group.some((item) => item.id === id))) {
+      finding(findings, "warning", NGN_BATCH_PATH,
+        `[${caseId}] declared linked-question count does not match the case-study records in this batch.`);
+    }
+    if (declared.length !== 6) finding(findings, "warning", NGN_BATCH_PATH,
+      `[${caseId}] has ${declared.length} linked screen questions; the authoring rule expects exactly 6.`);
+    for (const item of group) {
+      const stage = item?.interaction?.stage;
+      const total = item?.interaction?.total_stages;
+      if (!Number.isInteger(stage) || !Number.isInteger(total) || stage < 1 || stage > total) {
+        finding(findings, "error", NGN_BATCH_PATH, `[${item?.id ?? caseId}] has an invalid case-study stage number.`);
+      }
+    }
+    config.push({ caseId, questions: group.length, linkedQuestions: declared.length });
+  }
+  return config;
+}
 function validateRawQuestion(item, rules, findings, index) {
   const config = rules.sprint3_authoring_quality ?? {};
   const label = item?.id ?? `row-${index + 1}`;
@@ -99,7 +161,19 @@ function auditNgnBatch(rules, findings) {
   if (batch.batch?.generated_count !== questions.length) finding(findings, "error", NGN_BATCH_PATH, "Batch generated_count does not match questions.length.");
   const ids = questions.map((item) => item?.id).filter(Boolean);
   if (new Set(ids).size !== ids.length) finding(findings, "error", NGN_BATCH_PATH, "Duplicate NGN question IDs detected.");
+  const stems = new Map();
+  for (const item of questions) {
+    const normalized = normalizeText(item?.stem);
+    if (!normalized) continue;
+    if (stems.has(normalized)) finding(findings, "error", NGN_BATCH_PATH,
+      `Duplicate normalized question stem shared by ${stems.get(normalized)} and ${item.id}.`);
+    else stems.set(normalized, item.id);
+  }
+  const distribution = auditBatchDistribution(questions, rules, findings);
+  const caseGroups = auditCaseStudyGroups(questions, findings);
   questions.forEach((item, index) => validateRawQuestion(item, rules, findings, index));
+  console.log("NGN batch distribution:", JSON.stringify(distribution));
+  console.log("NGN case-study groups:", JSON.stringify(caseGroups));
 }
 function runAudit() {
   const rules = loadJson(RULES_PATH);
