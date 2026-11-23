@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
-import { Bell, BookOpen, Eye, RotateCcw, Save, ShieldCheck, UserRound } from "lucide-react";
+import { addDoc, collection, doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import { AlertTriangle, Bell, BookOpen, Eye, RotateCcw, Save, ShieldCheck, Trash2, UserRound } from "lucide-react";
 import type { User } from "firebase/auth";
 import { db } from "./firebase";
 
@@ -32,6 +32,10 @@ export default function SettingsPage({ user, onDefaultExamLengthChange }: { user
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
+  const [deletionConfirm, setDeletionConfirm] = useState(false);
+  const [deletionBusy, setDeletionBusy] = useState(false);
+  const [deletionStatus, setDeletionStatus] = useState("");
+  const [deletionError, setDeletionError] = useState("");
   useEffect(() => {
     let active = true;
     async function load() {
@@ -73,6 +77,22 @@ export default function SettingsPage({ user, onDefaultExamLengthChange }: { user
       setError("Firebase could not save your settings. Check your connection and Firestore rules, then retry.");
     } finally { setSaving(false); }
   }
+  async function submitDeletionRequest() {
+    if (!user || !db) { setDeletionError("Sign in and configure Firebase before requesting account deletion."); return; }
+    setDeletionBusy(true); setDeletionError(""); setDeletionStatus("");
+    try {
+      await addDoc(collection(db, "users", user.uid, "deletionRequests"), {
+        requestType: "account-deletion",
+        status: "pending",
+        requestedAt: serverTimestamp()
+      });
+      setDeletionStatus("Your account deletion request has been submitted. It is pending administrator review; your account and data have not yet been deleted.");
+      setDeletionConfirm(false);
+    } catch (cause) {
+      console.error("Unable to submit account deletion request", cause);
+      setDeletionError("We could not submit your request. Check your connection and Firestore rules, then try again.");
+    } finally { setDeletionBusy(false); }
+  }
   async function reset() {
     setPrefs(defaultPreferences); setSaved(false); setError("");
     if (!user || !db) { setError("Sign in and configure Firebase before resetting account settings."); return; }
@@ -105,6 +125,12 @@ export default function SettingsPage({ user, onDefaultExamLengthChange }: { user
     </div>
     <div className="settings-card"><div className="settings-card-title"><Bell size={18}/><div><h2>Study reminders</h2><p>Reminder preference for future planner integration</p></div></div>
       <label className="settings-toggle"><span><strong>Enable study reminders</strong><small>This stores your preference; scheduled browser or email notifications are not implemented yet.</small></span><input type="checkbox" checked={prefs.studyReminders} disabled={loading||saving} onChange={e=>update("studyReminders",e.target.checked)}/></label>
+    </div>
+    <div className="settings-card settings-danger-card"><div className="settings-card-title"><AlertTriangle size={18}/><div><h2>Account deletion</h2><p>Request removal of your QuickRN account and associated personal data</p></div></div>
+      <p className="settings-help">Submitting a request does not immediately delete your account. The request is recorded securely for administrator review. Authentication and associated Firestore data must be removed through a trusted administrative process, subject to applicable retention requirements.</p>
+      {deletionStatus && <p className="settings-status" role="status">{deletionStatus}</p>}
+      {deletionError && <p className="settings-error" role="alert">{deletionError}</p>}
+      {!deletionConfirm ? <button type="button" className="button danger" disabled={!user || !db || deletionBusy} onClick={()=>{setDeletionConfirm(true);setDeletionError("");}}><Trash2 size={15}/> Request account deletion</button> : <div className="settings-delete-confirm" role="group" aria-label="Confirm account deletion request"><strong>Are you sure you want to submit this request?</strong><p>This only sends a request for review. You will remain signed in until an administrator processes it.</p><div className="settings-actions"><button type="button" className="button secondary" disabled={deletionBusy} onClick={()=>setDeletionConfirm(false)}>Cancel</button><button type="button" className="button danger" disabled={deletionBusy} onClick={()=>void submitDeletionRequest()}><Trash2 size={15}/>{deletionBusy?"Submitting…":"Confirm request"}</button></div></div>}
     </div>
     <div className="settings-actions"><span className="settings-saved" role="status">{error || (saved ? "Preferences saved to your Firebase account." : "Changes are not saved yet.")}</span><button className="button secondary" disabled={loading||saving||!user||!db} onClick={()=>void reset()}><RotateCcw size={15}/> Reset</button><button className="button primary" disabled={loading||saving||!user||!db} onClick={()=>void save()}><Save size={15}/> {saving?"Saving…":"Save preferences"}</button></div>
     <div className="settings-disclaimer"><ShieldCheck size={17}/><span>Your preferences are stored in Firestore under your authenticated account and follow you across devices. Notification delivery and account profile editing are separate features.</span></div>
