@@ -4,6 +4,7 @@ import App from "./App";
 import AuthGate from "./AuthGate";
 import "./style.css";
 import "./design-system.css";
+import "./dashboard-pages.css";
 import "./exam-overrides.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
