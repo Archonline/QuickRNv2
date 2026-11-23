@@ -34,7 +34,7 @@ function auditAuthoredCoreRewriteBatch(source, rules, findings) {
   if (new Set(ids).size !== ids.length) finding(findings, "error", REWRITE_BATCH_PATH, "Duplicate authored replacement IDs detected.");
   // The first six literal arguments are stable item metadata; compare authored prompts
   // so generic repeated stems cannot pass merely because the clinical scenarios differ.
-  const promptRows = [...source.matchAll(/\\bsingle\\(\\s*"([^"]+)"\\s*,\\s*"[^"]*"\\s*,\\s*"[^"]*"\\s*,\\s*"[^"]*"\\s*,\\s*"((?:\\\\.|[^"\\\\])*)"\\s*,\\s*"((?:\\\\.|[^"\\\\])*)"/g)];
+  const promptRows = [...source.matchAll(/\bsingle\(\s*"([^"]+)"\s*,\s*"[^"]*"\s*,\s*"[^"]*"\s*,\s*"[^"]*"\s*,\s*"((?:\\.|[^"\\])*)"\s*,\s*"((?:\\.|[^"\\])*)"/g)];
   const promptOwners = new Map();
   for (const match of promptRows) {
     const id = match[1];
