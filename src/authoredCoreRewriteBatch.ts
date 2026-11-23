@@ -833,7 +833,7 @@ export const authoredCoreRewriteBatch: Question[] = [
     "take-action",["Waiting allows hypoglycemia to worsen.","Correct. Treat and reassess promptly, then coordinate food and insulin timing.","Additional insulin worsens hypoglycemia.","Exercise increases glucose utilization and can worsen the low glucose."]),
   single("qrn-0235","Cardiovascular / Perfusion","Pericardial tamponade","Advanced",
     "A client 3 days after cardiac surgery develops dyspnea, restlessness, BP 80/56 mm Hg, HR 126/min, jugular venous distention, and muffled heart sounds. Chest tube drainage has abruptly decreased.",
-    "Which complication should the nurse suspect and report immediately?",
+    "Which postoperative hemodynamic pattern points to pericardial blood accumulation rather than routine recovery?",
     ["Expected postoperative fluid shift","Cardiac tamponade from impaired drainage, requiring emergency evaluation","Uncomplicated atelectasis","Medication-related constipation"],1,
     "Hypotension, tachycardia, JVD, muffled heart sounds, and abrupt reduction in postoperative drainage suggest cardiac tamponade from accumulating pericardial blood. This is an obstructive shock emergency requiring immediate surgical/cardiac evaluation.",
     "recognize-cues",["The hemodynamic findings are not an expected benign postoperative change.","Correct. Tamponade can rapidly progress to cardiovascular collapse and requires emergency intervention.","Atelectasis does not explain JVD, muffled heart sounds, and shock.","Constipation is unrelated to the acute hemodynamic deterioration."]),
