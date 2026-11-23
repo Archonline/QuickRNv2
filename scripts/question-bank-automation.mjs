@@ -43,11 +43,10 @@ async function generate(count,first,repairText="",explicitIds=null){
  const ids=explicitIds||Array.from({length:count},(_,i)=>"QRN-"+String(first+i).padStart(6,"0"));
  const assigned=ids.map((_,i)=>types[(first+i-1)%types.length]);
  const prompt="Return ONLY JSON {questions:[...]}. Generate exactly "+count+" original QuickRNv2 NCLEX-RN/NGN questions with IDs "+ids[0]+" through "+ids.at(-1)+". Exact question schema: "+JSON.stringify(schema)+". Rules: "+JSON.stringify(rules)+". Topic blueprint: "+JSON.stringify(topics)+". Required types in order: "+JSON.stringify(assigned)+". Every item must have a unique topic-specific patient presentation, internally consistent relevant findings, a defensible answer, complete correct and incorrect rationales, and no repeated template or invented unsupported clinical data. Do not claim clinical verification. "+repairText;
- const url="https://generativelanguage.googleapis.com/v1beta/models/"+MODEL+":generateContent?key="+KEY;
- const res=await fetch(url,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({contents:[{role:"user",parts:[{text:prompt}]}],generationConfig:{responseMimeType:"application/json",temperature:0.55,maxOutputTokens:30000}})});
- if(!res.ok)throw new Error("Gemini HTTP "+res.status+" "+(await res.text()).slice(0,400));
- const data=await res.json(), raw=data.candidates?.[0]?.content?.parts?.map(p=>p.text||"").join("");
- if(!raw)throw new Error("Empty model response");return JSON.parse(raw.replace(/^\s*```(?:json)?/i,"").replace(/```\s*$/,""));
+  const res=await fetch(OLLAMA_HOST+"/api/chat",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({model:MODEL,stream:false,format:schema,messages:[{role:"user",content:prompt}],options:{temperature:0.35,num_ctx:16384,num_predict:30000},keep_alive:"10m"})});
+  if(!res.ok)throw new Error("Ollama HTTP "+res.status+" "+(await res.text()).slice(0,500));
+  const data=await res.json(), raw=data.message?.content;
+  if(!raw)throw new Error("Empty Ollama response");return JSON.parse(raw.replace(/^\\s*```(?:json)?/i,"").replace(/```\\s*$/,""));
 }
 let runAccepted=0,runRejected=0,attempts=0;
 let nextId=priorIds.size?Math.max(546,...[...priorIds].map(id=>Number(String(id).replace("QRN-",""))||0))+1:547;
