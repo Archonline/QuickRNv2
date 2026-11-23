@@ -20,7 +20,14 @@ const cumulativeTarget=Math.min(TARGET,BASELINE+Math.ceil((TARGET-BASELINE)*elap
 const due=Math.max(0,cumulativeTarget-(BASELINE+accepted));
 const runBudget=Math.min(remaining,due,BATCH_SIZE*MAX_BATCHES);
 if(remaining){try{const ping=await fetch(OLLAMA_HOST+"/api/version");if(!ping.ok)throw new Error("Ollama server unavailable");}catch(e){console.error("Ollama is required and must be running locally:",e.message);process.exit(2);}}
-const types=rules.question_integrity.valid_question_types.filter(type=>type!=="hot_spot");
+const ngnTypes=["multiple_response","extended_multiple_response","matrix","cloze","highlight_text","highlight_table","bow_tie","trend","ordered_response","case_study"].filter(type=>rules.question_integrity.valid_question_types.includes(type));
+const traditionalTypes=["multiple_choice","calculation"].filter(type=>rules.question_integrity.valid_question_types.includes(type));
+if(!ngnTypes.length||!traditionalTypes.length)throw new Error("Question-type distribution is incomplete");
+function assignedType(first,index){
+ const ordinal=first+index-547, slot=((ordinal%10)+10)%10;
+ if(slot<8)return ngnTypes[Math.floor(ordinal/8)%ngnTypes.length];
+ return traditionalTypes[Math.floor((ordinal-8)/2)%traditionalTypes.length];
+}
 const topics=(blueprint.domains||[]).map(d=>({domain:d.name,topics:d.topics,conditions:d.seed_conditions}));
 function validate(q,id){
  const req=schema.$defs.question.required;
@@ -41,8 +48,8 @@ function validate(q,id){
 }
 async function generate(count,first,repairText="",explicitIds=null){
  const ids=explicitIds||Array.from({length:count},(_,i)=>"QRN-"+String(first+i).padStart(6,"0"));
- const assigned=ids.map((_,i)=>types[(first+i-1)%types.length]);
- const prompt="Return ONLY JSON {questions:[...]}. Generate exactly "+count+" original QuickRNv2 NCLEX-RN/NGN questions with IDs "+ids[0]+" through "+ids.at(-1)+". Exact question schema: "+JSON.stringify(schema)+". Rules: "+JSON.stringify(rules)+". Topic blueprint: "+JSON.stringify(topics)+". Required types in order: "+JSON.stringify(assigned)+". Every item must have a unique topic-specific patient presentation, internally consistent relevant findings, a defensible answer, complete correct and incorrect rationales, and no repeated template or invented unsupported clinical data. Do not claim clinical verification. "+repairText;
+ const assigned=ids.map((_,i)=>assignedType(first,i));
+ const prompt="Return ONLY JSON {questions:[...]}. Generate exactly "+count+" original QuickRNv2 NCLEX-RN/NGN questions with IDs "+ids[0]+" through "+ids.at(-1)+". Exact question schema: "+JSON.stringify(schema)+". Rules: "+JSON.stringify(rules)+". Topic blueprint: "+JSON.stringify(topics)+". Required types in order (80% NGN formats, 20% traditional formats): "+JSON.stringify(assigned)+". Every item must have a unique topic-specific patient presentation, internally consistent relevant findings, a defensible answer, complete correct and incorrect rationales, and no repeated template or invented unsupported clinical data. Do not claim clinical verification. "+repairText;
   const res=await fetch(OLLAMA_HOST+"/api/chat",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({model:MODEL,stream:false,format:schema,messages:[{role:"user",content:prompt}],options:{temperature:0.35,num_ctx:16384,num_predict:30000},keep_alive:"10m"})});
   if(!res.ok)throw new Error("Ollama HTTP "+res.status+" "+(await res.text()).slice(0,500));
   const data=await res.json(), raw=data.message?.content;
