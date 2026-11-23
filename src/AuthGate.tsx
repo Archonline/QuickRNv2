@@ -1,5 +1,6 @@
 import { useState, type FormEvent, type ReactNode } from "react";
-import { Activity, Mail, LockKeyhole, ArrowLeft, Eye, EyeOff, ShieldCheck } from "lucide-react";
+import { Mail, LockKeyhole, ArrowLeft, Eye, EyeOff, ShieldCheck } from "lucide-react";
+import QuickRNBrand from "./QuickRNBrand";
 import { AuthProvider, useAuth } from "./AuthContext";
 import LandingPage from "./LandingPage";
 import LegalPage from "./LegalPage";
@@ -134,11 +135,7 @@ function Gate({ children }: { children: ReactNode }) {
         <button type="button" className="back-to-landing" onClick={() => setShowAuth(false)}>
           <ArrowLeft size={16} /> Back to QuickRN
         </button>
-        <div className="auth-brand">
-          <span className="brand-mark"><Activity size={22} /></span>
-          <strong>quick<span>rn</span></strong>
-          <span className="auth-beta">BETA</span>
-        </div>
+        <div className="auth-brand"><QuickRNBrand badge="BETA" /></div>
         <div className="eyebrow">{isReset ? "ACCOUNT RECOVERY" : "YOUR NCLEX STUDY SPACE"}</div>
         <h1>{isReset ? "Reset your password" : isSignup ? "Create your account" : "Welcome back"}</h1>
         <p className="auth-intro">
