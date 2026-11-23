@@ -38,13 +38,13 @@ export default function PassProbabilityChart({ points }: Props) {
           <h2 id="pass-probability-title">NCLEX pass probability</h2>
           <p>Estimated from completed CAT and Readiness Exams only</p>
         </div>
-        {latest ? <div className="pass-probability-current">
+        {latest && points.length >= 3 ? <div className="pass-probability-current">
           <strong>{latest.probability}%</strong>
           <span>Current estimate</span>
           {previous && <small className={change >= 0 ? "trend-up" : "trend-down"}>{change > 0 ? "+" : ""}{change} pts since last test</small>}
         </div> : null}
       </div>
-      {points.length === 0 ? (
+      {points.length > 0 && points.length < 3 && <div className="pass-probability-empty"><strong>Building a reliable estimate</strong><span>Complete {3-points.length} more CAT or Readiness Exam{3-points.length===1?"":"s"} before QuickRN displays a probability. Your assessment trend is shown below as data accumulates.</span></div>}\n      {points.length === 0 ? (
         <div className="pass-probability-empty">
           <span className="pass-probability-empty-mark">↗</span>
           <strong>Your trend starts after your first completed assessment</strong>
