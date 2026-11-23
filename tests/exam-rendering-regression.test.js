@@ -50,10 +50,10 @@ test("NGN interaction renderer retains every supported item type", async () => {
 test("shared non-exam styles do not target active exam or NGN components", async () => {
   const files = ["../src/design-system.css", "../src/dashboard-pages.css"];
   const styles = await Promise.all(files.map(file => readFile(new URL(file, import.meta.url), "utf8")));
-  const protectedPattern = /[^{}]*\\.(?:exam-(?:screen|layout|main|question-card|stem|record-panel|controls|record-tabs|record-content|inline-scenario|case|trend-left|review-[a-zA-Z0-9_-]+|modal[a-zA-Z0-9_-]*|nav[a-zA-Z0-9_-]*|header[a-zA-Z0-9_-]*|timer|session-bar|progress-track|item-[a-zA-Z0-9_-]+)|ngn-[a-zA-Z0-9_-]+)[^{}]*\\{/g;
+  const protectedPattern = /[^{}]*\.(?:exam-(?:screen|layout|main|question-card|stem|record-panel|controls|record-tabs|record-content|inline-scenario|case|trend-left|review-[a-zA-Z0-9_-]+|modal[a-zA-Z0-9_-]*|nav[a-zA-Z0-9_-]*|header[a-zA-Z0-9_-]*|timer|session-bar|progress-track|item-[a-zA-Z0-9_-]+)|ngn-[a-zA-Z0-9_-]+)[^{}]*\{/g;
 
   for (const css of styles) {
-    const protectedSelectors = css.replace(/\\/\\*[\\s\\S]*?\\*\\//g, "").match(protectedPattern) ?? [];
+    const protectedSelectors = css.replace(/\/\*[\s\S]*?\*\//g, "").match(protectedPattern) ?? [];
     assert.deepEqual(protectedSelectors, [], "Keep active exam and NGN presentation rules in exam-overrides.css.");
   }
 });
