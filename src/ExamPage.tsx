@@ -78,7 +78,7 @@ const selectedExam=useMemo(()=>{const formatType=(q:Question)=>normalizedType(q)
  const vitalLines=[...recordText.matchAll(/(?:BP|HR|RR|SpO2|temperature|Temp|O2 saturation)[^\n.]*(?:\.|$)/gi)].map(m=>m[0].trim());
  const caseRecord=item?.caseRecord;
  const recordTabs:{key:typeof activeRecordTab;label:string;content:string}[]=caseRecord?[
-  {key:"notes",label:"Progress Notes",content:caseRecord.progressNotes??recordText},
+  {key:"notes",label:"Progress Notes",content:[caseRecord.progressNotes,caseRecord.flowSheet].filter(value=>!!value?.trim()).join("\n\n")||recordText},
   {key:"history",label:"History",content:caseRecord.history??""},
   {key:"medications",label:"Medication List",content:caseRecord.medicationList??""},
   {key:"assessment",label:"Assessment",content:caseRecord.assessment??""},
@@ -145,7 +145,7 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
   const isCorrect=isQuestionCorrect(q,response);
   const qData:QuestionInteraction=q.interaction??{choices:q.options,correctResponse:[String(q.answer)]};
   const reviewRecordTabs:{key:"notes"|"history"|"medications"|"assessment"|"vitals"|"labs"|"orders"|"flowsheet";label:string;content:string}[]=q.caseRecord?[
-   {key:"notes",label:"Progress Notes",content:q.caseRecord.progressNotes??q.caseStudy??""},
+   {key:"notes",label:"Progress Notes",content:[q.caseRecord.progressNotes,q.caseRecord.flowSheet].filter(value=>!!value?.trim()).join("\n\n")||q.caseStudy||""},
    {key:"history",label:"History",content:q.caseRecord.history??"No additional history is documented."},
    {key:"medications",label:"Medication List",content:q.caseRecord.medicationList??"No medication list is documented."},
    {key:"assessment",label:"Assessment",content:q.caseRecord.assessment??"No separate assessment is documented."},
