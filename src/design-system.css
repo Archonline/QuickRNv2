@@ -1,0 +1,327 @@
+/* QuickRN shared application design system.
+   Scope: authenticated application shell and non-exam pages.
+   Exam workspace/question rendering is intentionally excluded. */
+:root {
+  --qrn-ink: #17233b;
+  --qrn-muted: #68758b;
+  --qrn-subtle: #8b96a8;
+  --qrn-line: #e5eaf1;
+  --qrn-canvas: #f5f7fb;
+  --qrn-surface: #ffffff;
+  --qrn-brand: #4f46c8;
+  --qrn-brand-dark: #3f38ad;
+  --qrn-brand-soft: #f0efff;
+  --qrn-radius: 16px;
+  --qrn-shadow: 0 8px 28px rgba(25, 39, 69, .055);
+}
+.app-shell {
+  min-height: 100vh;
+  color: var(--qrn-ink);
+  background: var(--qrn-canvas);
+  font-family: Inter, "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.app-shell .sidebar {
+  width: 256px;
+  padding: 25px 16px 18px;
+  background: #111c32;
+  border: 0;
+  color: #dbe4f3;
+  box-shadow: 8px 0 28px rgba(15, 25, 45, .06);
+}
+.app-shell .brand {
+  padding: 0 10px 34px;
+  color: #fff;
+  font-size: 22px;
+}
+.app-shell .brand-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: #746cf0;
+  box-shadow: 0 5px 14px rgba(116,108,240,.28);
+}
+.app-shell .brand-light { color: #aaa5ff; }
+.app-shell .beta {
+  color: #c5c1ff;
+  background: rgba(132,124,255,.16);
+}
+.app-shell .side-label {
+  color: #8492aa;
+  font-size: 9px;
+  letter-spacing: 1.45px;
+  padding-left: 12px;
+}
+.app-shell .nav-item {
+  min-height: 43px;
+  margin: 2px 0;
+  padding: 10px 12px;
+  gap: 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #b4bfd1;
+  font-size: 12px;
+  font-weight: 550;
+  transition: background .16s ease, color .16s ease, border-color .16s ease;
+}
+.app-shell .nav-item:hover {
+  color: #fff;
+  background: rgba(255,255,255,.07);
+}
+.app-shell .nav-item.active {
+  color: #fff;
+  background: rgba(119,111,245,.19);
+  border-color: rgba(151,145,255,.19);
+  box-shadow: inset 3px 0 #958fff;
+}
+.app-shell .nav-count {
+  margin-left: auto;
+  min-width: 21px;
+  padding: 3px 6px;
+  border-radius: 20px;
+  color: #d9d6ff;
+  background: rgba(151,145,255,.2);
+  text-align: center;
+}
+.app-shell .progress-card {
+  margin: 0 4px;
+  padding: 13px 11px;
+  border-color: rgba(255,255,255,.12);
+  background: rgba(255,255,255,.055);
+}
+.app-shell .progress-icon { background: rgba(151,145,255,.16); color: #b7b2ff; }
+.app-shell .progress-card strong { color: #fff; }
+.app-shell .progress-card span,.app-shell .sidebar-bottom span { color: #9ba9bf; }
+.app-shell .sidebar-bottom { border-color: rgba(255,255,255,.12); }
+.app-shell .sidebar-bottom strong { color: #e8edf6; }
+.app-shell .help-icon { background: rgba(255,255,255,.08); color: #c2cce0; }
+.app-shell .main-content { margin-left: 256px; }
+.app-shell .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  height: 68px;
+  padding: 0 clamp(24px, 3.5vw, 52px);
+  background: rgba(255,255,255,.94);
+  border-bottom: 1px solid var(--qrn-line);
+  backdrop-filter: blur(14px);
+}
+.app-shell .breadcrumb { color: #8792a5; font-size: 12px; }
+.app-shell .breadcrumb b { color: #25334c; font-weight: 650; }
+.app-shell .top-right { color: #66748b; font-size: 12px; }
+.app-shell .avatar {
+  width: 34px; height: 34px;
+  background: #eeedff; color: #5148c7;
+  font-size: 12px;
+}
+.app-shell .auth-logout {
+  padding: 8px 11px;
+  border: 1px solid var(--qrn-line);
+  color: #526078;
+  border-radius: 9px;
+}
+.app-shell .auth-logout:hover { background: #f6f5ff; color: var(--qrn-brand); }
+.app-shell .content-wrap {
+  width: min(100%, 1440px);
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 38px clamp(24px, 3.5vw, 52px) 32px;
+}
+.app-shell .eyebrow {
+  color: #655bd0;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 1.35px;
+  margin-bottom: 10px;
+}
+.app-shell h1,.app-shell h2,.app-shell h3 {
+  color: #1b2942;
+  letter-spacing: -.035em;
+}
+.app-shell .welcome-row { margin-bottom: 27px; }
+.app-shell .welcome-row h1,.app-shell .exam-launch-page h1,.app-shell .history-page h1,.app-shell .saved-page h1,.app-shell .legal-page>h1 {
+  max-width: 850px;
+  margin: 0;
+  font-size: clamp(26px, 2.3vw, 34px);
+  line-height: 1.18;
+  font-weight: 780;
+}
+.app-shell .subheading {
+  color: #738097;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-top: 10px;
+}
+.app-shell .welcome-icon {
+  width: 58px; height: 58px;
+  border-radius: 17px;
+  background: #eeedff;
+  color: #5c53ce;
+}
+.app-shell .notice {
+  gap: 13px;
+  padding: 15px 17px;
+  border: 1px solid #e8e5ff;
+  border-radius: 13px;
+  background: #f7f6ff;
+  color: #5b55a7;
+}
+.app-shell .notice strong { color: #34305f; font-size: 12px; }
+.app-shell .notice span { color: #77749b; font-size: 11px; line-height: 1.65; }
+.app-shell .stats-grid { gap: 16px; margin-bottom: 30px; }
+.app-shell .stat-card,.app-shell .dashboard-card,.app-shell .practice-panel,
+.app-shell .history-card,.app-shell .saved-question-card,.app-shell .legal-document,
+.app-shell .legal-nav,.app-shell .exam-mode-card {
+  border: 1px solid var(--qrn-line);
+  border-radius: var(--qrn-radius);
+  background: var(--qrn-surface);
+  box-shadow: var(--qrn-shadow);
+}
+.app-shell .stat-card {
+  min-height: 145px;
+  padding: 19px 20px;
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.app-shell .stat-card:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(25,39,69,.08); }
+.app-shell .stat-icon { width: 36px; height: 36px; border-radius: 11px; }
+.app-shell .stat-number { color: #1d2b45; font-size: 25px; letter-spacing: -.8px; }
+.app-shell .stat-label { color: #526078; font-size: 12px; }
+.app-shell .stat-foot { color: #8a96a9; font-size: 10px; }
+.app-shell .dashboard-lower { gap: 18px; }
+.app-shell .dashboard-card { padding: 22px; }
+.app-shell .dashboard-card h2,.app-shell .card-heading h2 { margin: 0; font-size: 17px; font-weight: 730; }
+.app-shell .dashboard-card p { color: #748198; font-size: 12px; line-height: 1.75; }
+.app-shell .card-heading { margin-bottom: 17px; }
+.app-shell .card-heading>span { color: #8994a6; font-size: 11px; }
+.app-shell .topic-list { gap: 7px; }
+.app-shell .topic-list button {
+  min-height: 47px;
+  padding: 9px 11px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #43516a;
+  background: #f8f9fc;
+  font-size: 12px;
+}
+.app-shell .topic-list button:hover { border-color: #dedbff; background: #f5f4ff; color: var(--qrn-brand); }
+.app-shell .topic-icon { border-radius: 9px; background: #eeedff; color: #5c53ce; }
+.app-shell .exam-launch-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  margin-bottom: 22px;
+  padding: 23px 25px;
+  border: 1px solid #dfddff;
+  border-radius: 16px;
+  background: linear-gradient(115deg,#f4f3ff 0%,#fff 78%);
+}
+.app-shell .exam-launch-card h2 { margin: 0; font-size: 18px; }
+.app-shell .exam-launch-card p { margin: 7px 0 0; color: #758198; font-size: 12px; line-height: 1.65; }
+.app-shell .button {
+  min-height: 38px;
+  padding: 9px 14px;
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 650;
+  transition: background .16s ease, border-color .16s ease, transform .16s ease;
+}
+.app-shell .button:active:not(:disabled) { transform: translateY(1px); }
+.app-shell .button.primary {
+  border-color: var(--qrn-brand);
+  background: var(--qrn-brand);
+  box-shadow: 0 4px 10px rgba(79,70,200,.14);
+}
+.app-shell .button.primary:hover:not(:disabled) { background: var(--qrn-brand-dark); }
+.app-shell .button.secondary {
+  border-color: #dfe4ed;
+  color: #526078;
+  background: #fff;
+}
+.app-shell .button.secondary:hover:not(:disabled) { border-color: #c9c5ff; color: var(--qrn-brand); background: #faf9ff; }
+.app-shell .text-link { color: var(--qrn-brand); }
+.app-shell .practice-panel { padding: 22px; }
+.app-shell .section-heading h2 { color: #1b2942; font-size: 23px; }
+.app-shell .section-heading p { color: #7c899e; font-size: 12px; }
+.app-shell .question-count { color: #5148c7; background: #f0efff; font-size: 10px; }
+.app-shell .filter-row { gap: 14px; padding-bottom: 18px; border-color: #edf0f5; }
+.app-shell .tab { padding: 8px 11px; border-radius: 8px; font-size: 11px; }
+.app-shell .tab.selected { color: #4e45bd; background: #efeeff; }
+.app-shell .search-box { height: 38px; border-radius: 9px; background: #fff; }
+.app-shell .search-box input { font-size: 12px; }
+.app-shell .question-title { color: #1d2b45; font-size: 19px; line-height: 1.55; }
+.app-shell .answer-option { min-height: 52px; padding: 13px 15px; border-radius: 10px; font-size: 12px; }
+.app-shell .option-letter { width: 27px; height: 27px; border-radius: 8px; }
+.app-shell .rationale { border-radius: 11px; padding: 15px 17px; }
+.app-shell .rationale-title { font-size: 12px; }
+.app-shell .rationale p { font-size: 12px; line-height: 1.7; }
+.app-shell .question-footer { padding-top: 18px; }
+.app-shell .footer-note { color: #8793a6; font-size: 11px; }
+.app-shell .tag { border-radius: 6px; font-size: 10px; }
+.app-shell .exam-launch-page,.app-shell .history-page,.app-shell .saved-page,.app-shell .practice-section { min-width: 0; }
+.app-shell .exam-launch-page>.dashboard-card,.app-shell .exam-mode-card { padding: 24px; }
+.app-shell .exam-mode-grid { gap: 18px; }
+.app-shell .history-card { padding: 21px; margin-bottom: 14px; }
+.app-shell .history-date,.app-shell .history-metrics { color: #8490a3; font-size: 11px; }
+.app-shell .history-score { color: #4e46bf; font-size: 19px; }
+.app-shell .progress-track { height: 7px; overflow: hidden; border-radius: 10px; background: #edf0f5; }
+.app-shell .progress-track i { border-radius: inherit; background: linear-gradient(90deg,#7770e8,#a39df7); }
+.app-shell .saved-question-card { padding: 21px; margin-bottom: 14px; }
+.app-shell .saved-question-card h2 { font-size: 16px; line-height: 1.6; }
+.app-shell .empty-state {
+  min-height: 230px;
+  padding: 42px 20px;
+  border: 1px dashed #dce2ec;
+  border-radius: 14px;
+  background: rgba(255,255,255,.72);
+}
+.app-shell .empty-state strong { color: #263550; font-size: 14px; }
+.app-shell .empty-state span { color: #8591a4; font-size: 12px; }
+.app-shell input:not([type=checkbox]),.app-shell select,.app-shell textarea {
+  border-color: #dfe5ee;
+  border-radius: 9px;
+}
+.app-shell input:focus,.app-shell select:focus,.app-shell textarea:focus {
+  outline: none;
+  border-color: #8b84e8;
+  box-shadow: 0 0 0 3px rgba(95,86,210,.11);
+}
+.app-shell .footer { color: #929db0; padding-top: 30px; }
+.app-shell .legal-layout { gap: 20px; align-items: start; }
+.app-shell .legal-nav { padding: 10px; }
+.app-shell .legal-nav-item {
+  min-height: 43px;
+  border-radius: 9px;
+  color: #63718a;
+  font-size: 12px;
+}
+.app-shell .legal-nav-item.active { color: #4f46c8; background: #f0efff; }
+.app-shell .legal-document { padding: clamp(22px,3vw,36px); }
+.app-shell .legal-document h2 { font-size: 25px; }
+.app-shell .legal-intro,.app-shell .legal-block p { color: #63718a; font-size: 13px; line-height: 1.85; }
+.app-shell .legal-block { border-color: #edf0f5; }
+.app-shell .legal-block h3 { font-size: 15px; }
+.app-shell .legal-note { border-radius: 11px; }
+@media (max-width: 1050px) {
+  .app-shell .sidebar { width: 224px; }
+  .app-shell .main-content { margin-left: 224px; }
+  .app-shell .content-wrap { padding-left: 25px; padding-right: 25px; }
+}
+@media (max-width: 720px) {
+  .app-shell .sidebar { width: 68px; padding: 18px 8px; }
+  .app-shell .brand { padding: 0 7px 32px; }
+  .app-shell .main-content { margin-left: 68px; }
+  .app-shell .content-wrap { padding: 25px 14px 22px; }
+  .app-shell .topbar { height: 60px; padding: 0 14px; }
+  .app-shell .exam-launch-card { align-items: flex-start; flex-direction: column; }
+  .app-shell .stats-grid { gap: 9px; }
+  .app-shell .stat-card { min-height: 130px; padding: 13px; }
+  .app-shell .dashboard-card { padding: 17px; }
+  .app-shell .legal-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 430px) {
+  .app-shell .top-right .status-dot,.app-shell .top-right>span:not(.status-dot) { display: none; }
+  .app-shell .welcome-row h1,.app-shell .exam-launch-page h1,.app-shell .history-page h1,.app-shell .saved-page h1 { font-size: 24px; }
+  .app-shell .stats-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .app-shell .question-meta { flex-wrap: wrap; }
+}
