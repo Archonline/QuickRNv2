@@ -475,3 +475,15 @@
  .exam-record-panel{padding:16px 13px 18px!important}
  .exam-main-case{padding:18px 13px 100px!important}
 }
+
+
+/* FAQ accordion inside the Legal & Trust Center */
+.legal-faq-list { display:grid; gap:10px; }
+.legal-faq-item { border:1px solid #e6eaf0; border-radius:11px; background:#fff; overflow:hidden; }
+.legal-faq-item summary { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 17px; color:#25334a; font-size:13px; font-weight:700; line-height:1.55; cursor:pointer; list-style:none; }
+.legal-faq-item summary::-webkit-details-marker { display:none; }
+.legal-faq-item summary::after { content:"+"; color:#64748b; font-size:20px; font-weight:400; }
+.legal-faq-item[open] summary::after { content:"−"; }
+.legal-faq-number { margin-left:auto; color:#8793a5; font-size:10px; font-variant-numeric:tabular-nums; }
+.legal-faq-item p { margin:0; padding:0 17px 16px; color:#5c687b; font-size:13px; line-height:1.8; }
+.legal-faq-item:focus-within { outline:3px solid rgba(67,56,202,.15); outline-offset:2px; }
