@@ -40,7 +40,7 @@ function AssessmentTrend({ points }: { points: StudentHomeProps["assessmentTrend
         <defs><linearGradient id="studentTrendFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="#b9b3ff" stopOpacity=".34"/><stop offset="100%" stopColor="#b9b3ff" stopOpacity="0"/></linearGradient><linearGradient id="studentTrendLine" x1="0" x2="1" y1="0" y2="0"><stop offset="0%" stopColor="#aaa3ff"/><stop offset="100%" stopColor="#8ee1d0"/></linearGradient></defs>
         {[25,50,75,100].map(value => <g key={value}><line x1={left} x2={right} y1={bottom-value/100*(bottom-top)} y2={bottom-value/100*(bottom-top)} stroke="#ffffff" strokeOpacity=".12" strokeDasharray="3 6"/><text x="0" y={bottom-value/100*(bottom-top)+3} fill="#d6d5ef" fillOpacity=".62" fontSize="8">{value}</text></g>)}
         <path d={area} fill="url(#studentTrendFill)" className="student-trend-area"/>
-        <path d={line} fill="none" stroke="url(#studentTrendLine)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="student-trend-line"/>
+        <path d={line} pathLength={1} fill="none" stroke="url(#studentTrendLine)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="student-trend-line"/>
         {coordinates.map((point,index)=><circle key={point.id} cx={point.x} cy={point.y} r={index===coordinates.length-1?5:3.5} fill={index===coordinates.length-1?"#a8eadb":"#c9c4ff"} stroke="#343567" strokeWidth="2"><title>{point.label}: {point.score}% · {point.mode}</title></circle>)}
       </svg>
       <div className="student-trend-labels">{coordinates.map((point,index)=><span key={point.id} className={index===coordinates.length-1?"latest":""}>{point.label}</span>)}</div>
