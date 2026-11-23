@@ -420,3 +420,57 @@
 .exam-main-case .ngn-trend-response .exam-options{display:block;width:100%;max-width:none;min-width:0;box-sizing:border-box;}
 .exam-main-case .ngn-trend-response .exam-options{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:11px;width:100%!important;margin:18px 0;}
 .exam-main-case .ngn-trend-response .exam-option{display:flex;width:100%!important;max-width:none!important;min-width:0;grid-column:1/-1;box-sizing:border-box;}
+
+
+/* Readability and split-pane alignment refinements from item review */
+.exam-layout-case{
+  grid-template-columns:minmax(310px,42%) minmax(0,58%);
+  align-items:stretch;
+}
+.exam-record-panel{
+  box-sizing:border-box;
+  padding:28px 30px 32px;
+  border-right:1px solid #d5dde6;
+}
+.exam-main-case{
+  box-sizing:border-box;
+  border-left:0;
+  padding:27px 32px 40px;
+}
+.exam-record-content{
+  padding:20px 19px;
+}
+.exam-record-content h3{
+  font-size:15px;
+  line-height:1.45;
+}
+.exam-record-content p{
+  font-size:14px;
+  line-height:1.85;
+}
+.exam-record-content li{
+  font-size:14px;
+  line-height:1.75;
+}
+.exam-record-tabs button{
+  font-size:12px;
+  min-height:44px;
+}
+.exam-record-heading strong{
+  font-size:17px;
+}
+.exam-review-record-content{
+  font-size:13px;
+  line-height:1.8;
+}
+.exam-review-record-content strong{
+  font-size:12px;
+}
+@media(max-width:900px){
+  .exam-record-panel{padding:20px 18px 26px}
+  .exam-main-case{padding:23px 22px 35px}
+}
+@media(max-width:680px){
+  .exam-record-panel{padding:17px 16px}
+  .exam-main-case{padding:20px 16px 30px}
+}
