@@ -87,6 +87,9 @@ test("CAT is forward-only and cannot skip an unanswered adaptive item", async ({
   await page.getByRole("button", { name: /Begin examination/ }).click();
   await expect(page.getByRole("button", { name: /Previous/ })).toBeHidden();
   await expect(page.getByRole("button", { name: /Navigation/ })).toBeHidden();
+  await page.getByRole("button", { name: /End exam/ }).click();
+  await expect(page.getByRole("button", { name: /Submit examination/ })).toBeDisabled();
+  await page.getByRole("button", { name: /Continue exam/ }).click();
   page.once("dialog", dialog => dialog.accept());
   await page.getByRole("button", { name: /Next adaptive question/ }).click();
   await expect(page.locator(".exam-question-counter")).toContainText("QUESTION 1 OF 1");
