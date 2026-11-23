@@ -325,3 +325,49 @@
   .app-shell .stats-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .app-shell .question-meta { flex-wrap: wrap; }
 }
+
+/* One QuickRN identity shared by public, learner, account and exam surfaces. */
+.qrn-brand{display:inline-flex;align-items:center;gap:10px;min-width:0;color:inherit;text-decoration:none;white-space:nowrap}
+.qrn-brand-mark{width:38px;height:38px;display:grid;place-items:center;flex:none;border-radius:12px;color:#fff;background:linear-gradient(145deg,#7770ed 0%,#4f46c8 100%);box-shadow:0 5px 13px rgba(79,70,200,.22)}
+.qrn-brand-copy{display:grid;gap:2px;min-width:0}
+.qrn-brand-name{font-family:Manrope,Inter,ui-sans-serif,system-ui,sans-serif;font-size:22px;line-height:1;font-weight:850;letter-spacing:-1.1px;color:inherit}
+.qrn-brand-name span{color:#7770ed}
+.qrn-brand-tagline{font-size:8px;line-height:1.2;font-weight:750;letter-spacing:1.05px;color:inherit;opacity:.68}
+.qrn-brand-badge{margin-left:2px;padding:4px 7px;border:1px solid rgba(119,112,237,.16);border-radius:6px;background:#f0efff;color:#5148c7;font-size:8px;font-weight:800;letter-spacing:.8px}
+.qrn-brand--compact .qrn-brand-mark{width:35px;height:35px;border-radius:11px}
+.qrn-brand--compact .qrn-brand-name{font-size:19px}
+.app-shell .brand.qrn-brand{padding:0 9px 34px;gap:10px;color:#fff}
+.app-shell .brand .qrn-brand-name{color:#fff}
+.app-shell .brand .qrn-brand-name span{color:#aaa5ff}
+.app-shell .brand .qrn-brand-mark{background:linear-gradient(145deg,#817aff,#5148c7);box-shadow:0 5px 14px rgba(116,108,240,.28)}
+.app-shell .brand .qrn-brand-badge{color:#c5c1ff;background:rgba(132,124,255,.16);border-color:rgba(151,145,255,.18)}
+.landing .landing-brand{font:inherit;letter-spacing:normal;gap:0}
+.landing .landing-brand .qrn-brand{color:#1b2942}
+.landing .landing-brand .qrn-brand-name{font-size:22px}
+.landing .landing-brand .qrn-brand-badge{margin-left:3px}
+.landing .landing-footer .qrn-brand-name{font-size:19px}
+.auth-brand{margin-bottom:27px}
+.auth-brand .qrn-brand{color:#1b2942}
+.auth-brand .qrn-brand-mark{width:38px;height:38px}
+.auth-brand .qrn-brand-name{font-size:22px}
+.exam-screen .exam-header{background:#111c32;color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.exam-screen .exam-brand{min-width:190px;gap:10px;color:#fff}
+.exam-screen .exam-brand .qrn-brand-mark{width:36px;height:36px;border-radius:11px;background:linear-gradient(145deg,#817aff,#5148c7);box-shadow:0 4px 12px rgba(0,0,0,.18)}
+.exam-screen .exam-brand .qrn-brand-name{font-size:17px;color:#fff;letter-spacing:-.5px}
+.exam-screen .exam-brand .qrn-brand-name span{color:#aaa5ff}
+.exam-screen .exam-brand .qrn-brand-tagline{font-size:8px;letter-spacing:.95px;color:#d5dced;opacity:.75}
+.exam-screen .exam-header-center{color:#f4f6fc}
+.exam-screen .exam-header-center span{color:#b9c5d8}
+.exam-screen .exam-tool-button,.exam-screen .exam-exit{border-color:rgba(255,255,255,.2);color:#eef1fa;background:rgba(255,255,255,.045);border-radius:8px}
+.exam-screen .exam-tool-button:hover,.exam-screen .exam-exit:hover{background:rgba(255,255,255,.11)}
+.exam-screen .exam-session-bar{background:#e9e8ff;color:#423c9b}
+.exam-screen .exam-session-bar span:first-child i{background:#5b53cf}
+.exam-screen .exam-progress-track span{background:linear-gradient(90deg,#625bd7,#938df7)}
+@media(max-width:700px){
+ .qrn-brand{gap:8px}
+ .qrn-brand-mark{width:34px;height:34px;border-radius:10px}
+ .qrn-brand-name{font-size:19px}
+ .exam-screen .exam-header{gap:10px;padding:9px 12px}
+ .exam-screen .exam-brand{min-width:0}
+ .exam-screen .exam-brand .qrn-brand-tagline{display:none}
+}
