@@ -179,6 +179,7 @@ export const authoredCoreRewriteBatch: Question[] = [
   ),
   single(
     "qrn-0150", "Maternal-Newborn / Obstetrics", "Magnesium sulfate toxicity",
+    "Advanced",
     "A client with severe preeclampsia is receiving magnesium sulfate. The nurse notes absent deep-tendon reflexes, RR 10/min, and urine output of 20 mL/hr over the last 2 hours. The client is increasingly drowsy.",
     "Which action should the nurse take first?",
     ["Increase the magnesium infusion because blood pressure remains elevated", "Stop the magnesium infusion and summon immediate clinical assistance", "Encourage the client to ambulate", "Reassess in one hour without changing the infusion"],
@@ -200,6 +201,7 @@ export const authoredCoreRewriteBatch: Question[] = [
   ),
   single(
     "qrn-0152", "Cardiovascular / Perfusion", "Peripheral arterial disease teaching",
+    "Intermediate",
     "A client with peripheral arterial disease reports calf discomfort after walking two blocks that resolves after resting. The feet are cool, and pedal pulses are diminished. There is no rest pain or open wound.",
     "Which instruction best supports safe activity?",
     ["Walk until severe pain occurs, then continue for another 10 minutes", "Use a structured walking program with rest periods and gradually increase distance as prescribed", "Apply a heating pad directly to the feet each evening", "Keep the legs elevated above heart level throughout the day"],
@@ -210,6 +212,7 @@ export const authoredCoreRewriteBatch: Question[] = [
   ),
   single(
     "qrn-0153", "Respiratory / Airway", "Tracheostomy obstruction",
+    "Advanced",
     "A client with a new tracheostomy suddenly becomes restless and has noisy breathing. The nurse cannot pass the suction catheter through the tracheostomy tube. SpO2 falls from 96% to 82%.",
     "What is the nurse's priority?",
     ["Offer oral fluids to loosen secretions", "Call for emergency assistance, provide oxygen, and follow the tracheostomy emergency algorithm for suspected tube obstruction", "Cap the tracheostomy to test upper-airway patency", "Wait for respiratory therapy during routine rounds"],
@@ -220,6 +223,7 @@ export const authoredCoreRewriteBatch: Question[] = [
   ),
   single(
     "qrn-0154", "Renal / Urinary", "Hemodialysis access assessment",
+    "Intermediate",
     "A client arrives for hemodialysis. The nurse cannot palpate a thrill or hear a bruit over the client's arteriovenous fistula. The hand is warm and the client denies pain.",
     "What should the nurse do?",
     ["Proceed with cannulation at a different site", "Do not use the access and notify the dialysis team promptly for evaluation", "Apply a tight pressure dressing over the fistula", "Ask the client to perform vigorous hand exercises and cannulate if a thrill returns"],
@@ -230,6 +234,7 @@ export const authoredCoreRewriteBatch: Question[] = [
   ),
   single(
     "qrn-0155", "GI / Hepatic", "Esophageal variceal hemorrhage",
+    "Advanced",
     "A client with cirrhosis suddenly vomits a large amount of bright-red blood. BP is 84/48 mm Hg, HR 138/min, and the client is drowsy. The abdomen is distended.",
     "Which nursing action has the highest priority?",
     ["Give oral lactulose immediately", "Activate emergency response and support airway and circulation while preparing for urgent intervention", "Obtain a routine stool specimen", "Place the client flat and leave to call the provider"],
@@ -240,6 +245,7 @@ export const authoredCoreRewriteBatch: Question[] = [
   ),
   single(
     "qrn-0156", "Pharmacology / Medication Teaching", "Heparin-induced thrombocytopenia",
+    "Advanced",
     "A client receiving unfractionated heparin after orthopedic surgery has a platelet decrease from 248,000/mm³ to 104,000/mm³ on day 6. The client reports new calf pain, and ultrasound confirms a deep vein thrombosis.",
     "Which action should the nurse anticipate?",
     ["Continue heparin and give platelet transfusion routinely", "Stop all heparin exposure and urgently notify the prescriber for evaluation and non-heparin anticoagulation", "Increase the heparin infusion to treat the new clot", "Document the platelet decrease as an expected postoperative change"],
