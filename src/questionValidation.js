@@ -38,13 +38,25 @@ export function validateQuestion(q) {
     if (arr(response) && response.some((v,i) => !Number.isInteger(Number(v)) || Number(v) < 0 || Number(v) >= (optionGroups[i]?.length ?? 0))) add("Dropdown correct response contains an invalid choice index.");
   }
   if (["matrix-multiple","matrix-single","matrix-grid"].includes(type)) {
-    if (!arr(interaction.rows) || interaction.rows.length === 0 || !arr(interaction.columns) || interaction.columns.length < 2) add("Matrix item requires rows and at least two columns.");
+    const grouped = type === "matrix-grid" && arr(interaction.matrixGroups) && interaction.matrixGroups.length > 0;
+    if (grouped) {
+      if (interaction.matrixGroups.some(group => !nonEmpty(group.label) || !arr(group.options) || group.options.length < 2)) add("Every grouped matrix row requires a label and at least two options.");
+    } else if (!arr(interaction.rows) || interaction.rows.length === 0 || !arr(interaction.columns) || interaction.columns.length < 2) add("Matrix item requires rows and at least two columns.");
     if (type === "matrix-single" && arr(response) && interaction.rows && response.length !== interaction.rows.length) add("Matrix-single requires one keyed response per row.");
-    if (type === "matrix-multiple" && arr(response) && !response.every(v => /^\d+:\d+$/.test(String(v)))) add("Matrix-multiple responses must use row:column coordinates.");
+    if (["matrix-multiple","matrix-grid"].includes(type) && !grouped && arr(response) && !response.every(v => {
+      const match = String(v).match(/^(\d+):(\d+)$/);
+      return !!match && Number(match[1]) < interaction.rows.length && Number(match[2]) < interaction.columns.length;
+    })) add("Matrix responses must use in-range row:column coordinates.");
   }
   if (type === "highlight-text" || type === "highlight-table") {
     if (!arr(interaction.segments) || interaction.segments.length === 0) add("Highlight item requires selectable segments.");
     if (!arr(interaction.highlightableSegments) && type === "highlight-text") add("Highlight-text requires highlightableSegments.");
+    if (type === "highlight-text" && arr(response) && arr(interaction.highlightableSegments) && response.some(v => !interaction.highlightableSegments.includes(v))) add("Highlight key includes a segment that is not selectable.");
+  }
+  if (type === "drop-down-table") {
+    if (!arr(interaction.rows) || !interaction.rows.length || !arr(interaction.rowChoices) || interaction.rowChoices.length !== interaction.rows.length) add("Dropdown table requires one choice list per row.");
+    else if (interaction.rowChoices.some(group => !arr(group) || group.length < 2)) add("Each dropdown-table row requires at least two choices.");
+    if (arr(response) && interaction.rows && response.length !== interaction.rows.length) add("Dropdown-table key must contain one response per row.");
   }
   if (type === "ordered-response" || type === "extended-drag-drop") {
     const items = interaction.orderItems ?? choices;
@@ -53,7 +65,9 @@ export function validateQuestion(q) {
   }
   if (type === "drag-drop") {
     if (!nonEmpty(interaction.dragDropTemplate) || !arr(interaction.dragDropChoices) || interaction.dragDropChoices.length < 2) add("Drag-drop requires a template and at least two drag choices.");
-    if (!arr(response) || !response.length) add("Drag-drop requires one correct response per blank.");
+    const blanks = nonEmpty(interaction.dragDropTemplate) ? [...interaction.dragDropTemplate.matchAll(/\[BLANK_(\d+)\]/g)] : [];
+    if (!blanks.length || !arr(response) || response.length !== blanks.length) add("Drag-drop requires one keyed response per numbered blank.");
+    if (arr(response) && arr(interaction.dragDropChoices) && response.some(v => !Number.isInteger(Number(v)) || Number(v) < 0 || Number(v) >= interaction.dragDropChoices.length)) add("Drag-drop key contains an invalid choice index.");
   }
   if (type === "bow-tie") {
     const b = interaction.bowTie;
