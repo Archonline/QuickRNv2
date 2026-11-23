@@ -4603,7 +4603,7 @@
       "topic": "Gastrointestinal Disorders",
       "subtopic": "Acute Pancreatitis",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "46-year-old male admitted with severe epigastric pain radiating to the back and persistent nausea/vomiting.",
@@ -4634,28 +4634,28 @@
           "Monitor calcium and blood glucose"
         ]
       },
-      "stem": "Which nursing interventions are appropriate in the acute management of this client? Select all that apply.",
+      "stem": "A client with acute pancreatitis has persistent vomiting, severe epigastric pain radiating to the back, and rising hematocrit. Which interventions are appropriate during the initial phase? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Administer aggressive intravenous lactated Ringer fluid resuscitation and monitor urine output"
+            "text": "Administer prescribed isotonic IV fluids and reassess perfusion, urine output, and respiratory status"
           },
           {
             "id": "B",
-            "text": "Place the client in a side-lying position with knees flexed toward the chest to relieve pain"
+            "text": "Provide prescribed analgesia and reassess pain and sedation"
           },
           {
             "id": "C",
-            "text": "Maintain NPO status during the acute phase to suppress pancreatic enzyme stimulation"
+            "text": "Monitor for hypoxemia, increasing work of breathing, and signs of systemic complications"
           },
           {
             "id": "D",
-            "text": "Monitor for hypocalcemia (Chvostek/Trousseau signs) and hyperglycemia"
+            "text": "Offer a high-fat meal to stimulate pancreatic enzyme release and restore nutrition"
           },
           {
             "id": "E",
-            "text": "Provide a high-fat diet as soon as nausea subsides to prevent weight loss"
+            "text": "Maintain NPO status only while vomiting or severe symptoms persist, then advance nutrition as clinically appropriate"
           }
         ]
       },
@@ -4663,19 +4663,19 @@
         "A",
         "B",
         "C",
-        "D"
+        "E"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 4
       },
       "rationales": {
-        "summary": "Acute pancreatitis causes third-space hypovolemia, severe retroperitoneal pain, fat saponification (hypocalcemia), and islet dysfunction (hyperglycemia).",
-        "A": "Correct. Early goal-directed IV hydration with lactated Ringer prevents pancreatic necrosis and acute kidney injury.",
-        "B": "Correct. Flexing the trunk/knees relieves tension on the inflamed retroperitoneal peritoneum.",
-        "C": "Correct. Resting the GI tract reduces secretin and cholecystokinin stimulation of pancreatic exocrine secretion.",
-        "D": "Correct. Fat necrosis binds calcium (hypocalcemia) and beta-cell inflammation elevates blood glucose.",
-        "E": "Incorrect. When feeding resumes, a low-fat diet is introduced gradually."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "Early fluid resuscitation addresses intravascular depletion, but must be titrated with frequent reassessment to avoid overload.",
+        "B": "Pain control is important and should be monitored for therapeutic and adverse effects.",
+        "C": "Pancreatitis can cause systemic inflammation, pleural effusion, and respiratory failure; respiratory monitoring is essential.",
+        "D": "High-fat meals stimulate pancreatic secretion and are inappropriate during acute illness.",
+        "E": "Feeding should be individualized; prolonged unnecessary fasting is not beneficial, but oral intake may be deferred during uncontrolled vomiting or severe symptoms."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -4727,24 +4727,24 @@
           "Transfuse 2 units PRBCs"
         ]
       },
-      "stem": "Which intervention takes highest priority before transporting this client for emergent endoscopy?",
+      "stem": "A client arrives with hematemesis, tachycardia, cool extremities, and a blood pressure of 86/54 mmHg. An emergent endoscopy is planned. Which intervention takes priority before transport?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Prepare for elective endotracheal intubation to protect the airway from massive blood aspiration"
+            "text": "Establish large-bore IV access, begin prescribed resuscitation, and prepare blood products while reassessing hemodynamic response"
           },
           {
             "id": "B",
-            "text": "Insert a nasogastric tube for iced saline gastric lavage"
+            "text": "Administer the prescribed oral proton-pump inhibitor with a sip of water and transport immediately"
           },
           {
             "id": "C",
-            "text": "Administer oral propranolol 40 mg to reduce portal venous pressure"
+            "text": "Obtain a stool occult-blood sample before initiating IV therapy"
           },
           {
             "id": "D",
-            "text": "Place the client flat in the supine position for comfort"
+            "text": "Give a sedative to reduce anxiety and prevent further hematemesis"
           }
         ]
       },
@@ -4756,11 +4756,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Active hematemesis combined with altered mental status (drowsiness) creates extreme aspiration risk during endoscopy; airway protection via intubation is the top priority.",
-        "A": "Correct. Airway always comes first; elective intubation prevents fatal aspiration of blood during active variceal hemorrhage and EGD.",
-        "B": "Incorrect. Iced saline lavage is outdated and risks mucosal injury and hypothermia.",
-        "C": "Incorrect. Non-selective beta-blockers (propranolol) are used for primary/secondary prophylaxis, never during acute hemorrhagic hypotension.",
-        "D": "Incorrect. Supine positioning promotes aspiration of blood."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "The client has signs of hemorrhagic shock; circulation stabilization, access, blood-product readiness, and ongoing reassessment precede transport when feasible.",
+        "B": "Oral medication is inappropriate in active hematemesis and does not address shock.",
+        "C": "A stool test does not change immediate management and delays resuscitation.",
+        "D": "Sedation can worsen hypotension and airway risk; stabilization is the priority."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -4782,7 +4782,7 @@
       "topic": "Gastrointestinal Disorders",
       "subtopic": "Ostomy Care",
       "specialty": "Adult Health",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "54-year-old female 2 days post-sigmoid colostomy creation for diverticular perforation.",
@@ -4807,24 +4807,24 @@
           "Ostomy nurse consult and client teaching"
         ]
       },
-      "stem": "Which stoma assessment finding would require immediate notification of the surgeon?",
+      "stem": "A client is 8 hours after creation of a new colostomy. Which stoma finding requires immediate notification of the surgeon?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "The stoma appears dusky, purplish-black, and dry"
+            "text": "A dusky purple, cool stoma with delayed capillary refill"
           },
           {
             "id": "B",
-            "text": "The stoma is moist, pink-red, and slightly swollen"
+            "text": "A moist, pink-red stoma with mild edema"
           },
           {
             "id": "C",
-            "text": "Small droplets of blood appear when the stoma mucosa is gently cleansed"
+            "text": "Scant blood-tinged mucus on the pouch during the first postoperative day"
           },
           {
             "id": "D",
-            "text": "Liquid stool drains into the pouch on postoperative day 3"
+            "text": "No formed stool in the pouch during the first several hours after surgery"
           }
         ]
       },
@@ -4836,11 +4836,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "A healthy stoma is moist and beefy red/pink; a dusky, bluish, or black stoma indicates compromised arterial blood supply and bowel ischemia/necrosis.",
-        "A": "Correct. Dusky or black discoloration indicates stomal ischemia or necrosis requiring urgent surgical evaluation.",
-        "B": "Incorrect. Moist pink-red appearance with mild early postoperative edema is normal.",
-        "C": "Incorrect. Minor mucosal oozing during wiping is expected due to rich capillary vascularity.",
-        "D": "Incorrect. Return of bowel function with liquid-to-pasty output is expected."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "A dusky, cool stoma with poor perfusion suggests ischemia or necrosis and requires urgent evaluation.",
+        "B": "Mild edema and a moist pink-red appearance are expected early postoperative findings.",
+        "C": "Small amounts of blood-tinged mucus can occur after surgery.",
+        "D": "Bowel function may take time to return; absence of formed stool in the first hours is not by itself evidence of compromise."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
@@ -4932,7 +4932,7 @@
       "topic": "Hematology & Oncology",
       "subtopic": "Neutropenic Precautions",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "48-year-old female receiving consolidation chemotherapy for acute myeloid leukemia (AML).",
@@ -4962,28 +4962,28 @@
           "Notify provider immediately for temperature >= 38.0 C (100.4 F)"
         ]
       },
-      "stem": "Which protective interventions should the nurse implement for this severely neutropenic client? Select all that apply.",
+      "stem": "A client receiving induction chemotherapy has an absolute neutrophil count of 300/mm³. Which protective measures should the nurse implement? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Place the client in a private room and enforce strict hand hygiene for all staff and visitors"
+            "text": "Perform meticulous hand hygiene and require visitors with respiratory symptoms to defer visits"
           },
           {
             "id": "B",
-            "text": "Remove fresh flowers, potted plants, and standing water pitchers from the room"
+            "text": "Monitor temperature and report a single oral temperature of 38.0°C (100.4°F) or higher promptly"
           },
           {
             "id": "C",
-            "text": "Avoid rectal temperatures, suppositories, and enemas"
+            "text": "Avoid rectal temperatures, suppositories, and rectal examinations"
           },
           {
             "id": "D",
-            "text": "Encourage fresh unwashed berries and raw vegetable salads to boost antioxidant intake"
+            "text": "Allow fresh flowers and raw sprouts if the client washes hands before eating"
           },
           {
             "id": "E",
-            "text": "Report a single oral temperature of 38.0 C (100.4 F) or higher immediately as an oncologic emergency"
+            "text": "Use meticulous central-line care and assess for subtle signs of infection"
           }
         ]
       },
@@ -4998,12 +4998,12 @@
         "max_points": 4
       },
       "rationales": {
-        "summary": "Severe neutropenia (ANC < 500/mm3) eliminates normal inflammatory signs; infection prevention and immediate recognition of febrile neutropenia are life-saving.",
-        "A": "Correct. Private room assignment and hand hygiene reduce exogenous pathogen exposure.",
-        "B": "Correct. Soil and stagnant water harbor Pseudomonas, Aspergillus, and other opportunistic pathogens.",
-        "C": "Correct. Rectal trauma can cause mucosal tears and gram-negative bacteremia (and bleeding given thrombocytopenia).",
-        "D": "Incorrect. Raw unwashed produce can harbor surface bacteria and fungi; thoroughly washed or cooked foods are required.",
-        "E": "Correct. Febrile neutropenia requires blood cultures and broad-spectrum IV antibiotics within 60 minutes."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "Hand hygiene and limiting exposure to ill contacts reduce infection risk.",
+        "B": "Febrile neutropenia is an emergency; prompt reporting and evaluation are required.",
+        "C": "Rectal procedures can injure mucosa and introduce organisms.",
+        "D": "Fresh flowers and raw sprouts may carry organisms and are commonly restricted under neutropenic food-safety policies.",
+        "E": "Central lines are a major infection source; meticulous care and surveillance are essential."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -5057,7 +5057,7 @@
           "Continuous telemetry"
         ]
       },
-      "stem": "Which classic tetrad of laboratory abnormalities characterizes tumor lysis syndrome (TLS)?",
+      "stem": "A client with high-grade lymphoma develops acute kidney injury 24 hours after chemotherapy. Which laboratory pattern most strongly supports tumor lysis syndrome?",
       "interaction": {
         "options": [
           {
@@ -5070,11 +5070,11 @@
           },
           {
             "id": "C",
-            "text": "Hypernatremia, hypercalcemia, hypoglycemia, and metabolic alkalosis"
+            "text": "Hypernatremia, hypomagnesemia, hypercalcemia, and low uric acid"
           },
           {
             "id": "D",
-            "text": "Hyponatremia, hyperkalemia, hypouricemia, and hypermagnesemia"
+            "text": "Hyponatremia, hypokalemia, low phosphate, and metabolic alkalosis"
           }
         ]
       },
@@ -5086,11 +5086,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Rapid tumor cell lysis releases intracellular potassium, phosphorus, and nucleic acids (metabolized to uric acid), while excess phosphorus binds serum calcium causing secondary hypocalcemia.",
-        "A": "Correct. Hyperkalemia, hyperphosphatemia, hyperuricemia, and secondary hypocalcemia define tumor lysis syndrome.",
-        "B": "Incorrect. The potassium, phosphorus, uric acid, and calcium directions are reversed.",
-        "C": "Incorrect. Hypercalcemia is seen in malignancy-associated bone resorption, not TLS.",
-        "D": "Incorrect. Uric acid and phosphorus are elevated, not decreased."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "Rapid tumor-cell breakdown releases potassium, phosphate, and nucleic acids; uric acid rises and phosphate binds calcium, causing hypocalcemia.",
+        "B": "This is the opposite of the characteristic biochemical pattern.",
+        "C": "These abnormalities do not reflect the release of intracellular tumor contents.",
+        "D": "This pattern is not characteristic of tumor lysis syndrome."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
@@ -5112,7 +5112,7 @@
       "topic": "Hematology & Oncology",
       "subtopic": "Sickle Cell Vaso-Occlusive Crisis",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "25-year-old male with sickle cell anemia admitted with severe bilateral femur and lower back pain (9/10) following a cold-weather trip.",
@@ -5142,24 +5142,24 @@
           "Incentive spirometry every hour while awake"
         ]
       },
-      "stem": "Which combination of initial nursing priorities best addresses the pathophysiology of an acute vaso-occlusive sickle cell crisis?",
+      "stem": "A client with sickle cell disease has severe limb pain, oxygen saturation 93% on room air, and no fever or respiratory symptoms. Which initial plan best addresses the vaso-occlusive episode?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Aggressive hydration, scheduled/PCA opioid analgesia, and oxygen if hypoxemic"
+            "text": "Promptly provide prescribed opioid analgesia, encourage or administer appropriate hydration, and reassess oxygenation and pain response"
           },
           {
             "id": "B",
-            "text": "Fluid restriction, cold compresses to painful joints, and aspirin"
+            "text": "Apply ice packs to the painful joints and restrict fluids to reduce tissue edema"
           },
           {
             "id": "C",
-            "text": "Diuretic therapy, high-intensity ambulation, and acetaminophen alone"
+            "text": "Administer supplemental oxygen until saturation is 100% regardless of respiratory findings"
           },
           {
             "id": "D",
-            "text": "Iron supplementation, bed rest with legs dependent, and meperidine"
+            "text": "Delay analgesia until radiographs confirm that no fracture is present"
           }
         ]
       },
@@ -5171,11 +5171,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Hydration reduces blood viscosity and sickling, potent opioid analgesia treats severe ischemic pain, and oxygen corrects hypoxemia.",
-        "A": "Correct. Hydration, effective opioid analgesia, warmth, and incentive spirometry (to prevent acute chest syndrome) are the pillars of vaso-occlusive crisis care.",
-        "B": "Incorrect. Dehydration and cold packs promote vasoconstriction and further RBC sickling.",
-        "C": "Incorrect. Diuretics worsen viscosity, and acetaminophen alone is inadequate for severe ischemic crisis pain.",
-        "D": "Incorrect. Meperidine is contraindicated due to its neurotoxic metabolite normeperidine causing seizures, and iron overload is common in sickle cell patients."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "Rapid analgesia and appropriate hydration are central; monitor for acute chest syndrome and other complications while reassessing response.",
+        "B": "Cold causes vasoconstriction and can worsen sickling; fluid restriction increases dehydration risk.",
+        "C": "Oxygen is indicated for hypoxemia, not automatically to achieve 100% in a normoxic client.",
+        "D": "Pain treatment should not be delayed for imaging when the presentation is consistent with vaso-occlusive crisis and no injury is suspected."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -5223,24 +5223,24 @@
           "Elevate right leg on 1 pillow"
         ]
       },
-      "stem": "A client 8 hours after tibial ORIF reports escalating pain unrelieved by opioid medication and pain with passive toe movement. Which action should the nurse take immediately?",
+      "stem": "Eight hours after tibial fixation, the client reports escalating pain despite opioid medication. Passive toe extension produces severe pain, and the affected compartment feels tense. Distal pulses remain palpable. What should the nurse do?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Notify the orthopedic surgeon immediately to bivalve/split the cast and place the leg at heart level"
+            "text": "Notify the orthopedic team immediately, keep the limb at heart level, and prepare for urgent compartment-pressure assessment or fasciotomy"
           },
           {
             "id": "B",
-            "text": "Elevate the casted leg higher on three pillows and apply ice packs directly over the cast"
+            "text": "Elevate the limb well above the heart and apply ice while waiting for the next analgesic dose"
           },
           {
             "id": "C",
-            "text": "Reassure the client that severe throbbing pain is expected for 48 hours after tibial surgery"
+            "text": "Reassure the client because palpable distal pulses exclude compartment syndrome"
           },
           {
             "id": "D",
-            "text": "Wait until the dorsalis pedis pulse disappears before contacting the surgeon"
+            "text": "Loosen the external dressing if permitted by protocol and reassess later in the shift"
           }
         ]
       },
@@ -5252,11 +5252,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Pain out of proportion to injury unrelieved by opioids and pain with passive stretch are the earliest hallmark signs of acute compartment syndrome requiring immediate cast release.",
-        "A": "Correct. Splitting/bivalving the cast relieves external pressure, and positioning at heart level (not elevated) preserves arterial inflow while awaiting potential fasciotomy.",
-        "B": "Incorrect. High elevation reduces arterial perfusion pressure into the tense compartment, and ice induces vasoconstriction.",
-        "C": "Incorrect. Pain refractory to opioids with passive stretch pain is an orthopedic emergency, not routine post-op pain.",
-        "D": "Incorrect. Pulselessness is a late sign indicating irreversible muscle and nerve necrosis (within 4-6 hours)."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "Pain out of proportion and pain with passive stretch are early warning signs; pulses may remain present until late. Urgent escalation is required and the limb should not be elevated above heart level.",
+        "B": "High elevation can further reduce perfusion; ice and delay are inappropriate when compartment syndrome is suspected.",
+        "C": "Pulses can remain palpable in compartment syndrome and do not exclude it.",
+        "D": "Removing external constriction may be appropriate under protocol, but reassessment later delays definitive evaluation."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -5398,7 +5398,7 @@
       "topic": "Pharmacology & Parenteral Therapies",
       "subtopic": "Vancomycin Administration",
       "specialty": "Pharmacology",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "53-year-old male receiving intravenous vancomycin 1.5 g in 250 mL normal saline for MRSA bacteremia.",
@@ -5423,24 +5423,24 @@
           "Infuse vancomycin over at least 90-120 minutes"
         ]
       },
-      "stem": "During a vancomycin infusion, a client develops facial and upper-chest flushing with pruritus. Which action should the nurse take first?",
+      "stem": "During a vancomycin infusion, the client develops flushing and itching of the face and upper chest. There is no wheezing, angioedema, or hypotension. Which action should the nurse take first?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Stop the vancomycin infusion, assess vital signs and airway, and notify the provider for an antihistamine and slower infusion rate"
+            "text": "Stop or pause the infusion, assess airway and hemodynamic status, and notify the prescriber about a likely infusion-related reaction"
           },
           {
             "id": "B",
-            "text": "Increase the infusion rate so the remaining dose finishes within 15 minutes"
+            "text": "Continue the infusion at the same rate and administer an antihistamine after completion"
           },
           {
             "id": "C",
-            "text": "Document a life-threatening IgE-mediated anaphylactic allergy and permanently discard the vancomycin"
+            "text": "Label the client as having an IgE-mediated anaphylactic allergy without further assessment"
           },
           {
             "id": "D",
-            "text": "Apply hydrocortisone cream to the neck and continue the current infusion rate"
+            "text": "Administer epinephrine immediately despite stable airway and circulation"
           }
         ]
       },
@@ -5452,11 +5452,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Vancomycin infusion reaction ('red man syndrome') is a rate-dependent non-IgE histamine release from mast cells caused by infusing vancomycin too rapidly.",
-        "A": "Correct. Pausing the infusion, assessing hemodynamics/airway (to rule out true anaphylaxis), administering diphenhydramine, and resuming at a slower rate (over >=90-120 min) resolves the reaction.",
-        "B": "Incorrect. Faster infusion worsens histamine release and can trigger severe hypotension.",
-        "C": "Incorrect. Rate-related histamine flushing is not a true IgE-mediated allergy and does not preclude future slow administration.",
-        "D": "Incorrect. Continuing a rapid infusion exacerbates systemic histamine release."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "Flushing and pruritus during infusion suggest a rate-related vancomycin infusion reaction; stop or slow the infusion and assess severity before restarting at a slower rate as prescribed.",
+        "B": "Continuing the same rate may worsen the reaction; antihistamine does not replace stopping and assessment.",
+        "C": "A rate-related infusion reaction is not automatically an IgE-mediated allergy; document the observed reaction accurately.",
+        "D": "Epinephrine is indicated for anaphylaxis with airway, breathing, or circulatory compromise, not routinely for isolated flushing with stable status."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -5478,7 +5478,7 @@
       "topic": "Pharmacology & Parenteral Therapies",
       "subtopic": "Aminoglycoside Toxicity",
       "specialty": "Pharmacology",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "69-year-old female receiving intravenous gentamicin for complicated pyelonephritis.",
@@ -5504,48 +5504,47 @@
           "Draw peak and trough levels around third dose"
         ]
       },
-      "stem": "Which nursing actions are appropriate based on these findings? Select all that apply.",
+      "stem": "A client receiving gentamicin reports new tinnitus and difficulty hearing high-pitched sounds. Creatinine has increased from 0.8 to 1.6 mg/dL. Which actions are appropriate? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Hold the next scheduled dose of gentamicin and notify the provider immediately"
+            "text": "Hold the next dose and promptly notify the prescriber of possible ototoxicity and nephrotoxicity"
           },
           {
             "id": "B",
-            "text": "Document tinnitus and vertigo as signs of cranial nerve VIII ototoxicity"
+            "text": "Review drug levels, renal function, dose interval, and concurrent nephrotoxic medications"
           },
           {
             "id": "C",
-            "text": "Monitor hourly urine output and daily serum creatinine for nephrotoxicity"
+            "text": "Document the change in hearing and arrange prompt hearing assessment as directed"
           },
           {
             "id": "D",
-            "text": "Administer the scheduled dose and draw a peak level 30 minutes later"
+            "text": "Encourage the client to take an NSAID for discomfort and continue the antibiotic unchanged"
           },
           {
             "id": "E",
-            "text": "Implement fall precautions due to vestibular dysfunction"
+            "text": "Assume the symptoms are temporary and reassess only after the full course is completed"
           }
         ]
       },
       "correct_response": [
         "A",
         "B",
-        "C",
-        "E"
+        "C"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 4
       },
       "rationales": {
-        "summary": "Aminoglycosides (gentamicin) cause dose-limiting nephrotoxicity and irreversible eighth cranial nerve (auditory/vestibular) ototoxicity.",
-        "A": "Correct. An elevated trough (>2 mcg/mL), rising creatinine, and tinnitus require holding the dose and alerting the provider.",
-        "B": "Correct. Tinnitus and disequilibrium reflect cochlear and vestibular damage to CN VIII.",
-        "C": "Correct. Proximal renal tubular accumulation causes acute kidney injury.",
-        "D": "Incorrect. Giving another dose with a toxic trough risks permanent deafness and renal failure.",
-        "E": "Correct. Vestibular toxicity impairs balance and increases fall risk."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "New auditory symptoms and rising creatinine are concerning toxicities; the next dose should not proceed without prescriber review.",
+        "B": "Gentamicin exposure is affected by renal function and drug levels; other nephrotoxins increase risk.",
+        "C": "Prompt documentation and assessment help determine severity and whether therapy must change.",
+        "D": "NSAIDs can add renal risk and do not address ototoxicity.",
+        "E": "Waiting until therapy ends risks permanent hearing injury and worsening renal damage."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -5567,7 +5566,7 @@
       "topic": "Pharmacology & Parenteral Therapies",
       "subtopic": "Opioid Overdose & Naloxone",
       "specialty": "Pharmacology",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "45-year-old female 2 hours post-abdominal hysterectomy receiving morphine via patient-controlled analgesia (PCA).",
@@ -5593,24 +5592,24 @@
           "PCA safety protocol"
         ]
       },
-      "stem": "After stopping the morphine PCA, supporting ventilation, and administering naloxone IV, what ongoing assessment is critical because of naloxone's pharmacokinetics?",
+      "stem": "After naloxone reverses opioid-induced respiratory depression, the client becomes alert and respiratory rate improves. Why must the nurse continue close respiratory and sedation monitoring?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Monitor respiratory rate and sedation closely for at least 1 to 2 hours because naloxone has a shorter half-life than morphine"
+            "text": "Naloxone may wear off before the opioid, allowing recurrent respiratory depression"
           },
           {
             "id": "B",
-            "text": "Leave the client unmonitored once she awakens because one dose of naloxone permanently clears morphine"
+            "text": "Naloxone causes permanent opioid receptor blockade for 24 hours"
           },
           {
             "id": "C",
-            "text": "Immediately restart the morphine PCA at the previous basal rate once respiratory rate reaches 12 breaths/min"
+            "text": "The initial response proves that the opioid has been fully eliminated"
           },
           {
             "id": "D",
-            "text": "Administer flumazenil 0.2 mg IV as a synergistic opioid antagonist"
+            "text": "Recurrent respiratory depression occurs only when naloxone is administered intramuscularly"
           }
         ]
       },
@@ -5622,11 +5621,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Naloxone has a short elimination half-life (30-60 minutes) compared to morphine (2-4 hours), so respiratory depression can recur once naloxone wears off.",
-        "A": "Correct. Renarcotization commonly occurs 30-60 minutes after naloxone administration, necessitating continuous monitoring and possible repeat dosing.",
-        "B": "Incorrect. Naloxone competitively antagonizes mu-opioid receptors temporarily; it does not accelerate morphine metabolism.",
-        "C": "Incorrect. Restarting the PCA immediately would re-induce respiratory arrest.",
-        "D": "Incorrect. Flumazenil reverses benzodiazepines, not opioids."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "Naloxone's duration may be shorter than that of the opioid; repeated dosing or infusion and continued monitoring may be needed.",
+        "B": "Naloxone does not provide a 24-hour blockade.",
+        "C": "Reversal of symptoms does not mean the opioid has been eliminated.",
+        "D": "Recurrence can occur after any route when the opioid outlasts naloxone."
       },
       "clinical_judgment": "evaluate_outcomes",
       "tags": [
@@ -5648,7 +5647,7 @@
       "topic": "Pharmacology & Parenteral Therapies",
       "subtopic": "Potassium Chloride IV Administration",
       "specialty": "Pharmacology",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "58-year-old female admitted with severe dehydration and hypokalemia.",
@@ -5675,24 +5674,24 @@
           "Administer via volumetric infusion pump"
         ]
       },
-      "stem": "Which safety rule must the nurse follow strictly when administering intravenous potassium chloride?",
+      "stem": "The nurse receives an order for potassium chloride 10 mEq IV for a client with potassium 2.9 mEq/L. Which safety principle is essential?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Never administer potassium chloride by direct IV push and always infuse diluted via an infusion pump"
+            "text": "Dilute and administer using an infusion pump at the prescribed rate; never give potassium chloride by IV push"
           },
           {
             "id": "B",
-            "text": "Administer concentrated potassium chloride 20 mEq IV push over 2 minutes for severe hypokalemia"
+            "text": "Give the dose by slow IV push through a central line to reduce peripheral irritation"
           },
           {
             "id": "C",
-            "text": "Infuse potassium chloride at 40 mEq/hr through a hand vein without cardiac monitoring"
+            "text": "Add potassium to a hanging IV bag at the bedside and estimate the final concentration"
           },
           {
             "id": "D",
-            "text": "Administer potassium even if the client has been anuric for 8 hours"
+            "text": "Administer the dose rapidly if continuous cardiac monitoring is available"
           }
         ]
       },
@@ -5704,11 +5703,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Undiluted or rapid IV push potassium chloride causes immediate fatal cardiac arrest in diastole; it must always be diluted and controlled by an infusion pump.",
-        "A": "Correct. Potassium chloride is a high-alert medication requiring dilution, infusion pump control (typically <=10 mEq/hr peripherally), and verification of adequate urine output.",
-        "B": "Incorrect. IV push KCl is lethal.",
-        "C": "Incorrect. Rates >10-20 mEq/hr require central venous access and continuous ECG monitoring.",
-        "D": "Incorrect. Oliguria/anuria prevents renal potassium excretion and causes lethal hyperkalemia."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "IV potassium must be diluted and infused at a controlled rate using an infusion pump; IV push can cause fatal dysrhythmias.",
+        "B": "Central access does not make IV push potassium safe.",
+        "C": "Potassium should be prepared and verified according to medication-safety policy, not added ad hoc to a hanging bag.",
+        "D": "Monitoring does not make rapid administration safe; rate limits still apply."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -5729,7 +5728,7 @@
       "topic": "Pharmacology & Parenteral Therapies",
       "subtopic": "ACE Inhibitors",
       "specialty": "Pharmacology",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "56-year-old male started on lisinopril 10 mg daily 3 weeks ago for stage 2 hypertension.",
@@ -5755,24 +5754,24 @@
           "Evaluate antihypertensive tolerance"
         ]
       },
-      "stem": "What is the most likely cause of this client's dry cough, and what action should the nurse anticipate?",
+      "stem": "A client taking lisinopril develops a persistent dry cough. There is no fever, wheezing, or evidence of infection. Which explanation and plan are most appropriate?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Bradykinin accumulation caused by lisinopril; anticipate switching to an angiotensin II receptor blocker (ARB) such as losartan"
+            "text": "ACE inhibition reduces bradykinin breakdown; the prescriber may consider an angiotensin-receptor blocker if the cough is intolerable"
           },
           {
             "id": "B",
-            "text": "Early pulmonary edema; anticipate adding oral furosemide"
+            "text": "The cough indicates immediate pulmonary edema and requires a loop diuretic"
           },
           {
             "id": "C",
-            "text": "Hospital-acquired bacterial bronchitis; anticipate starting azithromycin"
+            "text": "The client should double the lisinopril dose because cough reflects inadequate blood-pressure control"
           },
           {
             "id": "D",
-            "text": "Normal transient side effect; instruct the client to take dextromethorphan daily"
+            "text": "The cough is caused by potassium loss and should be treated with a potassium supplement"
           }
         ]
       },
@@ -5784,11 +5783,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "ACE inhibitors prevent the breakdown of bradykinin and substance P in the respiratory tract, causing a characteristic dry cough in 5%-20% of clients.",
-        "A": "Correct. Bradykinin-mediated cough resolves only after discontinuing the ACE inhibitor and switching to an ARB (which does not inhibit bradykinin degradation).",
-        "B": "Incorrect. Lungs are clear and vital signs are normal.",
-        "C": "Incorrect. Absence of fever, sputum, or lung sounds rules against bacterial infection.",
-        "D": "Incorrect. Antitussives do not relieve ACE-inhibitor cough."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "ACE inhibitors can cause a dry cough related to bradykinin accumulation; an ARB may be considered when clinically appropriate.",
+        "B": "A dry cough alone without congestion findings does not establish pulmonary edema.",
+        "C": "Increasing the dose will not reliably resolve the adverse effect and may worsen it.",
+        "D": "The cough is not caused by potassium loss; supplementation without labs may be unsafe."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -5810,7 +5809,7 @@
       "topic": "Pharmacology & Parenteral Therapies",
       "subtopic": "Phenytoin Therapy",
       "specialty": "Pharmacology",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "37-year-old male taking oral phenytoin 100 mg three times daily for focal-to-bilateral tonic-clonic seizures.",
@@ -5836,28 +5835,28 @@
           "Continue current dose and reinforce medication teaching"
         ]
       },
-      "stem": "Which instructions should the nurse include when educating this client about long-term phenytoin therapy? Select all that apply.",
+      "stem": "A client taking phenytoin long term is preparing for discharge. Which instructions should the nurse include? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Perform meticulous oral hygiene with a soft toothbrush, floss daily, and schedule regular dental cleanings"
+            "text": "Maintain consistent dosing and do not stop the medication abruptly without prescriber guidance"
           },
           {
             "id": "B",
-            "text": "Report any new skin rash, fever, or mouth ulcers immediately to the healthcare provider"
+            "text": "Use meticulous oral hygiene and arrange regular dental care"
           },
           {
             "id": "C",
-            "text": "Never stop taking phenytoin abruptly, as doing so can trigger status epilepticus"
+            "text": "Report rash, unusual bruising, fever, or signs of infection promptly"
           },
           {
             "id": "D",
-            "text": "Switch freely between different generic brands of phenytoin to save money"
+            "text": "Stop the medication once seizure-free for one month"
           },
           {
             "id": "E",
-            "text": "Report ataxia, slurred speech, or nystagmus as signs of drug toxicity"
+            "text": "Discuss pregnancy planning and contraception because phenytoin has important fetal and drug-interaction risks"
           }
         ]
       },
@@ -5872,12 +5871,12 @@
         "max_points": 4
       },
       "rationales": {
-        "summary": "Phenytoin teaching covers gingival hyperplasia prevention, serious cutaneous reactions (SJS/TEN), narrow therapeutic index consistency, and neurotoxic symptoms.",
-        "A": "Correct. Good oral hygiene and gum massage minimize phenytoin-induced gingival overgrowth.",
-        "B": "Correct. Morbilliform or blistering rash can herald Stevens-Johnson syndrome/toxic epidermal necrolysis.",
-        "C": "Correct. Abrupt withdrawal precipitates rebound seizures and status epilepticus.",
-        "D": "Incorrect. Phenytoin has nonlinear zero-order pharmacokinetics; switching brands can cause subtherapeutic or toxic levels.",
-        "E": "Correct. Nystagmus, ataxia, and dysarthria indicate serum levels > 20 mcg/mL."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "Abrupt withdrawal can precipitate seizures; dosing should remain consistent.",
+        "B": "Phenytoin can cause gingival hyperplasia, making oral care important.",
+        "C": "Rash may signal a serious reaction, and blood dyscrasias can occur; warning signs require prompt review.",
+        "D": "Seizure control does not mean the disorder is cured; stopping suddenly is unsafe.",
+        "E": "Phenytoin is teratogenic and interacts with hormonal contraceptives; individualized counseling is important."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -5899,7 +5898,7 @@
       "topic": "Pharmacology & Parenteral Therapies",
       "subtopic": "Lithium Toxicity",
       "specialty": "Pharmacology",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "41-year-old female taking lithium carbonate for bipolar I disorder who developed viral gastroenteritis with vomiting and diarrhea.",
@@ -5928,24 +5927,24 @@
           "Infuse 0.9% Sodium Chloride IV"
         ]
       },
-      "stem": "Which physiological relationship explains why dehydration and thiazide diuretics precipitated lithium toxicity in this client?",
+      "stem": "A client taking lithium begins a thiazide diuretic and develops vomiting and poor oral intake. The lithium level is elevated. Which mechanism best explains the increased toxicity risk?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "The kidneys reabsorb lithium in place of sodium in the proximal tubule whenever sodium or volume is depleted"
+            "text": "Sodium and volume depletion increase renal lithium reabsorption, reducing lithium clearance"
           },
           {
             "id": "B",
-            "text": "Thiazide diuretics block hepatic cytochrome P450 metabolism of lithium"
+            "text": "Thiazides bind lithium in the intestine and increase its absorption"
           },
           {
             "id": "C",
-            "text": "Dehydration accelerates intestinal absorption of sustained-release lithium"
+            "text": "Dehydration increases hepatic metabolism of lithium, producing a toxic metabolite"
           },
           {
             "id": "D",
-            "text": "Low serum sodium displaces lithium from plasma albumin binding sites"
+            "text": "Lithium is primarily excreted in bile, and dehydration blocks biliary drainage"
           }
         ]
       },
@@ -5957,11 +5956,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Lithium is a monovalent cation handled similarly to sodium by the proximal renal tubule; volume/sodium depletion triggers avid proximal reabsorption of both sodium and lithium.",
-        "A": "Correct. Sodium depletion from GI losses or thiazides increases proximal tubular lithium reabsorption, causing toxic serum accumulation.",
-        "B": "Incorrect. Lithium is not metabolized by the liver; it is excreted unchanged by the kidneys.",
-        "C": "Incorrect. Toxicity is driven by reduced renal clearance rather than faster GI absorption.",
-        "D": "Incorrect. Lithium is not bound to plasma proteins."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "Lithium is handled by the kidneys similarly to sodium; volume and sodium depletion increase proximal reabsorption and reduce lithium clearance.",
+        "B": "Thiazides increase toxicity mainly through renal sodium handling, not intestinal binding.",
+        "C": "Lithium is not primarily hepatically metabolized into a toxic metabolite.",
+        "D": "Lithium is renally eliminated, not primarily excreted in bile."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -5983,7 +5982,7 @@
       "topic": "Pharmacology & Parenteral Therapies",
       "subtopic": "Total Parenteral Nutrition (TPN)",
       "specialty": "Pharmacology",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "51-year-old female receiving continuous total parenteral nutrition (TPN) via a right subclavian central venous catheter for severe Crohn enterocutaneous fistula.",
@@ -6009,24 +6008,24 @@
           "Change TPN bag and tubing every 24 hours"
         ]
       },
-      "stem": "Which action should the nurse take when the current TPN bag runs out before the replacement bag arrives?",
+      "stem": "A client receiving continuous central-line TPN is told that the replacement bag will be delayed by 90 minutes. The current bag is nearly empty. Which action should the nurse take?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Infuse 10% dextrose in water (D10W) at 85 mL/hr until the new TPN bag arrives"
+            "text": "Follow the prescribed interruption protocol and begin the ordered dextrose-containing solution at the TPN rate while notifying the appropriate team"
           },
           {
             "id": "B",
-            "text": "Flush the catheter with 0.9% sodium chloride and cap it until the pharmacy delivers the TPN"
+            "text": "Flush the central catheter with saline and leave it capped until the TPN arrives"
           },
           {
             "id": "C",
-            "text": "Infuse lactated Ringer solution at 85 mL/hr"
+            "text": "Stop all IV fluids because brief interruption of TPN does not affect glucose"
           },
           {
             "id": "D",
-            "text": "Slow the remaining 15 mL of TPN to 10 mL/hr so it lasts for 90 minutes"
+            "text": "Increase the remaining TPN rate so the bag finishes just before the replacement arrives"
           }
         ]
       },
@@ -6038,11 +6037,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "High endogenous insulin levels stimulated by concentrated dextrose in TPN persist after abrupt discontinuation, causing severe rebound hypoglycemia unless D10W is infused.",
-        "A": "Correct. Infusing D10W at the same hourly rate prevents rebound hypoglycemia until the new TPN bag is hung.",
-        "B": "Incorrect. Capping the line without dextrose causes rapid rebound hypoglycemia.",
-        "C": "Incorrect. Lactated Ringer contains no dextrose and will not prevent hypoglycemia.",
-        "D": "Incorrect. Altering TPN infusion rates unpredictably disrupts glucose homeostasis."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "Abrupt interruption of high-dextrose TPN can cause hypoglycemia; a prescribed dextrose solution may be used as a bridge with monitoring.",
+        "B": "Leaving the client without carbohydrate can precipitate hypoglycemia; central-line handling must follow protocol.",
+        "C": "Clients receiving continuous TPN may become hypoglycemic if it is stopped abruptly.",
+        "D": "Increasing the rate risks hyperglycemia and fluid/electrolyte complications and does not safely bridge the delay."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -6064,7 +6063,7 @@
       "topic": "Pharmacology & Parenteral Therapies",
       "subtopic": "Allopurinol & Gout",
       "specialty": "Pharmacology",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "59-year-old male prescribed allopurinol 100 mg PO daily for chronic tophaceous gout.",
@@ -6091,24 +6090,24 @@
           "Increase fluid intake to 2-3 L/day"
         ]
       },
-      "stem": "Which instruction is most important for the nurse to emphasize when teaching this client about allopurinol?",
+      "stem": "A client taking allopurinol for gout calls to report a new widespread rash and fever. Which instruction should the nurse provide?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Stop taking allopurinol and notify the provider immediately if any skin rash develops"
+            "text": "Stop the medication and seek urgent medical assessment because a serious hypersensitivity reaction is possible"
           },
           {
             "id": "B",
-            "text": "Take allopurinol only when experiencing sudden severe big-toe pain"
+            "text": "Continue the medication and take an antihistamine because rash is an expected sign that uric acid is falling"
           },
           {
             "id": "C",
-            "text": "Restrict fluid intake to prevent swelling in the lower extremities"
+            "text": "Take an extra dose to prevent an acute gout flare while the rash is present"
           },
           {
             "id": "D",
-            "text": "Take aspirin 650 mg daily alongside allopurinol to speed uric acid excretion"
+            "text": "Stop drinking water until the rash resolves to reduce renal excretion of the drug"
           }
         ]
       },
@@ -6120,11 +6119,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Allopurinol can trigger severe cutaneous adverse reactions (allopurinol hypersensitivity syndrome / Stevens-Johnson syndrome), so any rash requires immediate discontinuation.",
-        "A": "Correct. Even a mild maculopapular rash can progress to fatal Stevens-Johnson syndrome/DRESS; allopurinol must be stopped immediately.",
-        "B": "Incorrect. Allopurinol is a daily urate-lowering maintenance drug, not an acute anti-inflammatory analgesic.",
-        "C": "Incorrect. High fluid intake (2-3 L/day) prevents uric acid renal calculi.",
-        "D": "Incorrect. Low-to-moderate dose aspirin inhibits renal uric acid excretion and precipitates gout flares."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "Allopurinol can cause severe cutaneous adverse reactions; rash with systemic symptoms requires immediate discontinuation and urgent assessment.",
+        "B": "A rash is not a therapeutic sign and may progress to a life-threatening reaction.",
+        "C": "Additional exposure may worsen a severe hypersensitivity reaction.",
+        "D": "Hydration is generally encouraged unless contraindicated; fluid restriction is not a treatment for rash."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -6146,7 +6145,7 @@
       "topic": "Pharmacology & Parenteral Therapies",
       "subtopic": "Magnesium Sulfate Toxicity",
       "specialty": "Pharmacology",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "32-year-old G1P0 at 35 weeks gestation receiving intravenous magnesium sulfate at 2 g/hr for severe preeclampsia.",
@@ -6172,24 +6171,24 @@
           "Calcium gluconate 1 g IV at bedside"
         ]
       },
-      "stem": "Which sequence of actions should the nurse perform immediately?",
+      "stem": "A client receiving magnesium sulfate for severe preeclampsia has absent deep-tendon reflexes, a respiratory rate of 8/min, and urine output of 20 mL/hr. Which action should the nurse take first?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Stop the magnesium sulfate infusion, apply oxygen, prepare to administer calcium gluconate 1 g IV, and notify the provider"
+            "text": "Stop the magnesium infusion, support ventilation, summon urgent help, and prepare the prescribed calcium gluconate antidote"
           },
           {
             "id": "B",
-            "text": "Decrease the magnesium infusion rate to 1 g/hr and recheck reflexes in 1 hour"
+            "text": "Reduce the infusion by half and reassess reflexes in 30 minutes"
           },
           {
             "id": "C",
-            "text": "Administer a 500 mL bolus of magnesium sulfate to improve placental perfusion"
+            "text": "Administer another magnesium bolus because oliguria indicates inadequate seizure prophylaxis"
           },
           {
             "id": "D",
-            "text": "Administer naloxone 0.4 mg IV push to reverse respiratory depression"
+            "text": "Give naloxone to reverse magnesium-related respiratory depression"
           }
         ]
       },
@@ -6201,11 +6200,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Loss of deep tendon reflexes, respiratory rate < 12 breaths/min, and oliguria indicate magnesium toxicity requiring immediate infusion cessation and IV calcium gluconate.",
-        "A": "Correct. Stopping the infusion halts further neuromuscular blockade, while calcium gluconate directly antagonizes magnesium at the neuromuscular junction.",
-        "B": "Incorrect. Continuing magnesium in the presence of areflexia and bradypnea risks respiratory and cardiac arrest.",
-        "C": "Incorrect. Giving more magnesium would be lethal.",
-        "D": "Incorrect. Naloxone reverses opioids, not magnesium."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "Absent reflexes, respiratory depression, and oliguria indicate magnesium toxicity; stop the infusion and support airway/breathing while preparing calcium gluconate.",
+        "B": "Reducing the dose is insufficient when severe toxicity is present.",
+        "C": "Additional magnesium can cause cardiac and respiratory arrest.",
+        "D": "Naloxone reverses opioids, not magnesium; calcium gluconate is the antidote."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -6227,7 +6226,7 @@
       "topic": "Pharmacology & Parenteral Therapies",
       "subtopic": "Clozapine Monitoring",
       "specialty": "Pharmacology",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "34-year-old male taking clozapine 300 mg PO daily for treatment-resistant schizophrenia.",
@@ -6252,24 +6251,24 @@
           "REMS ANC monitoring protocol"
         ]
       },
-      "stem": "Which action is the nurse's top priority?",
+      "stem": "A client taking clozapine reports fever, sore throat, and mouth ulcers. The client appears fatigued. Which action is the priority?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Hold the clozapine dose and obtain a STAT complete blood count (CBC) with absolute neutrophil count (ANC)"
+            "text": "Withhold the next dose and arrange urgent CBC with absolute neutrophil count and prescriber review"
           },
           {
             "id": "B",
-            "text": "Reassure the client that sore throat is a normal anticholinergic side effect and continue clozapine"
+            "text": "Reassure the client that these are common anticholinergic effects and continue treatment"
           },
           {
             "id": "C",
-            "text": "Advise the client to take ibuprofen and return next week for his routine monthly blood draw"
+            "text": "Administer acetaminophen and wait for the next scheduled blood count"
           },
           {
             "id": "D",
-            "text": "Double the evening clozapine dose to prevent psychotic relapse during illness"
+            "text": "Increase the clozapine dose because infection can trigger recurrence of psychosis"
           }
         ]
       },
@@ -6281,11 +6280,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Clozapine carries a black-box warning for severe neutropenia/agranulocytosis; fever and sore throat must be evaluated immediately with a STAT ANC before giving another dose.",
-        "A": "Correct. Flu-like symptoms, fever, or sore throat can be the earliest clinical signs of life-threatening agranulocytosis.",
-        "B": "Incorrect. Clozapine causes sialorrhea (hypersalivation) rather than dry throat, and fever/sore throat cannot be dismissed.",
-        "C": "Incorrect. Delaying ANC evaluation risks overwhelming sepsis.",
-        "D": "Incorrect. Increasing clozapine without verifying ANC is unsafe."
+        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "A": "Fever and sore throat may indicate severe neutropenia or agranulocytosis; urgent ANC assessment and treatment decisions are required.",
+        "B": "These symptoms are not routine anticholinergic effects and may signal a life-threatening adverse reaction.",
+        "C": "Symptomatic treatment alone can delay detection of agranulocytosis.",
+        "D": "Increasing clozapine in possible neutropenia is unsafe."
       },
       "clinical_judgment": "take_action",
       "tags": [
