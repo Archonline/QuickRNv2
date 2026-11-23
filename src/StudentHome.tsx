@@ -1,4 +1,5 @@
-import { Activity, ArrowRight, BookOpen, Bookmark, Brain, CalendarDays, ChartNoAxesCombined, CheckCircle2, ClipboardCheck, Clock3, Flame, Layers3, NotebookPen, Play, Sparkles, Stethoscope, Target } from "lucide-react";
+import type { CSSProperties } from "react";
+import { Activity, ArrowRight, BookOpen, Brain, CalendarDays, ChartNoAxesCombined, CheckCircle2, ClipboardCheck, Clock3, Flame, Layers3, NotebookPen, Play, Sparkles, Stethoscope, Target } from "lucide-react";
 
 type StudentHomeProps = {
   questionCount: number;
@@ -7,7 +8,6 @@ type StudentHomeProps = {
   savedCount: number;
   activeDays: number;
   studyMinutes: number;
-  latestScore: number | null;
   weakestCategory: string | null;
   onNavigate: (page: "practice" | "progress" | "history" | "calendar" | "saved") => void;
   onPractice: () => void;
@@ -43,7 +43,7 @@ export default function StudentHome(props: StudentHomeProps) {
         </div>
       </div>
       <div className="student-hero-progress">
-        <div className="student-progress-ring" style={{"--progress": progress + "%"} as React.CSSProperties}>
+        <div className="student-progress-ring" style={{"--progress": progress + "%"} as CSSProperties}>
           <div><strong>{progress}%</strong><span>BANK COVERAGE</span></div>
         </div>
         <span>{props.completedCount.toLocaleString()} of {props.questionCount.toLocaleString()} questions practiced</span>
