@@ -140,7 +140,7 @@ function validateRawQuestion(item, rules, findings, index) {
     if (keyed.some(id => !optionIds.includes(id))) add("error", "Correct response references an option ID that does not exist.");
     const normalizedOptions = optionRows.map(option => normalizeText(option?.text));
     if (new Set(normalizedOptions).size !== normalizedOptions.length) add("warning", "Option text contains duplicates; distractors must be distinct.");
-    if (optionRows.some(option => normalizeText(option?.text).length < 18)) add("warning", "At least one option is unusually short; manually verify it is a clinically plausible near-miss rather than an obvious throwaway.");
+    if (optionRows.some(option => normalizeText(option?.text).length < 12)) add("warning", "At least one option is extremely short; manually verify it is a clinically plausible near-miss rather than an obvious throwaway.");
     const wrongIds = optionIds.filter(id => !keyed.includes(id));
     const explainedIds = Array.isArray(incorrect) ? incorrect.map(entry => String(entry?.option ?? "")) : [];
     if (wrongIds.length && (wrongIds.some(id => !explainedIds.includes(id)) || explainedIds.some(id => !wrongIds.includes(id)))) {
