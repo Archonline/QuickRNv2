@@ -92,8 +92,8 @@ function auditCaseStudyGroups(questions, findings) {
     if (actualOrder.some((id, index) => id !== declared[index])) finding(findings, "error", NGN_BATCH_PATH,
       `[${caseId}] case records are not stored in their declared clinical timeline order.`);
     const orderedStages = group.map(item => item?.interaction?.stage);
-    if (orderedStages.some((stage, index) => !Number.isInteger(stage) || (index > 0 && stage <= orderedStages[index - 1]))) finding(findings, "error", NGN_BATCH_PATH,
-      `[${caseId}] case stages must be strictly increasing and must not be randomized.`);
+    if (orderedStages.some((stage, index) => !Number.isInteger(stage) || (index > 0 && stage < orderedStages[index - 1]))) finding(findings, "error", NGN_BATCH_PATH,
+      `[${caseId}] case stages must remain in nondecreasing timeline order and must not be randomized.`);
     if (declared.some((id) => !ids.has(id))) finding(findings, "error", NGN_BATCH_PATH,
       `[${caseId}] linked_question_ids references an ID outside this batch.`);
     if (group.some((item) => {
