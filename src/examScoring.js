@@ -67,3 +67,69 @@ export function estimateCatAbility(responses) {
   }
   return Number(theta.toFixed(3));
 }
+
+
+/**
+ * Strict QuickRN readiness benchmark.
+ * This is an internal, uncalibrated practice standard, not an NCSBN pass rule.
+ * A candidate must complete at least 85 hard-item CAT questions, earn >=80%
+ * partial-credit score, reach provisional ability >= +1.25 logits, and earn
+ * >=70% in every question category represented by at least five items.
+ */
+export const READINESS_RULES = Object.freeze({
+  minimumQuestions: 85,
+  maximumQuestions: 150,
+  minimumScorePercent: 80,
+  minimumAbility: 1.25,
+  minimumCategoryPercent: 70,
+  minimumCategorySample: 5
+});
+
+export function evaluateReadiness(responses) {
+  const items = Array.isArray(responses) ? responses : [];
+  const earned = items.reduce((sum, item) => sum + Math.max(0, Math.min(1, Number(item.earned) || 0)), 0);
+  const scorePercent = items.length ? Math.round((earned / items.length) * 100) : 0;
+  const ability = estimateCatAbility(items.map(item => ({
+    earned: item.earned,
+    difficulty: item.difficulty
+  })));
+  const categoryMap = new Map();
+  for (const item of items) {
+    const name = String(item.category || "Uncategorized");
+    const current = categoryMap.get(name) || { name, total: 0, earned: 0 };
+    current.total += 1;
+    current.earned += Math.max(0, Math.min(1, Number(item.earned) || 0));
+    categoryMap.set(name, current);
+  }
+  const categories = [...categoryMap.values()].map(item => ({
+    ...item,
+    percent: item.total ? Math.round(item.earned / item.total * 100) : 0
+  })).sort((a, b) => a.percent - b.percent);
+  const weakCategories = categories.filter(item =>
+    item.total >= READINESS_RULES.minimumCategorySample &&
+    item.percent < READINESS_RULES.minimumCategoryPercent
+  );
+  const reasons = [];
+  if (items.length < READINESS_RULES.minimumQuestions) {
+    reasons.push(`Complete at least ${READINESS_RULES.minimumQuestions} questions.`);
+  }
+  if (scorePercent < READINESS_RULES.minimumScorePercent) {
+    reasons.push(`Earn at least ${READINESS_RULES.minimumScorePercent}% overall partial-credit score.`);
+  }
+  if (ability < READINESS_RULES.minimumAbility) {
+    reasons.push(`Reach the provisional ability threshold of +${READINESS_RULES.minimumAbility.toFixed(2)}.`);
+  }
+  if (weakCategories.length) {
+    reasons.push(`Raise every sampled category with at least ${READINESS_RULES.minimumCategorySample} items to ${READINESS_RULES.minimumCategoryPercent}% or higher.`);
+  }
+  return {
+    passed: reasons.length === 0,
+    questionCount: items.length,
+    scorePercent,
+    ability,
+    categories,
+    weakCategories: weakCategories.map(item => item.name),
+    reasons,
+    rules: READINESS_RULES
+  };
+}
