@@ -386,7 +386,7 @@ function curatedTraditionalQuestion(raw:CuratedTraditionalItem,index:number):Que
     const correctCondition=conditions.indexOf(String(key.condition??""));
     const correctActions=(key.actions??[]).map(item=>actions.indexOf(item)).filter(value=>value>=0);
     const correctMonitoring=(key.parameters??[]).map(item=>parameters.indexOf(item)).filter(value=>value>=0);
-    itemType="bow-tie";outputOptions=[];answer=correctCondition;
+    itemType="bow-tie";outputOptions=conditions;answer=correctCondition;
     if(!conditions.length||!actions.length||!parameters.length||correctCondition<0||correctActions.length!==2||correctMonitoring.length!==2)throw new Error(`Curated bow-tie ${raw.id} has incomplete authored choices or answer keys.`);
     interaction={instruction:"Identify the most likely condition, two priority actions, and two parameters to monitor.",choices:[],correctResponse:["c"+correctCondition,...correctActions.map((value,i)=>"a"+i+"-"+value),...correctMonitoring.map((value,i)=>"m"+i+"-"+value)],bowTie:{conditions,actions,monitoring:parameters,correctCondition,correctActions,correctMonitoring},optionRationales:[rationales.condition??"",rationales.actions??"",rationales.parameters??""]};
   } else if(raw.question_type==="matrix_grid"){
@@ -396,7 +396,7 @@ function curatedTraditionalQuestion(raw:CuratedTraditionalItem,index:number):Que
     const selectedColumns=rows.map(row=>columns.indexOf(String(key[row.id]??"")));
     if(rows.length<3||columns.length<2||selectedColumns.some(value=>value<0))throw new Error(`Curated matrix ${raw.id} has incomplete rows, columns, or answer keys.`);
     const expected=selectedColumns.map((column,index)=>index+":"+column);
-    itemType="matrix-single";outputOptions=[];answer=0;
+    itemType="matrix-single";outputOptions=columns;answer=selectedColumns[0]??0;
     interaction={instruction:"Select the best classification for each clinical finding.",choices:[],rows:rows.map(row=>row.text),columns,matrixMode:"single",correctResponse:expected,correctMatrix:Object.fromEntries(rows.map((row,index)=>[String(index),String(key[row.id]??"")]))};
   }
   return {
@@ -714,8 +714,43 @@ function make(b: B, i: number, global: number): Question {
 const all:Question[]=[];for(const b of B){for(let i=0;i<b.count;i++)all.push(make(b,i,all.length));}
 for(let c=0;c<cases.length;c++){for(let j=0;j<6;j++){const q=all[c*6+j],f=caseSpecificFollowups[c]?.[j]??followups[j],file=cases[c];if(q)all[c*6+j]={...q,id:"qrn-case-"+(c+1)+"-"+(j+1),topic:file.name,format:"case-study",difficulty:j===0||j===3?"Advanced":"Intermediate",caseStudy:file.record,exhibit:file.exhibit,caseRecord:{progressNotes:file.record,labs:file.exhibit,flowSheet:""},prompt:f.prompt,options:f.options,answer:f.answer,rationale:f.rationale,status:"published",clinicalScenario:undefined};}}
 for(let i=0;i<curatedTraditionalQuestions.length;i++)all[36+i]=curatedTraditionalQuestions[i];
-// Replace the first 40 repetitive generated records with independently authored items.
-for(let i=0;i<authoredCoreRewriteBatch.length;i++)all[136+i]=authoredCoreRewriteBatch[i];
-export const questionBank500:Question[]=all.slice(0,500);
-if(questionBank500.length!==500)throw new Error("Question bank must contain exactly 500 items.");
-if(new Set(questionBank500.map(q=>q.id)).size!==500)throw new Error("Duplicate question IDs detected.");
+// Integrate authored replacements by stable question ID, never by array position.
+// This preserves learner history and prevents category/order changes from silently
+// replacing an unrelated question.
+const authoredReplacementIds = new Set<string>();
+for (const replacement of authoredCoreRewriteBatch) {
+  if (authoredReplacementIds.has(replacement.id)) {
+    throw new Error(`Duplicate authored replacement ID: ${replacement.id}`);
+  }
+  authoredReplacementIds.add(replacement.id);
+  const targetIndex = all.findIndex((question) => question.id === replacement.id);
+  if (targetIndex < 0) {
+    throw new Error(`Authored replacement target does not exist in the core bank: ${replacement.id}`);
+  }
+  all[targetIndex] = replacement;
+}
+
+export const questionBank500: Question[] = all.slice(0, 500);
+if (questionBank500.length !== 500) {
+  throw new Error("Question bank must contain exactly 500 items.");
+}
+if (new Set(questionBank500.map((question) => question.id)).size !== 500) {
+  throw new Error("Duplicate question IDs detected.");
+}
+if (authoredReplacementIds.size !== authoredCoreRewriteBatch.length) {
+  throw new Error("Authored replacement integration count does not match the authored batch.");
+}
+ 
+// Legacy option-index checks apply only to option-based items. Numeric-entry
+// questions intentionally have no options and carry their answer as a number.
+const invalidCoreStructure = questionBank500.filter((question) => {
+  if (question.itemType === "numeric-entry") {
+    return question.options.length !== 0 || !Number.isFinite(question.answer) ||
+      !question.interaction?.numericUnit || !Number.isFinite(Number(question.interaction.correctResponse?.[0]));
+  }
+  return question.options.length < 2 || !Number.isInteger(question.answer) ||
+    question.answer < 0 || question.answer >= question.options.length;
+});
+if (invalidCoreStructure.length) {
+  throw new Error("Core question structure is invalid for: " + invalidCoreStructure.map((question) => question.id).join(", "));
+}
