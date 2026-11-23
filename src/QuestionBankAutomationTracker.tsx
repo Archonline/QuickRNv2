@@ -67,9 +67,9 @@ export default function QuestionBankAutomationTracker({
         <div>
           <div className="eyebrow">WEBMASTER · CONTENT OPERATIONS</div>
           <h1>Question bank automation</h1>
-          <p className="subheading">Live inventory, quality gates, and a transparent forecast toward 3,600 distinct questions.</p>
+          <p className="subheading">Runtime inventory snapshot, quality gates, and a transparent forecast toward 3,600 distinct questions.</p>
         </div>
-        <span className="qb-live-pill"><span /> Inventory snapshot</span>
+        <span className="qb-live-pill"><span /> Runtime snapshot</span>
       </div>
 
       <div className="qb-kpi-grid">
@@ -150,8 +150,8 @@ export default function QuestionBankAutomationTracker({
           <div className="eyebrow">AUTOMATED WORKFLOW</div>
           <h2>How each batch moves</h2>
           <ol className="qb-pipeline-list">
-            <li className="done"><span><CheckCircle2 size={16} /></span><div><strong>Generate original questions</strong><p>Produce a bounded batch against the NCLEX topic blueprint and item schema.</p></div></li>
-            <li className="done"><span><CheckCircle2 size={16} /></span><div><strong>Run structural and duplicate checks</strong><p>Validate IDs, answer keys, rationales, clinical data, item formats, and similarity flags.</p></div></li>
+            <li className="done"><span><CheckCircle2 size={16} /></span><div><strong>Generate original questions</strong><p>Daily scheduled authoring cycle: 20 new items per run, preserving the blueprint and item schema.</p></div></li>
+            <li className="done"><span><CheckCircle2 size={16} /></span><div><strong>Run structural and duplicate checks</strong><p>Current CI audit checks IDs, metadata, and runtime integration; deeper clinical and semantic-duplicate audits remain on the roadmap.</p></div></li>
             <li className="active"><span><Activity size={16} /></span><div><strong>Run tests and production build</strong><p>Reject broken batches; retain logs and retry safe technical failures.</p></div></li>
             <li><span><Circle size={16} /></span><div><strong>Integrate and update inventory</strong><p>Commit a versioned batch, update the runtime bank, and refresh this tracker.</p></div></li>
             <li><span><Circle size={16} /></span><div><strong>Clinical review gate</strong><p>Keep generated items clearly labeled until qualified review is recorded.</p></div></li>
@@ -163,7 +163,7 @@ export default function QuestionBankAutomationTracker({
           <div className="qb-quality-row"><FileCheck2 size={17} /><div><strong>Automated authoring audit</strong><span>Connected to the CI workflow</span></div><b className="qb-status-chip">Enabled</b></div>
           <div className="qb-quality-row"><Gauge size={17} /><div><strong>Test and build gate</strong><span>Every change must pass automated checks</span></div><b className="qb-status-chip">Required</b></div>
           <div className="qb-quality-row"><ShieldCheck size={17} /><div><strong>Clinical verification</strong><span>{clinicalReviewed} of {coreCount} inventory items recorded as verified</span></div><b className="qb-status-chip warning">Human gate</b></div>
-          <div className="qb-quality-row"><Clock3 size={17} /><div><strong>Unattended execution</strong><span>Scheduled generation requires a model API secret and an enabled workflow runner</span></div><b className="qb-status-chip pending">Setup needed</b></div>
+          <div className="qb-quality-row"><Clock3 size={17} /><div><strong>Unattended execution</strong><span>Daily ChatGPT task scheduled for 08:00 Asia/Manila; GitHub access remains required</span></div><b className="qb-status-chip">Scheduled</b></div>
           <div className="qb-automation-note"><AlertTriangle size={16} /><p>Generated content is not clinically approved by passing CI. Clinical review remains a separate release-quality decision.</p></div>
         </article>
       </div>
