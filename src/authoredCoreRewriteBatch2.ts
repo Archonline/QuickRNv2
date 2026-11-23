@@ -158,7 +158,7 @@ export const authoredCoreRewriteBatch2: Question[] = [
   single(
     "qrn-0249", "Neurologic", "Acute spinal cord compression", "Advanced",
     "A client with metastatic prostate cancer reports new severe mid-back pain, bilateral leg weakness, and difficulty initiating urination. The client was independently ambulatory yesterday.",
-    "Which response is most appropriate?",
+    "Which immediate response is needed to limit neurologic injury from suspected metastatic cord compression?",
     ["Schedule routine follow-up because pain is common with metastatic disease", "Escalate immediately for suspected metastatic spinal cord compression and prepare for urgent imaging and prescribed treatment", "Encourage spinal flexion exercises to relieve pressure", "Administer a laxative and reassess leg strength tomorrow"],
     1,
     "New back pain with progressive bilateral weakness and bladder dysfunction in a client with cancer suggests metastatic spinal cord compression, an oncologic emergency. Urgent imaging and treatment are needed to preserve neurologic function.",
