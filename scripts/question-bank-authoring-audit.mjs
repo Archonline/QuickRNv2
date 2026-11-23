@@ -32,8 +32,31 @@ function auditAuthoredCoreRewriteBatch(source, rules, findings) {
     finding(findings, "error", REWRITE_BATCH_PATH, `Expected exactly ${expected} authored replacement records; detected ${ids.length}.`);
   }
   if (new Set(ids).size !== ids.length) finding(findings, "error", REWRITE_BATCH_PATH, "Duplicate authored replacement IDs detected.");
+  // The first six literal arguments are stable item metadata; compare authored prompts
+  // so generic repeated stems cannot pass merely because the clinical scenarios differ.
+  const promptRows = [...source.matchAll(/\bsingle\(\s*"([^"]+)"\s*,\s*"[^"]*"\s*,\s*"[^"]*"\s*,\s*"[^"]*"\s*,\s*"((?:\\.|[^"\\])*)"\s*,\s*"((?:\\.|[^"\\])*)"/g)];
+  const promptOwners = new Map();
+  for (const match of promptRows) {
+    const id = match[1];
+    const prompt = normalizeText(match[3]);
+    if (!prompt) {
+      finding(findings, "error", REWRITE_BATCH_PATH, `[${id}] authored prompt is empty.`);
+      continue;
+    }
+    if (promptOwners.has(prompt)) {
+      finding(findings, "error", REWRITE_BATCH_PATH, `[${id}] repeats the generic prompt used by ${promptOwners.get(prompt)}; author a distinct clinical decision task.`);
+    } else {
+      promptOwners.set(prompt, id);
+    }
+  }
+  if (promptRows.length !== expected) {
+    finding(findings, "error", REWRITE_BATCH_PATH, `Expected to parse ${expected} authored prompt records; detected ${promptRows.length}.`);
+  }
   for (const id of ids) {
     if (!/^qrn-[a-z0-9-]+$/.test(id)) finding(findings, "error", REWRITE_BATCH_PATH, `Invalid authored question ID: ${id}`);
+  }
+  if (!source.includes('status: "development"') || !source.includes('publicationStatus: "draft"')) {
+    finding(findings, "error", REWRITE_BATCH_PATH, "Unverified authored replacement items must remain development/draft until authorized clinical approval.");
   }
   for (const field of ["optionRationales", "clinicalJudgmentStep", "contentVersion", "reviewStatus: \"generated\"", "not-clinically-verified"]) {
     if (!source.includes(field)) finding(findings, "error", REWRITE_BATCH_PATH, `Missing required authoring metadata: ${field}`);
@@ -50,7 +73,7 @@ function valueAt(object, dottedPath) {
   return dottedPath.split(".").reduce((value, key) => value == null ? undefined : value[key], object);
 }
 function normalizeText(value) {
-  return typeof value === "string" ? value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().replace(/\\s+/g, " ") : "";
+  return typeof value === "string" ? value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().replace(/\s+/g, " ") : "";
 }
 function auditBatchDistribution(questions, rules, findings) {
   const config = rules.batch_distribution ?? {};
@@ -222,13 +245,32 @@ function auditCoreGenerator(rules, findings) {
     finding(findings, "error", QUESTION_BANK_PATH, "Generic category-lens scenario fallback is still present.");
   }
   const categoryBlock = source.slice(source.indexOf("const B:B[]="), source.indexOf("const cases="));
+  const topicCategories = new Map();
+  for (const match of categoryBlock.matchAll(/\{category:"([^"]+)",count:\d+,topics:\[([\s\S]*?)\],scenario:/g)) {
+    const category = match[1];
+    for (const topicMatch of match[2].matchAll(/"([^"]+)"/g)) {
+      const topic = topicMatch[1];
+      const categories = topicCategories.get(topic) ?? [];
+      categories.push(category);
+      topicCategories.set(topic, categories);
+    }
+  }
+  const repeatedTopics = [...topicCategories.entries()].filter(([, categories]) => categories.length > 1);
+  const categoryVariants = source.slice(source.indexOf("const categoryTopicOverrides"), source.indexOf("const allGeneratedTopics"));
+  const repeatedTopicsMissingVariants = repeatedTopics.filter(([topic, categories]) =>
+    !categories.some((category) => categoryVariants.includes('"' + category + '::' + topic + '"'))
+  );
+  if (repeatedTopicsMissingVariants.length) {
+    finding(findings, "warning", QUESTION_BANK_PATH,
+      `Topics reused across category profiles still need distinct category-specific scenarios: ${repeatedTopicsMissingVariants.map(([topic, categories]) => `${topic} (${categories.join(" / ")})`).join("; ")}.`);
+  }
   const candidateCount = [...categoryBlock.matchAll(/count:(\d+)/g)].reduce((total, match) => total + Number(match[1]), 0);
   const rewriteSource = readText(REWRITE_BATCH_PATH) ?? "";
   const authoredCount = [...rewriteSource.matchAll(/\bsingle\(\s*"([^"]+)"/g)].length;
   const caseScreens = 36;
   const curatedTraditional = 100;
   const generatedCount = candidateCount - caseScreens - curatedTraditional - authoredCount;
-  if (candidateCount !== 500 || authoredCount !== 40 || generatedCount !== 324) {
+  if (candidateCount !== 500 || authoredCount !== 100 || generatedCount !== 264) {
     finding(findings, "error", QUESTION_BANK_PATH, `Core inventory mismatch: candidates=${candidateCount}, unfolding=${caseScreens}, curated=${curatedTraditional}, authored=${authoredCount}, topic-profile generated=${generatedCount}.`);
   }
   console.log("Core inventory:", JSON.stringify({ total: candidateCount, unfoldingCaseScreens: caseScreens, curatedTraditional, authoredReplacements: authoredCount, topicProfileGenerated: generatedCount }));

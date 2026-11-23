@@ -26,14 +26,6 @@ const cases=[
 {name:"DVT progressing to suspected pulmonary embolism",record:"A 64-year-old on postoperative day 5 after hip arthroplasty develops unilateral calf swelling, then sudden pleuritic chest pain and dyspnea. BP 86/52 mm Hg, HR 132/min, RR 34/min, SpO2 82% on room air. The client is anxious and diaphoretic.",exhibit:"CT pulmonary angiography: large bilateral emboli with right ventricular strain. ECG: sinus tachycardia. Troponin mildly elevated; bedside echo shows RV dilation."},
 {name:"COPD exacerbation with acute-on-chronic hypercapnia",record:"A 69-year-old with severe COPD reports 2 days of worsening dyspnea and purulent sputum. BP 154/86 mm Hg, HR 118/min, RR 31/min, temperature 38.0°C, SpO2 83% on room air. The client is drowsy but arousable.",exhibit:"ABG: pH 7.26, PaCO2 72 mm Hg, HCO3 32 mEq/L, PaO2 52 mm Hg. Chest radiograph: hyperinflation with left lower-lobe infiltrate. Orders include controlled oxygen, bronchodilators, steroids, antibiotics and repeat ABG."}
 ];
-const followups=[
-{prompt:"Which finding requires the most immediate escalation?",options:["The acute neurologic, respiratory, obstetric or hemodynamic deterioration in the record","A chronic condition unchanged from baseline","A routine laboratory value within the stated reference range","A request for nonurgent discharge information"],answer:0,rationale:"The acute deterioration represents a time-sensitive threat to organ function and takes priority over stable or routine needs."},
-{prompt:"Which order or proposed action should the nurse question before carrying it out?",options:["The intervention that directly addresses the documented emergency","An intervention that conflicts with the current physiologic risk or stated protocol","The requested focused reassessment at the ordered interval","The instruction to communicate a significant change to the responsible team"],answer:1,rationale:"An unsafe or conflicting intervention must be clarified. Match each order to current findings, contraindications and protocol thresholds."},
-{prompt:"Which additional data are most useful to determine whether the condition is worsening?",options:["A remote social-history detail unrelated to the acute presentation","A routine screening result unrelated to the presenting problem","Serial vital signs and focused findings relevant to the acute diagnosis","A preference that does not affect immediate treatment or safety"],answer:2,rationale:"Trend data in the affected organ system provide the most direct evidence of progression or response to treatment."},
-{prompt:"Which intervention should the nurse implement first from the prescribed plan?",options:["The immediate stabilization action that addresses the identified threat","Routine teaching planned for discharge","A nonurgent comfort measure that does not change acute risk","A documentation task that can safely follow stabilization"],answer:0,rationale:"Stabilization of airway, breathing, circulation or another immediate threat precedes teaching and routine workflow."},
-{prompt:"Which finding best indicates that the prescribed intervention is effective?",options:["The room is quieter","A single isolated value changes without clinical improvement","The client asks when discharge will occur","The relevant physiologic trend improves with better function or perfusion"],answer:3,rationale:"Effectiveness is demonstrated by a clinically meaningful trend in the targeted physiologic problem, not by an unrelated preference or isolated datum."},
-{prompt:"Which handoff statement best communicates the remaining priority?",options:["The client is stable because one measurement improved","The acute diagnosis, current trend, intervention response and explicit escalation threshold","Only the medication list without current assessment findings","The original symptoms without the current status"],answer:1,rationale:"A safe handoff communicates the problem, objective trend, actions taken, response and criteria for escalation."}
-];
 const caseSpecificFollowups=[
 [
 {prompt:"Which assessment finding most strongly supports an acute ischemic stroke?",options:["Sudden unilateral facial and arm weakness with dysarthria","Chronic irregular pulse without new symptoms","Mild fatigue after missed medication","A remote history of hypertension"],answer:0,rationale:"The sudden focal neurologic deficits are consistent with acute stroke. The last-known-well time, imaging, glucose, and anticoagulant history guide urgent treatment decisions."},
@@ -616,6 +608,89 @@ const availableTopicProfiles: Record<string, ClinicalOverride> = {
   ...respiratoryTopicOverrides,
   ...second300TopicOverrides,
 };
+// Category-specific variants prevent the same topic label from resolving to one
+// identical scenario and decision task in two different curriculum domains.
+// These variants change the clinical context, cues, priority, distractors, and rationale.
+const categoryTopicOverrides: Record<string, ClinicalOverride> = {
+  "Pediatrics / Growth and Development::Newborn thermoregulation": {
+    prompt: "Which intervention should the nurse implement first to stabilize this newborn?",
+    scenario: "A 32-week preterm newborn is 45 minutes old and has been transferred to the radiant warmer after initial stabilization. Axillary temperature is 35.7°C, glucose is 38 mg/dL, heart rate is 156/min, and respiratory rate is 54/min. The infant is mildly jittery but has no grunting or retractions.",
+    priority: "Begin controlled rewarming under a monitored radiant warmer or incubator, verify the thermal environment, and urgently treat symptomatic hypoglycemia according to the neonatal protocol (typically IV dextrose), with repeat temperature and glucose checks.",
+    distractors: [
+      "Bathe the newborn promptly to remove vernix and stimulate circulation",
+      "Place the newborn skin-to-skin with an unwrapped caregiver without temperature monitoring",
+      "Use a heating pad directly against the newborn's skin until the temperature reaches 37°C",
+      "Delay glucose reassessment until the next routine feeding because cold stress is the only concern"
+    ],
+    rationale: "A preterm newborn has limited thermoregulation and is vulnerable to cold stress, which increases glucose and oxygen consumption. Controlled warming and prompt treatment/reassessment of the documented low glucose are required. Direct heating devices and unmonitored warming can cause burns or instability.",
+    record: "Birth at 32 weeks; age 45 minutes. Axillary temperature 35.7°C; point-of-care glucose 38 mg/dL; HR 156/min; RR 54/min; SpO2 95% in room air. Mild jitteriness; no grunting, retractions, or apnea."
+  },
+  "Respiratory / Airway::Pulmonary embolism": {
+    prompt: "Which action should the nurse take immediately while evaluating this new respiratory deterioration?",
+    scenario: "A 34-year-old client is 8 days postpartum after cesarean birth and reports abrupt pleuritic chest pain and shortness of breath while walking to the bathroom. HR is 128/min, RR 30/min, BP 108/68 mm Hg, and SpO2 87% on room air. The client is anxious and has no wheezing; the surgical incision is intact.",
+    priority: "Stop exertion, remain with the client, support oxygenation, activate urgent medical evaluation for suspected pulmonary embolism, and maintain continuous cardiopulmonary monitoring.",
+    distractors: [
+      "Encourage the client to walk slowly to improve venous return",
+      "Apply compression and massage to the calf before notifying the provider",
+      "Administer a bronchodilator as the sole intervention because dyspnea is the primary symptom",
+      "Wait for a D-dimer result before escalating the acute hypoxemia and tachycardia"
+    ],
+    rationale: "Recent cesarean birth and the postpartum state increase venous thromboembolism risk. Sudden pleuritic pain, tachycardia, tachypnea, and hypoxemia require immediate escalation and oxygenation support; diagnostic testing must not delay stabilization.",
+    record: "Postpartum day 8 after cesarean birth; sudden pleuritic chest pain and dyspnea. HR 128/min; RR 30/min; BP 108/68 mm Hg; SpO2 87% on room air. No wheezing; incision intact."
+  },
+  "Infection Control / Infectious Disease::Meningitis": {
+    prompt: "Which infection-control action is required before routine care or transport proceeds?",
+    scenario: "A 19-year-old college student presents with fever, severe headache, neck stiffness, photophobia, and a nonblanching petechial rash. The client is alert but ill-appearing; temperature is 39.4°C and HR is 124/min. Blood cultures have been ordered, and bacterial meningitis is suspected.",
+    priority: "Place the client on droplet precautions immediately, use a surgical mask for close-range care and transport per policy, and coordinate urgent evaluation and antimicrobial treatment without waiting for culture confirmation.",
+    distractors: [
+      "Use airborne isolation in a negative-pressure room as the only required precaution",
+      "Delay isolation until cerebrospinal-fluid culture identifies the organism",
+      "Use contact precautions only and allow unmasked close contact",
+      "Place the client in protective positive-pressure isolation to prevent acquisition of another infection"
+    ],
+    rationale: "The presentation raises concern for invasive meningococcal disease. Droplet precautions should begin promptly for suspected meningococcal meningitis and continue until the recommended period after effective antimicrobial therapy. Do not delay precautions for definitive microbiology.",
+    record: "Temperature 39.4°C; HR 124/min; severe headache, nuchal rigidity, photophobia, and petechial rash. Blood cultures ordered; empiric antimicrobial treatment pending urgent provider assessment."
+  },
+  "Pediatrics / Growth and Development::Pertussis": {
+    prompt: "Which assessment finding makes immediate escalation most important for this infant?",
+    scenario: "A 7-week-old infant has had 6 days of worsening coughing spells after exposure to a household member with a prolonged cough. During an observed episode, the infant becomes dusky and has a 12-second apnea; temperature is 37.2°C, RR is 58/min between episodes, and feeding volume has fallen by half.",
+    priority: "Initiate continuous cardiorespiratory and oxygen-saturation monitoring, support the airway during episodes, and urgently notify the pediatric clinician for suspected pertussis with apnea.",
+    distractors: [
+      "Discharge the infant with routine cough hygiene teaching because there is no fever",
+      "Offer a large oral feeding immediately after the coughing spell to replace missed volume",
+      "Suppress the cough with an over-the-counter antitussive and reassess at the next visit",
+      "Wait for the characteristic whoop to appear before escalating care"
+    ],
+    rationale: "Young infants with pertussis may present with apnea, cyanosis, and feeding difficulty without a classic whoop or prominent fever. Apnea and desaturation are immediate threats and require monitoring and urgent assessment; oral feeding during respiratory instability increases aspiration risk.",
+    record: "Age 7 weeks; household exposure to prolonged cough; paroxysmal cough; observed 12-second apnea with duskiness; temperature 37.2°C; reduced intake by 50%; pertussis testing ordered."
+  },
+  "Pediatrics / Growth and Development::RSV": {
+    prompt: "Which intervention should the nurse prioritize for this infant with bronchiolitis?",
+    scenario: "A 4-month-old infant with laboratory-confirmed respiratory syncytial virus has nasal congestion, subcostal retractions, RR 66/min, and SpO2 89% on room air. The infant has taken only 25 mL of a usual 120-mL feeding and has had one wet diaper in 10 hours.",
+    priority: "Assess work of breathing and hydration, provide oxygen support according to the infant's target and local protocol, gently clear nasal secretions when they interfere with breathing or feeding, and escalate the poor intake and reduced urine output.",
+    distractors: [
+      "Administer routine antibiotics because RSV bronchiolitis is presumed bacterial",
+      "Give cough suppressant medication to reduce respiratory effort",
+      "Force a full-volume oral feeding despite tachypnea and retractions",
+      "Use chest physiotherapy routinely to mobilize secretions in uncomplicated bronchiolitis"
+    ],
+    rationale: "Hypoxemia, retractions, tachypnea, poor intake, and oliguria indicate clinically significant bronchiolitis with respiratory and hydration concerns. Support oxygenation and hydration, use gentle superficial nasal suction when needed, and avoid routine antibiotics, cough suppressants, and chest physiotherapy.",
+    record: "Age 4 months; RSV positive; RR 66/min; subcostal retractions; SpO2 89% on room air; intake 25 mL of usual 120 mL; one wet diaper in 10 hours."
+  },
+  "Pediatrics / Growth and Development::Autism spectrum disorder": {
+    prompt: "Which nursing approach best supports this child's participation in the assessment?",
+    scenario: "A 6-year-old child with autism spectrum disorder is admitted for dehydration after 2 days of gastroenteritis. The child covers the ears, avoids eye contact, and becomes distressed when several staff members speak at once. The caregiver reports that the child communicates best with picture cards and a predictable sequence of steps.",
+    priority: "Reduce sensory stimulation, use one staff member and the child's established picture-based communication, explain each step in a predictable sequence, and assess hydration using the least distressing approach possible.",
+    distractors: [
+      "Require sustained eye contact before explaining the assessment",
+      "Have several staff members repeat instructions more loudly until the child responds",
+      "Remove the caregiver and communication aids to prevent dependence",
+      "Interpret avoidance of eye contact as refusal of all care and postpone hydration assessment"
+    ],
+    rationale: "Autism is associated with diverse communication and sensory-processing differences. Individualize communication using the child's known supports, reduce unnecessary sensory input, and preserve caregiver collaboration while completing essential assessment and treatment.",
+    record: "Age 6 years; autism spectrum disorder; acute gastroenteritis with reduced intake and dry mucous membranes. Caregiver reports picture cards and predictable sequencing improve communication; child is distressed by multiple simultaneous voices."
+  }
+};
 const allGeneratedTopics = [...new Set([...B.flatMap(category => category.topics), ...requiredTopicProfileKeys])];
 for (const key of allGeneratedTopics) {
   const profile = availableTopicProfiles[key];
@@ -626,6 +701,21 @@ for (const key of allGeneratedTopics) {
       profile.distractors.some(option => /\b(?:unicorn|pizza|sing a song|dance|ignore the patient|do nothing)\b/i.test(option))) {
     throw new Error(`Missing or incomplete topic-specific clinical profile (prompt, scenario, priority, rationale, and three clinical near-miss distractors required): ${key}`);
   }
+}
+for (const [key, profile] of Object.entries(categoryTopicOverrides)) {
+  if (!key.includes("::") || !profile.prompt?.trim() || !profile.scenario?.trim() ||
+      !profile.priority?.trim() || !profile.rationale?.trim() || !profile.distractors ||
+      profile.distractors.length < 3 ||
+      profile.distractors.some(option => typeof option !== "string" || option.trim().length < 12) ||
+      new Set(profile.distractors.map(option => option.trim().toLowerCase().replace(/\\s+/g, " "))).size !== profile.distractors.length) {
+    throw new Error(`Missing or incomplete category-specific clinical variant (prompt, scenario, priority, rationale, and distinct distractors required): ${key}`);
+  }
+}
+const categoryVariantScenarios = Object.values(categoryTopicOverrides).map(profile =>
+  profile.scenario?.trim().toLowerCase().replace(/\\s+/g, " ")
+);
+if (new Set(categoryVariantScenarios).size !== Object.keys(categoryTopicOverrides).length) {
+  throw new Error("Category-specific clinical variants must have distinct scenarios.");
 }
 
 function make(b: B, i: number, global: number): Question {
@@ -642,7 +732,7 @@ function make(b: B, i: number, global: number): Question {
     "Delegation": "UAP delegation",
   };
 
-  const clinical = availableTopicProfiles[topic] ?? availableTopicProfiles[alias[topic] ?? ""];
+  const clinical = categoryTopicOverrides[b.category + "::" + topic] ?? availableTopicProfiles[topic] ?? availableTopicProfiles[alias[topic] ?? ""];
   if (!clinical) throw new Error(`Refusing to generate a category-level fallback question for topic: ${topic}`);
 
   const source: B & {
@@ -699,11 +789,14 @@ function make(b: B, i: number, global: number): Question {
       choices: opts,
       correctResponse: [String(answerIdx)],
     },
-    status: "published",
+    // Topic-profile output is not eligible for learner-facing publication until
+    // the item has a unique authored scenario, item-level evidence, and rationales
+    // for every option. Keep generated legacy content in development meanwhile.
+    status: "development",
     format: "single",
-    contentVersion: 3,
+    contentVersion: 4,
     reviewStatus: "generated",
-    reviewMetadata: { status: "not-clinically-verified", references: [], publicationStatus: "published" },
+    reviewMetadata: { status: "not-clinically-verified", references: [], publicationStatus: "draft" },
     clinicalScenario: scenario,
     exhibit: undefined,
     caseRecord: source.caseRecord ?? { progressNotes: record, labs: "", flowSheet: "" },
@@ -712,7 +805,7 @@ function make(b: B, i: number, global: number): Question {
 }
 
 const all:Question[]=[];for(const b of B){for(let i=0;i<b.count;i++)all.push(make(b,i,all.length));}
-for(let c=0;c<cases.length;c++){for(let j=0;j<6;j++){const q=all[c*6+j],f=caseSpecificFollowups[c]?.[j]??followups[j],file=cases[c];if(q)all[c*6+j]={...q,id:"qrn-case-"+(c+1)+"-"+(j+1),topic:file.name,format:"case-study",difficulty:j===0||j===3?"Advanced":"Intermediate",caseStudy:file.record,exhibit:file.exhibit,caseRecord:{progressNotes:file.record,labs:file.exhibit,flowSheet:""},prompt:f.prompt,options:f.options,answer:f.answer,rationale:f.rationale,status:"published",clinicalScenario:undefined};}}
+for(let c=0;c<cases.length;c++){for(let j=0;j<6;j++){const q=all[c*6+j],f=caseSpecificFollowups[c]?.[j],file=cases[c];if(!f)throw new Error(`Missing case-specific follow-up ${j+1} for ${file.name}`);if(q)all[c*6+j]={...q,id:"qrn-case-"+(c+1)+"-"+(j+1),topic:file.name,format:"case-study",difficulty:j===0||j===3?"Advanced":"Intermediate",caseStudy:file.record,exhibit:file.exhibit,caseRecord:{progressNotes:file.record,labs:file.exhibit,flowSheet:""},prompt:f.prompt,options:f.options,answer:f.answer,rationale:f.rationale,status:"published",clinicalScenario:undefined};}}
 for(let i=0;i<curatedTraditionalQuestions.length;i++)all[36+i]=curatedTraditionalQuestions[i];
 // Integrate authored replacements by stable question ID, never by array position.
 // This preserves learner history and prevents category/order changes from silently
