@@ -4,6 +4,7 @@ import App from "./App";
 import AuthGate from "./AuthGate";
 import "./style.css";
 import "./exam-overrides.css";
+import "./design-system.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode><AuthGate><App /></AuthGate></React.StrictMode>
