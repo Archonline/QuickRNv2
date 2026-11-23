@@ -60,3 +60,9 @@ test("bank audit reports the real published-format distribution",()=>{
  assert.equal(result.formatCounts["matrix-grid"],1);
  assert.equal(result.invalidByType["matrix-grid"]??0,1);
 });
+
+test("validator accepts calibrated CAT item parameters within supported bounds",()=>{
+ assert.equal(validateQuestion({...valid,catDifficulty:1.25,catDiscrimination:1.4}).valid,true);
+ assert.equal(validateQuestion({...valid,catDifficulty:4}).valid,false);
+ assert.equal(validateQuestion({...valid,catDiscrimination:0.1}).valid,false);
+});
