@@ -27,6 +27,8 @@ jobs:
           node-version: 22
       - name: Install dependencies
         run: npm install
+      - name: Syntax-check question-bank automation
+        run: node --check scripts/question-bank-automation.mjs
       - name: Run design isolation regression tests
         run: npm test
       - name: Build production bundle
