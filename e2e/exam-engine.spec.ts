@@ -39,3 +39,15 @@ test("timer expires against an absolute deadline even after a background-style c
   await page.clock.fastForward(5 * 60 * 60 * 1000);
   await expect(page.getByTestId("completion")).toContainText('"mode":"readiness"', { timeout: 10_000 });
 });
+\ntest("actual published 600-item bank passes structural and keyed-scoring audit", async ({ page }) => {
+  await page.goto("/e2e/bank-audit.html");
+  const output = await page.locator("#bank-audit").textContent();
+  expect(output).not.toContain("Auditing");
+  const report = JSON.parse(output ?? "{}");
+  expect(report.publishedCount, JSON.stringify(report)).toBe(600);
+  expect(report.duplicateIds, JSON.stringify(report.duplicateIds)).toEqual([]);
+  expect(report.orphanedCaseGroups, JSON.stringify(report.orphanedCaseGroups)).toEqual([]);
+  expect(report.invalid, JSON.stringify(report.results?.filter((item: any) => !item.valid))).toBe(0);
+  expect(report.scoringFailures, JSON.stringify(report.scoringFailures)).toEqual([]);
+  expect(Object.keys(report.formatCounts).length).toBeGreaterThan(1);
+});
