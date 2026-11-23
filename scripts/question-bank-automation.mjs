@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 const TARGET=Number(process.env.TARGET_QUESTION_COUNT||3600), BASELINE=Number(process.env.BASELINE_QUESTION_COUNT||600);
-const DEADLINE=new Date(process.env.DEADLINE_UTC||"2026-11-30T00:00:00Z"), BATCH_SIZE=50, MAX_BATCHES=10;
+const DEADLINE=new Date(process.env.DEADLINE_UTC||"2026-11-29T16:00:00Z"), BATCH_SIZE=50, MAX_BATCHES=10;
 const KEY=process.env.GEMINI_API_KEY, MODEL=process.env.GEMINI_MODEL||"gemini-2.5-flash";
 const OUT="question-bank-generated", MANIFEST=path.join(OUT,"automation-manifest.json");
 const read=p=>JSON.parse(fs.readFileSync(p,"utf8")), write=(p,v)=>fs.writeFileSync(p,JSON.stringify(v,null,2)+"\n");
@@ -42,7 +42,7 @@ function validate(q,id){
 async function generate(count,first,repairText=""){
  const ids=Array.from({length:count},(_,i)=>"QRN-"+String(first+i).padStart(6,"0"));
  const assigned=ids.map((_,i)=>types[(first+i-1)%types.length]);
- const prompt="Return ONLY JSON {questions:[...]}. Generate exactly "+count+" original QuickRNv2 NCLEX-RN/NGN questions with IDs "+ids[0]+" through "+ids.at(-1)+". Exact question schema: "+JSON.stringify(schema.$defs.question)+". Rules: "+JSON.stringify(rules)+". Topic blueprint: "+JSON.stringify(topics)+". Required types in order: "+JSON.stringify(assigned)+". Every item must have a unique topic-specific patient presentation, internally consistent relevant findings, a defensible answer, complete correct and incorrect rationales, and no repeated template or invented unsupported clinical data. Do not claim clinical verification. "+repairText;
+ const prompt="Return ONLY JSON {questions:[...]}. Generate exactly "+count+" original QuickRNv2 NCLEX-RN/NGN questions with IDs "+ids[0]+" through "+ids.at(-1)+". Exact question schema: "+JSON.stringify(schema)+". Rules: "+JSON.stringify(rules)+". Topic blueprint: "+JSON.stringify(topics)+". Required types in order: "+JSON.stringify(assigned)+". Every item must have a unique topic-specific patient presentation, internally consistent relevant findings, a defensible answer, complete correct and incorrect rationales, and no repeated template or invented unsupported clinical data. Do not claim clinical verification. "+repairText;
  const url="https://generativelanguage.googleapis.com/v1beta/models/"+MODEL+":generateContent?key="+KEY;
  const res=await fetch(url,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({contents:[{role:"user",parts:[{text:prompt}]}],generationConfig:{responseMimeType:"application/json",temperature:0.55,maxOutputTokens:30000}})});
  if(!res.ok)throw new Error("Gemini HTTP "+res.status+" "+(await res.text()).slice(0,400));
