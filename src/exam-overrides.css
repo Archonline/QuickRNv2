@@ -553,3 +553,42 @@
   .exam-report-modal { padding:17px; }
   .exam-report-modal .exam-notes-foot { align-items:stretch; flex-direction:column; }
 }
+
+
+/* CAT/readiness refinements: persistent timer, optional breaks, draggable calculator and aligned chart panes. */
+.exam-header{position:sticky!important;top:0!important;z-index:100!important;display:flex;align-items:center;justify-content:space-between;gap:14px;background:#fff!important}
+.exam-header-tools{display:flex;align-items:center;justify-content:flex-end;gap:10px;min-width:0}
+.exam-header-countdown{display:inline-flex;align-items:center;justify-content:center;min-width:112px;margin:0!important;padding:9px 13px!important;font-size:14px!important;font-weight:800!important;letter-spacing:.08em;background:#f8fafc!important;border-color:#9eafbf!important;color:#183b59!important}
+.exam-calculator{z-index:120!important;touch-action:pan-x pan-y}
+.exam-calculator-drag{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:-2px -2px 10px;padding:8px 7px;border-radius:4px;background:#eef3f7;color:#304862;font-size:12px;cursor:grab;user-select:none;touch-action:none}
+.exam-calculator-drag:active{cursor:grabbing}
+.exam-calculator-drag button{display:grid;place-items:center;border:0;background:transparent;color:#304862;cursor:pointer}
+.exam-calculator-clear{width:100%;margin:0 0 7px;padding:7px;border:1px solid #cbd5df;border-radius:3px;background:#eef3f7;color:#344c66;font-size:11px;font-weight:700;cursor:pointer}
+.exam-break-modal{max-width:480px}
+.exam-break-screen{z-index:150!important}
+.exam-break-timer{display:block;margin:18px 0;text-align:center;font-size:24px;font-variant-numeric:tabular-nums;color:#244f7b}
+.exam-review-flag-summary{margin-top:8px!important;font-weight:700;color:#52647a!important}
+.exam-review-item-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.exam-review-item-top .exam-flag{margin-left:auto}
+
+/* The divider is a shared grid boundary, not a sticky pane edge. Both columns stretch to the same row height. */
+.exam-layout-case{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;column-gap:0!important;align-items:stretch!important;min-height:calc(100vh - 66px)!important}
+.exam-layout-case .exam-record-panel{position:relative!important;top:auto!important;align-self:stretch!important;box-sizing:border-box!important;width:auto!important;height:auto!important;min-height:calc(100vh - 66px)!important;max-height:none!important;overflow-y:auto!important;border:0!important;border-right:1px solid #c4ced8!important;border-radius:0!important;padding-top:24px!important}
+.exam-layout-case .exam-main-case{align-self:stretch!important;box-sizing:border-box!important;min-width:0!important;min-height:calc(100vh - 66px)!important;margin:0!important;border:0!important;border-radius:0!important}
+.exam-record-heading span{font-size:14px!important;line-height:1.35!important;letter-spacing:.07em!important;font-weight:800!important;color:#263d55!important}
+.exam-record-content{font-size:14px!important;line-height:1.7!important}
+.exam-record-content p{font-size:14px!important;line-height:1.7!important}
+@media(max-width:850px){
+ .exam-header-tools{gap:7px}
+ .exam-header-countdown{min-width:100px;padding:8px 9px!important;font-size:12px!important}
+ .exam-layout-case{grid-template-columns:minmax(0,1fr)!important;min-height:0!important}
+ .exam-layout-case .exam-record-panel{min-height:0!important;height:auto!important;max-height:none!important;border-right:0!important;border-bottom:1px solid #c4ced8!important;padding-top:17px!important}
+ .exam-layout-case .exam-main-case{min-height:0!important}
+ .exam-record-heading span{font-size:13px!important}
+}
+@media(max-width:560px){
+ .exam-header{gap:7px}
+ .exam-header-tools{flex-wrap:wrap}
+ .exam-header-countdown{order:-1;min-width:94px;font-size:11px!important}
+ .exam-record-content,.exam-record-content p{font-size:13px!important}
+}
