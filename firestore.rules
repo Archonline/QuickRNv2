@@ -105,7 +105,13 @@ service cloud.firestore {
         && request.resource.data.createdAt == request.time
         && request.resource.data.status == 'new';
       allow read: if signedIn();
-      allow update, delete: if false;
+      allow update: if isWebmaster()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','adminNotes','updatedAt'])
+        && request.resource.data.status in ['new','under-review','resolved','rejected']
+        && request.resource.data.adminNotes is string
+        && request.resource.data.adminNotes.size() <= 5000
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if false;
     }
 
     function isWebmaster() { return signedIn() && request.auth.token.admin == true; }
