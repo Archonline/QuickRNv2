@@ -23,7 +23,8 @@ export function responseScore(type,actual,expected,tolerance=0){
  if(ORDER_SCORED.has(type))return exactSequence(actual,expected);
  if(["matrix-single","matrix-multiple","matrix-grid"].includes(type)){if(type==="matrix-grid"&&[...actual,...expected].some(v=>!/^\\d+:\\d+$/.test(String(v))))return setCredit(actual,expected);return matrixCredit(type,actual,expected);}
  if(type==="bow-tie")return bowTieCredit(actual,expected);
- if(type==="drop-down-table"){const rows=new Set([...actual,...expected].map(v=>String(v).split(":")[0]));if(!rows.size)return 0;let earned=0;for(const row of rows){const a=actual.filter(v=>String(v).startsWith(row+":")),k=expected.filter(v=>String(v).startsWith(row+":"));earned+=a.length===1&&k.length===1&&String(a[0])===String(k[0])?1:0;}return earned/rows.size;}\n if(["drop-down-cloze","drop-down-rationale","drag-drop"].includes(type)){const n=Math.max(actual.length,expected.length);let earned=0;for(let i=0;i<n;i++)if(actual[i]!==undefined&&actual[i]!==""&&String(actual[i])===String(expected[i]))earned++;return n?earned/n:0;}
+ if(type==="drop-down-table"){const rows=new Set([...actual,...expected].map(v=>String(v).split(":")[0]));if(!rows.size)return 0;let earned=0;for(const row of rows){const a=actual.filter(v=>String(v).startsWith(row+":")),k=expected.filter(v=>String(v).startsWith(row+":"));earned+=a.length===1&&k.length===1&&String(a[0])===String(k[0])?1:0;}return earned/rows.size;}
+ if(["drop-down-cloze","drop-down-rationale","drag-drop"].includes(type)){const n=Math.max(actual.length,expected.length);let earned=0;for(let i=0;i<n;i++)if(actual[i]!==undefined&&actual[i]!==""&&String(actual[i])===String(expected[i]))earned++;return n?earned/n:0;}
  if(SET_SCORED.has(type))return setCredit(actual,expected);
  return exactSequence(actual,expected);
 }
