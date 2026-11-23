@@ -504,7 +504,7 @@
   border-bottom:1px solid #d8e0e8;
   background:#fff;
 }
-.exam-record-heading { padding-bottom:16px; }
+.exam-record-heading { padding-bottom:29px; }
 .exam-item-actions { display:flex; align-items:center; gap:8px; }
 .exam-item-actions .exam-flag { white-space:nowrap; }
 .exam-report-action { display:flex; justify-content:flex-end; margin:14px 0 18px; }
