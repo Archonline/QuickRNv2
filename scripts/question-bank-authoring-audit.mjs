@@ -193,6 +193,8 @@ function auditNgnBatch(rules, findings) {
     else stems.set(normalized, item.id);
   }
   const distribution = auditBatchDistribution(questions, rules, findings);
+  const unverifiedCount = questions.filter(item => item?.review_metadata?.status !== "clinically_verified").length;
+  if (unverifiedCount) finding(findings, "warning", NGN_BATCH_PATH, `${unverifiedCount} NGN items are not clinically verified; schema and automated audit success do not make them release-ready.`);
   const caseGroups = auditCaseStudyGroups(questions, findings);
   questions.forEach((item, index) => validateRawQuestion(item, rules, findings, index));
   console.log("NGN batch distribution:", JSON.stringify(distribution));
@@ -203,8 +205,22 @@ function auditCoreGenerator(rules, findings) {
   if (!source.includes("allGeneratedTopics") || !source.includes("Refusing to generate a category-level fallback question") || !source.includes("Refusing to publish a generic or incomplete generated item")) {
     finding(findings, "error", QUESTION_BANK_PATH, "Core generator must fail closed when a topic-specific clinical profile is missing or incomplete.");
   }
-  if (/source\\.scenario\\s*\\?\\?\\s*`A client is receiving care for/.test(source)) {
+  if (source.includes("source.scenario ??") && source.includes("A client is receiving care for")) {
     finding(findings, "error", QUESTION_BANK_PATH, "Generic category-lens scenario fallback is still present.");
+  }
+  const categoryBlock = source.slice(source.indexOf("const B:B[]="), source.indexOf("const cases="));
+  const candidateCount = [...categoryBlock.matchAll(/count:(\\d+)/g)].reduce((total, match) => total + Number(match[1]), 0);
+  const rewriteSource = readText(REWRITE_BATCH_PATH) ?? "";
+  const authoredCount = [...rewriteSource.matchAll(/\\bsingle\\(\\s*"([^"]+)"/g)].length;
+  const caseScreens = 36;
+  const curatedTraditional = 100;
+  const generatedCount = candidateCount - caseScreens - curatedTraditional - authoredCount;
+  if (candidateCount !== 500 || authoredCount !== 40 || generatedCount !== 324) {
+    finding(findings, "error", QUESTION_BANK_PATH, `Core inventory mismatch: candidates=${candidateCount}, unfolding=${caseScreens}, curated=${curatedTraditional}, authored=${authoredCount}, topic-profile generated=${generatedCount}.`);
+  }
+  console.log("Core inventory:", JSON.stringify({ total: candidateCount, unfoldingCaseScreens: caseScreens, curatedTraditional, authoredReplacements: authoredCount, topicProfileGenerated: generatedCount }));
+  if (rules.publication_gate?.human_approval_required !== true || rules.publication_gate?.publish_after_automated_checks !== false) {
+    finding(findings, "error", RULES_PATH, "Final release must require human clinical approval; automated checks alone cannot approve publication.");
   }
 }
 function runAudit() {
@@ -217,7 +233,7 @@ function runAudit() {
   const warnings = findings.filter((item) => item.level === "warning");
   for (const item of warnings) console.warn(`[WARN] ${item.file}: ${item.message}`);
   for (const item of errors) console.error(`[ERROR] ${item.file}: ${item.message}`);
-  console.log(`Question-bank authoring audit (${STRICT ? "strict" : "grandfathered"}): ${errors.length} error(s), ${warnings.length} warning(s).`);
+  console.log(`Question-bank authoring audit (${STRICT ? "strict" : "grandfathered"}; automated checks only, not clinical approval): ${errors.length} error(s), ${warnings.length} warning(s).`);
   if (errors.length || (STRICT && warnings.length)) process.exitCode = 1;
 }
 runAudit();
