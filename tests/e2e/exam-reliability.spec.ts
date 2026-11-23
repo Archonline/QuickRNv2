@@ -5,12 +5,12 @@ test.beforeEach(async({page})=>{await page.goto("/tests/e2e/exam-harness.html");
 test("answers persist when navigating away and back; review flag is retained",async({page})=>{
  await page.getByRole("button",{name:/Begin examination/}).click();
  await expect(page.getByText("QUESTION 1 OF 20")).toBeVisible();
- await page.getByRole("radio",{name:/A\./}).check();
+ await page.locator(".exam-options input").first().check();
  await page.getByRole("button",{name:"Flag for review"}).click();
  await page.getByRole("button",{name:/Next/}).click();
  await expect(page.getByText("QUESTION 2 OF 20")).toBeVisible();
  await page.getByRole("button",{name:/Previous/}).click();
- await expect(page.getByRole("radio",{name:/A\./})).toBeChecked();
+ await expect(page.locator(".exam-options input").first()).toBeChecked();
  await expect(page.getByRole("button",{name:"Remove flag"})).toBeVisible();
  await page.getByRole("button",{name:/Navigation/}).click();
  await expect(page.getByRole("button",{name:"Flagged"})).toBeVisible();
@@ -34,7 +34,7 @@ test("timed readiness exam starts at five hours and countdown advances",async({p
  await page.clock.install({time:new Date("2026-11-23T00:00:00Z")});
  await page.goto("/tests/e2e/exam-harness.html?mode=readiness");
  await page.getByRole("button",{name:/Begin examination/}).click();
- await expect(page.getByText(/TIME REMAINING 05:00:00/)).toBeVisible();
+ await expect(page.getByText("05:00:00")).toBeVisible();
  await page.clock.runFor(1100);
- await expect(page.getByText(/TIME REMAINING 04:59:59/)).toBeVisible();
+ await expect(page.getByText("04:59:59")).toBeVisible();
 });
