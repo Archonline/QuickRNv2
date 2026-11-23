@@ -106,7 +106,7 @@ const selectedExam=useMemo(()=>{const formatType=(q:Question)=>normalizedType(q)
  const renderChoices=(multi:boolean,limit?:number)=><div className="exam-options">{choices.map((opt,i)=>{const value=String(i);const isSelected=selected.includes(value);const limitReached=multi&&limit!==undefined&&selected.length>=limit&&!isSelected;return <label key={i} className={"exam-option "+(multi?"multi ":"")+(isSelected?"selected":"")}><input type={multi?"checkbox":"radio"} name={item!.id+"-response"} value={value} checked={isSelected} disabled={limitReached} onChange={()=>{if(!multi){setResponse([value]);return;}if(isSelected){toggle(value);return;}if(limit===undefined||selected.length<limit)toggle(value);}}/>{(multi||type!=="single-response")&&<span className="exam-option-letter">{LETTERS[i]??i+1}.</span>}<span className="exam-option-text">{opt}</span></label>})}</div>;
  const renderMatrix=(forceMultiple?:boolean)=>{
   const columns=data.columns??["Expected","Needs follow-up","Emergency"];
-  const multiple=type==="matrix-grid"&&(forceMultiple??data.matrixMode==="multiple");
+  const multiple=type==="matrix-multiple"||(type==="matrix-grid"&&(forceMultiple??data.matrixMode==="multiple"));
   if(data.matrixGroups?.length)return <div className="ngn-matrix ngn-matrix-grouped"><table><thead><tr><th>Client need</th><th>Potential nursing interventions</th></tr></thead><tbody>{data.matrixGroups.map((group,i)=><tr key={i}><th>{group.label}</th><td><div className="ngn-matrix-group-options">{group.options.map((option,j)=>{const value="g"+i+":"+j;return <label className="ngn-matrix-group-option" key={value}><input type="radio" name={item!.id+"-matrix-group-"+i} checked={selected.includes(value)} onChange={()=>setResponse([...selected.filter(v=>!v.startsWith("g"+i+":")),value])}/><span>{option}</span></label>;})}</div></td></tr>)}</tbody></table></div>;
   return <div className="ngn-matrix"><table><thead><tr><th>Clinical finding</th>{columns.map(c=><th key={c}>{c}</th>)}</tr></thead><tbody>{(data.rows??[]).map((row,i)=><tr key={i}><th>{row}</th>{columns.map((column,j)=>{const key=i+":"+j;return <td key={column}><label className="exam-radio-cell"><input type={multiple?"checkbox":"radio"} name={item!.id+"-matrix-"+i} checked={selected.includes(key)} onChange={()=>setResponse(multiple?(selected.includes(key)?selected.filter(v=>v!==key):[...selected,key]):[...selected.filter(v=>!v.startsWith(i+":")),key])}/><span>{column}</span></label></td>;})}</tr>)}</tbody></table></div>;
  };
@@ -150,7 +150,7 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
  useEffect(()=>{if(!showBreakScreen)return;const timer=window.setInterval(()=>setBreakSeconds(value=>Math.max(0,value-1)),1000);return()=>window.clearInterval(timer);},[showBreakScreen]);
  useEffect(()=>{if(showBreakScreen&&breakSeconds===0)setShowBreakScreen(false);},[showBreakScreen,breakSeconds]);
  if(!published.length)return <div className="exam-screen"><div className="exam-empty"><h2>No published questions available</h2><p>There are no published questions available for this examination.</p><button className="exam-next" onClick={onExit}>Return to QuickRN</button></div></div>;
- const canStartExam = mode === "cat" || selectedExam.length === (questionCount === "all" ? published.length : Number(questionCount));
+ const canStartExam = mode === "cat" || (formatSampler ? selectedExam.length === FORMAT_SAMPLER_TYPES.length : selectedExam.length === (questionCount === "all" ? published.length : Number(questionCount)));
  const handleStartExam = () => {
   const nextSeed = Math.floor(Math.random() * 0x100000000);
   setSamplerSeed(nextSeed);
@@ -240,7 +240,7 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
           setFormatSampler(true);
          }}
         >
-         <strong>13-format NGN sampler</strong>
+         <strong>14-format NGN sampler</strong>
          <span>One published item from each supported interaction format</span>
         </button>
        )}
