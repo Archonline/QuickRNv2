@@ -231,18 +231,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .auth-security svg{color:var(--qrn-success)}
 .back-to-landing{color:var(--qrn-muted)}
 
-/* Exam-taking workspace: preserve the restrained clinical exam palette and protect readability. */
-.exam-countdown{border-color:#d4dfe5;border-radius:7px;color:var(--qrn-ink);background:#f8fafb}
-.exam-mode-card .button{margin-top:auto}
-.exam-record-panel,.exam-main-case{color:#263746}
-.exam-main-case .exam-stem{color:#203448}
-.ngn-highlight-passage{border-color:#cbd7df!important}
-.ngn-matrix th{background:#eaf2f5}
-.ngn-bowtie-drop-slot.filled{background:#edf6f2;border-color:#8bb7a2}
-.ngn-bowtie-tile.selected{background:#e8f3f1!important;border-color:#6ba9a2!important}
-.ngn-trend thead th{background:#eaf2f5;color:#29495b}
-.ngn-trend tbody th{background:#f5f8f9;color:#36536a}
-.exam-option:focus-visible,.exam-control:focus-visible{outline:3px solid #5aa9a2;outline-offset:2px}
+/* Deliberate isolation boundary: the active exam renderer is styled only by
+   exam-overrides.css. Do not add .exam-* or .ngn-* presentation rules here. */
 
 @media(max-width:1050px){
   .sidebar{width:220px}
