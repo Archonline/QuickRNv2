@@ -79,4 +79,6 @@ export function responseScore(type, actual, expected, tolerance = 0) {
 export function responseIsCorrect(type, actual, expected, tolerance = 0) {
   return responseScore(type, actual, expected, tolerance) === 1;
 }
-\n/** Backward-compatible scalar estimate; new code should use estimateCatMeasurement. */\nexport function estimateCatAbility(responses) { return estimateCatMeasurement(responses).theta; }\n
+
+/** Backward-compatible scalar estimate; new code should use estimateCatMeasurement. */
+export function estimateCatAbility(responses) { return estimateCatMeasurement(responses).theta; }
