@@ -810,3 +810,38 @@
 
 .exam-readiness-practice-link{justify-self:start;padding:5px 0;border:0;background:transparent;color:#326d94;font-size:10px;font-weight:700;cursor:pointer}
 .exam-readiness-practice-link:hover{text-decoration:underline}
+
+/* Phase 6: personalized daily study planner */
+.study-planner-page{max-width:1050px;margin:0 auto;padding-bottom:28px}
+.study-planner-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:22px}
+.study-planner-heading h1{margin:7px 0;font-size:30px;letter-spacing:-.7px;color:#20374b}
+.study-planner-heading .subheading{margin:0;color:#77889a;font-size:13px}
+.study-plan-progress{width:min(240px,34%);padding:14px 16px;border:1px solid #e0e8ef;border-radius:13px;background:#fff}
+.study-plan-progress>div:first-child{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.study-plan-progress strong{font-size:21px;color:#25445f}
+.study-plan-progress span,.study-plan-progress small{font-size:10px;color:#7c8c9b}
+.study-plan-track{height:7px;margin:10px 0 6px;overflow:hidden;border-radius:99px;background:#edf1f5}
+.study-plan-track i{display:block;height:100%;border-radius:inherit;background:#5b91b6;transition:width .2s ease}
+.study-plan-context{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+.study-plan-context>div{display:flex;align-items:center;gap:11px;padding:14px;border:1px solid #e2e9ef;border-radius:12px;background:#fff;color:#5b85a5}
+.study-plan-context span{display:grid;gap:3px}
+.study-plan-context strong{font-size:12px;color:#2c4358}
+.study-plan-context small{font-size:10px;color:#8794a1;line-height:1.4}
+.study-plan-list{padding:20px;border:1px solid #e0e8ef;border-radius:16px;background:#fff}
+.study-plan-list-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:15px}
+.study-plan-list-heading>div>span{font-size:9px;font-weight:800;letter-spacing:1px;color:#7990a4}
+.study-plan-list-heading h2{margin:5px 0 0;font-size:17px;color:#263e53}
+.study-plan-list-heading>span{font-size:10px;color:#82909d}
+.study-plan-task{position:relative;display:grid;grid-template-columns:30px 38px minmax(0,1fr) auto;align-items:start;gap:13px;padding:17px 0;border-top:1px solid #edf1f4}
+.study-plan-check{display:grid;place-items:center;width:27px;height:27px;border:0;background:transparent;color:#a7b3bd;cursor:pointer}
+.study-plan-check[aria-pressed=true]{color:#3b9273}
+.study-plan-task-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:#f0f5f9;color:#4b7fa3}
+.study-plan-task-copy>span{font-size:9px;font-weight:800;letter-spacing:.8px;color:#8a9aa8}
+.study-plan-task-copy h3{margin:3px 0 4px;font-size:13px;color:#2c4358}
+.study-plan-task-copy p{margin:0;color:#788897;font-size:11px;line-height:1.5}
+.study-plan-action{display:inline-flex;align-items:center;gap:5px;margin-top:9px;padding:0;border:0;background:transparent;color:#34759d;font-size:10px;font-weight:700;cursor:pointer}
+.study-plan-task.is-complete .study-plan-task-copy h3{text-decoration:line-through;color:#7e8e9a}
+.study-plan-task.is-complete .study-plan-task-icon{background:#eef7f2;color:#4a9678}
+.study-plan-done{padding:5px 8px;border-radius:99px;background:#eff7f2;color:#4c8d70;font-size:9px;font-weight:700}
+.study-plan-disclaimer{margin:14px 2px;color:#84919d;font-size:10px;line-height:1.6}
+@media(max-width:700px){.study-planner-heading{align-items:stretch;flex-direction:column}.study-plan-progress{width:auto}.study-plan-context{grid-template-columns:1fr}.study-plan-list{padding:14px}.study-plan-task{grid-template-columns:26px 32px minmax(0,1fr);gap:9px}.study-plan-task-icon{width:31px;height:31px}.study-plan-done{grid-column:3;justify-self:start}}
