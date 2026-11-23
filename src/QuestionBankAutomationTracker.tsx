@@ -6,6 +6,7 @@ type Props = {
   questions: Question[];
   authoredReplacementCount: number;
   boosterCount?: number;
+  boosterQuestions?: Question[];
   feedbackReports?: Array<{id:string;questionId:string;itemType:string;topic:string;prompt:string;feedback:string;mode:string;reporterEmail?:string;createdAt?:{toDate?:()=>Date};}>;
 };
 
@@ -26,7 +27,8 @@ function formatDate(date: Date) {
 export default function QuestionBankAutomationTracker({
   questions,
   authoredReplacementCount,
-  boosterCount = 0,
+  boosterCount,
+  boosterQuestions = [],
   feedbackReports = [],
 }: Props) {
   const [pace, setPace] = useState(140);
@@ -34,14 +36,20 @@ export default function QuestionBankAutomationTracker({
     () => [...new Map(questions.map((question) => [question.id, question])).values()],
     [questions],
   );
+  const uniqueBoosterQuestions = useMemo(
+    () => [...new Map(boosterQuestions.map((question) => [question.id, question])).values()],
+    [boosterQuestions],
+  );
   const coreCount = uniqueQuestions.length;
-  const clinicalReviewed = uniqueQuestions.filter(
+  const boosterInventoryCount = Math.max(boosterCount ?? 0, uniqueBoosterQuestions.length);
+  const totalInventoryQuestions = [...uniqueQuestions, ...uniqueBoosterQuestions];
+  const clinicalReviewed = totalInventoryQuestions.filter(
     (question) => question.reviewMetadata?.status === "clinically-verified",
   ).length;
   const remainingCore = Math.max(0, CORE_TARGET - coreCount);
-  const remainingBooster = Math.max(0, BOOSTER_TARGET - boosterCount);
+  const remainingBooster = Math.max(0, BOOSTER_TARGET - boosterInventoryCount);
   const remainingTotal = remainingCore + remainingBooster;
-  const overall = Math.min(TOTAL_TARGET, coreCount + boosterCount);
+  const overall = Math.min(TOTAL_TARGET, coreCount + boosterInventoryCount);
   const percentage = Math.min(100, (overall / TOTAL_TARGET) * 100);
   const weeks = remainingTotal / pace;
   const projectedDate = addWeeks(new Date(), weeks);
@@ -60,8 +68,8 @@ export default function QuestionBankAutomationTracker({
   const projectedY = (value: number) => plotBottom - (value / TOTAL_TARGET) * (plotBottom - plotTop);
   const actualY = projectedY(overall);
   const coreProgress = Math.min(100, (coreCount / CORE_TARGET) * 100);
-  const boosterProgress = Math.min(100, (boosterCount / BOOSTER_TARGET) * 100);
-  const reviewedProgress = coreCount ? (clinicalReviewed / coreCount) * 100 : 0;
+  const boosterProgress = Math.min(100, (boosterInventoryCount / BOOSTER_TARGET) * 100);
+  const reviewedProgress = overall ? (clinicalReviewed / (coreCount + boosterInventoryCount)) * 100 : 0;
 
   return (
     <section className="qb-automation">
@@ -91,7 +99,7 @@ export default function QuestionBankAutomationTracker({
         </article>
         <article className="qb-kpi-card">
           <div className="qb-kpi-icon orange"><Sparkles size={18} /></div>
-          <strong>{boosterCount.toLocaleString()} <small>/ 600</small></strong>
+          <strong>{boosterInventoryCount.toLocaleString()} <small>/ 600</small></strong>
           <span>Booster items</span>
           <div className="qb-mini-track"><i style={{ width: boosterProgress + "%" }} /></div>
           <em>{remainingBooster.toLocaleString()} Booster items remaining</em>
@@ -170,12 +178,12 @@ export default function QuestionBankAutomationTracker({
           <h2>Release safeguards</h2>
           <div className="qb-quality-row"><FileCheck2 size={17} /><div><strong>Automated authoring audit</strong><span>Connected to the CI workflow</span></div><b className="qb-status-chip">Enabled</b></div>
           <div className="qb-quality-row"><Gauge size={17} /><div><strong>Test and build gate</strong><span>Every change must pass automated checks</span></div><b className="qb-status-chip">Required</b></div>
-          <div className="qb-quality-row"><ShieldCheck size={17} /><div><strong>Clinical verification</strong><span>{clinicalReviewed} of {coreCount} inventory items recorded as verified</span></div><b className="qb-status-chip warning">Human gate</b></div>
+          <div className="qb-quality-row"><ShieldCheck size={17} /><div><strong>Clinical verification</strong><span>{clinicalReviewed} of {coreCount + boosterInventoryCount} inventory items recorded as verified</span></div><b className="qb-status-chip warning">Human gate</b></div>
           <div className="qb-quality-row"><Clock3 size={17} /><div><strong>Unattended execution</strong><span>Daily ChatGPT task scheduled for 08:00 Asia/Manila; GitHub access remains required</span></div><b className="qb-status-chip">Scheduled</b></div>
           <div className="qb-automation-note"><AlertTriangle size={16} /><p>Generated content is not clinically approved by passing CI. Clinical review remains a separate release-quality decision.</p></div>
         </article>
       </div>
-      <p className="qb-tracker-footnote">Counts are deduplicated by question ID from the runtime inventory. Authored replacements do not increase the count. Booster count remains zero until a separate, non-overlapping Booster inventory is integrated.</p>
+      <p className="qb-tracker-footnote">Counts are deduplicated by question ID from the runtime inventory. Authored replacements do not increase the count. Core and Booster inventories are counted separately by unique question ID; Booster items are not included in the Core total.</p>
     </section>
   );
 }
