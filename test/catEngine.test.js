@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { estimateCatMeasurement, selectNextCatQuestion, buildRemediationTargets, readinessBand } from "../src/catEngine.js";
+import { estimateCatMeasurement, selectNextCatQuestion, buildRemediationTargets, readinessBand, shouldStopCat } from "../src/catEngine.js";
 
 const item = (id, difficulty, category = "A", extra = {}) => ({
   id, difficulty, category, status: "published", ...extra
@@ -55,4 +55,11 @@ test("remediation targets prioritize low-scoring categories with enough observat
   assert.equal(targets.length, 1);
   assert.equal(targets[0].category, "Pharmacology");
   assert.equal(targets[0].priority, "high");
+});
+
+test("CAT stopping rule enforces minimum length and precision, with a hard maximum", () => {
+  assert.equal(shouldStopCat(84, { standardError: 0.1 }), false);
+  assert.equal(shouldStopCat(85, { standardError: 0.34 }), true);
+  assert.equal(shouldStopCat(100, { standardError: 0.5 }), false);
+  assert.equal(shouldStopCat(150, { standardError: 0.8 }), true);
 });
