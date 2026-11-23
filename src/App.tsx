@@ -16,10 +16,17 @@ import { authoredCoreRewriteBatch } from "./authoredCoreRewriteBatch";
 import QuestionBankAutomationTracker from "./QuestionBankAutomationTracker";
 import { Settings, Bookmark, BookmarkCheck, ClipboardList, BrainCircuit } from "lucide-react";
 type Page="overview"|"practice"|"simulator"|"cat-readiness"|"progress"|"history"|"calendar"|"saved"|"settings"|"webmaster"|"legal";
+type QuestionWithOptionRationales = Question & {
+  optionRationales?: string[] | Record<string, string> | null;
+};
 type OptionRationaleItem = { label: string; text: string };
 
+function hasTopLevelOptionRationales(question: Question): question is QuestionWithOptionRationales {
+  return "optionRationales" in question;
+}
+
 function getOptionRationales(question: Question): OptionRationaleItem[] {
-  const topLevel = "optionRationales" in question ? question.optionRationales : undefined;
+  const topLevel = hasTopLevelOptionRationales(question) ? question.optionRationales : undefined;
   const raw: unknown = topLevel ?? question.interaction?.optionRationales;
   if (Array.isArray(raw)) {
     return raw.map((text: unknown, idx: number) => ({
