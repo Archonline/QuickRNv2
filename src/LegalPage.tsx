@@ -10,7 +10,8 @@ const sections: { id: LegalSection; label: string; icon: typeof FileText }[] = [
   { id: "ai", label: "AI Transparency & Use", icon: BrainCircuit },
   { id: "clinical", label: "Medical & Clinical Safety", icon: Stethoscope },
   { id: "cookies", label: "Cookies & Data", icon: Cookie },
-  { id: "contact", label: "Contact & Support", icon: Mail },\n  { id: "faq", label: "Frequently Asked Questions", icon: CircleHelp }
+  { id: "contact", label: "Contact & Support", icon: Mail },
+  { id: "faq", label: "Frequently Asked Questions", icon: CircleHelp }
 ];
 
 const content: Record<LegalSection, { eyebrow: string; title: string; intro: string; updated: string; blocks: { heading: string; body: string[] }[] }> = {
