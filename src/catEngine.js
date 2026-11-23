@@ -122,3 +122,14 @@ export function readinessBand(scorePercent, answeredCount, questionCount) {
   if (scorePercent < 80) return "Developing consistency";
   return "Strong practice performance";
 }
+
+export function shouldStopCat(responseCount, measurement, options = {}) {
+  const minimum = options.minQuestions ?? 85;
+  const maximum = options.maxQuestions ?? 150;
+  const targetStandardError = options.targetStandardError ?? 0.35;
+  return responseCount >= maximum || (
+    responseCount >= minimum &&
+    Number.isFinite(measurement?.standardError) &&
+    measurement.standardError <= targetStandardError
+  );
+}
