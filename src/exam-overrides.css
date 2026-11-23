@@ -227,11 +227,7 @@
 .ngn-bowtie-paradigm strong{font-size:14px;color:#263b55}
 .ngn-bowtie-paradigm span{font-size:12px;color:#64748b}
 .ngn-order-row button{display:none!important}
-.exam-item-feedback{background:#fff;border:1px solid #cfd8e3;border-radius:4px;padding:18px 20px;margin:20px 0}
-.exam-item-feedback>div{display:grid;gap:5px;margin-bottom:10px}
-.exam-item-feedback strong{font-size:15px;color:#243b55}
-.exam-item-feedback span,.exam-item-feedback small{font-size:12px;color:#64748b;line-height:1.5}
-.exam-item-feedback textarea{width:100%;resize:vertical;border:1px solid #bfcbd8;border-radius:4px;padding:12px;font:14px/1.6 Arial,sans-serif;color:#243449}
+
 @media(max-width:850px){.exam-layout-case{grid-template-columns:1fr}.ngn-bowtie-paradigm{grid-template-columns:1fr}}
 
 /* Realistic NGN interaction refinements */
@@ -539,6 +535,7 @@
 .exam-report-modal .exam-next:disabled { opacity:.5; cursor:not-allowed; }
 .exam-report-error { color:#b42318!important; }
 @media(max-width:850px) {
+  .exam-record-heading { padding-bottom:16px; }
   .exam-layout-case .exam-record-panel {
     position:relative;
     top:auto;
