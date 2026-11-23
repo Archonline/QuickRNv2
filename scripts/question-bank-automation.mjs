@@ -39,8 +39,8 @@ function validate(q,id){
  if(q.question_type==="hot_spot")return "hotspot_requires_asset";
  return null;
 }
-async function generate(count,first,repairText=""){
- const ids=Array.from({length:count},(_,i)=>"QRN-"+String(first+i).padStart(6,"0"));
+async function generate(count,first,repairText="",explicitIds=null){
+ const ids=explicitIds||Array.from({length:count},(_,i)=>"QRN-"+String(first+i).padStart(6,"0"));
  const assigned=ids.map((_,i)=>types[(first+i-1)%types.length]);
  const prompt="Return ONLY JSON {questions:[...]}. Generate exactly "+count+" original QuickRNv2 NCLEX-RN/NGN questions with IDs "+ids[0]+" through "+ids.at(-1)+". Exact question schema: "+JSON.stringify(schema)+". Rules: "+JSON.stringify(rules)+". Topic blueprint: "+JSON.stringify(topics)+". Required types in order: "+JSON.stringify(assigned)+". Every item must have a unique topic-specific patient presentation, internally consistent relevant findings, a defensible answer, complete correct and incorrect rationales, and no repeated template or invented unsupported clinical data. Do not claim clinical verification. "+repairText;
  const url="https://generativelanguage.googleapis.com/v1beta/models/"+MODEL+":generateContent?key="+KEY;
