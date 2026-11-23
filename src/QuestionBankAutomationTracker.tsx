@@ -53,12 +53,12 @@ export default function QuestionBankAutomationTracker({
   const plotRight = 690;
   const plotTop = 18;
   const plotBottom = 150;
-  const currentX = plotLeft + (overall / TOTAL_TARGET) * (plotRight - plotLeft);
-  const milestoneCoreX = plotLeft + (CORE_TARGET / TOTAL_TARGET) * (plotRight - plotLeft);
+  const currentX = plotLeft;
+  const milestoneCoreX = plotLeft + (remainingCore / Math.max(1, remainingTotal)) * (plotRight - plotLeft);
   const targetX = plotRight;
   const projectedY = (value: number) => plotBottom - (value / TOTAL_TARGET) * (plotBottom - plotTop);
   const actualY = projectedY(overall);
-  const lineEndX = Math.max(currentX, plotLeft + 2);
+  const lineEndX = plotRight;
   const coreProgress = Math.min(100, (coreCount / CORE_TARGET) * 100);
   const boosterProgress = Math.min(100, (boosterCount / BOOSTER_TARGET) * 100);
   const reviewedProgress = coreCount ? (clinicalReviewed / coreCount) * 100 : 0;
@@ -130,7 +130,7 @@ export default function QuestionBankAutomationTracker({
             <line x1={plotLeft} x2={plotRight} y1={plotBottom} y2={plotBottom} className="qb-axis-line" />
             <line x1={milestoneCoreX} x2={milestoneCoreX} y1={plotTop} y2={plotBottom} className="qb-milestone-line" />
             <path d={`M ${plotLeft} ${projectedY(overall)} L ${plotRight} ${projectedY(TOTAL_TARGET)}`} className="qb-projection-line" />
-            <path d={`M ${plotLeft} ${plotBottom} L ${lineEndX} ${actualY}`} className="qb-actual-line" />
+            
             <circle cx={plotLeft} cy={actualY} r="5" className="qb-current-dot" />
             <circle cx={milestoneCoreX} cy={projectedY(CORE_TARGET)} r="5" className="qb-core-dot" />
             <circle cx={targetX} cy={projectedY(TOTAL_TARGET)} r="6" className="qb-target-dot" />
