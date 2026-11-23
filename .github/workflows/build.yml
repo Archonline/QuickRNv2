@@ -14,6 +14,7 @@ jobs:
           node-version: 20
       - run: npm install --no-audit --no-fund
       - run: npm run audit:question-bank
+      - run: npm run validate:question-batches
       - run: npm test
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
