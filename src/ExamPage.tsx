@@ -9,10 +9,11 @@ export type ExamQuestionResult={questionId:string;category:string;topic:string;e
 export type ExamCompletion={mode:"self-study"|"cat"|"readiness";questionCount:number;answeredCount:number;correctCount:number;incorrectCount:number;unansweredCount:number;earnedPoints:number;possiblePoints:number;scorePercent:number;durationSeconds:number;questionResults:ExamQuestionResult[]};
 type Props={questions:Question[];onExit:()=>void;defaultQuestionCount?:number;onComplete?:(result:ExamCompletion)=>void;onReportFeedback?:(report:{questionId:string;itemType:string;topic:string;prompt:string;feedback:string;mode:string})=>Promise<void>;onFlagQuestion?:(questionId:string)=>void;onPracticeTopic?:(topic:string)=>void;onPracticeCategory?:(category:string)=>void;savedQuestionIds?:string[];mode?:"self-study"|"cat"|"readiness"};
 const LETTERS=["A","B","C","D","E","F","G","H"];
+const EMPTY_SAVED_QUESTION_IDS:string[]=[];
 const FORMAT_SAMPLER_TYPES:CanonicalNclexItemType[]=["single-response","multiple-response","select-n","drop-down-cloze","drop-down-rationale","highlight-text","matrix-multiple","matrix-single","numeric-entry","ordered-response","bow-tie","drag-drop","trend","graphics-based"];
 
 
-export default function ExamPage({questions,onExit,defaultQuestionCount=85,onComplete,onReportFeedback,onFlagQuestion,onPracticeTopic,onPracticeCategory,savedQuestionIds=[],mode="self-study"}:Props){
+export default function ExamPage({questions,onExit,defaultQuestionCount=85,onComplete,onReportFeedback,onFlagQuestion,onPracticeTopic,onPracticeCategory,savedQuestionIds=EMPTY_SAVED_QUESTION_IDS,mode="self-study"}:Props){
  const published=useMemo(()=>questions.filter(q=>q.status==="published"),[questions]);
  const [questionCount,setQuestionCount]=useState(String(defaultQuestionCount));
  useEffect(()=>{setQuestionCount(defaultQuestionCount===600?"all":String(defaultQuestionCount));},[defaultQuestionCount]);
