@@ -55,6 +55,10 @@ Six category-specific clinical variants have been added in `categoryTopicOverrid
 
 For the 324-item subset specifically, the cross-category collisions present are meningitis, pertussis, RSV, and autism spectrum disorder. The newborn thermoregulation and pulmonary embolism pairs occur in source positions replaced by the unfolding/curated content and are outside this 324-item subset; their variants were still added to close the broader source-level collision.
 
+## Immediate containment applied
+
+The generator now assigns these topic-profile-generated items `status: development` and `publicationStatus: draft` while retaining `reviewStatus: generated` and `not-clinically-verified`. The automated audit fails if this safeguard is removed. This prevents the structurally generated, clinically unverified items from being represented as approved content while their replacements are authored. This is containment, not a substitute for rewriting the items.
+
 ## Release decision
 
 **Do not describe the 324 generated items as corrected, clinically reviewed, or release-ready.** The six cross-category variants are implemented, but the audit exposes a larger issue: 315 of 324 generated items repeat a topic-level scenario and all 324 lack per-option rationales and item-level evidence metadata. The structurally valid answer index is not clinical validation.
