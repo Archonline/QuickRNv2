@@ -5,8 +5,6 @@ on:
     branches: [main]
     paths:
       - "src/question-batches/core-batch-*.json"
-      - "scripts/stage-question-batches-to-firestore.mjs"
-      - ".github/workflows/stage-question-batches.yml"
   workflow_dispatch:
 
 permissions:
