@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { FileText, ShieldCheck, BrainCircuit, Stethoscope, Cookie, Mail, Scale } from "lucide-react";
+import { FileText, ShieldCheck, BrainCircuit, Stethoscope, Cookie, Mail, Scale, CircleHelp } from "lucide-react";
 
-type LegalSection = "disclaimer" | "privacy" | "terms" | "ai" | "clinical" | "cookies" | "contact";
+type LegalSection = "disclaimer" | "privacy" | "terms" | "ai" | "clinical" | "cookies" | "contact" | "faq";
 
 const sections: { id: LegalSection; label: string; icon: typeof FileText }[] = [
   { id: "disclaimer", label: "Disclaimer", icon: FileText },
@@ -10,7 +10,7 @@ const sections: { id: LegalSection; label: string; icon: typeof FileText }[] = [
   { id: "ai", label: "AI Transparency & Use", icon: BrainCircuit },
   { id: "clinical", label: "Medical & Clinical Safety", icon: Stethoscope },
   { id: "cookies", label: "Cookies & Data", icon: Cookie },
-  { id: "contact", label: "Contact & Support", icon: Mail }
+  { id: "contact", label: "Contact & Support", icon: Mail },\n  { id: "faq", label: "Frequently Asked Questions", icon: CircleHelp }
 ];
 
 const content: Record<LegalSection, { eyebrow: string; title: string; intro: string; updated: string; blocks: { heading: string; body: string[] }[] }> = {
@@ -108,7 +108,7 @@ export default function LegalPage({ initialSection }: { initialSection?: "privac
         <div className="legal-doc-meta"><span>{selected.eyebrow}</span><span>Last updated: {selected.updated}</span></div>
         <h2>{selected.title}</h2>
         <p className="legal-intro">{selected.intro}</p>
-        {selected.blocks.map((block, index) => <section className="legal-block" key={block.heading}><h3>{index + 1}. {block.heading}</h3>{block.body.map((paragraph, i) => <p key={i}>{paragraph}</p>)}</section>)}
+        {active === "faq" ? <div className="legal-faq-list">{selected.blocks.map((block, index) => <details className="legal-faq-item" key={block.heading}><summary><span>{block.heading}</span><span className="legal-faq-number">{String(index + 1).padStart(2, "0")}</span></summary>{block.body.map((paragraph, i) => <p key={i}>{paragraph}</p>)}</details>)}</div> : selected.blocks.map((block, index) => <section className="legal-block" key={block.heading}><h3>{index + 1}. {block.heading}</h3>{block.body.map((paragraph, i) => <p key={i}>{paragraph}</p>)}</section>)}
         <div className="legal-note"><ShieldCheck size={18}/><span>This information is provided for transparency and general guidance. It is not legal advice. The service operator should review and adapt these notices to its actual practices and applicable laws before public launch.</span></div>
       </article>
     </div>
