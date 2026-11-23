@@ -2,6 +2,24 @@ import { useState, type FormEvent, type ReactNode } from "react";
 import { Activity, Mail, LockKeyhole, ArrowLeft, Eye, EyeOff, ShieldCheck } from "lucide-react";
 import { AuthProvider, useAuth } from "./AuthContext";
 import LandingPage from "./LandingPage";
+import LegalPage from "./LegalPage";
+import { auth, db } from "./firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { signOut } from "firebase/auth";
+
+const TERMS_VERSION = "2026-11-23-v1";
+const PRIVACY_VERSION = "2026-11-23-v1";
+
+async function recordLegalAcceptance(method: "email" | "google") {
+  const currentUser = auth?.currentUser;
+  if (!db || !currentUser) throw new Error("Your account was created, but we could not save your policy acceptance. Please contact support before continuing.");
+  await addDoc(collection(db, "users", currentUser.uid, "legalConsents"), {
+    termsVersion: TERMS_VERSION,
+    privacyVersion: PRIVACY_VERSION,
+    acceptedAt: serverTimestamp(),
+    method
+  });
+}
 
 type AuthMode = "signin" | "signup" | "reset";
 
@@ -40,6 +58,9 @@ function Gate({ children }: { children: ReactNode }) {
   const [busy, setBusy] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [demoMode, setDemoMode] = useState(false);
+  const [legalAccepted, setLegalAccepted] = useState(false);
+  const [legalPreview, setLegalPreview] = useState<"terms" | "privacy" | null>(null);
+  const [registrationPending, setRegistrationPending] = useState(false);
 
   function changeMode(nextMode: AuthMode) {
     setMode(nextMode);
@@ -47,6 +68,7 @@ function Gate({ children }: { children: ReactNode }) {
     setNotice("");
     setPassword("");
     setConfirmPassword("");
+    setLegalAccepted(false);
   }
 
   async function continueWithGoogle() {
@@ -55,6 +77,7 @@ function Gate({ children }: { children: ReactNode }) {
     setBusy(true);
     try {
       await signInWithGoogle();
+      if (mode === "signup") await recordLegalAcceptance("google");
     } catch (authError) {
       setError(friendlyAuthError(authError));
     } finally {
@@ -71,6 +94,10 @@ function Gate({ children }: { children: ReactNode }) {
       setError("Enter your email address first.");
       return;
     }
+    if (mode === "signup" && !legalAccepted) {
+      setError("Please review and accept the Terms of Service and Privacy Policy to create an account.");
+      return;
+    }
     if (mode === "signup" && password !== confirmPassword) {
       setError("Your passwords do not match.");
       return;
@@ -79,6 +106,7 @@ function Gate({ children }: { children: ReactNode }) {
     try {
       if (mode === "signup") {
         await signUp(cleanEmail, password);
+        await recordLegalAcceptance("email");
       } else if (mode === "reset") {
         await resetPassword(cleanEmail);
         setNotice("If an account exists for this email, Firebase will send a password-reset link. Check your inbox and spam folder.");
@@ -92,10 +120,12 @@ function Gate({ children }: { children: ReactNode }) {
     }
   }
 
+  if (legalPreview) return <main className="auth-screen"><div className="auth-legal-preview"><button type="button" className="back-to-landing" onClick={() => setLegalPreview(null)}><ArrowLeft size={16}/> Back to registration</button><LegalPage initialSection={legalPreview}/></div></main>;
+
   if (loading) {
     return <div className="auth-screen"><div className="auth-loading"><span className="auth-spinner" />Loading your learning space…</div></div>;
   }
-  if (user || demoMode) return <>{children}</>;
+  if ((user && !registrationPending) || demoMode) return <>{children}</>;
   if (!showAuth) return <LandingPage onStart={() => { setShowAuth(true); changeMode("signin"); }} />;
 
   const isSignup = mode === "signup";
@@ -129,7 +159,7 @@ function Gate({ children }: { children: ReactNode }) {
 
         {!isReset && <>
           <button type="button" className="auth-google-button" onClick={continueWithGoogle}
-            disabled={busy || !configured}>
+            disabled={busy || !configured || (isSignup && !legalAccepted)}>
             <span className="auth-google-mark" aria-hidden="true">G</span>
             Continue with Google
           </button>
@@ -171,10 +201,18 @@ function Gate({ children }: { children: ReactNode }) {
           </div>
         </>}
 
+        {isSignup && <div className="auth-legal-consent">
+          <label className="auth-consent-label">
+            <input type="checkbox" checked={legalAccepted} onChange={event => setLegalAccepted(event.target.checked)} />
+            <span>I have read and agree to the <a href="#terms" onClick={event => { event.preventDefault(); setLegalPreview("terms"); }}>Terms of Service</a> and acknowledge the <a href="#privacy" onClick={event => { event.preventDefault(); setLegalPreview("privacy"); }}>Privacy Policy</a>.</span>
+          </label>
+          <p>We record the policy versions, acceptance time, and sign-in method with your account for compliance and audit purposes.</p>
+        </div>}
+
         {error && <div className="auth-error" role="alert">{error}</div>}
         {notice && <div className="auth-success" role="status">{notice}</div>}
 
-        <button className="button primary auth-submit" disabled={busy || !configured}>
+        <button className="button primary auth-submit" disabled={busy || !configured || (isSignup && !legalAccepted)}>
           {busy ? "Please wait…" : isReset ? "Send reset link" : isSignup ? "Create account" : "Sign in"}
         </button>
 
