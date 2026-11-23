@@ -8,7 +8,7 @@
 
 Expand the existing QuickRN bank to 3,600 distinct, original NCLEX-RN learning items. Preserve usable existing items, rewrite weak/repetitive items, and add new items only after the baseline inventory has been reconciled. Do not inflate counts by counting a case study and its component questions twice, counting source JSON seeds as runtime items, or treating format conversions as new clinical content.
 
-This is an independent learning product. Do not copy Archer or NCSBN proprietary questions, rationales, case materials, or branding.
+This is an independent learning product. Use only independently authored questions and materials; do not reproduce third-party proprietary content or branding.
 
 ## Verified repository baseline (main, 2026-11-23)
 
