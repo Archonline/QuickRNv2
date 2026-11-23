@@ -3109,7 +3109,7 @@
           "STAT blood cultures followed by empiric IV antibiotics"
         ]
       },
-      "stem": "A client presents with fever, severe headache, neck stiffness, and photophobia. Bacterial meningitis is suspected. Which action should the nurse implement immediately while diagnostic evaluation proceeds?",
+      "stem": "A client presents with fever, severe headache, neck stiffness, photophobia, and a petechial rash. Meningococcal meningitis is suspected. Which action should the nurse implement immediately while diagnostic evaluation proceeds?",
       "interaction": {
         "options": [
           {
@@ -6666,24 +6666,24 @@
           "Newborn hypoglycemia protocol"
         ]
       },
-      "stem": "A 2-hour-old infant of a diabetic mother is jittery. Point-of-care glucose is 32 mg/dL. The infant is awake, has a coordinated suck, and has no respiratory distress. Which action is most appropriate?",
+      "stem": "A 2-hour-old infant of a diabetic mother is jittery. Point-of-care glucose is 32 mg/dL. The infant has a weak suck and is unable to take an adequate oral feed. Which action is the priority?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Initiate prompt feeding and follow the neonatal hypoglycemia protocol for repeat glucose and escalation if it remains low"
+            "text": "Administer IV dextrose according to the neonatal hypoglycemia protocol and reassess glucose promptly"
           },
           {
             "id": "B",
-            "text": "Observe without feeding because jitteriness is common during transition after birth"
+            "text": "Offer a full oral feeding and wait 2 hours before repeating the glucose"
           },
           {
             "id": "C",
-            "text": "Give sterile water by syringe and repeat the glucose at the next routine assessment"
+            "text": "Give sterile water by syringe to improve hydration before treating the glucose"
           },
           {
             "id": "D",
-            "text": "Begin IV dextrose immediately without attempting feeding or following the newborn protocol"
+            "text": "Observe the infant because jitteriness is common during transition after birth"
           }
         ]
       },
@@ -6695,11 +6695,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
-        "A": "An asymptomatic or mildly symptomatic infant who can feed may receive prompt feeding per protocol, with timely recheck and escalation for persistent or severe hypoglycemia.",
-        "B": "Jitteriness may be a symptom of hypoglycemia and requires action.",
-        "C": "Water does not correct neonatal hypoglycemia and can be harmful.",
-        "D": "IV dextrose is indicated for severe symptoms, inability to feed, or failure of initial treatment per protocol; it is not automatically first for every stable infant."
+        "summary": "Jitteriness with significant hypoglycemia and inability to feed safely requires prompt IV glucose treatment under the neonatal protocol, with close reassessment.",
+        "A": "The infant is symptomatic and cannot take an adequate feed; IV dextrose corrects hypoglycemia promptly and reduces neurologic risk.",
+        "B": "Oral feeding is not reliable or safe when the infant cannot feed adequately and should not delay IV treatment.",
+        "C": "Water does not correct hypoglycemia and can cause harm in a newborn.",
+        "D": "Jitteriness may be a neurologic manifestation of hypoglycemia and must not be dismissed."
       },
       "clinical_judgment": "take_action",
       "tags": [
