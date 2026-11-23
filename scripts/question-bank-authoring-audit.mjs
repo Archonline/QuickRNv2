@@ -85,12 +85,14 @@ function auditCaseStudyGroups(questions, findings) {
   }
   const config = [];
   for (const [caseId, group] of groups) {
-    const declared = group[0]?.interaction?.linked_question_ids ?? [];
+    const rawDeclared = group[0]?.interaction?.linked_question_ids;
+    const declared = Array.isArray(rawDeclared) ? rawDeclared : [];
     const declaredSet = new Set(declared);
     if (declared.some((id) => !ids.has(id))) finding(findings, "error", NGN_BATCH_PATH,
       `[${caseId}] linked_question_ids references an ID outside this batch.`);
     if (group.some((item) => {
-      const linked = item?.interaction?.linked_question_ids ?? [];
+      const rawLinked = item?.interaction?.linked_question_ids;
+      const linked = Array.isArray(rawLinked) ? rawLinked : [];
       return linked.length !== declared.length || linked.some((id, index) => id !== declared[index]);
     })) finding(findings, "error", NGN_BATCH_PATH,
       `[${caseId}] linked question lists are inconsistent across case stages.`);
