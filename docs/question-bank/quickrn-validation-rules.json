@@ -366,9 +366,13 @@
       "clear_highlights_button": false
     },
     "case_study": {
-      "exactly_six_linked_screens": true,
       "one_patient_and_continuous_timeline": true,
-      "chart_updates_at_each_stage": true
+      "chart_updates_at_each_stage": true,
+      "linked_screen_count_by_case_id": {
+        "QRN-CASE-0001": 6,
+        "QRN-CASE-0002": 6,
+        "QRN-CASE-0003": 3
+      }
     },
     "distractors": {
       "plausible_near_miss_required": true,
