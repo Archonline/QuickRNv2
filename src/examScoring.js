@@ -1,4 +1,4 @@
-const SET_SCORED = new Set(["multiple-response","extended-multiple-response","select-n","highlight-text","highlight-table","matrix-multiple","matrix-grid","bow-tie","graphics-based"]);
+import { estimateCatMeasurement } from "./catEngine.js";\n\nconst SET_SCORED = new Set(["multiple-response","extended-multiple-response","select-n","highlight-text","highlight-table","matrix-multiple","matrix-grid","bow-tie","graphics-based"]);
 const ORDER_SCORED = new Set(["ordered-response","extended-drag-drop"]);
 const clamp = n => Math.max(0, Math.min(1, n));
 const setCredit = (actual, expected) => {
@@ -52,7 +52,7 @@ export function responseScore(type, actual, expected, tolerance = 0) {
   if (ORDER_SCORED.has(type)) return exactSequence(actual, expected);
   if (["matrix-single", "matrix-multiple", "matrix-grid"].includes(type)) {
     const coordinateValues = [...actual, ...expected].every(value => /^\\d+:\\d+$/.test(String(value)));
-    if (type === "matrix-grid" && !coordinateValues) return positionalCredit(actual, expected);
+    if (type === "matrix-grid" && !coordinateValues) return setCredit(actual, expected);
     return matrixCredit(type === "matrix-grid" ? "matrix-multiple" : type, actual, expected);
   }
   if (type === "bow-tie") return bowTieCredit(actual, expected);
@@ -77,3 +77,4 @@ export function responseScore(type, actual, expected, tolerance = 0) {
 export function responseIsCorrect(type, actual, expected, tolerance = 0) {
   return responseScore(type, actual, expected, tolerance) === 1;
 }
+\n/** Backward-compatible scalar estimate; new code should use estimateCatMeasurement. */\nexport function estimateCatAbility(responses) { return estimateCatMeasurement(responses).theta; }\n
