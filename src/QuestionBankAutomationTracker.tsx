@@ -6,6 +6,7 @@ type Props = {
   questions: Question[];
   authoredReplacementCount: number;
   boosterCount?: number;
+  feedbackReports?: Array<{id:string;questionId:string;itemType:string;topic:string;prompt:string;feedback:string;mode:string;reporterEmail?:string;createdAt?:{toDate?:()=>Date};}>;
 };
 
 const CORE_TARGET = 3000;
@@ -26,6 +27,7 @@ export default function QuestionBankAutomationTracker({
   questions,
   authoredReplacementCount,
   boosterCount = 0,
+  feedbackReports = [],
 }: Props) {
   const [pace, setPace] = useState(140);
   const uniqueQuestions = useMemo(
@@ -145,6 +147,12 @@ export default function QuestionBankAutomationTracker({
         </div>
       </article>
 
+      <article className="dashboard-card qb-ops-card qb-feedback-reports">
+        <div className="eyebrow">QUESTION QUALITY · LEARNER REPORTS</div>
+        <div className="qb-feedback-head"><h2>Question feedback reports</h2><button type="button" className="button secondary" onClick={()=>navigator.clipboard.writeText(JSON.stringify({project:"QuickRNv2",kind:"question-feedback-reports",exportedAt:new Date().toISOString(),count:feedbackReports.length,reports:feedbackReports.map(report=>({...report,createdAt:report.createdAt?.toDate?.()?.toISOString()??null}))},null,2))}>Copy all reports</button></div>
+        <p className="qb-feedback-count">{feedbackReports.length} submitted report(s) · copy and paste into ChatGPT for question fixes</p>
+        {feedbackReports.length===0?<p className="qb-feedback-empty">No learner reports have been submitted yet.</p>:<div className="qb-feedback-list">{feedbackReports.map(report=><article className="qb-feedback-item" key={report.id}><div><strong>{report.questionId}</strong><span>{report.itemType} · {report.topic} · {report.mode}</span></div><p>{report.feedback}</p><details><summary>View question prompt</summary><p>{report.prompt}</p></details><small>{report.reporterEmail??"Learner"} · {report.createdAt?.toDate?.()?.toLocaleString?.()??"Recently submitted"}</small></article>)}</div>}
+      </article>
       <div className="qb-operations-grid">
         <article className="dashboard-card qb-ops-card">
           <div className="eyebrow">AUTOMATED WORKFLOW</div>
