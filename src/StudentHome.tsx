@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import { ArrowRight, BookOpen, Brain, CheckCircle2, ClipboardCheck, Clock3, Flame, Play, Sparkles, Target } from "lucide-react";
 
 type StudentHomeProps = {
