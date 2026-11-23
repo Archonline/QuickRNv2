@@ -51,7 +51,7 @@ export function responseScore(type, actual, expected, tolerance = 0) {
   }
   if (ORDER_SCORED.has(type)) return exactSequence(actual, expected);
   if (["matrix-single", "matrix-multiple", "matrix-grid"].includes(type)) {
-    const coordinateValues = [...actual, ...expected].every(value => /^\\d+:\\d+$/.test(String(value)));
+    const coordinateValues = [...actual, ...expected].every(value => /^\d+:\d+$/.test(String(value)));
     if (type === "matrix-grid" && !coordinateValues) return setCredit(actual, expected);
     return matrixCredit(type === "matrix-grid" ? "matrix-multiple" : type, actual, expected);
   }
