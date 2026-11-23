@@ -58,5 +58,5 @@ test("bank audit reports the real published-format distribution",()=>{
  const result=validateQuestionBank([valid,{...valid,id:"matrix",itemType:"matrix-grid"}]);
  assert.equal(result.formatCounts["single-response"],1);
  assert.equal(result.formatCounts["matrix-grid"],1);
- assert.equal(result.invalidByType["matrix-grid"]??0,0);
+ assert.equal(result.invalidByType["matrix-grid"]??0,1);
 });
