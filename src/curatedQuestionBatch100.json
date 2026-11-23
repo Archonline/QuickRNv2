@@ -9369,7 +9369,16 @@
       },
       "rationales": {
         "correct": "Hypoxemia (SpO2 88%), tachypnea, mid-lung crackles, JVD/S3 gallop, and markedly elevated BNP confirm acute decompensated heart failure with pulmonary edema requiring immediate oxygen and diuresis.",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "E",
+            "rationale": "A normal temperature does not remove the immediate risk created by hypoxemia and pulmonary congestion."
+          },
+          {
+            "option": "F",
+            "rationale": "Absence of pain is not a priority indicator in acute decompensated heart failure and does not outweigh respiratory compromise."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "recognize_cues",
@@ -9575,7 +9584,20 @@
       },
       "rationales": {
         "correct": "Loop diuretics inhibit the Na+-K+-2Cl- cotransporter in the thick ascending limb, causing brisk kaliuresis. Starting at 3.7 mEq/L in a patient with ischemic cardiomyopathy (LVEF 25%) places him at high risk for hypokalemia-induced ventricular dysrhythmias.",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "B",
+            "rationale": "Furosemide is a loop diuretic that increases urinary potassium loss; it is not potassium sparing."
+          },
+          {
+            "option": "C",
+            "rationale": "A potassium level of 3.7 mEq/L does not justify withholding needed diuresis until hyperkalemia develops."
+          },
+          {
+            "option": "D",
+            "rationale": "Chronic kidney disease does not prevent loop-diuretic potassium wasting; renal function and electrolytes still require monitoring."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "analyze_cues",
@@ -9784,7 +9806,20 @@
       },
       "rationales": {
         "correct": "Brisk diuresis (650 mL in 2 hours) in a patient whose baseline potassium was 3.7 mEq/L rapidly depletes serum potassium and magnesium, triggering ventricular ectopy and NSVT.",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "B",
+            "rationale": "Improved oxygenation, blood pressure, and urine output argue against worsening shock as the cause of the new ventricular ectopy."
+          },
+          {
+            "option": "C",
+            "rationale": "BiPAP-related alkalosis does not best explain new ventricular irritability after substantial loop-diuretic exposure; check potassium and magnesium."
+          },
+          {
+            "option": "D",
+            "rationale": "The new ectopy after diuresis is more directly associated with electrolyte depletion than an unsupported pulmonary embolism diagnosis."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "prioritize_hypotheses",
@@ -10001,7 +10036,16 @@
       },
       "rationales": {
         "correct": "Hypomagnesemia impairs renal potassium conservation; replacing both IV magnesium (A) and controlled IV potassium <=10-20 mEq/hr (B) with 12-lead ECG/telemetry monitoring (C) resolves ventricular ectopy safely.",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "D",
+            "rationale": "IV potassium must never be administered by rapid push because it can cause fatal dysrhythmias or cardiac arrest."
+          },
+          {
+            "option": "E",
+            "rationale": "An additional large loop-diuretic dose could worsen potassium and magnesium depletion and aggravate ventricular irritability."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "generate_solutions",
@@ -10209,7 +10253,20 @@
       },
       "rationales": {
         "correct": "Daily morning weights on the same scale detect fluid retention days before dyspnea occurs, allowing early outpatient diuretic adjustment. Salt substitutes contain potassium and risk hyperkalemia with sacubitril/valsartan and spironolactone.",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "B",
+            "rationale": "Potassium-containing salt substitutes can cause hyperkalemia when combined with spironolactone and renin-angiotensin system therapy."
+          },
+          {
+            "option": "C",
+            "rationale": "A heart rate of 64/min alone is not a reason to omit carvedilol; follow prescribed hold parameters and assess symptoms and blood pressure."
+          },
+          {
+            "option": "D",
+            "rationale": "Spironolactone is prescribed for ongoing heart-failure benefit and should not be stopped solely because edema improves."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "take_action",
@@ -10417,7 +10474,20 @@
       },
       "rationales": {
         "correct": "Sodium restriction (<=2 g/day), avoiding NSAIDs (ibuprofen/naproxen cause sodium/water retention and renal vasoconstriction), and recognizing orthopnea ('needing extra pillows') demonstrate accurate self-care mastery.",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "B",
+            "rationale": "Naproxen can promote sodium and fluid retention and worsen renal function in heart failure."
+          },
+          {
+            "option": "C",
+            "rationale": "Patients should not independently double loop-diuretic doses; a clinician-directed action plan is required."
+          },
+          {
+            "option": "D",
+            "rationale": "Daily weights and the prescribed medication regimen remain important long-term self-management measures."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "evaluate_outcomes",
@@ -10588,7 +10658,12 @@
       },
       "rationales": {
         "correct": "qSOFA criteria include SBP <=100 mmHg (A), RR >=22/min (B), and altered mentation (C); lactate >2 mmol/L (D) confirms cellular dysoxia in sepsis.",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "E",
+            "rationale": "Pain is important to assess but is not one of the qSOFA criteria and does not replace the hypotension, tachypnea, and altered mentation cues."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "recognize_cues",
@@ -10750,7 +10825,20 @@
       },
       "rationales": {
         "correct": "Elevated serum lactate (>=4.0 mmol/L) signifies inadequate tissue oxygen delivery resulting in anaerobic glycolysis and lactic acidosis, serving as a key prognostic marker in septic shock.",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "B",
+            "rationale": "Lactate elevation reflects impaired tissue perfusion or other metabolic stress, not respiratory alkalosis."
+          },
+          {
+            "option": "C",
+            "rationale": "The lactate value alone does not establish isolated hepatic failure; the hypotension and acute confusion support systemic hypoperfusion."
+          },
+          {
+            "option": "D",
+            "rationale": "A lactate of 4.6 mmol/L with hypotension and confusion is not an expected benign postoperative finding and requires urgent evaluation."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "analyze_cues",
@@ -10916,7 +11004,20 @@
       },
       "rationales": {
         "correct": "Sepsis-3 defines septic shock as sepsis with persisting hypotension requiring vasopressors to maintain MAP >=65 mmHg AND serum lactate >2 mmol/L despite adequate volume resuscitation (30 mL/kg).",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "B",
+            "rationale": "Persistent hypotension and elevated lactate after initial resuscitation are not evidence that sepsis has resolved."
+          },
+          {
+            "option": "C",
+            "rationale": "The case findings support persistent septic shock; no epidural-related cause is provided to support neurogenic shock."
+          },
+          {
+            "option": "D",
+            "rationale": "Further fluid should be guided by reassessment of fluid responsiveness; repeated large empiric boluses can cause harm and should not delay vasopressors."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "prioritize_hypotheses",
@@ -11089,7 +11190,12 @@
       },
       "rationales": {
         "correct": "Norepinephrine is the first-line vasopressor in septic shock titrated to MAP >=65 mmHg (E), ideally via central access or temporary large proximal IV (A) with frequent BP/arterial line monitoring (B) and extravasation surveillance with phentolamine antidote readiness (C).",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "D",
+            "rationale": "Norepinephrine is the recommended first-line vasopressor for septic shock; dopamine has greater arrhythmia risk and is not preferred routinely."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "generate_solutions",
@@ -11254,7 +11360,20 @@
       },
       "rationales": {
         "correct": "Persistent oliguria (<0.5 mL/kg/hr) despite achieving MAP >=65 mmHg indicates ongoing renal hypoperfusion, acute kidney injury, or uncontrolled intra-abdominal infectious source (anastomotic leak/abscess) requiring immediate provider evaluation.",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "B",
+            "rationale": "Furosemide does not correct the cause of persistent oliguria during shock and may worsen intravascular depletion."
+          },
+          {
+            "option": "C",
+            "rationale": "A MAP above 65 mmHg does not by itself prove adequate organ perfusion; assess the ongoing oliguria and signs of poor peripheral perfusion."
+          },
+          {
+            "option": "D",
+            "rationale": "Routine catheter irrigation is not indicated without evidence of obstruction and must not delay assessment of ongoing shock or source control."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "take_action",
@@ -11428,7 +11547,12 @@
       },
       "rationales": {
         "correct": "Lactate clearance (<2.0 mmol/L: A), vasopressor independence with MAP >=65 mmHg (B), restored urine output >=0.5 mL/kg/hr (C), and normalized mentation (D) confirm successful shock reversal.",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "E",
+            "rationale": "Persistent marked tachycardia and fever suggest ongoing infection or physiologic stress rather than favorable resolution."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "evaluate_outcomes",
@@ -11601,7 +11725,20 @@
       },
       "rationales": {
         "correct": "In DKA, lack of insulin and extracellular hydrogen ion buffering drive potassium out of cells into the serum, masking profound total-body potassium depletion caused by osmotic diuresis.",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "B",
+            "rationale": "Kussmaul respirations compensate for metabolic acidosis; they do not cause renal potassium retention."
+          },
+          {
+            "option": "C",
+            "rationale": "Hyperglycemia and insulin deficiency contribute to extracellular potassium shift; aldosterone suppression is not the mechanism described."
+          },
+          {
+            "option": "D",
+            "rationale": "A normal or high serum potassium at presentation can coexist with severe total-body potassium depletion because of urinary losses and transcellular shift."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "recognize_cues",
@@ -11777,7 +11914,20 @@
       },
       "rationales": {
         "correct": "Once serum potassium falls below 5.2 mEq/L (here 3.8 mEq/L) and adequate urine output (>=30-50 mL/hr) is confirmed, potassium (20-30 mEq/L) must be added to IV fluids to prevent insulin-induced hypokalemia.",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "B",
+            "rationale": "Stopping insulin would interrupt treatment of ketoacidosis; potassium is currently above the threshold that requires withholding insulin."
+          },
+          {
+            "option": "C",
+            "rationale": "Potassium replacement should begin before severe hypokalemia develops; waiting for a value below 3.0 mEq/L is unsafe."
+          },
+          {
+            "option": "D",
+            "rationale": "IV potassium chloride must not be given by push because rapid administration can cause lethal dysrhythmias."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "take_action",
@@ -11954,7 +12104,20 @@
       },
       "rationales": {
         "correct": "IV regular insulin has a half-life of only 5 to 10 minutes, whereas subcutaneous basal insulin (glargine) takes 1 to 2 hours to reach therapeutic onset. Overlapping IV insulin for 1-2 hours after subcutaneous basal insulin administration prevents rebound hyperglycemia and recurrent DKA.",
-        "incorrect": []
+        "incorrect": [
+          {
+            "option": "B",
+            "rationale": "Stopping IV insulin before basal insulin is administered risks rebound hyperglycemia and recurrent ketoacidosis."
+          },
+          {
+            "option": "C",
+            "rationale": "A four-hour gap after stopping IV insulin leaves the patient without adequate basal insulin coverage."
+          },
+          {
+            "option": "D",
+            "rationale": "Insulin glargine must not be mixed in the same syringe with regular insulin; administer each by the prescribed route and timing."
+          }
+        ]
       },
       "clinical_judgment": {
         "skill": "evaluate_outcomes",
