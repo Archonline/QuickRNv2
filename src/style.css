@@ -786,3 +786,24 @@
  .notebook-review-row{align-items:flex-start;flex-direction:column}
  .notebook-card-actions>span{width:100%;margin-left:0}
 }
+
+/* Phase 5: richer mock-exam and readiness reports */
+.exam-readiness-report{margin:18px 0 24px;padding:20px;border:1px solid #dfe7ef;border-radius:16px;background:#fff}
+.exam-readiness-report-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.exam-readiness-report-head>div{display:grid;gap:4px}
+.exam-readiness-report-head>div strong{font-size:15px;color:#1e3448}
+.exam-readiness-report-head>div span{font-size:12px;color:#78899a}
+.exam-readiness-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}
+.exam-readiness-metrics>div{display:grid;gap:5px;padding:12px;border-radius:10px;background:#f5f8fb}
+.exam-readiness-metrics strong{font-size:20px;color:#1d3b56}
+.exam-readiness-metrics span{font-size:11px;color:#748497}
+.exam-readiness-category-list{display:grid;gap:10px;margin-top:18px}
+.exam-readiness-category-list h2{margin:0 0 3px;font-size:14px;color:#263d52}
+.exam-readiness-category{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,180px);align-items:center;gap:12px}
+.exam-readiness-category>div:first-child{display:grid;gap:3px}
+.exam-readiness-category strong{font-size:12px;color:#344b60}
+.exam-readiness-category span{font-size:10px;color:#8290a0}
+.exam-readiness-track{height:7px;overflow:hidden;border-radius:99px;background:#e9eef3}
+.exam-readiness-track i{display:block;height:100%;border-radius:inherit;background:#5c91b7}
+.exam-readiness-disclaimer{margin:15px 0 0;color:#7c8997;font-size:10px;line-height:1.5}
+@media(max-width:620px){.exam-readiness-report{padding:14px}.exam-readiness-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.exam-readiness-category{grid-template-columns:1fr}.exam-readiness-category .exam-readiness-track{max-width:none}}
