@@ -37,3 +37,19 @@ test("structural validator accepts each supported NCLEX interaction family",()=>
  const results=fixtures.map(q=>({type:q.itemType,...validateQuestion(q)}));
  assert.deepEqual(results.filter(x=>!x.valid).map(x=>({type:x.type,errors:x.errors})),[]);
 });
+
+test("matrix-grid coordinates receive row-wise partial credit",()=>{
+ assert.equal(responseScore("matrix-grid",["0:0","1:1"],["0:0","1:0"]),.5);
+ assert.equal(responseScore("matrix-grid",["0:0"],["0:0","1:1"]),.5);
+});
+test("legacy NGN formats retain format-specific partial credit",()=>{
+ assert.equal(responseScore("highlight-table",["cue-a"],["cue-a","cue-b"]),.5);
+ assert.equal(responseScore("drop-down-table",["0:1","1:0"],["0:1","1:1"]),.5);
+ assert.equal(responseScore("extended-multiple-response",["0"],["0","1"]),.5);
+ assert.equal(responseScore("extended-drag-drop",["1","0"],["0","1"]),0);
+});
+test("unanswered responses never earn credit",()=>{
+ for(const type of ["multiple-response","matrix-grid","bow-tie","drop-down-cloze","highlight-table"]) {
+  assert.equal(responseScore(type,[],["0"]),0,type);
+ }
+});
