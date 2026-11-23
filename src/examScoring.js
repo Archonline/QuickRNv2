@@ -1,4 +1,6 @@
-import { estimateCatMeasurement } from "./catEngine.js";\n\nconst SET_SCORED = new Set(["multiple-response","extended-multiple-response","select-n","highlight-text","highlight-table","matrix-multiple","matrix-grid","bow-tie","graphics-based"]);
+import { estimateCatMeasurement } from "./catEngine.js";
+
+const SET_SCORED = new Set(["multiple-response","extended-multiple-response","select-n","highlight-text","highlight-table","matrix-multiple","matrix-grid","bow-tie","graphics-based"]);
 const ORDER_SCORED = new Set(["ordered-response","extended-drag-drop"]);
 const clamp = n => Math.max(0, Math.min(1, n));
 const setCredit = (actual, expected) => {
