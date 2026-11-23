@@ -594,3 +594,74 @@
 }
 
 .exam-break-exam-clock{display:block;margin-top:6px;text-align:center;color:#718096;font-size:11px;font-variant-numeric:tabular-nums}
+
+
+/* High-contrast exam typography: ensure all question and clinical-record text
+   remains comfortably readable on the white exam workspace. */
+.exam-screen,
+.exam-screen .exam-record-panel,
+.exam-screen .exam-main,
+.exam-screen .exam-question-card,
+.exam-screen .exam-case,
+.exam-screen .exam-record-content {
+  color: #172b3f !important;
+}
+.exam-screen .exam-record-content p,
+.exam-screen .exam-record-content li,
+.exam-screen .exam-left-scenario p,
+.exam-screen .exam-left-exhibit p,
+.exam-screen .exam-case p,
+.exam-screen .exam-stem,
+.exam-screen .exam-instruction,
+.exam-screen .exam-card-kicker,
+.exam-screen .exam-item-meta span,
+.exam-screen .exam-record-footer,
+.exam-screen .exam-trend-left,
+.exam-screen .ngn-trend-current p,
+.exam-screen .ngn-trend-current strong,
+.exam-screen .ngn-trend-tabs button,
+.exam-screen .ngn-matrix th,
+.exam-screen .ngn-matrix td,
+.exam-screen .ngn-dropdown label,
+.exam-screen .ngn-bowtie-column,
+.exam-screen .ngn-order-text,
+.exam-screen .ngn-highlight p,
+.exam-screen .ngn-graphic-figure > p,
+.exam-screen .ngn-graphic-figure > strong,
+.exam-screen .exam-workspace-note {
+  color: #24364a !important;
+}
+.exam-screen .exam-record-heading span,
+.exam-screen .exam-record-heading strong,
+.exam-screen .exam-main-top,
+.exam-screen .exam-question-counter,
+.exam-screen .exam-format-pill,
+.exam-screen .exam-case-label,
+.exam-screen .exam-review-stem {
+  color: #172b3f !important;
+}
+.exam-screen .exam-card-kicker,
+.exam-screen .exam-item-meta span,
+.exam-screen .exam-workspace-note {
+  color: #526276 !important;
+}
+.exam-screen .exam-countdown,
+.exam-screen .exam-header-countdown {
+  color: #173b5c !important;
+}
+.exam-screen .exam-option,
+.exam-screen .exam-option-text,
+.exam-screen .exam-review-option-text {
+  color: #1f3044 !important;
+}
+.exam-screen .exam-option-letter {
+  color: #34485f !important;
+}
+.exam-screen .exam-record-tabs button,
+.exam-screen .ngn-trend-tabs button {
+  color: #34485f !important;
+}
+.exam-screen .exam-record-tabs button.active,
+.exam-screen .ngn-trend-tabs button.active {
+  color: #173b5c !important;
+}
