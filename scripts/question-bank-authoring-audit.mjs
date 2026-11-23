@@ -256,9 +256,13 @@ function auditCoreGenerator(rules, findings) {
     }
   }
   const repeatedTopics = [...topicCategories.entries()].filter(([, categories]) => categories.length > 1);
-  if (repeatedTopics.length) {
+  const categoryVariants = source.slice(source.indexOf("const categoryTopicOverrides"), source.indexOf("const allGeneratedTopics"));
+  const repeatedTopicsMissingVariants = repeatedTopics.filter(([topic, categories]) =>
+    !categories.some((category) => categoryVariants.includes('"' + category + '::' + topic + '"'))
+  );
+  if (repeatedTopicsMissingVariants.length) {
     finding(findings, "warning", QUESTION_BANK_PATH,
-      `Topics reused across category profiles need category-specific scenarios before release: ${repeatedTopics.map(([topic, categories]) => `${topic} (${categories.join(" / ")})`).join("; ")}.`);
+      `Topics reused across category profiles still need distinct category-specific scenarios: ${repeatedTopicsMissingVariants.map(([topic, categories]) => `${topic} (${categories.join(" / ")})`).join("; ")}.`);
   }
   const candidateCount = [...categoryBlock.matchAll(/count:(\d+)/g)].reduce((total, match) => total + Number(match[1]), 0);
   const rewriteSource = readText(REWRITE_BATCH_PATH) ?? "";
