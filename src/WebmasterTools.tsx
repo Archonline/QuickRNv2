@@ -37,10 +37,60 @@ export default function WebmasterTools({questions,feedbackReports,feedbackLoadin
  const loadDrafts=async()=>{if(!db)return;setDraftLoading(true);setDraftError("");try{const snap=await getDocs(collection(db,"questionDrafts"));setDrafts(snap.docs.map(d=>({id:d.id,...d.data()} as Draft)).filter(d=>!["published","rejected"].includes(d.status??"")));}catch(e){setDraftError(e instanceof Error?e.message:"Unable to load question drafts.");}finally{setDraftLoading(false);}};
  const loadHistory=async()=>{if(!db)return;try{const snap=await getDocs(query(collection(db,"webmasterAuditLog"),orderBy("createdAt","desc"),limit(100)));setAuditLog(snap.docs.map(d=>({id:d.id,...d.data()})));setHistoryError("");}catch(e){setHistoryError(e instanceof Error?e.message:"Unable to load audit history.");}};
  useEffect(()=>{if(active==="drafts")void loadDrafts();if(active==="history")void loadHistory();},[active]);
- const audit=useMemo(()=>{const seen=new Map<string,string>(),dupes:string[]=[],flags:{id:string;issue:string}[]=[];for(const q of questions){const stem=norm(q.prompt??"");if(stem&&seen.has(stem))dupes.push(q.id+" duplicates "+seen.get(stem));else if(stem)seen.set(stem,q.id);if(!q.prompt?.trim())flags.push({id:q.id,issue:"Missing question stem"});if(!q.rationale?.trim())flags.push({id:q.id,issue:"Missing rationale"});if(!q.options||q.options.length<2)flags.push({id:q.id,issue:"Insufficient answer options"});if(!Number.isInteger(q.answer)||q.answer<0||q.answer>=(q.options?.length??0))flags.push({id:q.id,issue:"Answer key outside option range"});}return {dupes,flags};},[questions]);
+ const audit=useMemo(()=>{
+  const seen=new Map<string,string>(),dupes:string[]=[],flags:{id:string;issue:string}[]=[];
+  const flag=(id:string,issue:string)=>flags.push({id,issue});
+  for(const q of questions){
+   const stem=norm(q.prompt??"");
+   if(stem&&seen.has(stem))dupes.push(q.id+" duplicates "+seen.get(stem));else if(stem)seen.set(stem,q.id);
+   if(!q.prompt?.trim())flag(q.id,"Missing question stem");
+   if(!q.rationale?.trim())flag(q.id,"Missing rationale");
+   const d=q.interaction??{};
+   const type=q.itemType??(q.format==="multiple"?"multiple-response":q.format==="case-study"?"case-study":"single-response");
+   if(type==="numeric-entry"){
+    if(!d.numericUnit||!Number.isFinite(Number(d.correctResponse?.[0])))flag(q.id,"Missing or invalid numeric-entry answer");
+   }else if(type==="bow-tie"){
+    const b=d.bowTie;
+    if(!b||b.conditions.length<3||b.actions.length<4||b.monitoring.length<3||
+      !Number.isInteger(b.correctCondition)||b.correctCondition<0||b.correctCondition>=b.conditions.length||
+      b.correctActions.length!==2||b.correctActions.some(i=>!Number.isInteger(i)||i<0||i>=b.actions.length)||
+      b.correctMonitoring.length!==2||b.correctMonitoring.some(i=>!Number.isInteger(i)||i<0||i>=b.monitoring.length)){
+      flag(q.id,"Incomplete bow-tie choices or answer key");
+    }
+   }else if(type==="matrix-single"||type==="matrix-multiple"||type==="matrix-grid"){
+    const rows=d.rows??[],columns=d.columns??[],keys=d.correctResponse??[];
+    const invalidPair=keys.some(value=>{
+     const pair=String(value).split(":").map(Number);
+     return pair.length!==2||!Number.isInteger(pair[0])||!Number.isInteger(pair[1])||pair[0]<0||pair[0]>=rows.length||pair[1]<0||pair[1]>=columns.length;
+    });
+    if(rows.length<3||columns.length<2||!keys.length||invalidPair)flag(q.id,"Incomplete matrix rows, columns, or answer key");
+   }else if(type==="drop-down-cloze"||type==="drop-down-rationale"){
+    const choices=type==="drop-down-cloze"?(d.clozeChoicesByBlank??(d.clozeChoices?[d.clozeChoices]:[])):d.rationaleChoicesByBlank??[];
+    const template=type==="drop-down-cloze"?d.clozeTemplate:d.rationaleTemplate;
+    const blanks=type==="drop-down-cloze"?(template?.match(/\\[BLANK_\\d+\\]/g)??[]).length:(template?.match(/\\[BLANK_\\d+\\]/g)??[]).length;
+    const keys=d.correctResponse??[];
+    if(blanks<1||choices.length!==blanks||choices.some(row=>row.length<2)||keys.length!==blanks||
+      keys.some((value,i)=>!Number.isInteger(Number(value))||Number(value)<0||Number(value)>=choices[i].length)){
+      flag(q.id,"Incomplete drop-down choices or answer key");
+    }
+   }else if(type==="highlight-text"){
+    if(!d.segments?.length||!d.highlightableSegments?.length||!d.correctResponse?.length||
+      d.correctResponse.some(value=>!d.segments?.includes(value)))flag(q.id,"Incomplete highlight-text segments or answer key");
+   }else if(type==="highlight-table"){
+    if(!d.segments?.length||!d.correctResponse?.length||
+      d.correctResponse.some(value=>!Number.isInteger(Number(value))||Number(value)<0||Number(value)>=d.segments!.length))flag(q.id,"Incomplete highlight-table cells or answer key");
+   }else{
+    const choices=d.choices?.length?d.choices:q.options;
+    if(!choices||choices.length<2)flag(q.id,"Insufficient answer options");
+    const keys=d.correctResponse?.length?d.correctResponse:[String(q.answer)];
+    if(!choices||keys.some(value=>!Number.isInteger(Number(value))||Number(value)<0||Number(value)>=choices.length))flag(q.id,"Answer key outside option range");
+   }
+  }
+  return {dupes,flags};
+ },[questions]);
  const types=useMemo(()=>questions.reduce((a,q)=>{const t=q.itemType??(q.format==="multiple"?"multiple-response":q.format==="case-study"?"case-study":"single-response");a[t]=(a[t]??0)+1;return a;},{} as Record<string,number>),[questions]);
  const topics=useMemo(()=>Object.entries(questions.reduce((a,q)=>{a[q.topic||"Uncategorized"]=(a[q.topic||"Uncategorized"]??0)+1;return a;},{} as Record<string,number>)).sort((a,b)=>b[1]-a[1]),[questions]);
- const clinical=useMemo(()=>questions.filter(q=>q.reviewStatus!=="clinically-reviewed"&&q.reviewMetadata?.status!=="clinically-verified"&&q.reviewStatus!=="rejected"&&q.reviewMetadata?.status!=="rejected"&&!clinicalDecisions[q.id]),[questions,clinicalDecisions]);
+ const clinical=useMemo(()=>questions.filter(q=>q.reviewStatus!=="clinically-reviewed"&&q.reviewMetadata?.status!=="clinically-verified"&&!clinicalDecisions[q.id]),[questions,clinicalDecisions]);
  const perf=useMemo(()=>{const m=new Map<string,{n:number;earned:number;correct:number}>();for(const exam of examHistory)for(const r of exam.questionResults??[]){const x=m.get(r.questionId)??{n:0,earned:0,correct:0};x.n++;x.earned+=r.earnedPoints;x.correct+=r.correct?1:0;m.set(r.questionId,x);}return [...m.entries()].map(([id,x])=>({id,...x,pct:Math.round(x.earned/x.n*100)})).sort((a,b)=>a.pct-b.pct);},[examHistory]);
  const getQ=(d:Draft)=>((d.question??d) as Question);
  const reviewClinical=async(q:Question,decision:"passed"|"rejected")=>{if(!db||!admin)return;setBusy(true);setActionError("");try{const reviewed={...q,status:decision==="rejected"?"rejected":(q.status??"development"),reviewStatus:decision==="passed"?"clinically-reviewed":"rejected",reviewMetadata:{...(q.reviewMetadata??{}),status:decision==="passed"?"clinically-verified":"rejected",publicationStatus:decision==="passed"?(q.reviewMetadata?.publicationStatus??"draft"):"rejected",reviewedAt:new Date().toISOString(),reviewedBy:user?.email??"administrator"}};await setDoc(doc(db,"questions",q.id),reviewed,{merge:true});await log(decision==="passed"?"clinical-review-passed":"clinical-review-rejected",q.id,decision==="passed"?"Clinical review passed.":"Clinical review rejected; item marked rejected.");setClinicalDecisions(current=>({...current,[q.id]:decision}));}catch(e){setActionError(e instanceof Error?e.message:"Unable to save clinical review decision.");}finally{setBusy(false);}};
