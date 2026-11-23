@@ -789,11 +789,14 @@ function make(b: B, i: number, global: number): Question {
       choices: opts,
       correctResponse: [String(answerIdx)],
     },
-    status: "published",
+    // Topic-profile output is not eligible for learner-facing publication until
+    // the item has a unique authored scenario, item-level evidence, and rationales
+    // for every option. Keep generated legacy content in development meanwhile.
+    status: "development",
     format: "single",
-    contentVersion: 3,
+    contentVersion: 4,
     reviewStatus: "generated",
-    reviewMetadata: { status: "not-clinically-verified", references: [], publicationStatus: "published" },
+    reviewMetadata: { status: "not-clinically-verified", references: [], publicationStatus: "draft" },
     clinicalScenario: scenario,
     exhibit: undefined,
     caseRecord: source.caseRecord ?? { progressNotes: record, labs: "", flowSheet: "" },
