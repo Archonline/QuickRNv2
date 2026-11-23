@@ -65,7 +65,7 @@ function auditAuthoredCoreRewriteBatch(source, rules, findings) {
   }
   const bank = readText(QUESTION_BANK_PATH);
   if (!bank?.includes("authoredCoreRewriteBatch") || !bank?.includes("authoredCoreRewriteBatch2") || !bank?.includes("authoredCoreRewriteBatch3")) finding(findings, "error", QUESTION_BANK_PATH, "All authored replacement batches must be integrated into the runtime question bank.");
-  if (!/questionBank500\s*:\s*Question\[\]\s*=\s*all\.slice\(0,\s*500\)/.test(bank ?? "")) finding(findings, "error", QUESTION_BANK_PATH, "Existing 500-item core bank invariant is missing.");
+  if (!/questionBank500\s*:\s*Question\[\]\s*=\s*(?:all|learnerReadyCore)\.slice\(0,\s*500\)/.test(bank ?? "")) finding(findings, "error", QUESTION_BANK_PATH, "Existing 500-item core bank invariant is missing.");
   if (!/new Set\(questionBank500\.map\(\(question\)\s*=>\s*question\.id\)\)\.size\s*!==\s*500/.test(bank ?? "")) finding(findings, "error", QUESTION_BANK_PATH, "Existing unique core question ID invariant is missing.");
   const ngnBank = readText(NGN_BANK_PATH);
   if (!ngnBank?.includes("questionBank100.length!==100")) finding(findings, "error", NGN_BANK_PATH, "Existing 100-item NGN extension invariant is missing.");
