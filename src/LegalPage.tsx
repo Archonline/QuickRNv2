@@ -93,8 +93,8 @@ const content: Record<LegalSection, { eyebrow: string; title: string; intro: str
   }
 };
 
-export default function LegalPage() {
-  const [active, setActive] = useState<LegalSection>("disclaimer");
+export default function LegalPage({ initialSection }: { initialSection?: "privacy" | "terms" }) {
+  const [active, setActive] = useState<LegalSection>(initialSection ?? "disclaimer");
   const selected = content[active];
   return <section className="legal-page">
     <div className="eyebrow">QUICKRN · LEGAL & TRUST</div>
