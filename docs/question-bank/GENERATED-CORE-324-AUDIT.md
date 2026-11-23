@@ -32,15 +32,15 @@ Three of four topic-level distractors are selected by cyclic rotation. The algor
 
 The answer index is calculated from the exact keyed priority-answer string after option shuffling. This is a useful structural safeguard and the key is not randomly assigned. However, it only proves that the stored index points to the text the author designated as correct. It does not prove that the designated action is the safest or most evidence-supported answer for the scenario.
 
-The generated items have no item-level clinical source/evidence record. All 324 therefore remain clinically unverified; any disputed key requires evidence-based adjudication rather than an automatic key change.
+The generated items have no item-level clinical source/evidence record. All items in the original 324-item cohort were clinically unverified at audit time; any disputed key requires evidence-based adjudication rather than an automatic key change.
 
 ### 4. Rationales — confirmed incomplete
 
-Generated items receive one topic-level explanation for the keyed answer. The generator does not attach a separate rationale to each of the three distractors. Thus, all 324 items fail the project's per-option rationale standard. Repeating the same general rationale across multiple scenario copies compounds the problem.
+Generated items receive one topic-level explanation for the keyed answer. The generator does not attach a separate rationale to each of the three distractors. Thus, all items in the original 324-item cohort failed the project's per-option rationale standard at baseline. Repeating the same general rationale across multiple scenario copies compounds the problem.
 
 ### 5. Clinical evidence — absent from generated item metadata
 
-The generator assigns an empty references array and does not attach a source, publication date, locator, or supported claim to each item. No automated check can validate clinical accuracy without traceable evidence. All 324 require source-backed clinical review before approval.
+The generator assigns an empty references array and does not attach a source, publication date, locator, or supported claim to each item. No automated check can validate clinical accuracy without traceable evidence. All remaining generated items require source-backed clinical review before approval.
 
 ## Cross-category variants added
 
@@ -63,4 +63,9 @@ The generator now assigns these topic-profile-generated items `status: developme
 
 **Do not describe the 324 generated items as corrected, clinically reviewed, or release-ready.** The six cross-category variants are implemented, but the audit exposes a larger issue: 315 of 324 generated items repeat a topic-level scenario and all 324 lack per-option rationales and item-level evidence metadata. The structurally valid answer index is not clinical validation.
 
-The next remediation must replace the repeated items with genuinely distinct case-specific clinical tasks, then write three distractor-specific rationales and attach traceable evidence for each item. A reviewer with appropriate clinical qualifications must adjudicate the key, distractors, and rationale before publication. Do not solve this by rephrasing stems or shuffling options.
+The remaining 284 generated items must be replaced in controlled authored tranches. The current tranche has 40 of its 100 planned replacements authored (qrn-0177–qrn-0216); the remaining 60 are still pending. The next remediation must replace the repeated items with genuinely distinct case-specific clinical tasks, then write three distractor-specific rationales and attach traceable evidence for each item. A reviewer with appropriate clinical qualifications must adjudicate the key, distractors, and rationale before publication. Do not solve this by rephrasing stems or shuffling options.
+
+
+## Inventory update — 23 November 2026
+
+The original 324-item audit cohort is now smaller because 80 IDs are authored replacement drafts: qrn-0137–qrn-0216. The source-level reconstruction now expects 284 topic-profile-generated items to remain (qrn-0217–qrn-0500). The first 40 authored items predate the current 100-item tranche; 40 of the current tranche's 100 replacements have now been authored. All replacement drafts remain unpublished pending evidence and qualified clinical review. The audit script's expected inventory and the validation rules' authored-replacement invariant have been updated accordingly.
