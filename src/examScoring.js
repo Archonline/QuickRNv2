@@ -88,7 +88,8 @@ export const READINESS_RULES = Object.freeze({
 export function evaluateReadiness(responses) {
   const items = Array.isArray(responses) ? responses : [];
   const earned = items.reduce((sum, item) => sum + Math.max(0, Math.min(1, Number(item.earned) || 0)), 0);
-  const scorePercent = items.length ? Math.round((earned / items.length) * 100) : 0;
+  const rawScorePercent = items.length ? (earned / items.length) * 100 : 0;
+  const scorePercent = Math.round(rawScorePercent);
   const ability = estimateCatAbility(items.map(item => ({
     earned: item.earned,
     difficulty: item.difficulty
@@ -107,13 +108,13 @@ export function evaluateReadiness(responses) {
   })).sort((a, b) => a.percent - b.percent);
   const weakCategories = categories.filter(item =>
     item.total >= READINESS_RULES.minimumCategorySample &&
-    item.percent < READINESS_RULES.minimumCategoryPercent
+    (item.earned / item.total) * 100 < READINESS_RULES.minimumCategoryPercent
   );
   const reasons = [];
   if (items.length < READINESS_RULES.minimumQuestions) {
     reasons.push(`Complete at least ${READINESS_RULES.minimumQuestions} questions.`);
   }
-  if (scorePercent < READINESS_RULES.minimumScorePercent) {
+  if (rawScorePercent < READINESS_RULES.minimumScorePercent) {
     reasons.push(`Earn at least ${READINESS_RULES.minimumScorePercent}% overall partial-credit score.`);
   }
   if (ability < READINESS_RULES.minimumAbility) {
