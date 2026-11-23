@@ -169,8 +169,7 @@ return <div className={"app-shell"+(mobileNavOpen?" mobile-nav-open":"")}><butto
  savedCount={savedQuestionIds.length}
  activeDays={studyHabitAnalytics.activeDays}
  studyMinutes={studyHabitAnalytics.totalMinutes}
- latestScore={completedAssessments[0]?.scorePercent??null}
- weakestCategory={categoryAnalytics[0]?.category??null}
+  weakestCategory={categoryAnalytics[0]?.category??null}
  onNavigate={(target)=>nav(target)}
  onPractice={()=>openPractice()}
  onSimulator={()=>setExamMode("self-study")}
