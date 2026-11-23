@@ -13,7 +13,7 @@ test("answers persist when navigating away and back; review flag is retained",as
  await expect(page.getByRole("radio",{name:/A\./})).toBeChecked();
  await expect(page.getByRole("button",{name:"Remove flag"})).toBeVisible();
  await page.getByRole("button",{name:/Navigation/}).click();
- await expect(page.getByText("Flagged",{exact:true})).toBeVisible();
+ await expect(page.getByRole("button",{name:"Flagged"})).toBeVisible();
 });
 
 test("review and submit records a single completion with answer totals",async({page})=>{
