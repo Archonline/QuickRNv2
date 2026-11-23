@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 const TARGET=Number(process.env.TARGET_QUESTION_COUNT||3600), BASELINE=Number(process.env.BASELINE_QUESTION_COUNT||600);
 const DEADLINE=new Date(process.env.DEADLINE_UTC||"2026-11-29T16:00:00Z"), BATCH_SIZE=10, MAX_BATCHES=10;
-const OLLAMA_HOST=(process.env.OLLAMA_HOST||"http://127.0.0.1:11434").replace(/\\/$/, ""), MODEL=process.env.OLLAMA_MODEL||"qwen2.5:7b-instruct";
+const OLLAMA_HOST=(process.env.OLLAMA_HOST||"http://127.0.0.1:11434").replace(/\/$/, ""), MODEL=process.env.OLLAMA_MODEL||"qwen2.5:7b-instruct";
 const OUT="question-bank-generated", MANIFEST=path.join(OUT,"automation-manifest.json");
 const read=p=>JSON.parse(fs.readFileSync(p,"utf8")), write=(p,v)=>fs.writeFileSync(p,JSON.stringify(v,null,2)+"\n");
 const schema=read("docs/question-bank/quickrn-question-schema.json"), rules=read("docs/question-bank/quickrn-validation-rules.json");
