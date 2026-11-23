@@ -19,7 +19,7 @@ const single = (
   optionRationales: string[],
 ): Question => ({
   id, category, topic, difficulty, clinicalScenario, prompt, options, answer,
-  rationale, status: "published", format: "single", itemType: "single-response",
+  rationale, status: "development", format: "single", itemType: "single-response",
   interaction: {
     instruction: "Select the one best response.",
     choices: options,
@@ -29,7 +29,7 @@ const single = (
   clinicalJudgmentStep, contentVersion: 3, reviewStatus: "generated",
   reviewMetadata: {
     status: "not-clinically-verified", references: [],
-    publicationStatus: "published",
+    publicationStatus: "draft",
   },
 });
 
