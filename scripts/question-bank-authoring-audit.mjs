@@ -27,7 +27,7 @@ function auditAuthoredCoreRewriteBatch(source, rules, findings) {
   }
   const calls = [...source.matchAll(/\bsingle\(\s*"([^"]+)"/g)];
   const ids = calls.map((match) => match[1]);
-  const expected = rules.sprint3_authoring_quality?.legacy_invariants?.authored_replacement_count ?? 20;
+  const expected = rules.sprint3_authoring_quality?.legacy_invariants?.authored_replacement_count ?? 40;
   if (ids.length !== expected) {
     finding(findings, "error", REWRITE_BATCH_PATH, `Expected exactly ${expected} authored replacement records; detected ${ids.length}.`);
   }
