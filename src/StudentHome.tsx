@@ -83,7 +83,7 @@ export default function StudentHome(props: StudentHomeProps) {
         <div className="student-panel-heading"><div><span>NGN CLINICAL JUDGMENT</span><h2>Think like a nurse</h2></div><Layers3 size={20}/></div>
         <p>Use the six clinical judgment functions as a framework when working through unfolding patient cases.</p>
         <div className="student-judgment-steps">{judgmentSteps.map((step,index)=><div key={step}><span>{index+1}</span><strong>{step}</strong></div>)}</div>
-        <button className="student-inline-link" onClick={props.onPractice}>Practice clinical questions <ArrowRight size={14}/></button>
+        <button className="student-inline-link" onClick={props.onSimulator}>Open case-based exam workspace <ArrowRight size={14}/></button>
       </section>
     </div>
 
