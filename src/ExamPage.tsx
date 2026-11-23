@@ -7,7 +7,7 @@ import { responseScore, estimateCatAbility } from "./examScoring.js";
 
 export type ExamQuestionResult={questionId:string;category:string;topic:string;earnedPoints:number;correct:boolean;answered:boolean};
 export type ExamCompletion={mode:"self-study"|"cat"|"readiness";questionCount:number;answeredCount:number;correctCount:number;incorrectCount:number;unansweredCount:number;earnedPoints:number;possiblePoints:number;scorePercent:number;durationSeconds:number;questionResults:ExamQuestionResult[]};
-type Props={questions:Question[];onExit:()=>void;defaultQuestionCount?:number;savedQuestionIds?:string[];onToggleSaved?:(id:string)=>void;onComplete?:(result:ExamCompletion)=>void;onReportFeedback?:(report:{questionId:string;itemType:string;topic:string;prompt:string;feedback:string;mode:string})=>Promise<void>;mode?:"self-study"|"cat"|"readiness"};
+type Props={questions:Question[];onExit:()=>void;defaultQuestionCount?:number;onComplete?:(result:ExamCompletion)=>void;onReportFeedback?:(report:{questionId:string;itemType:string;topic:string;prompt:string;feedback:string;mode:string})=>Promise<void>;mode?:"self-study"|"cat"|"readiness"};
 const LETTERS=["A","B","C","D","E","F","G","H"];
 const FORMAT_SAMPLER_TYPES:CanonicalNclexItemType[]=["single-response","multiple-response","select-n","drop-down-cloze","drop-down-rationale","highlight-text","matrix-multiple","matrix-single","numeric-entry","ordered-response","bow-tie","drag-drop","trend","graphics-based"];
 
