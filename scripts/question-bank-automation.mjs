@@ -59,7 +59,7 @@ while(runAccepted<runBudget&&attempts<MAX_BATCHES){
   for(let i=0;i<count;i++){const q=data.questions[i],id="QRN-"+String(first+i).padStart(6,"0"),issue=validate(q,id);if(issue)bad.push({id,issue,original:q});else stems.add(norm(q.stem));}
   let good=data.questions.filter((q,i)=>!bad.some(b=>b.id==="QRN-"+String(first+i).padStart(6,"0")));
   if(bad.length){
-   const fixed=await generate(bad.length,first,"Repair these failed items in the exact order and IDs; fix the issues: "+JSON.stringify(bad.map(b=>({id:b.id,issue:b.issue,original:b.original}))));
+   const fixed=await generate(bad.length,first,"Repair these failed items in the exact order and IDs; fix the issues: "+JSON.stringify(bad.map(b=>({id:b.id,issue:b.issue,original:b.original}))),bad.map(b=>b.id));
    for(let i=0;i<bad.length;i++){const q=fixed.questions?.[i],issue=validate(q,bad[i].id);if(!issue){good.push(q);stems.add(norm(q.stem));manifest.repaired_count++;}else runRejected++;}
   }
   if(good.length){
