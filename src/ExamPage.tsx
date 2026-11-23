@@ -34,7 +34,8 @@ function selectExamItems(publishedItems:Question[],count:number,seed:number){con
 const selectedExam=useMemo(()=>{const formatType=(q:Question)=>normalizedType(q);if(practiceQuestion)return expandCaseStudyGroups([practiceQuestion],published);if(formatSampler){const selected:Question[]=[];const used=new Set<string>();for(const type of FORMAT_SAMPLER_TYPES){const preferred=published.filter(q=>!caseGroupKey(q)&&formatType(q)===type&&!used.has(q.id));const fallback=published.filter(q=>formatType(q)===type&&!used.has(q.id));const candidates=[...preferred];for(const q of fallback)if(!candidates.some(candidate=>candidate.id===q.id))candidates.push(q);const randomized=seededShuffle(candidates,samplerSeed+FORMAT_SAMPLER_TYPES.indexOf(type)+1);const picked=randomized[0];if(picked){selected.push(picked);used.add(picked.id);}}return selected;}if(questionCount==="all"&&mode==="self-study")return expandCaseStudyGroups(published,published);const count=mode==="readiness"?85:Number(questionCount);return selectExamItems(published,count,samplerSeed);},[published,questionCount,formatSampler,samplerSeed,mode,practiceQuestion]);
  const [catExam,setCatExam]=useState<Question[]>([]);
  const exam=mode==="cat"&&catExam.length?catExam:selectedExam;
- const [remainingSeconds,setRemainingSeconds]=useState(5*60*60);\n const [deadlineAt,setDeadlineAt]=useState<number|null>(null);
+ const [remainingSeconds,setRemainingSeconds]=useState(5*60*60);
+ const [deadlineAt,setDeadlineAt]=useState<number|null>(null);
  const [answers,setAnswers]=useState<Record<string,string[]>>({});
  const [current,setCurrent]=useState(0);
  const [flagged,setFlagged]=useState<string[]>([]);
