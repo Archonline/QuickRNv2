@@ -6,6 +6,7 @@ const RULES_PATH = path.join(ROOT, "docs/question-bank/quickrn-validation-rules.
 const REWRITE_BATCH_PATH = path.join(ROOT, "src/authoredCoreRewriteBatch.ts");
 const QUESTION_BANK_PATH = path.join(ROOT, "src/questionBank.ts");
 const NGN_BATCH_PATH = path.join(ROOT, "src/curatedQuestionBatch100.json");
+const NGN_BANK_PATH = path.join(ROOT, "src/ngnQuestionBank.ts");
 const STRICT = process.env.QUESTION_BANK_AUDIT_MODE === "strict";
 
 function readText(filePath) {
@@ -41,7 +42,9 @@ function auditAuthoredCoreRewriteBatch(source, rules, findings) {
   if (!bank?.includes("authoredCoreRewriteBatch")) finding(findings, "error", QUESTION_BANK_PATH, "Authored batch is not integrated into the runtime question bank.");
   if (!bank?.includes("questionBank500.length!==500")) finding(findings, "error", QUESTION_BANK_PATH, "Existing 500-item core bank invariant is missing.");
   if (!bank?.includes("new Set(questionBank500.map(q=>q.id)).size!==500")) finding(findings, "error", QUESTION_BANK_PATH, "Existing unique core question ID invariant is missing.");
-  if (!bank?.includes("questionBank600")) finding(findings, "error", QUESTION_BANK_PATH, "Combined 600-item export is missing.");
+  const ngnBank = readText(NGN_BANK_PATH);
+  if (!ngnBank?.includes("questionBank100.length!==100")) finding(findings, "error", NGN_BANK_PATH, "Existing 100-item NGN extension invariant is missing.");
+  if (!ngnBank?.includes("new Set(questionBank600.map(q=>q.id)).size!==600")) finding(findings, "error", NGN_BANK_PATH, "Existing combined 600-item unique-ID invariant is missing.");
 }
 function valueAt(object, dottedPath) {
   return dottedPath.split(".").reduce((value, key) => value == null ? undefined : value[key], object);
