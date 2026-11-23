@@ -26,7 +26,7 @@ jobs:
           GEMINI_MODEL: gemini-2.5-flash
           TARGET_QUESTION_COUNT: "3600"
           BASELINE_QUESTION_COUNT: "600"
-          DEADLINE_UTC: "2026-11-30T00:00:00Z"
+          DEADLINE_UTC: "2026-11-29T16:00:00Z"
         run: node scripts/question-bank-automation.mjs
       - name: Commit accepted batches and progress manifest
         run: |
