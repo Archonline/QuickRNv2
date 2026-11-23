@@ -529,3 +529,46 @@
 .practice-active-filter button{border:0;background:transparent;color:#5e55c7;font-size:10px;font-weight:700;cursor:pointer}
 @media(max-width:850px){.client-needs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.calendar-card,.calendar-day-detail{padding:14px}.calendar-grid{gap:3px}.calendar-day{min-height:54px;padding:5px}.calendar-day i{font-size:8px}.calendar-legend{flex-direction:column}.topic-progress-button{grid-template-columns:minmax(0,1fr) 90px 16px;gap:8px}.client-needs-grid{grid-template-columns:1fr 1fr}}
+
+
+/* Compact dashboard overview so the primary learner snapshot fits without vertical scrolling. */
+.dashboard-overview { padding-top: 18px; padding-bottom: 10px; }
+.dashboard-overview .welcome-row { margin-bottom: 12px; }
+.dashboard-overview .welcome-row h1 { font-size: 23px; }
+.dashboard-overview .welcome-row .eyebrow { margin-bottom: 5px; }
+.dashboard-overview .welcome-row .subheading { margin-top: 5px; }
+.dashboard-overview .pass-probability-hero { width: 84px; height: 84px; }
+.dashboard-overview .pass-probability-hero-ring { width: 74px; height: 74px; }
+.dashboard-overview .pass-probability-hero-ring strong { font-size: 20px; }
+.dashboard-overview .dashboard-insights-card { margin-bottom: 10px; }
+.dashboard-overview .dashboard-insights-card .card-heading { margin-bottom: 9px; }
+.dashboard-overview .dashboard-insight-grid { gap: 8px; }
+.dashboard-overview .dashboard-insight-tile { min-height: 88px; padding: 9px 11px; gap: 5px; }
+.dashboard-overview .dashboard-insight-tile > strong { font-size: 15px; line-height: 1.2; }
+.dashboard-overview .dashboard-insight-tile > small { font-size: 9px; line-height: 1.3; }
+.dashboard-overview .stats-grid { gap: 9px; margin-bottom: 10px; }
+.dashboard-overview .stat-card { min-height: 88px; padding: 10px 12px; }
+.dashboard-overview .stat-icon { width: 25px; height: 25px; margin-bottom: 5px; }
+.dashboard-overview .stat-icon svg { width: 15px; height: 15px; }
+.dashboard-overview .stat-number { font-size: 18px; }
+.dashboard-overview .stat-label { font-size: 10px; }
+.dashboard-overview .stat-foot { font-size: 9px; margin-top: 2px; }
+.dashboard-overview .pass-probability-card { margin: 10px 0 0; padding: 12px 16px 10px; }
+.dashboard-overview .pass-probability-heading h2 { margin: 2px 0; font-size: 13px; }
+.dashboard-overview .pass-probability-heading p { font-size: 9px; }
+.dashboard-overview .pass-probability-current strong { font-size: 22px; }
+.dashboard-overview .pass-probability-chart-wrap.compact { margin-top: 5px; }
+.dashboard-overview .pass-probability-chart.compact { min-height: 0; height: 145px; }
+.dashboard-overview .pass-probability-empty.compact { min-height: 0; padding: 7px 10px; gap: 4px; font-size: 10px; }
+.dashboard-overview .pass-probability-empty.compact strong { font-size: 11px; }
+.dashboard-overview .pass-probability-empty.compact span { font-size: 9px; line-height: 1.35; }
+.dashboard-overview .pass-probability-legend { margin: 0 0 5px; font-size: 9px; }
+.dashboard-overview .pass-probability-disclaimer { padding-top: 5px; font-size: 8px; line-height: 1.35; }
+@media(max-width:720px) {
+ .dashboard-overview { padding: 14px 12px 8px; }
+ .dashboard-overview .dashboard-insight-tile { min-height: 82px; padding: 8px; }
+ .dashboard-overview .dashboard-insight-tile > strong { font-size: 13px; }
+ .dashboard-overview .pass-probability-card { padding: 10px; }
+ .dashboard-overview .pass-probability-chart.compact { height: 125px; }
+ .dashboard-overview .pass-probability-heading { gap: 8px; }
+}
