@@ -62,7 +62,8 @@ export function validateQuestion(q) {
   }
   if (type === "trend" && (!arr(interaction.trend) || interaction.trend.length < 2)) add("Trend item requires at least two time-ordered observations.");
   if (type === "graphics-based" && (!interaction.graphic || !arr(interaction.graphic.labels) || interaction.graphic.labels.length < 2 || !arr(interaction.graphic.correctLabels))) add("Graphics-based item requires a graphic description, labels, and keyed labels.");
-  if (q.caseStudyId && !nonEmpty(q.caseStudyId)) add("Case-study id cannot be blank.");
+  if (q.caseStudyId !== undefined && !nonEmpty(q.caseStudyId)) add("Case-study id cannot be blank.");
+  if (q.caseStudyId && !q.caseStudy && !q.caseRecord && !q.clinicalScenario && !q.exhibit) add("Case-study items require linked clinical context or a patient record.");
   return { valid:errors.length===0, errors };
 }
 export function validateQuestionBank(items) {
