@@ -64,7 +64,8 @@ const selectedExam=useMemo(()=>{const formatType=(q:Question)=>normalizedType(q)
  const itemCredit=(q:Question,actual:string[])=>{const itemType=q.itemType??(q.format==="multiple"?"multiple-response":"single-response");const target=expected(q);if(itemType==="numeric-entry"){if(actual.length!==1||target.length!==1)return 0;const value=Number(actual[0]),key=Number(target[0]);return Number.isFinite(value)&&Number.isFinite(key)&&Math.abs(value-key)<=(q.interaction?.numericTolerance??0)?1:0;}return responseScore(itemType,actual,target);};
  const isQuestionCorrect=(q:Question,actual:string[])=>itemCredit(q,actual)===1;
  const correct=(q:Question)=>isQuestionCorrect(q,answers[q.id]??[]);
- const score=exam.reduce((n,q)=>n+itemCredit(q,answers[q.id]??[]),0);\n const catPrecisionReached=mode==="cat"&&catExam.length>=85&&shouldStopCat(catExam.length,estimateCatMeasurement(catExam.map(q=>({question:q,earned:itemCredit(q,answers[q.id]??[])}))));
+ const score=exam.reduce((n,q)=>n+itemCredit(q,answers[q.id]??[]),0);
+ const catPrecisionReached=mode==="cat"&&catExam.length>=85&&shouldStopCat(catExam.length,estimateCatMeasurement(catExam.map(q=>({question:q,earned:itemCredit(q,answers[q.id]??[])}))));
  const selected=item?(answers[item.id]??[]):[];
  const setResponse=(values:string[])=>{if(item)setAnswers(old=>({...old,[item.id]:values}));};
  const setIndexedResponse=(index:number,value:string)=>{const next=[...selected];while(next.length<=index)next.push("");next[index]=value;setResponse(next);};
