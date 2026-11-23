@@ -703,3 +703,45 @@
  .exam-record-tabs{position:static}
  .exam-record-content-heading{padding-bottom:8px}
 }
+
+/* Detailed student performance analytics */
+.performance-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0 24px}
+.performance-panel{padding:19px;min-width:0}
+.performance-panel .card-heading{align-items:flex-start;margin-bottom:13px}
+.performance-panel .card-heading h2{margin:0}
+.performance-panel .card-heading span{display:block;margin-top:5px;color:#8991a0;font-size:10px}
+.performance-note{margin:0 0 12px;color:#8991a0;font-size:9px;line-height:1.55}
+.performance-bar-row{width:100%;display:grid;grid-template-columns:minmax(0,1fr) 96px 14px;gap:12px;align-items:center;padding:10px 0;border:0;border-bottom:1px solid #edf0f4;background:transparent;text-align:left;cursor:pointer;color:#657184}
+.performance-bar-row:hover .performance-bar-label strong{color:#356f93}
+.performance-bar-label{min-width:0;display:grid;gap:4px}
+.performance-bar-label strong{font-size:10px;line-height:1.35;color:#39465a}
+.performance-bar-label small{font-size:9px;color:#8992a1}
+.performance-bar-track{display:block;height:7px;border-radius:8px;background:#edf1f5;overflow:hidden}
+.performance-bar-track i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,#4e89aa,#7ab2c5)}
+.performance-bar-row>svg{color:#9aa5b2}
+.performance-format-row{display:grid;gap:6px;padding:10px 0;border-bottom:1px solid #edf0f4}
+.performance-format-row>div:first-child{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.performance-format-row strong{font-size:10px;color:#39465a;text-transform:capitalize}
+.performance-format-row span{font-size:9px;color:#8992a1;white-space:nowrap}
+.performance-trend-panel{grid-column:1/-1}
+.performance-trend-chart{height:190px;display:flex;align-items:stretch;gap:clamp(8px,2.5vw,22px);padding:14px 4px 0;border-bottom:1px solid #e8edf1}
+.performance-trend-column{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:5px}
+.performance-trend-column>strong{font-size:10px;color:#3c5369;font-variant-numeric:tabular-nums}
+.performance-trend-track{width:min(34px,75%);flex:1;display:flex;align-items:flex-end;overflow:hidden;border-radius:5px 5px 0 0;background:#f0f3f6}
+.performance-trend-track i{display:block;width:100%;min-height:3px;border-radius:5px 5px 0 0;background:linear-gradient(180deg,#70a9bd,#3d7fa1)}
+.performance-trend-column>span{font-size:9px;color:#6f7b8c;white-space:nowrap}
+.performance-trend-column>small{font-size:8px;color:#9aa3af}
+.performance-recommendation{font-size:11px;line-height:1.7;color:#697588}
+.performance-recommendation strong{color:#384e63}
+.performance-action{margin-top:7px}
+.performance-secondary-priority{display:grid;gap:5px;margin-top:18px;padding-top:13px;border-top:1px solid #edf0f4}
+.performance-secondary-priority>span,.performance-secondary-priority>small{font-size:9px;color:#8992a1}
+.performance-secondary-priority>strong{font-size:12px;color:#39465a}
+.performance-secondary-priority .text-link{justify-self:start;margin-top:3px}
+@media(max-width:760px){
+ .performance-detail-grid{grid-template-columns:1fr;gap:10px}
+ .performance-trend-panel{grid-column:auto}
+ .performance-bar-row{grid-template-columns:minmax(0,1fr) 72px 12px;gap:8px}
+ .performance-format-row>div:first-child{align-items:flex-start;flex-direction:column;gap:3px}
+ .performance-trend-chart{height:165px;gap:8px}
+}
