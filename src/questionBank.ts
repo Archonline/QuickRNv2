@@ -702,6 +702,15 @@ for (const key of allGeneratedTopics) {
     throw new Error(`Missing or incomplete topic-specific clinical profile (prompt, scenario, priority, rationale, and three clinical near-miss distractors required): ${key}`);
   }
 }
+for (const [key, profile] of Object.entries(categoryTopicOverrides)) {
+  if (!key.includes("::") || !profile.prompt?.trim() || !profile.scenario?.trim() ||
+      !profile.priority?.trim() || !profile.rationale?.trim() || !profile.distractors ||
+      profile.distractors.length < 3 ||
+      profile.distractors.some(option => typeof option !== "string" || option.trim().length < 12) ||
+      new Set(profile.distractors.map(option => option.trim().toLowerCase().replace(/\\s+/g, " "))).size !== profile.distractors.length) {
+    throw new Error(`Missing or incomplete category-specific clinical variant (prompt, scenario, priority, rationale, and distinct distractors required): ${key}`);
+  }
+}
 
 function make(b: B, i: number, global: number): Question {
   const topic = b.topics[i % b.topics.length];
