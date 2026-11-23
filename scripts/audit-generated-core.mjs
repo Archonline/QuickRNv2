@@ -98,17 +98,4 @@ const report = {
   missingVariantKeys,
 };
 fs.writeFileSync("docs/question-bank/GENERATED-CORE-324-AUDIT.json", JSON.stringify(report, null, 2) + "\n");
-console.log(JSON.stringify({
-  reconstructedCount: report.reconstructedCount,
-  categoryTopicCombinations: report.categoryTopicCombinations,
-  repeatedScenarioGroups: report.repeatedScenarioGroups,
-  itemsInRepeatedGroups: report.itemsInRepeatedGroups,
-  singletonScenarioGroups: report.singletonScenarioGroups,
-  extraCopiesBeyondOnePerGroup: report.extraCopiesBeyondOnePerGroup,
-  repeatedAcrossCategories: report.repeatedAcrossCategories,
-  structuralAnswerKey: report.structuralAnswerKey,
-  rationaleCompleteness: report.rationaleCompleteness,
-  evidenceMetadata: report.evidenceMetadata,
-  distractorConstruction: report.distractorConstruction,
-  categoryOverridesPresent: report.categoryOverridesPresent,
-}, null, 2));
+console.log(JSON.stringify(report, null, 2));
