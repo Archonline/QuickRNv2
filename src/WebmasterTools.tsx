@@ -67,7 +67,7 @@ export default function WebmasterTools({questions,feedbackReports,feedbackLoadin
    }else if(type==="drop-down-cloze"||type==="drop-down-rationale"){
     const choices=type==="drop-down-cloze"?(d.clozeChoicesByBlank??(d.clozeChoices?[d.clozeChoices]:[])):d.rationaleChoicesByBlank??[];
     const template=type==="drop-down-cloze"?d.clozeTemplate:d.rationaleTemplate;
-    const blanks=type==="drop-down-cloze"?(template?.match(/\\[BLANK_\\d+\\]/g)??[]).length:(template?.match(/\\[BLANK_\\d+\\]/g)??[]).length;
+    const blanks=type==="drop-down-cloze"?(template?.match(/\[BLANK_\d+\]/g)??[]).length:(template?.match(/\[BLANK_\d+\]/g)??[]).length;
     const keys=d.correctResponse??[];
     if(blanks<1||choices.length!==blanks||choices.some(row=>row.length<2)||keys.length!==blanks||
       keys.some((value,i)=>!Number.isInteger(Number(value))||Number(value)<0||Number(value)>=choices[i].length)){
