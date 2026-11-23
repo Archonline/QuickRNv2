@@ -32,6 +32,26 @@ function auditAuthoredCoreRewriteBatch(source, rules, findings) {
     finding(findings, "error", REWRITE_BATCH_PATH, `Expected exactly ${expected} authored replacement records; detected ${ids.length}.`);
   }
   if (new Set(ids).size !== ids.length) finding(findings, "error", REWRITE_BATCH_PATH, "Duplicate authored replacement IDs detected.");
+  // The first six literal arguments are stable item metadata; compare authored prompts
+  // so generic repeated stems cannot pass merely because the clinical scenarios differ.
+  const promptRows = [...source.matchAll(/\\bsingle\\(\\s*"([^"]+)"\\s*,\\s*"[^"]*"\\s*,\\s*"[^"]*"\\s*,\\s*"[^"]*"\\s*,\\s*"((?:\\\\.|[^"\\\\])*)"\\s*,\\s*"((?:\\\\.|[^"\\\\])*)"/g)];
+  const promptOwners = new Map();
+  for (const match of promptRows) {
+    const id = match[1];
+    const prompt = normalizeText(match[3]);
+    if (!prompt) {
+      finding(findings, "error", REWRITE_BATCH_PATH, `[${id}] authored prompt is empty.`);
+      continue;
+    }
+    if (promptOwners.has(prompt)) {
+      finding(findings, "error", REWRITE_BATCH_PATH, `[${id}] repeats the generic prompt used by ${promptOwners.get(prompt)}; author a distinct clinical decision task.`);
+    } else {
+      promptOwners.set(prompt, id);
+    }
+  }
+  if (promptRows.length !== expected) {
+    finding(findings, "error", REWRITE_BATCH_PATH, `Expected to parse ${expected} authored prompt records; detected ${promptRows.length}.`);
+  }
   for (const id of ids) {
     if (!/^qrn-[a-z0-9-]+$/.test(id)) finding(findings, "error", REWRITE_BATCH_PATH, `Invalid authored question ID: ${id}`);
   }
