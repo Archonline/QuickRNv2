@@ -51,24 +51,15 @@ const repeatedAcrossCategories = [...crossCategoryTopics.entries()]
   .map(([topic, set]) => ({ topic, categories: [...set] }));
 
 const categoryOverrides = [
-  "Maternal-Newborn / Obstetrics::Newborn thermoregulation",
   "Pediatrics / Growth and Development::Newborn thermoregulation",
-  "Cardiovascular / Perfusion::Pulmonary embolism",
   "Respiratory / Airway::Pulmonary embolism",
-  "Neurologic::Meningitis",
   "Infection Control / Infectious Disease::Meningitis",
-  "Infection Control / Infectious Disease::Pertussis",
   "Pediatrics / Growth and Development::Pertussis",
-  "Infection Control / Infectious Disease::RSV",
   "Pediatrics / Growth and Development::RSV",
-  "Behavioral Health / Substance Use::Autism spectrum disorder",
   "Pediatrics / Growth and Development::Autism spectrum disorder",
 ];
-const missingVariantKeys = categoryOverrides.filter((key) => {
-  const [category, topic] = key.split("::");
-  return !source.includes('"' + category + '::' + topic + '"') &&
-    !source.includes('"' + category + '",count:');
-});
+const overrideBlock = source.slice(source.indexOf("const categoryTopicOverrides"), source.indexOf("const allGeneratedTopics"));
+const missingVariantKeys = categoryOverrides.filter((key) => !overrideBlock.includes('"' + key + '"'));
 const hasCategorySpecificResolution = source.includes('categoryTopicOverrides[b.category + "::" + topic]');
 const makeBlock = source.slice(source.indexOf("function make("), source.indexOf("const all:Question[]"));
 const keyIsDerivedFromAnswerText = makeBlock.includes("opts.indexOf(answerText)");
