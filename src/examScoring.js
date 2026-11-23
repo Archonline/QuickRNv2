@@ -72,16 +72,16 @@ export function estimateCatAbility(responses) {
 /**
  * Strict QuickRN readiness benchmark.
  * This is an internal, uncalibrated practice standard, not an NCSBN pass rule.
- * A candidate must complete at least 85 hard-item CAT questions, earn >=80%
+ * A candidate must complete at least 85 hard-item CAT questions, earn >=85%
  * partial-credit score, reach provisional ability >= +1.25 logits, and earn
  * >=70% in every question category represented by at least five items.
  */
 export const READINESS_RULES = Object.freeze({
   minimumQuestions: 85,
   maximumQuestions: 150,
-  minimumScorePercent: 80,
-  minimumAbility: 1.25,
-  minimumCategoryPercent: 70,
+  minimumScorePercent: 85,
+  minimumAbility: 2.25,
+  minimumCategoryPercent: 75,
   minimumCategorySample: 5
 });
 
