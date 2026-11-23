@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { addDoc, collection, doc, getDoc, getDocs, limit, query as firestoreQuery, serverTimestamp, setDoc, where } from "firebase/firestore";
-import { ArrowRight, BookOpen, Check, ChevronLeft, ChevronRight, CircleHelp, Clock3, Flame, GraduationCap, LayoutDashboard, Search, ShieldCheck, Target, X, BarChart3, ListChecks, LogOut, Menu, CalendarDays } from "lucide-react";
+import { ArrowRight, BookOpen, Check, ChevronLeft, ChevronRight, CircleHelp, Clock3, Flame, LayoutDashboard, Search, ShieldCheck, Target, X, BarChart3, ListChecks, LogOut, Menu, CalendarDays } from "lucide-react";
 import { db } from "./firebase";
 import { useAuth } from "./AuthContext";
 import type { Question } from "./questions";
