@@ -11,7 +11,7 @@ test("all canonical NCLEX item types have an exam interaction renderer", () => {
 
 test("dashboard stylesheet is loaded and isolated from live exam components", () => {
   const main = read("src/main.tsx");
-  const dashboardCss = read("src/dashboard-pages.css").split("\\n").slice(3).join("\\n");
+  const dashboardCss = read("src/dashboard-pages.css").split("\n").slice(3).join("\n");
   assert.ok(main.includes('import "./dashboard-pages.css";'));
   for (const selector of [".exam-screen",".exam-header",".exam-question-card",".exam-controls",".exam-record-panel",".ngn-"]) assert.ok(!dashboardCss.includes(selector), `dashboard stylesheet contains ${selector}`);
 });
