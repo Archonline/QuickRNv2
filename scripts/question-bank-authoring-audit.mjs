@@ -4,6 +4,7 @@ import path from "node:path";
 const ROOT = process.cwd();
 const RULES_PATH = path.join(ROOT, "docs/question-bank/quickrn-validation-rules.json");
 const REWRITE_BATCH_PATH = path.join(ROOT, "src/authoredCoreRewriteBatch.ts");
+const REWRITE_BATCH_2_PATH = path.join(ROOT, "src/authoredCoreRewriteBatch2.ts");
 const QUESTION_BANK_PATH = path.join(ROOT, "src/questionBank.ts");
 const NGN_BATCH_PATH = path.join(ROOT, "src/curatedQuestionBatch100.json");
 const NGN_BANK_PATH = path.join(ROOT, "src/ngnQuestionBank.ts");
@@ -62,7 +63,7 @@ function auditAuthoredCoreRewriteBatch(source, rules, findings) {
     if (!source.includes(field)) finding(findings, "error", REWRITE_BATCH_PATH, `Missing required authoring metadata: ${field}`);
   }
   const bank = readText(QUESTION_BANK_PATH);
-  if (!bank?.includes("authoredCoreRewriteBatch")) finding(findings, "error", QUESTION_BANK_PATH, "Authored batch is not integrated into the runtime question bank.");
+  if (!bank?.includes("authoredCoreRewriteBatch") || !bank?.includes("authoredCoreRewriteBatch2")) finding(findings, "error", QUESTION_BANK_PATH, "Both authored replacement batches must be integrated into the runtime question bank.");
   if (!/questionBank500\s*:\s*Question\[\]\s*=\s*all\.slice\(0,\s*500\)/.test(bank ?? "")) finding(findings, "error", QUESTION_BANK_PATH, "Existing 500-item core bank invariant is missing.");
   if (!/new Set\(questionBank500\.map\(\(question\)\s*=>\s*question\.id\)\)\.size\s*!==\s*500/.test(bank ?? "")) finding(findings, "error", QUESTION_BANK_PATH, "Existing unique core question ID invariant is missing.");
   const ngnBank = readText(NGN_BANK_PATH);
@@ -265,12 +266,12 @@ function auditCoreGenerator(rules, findings) {
       `Topics reused across category profiles still need distinct category-specific scenarios: ${repeatedTopicsMissingVariants.map(([topic, categories]) => `${topic} (${categories.join(" / ")})`).join("; ")}.`);
   }
   const candidateCount = [...categoryBlock.matchAll(/count:(\d+)/g)].reduce((total, match) => total + Number(match[1]), 0);
-  const rewriteSource = readText(REWRITE_BATCH_PATH) ?? "";
+  const rewriteSource = (readText(REWRITE_BATCH_PATH) ?? "") + "\n" + (readText(REWRITE_BATCH_2_PATH) ?? "");
   const authoredCount = [...rewriteSource.matchAll(/\bsingle\(\s*"([^"]+)"/g)].length;
   const caseScreens = 36;
   const curatedTraditional = 100;
   const generatedCount = candidateCount - caseScreens - curatedTraditional - authoredCount;
-  if (candidateCount !== 500 || authoredCount !== 100 || generatedCount !== 264) {
+  if (candidateCount !== 500 || authoredCount !== 120 || generatedCount !== 244) {
     finding(findings, "error", QUESTION_BANK_PATH, `Core inventory mismatch: candidates=${candidateCount}, unfolding=${caseScreens}, curated=${curatedTraditional}, authored=${authoredCount}, topic-profile generated=${generatedCount}.`);
   }
   console.log("Core inventory:", JSON.stringify({ total: candidateCount, unfoldingCaseScreens: caseScreens, curatedTraditional, authoredReplacements: authoredCount, topicProfileGenerated: generatedCount }));
@@ -282,7 +283,7 @@ function auditCoreGenerator(rules, findings) {
 function runAudit() {
   const rules = loadJson(RULES_PATH);
   const findings = [];
-  auditAuthoredCoreRewriteBatch(readText(REWRITE_BATCH_PATH), rules, findings);
+  auditAuthoredCoreRewriteBatch((readText(REWRITE_BATCH_PATH) ?? "") + "\n" + (readText(REWRITE_BATCH_2_PATH) ?? ""), rules, findings);
   auditCoreGenerator(rules, findings);
   auditNgnBatch(rules, findings);
   const errors = findings.filter((item) => item.level === "error");

@@ -1,7 +1,7 @@
 import fs from "node:fs";
 
 const source = fs.readFileSync("src/questionBank.ts", "utf8");
-const rewriteSource = fs.readFileSync("src/authoredCoreRewriteBatch.ts", "utf8");
+const rewriteSource = fs.readFileSync("src/authoredCoreRewriteBatch.ts", "utf8") + "\n" + fs.readFileSync("src/authoredCoreRewriteBatch2.ts", "utf8");
 const categoryBlock = source.slice(source.indexOf("const B:B[]="), source.indexOf("const cases="));
 const categories = [];
 for (const match of categoryBlock.matchAll(/\{category:"([^"]+)",count:(\d+),topics:\[([\s\S]*?)\],scenario:/g)) {
@@ -25,7 +25,7 @@ for (const profile of categories) {
     index += 1;
   }
 }
-if (generated.length !== 264) throw new Error(`Expected 264 remaining generated core questions after 100 authored replacements; reconstructed ${generated.length}.`);
+if (generated.length !== 244) throw new Error(`Expected 244 remaining generated core questions after 120 authored replacements; reconstructed ${generated.length}.`);
 
 const byCategoryTopic = new Map();
 for (const item of generated) {
@@ -81,7 +81,7 @@ if (!keyIsDerivedFromAnswerText) {
   throw new Error("Generated answer key is no longer structurally derived from the designated answer text.");
 }
 const report = {
-  scope: "Topic-profile-generated core items only; excludes 36 unfolding-case screens, 100 curated traditional items, and 100 authored replacement drafts (40 initial replacements plus 60 replacements from the current tranche).",
+  scope: "Topic-profile-generated core items only; excludes 36 unfolding-case screens, 100 curated traditional items, and 120 authored replacement drafts.",
   reconstructedCount: generated.length,
   categoryTopicCombinations: byCategoryTopic.size,
   repeatedScenarioGroups: repeatedGroups.length,
