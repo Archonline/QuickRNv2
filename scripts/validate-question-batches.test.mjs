@@ -30,7 +30,7 @@ function makeQuestion(index) {
       references: [],
       publicationStatus: "draft",
     },
-    clinicalScenario: `Case ${index + 1}: A patient with a distinct acute presentation has a changing assessment, relevant observations, and a specific timeline that determine the nursing decision. Additional case-specific details ${index + 1}.`,
+    clinicalScenario: `Case ${index + 1}: conditionalpha${index} presentationbeta${index} findinggamma${index} treatmentdelta${index} timelineepsilon${index}. The patient's assessment and observations establish a distinct nursing decision for this clinical situation.`,
     clinicalJudgmentStep: "take-action",
     interaction: {
       correctResponse: ["0"],
