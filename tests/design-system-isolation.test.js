@@ -6,7 +6,7 @@ test("dashboard design layer does not style active NCLEX/NGN question components
   const css = (await readFile(new URL("../src/design-system.css", import.meta.url), "utf8"))
     .replace(/\/\*[\s\S]*?\*\//g, "");
   const protectedExamSelectors = css.match(
-    /[^{}]*\.(?:exam-(?:screen|layout|question|option|stem|item|record|case|controls|options|main|nav|header)|ngn)-[a-zA-Z0-9_-]*[^{}]*\{/g
+    /[^{}]*\.(?:exam-(?:screen|layout|question|option|stem|item|record|case|controls|options|main|nav|header)[a-zA-Z0-9_-]*|ngn-[a-zA-Z0-9_-]*)[^{}]*\{/g
   ) ?? [];
   assert.deepEqual(
     protectedExamSelectors,
