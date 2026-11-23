@@ -63,12 +63,12 @@ test("all response formats represented in the published bank render in the share
   expect(total, "The sampler should include every available type and preserve full case-study groups").toBeGreaterThanOrEqual(expected);
   for (let index = 0; index < total; index += 1) {
     await expect(page.locator(".exam-question-card")).toBeVisible();
-    const previousPrompt = await page.locator(".exam-stem").textContent();
+    const previousCounter = await page.locator(".exam-question-counter").textContent();
     await expect(page.locator(".exam-stem")).not.toBeEmpty();
     await expect(page.locator(".exam-question-card input, .exam-question-card select, .exam-question-card textarea, .exam-question-card button, .exam-question-card [draggable=true]").first()).toBeVisible();
     if (index < total - 1) {
       await page.locator(".exam-controls .exam-next").click();
-      await expect.poll(() => page.locator(".exam-stem").textContent()).not.toBe(previousPrompt);
+      await expect.poll(() => page.locator(".exam-question-counter").textContent()).not.toBe(previousCounter);
     }
   }
 });
