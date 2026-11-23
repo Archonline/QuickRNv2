@@ -623,7 +623,7 @@ for (const key of allGeneratedTopics) {
       !profile.rationale?.trim() || !profile.distractors || profile.distractors.length < 3 ||
       profile.distractors.some(option => typeof option !== "string" || option.trim().length < 12) ||
       new Set(profile.distractors.map(option => option.trim().toLowerCase().replace(/\s+/g, " "))).size !== profile.distractors.length ||
-      profile.distractors.some(option => /\b(?:unicorn|pizza|sing a song|dance|ignore the patient|do nothing)\\b/i.test(option))) {
+      profile.distractors.some(option => /\b(?:unicorn|pizza|sing a song|dance|ignore the patient|do nothing)\b/i.test(option))) {
     throw new Error(`Missing or incomplete topic-specific clinical profile (prompt, scenario, priority, rationale, and three clinical near-miss distractors required): ${key}`);
   }
 }
