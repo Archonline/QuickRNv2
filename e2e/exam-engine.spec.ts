@@ -70,3 +70,13 @@ test("all response formats represented in the published bank render in the share
     }
   }
 });
+
+test("practice launches an unfolding case in authored screen order", async ({ page }) => {
+  await page.goto("/e2e/bank-player.html?case=1");
+  const expectedScreens = Number(await page.getByTestId("expected-case-screens").textContent());
+  expect(expectedScreens).toBeGreaterThan(1);
+  await page.getByRole("button", { name: /Begin practice/ }).click();
+  await expect(page.locator(".exam-question-counter")).toContainText(`SCREEN 1 OF ${expectedScreens}`);
+  await page.getByRole("button", { name: /^Next/ }).click();
+  await expect(page.locator(".exam-question-counter")).toContainText(`SCREEN 2 OF ${expectedScreens}`);
+});
