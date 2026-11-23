@@ -6306,7 +6306,7 @@
       "topic": "Maternal-Newborn Nursing",
       "subtopic": "Fetal Heart Rate Decelerations (VEAL CHOP)",
       "specialty": "Maternal-Newborn",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "28-year-old G2P1 at 39 weeks gestation in active labor at 6 cm dilation, membranes artificially ruptured 20 minutes ago.",
@@ -6331,24 +6331,24 @@
           "Continuous electronic fetal monitoring"
         ]
       },
-      "stem": "What is the primary cause of these fetal heart rate decelerations, and which nursing action should be performed first?",
+      "stem": "The fetal monitor shows recurrent abrupt decreases in fetal heart rate from 145 to 90/min, with rapid return to baseline. The client is 6 cm dilated and membranes ruptured 20 minutes ago. Which response is most appropriate?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Umbilical cord compression; reposition the client laterally or into knee-chest position"
+            "text": "Reposition the client, assess for cord prolapse, and evaluate the tracing and fetal recovery"
           },
           {
             "id": "B",
-            "text": "Fetal head compression; document as a benign finding and continue current care"
+            "text": "Increase the oxytocin infusion to shorten labor and reduce fetal exposure to contractions"
           },
           {
             "id": "C",
-            "text": "Uteroplacental insufficiency; prepare immediately for an emergent cesarean birth"
+            "text": "Prepare for immediate cesarean birth without first assessing reversible causes"
           },
           {
             "id": "D",
-            "text": "Maternal supine hypotension; administer an IV bolus of ephedrine"
+            "text": "Administer oxygen by nonrebreather routinely while keeping the client supine"
           }
         ]
       },
@@ -6360,11 +6360,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Abrupt V- or W-shaped drops in FHR (variable decelerations) reflect transient umbilical cord compression, especially after rupture of membranes.",
-        "A": "Correct. Variable decelerations indicate cord compression; changing maternal position (left/right lateral or knee-chest) relieves mechanical pressure on the umbilical cord.",
-        "B": "Incorrect. Head compression causes uniform early decelerations that mirror contractions.",
-        "C": "Incorrect. Uteroplacental insufficiency causes gradual late decelerations peaking after the contraction peak.",
-        "D": "Incorrect. Maternal BP is normal (118/72 mmHg)."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Abrupt variable decelerations suggest cord compression; maternal repositioning and assessment for prolapse or other reversible causes are appropriate first steps.",
+        "B": "Increasing uterine activity can worsen fetal stress and is not appropriate with recurrent decelerations.",
+        "C": "Immediate operative birth may be needed if the tracing remains nonreassuring, but initial assessment and intrauterine resuscitative measures are indicated.",
+        "D": "Routine oxygen is not recommended for a normoxic mother; supine positioning may worsen uteroplacental perfusion."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -6413,24 +6413,24 @@
           "Postpartum hemorrhage protocol"
         ]
       },
-      "stem": "Which sequence of immediate nursing interventions is most appropriate?",
+      "stem": "Forty-five minutes after birth, the client has heavy vaginal bleeding and a boggy uterus displaced to the right. Blood pressure is 92/58 mmHg and heart rate is 118/min. Which action should the nurse take first?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Perform firm bimanual/fundal massage while supporting the lower uterine segment, call for assistance, and empty the urinary bladder"
+            "text": "Call for assistance, massage the fundus while supporting the lower uterine segment, and assess bladder distention"
           },
           {
             "id": "B",
-            "text": "Administer methylergonovine 0.2 mg IM first without touching the uterus"
+            "text": "Administer methylergonovine before assessing blood pressure or contraindications"
           },
           {
             "id": "C",
-            "text": "Insert vaginal gauze packing and elevate the head of the bed to 45 degrees"
+            "text": "Assist the client to ambulate to the bathroom without additional assessment"
           },
           {
             "id": "D",
-            "text": "Encourage the client to ambulate to the bathroom to void"
+            "text": "Apply an ice pack to the perineum and recheck the fundus in 30 minutes"
           }
         ]
       },
@@ -6442,11 +6442,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Uterine atony is the leading cause of postpartum hemorrhage; immediate firm fundal massage (anchoring the lower uterine segment) stimulates myometrial contraction, while bladder emptying corrects fundal displacement.",
-        "A": "Correct. Firm fundal massage with lower-segment support immediately compresses bleeding spiral arteries, while catheterizing a full bladder removes mechanical displacement of the uterus.",
-        "B": "Incorrect. Mechanical fundal massage is always the immediate first-line action while uterotonics are prepared.",
-        "C": "Incorrect. Loose vaginal packing conceals ongoing blood loss and does not contract an atonic myometrium.",
-        "D": "Incorrect. A hypotensive, tachycardic bleeding client must remain supine/flat with straight catheterization performed at the bedside."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "A boggy displaced uterus suggests atony with possible bladder distention; immediate fundal massage, assistance, and rapid hemorrhage response are priorities.",
+        "B": "Methylergonovine may be contraindicated with hypertension and should not precede immediate assessment and first-line measures.",
+        "C": "Ambulation is unsafe in a client with active hemorrhage and hemodynamic changes.",
+        "D": "Ice may help perineal discomfort but does not treat uterine atony or hemorrhage."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -6500,28 +6500,28 @@
           "Prepare for delivery after maternal stabilization"
         ]
       },
-      "stem": "Which nursing interventions are essential for this client? Select all that apply.",
+      "stem": "A client with severe preeclampsia develops right-upper-quadrant pain, nausea, falling platelets, and elevated liver enzymes. Which nursing actions are appropriate? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Avoid abdominal palpation over the liver to prevent subcapsular hepatic hematoma rupture"
+            "text": "Institute seizure precautions and maintain a low-stimulation environment"
           },
           {
             "id": "B",
-            "text": "Maintain a quiet, dimly lit environment with padded side rails for seizure prophylaxis"
+            "text": "Assess for worsening hepatic involvement and report increasing right-upper-quadrant or epigastric pain promptly"
           },
           {
             "id": "C",
-            "text": "Monitor blood pressure every 5 to 15 minutes during IV labetalol administration"
+            "text": "Monitor blood pressure closely during prescribed IV antihypertensive therapy"
           },
           {
             "id": "D",
-            "text": "Administer intramuscular betamethasone into the gluteal muscle without applying prolonged pressure"
+            "text": "Perform repeated deep abdominal palpation to determine liver enlargement"
           },
           {
             "id": "E",
-            "text": "Type and crossmatch for platelets and packed red blood cells prior to delivery"
+            "text": "Prepare for possible urgent birth and blood-product support based on maternal and fetal status"
           }
         ]
       },
@@ -6536,12 +6536,12 @@
         "max_points": 4
       },
       "rationales": {
-        "summary": "HELLP syndrome (Hemolysis, Elevated Liver enzymes, Low Platelets) carries high risk of hepatic capsule rupture, eclamptic seizures, stroke, and hemorrhage.",
-        "A": "Correct. Hepatic congestion and subcapsular hematoma make liver palpation hazardous.",
-        "B": "Correct. Minimizing sensory stimulation alongside magnesium sulfate reduces eclamptic seizure risk.",
-        "C": "Correct. Frequent BP checks ensure severe hypertension (<160/110 mmHg) is safely controlled without causing placental hypoperfusion.",
-        "D": "Incorrect. With platelets at 68,000/mm3, firm prolonged pressure is required after any IM injection to prevent hematoma.",
-        "E": "Correct. Thrombocytopenia necessitates blood product readiness for delivery."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Severe preeclampsia carries seizure risk; safety and reduced stimulation are appropriate.",
+        "B": "Pain may signal hepatic involvement or subcapsular hematoma and requires prompt escalation.",
+        "C": "Frequent blood-pressure monitoring is needed during IV antihypertensive treatment to avoid excessive reduction and detect persistent severe hypertension.",
+        "D": "Repeated deep palpation is not indicated and may cause harm when hepatic complications are suspected.",
+        "E": "HELLP or worsening severe features may require expedited birth and blood-product readiness depending on labs and clinical status."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -6563,7 +6563,7 @@
       "topic": "Maternal-Newborn Nursing",
       "subtopic": "Placenta Previa vs. Abruptio Placentae",
       "specialty": "Maternal-Newborn",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "31-year-old G3P2 at 33 weeks gestation brought to labor and delivery triage with sudden onset of painless, bright red vaginal bleeding.",
@@ -6590,24 +6590,24 @@
           "Continuous fetal monitoring"
         ]
       },
-      "stem": "Which procedure is strictly contraindicated in this client until placental location is confirmed by ultrasound?",
+      "stem": "A pregnant client at 33 weeks presents with painless bright-red vaginal bleeding. Placental location is not yet known. Which assessment must the nurse avoid until placenta previa has been excluded?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Digital vaginal cervical examination"
+            "text": "Digital vaginal examination"
           },
           {
             "id": "B",
-            "text": "Transabdominal obstetric ultrasound"
+            "text": "External fetal heart-rate monitoring"
           },
           {
             "id": "C",
-            "text": "External electronic fetal heart rate monitoring"
+            "text": "Ultrasound assessment of placental location"
           },
           {
             "id": "D",
-            "text": "Insertion of a large-bore peripheral intravenous catheter"
+            "text": "Maternal vital signs and assessment of bleeding amount"
           }
         ]
       },
@@ -6619,11 +6619,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Painless bright red bleeding in the third trimester with a soft nontender uterus is classic for placenta previa; digital vaginal exams can lacerate the low-lying placenta and cause catastrophic hemorrhage.",
-        "A": "Correct. Digital vaginal examination is strictly contraindicated until placenta previa is ruled out by ultrasound.",
-        "B": "Incorrect. Transabdominal ultrasound is the safe diagnostic gold standard.",
-        "C": "Incorrect. External fetal monitoring is essential and noninvasive.",
-        "D": "Incorrect. Large-bore IV access is a critical safety measure."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Digital cervical examination can disrupt a placenta previa and precipitate severe hemorrhage.",
+        "B": "External fetal monitoring is appropriate to assess fetal status.",
+        "C": "Ultrasound is used to determine placental location.",
+        "D": "Maternal assessment and quantification of bleeding are essential."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -6644,7 +6644,7 @@
       "topic": "Maternal-Newborn Nursing",
       "subtopic": "Newborn Hypoglycemia",
       "specialty": "Maternal-Newborn",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "2-hour-old term male infant born to a mother with gestational diabetes mellitus; birth weight 4,280 g (LGA).",
@@ -6669,24 +6669,24 @@
           "Newborn hypoglycemia protocol"
         ]
       },
-      "stem": "Which action should the nurse take first for this jittery newborn with a blood glucose of 32 mg/dL?",
+      "stem": "A 2-hour-old infant of a diabetic mother is jittery. Point-of-care glucose is 32 mg/dL. The infant is awake, has a coordinated suck, and has no respiratory distress. Which action is most appropriate?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Initiate an immediate oral feeding (breastfeed or infant formula) and recheck heel-stick glucose in 30 minutes"
+            "text": "Initiate prompt feeding and follow the neonatal hypoglycemia protocol for repeat glucose and escalation if it remains low"
           },
           {
             "id": "B",
-            "text": "Administer 5% dextrose in water (D5W) orally via syringe"
+            "text": "Observe without feeding because jitteriness is common during transition after birth"
           },
           {
             "id": "C",
-            "text": "Observe the newborn for 1 hour and recheck glucose if jitteriness worsens"
+            "text": "Give sterile water by syringe and repeat the glucose at the next routine assessment"
           },
           {
             "id": "D",
-            "text": "Place the newborn under a radiant warmer without feeding to conserve calories"
+            "text": "Begin IV dextrose immediately without attempting feeding or following the newborn protocol"
           }
         ]
       },
@@ -6698,11 +6698,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Infants of diabetic mothers have transient hyperinsulinemia after umbilical cord clamping; asymptomatic or mildly symptomatic newborns able to feed orally require immediate breastmilk or formula.",
-        "A": "Correct. Breastmilk or formula provides sustained complex carbohydrates, protein, and fat to stabilize blood glucose without triggering rebound insulin spikes.",
-        "B": "Incorrect. Oral dextrose water causes a rapid glucose spike followed by rebound insulin secretion and worse hypoglycemia.",
-        "C": "Incorrect. Delaying treatment risks hypoglycemic seizures and neuronal injury.",
-        "D": "Incorrect. Maintaining normothermia is important, but caloric substrate via feeding is immediately required."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "An asymptomatic or mildly symptomatic infant who can feed may receive prompt feeding per protocol, with timely recheck and escalation for persistent or severe hypoglycemia.",
+        "B": "Jitteriness may be a symptom of hypoglycemia and requires action.",
+        "C": "Water does not correct neonatal hypoglycemia and can be harmful.",
+        "D": "IV dextrose is indicated for severe symptoms, inability to feed, or failure of initial treatment per protocol; it is not automatically first for every stable infant."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -6723,7 +6723,7 @@
       "topic": "Maternal-Newborn Nursing",
       "subtopic": "Newborn Hyperbilirubinemia & Phototherapy",
       "specialty": "Maternal-Newborn",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "38-hour-old term female newborn receiving overhead LED phototherapy for unconjugated hyperbilirubinemia.",
@@ -6749,35 +6749,35 @@
           "Encourage breastfeeding every 2-3 hours"
         ]
       },
-      "stem": "Which nursing interventions are essential while this newborn is receiving phototherapy? Select all that apply.",
+      "stem": "A term newborn is receiving phototherapy. Which nursing actions support treatment effectiveness and reduce complications? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Apply opaque eye shields over closed eyelids and remove them during feedings to inspect the eyes"
+            "text": "Maximize exposed skin while maintaining appropriate eye protection according to the device and policy"
           },
           {
             "id": "B",
-            "text": "Keep the newborn undressed except for a small diaper and eye shields to maximize skin exposure"
+            "text": "Monitor temperature, hydration, feeding, and urine/stool output"
           },
           {
             "id": "C",
-            "text": "Apply moisturizing lotion to the newborn's skin every 4 hours to prevent dryness"
+            "text": "Remove eye protection during feeding and care to assess the eyes and support interaction"
           },
           {
             "id": "D",
-            "text": "Monitor axillary temperature every 2 to 4 hours and encourage frequent breastfeedings"
+            "text": "Apply oil-based lotion before each session to prevent skin dryness"
           },
           {
             "id": "E",
-            "text": "Turn the phototherapy light off when drawing blood samples for serum bilirubin levels"
+            "text": "Verify irradiance and distance according to the equipment instructions and monitor bilirubin as ordered"
           }
         ]
       },
       "correct_response": [
         "A",
         "B",
-        "D",
+        "C",
         "E"
       ],
       "scoring": {
@@ -6785,12 +6785,12 @@
         "max_points": 4
       },
       "rationales": {
-        "summary": "Phototherapy photo-isomerizes unconjugated bilirubin into water-soluble lumirubin excreted in bile and urine; care focuses on retinal protection, skin exposure, hydration, and accurate bilirubin sampling.",
-        "A": "Correct. Opaque shields protect the developing retina from light damage, and periodic removal allows parent-infant bonding and conjunctival checks.",
-        "B": "Correct. Maximum exposed skin surface accelerates bilirubin photo-isomerization.",
-        "C": "Incorrect. Lotions or ointments absorb heat under phototherapy lights and can cause thermal burns.",
-        "D": "Correct. Frequent feeding promotes stooling (bilirubin excretion) and offsets insensible water loss.",
-        "E": "Correct. Phototherapy light degrades bilirubin inside the capillary blood collection tube, causing falsely low lab results."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Adequate skin exposure improves treatment while eye protection is used according to device guidance.",
+        "B": "Phototherapy increases insensible water loss; temperature, hydration, and output require monitoring.",
+        "C": "Brief removal during care allows eye assessment and bonding while maintaining safe protection during exposure.",
+        "D": "Oils and lotions may alter heat absorption or cause skin injury and should not be applied unless specifically directed.",
+        "E": "Correct equipment setup and serial bilirubin measurement ensure effective and safe therapy."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -6812,7 +6812,7 @@
       "topic": "Maternal-Newborn Nursing",
       "subtopic": "Rho(D) Immune Globulin",
       "specialty": "Maternal-Newborn",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "26-year-old G1P1 postpartum client 12 hours after an uncomplicated vaginal birth.",
@@ -6840,24 +6840,24 @@
           "Administer Rho(D) immune globulin within 72 hours of delivery"
         ]
       },
-      "stem": "Which explanation accurately describes why this client needs Rho(D) immune globulin?",
+      "stem": "A postpartum client is Rh-negative and has not been sensitized. The newborn is Rh-positive. Which explanation best describes the purpose of Rho(D) immune globulin?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "To prevent her immune system from forming anti-Rh antibodies that could attack red blood cells in a future Rh-positive fetus"
+            "text": "It prevents maternal sensitization by clearing fetal Rh-positive cells from the maternal circulation before an immune response develops"
           },
           {
             "id": "B",
-            "text": "To treat active hemolytic anemia in her current newborn infant"
+            "text": "It treats hemolysis that is already occurring in the newborn"
           },
           {
             "id": "C",
-            "text": "To provide passive immunity against maternal rubella infection"
+            "text": "It changes the mother's red blood cells to Rh-positive"
           },
           {
             "id": "D",
-            "text": "To stimulate maternal bone marrow production of Rh-positive red blood cells"
+            "text": "It provides lifelong immunity against all future blood-group incompatibilities"
           }
         ]
       },
@@ -6869,11 +6869,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "When an unsensitized Rh-negative mother delivers an Rh-positive infant, Rho(D) immune globulin clears fetal Rh-positive RBCs from maternal circulation before maternal sensitization occurs.",
-        "A": "Correct. Administering Rho(D) immune globulin within 72 hours prevents isoimmunization and hemolytic disease of the fetus/newborn in subsequent pregnancies.",
-        "B": "Incorrect. The newborn's direct Coombs is negative; Rho(D) immune globulin is given to the mother, not the infant.",
-        "C": "Incorrect. Rubella vaccine provides active rubella immunity.",
-        "D": "Incorrect. Blood type is genetically determined and cannot be altered."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Rho(D) immune globulin prevents formation of maternal anti-D antibodies after exposure to Rh-positive fetal cells.",
+        "B": "It does not treat neonatal hemolytic disease once present.",
+        "C": "It does not change maternal blood type.",
+        "D": "It is specific to preventing Rh(D) sensitization and does not prevent all blood-group incompatibilities."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -6920,24 +6920,24 @@
           "Emergency cesarean delivery"
         ]
       },
-      "stem": "Which action must the nurse perform immediately and maintain until emergency cesarean delivery?",
+      "stem": "Immediately after membrane rupture, the nurse sees and palpates a pulsating umbilical cord below the presenting part. The fetal heart rate falls to 70/min. Which action is the priority while help is summoned?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Insert two sterile-gloved fingers into the vagina to lift the fetal presenting part off the umbilical cord while calling for emergency help"
+            "text": "Use a gloved hand to lift the presenting part off the cord and maintain that pressure until birth"
           },
           {
             "id": "B",
-            "text": "Gently push the prolapsed umbilical cord back inside the uterine cavity"
+            "text": "Attempt to push the cord back above the presenting part and then reassess the fetal heart rate"
           },
           {
             "id": "C",
-            "text": "Place the client in high Fowler position and encourage forceful pushing"
+            "text": "Apply fundal pressure to accelerate descent of the presenting part"
           },
           {
             "id": "D",
-            "text": "Apply dry sterile gauze over the prolapsed cord and await spontaneous vaginal delivery"
+            "text": "Place the client supine and wait for the obstetric provider before intervening"
           }
         ]
       },
@@ -6949,11 +6949,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Overt umbilical cord prolapse compresses fetal blood supply; continuous manual elevation of the presenting part (paired with Trendelenburg/knee-chest positioning and stopping oxytocin) preserves fetal oxygenation until cesarean delivery.",
-        "A": "Correct. Keeping the examiner's hand in place to elevate the presenting part off the cord prevents cord occlusion until the infant is delivered.",
-        "B": "Incorrect. Attempting to push the cord back into the uterus causes severe vasospasm and trauma.",
-        "C": "Incorrect. High Fowler and pushing drive the fetal head downward, crushing the cord.",
-        "D": "Incorrect. Dry gauze adheres to and desiccates Wharton jelly; warm saline-soaked gauze is used only if cord protrudes externally, and immediate cesarean is mandatory."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Relieving compression of the prolapsed cord is the immediate priority; maintain elevation of the presenting part while preparing for expedited birth.",
+        "B": "Do not attempt to replace the cord; manipulation can cause vasospasm and injury.",
+        "C": "Fundal pressure worsens cord compression.",
+        "D": "Waiting without relieving compression risks prolonged fetal hypoxia; positioning and urgent birth preparation occur concurrently."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -7000,24 +7000,24 @@
           "Prepare emergency airway cart"
         ]
       },
-      "stem": "Which action is strictly contraindicated in the immediate management of this child?",
+      "stem": "A 4-year-old with fever, drooling, muffled voice, and tripod positioning is suspected of having epiglottitis. Which action should the nurse avoid?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Inspecting the posterior pharynx with a tongue depressor or obtaining a throat swab"
+            "text": "Inspecting the throat with a tongue depressor or attempting to obtain a throat swab"
           },
           {
             "id": "B",
-            "text": "Allowing the child to remain upright in his parent's lap with blow-by humidified oxygen"
+            "text": "Keeping the child calm and upright with a parent present"
           },
           {
             "id": "C",
-            "text": "Notifying pediatric anesthesia and otolaryngology immediately for controlled intubation"
+            "text": "Summoning the airway team and preparing for controlled airway management"
           },
           {
             "id": "D",
-            "text": "Maintaining a calm, quiet environment to prevent crying and agitation"
+            "text": "Providing oxygen in the least distressing manner the child will tolerate"
           }
         ]
       },
@@ -7029,11 +7029,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Tripod positioning, drooling, dysphagia, and high fever indicate acute epiglottitis; any pharyngeal stimulation or agitation can trigger lethal laryngospasm and complete airway occlusion.",
-        "A": "Correct. Using a tongue blade or throat swab can provoke immediate reflex laryngospasm and respiratory arrest.",
-        "B": "Incorrect. Keeping the child upright with parent comfort and blow-by oxygen minimizes crying and airway collapse.",
-        "C": "Incorrect. Controlled intubation in the operating room by specialists is the standard definitive airway management.",
-        "D": "Incorrect. Preventing agitation reduces oxygen demand and airway turbulence."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Throat manipulation can precipitate complete airway obstruction; avoid upsetting the child and prepare for controlled airway management.",
+        "B": "Calm upright positioning reduces distress and helps maintain the airway.",
+        "C": "Early expert airway planning is essential because obstruction can progress rapidly.",
+        "D": "Oxygen may be offered gently without forcing a mask or procedure that agitates the child."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -7055,7 +7055,7 @@
       "topic": "Pediatric Nursing",
       "subtopic": "Kawasaki Disease",
       "specialty": "Pediatrics",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "3-year-old female admitted with 6 days of persistent high fever, bilateral non-purulent conjunctivitis, strawberry tongue, cracked red lips, and polymorphous rash.",
@@ -7085,28 +7085,28 @@
           "Strict I&O and daily weights"
         ]
       },
-      "stem": "Which nursing interventions and parent teachings are appropriate for this child? Select all that apply.",
+      "stem": "A child with Kawasaki disease is receiving IVIG and aspirin. Which discharge instructions and monitoring priorities are appropriate? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Monitor cardiac status closely for arrhythmias, gallop rhythm, or signs of heart failure during IVIG infusion"
+            "text": "Keep scheduled cardiology follow-up and echocardiography appointments even if the fever resolves"
           },
           {
             "id": "B",
-            "text": "Delay live-virus immunizations (MMR and varicella) for 11 months after high-dose IVIG administration"
+            "text": "Report chest pain, unusual fatigue, pallor, or signs of poor perfusion promptly"
           },
           {
             "id": "C",
-            "text": "Explain that low-dose aspirin therapy continues at home to prevent coronary artery thrombosis"
+            "text": "Discuss timing of live vaccines with the provider because IVIG can interfere with vaccine response"
           },
           {
             "id": "D",
-            "text": "Apply petroleum jelly to cracked lips and offer cool liquids and soft foods"
+            "text": "Give ibuprofen routinely with aspirin to improve antiplatelet action"
           },
           {
             "id": "E",
-            "text": "Administer ibuprofen alongside aspirin to accelerate fever resolution"
+            "text": "Use comfort measures for oral discomfort and encourage fluids the child can tolerate"
           }
         ]
       },
@@ -7114,19 +7114,19 @@
         "A",
         "B",
         "C",
-        "D"
+        "E"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 4
       },
       "rationales": {
-        "summary": "Kawasaki disease is an acute systemic vasculitis with a high risk of coronary artery aneurysms; treatment combines IVIG and aspirin alongside live-vaccine deferral.",
-        "A": "Correct. Myocarditis and volume overload during high-dose IVIG (2 g/kg) require close cardiac monitoring.",
-        "B": "Correct. Passively transferred antibodies in IVIG neutralize live MMR and varicella vaccines for up to 11 months.",
-        "C": "Correct. Low-dose aspirin provides antiplatelet prophylaxis against coronary aneurysm thrombosis.",
-        "D": "Correct. Comfort measures relieve mucositis and maintain hydration.",
-        "E": "Incorrect. Ibuprofen competitively blocks aspirin's antiplatelet COX-1 acetylation and increases GI bleeding risk."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Coronary artery complications may develop or persist after fever resolves; follow-up imaging is essential.",
+        "B": "Cardiac symptoms or poor perfusion require prompt assessment.",
+        "C": "IVIG can interfere with live vaccine response; timing should be coordinated with the provider.",
+        "D": "Ibuprofen may increase bleeding risk and can interfere with aspirin's antiplatelet effect; it should not be added routinely.",
+        "E": "Hydration and comfort measures support intake and recovery."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -7148,7 +7148,7 @@
       "topic": "Pediatric Nursing",
       "subtopic": "Pyloric Stenosis",
       "specialty": "Pediatrics",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "5-week-old male infant admitted with forceful, non-bilious projectile vomiting immediately after every feeding for 4 days.",
@@ -7177,24 +7177,24 @@
           "Correct fluid and electrolyte imbalances prior to laparoscopic pyloromyotomy"
         ]
       },
-      "stem": "Why must fluid and electrolyte abnormalities be corrected before the infant undergoes pyloromyotomy?",
+      "stem": "An infant with pyloric stenosis has persistent projectile vomiting, chloride 88 mEq/L, potassium 3.0 mEq/L, and metabolic alkalosis. Why should surgery be delayed until fluid and electrolyte abnormalities are corrected?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Hypochloremic metabolic alkalosis and hypokalemia increase the risk of postoperative apnea and cardiac arrhythmias under general anesthesia"
+            "text": "Volume depletion and alkalosis increase anesthetic risk, including postoperative apnea and dysrhythmias"
           },
           {
             "id": "B",
-            "text": "Preoperative hydration shrinks the hypertrophied pyloric muscle so surgery may be avoided"
+            "text": "Correction is needed to shrink the pyloric muscle and eliminate the need for surgery"
           },
           {
             "id": "C",
-            "text": "Alkalosis prevents surgical wound healing by inhibiting fibroblast proliferation"
+            "text": "Electrolyte correction prevents the infant from developing lactose intolerance after surgery"
           },
           {
             "id": "D",
-            "text": "Intravenous fluids are required to dissolve bilious concretions in the duodenum"
+            "text": "The alkalosis prevents the pylorus from relaxing during the procedure"
           }
         ]
       },
@@ -7206,11 +7206,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Loss of gastric hydrochloric acid causes hypochloremic, hypokalemic metabolic alkalosis, which depresses central respiratory drive and predisposes the infant to postoperative apnea.",
-        "A": "Correct. Pyloromyotomy is an urgent (not emergent) procedure; normalizing volume, chloride, potassium, and pH prevents anesthesia-related apnea and arrhythmias.",
-        "B": "Incorrect. Surgical pyloromyotomy is definitive; fluids do not shrink the hypertrophied muscle.",
-        "C": "Incorrect. The primary risk is perioperative respiratory depression and arrhythmia.",
-        "D": "Incorrect. Vomiting in pyloric stenosis is non-bilious because the obstruction is proximal to the ampulla of Vater."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Dehydration, hypochloremia, hypokalemia, and alkalosis increase peri-anesthetic risk; stabilize before pyloromyotomy.",
+        "B": "Fluid therapy does not reliably reverse the anatomic hypertrophy or replace surgery.",
+        "C": "Lactose intolerance is not the reason for preoperative correction.",
+        "D": "The primary concern is systemic anesthetic and cardiopulmonary risk, not pyloric relaxation."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -7231,7 +7231,7 @@
       "topic": "Pediatric Nursing",
       "subtopic": "Intussusception",
       "specialty": "Pediatrics",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "9-month-old male brought to the emergency department for episodic inconsolable crying where he draws his knees up to his abdomen every 15 minutes, followed by lethargy.",
@@ -7257,24 +7257,24 @@
           "Prepare for ultrasound-guided hydrostatic/pneumatic enema reduction"
         ]
       },
-      "stem": "Immediately before transporting the infant to radiology for the hydrostatic enema, the nurse observes a normal brown stool in the diaper and the infant is resting comfortably without pain. What should the nurse do?",
+      "stem": "An infant with suspected intussusception is awaiting an image-guided air enema. The infant suddenly passes a normal-appearing stool and becomes comfortable. What should the nurse do?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Notify the radiologist and pediatric surgeon immediately because the intussusception may have spontaneously reduced"
+            "text": "Notify the radiology and surgical teams before the procedure because spontaneous reduction may have occurred and requires reassessment"
           },
           {
             "id": "B",
-            "text": "Discard the diaper and proceed with the enema as scheduled"
+            "text": "Proceed with the enema without reporting the change because stool passage confirms obstruction"
           },
           {
             "id": "C",
-            "text": "Offer the infant 4 ounces of oral formula to confirm bowel patency"
+            "text": "Offer a full feeding to determine whether the bowel remains patent"
           },
           {
             "id": "D",
-            "text": "Administer an opioid analgesic for presumed sedation"
+            "text": "Cancel the procedure independently and discharge the infant if pain has stopped"
           }
         ]
       },
@@ -7286,11 +7286,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Passage of normal brown stool accompanied by sudden resolution of paroxysmal pain indicates spontaneous reduction of the telescoped bowel segment.",
-        "A": "Correct. The provider must be alerted immediately to re-evaluate the infant before performing an invasive enema.",
-        "B": "Incorrect. Proceeding without notifying the team could subject the infant to an unnecessary procedure.",
-        "C": "Incorrect. Keep the infant NPO until cleared by the surgical/radiology team.",
-        "D": "Incorrect. The infant is comfortable and pain-free."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Symptoms may resolve after spontaneous reduction, but reassessment and confirmation are needed before proceeding with an enema.",
+        "B": "Stool passage and symptom relief do not confirm persistent obstruction; the team must reassess.",
+        "C": "Oral feeding is inappropriate until obstruction and procedure plans are clarified.",
+        "D": "The nurse should not independently cancel the procedure or discharge; recurrence and complications remain possible."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
@@ -7311,7 +7311,7 @@
       "topic": "Pediatric Nursing",
       "subtopic": "Tetralogy of Fallot (Tet Spells)",
       "specialty": "Pediatrics",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "ordered_response",
       "clinical_scenario": {
         "patient_profile": "6-month-old infant with unrepaired tetralogy of Fallot hospitalized for bronchiolitis.",
@@ -7336,7 +7336,7 @@
           "Hypercyanotic ('Tet') spell emergency protocol"
         ]
       },
-      "stem": "Place the nurse's interventions for this acute hypercyanotic ('Tet') spell in the correct priority order from first to last.",
+      "stem": "An infant with unrepaired tetralogy of Fallot becomes deeply cyanotic and irritable during a procedure. Which sequence best prioritizes immediate actions while additional treatment is prepared?",
       "interaction": {
         "items": [
           "Place the infant immediately in the knee-chest position while calming the infant",
@@ -7346,21 +7346,21 @@
         ]
       },
       "correct_response": [
-        "Place the infant immediately in the knee-chest position while calming the infant",
-        "Administer 100% blow-by or face-mask oxygen",
-        "Administer prescribed morphine sulfate to relax infundibular spasm and reduce agitation",
-        "Administer prescribed intravenous normal saline bolus to improve right ventricular filling and pulmonary blood flow"
+        "Place the infant in the knee-chest position and calm the infant",
+        "Administer oxygen as tolerated",
+        "Administer prescribed morphine or other ordered medication to reduce agitation and infundibular spasm",
+        "Administer prescribed isotonic fluid bolus if indicated to improve preload"
       ],
       "scoring": {
         "method": "sequence",
         "max_points": 1
       },
       "rationales": {
-        "1": "Knee-chest positioning kinks femoral arteries, raising systemic vascular resistance within seconds to reduce right-to-left shunting.",
-        "2": "100% oxygen acts as a pulmonary vasodilator and maximizes oxygen delivery.",
-        "3": "Morphine reduces respiratory drive hyperpnea and relieves right ventricular infundibular spasm.",
-        "4": "Isotonic fluid volume expands preload to overcome right ventricular outflow obstruction.",
-        "summary": "Knee-chest positioning immediately increases systemic vascular resistance, reversing the right-to-left shunt across the VSD and forcing blood into the pulmonary artery."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Knee-chest positioning increases systemic vascular resistance and can reduce right-to-left shunting; calming limits oxygen demand.",
+        "B": "Supplemental oxygen is provided promptly, although positioning and calming are key immediate measures.",
+        "C": "Prescribed medication may reduce agitation and infundibular spasm under monitoring.",
+        "D": "Fluid may be indicated to improve preload when ordered; treatment is guided by the response and provider plan."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -7382,7 +7382,7 @@
       "topic": "Pediatric Nursing",
       "subtopic": "Cleft Lip & Palate Postoperative Care",
       "specialty": "Pediatrics",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "3-month-old infant 4 hours post-cheiloplasty (cleft lip repair).",
@@ -7408,24 +7408,24 @@
           "Protect lip suture line"
         ]
       },
-      "stem": "Which nursing intervention is essential to protect the surgical suture line after cleft lip repair?",
+      "stem": "Four hours after cleft-lip repair, the infant is crying and rubbing the face. Which nursing action best protects the repair while addressing comfort?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Position the infant supine or side-lying (never prone) and apply soft elbow restraints"
+            "text": "Position supine or side-lying as prescribed, use ordered elbow restraints with frequent skin and circulation checks, and soothe without placing objects against the incision"
           },
           {
             "id": "B",
-            "text": "Offer a standard pacifier between feedings to soothe crying"
+            "text": "Place the infant prone so secretions drain away from the incision"
           },
           {
             "id": "C",
-            "text": "Place the infant in the prone position to facilitate oral secretion drainage"
+            "text": "Offer a pacifier to reduce crying and prevent stress on the repair"
           },
           {
             "id": "D",
-            "text": "Cleanse the suture line vigorously with dry gauze after every feeding"
+            "text": "Clean the incision vigorously with dry gauze after each feeding"
           }
         ]
       },
@@ -7437,11 +7437,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Preventing mechanical tension or friction on the repaired lip requires supine/side-lying positioning, elbow restraints, and avoiding pacifiers or straws.",
-        "A": "Correct. Supine/side-lying positioning prevents rubbing the face against bedding, and elbow restraints prevent hands from touching the suture line.",
-        "B": "Incorrect. Pacifiers place direct tension on the fresh lip incision.",
-        "C": "Incorrect. Prone positioning causes friction against the mattress and risks suture dehiscence.",
-        "D": "Incorrect. Gentle dabbing with sterile saline/water using a cotton-tipped applicator preserves crust-free healing without trauma."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Positioning and carefully monitored restraints may protect the suture line; comfort measures should avoid pressure or trauma to the repair.",
+        "B": "Prone positioning can place pressure on the repair and is generally avoided.",
+        "C": "A pacifier can traumatize the repair depending on the surgical plan and should not be used unless specifically approved.",
+        "D": "Vigorous dry cleansing can disrupt the incision; follow the prescribed gentle cleaning regimen."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -7462,7 +7462,7 @@
       "topic": "Pediatric Nursing",
       "subtopic": "Acute Glomerulonephritis (PSGN)",
       "specialty": "Pediatrics",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "7-year-old male admitted 2 weeks after untreated streptococcal pharyngitis with periorbital edema and dark smoky-brown urine.",
@@ -7493,24 +7493,24 @@
           "No-added-salt diet"
         ]
       },
-      "stem": "Which complication is the highest priority for the nurse to monitor in this child during the acute phase?",
+      "stem": "A child with poststreptococcal glomerulonephritis has periorbital edema, oliguria, and blood pressure above the age-specific 99th percentile. Which complication requires the closest immediate surveillance?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Hypertensive encephalopathy and acute pulmonary edema from sodium and water retention"
+            "text": "Hypertensive encephalopathy or pulmonary edema from fluid and sodium retention"
           },
           {
             "id": "B",
-            "text": "Hypovolemic shock from massive urinary protein wasting"
+            "text": "Hypovolemic shock caused by urinary protein loss"
           },
           {
             "id": "C",
-            "text": "Severe hypoglycemia from impaired renal gluconeogenesis"
+            "text": "Severe hypoglycemia caused by impaired renal glucose production"
           },
           {
             "id": "D",
-            "text": "Spontaneous bone fractures from hypocalcemia"
+            "text": "Spontaneous bleeding caused by platelet destruction"
           }
         ]
       },
@@ -7522,11 +7522,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Post-streptococcal glomerulonephritis reduces glomerular filtration rate, causing fluid and sodium retention that can precipitate hypertensive encephalopathy and pulmonary edema.",
-        "A": "Correct. Monitoring blood pressure, neuro status (headache, visual changes, seizures), and lung sounds detects hypertensive crisis and fluid overload early.",
-        "B": "Incorrect. Massive proteinuria and hypovolemia characterize nephrotic syndrome, whereas PSGN presents with hematuria, fluid overload, and hypertension.",
-        "C": "Incorrect. Hypoglycemia is not a primary complication of PSGN.",
-        "D": "Incorrect. Bone fractures are associated with chronic kidney disease-mineral bone disorder, not acute PSGN."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Reduced filtration causes sodium and water retention, creating risk for severe hypertension, encephalopathy, and pulmonary edema.",
+        "B": "Nephritic syndrome is characterized by fluid retention rather than massive protein loss and hypovolemia.",
+        "C": "Hypoglycemia is not the characteristic acute complication.",
+        "D": "Platelet destruction is not part of the typical pathophysiology."
       },
       "clinical_judgment": "prioritize_hypotheses",
       "tags": [
@@ -7548,7 +7548,7 @@
       "topic": "Pediatric Nursing",
       "subtopic": "Pediatric Dehydration & Oral Rehydration",
       "specialty": "Pediatrics",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "18-month-old toddler brought to the clinic with 24 hours of watery diarrhea and 3 episodes of vomiting from viral gastroenteritis.",
@@ -7573,24 +7573,24 @@
           "Oral rehydration therapy (ORT) 50 mL/kg over 4 hours"
         ]
       },
-      "stem": "Which instruction should the nurse give the parent for administering oral rehydration solution (ORS) to this toddler?",
+      "stem": "A toddler with gastroenteritis has mild dehydration and vomited once after drinking a large amount of fluid. Which instruction should the nurse give the parent?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Offer 5 to 10 mL of commercial oral rehydration solution via syringe or spoon every 5 minutes, gradually increasing as tolerated"
+            "text": "Offer small, frequent amounts of oral rehydration solution and increase the volume gradually as tolerated"
           },
           {
             "id": "B",
-            "text": "Give 8 ounces of undiluted apple juice or sports drink quickly to replace lost fluids"
+            "text": "Give undiluted juice or sports drink in large amounts to replace electrolytes quickly"
           },
           {
             "id": "C",
-            "text": "Withhold all solid foods and milk for 72 hours until diarrhea completely stops"
+            "text": "Withhold all fluids for 4 hours after any episode of vomiting"
           },
           {
             "id": "D",
-            "text": "Administer over-the-counter loperamide liquid after every loose stool"
+            "text": "Use an antidiarrheal medication after each loose stool to reduce fluid loss"
           }
         ]
       },
@@ -7602,11 +7602,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Frequent small aliquots (5-10 mL every 5 minutes) of balanced glucose-electrolyte ORS prevent gastric distension and emesis while utilizing sodium-glucose cotransport.",
-        "A": "Correct. Small, frequent volumes allow effective intestinal absorption without triggering the vomiting reflex.",
-        "B": "Incorrect. Apple juice and sports drinks have excessive osmolarity/sugar and inadequate sodium, worsening osmotic diarrhea.",
-        "C": "Incorrect. Age-appropriate diet (including breastmilk/formula and complex carbohydrates) should resume as soon as rehydration is achieved.",
-        "D": "Incorrect. Antidiarrheal motility agents like loperamide are contraindicated in young children due to paralytic ileus and respiratory depression risks."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Small frequent amounts of oral rehydration solution are often better tolerated and replace water and electrolytes in appropriate proportions.",
+        "B": "Juice and sports drinks have inappropriate sugar and electrolyte concentrations and can worsen diarrhea.",
+        "C": "Prolonged fluid withholding worsens dehydration; restart small amounts promptly after brief pauses if vomiting occurs.",
+        "D": "Antidiarrheals are generally not recommended for young children with infectious diarrhea unless specifically prescribed."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -7627,7 +7627,7 @@
       "topic": "Mental Health Nursing",
       "subtopic": "Suicide Risk Assessment & Safety",
       "specialty": "Mental Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "28-year-old male admitted to the inpatient behavioral health unit following a severe depressive episode with suicidal ideation.",
@@ -7653,24 +7653,24 @@
           "Suicide precautions"
         ]
       },
-      "stem": "How should the nurse interpret this sudden improvement in mood and giving away of personal belongings?",
+      "stem": "A hospitalized client with major depression who recently described a specific suicide plan suddenly appears calm and gives away valued belongings. What is the nurse's priority response?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "The client may have made a definitive decision to end his life and now has the energy to carry out a plan; initiate 1:1 continuous observation immediately"
+            "text": "Immediately reassess suicidal intent, plan, means, and access; maintain the prescribed observation level and notify the treatment team"
           },
           {
             "id": "B",
-            "text": "Sertraline has achieved its full antidepressant therapeutic effect within 3 days; downgrade suicide precautions"
+            "text": "Interpret the calm behavior as evidence that the antidepressant has taken full effect and reduce observation"
           },
           {
             "id": "C",
-            "text": "The client is demonstrating healthy altruism and readiness for immediate hospital discharge"
+            "text": "Praise the generosity and encourage the client to complete the remaining personal arrangements"
           },
           {
             "id": "D",
-            "text": "Ignore the behavior to reinforce positive mood changes"
+            "text": "Avoid asking about suicide because direct questions may increase suicidal thoughts"
           }
         ]
       },
@@ -7682,11 +7682,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "An abrupt transition from deep despair to calm relief paired with giving away prized possessions is a classic warning sign of imminent suicidal intent.",
-        "A": "Correct. Making the decision to die relieves internal ambivalence, and early antidepressant energy return (before mood lifts at 2-4 weeks) increases suicide execution risk; 1:1 observation is required.",
-        "B": "Incorrect. SSRIs take 2 to 6 weeks for full mood improvement.",
-        "C": "Incorrect. Giving away cherished items is a red flag for suicide preparation, not discharge readiness.",
-        "D": "Incorrect. Failing to intervene places the client at imminent risk of self-harm."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Sudden calmness and giving away possessions can signal preparation or a decision to attempt suicide; immediate reassessment and safety measures are required.",
+        "B": "Antidepressants do not achieve full effect in a few days, and risk can remain high or increase as energy returns.",
+        "C": "Reinforcing potentially preparatory behavior without assessment is unsafe.",
+        "D": "Direct, nonjudgmental suicide assessment does not increase suicidal behavior and is essential."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
@@ -7708,7 +7708,7 @@
       "topic": "Mental Health Nursing",
       "subtopic": "Alcohol Withdrawal Syndrome",
       "specialty": "Mental Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "47-year-old male admitted 36 hours ago after a femur fracture; last drink of alcohol was 40 hours ago.",
@@ -7738,24 +7738,24 @@
           "Seizure precautions"
         ]
       },
-      "stem": "Which medication is the primary first-line agent to prevent progression to delirium tremens and withdrawal seizures in this client?",
+      "stem": "A client with heavy daily alcohol use is 40 hours from the last drink and develops tremor, diaphoresis, tachycardia, and visual disturbances. Which medication class is the priority to prevent withdrawal seizures and delirium tremens?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Lorazepam (a benzodiazepine) titrated via symptom-triggered CIWA-Ar protocol"
+            "text": "Benzodiazepines titrated to withdrawal severity using the facility protocol"
           },
           {
             "id": "B",
-            "text": "Haloperidol 5 mg IM monotherapy"
+            "text": "Antipsychotic monotherapy to suppress agitation and hallucinations"
           },
           {
             "id": "C",
-            "text": "Disulfiram 250 mg PO daily"
+            "text": "Disulfiram to create an aversive response to alcohol"
           },
           {
             "id": "D",
-            "text": "Naltrexone 50 mg PO daily"
+            "text": "Naltrexone to prevent alcohol craving during the acute withdrawal phase"
           }
         ]
       },
@@ -7767,11 +7767,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Benzodiazepines cross-react with GABA-A receptors to substitute for central nervous system alcohol depressant activity, preventing autonomic storm, seizures, and delirium tremens.",
-        "A": "Correct. Symptom-triggered benzodiazepine therapy (lorazepam, diazepam, or chlordiazepoxide) is the gold-standard treatment for acute alcohol withdrawal.",
-        "B": "Incorrect. Antipsychotics lower the seizure threshold and do not prevent delirium tremens.",
-        "C": "Incorrect. Disulfiram is an aversive relapse-prevention drug used only after full detoxification.",
-        "D": "Incorrect. Naltrexone reduces alcohol cravings post-detoxification and does not treat acute withdrawal."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Benzodiazepines are first-line for moderate to severe alcohol withdrawal and reduce seizure and delirium risk.",
+        "B": "Antipsychotics may be adjuncts for severe agitation but do not prevent withdrawal seizures and can lower seizure threshold.",
+        "C": "Disulfiram is not used for acute withdrawal and requires abstinence.",
+        "D": "Naltrexone is for relapse prevention, not acute withdrawal management."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -7821,24 +7821,24 @@
           "Cooling measures and IV benzodiazepines"
         ]
       },
-      "stem": "Which neuromuscular assessment finding best distinguishes serotonin syndrome from neuroleptic malignant syndrome (NMS)?",
+      "stem": "A client taking an SSRI recently added tramadol and linezolid. The client develops agitation, diaphoresis, inducible ankle clonus, and hyperreflexia. Which finding most strongly supports serotonin syndrome over neuroleptic malignant syndrome?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Hyperreflexia and inducible ankle clonus"
+            "text": "Clonus and hyperreflexia"
           },
           {
             "id": "B",
-            "text": "Severe 'lead-pipe' generalized muscular rigidity with hyporeflexia"
+            "text": "Lead-pipe rigidity with markedly reduced reflexes"
           },
           {
             "id": "C",
-            "text": "High fever and autonomic instability"
+            "text": "Fever and autonomic instability alone"
           },
           {
             "id": "D",
-            "text": "Altered mental status and diaphoresis"
+            "text": "Altered mental status without neuromuscular findings"
           }
         ]
       },
@@ -7850,11 +7850,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Both syndromes present with hyperthermia, autonomic instability, and altered mental status, but serotonin syndrome exhibits neuromuscular hyperactivity (hyperreflexia, clonus) whereas NMS produces lead-pipe rigidity and hyporeflexia.",
-        "A": "Correct. Clonus and hyperreflexia are hallmark neuromuscular features of serotonin toxicity (here triggered by SSRI + tramadol + MAOI-acting linezolid).",
-        "B": "Incorrect. Lead-pipe rigidity and bradyreflexia characterize dopamine antagonist-induced NMS.",
-        "C": "Incorrect. Hyperthermia and autonomic dysregulation occur in both syndromes.",
-        "D": "Incorrect. Agitation/delirium and diaphoresis occur in both conditions."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Clonus and hyperreflexia are characteristic neuromuscular findings of serotonin toxicity, especially with serotonergic drug combinations.",
+        "B": "Lead-pipe rigidity and hyporeflexia are more typical of NMS.",
+        "C": "Fever and autonomic instability can occur in both syndromes and are less discriminating.",
+        "D": "Mental-status changes occur in both and are not sufficient to distinguish them."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -7876,7 +7876,7 @@
       "topic": "Mental Health Nursing",
       "subtopic": "Therapeutic Communication & Hallucinations",
       "specialty": "Mental Health",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "26-year-old male admitted with an acute exacerbation of schizophrenia.",
@@ -7901,24 +7901,24 @@
           "Therapeutic milieu management"
         ]
       },
-      "stem": "Which response by the nurse is most therapeutic?",
+      "stem": "A client with schizophrenia says, 'The voices say the staff are putting poison in my food.' Which response is most therapeutic and supports safety assessment?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "I know those voices feel very real and frightening to you right now, though I do not hear them. Let's walk to a quieter area together."
+            "text": "That sounds frightening. I do not hear the voices, but I want to understand what they are telling you and whether they are asking you to hurt yourself or anyone else."
           },
           {
             "id": "B",
-            "text": "Tell the voices to go away because nobody is poisoning your food."
+            "text": "The staff would never poison you, so you should ignore the voices and eat your meal."
           },
           {
             "id": "C",
-            "text": "What exactly are the voices saying about the kitchen staff?"
+            "text": "Why do you keep believing things that are not real?"
           },
           {
             "id": "D",
-            "text": "You are hallucinating again because you stopped taking your risperidone."
+            "text": "I hear them too, and I will make sure they stop talking to you."
           }
         ]
       },
@@ -7930,11 +7930,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Therapeutic communication during auditory hallucinations validates the client's emotional experience while presenting reality calmly without reinforcing or arguing with the hallucination.",
-        "A": "Correct. Empathy + reality orientation + offering a calming redirection builds trust and reduces anxiety without validating the delusion.",
-        "B": "Incorrect. Arguing or dismissing the client's perception increases defensiveness and distrust.",
-        "C": "Incorrect. Exploring the detailed content of hallucinations reinforces the psychotic experience.",
-        "D": "Incorrect. Scolding or blaming the client impairs the therapeutic alliance."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "The response acknowledges distress without validating the hallucination and assesses for command content and safety risk.",
+        "B": "False reassurance and confrontation may undermine trust and do not assess risk.",
+        "C": "Judgmental language can increase defensiveness and distress.",
+        "D": "Claiming to hear the voices reinforces the hallucination and is not therapeutic."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -7955,7 +7955,7 @@
       "topic": "Management of Care & Leadership",
       "subtopic": "Delegation to Unlicensed Assistive Personnel (UAP)",
       "specialty": "Leadership & Management",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "Medical-surgical nursing team consisting of an RN, an LPN/LVN, and an experienced unlicensed assistive personnel (UAP) caring for four assigned clients.",
@@ -7976,24 +7976,24 @@
           "Standard unit care routines"
         ]
       },
-      "stem": "Which task is most appropriate for the registered nurse (RN) to delegate to the unlicensed assistive personnel (UAP)?",
+      "stem": "The RN is assigning tasks to an experienced UAP and an LPN on a medical-surgical unit. Which task is appropriate for the RN to delegate to the UAP?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Obtain routine vital signs and assist with ambulation for a client 2 days post-laparoscopic appendectomy who is stable"
+            "text": "Obtain routine vital signs and assist a stable client who is 2 days after uncomplicated surgery with ambulation"
           },
           {
             "id": "B",
-            "text": "Perform the initial swallow screen on a newly admitted client with suspected acute ischemic stroke"
+            "text": "Complete the initial swallow screen for a client admitted with a possible stroke"
           },
           {
             "id": "C",
-            "text": "Reinforce discharge teaching regarding warfarin dietary precautions with a client going home today"
+            "text": "Evaluate a new report of chest pain and determine whether it requires rapid response activation"
           },
           {
             "id": "D",
-            "text": "Monitor vital signs during the first 15 minutes of a packed red blood cell transfusion"
+            "text": "Teach a client how to self-administer a new anticoagulant injection"
           }
         ]
       },
@@ -8005,11 +8005,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "UAP may perform routine, noninvasive, predictable tasks for stable clients only when permitted by local law and facility policy and when the UAP has demonstrated competency. The RN retains assessment, clinical judgment, teaching, evaluation, and ongoing accountability; unstable or changing clients require RN assessment.",
-        "A": "Correct. Routine vital signs and ambulation for a stable postoperative client are standard, safe UAP tasks.",
-        "B": "Incorrect. Dysphagia screening requires clinical assessment judgment by an RN or speech-language pathologist.",
-        "C": "Incorrect. Client education and evaluation of understanding require licensed nurse judgment.",
-        "D": "Incorrect. The RN must remain with and assess the client during the critical first 15 minutes of a blood transfusion."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Routine, predictable tasks for a stable client can be delegated to trained UAP with clear instructions and follow-up.",
+        "B": "Initial assessment and screening requiring clinical judgment remain with licensed staff according to policy.",
+        "C": "Assessment and escalation decisions require RN judgment.",
+        "D": "Initial teaching and evaluation of learning are nursing responsibilities."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -8052,24 +8052,24 @@
           "Standard unit protocols"
         ]
       },
-      "stem": "Which client should the nurse assess first?",
+      "stem": "The RN receives report on four clients. Which client should be assessed first?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "A client 4 hours post-anterior cervical discectomy who has developed high-pitched inspiratory stridor and neck fullness"
+            "text": "A client 4 hours after anterior cervical spine surgery who has new stridor and increasing neck swelling"
           },
           {
             "id": "B",
-            "text": "A client with heart failure scheduled for morning furosemide whose serum potassium is 4.0 mEq/L"
+            "text": "A client with heart failure who is due for furosemide and has potassium of 4.0 mEq/L"
           },
           {
             "id": "C",
-            "text": "A client 2 days post-total knee replacement requesting oral pain medication for knee pain rated 6/10"
+            "text": "A client 2 days after knee replacement requesting prescribed analgesia for pain rated 6/10"
           },
           {
             "id": "D",
-            "text": "A client with cellulitis whose intravenous cefazolin infusion pump is beeping 'infusion complete'"
+            "text": "A client with cellulitis whose scheduled antibiotic infusion has just completed"
           }
         ]
       },
@@ -8081,11 +8081,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Using the Airway-Breathing-Circulation prioritization framework, inspiratory stridor and neck swelling after anterior cervical surgery indicate acute airway compromise from a surgical hematoma.",
-        "A": "Correct. Inspiratory stridor indicates severe upper airway narrowing that can progress rapidly to complete airway obstruction.",
-        "B": "Incorrect. Normal potassium (4.0 mEq/L) and routine morning medication administration can wait until the airway threat is addressed.",
-        "C": "Incorrect. Moderate postoperative pain is important but lower priority than an acute airway emergency.",
-        "D": "Incorrect. A completed antibiotic infusion is non-urgent."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Stridor and neck swelling after anterior cervical surgery suggest an expanding hematoma and impending airway obstruction; immediate assessment and emergency response are required.",
+        "B": "The medication is scheduled and the potassium is within typical range; this client is stable compared with an airway threat.",
+        "C": "Pain requires treatment but is not the immediate threat described.",
+        "D": "A completed infusion is routine and can be addressed after the airway emergency."
       },
       "clinical_judgment": "prioritize_hypotheses",
       "tags": [
@@ -8107,7 +8107,7 @@
       "topic": "Safety & Infection Control",
       "subtopic": "Clostridioides difficile Precautions",
       "specialty": "Fundamentals & Safety",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "68-year-old female admitted with profuse watery diarrhea and abdominal cramping after completing a 10-day course of clindamycin.",
@@ -8133,28 +8133,28 @@
           "Contact enteric precautions"
         ]
       },
-      "stem": "Which infection control practices are mandatory when caring for this client? Select all that apply.",
+      "stem": "A client has confirmed Clostridioides difficile infection with frequent watery stools. Which infection-control actions are appropriate? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Wash hands thoroughly with soap and running water rather than alcohol-based hand rub upon exiting the room"
+            "text": "Use gown and gloves on room entry and dedicate equipment when possible"
           },
           {
             "id": "B",
-            "text": "Wear a disposable isolation gown and gloves before entering the client's room"
+            "text": "Wash hands with soap and water after care, especially when leaving the room"
           },
           {
             "id": "C",
-            "text": "Use dedicated disposable or single-patient stethoscopes and blood pressure cuffs"
+            "text": "Use an EPA-registered sporicidal disinfectant for environmental cleaning"
           },
           {
             "id": "D",
-            "text": "Disinfect environmental surfaces with an EPA-registered sporicidal (bleach-based) disinfectant"
+            "text": "Rely on alcohol hand rub alone because it reliably kills C. difficile spores"
           },
           {
             "id": "E",
-            "text": "Use alcohol-based hand sanitizer immediately after removing gloves to destroy C. difficile spores"
+            "text": "Maintain contact precautions according to facility policy, including appropriate duration after diarrhea resolves"
           }
         ]
       },
@@ -8162,19 +8162,19 @@
         "A",
         "B",
         "C",
-        "D"
+        "E"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 4
       },
       "rationales": {
-        "summary": "Clostridioides difficile forms hardy bacterial spores resistant to alcohol; mechanical friction with soap and water, gown/gloves, dedicated equipment, and bleach disinfection are required.",
-        "A": "Correct. Soap and water friction physically removes C. difficile spores from hands.",
-        "B": "Correct. Contact precautions (gown and gloves) prevent spore transfer onto uniforms and skin.",
-        "C": "Correct. Dedicated equipment prevents cross-contamination between clients.",
-        "D": "Correct. Sodium hypochlorite (bleach) sporicidal wipes are required to kill spores on high-touch surfaces.",
-        "E": "Incorrect. Alcohol does not kill C. difficile spores."
+        "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
+        "A": "Contact precautions and dedicated equipment reduce spread of spores.",
+        "B": "Soap and water mechanically remove spores; alcohol hand rub is not reliably sporicidal.",
+        "C": "Environmental sporicidal products are needed to reduce contamination.",
+        "D": "Alcohol alone does not reliably kill C. difficile spores.",
+        "E": "Precaution duration follows facility and public-health guidance, often continuing after symptom resolution."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
