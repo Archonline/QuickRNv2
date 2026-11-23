@@ -30,9 +30,9 @@ export function validateQuestion(q) {
   if (["drop-down-cloze","drop-down-rationale"].includes(type)) {
     const template = type === "drop-down-cloze" ? interaction.clozeTemplate : interaction.rationaleTemplate;
     const optionGroups = type === "drop-down-cloze" ? (interaction.clozeChoicesByBlank ?? [interaction.clozeChoices ?? choices]) : (interaction.rationaleChoicesByBlank ?? [choices]);
-    if (!nonEmpty(template) || !/\\[BLANK_\\d+\\]/.test(template)) add("Dropdown item requires a template with numbered blanks.");
+    if (!nonEmpty(template) || !/\[BLANK_\d+\]/.test(template)) add("Dropdown item requires a template with numbered blanks.");
     if (!arr(optionGroups) || optionGroups.length === 0 || optionGroups.some(group => !arr(group) || group.length < 2)) add("Every dropdown blank requires at least two choices.");
-    const blanks = nonEmpty(template) ? [...template.matchAll(/\\[BLANK_(\\d+)\\]/g)].map(m => Number(m[1])) : [];
+    const blanks = nonEmpty(template) ? [...template.matchAll(/\[BLANK_(\d+)\]/g)].map(m => Number(m[1])) : [];
     if (blanks.length === 0 || new Set(blanks).size !== blanks.length) add("Dropdown template must contain unique numbered blanks.");
     if (arr(response) && blanks.length && response.length !== blanks.length) add("Dropdown correct response count must match the number of blanks.");
     if (arr(response) && response.some((v,i) => !Number.isInteger(Number(v)) || Number(v) < 0 || Number(v) >= (optionGroups[i]?.length ?? 0))) add("Dropdown correct response contains an invalid choice index.");
@@ -40,7 +40,7 @@ export function validateQuestion(q) {
   if (["matrix-multiple","matrix-single","matrix-grid"].includes(type)) {
     if (!arr(interaction.rows) || interaction.rows.length === 0 || !arr(interaction.columns) || interaction.columns.length < 2) add("Matrix item requires rows and at least two columns.");
     if (type === "matrix-single" && arr(response) && interaction.rows && response.length !== interaction.rows.length) add("Matrix-single requires one keyed response per row.");
-    if (type === "matrix-multiple" && arr(response) && !response.every(v => /^\\d+:\\d+$/.test(String(v)))) add("Matrix-multiple responses must use row:column coordinates.");
+    if (type === "matrix-multiple" && arr(response) && !response.every(v => /^\d+:\d+$/.test(String(v)))) add("Matrix-multiple responses must use row:column coordinates.");
   }
   if (type === "highlight-text" || type === "highlight-table") {
     if (!arr(interaction.segments) || interaction.segments.length === 0) add("Highlight item requires selectable segments.");
