@@ -50,6 +50,8 @@ export type Question = {
   answer: number;
   rationale: string;
   status: "development" | "published";
+  /** True only for legacy items in the initial targeted webmaster audit queue. */
+  auditRequired?: boolean;
   format?: "single" | "multiple" | "case-study";
   itemType?: NclexItemType;
   interaction?: QuestionInteraction;
