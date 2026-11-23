@@ -312,3 +312,17 @@
 @media(max-width:620px) {
  .qb-feedback-head { align-items:flex-start; flex-direction:column; }
 }
+
+
+/* Dashboard study-habit infographic cards; scoped to the learner overview only. */
+.study-habits-card,.dashboard-category-card { margin:18px 0; }
+.study-habits-card .card-heading { align-items:flex-end; }
+.study-habits-card .card-heading > span,.dashboard-category-card .card-heading > span { color:var(--qrn-muted);font-size:10px; }
+.study-habit-grid { display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px; }
+.study-habit-grid article { display:flex;flex-direction:column;gap:7px;min-width:0;padding:15px 13px;border:1px solid var(--qrn-line);border-radius:12px;background:linear-gradient(160deg,#fff,#f8f9fd); }
+.study-habit-grid article span { color:var(--qrn-muted);font-size:10px;line-height:1.4; }
+.study-habit-grid article strong { color:var(--qrn-ink);font:750 22px/1.2 Manrope,sans-serif;font-variant-numeric:tabular-nums;overflow-wrap:anywhere; }
+.study-habit-grid article small { color:var(--qrn-subtle);font-size:9px;line-height:1.45; }
+.dashboard-category-card .analytics-bar-row { padding:11px 0; }
+@media(max-width:1050px) { .study-habit-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media(max-width:620px) { .study-habit-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
