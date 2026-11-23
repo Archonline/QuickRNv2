@@ -1,7 +1,7 @@
 import { useState, type FormEvent, type ReactNode } from "react";
 import { Activity, Mail, LockKeyhole, ArrowLeft, Eye, EyeOff, ShieldCheck } from "lucide-react";
 import { AuthProvider, useAuth } from "./AuthContext";
-import LandingPage from "./LandingPage";
+import LandingPage from "./LandingPage";\nimport LegalPage from "./LegalPage";
 import { auth, db } from "./firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
@@ -56,7 +56,7 @@ function Gate({ children }: { children: ReactNode }) {
   const [busy, setBusy] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [demoMode, setDemoMode] = useState(false);
-  const [legalAccepted, setLegalAccepted] = useState(false);
+  const [legalAccepted, setLegalAccepted] = useState(false);\n  const [legalPreview, setLegalPreview] = useState<"terms" | "privacy" | null>(null);
 
   function changeMode(nextMode: AuthMode) {
     setMode(nextMode);
@@ -116,7 +116,7 @@ function Gate({ children }: { children: ReactNode }) {
     }
   }
 
-  if (loading) {
+  if (legalPreview) return <main className="auth-screen"><div className="auth-legal-preview"><button type="button" className="back-to-landing" onClick={() => setLegalPreview(null)}><ArrowLeft size={16}/> Back to registration</button><LegalPage initialSection={legalPreview}/></div></main>;\n\n  if (loading) {
     return <div className="auth-screen"><div className="auth-loading"><span className="auth-spinner" />Loading your learning space…</div></div>;
   }
   if (user || demoMode) return <>{children}</>;
@@ -198,7 +198,7 @@ function Gate({ children }: { children: ReactNode }) {
         {isSignup && <div className="auth-legal-consent">
           <label className="auth-consent-label">
             <input type="checkbox" checked={legalAccepted} onChange={event => setLegalAccepted(event.target.checked)} />
-            <span>I have read and agree to the <a href="/legal/terms" target="_blank" rel="noreferrer">Terms of Service</a> and acknowledge the <a href="/legal/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>.</span>
+            <span>I have read and agree to the <a href="#terms" onClick={event => { event.preventDefault(); setLegalPreview("terms"); }}>Terms of Service</a> and acknowledge the <a href="#privacy" onClick={event => { event.preventDefault(); setLegalPreview("privacy"); }}>Privacy Policy</a>.</span>
           </label>
           <p>We record the policy versions, acceptance time, and sign-in method with your account for compliance and audit purposes.</p>
         </div>}
