@@ -118,7 +118,7 @@ export const authoredCoreRewriteBatch2: Question[] = [
   single(
     "qrn-0245", "Neurologic", "Post-lumbar puncture headache", "Intermediate",
     "A client reports a severe frontal-occipital headache 12 hours after a diagnostic lumbar puncture. The pain becomes markedly worse when sitting and improves when lying flat. The client is afebrile and has no new neurologic deficit.",
-    "Which response is most appropriate?",
+    "How should the nurse manage the new positional headache while screening for complications?",
     ["Document the headache as expected and provide no further assessment", "Assess severity and associated symptoms, notify the provider, and anticipate conservative treatment or an ordered epidural blood patch if persistent", "Encourage prolonged upright activity to prevent stiffness", "Perform a second lumbar puncture to reduce cerebrospinal fluid pressure"],
     1,
     "A positional headache after lumbar puncture is consistent with a post-dural puncture headache. Assess for red flags and notify the provider; hydration, analgesia, caffeine, and an epidural blood patch may be considered according to severity and orders.",
@@ -188,7 +188,7 @@ export const authoredCoreRewriteBatch2: Question[] = [
   single(
     "qrn-0252", "Musculoskeletal / Mobility", "Fat embolism syndrome after long-bone fracture", "Advanced",
     "A client is 30 hours after intramedullary fixation of a femoral fracture. The client develops confusion, tachypnea, and scattered petechiae over the upper chest. SpO2 has fallen from 97% to 85% on room air.",
-    "Which action should the nurse take first?",
+    "What is the first nursing priority when the client develops hypoxemia and neurologic changes after femoral fixation?",
     ["Massage the operative thigh to improve venous return", "Apply oxygen, rapidly assess respiratory status, and activate emergency escalation", "Encourage ambulation to prevent further emboli", "Restrict oxygen until an arterial blood gas is obtained"],
     1,
     "The delayed onset after long-bone trauma, hypoxemia, neurologic change, and petechiae strongly suggest fat embolism syndrome. Immediate oxygenation support and emergency assessment are required; do not delay stabilization for diagnostic testing.",
@@ -198,7 +198,7 @@ export const authoredCoreRewriteBatch2: Question[] = [
   single(
     "qrn-0253", "Musculoskeletal / Mobility", "Acute compartment syndrome after crush injury", "Advanced",
     "A client rescued after a lower-leg crush injury has increasing tightness and deep pain. The calf is firm, pain increases with passive ankle movement, and sensation is newly reduced. The client received analgesia 20 minutes ago.",
-    "Which intervention should the nurse anticipate?",
+    "Which definitive intervention should the nurse prepare for when progressive sensory loss accompanies a tense, painful compartment?",
     ["Urgent surgical evaluation for compartment pressure measurement and possible fasciotomy", "Repeatedly elevate the leg above the heart and apply ice for 2 hours", "Wait for the distal pulse to disappear before notifying the surgeon", "Apply a compression wrap to limit swelling"],
     0,
     "A tense compartment, pain with passive stretch, and evolving sensory loss after crush injury are concerning for acute compartment syndrome. Surgical evaluation and possible fasciotomy are time-critical; pulses are late findings.",
@@ -208,7 +208,7 @@ export const authoredCoreRewriteBatch2: Question[] = [
   single(
     "qrn-0254", "Musculoskeletal / Mobility", "Hip arthroplasty and prosthetic dislocation", "Intermediate",
     "A client on postoperative day 2 after posterior total hip arthroplasty reports sudden severe hip pain while turning in bed. The affected leg appears shortened and internally rotated; the client cannot bear weight.",
-    "What should the nurse do?",
+    "How should the nurse protect the newly implanted hip when the limb appears shortened and internally rotated?",
     ["Attempt to realign the leg using gentle traction", "Keep the client still, support the limb in the position found, and notify the orthopedic team urgently", "Assist the client to stand to determine whether the prosthesis is stable", "Perform forceful range-of-motion exercises to reduce muscle spasm"],
     1,
     "Sudden pain, shortening, and abnormal rotation after posterior hip arthroplasty suggest prosthetic dislocation. Avoid manipulation or weight bearing; support the limb and obtain urgent orthopedic evaluation and imaging.",
