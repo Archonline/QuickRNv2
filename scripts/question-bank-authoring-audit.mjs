@@ -232,6 +232,7 @@ function auditCoreGenerator(rules, findings) {
     finding(findings, "error", QUESTION_BANK_PATH, `Core inventory mismatch: candidates=${candidateCount}, unfolding=${caseScreens}, curated=${curatedTraditional}, authored=${authoredCount}, topic-profile generated=${generatedCount}.`);
   }
   console.log("Core inventory:", JSON.stringify({ total: candidateCount, unfoldingCaseScreens: caseScreens, curatedTraditional, authoredReplacements: authoredCount, topicProfileGenerated: generatedCount }));
+  if (source.includes("not-clinically-verified")) finding(findings, "warning", QUESTION_BANK_PATH, "Generated core items remain tagged not-clinically-verified; human clinical and distractor review is required before final release.");
   if (rules.publication_gate?.human_approval_required !== true || rules.publication_gate?.publish_after_automated_checks !== false) {
     finding(findings, "error", RULES_PATH, "Final release must require human clinical approval; automated checks alone cannot approve publication.");
   }
