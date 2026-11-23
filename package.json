@@ -9,7 +9,8 @@
     "preview": "vite preview --host 0.0.0.0",
     "test": "node --test",
     "audit:question-bank": "node scripts/question-bank-authoring-audit.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "audit:question-quality": "node scripts/question-bank-quality-audit.mjs"
   },
   "dependencies": {
     "firebase": "^11.6.0",
