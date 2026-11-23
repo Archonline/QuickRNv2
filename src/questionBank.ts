@@ -711,6 +711,12 @@ for (const [key, profile] of Object.entries(categoryTopicOverrides)) {
     throw new Error(`Missing or incomplete category-specific clinical variant (prompt, scenario, priority, rationale, and distinct distractors required): ${key}`);
   }
 }
+const categoryVariantScenarios = Object.values(categoryTopicOverrides).map(profile =>
+  profile.scenario?.trim().toLowerCase().replace(/\\s+/g, " ")
+);
+if (new Set(categoryVariantScenarios).size !== Object.keys(categoryTopicOverrides).length) {
+  throw new Error("Category-specific clinical variants must have distinct scenarios.");
+}
 
 function make(b: B, i: number, global: number): Question {
   const topic = b.topics[i % b.topics.length];
