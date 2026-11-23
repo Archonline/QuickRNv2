@@ -2130,19 +2130,19 @@
         "options": [
           {
             "id": "A",
-            "text": "Alert the provider immediately to stop fluid withdrawal and assess for re-expansion pulmonary edema or pneumothorax"
+            "text": "Stop the procedure, support oxygenation, and promptly assess for pneumothorax or re-expansion pulmonary edema"
           },
           {
             "id": "B",
-            "text": "Encourage the client to take deep breaths and continue draining until the effusion is completely empty"
+            "text": "Encourage deeper breathing and continue drainage until the prescribed volume is removed"
           },
           {
             "id": "C",
-            "text": "Place the client flat in the supine position immediately"
+            "text": "Place the client flat and ask the client to suppress coughing"
           },
           {
             "id": "D",
-            "text": "Administer an oral antitussive cough syrup"
+            "text": "Administer an oral antitussive and reassess oxygen saturation in 15 minutes"
           }
         ]
       },
@@ -2154,10 +2154,11 @@
         "max_points": 1
       },
       "rationales": {
-        "0": "New respiratory symptoms and desaturation during thoracentesis require stopping fluid removal and immediate assessment for complications.",
-        "1": "Continuing drainage may worsen the complication and delay treatment.",
-        "2": "Supine positioning may worsen breathing and suppressing cough does not address the cause.",
-        "3": "An oral antitussive delays assessment and is inappropriate during acute respiratory deterioration."
+        "summary": "The safest response is based on the change in the client's clinical condition and the risk of rapid deterioration.",
+        "A": "New respiratory symptoms and desaturation during thoracentesis require stopping fluid removal and immediate assessment for complications.",
+        "B": "Continuing drainage may worsen the complication and delay treatment.",
+        "C": "Supine positioning may worsen breathing and suppressing cough does not address the cause.",
+        "D": "An oral antitussive delays assessment and is inappropriate during acute respiratory deterioration."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
@@ -2213,42 +2214,40 @@
         "options": [
           {
             "id": "A",
-            "text": "Administer albuterol nebulizer before chest physiotherapy to maximize airway clearance"
+            "text": "Administer a prescribed bronchodilator before airway-clearance therapy when indicated"
           },
           {
             "id": "B",
-            "text": "Administer pancrelipase capsules immediately before every meal and snack"
+            "text": "Give pancreatic enzymes with meals and snacks according to the prescribed dose"
           },
           {
             "id": "C",
-            "text": "Perform chest physiotherapy immediately after lunch to prevent fatigue"
+            "text": "Provide high-calorie, high-protein nutrition and prescribed fat-soluble vitamins"
           },
           {
             "id": "D",
-            "text": "Provide fat-soluble vitamin supplements (A, D, E, K) as prescribed"
+            "text": "Schedule chest physiotherapy immediately after a full meal to improve tolerance"
           },
           {
             "id": "E",
-            "text": "Restrict sodium and fluid intake to thin respiratory secretions"
+            "text": "Assess weight trends, stool characteristics, and respiratory response to treatment"
           }
         ]
       },
       "correct_response": [
-        "A",
-        "B",
-        "C",
-        "E"
+        "A"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 3
       },
       "rationales": {
-        "0": "Bronchodilation before airway clearance can improve airflow and secretion mobilization.",
-        "1": "Pancreatic enzymes must be taken with food to aid digestion and absorption.",
-        "2": "Increased energy needs and fat malabsorption often require calorie-dense nutrition and vitamins A, D, E, and K.",
-        "3": "Airway clearance immediately after meals may provoke vomiting; schedule around meals according to tolerance.",
-        "4": "Weight and stool trends help assess nutrition and enzyme effectiveness; respiratory reassessment evaluates treatment response."
+        "summary": "The safest response is based on the change in the client's clinical condition and the risk of rapid deterioration.",
+        "A": "Bronchodilation before airway clearance can improve airflow and secretion mobilization.",
+        "B": "Pancreatic enzymes must be taken with food to aid digestion and absorption.",
+        "C": "Increased energy needs and fat malabsorption often require calorie-dense nutrition and vitamins A, D, E, and K.",
+        "D": "Airway clearance immediately after meals may provoke vomiting; schedule around meals according to tolerance.",
+        "E": "Weight and stool trends help assess nutrition and enzyme effectiveness; respiratory reassessment evaluates treatment response."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -2301,19 +2300,19 @@
         "options": [
           {
             "id": "A",
-            "text": "Impending respiratory arrest due to critical airflow obstruction and ventilatory muscle fatigue"
+            "text": "Ventilatory failure is developing because airflow is critically limited and respiratory muscles are tiring"
           },
           {
             "id": "B",
-            "text": "Rapid resolution of bronchospasm following nebulizer and magnesium therapy"
+            "text": "Bronchospasm is resolving because wheezing has diminished"
           },
           {
             "id": "C",
-            "text": "Expected therapeutic hyperventilation response to methylprednisolone"
+            "text": "The rising PaCO2 is an expected effect of inhaled beta-agonists and requires no escalation"
           },
           {
             "id": "D",
-            "text": "Development of a spontaneous tension pneumothorax"
+            "text": "The client is hyperventilating effectively and should be encouraged to breathe more slowly"
           }
         ]
       },
@@ -2325,10 +2324,11 @@
         "max_points": 1
       },
       "rationales": {
-        "0": "A quiet chest with rising CO2 and fatigue indicates poor ventilation and impending respiratory failure; prepare for urgent escalation and airway support.",
-        "1": "Wheezing may disappear when airflow becomes critically low, not because obstruction has resolved.",
-        "2": "Rising PaCO2 in severe asthma is a danger sign, not a benign medication effect.",
-        "3": "The client is retaining CO2 because ventilation is failing, not hyperventilating effectively."
+        "summary": "The safest response is based on the change in the client's clinical condition and the risk of rapid deterioration.",
+        "A": "A quiet chest with rising CO2 and fatigue indicates poor ventilation and impending respiratory failure; prepare for urgent escalation and airway support.",
+        "B": "Wheezing may disappear when airflow becomes critically low, not because obstruction has resolved.",
+        "C": "Rising PaCO2 in severe asthma is a danger sign, not a benign medication effect.",
+        "D": "The client is retaining CO2 because ventilation is failing, not hyperventilating effectively."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -2381,19 +2381,19 @@
         "options": [
           {
             "id": "A",
-            "text": "Apply the client's CPAP device during sleep and use multimodal non-opioid analgesia to minimize opioid sedation"
+            "text": "Position to maintain airway patency, resume prescribed CPAP when appropriate, and intensify respiratory monitoring"
           },
           {
             "id": "B",
-            "text": "Position the client completely flat on his back to keep the cervical spine aligned"
+            "text": "Administer a benzodiazepine to reduce anxiety and promote uninterrupted sleep"
           },
           {
             "id": "C",
-            "text": "Administer a bedtime benzodiazepine to ensure uninterrupted postoperative sleep"
+            "text": "Withhold all analgesia and allow the client to sleep without monitoring"
           },
           {
             "id": "D",
-            "text": "Turn off pulse oximetry alarms at night so the client is not awakened"
+            "text": "Place the client flat and discontinue CPAP because positive pressure can cause gastric distention"
           }
         ]
       },
@@ -2405,10 +2405,11 @@
         "max_points": 1
       },
       "rationales": {
-        "0": "OSA and opioids increase risk of obstruction and hypoventilation; airway positioning, prescribed CPAP, opioid-sparing analgesia, and monitoring are important.",
-        "1": "Sedatives can worsen airway obstruction and respiratory depression.",
-        "2": "Pain control remains necessary, but close monitoring and safer analgesic strategies are required.",
-        "3": "Flat positioning can worsen obstruction, and CPAP should not be stopped without clinical reason."
+        "summary": "The safest response is based on the change in the client's clinical condition and the risk of rapid deterioration.",
+        "A": "OSA and opioids increase risk of obstruction and hypoventilation; airway positioning, prescribed CPAP, opioid-sparing analgesia, and monitoring are important.",
+        "B": "Sedatives can worsen airway obstruction and respiratory depression.",
+        "C": "Pain control remains necessary, but close monitoring and safer analgesic strategies are required.",
+        "D": "Flat positioning can worsen obstruction, and CPAP should not be stopped without clinical reason."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -2460,19 +2461,19 @@
         "options": [
           {
             "id": "A",
-            "text": "Apply a new patch daily to a clean, dry, hairless skin site and rotate sites to prevent irritation"
+            "text": "Follow the prescribed wear schedule, remove the old patch before applying a new one, rotate sites, and avoid smoking while using it unless specifically directed"
           },
           {
             "id": "B",
-            "text": "Continue smoking 3 to 4 cigarettes daily during the first two weeks to prevent withdrawal"
+            "text": "Apply a second patch if cravings occur and leave both patches in place overnight"
           },
           {
             "id": "C",
-            "text": "Cut the 21 mg patch in half if vivid dreams occur"
+            "text": "Cut the patch in half to adjust the dose and apply it over irritated skin"
           },
           {
             "id": "D",
-            "text": "Apply the patch over the same area of the upper arm every day for consistent absorption"
+            "text": "Place the new patch over the previous patch to maintain a steady nicotine level"
           }
         ]
       },
@@ -2484,10 +2485,11 @@
         "max_points": 1
       },
       "rationales": {
-        "0": "Correct patch use includes removing the old patch, rotating clean dry sites, and following product-specific wear instructions; concurrent smoking can increase nicotine toxicity risk.",
-        "1": "Adding patches without direction can cause overdose.",
-        "2": "Patches should not be cut unless the product is specifically designed for it; irritated skin should be avoided.",
-        "3": "Leaving an old patch in place can cause excess nicotine exposure."
+        "summary": "The safest response is based on the change in the client's clinical condition and the risk of rapid deterioration.",
+        "A": "Correct patch use includes removing the old patch, rotating clean dry sites, and following product-specific wear instructions; concurrent smoking can increase nicotine toxicity risk.",
+        "B": "Adding patches without direction can cause overdose.",
+        "C": "Patches should not be cut unless the product is specifically designed for it; irritated skin should be avoided.",
+        "D": "Leaving an old patch in place can cause excess nicotine exposure."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
