@@ -58,7 +58,7 @@ test("all response formats represented in the published bank render in the share
   await page.getByRole("button", { name: /Begin examination/ }).click();
   const expected = Number(await page.getByTestId("expected-format-count").textContent());
   const counter = await page.locator(".exam-question-counter").textContent();
-  const total = Number(counter?.match(/OF (\\d+)/)?.[1] ?? 0);
+  const total = Number(counter?.match(/OF (\d+)/)?.[1] ?? 0);
   expect(total, "The sampler should include one published item per available item type").toBe(expected);
   for (let index = 0; index < total; index += 1) {
     await expect(page.locator(".exam-question-card")).toBeVisible();
