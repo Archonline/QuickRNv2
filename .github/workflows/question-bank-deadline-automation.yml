@@ -20,10 +20,26 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Cache Ollama model
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ${{ runner.os }}-ollama-qwen2.5-7b-instruct-v1
+      - name: Install Ollama
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama serve > /tmp/ollama.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:11434/api/version >/dev/null; then break; fi
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:11434/api/version >/dev/null
+      - name: Pull free local generation model
+        run: ollama pull qwen2.5:7b-instruct
       - name: Generate, validate and repair deadline batches
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: gemini-2.5-flash
+          OLLAMA_HOST: http://127.0.0.1:11434
+          OLLAMA_MODEL: qwen2.5:7b-instruct
           TARGET_QUESTION_COUNT: "3600"
           BASELINE_QUESTION_COUNT: "600"
           DEADLINE_UTC: "2026-11-29T16:00:00Z"
