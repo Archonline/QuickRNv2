@@ -3,10 +3,10 @@ import type { DragEvent } from "react";
 import QuickRNBrand from "./QuickRNBrand";
 import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, X, Calculator, FileText, ClipboardList, MessageSquareWarning } from "lucide-react";
 import type { CanonicalNclexItemType, Question, QuestionInteraction } from "./questions";
-import { responseScore, estimateCatAbility } from "./examScoring.js";
+import { responseScore, estimateCatAbility, evaluateReadiness } from "./examScoring.js";
 
 export type ExamQuestionResult={questionId:string;category:string;topic:string;earnedPoints:number;correct:boolean;answered:boolean};
-export type ExamCompletion={mode:"self-study"|"cat"|"readiness";questionCount:number;answeredCount:number;correctCount:number;incorrectCount:number;unansweredCount:number;earnedPoints:number;possiblePoints:number;scorePercent:number;durationSeconds:number;questionResults:ExamQuestionResult[]};
+export type ExamCompletion={mode:"self-study"|"cat"|"readiness";questionCount:number;answeredCount:number;correctCount:number;incorrectCount:number;unansweredCount:number;earnedPoints:number;possiblePoints:number;scorePercent:number;durationSeconds:number;readinessPassed?:boolean;readinessAbility?:number;readinessWeakCategories?:string[];questionResults:ExamQuestionResult[]};
 type Props={questions:Question[];onExit:()=>void;defaultQuestionCount?:number;onComplete?:(result:ExamCompletion)=>void;onReportFeedback?:(report:{questionId:string;itemType:string;topic:string;prompt:string;feedback:string;mode:string})=>Promise<void>;onFlagQuestion?:(questionId:string)=>void;onPracticeTopic?:(topic:string)=>void;onPracticeCategory?:(category:string)=>void;savedQuestionIds?:string[];mode?:"self-study"|"cat"|"readiness"};
 const LETTERS=["A","B","C","D","E","F","G","H"];
 const EMPTY_SAVED_QUESTION_IDS:string[]=[];
@@ -32,7 +32,7 @@ function selectExamItems(publishedItems:Question[],count:number,seed:number){con
  const standaloneNgn=shuffled.filter(q=>!caseGroupKey(q)&&normalizedType(q)!=="single-response");const ngnTarget=Math.min(count,Math.max(count>=6?Math.ceil(count*.35):1,chosenCases.length));const ngnStandaloneTarget=Math.max(0,ngnTarget-chosenCases.length);const chosenNgn=seededShuffle(standaloneNgn,seed+211).slice(0,ngnStandaloneTarget);const traditional=shuffled.filter(q=>!caseGroupKey(q)&&normalizedType(q)==="single-response");const traditionalTarget=Math.max(0,count-chosenCases.length-chosenNgn.length);const chosenTraditional=seededShuffle(traditional,seed+307).slice(0,traditionalTarget);return shuffleQuestionBlocks([...chosenTraditional,...chosenCases,...chosenNgn],seed+401);}
 const selectedExam=useMemo(()=>{const formatType=(q:Question)=>normalizedType(q);if(formatSampler){const selected:Question[]=[];const used=new Set<string>();for(const type of FORMAT_SAMPLER_TYPES){const preferred=published.filter(q=>!caseGroupKey(q)&&formatType(q)===type&&!used.has(q.id));const fallback=published.filter(q=>formatType(q)===type&&!used.has(q.id));const candidates=[...preferred];for(const q of fallback)if(!candidates.some(candidate=>candidate.id===q.id))candidates.push(q);const randomized=seededShuffle(candidates,samplerSeed+FORMAT_SAMPLER_TYPES.indexOf(type)+1);const picked=randomized[0];if(picked){selected.push(picked);used.add(picked.id);}}return shuffleQuestionBlocks(selected,samplerSeed+401);}if(questionCount==="all"&&mode==="self-study")return shuffleQuestionBlocks(expandCaseStudyGroups(published,published),samplerSeed+401);const count=Number(questionCount);return selectExamItems(published,count,samplerSeed);},[published,questionCount,formatSampler,samplerSeed,mode]);
  const [catExam,setCatExam]=useState<Question[]>([]);
- const exam=mode==="cat"&&catExam.length?catExam:selectedExam;
+ const exam=mode!=="self-study"&&catExam.length?catExam:selectedExam;
  const [remainingSeconds,setRemainingSeconds]=useState(5*60*60);
  const [breakCheckpoint,setBreakCheckpoint]=useState(0);
  const [showBreakPrompt,setShowBreakPrompt]=useState(false);
@@ -71,6 +71,7 @@ const selectedExam=useMemo(()=>{const formatType=(q:Question)=>normalizedType(q)
  const isQuestionCorrect=(q:Question,actual:string[])=>itemCredit(q,actual)===1;
  const correct=(q:Question)=>isQuestionCorrect(q,answers[q.id]??[]);
  const score=exam.reduce((n,q)=>n+itemCredit(q,answers[q.id]??[]),0);
+ const readinessEvaluation=mode==="readiness"?evaluateReadiness(exam.map(q=>({earned:itemCredit(q,answers[q.id]??[]),difficulty:q.difficulty,category:q.category}))):null;
  const selected=item?(answers[item.id]??[]):[];
  const hasAnsweredCurrent=selected.some(value=>value!=="");
  const setResponse=(values:string[])=>{if(item)setAnswers(old=>({...old,[item.id]:values}));};
@@ -141,8 +142,8 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
   return values.map(v=>opts[Number(v)]??v);
  };
  const reviewItems=exam.map((q,i)=>({q,i})).filter(({q})=>reviewFilter==="all"||(reviewFilter==="incorrect"&&(answers[q.id]??[]).some(value=>value!=="")&&!correct(q))||(reviewFilter==="unanswered"&&!(answers[q.id]??[]).some(value=>value!==""))||(reviewFilter==="flagged"&&flagged.includes(q.id)));
- const submitExam=()=>{setFinished(false);setShowBreakPrompt(false);setShowBreakScreen(false);setReviewIndex(0);setActiveRecordTab("notes");if(!completionRecorded){const questionResults:ExamQuestionResult[]=exam.map(q=>{const response=answers[q.id]??[];return {questionId:q.id,category:q.category,topic:q.topic,earnedPoints:itemCredit(q,response),correct:isQuestionCorrect(q,response),answered:response.some(value=>value!=="")};});const answeredCount=questionResults.filter(result=>result.answered).length;const correctCount=questionResults.filter(result=>result.correct).length;const possiblePoints=exam.length;onComplete?.({mode,questionCount:exam.length,answeredCount,correctCount,incorrectCount:questionResults.filter(result=>result.answered&&!result.correct&&result.earnedPoints===0).length,unansweredCount:exam.length-answeredCount,earnedPoints:score,possiblePoints,scorePercent:possiblePoints?Math.round(score/possiblePoints*100):0,durationSeconds:startedAt?Math.max(0,Math.round((Date.now()-startedAt)/1000)):0,questionResults});setCompletionRecorded(true);}setSubmitted(true);};
- const advanceAdaptive=()=>{if(mode!=="self-study"&&!hasAnsweredCurrent)return;if(mode!=="cat"){go(current+1);return;}const answered=catExam.map(q=>({q}));const ability=estimateCatAbility(answered.map(x=>({earned:itemCredit(x.q,answers[x.q.id]??[]),difficulty:x.q.difficulty})));const target=ability< -0.45?"Foundational":ability>0.55?"Advanced":"Intermediate";const used=new Set(catExam.map(q=>q.id));const counts=new Map<string,number>();catExam.forEach(q=>counts.set(q.category,(counts.get(q.category)??0)+1));const pool=seededShuffle(published.filter(q=>!used.has(q.id)),samplerSeed+catExam.length);const ranked=pool.map(q=>({q,score:(q.difficulty===target?0: q.difficulty==="Intermediate"?1:2)+(counts.get(q.category)??0)*0.08})).sort((a,b)=>a.score-b.score);const nextQuestion=ranked[0]?.q;if(nextQuestion&&catExam.length<150){setCatExam(old=>[...old,nextQuestion]);go(current+1);}else{setReviewFilter("all");setShowReview(true);}};
+ const submitExam=()=>{setFinished(false);setShowBreakPrompt(false);setShowBreakScreen(false);setReviewIndex(0);setActiveRecordTab("notes");if(!completionRecorded){const questionResults:ExamQuestionResult[]=exam.map(q=>{const response=answers[q.id]??[];return {questionId:q.id,category:q.category,topic:q.topic,earnedPoints:itemCredit(q,response),correct:isQuestionCorrect(q,response),answered:response.some(value=>value!=="")};});const answeredCount=questionResults.filter(result=>result.answered).length;const correctCount=questionResults.filter(result=>result.correct).length;const possiblePoints=exam.length;const readiness=mode==="readiness"?evaluateReadiness(exam.map(q=>({earned:itemCredit(q,answers[q.id]??[]),difficulty:q.difficulty,category:q.category}))):null;onComplete?.({mode,questionCount:exam.length,answeredCount,correctCount,incorrectCount:questionResults.filter(result=>result.answered&&!result.correct&&result.earnedPoints===0).length,unansweredCount:exam.length-answeredCount,earnedPoints:score,possiblePoints,scorePercent:possiblePoints?Math.round(score/possiblePoints*100):0,durationSeconds:startedAt?Math.max(0,Math.round((Date.now()-startedAt)/1000)):0,...(readiness?{readinessPassed:readiness.passed,readinessAbility:readiness.ability,readinessWeakCategories:readiness.weakCategories}:{}),questionResults});setCompletionRecorded(true);}setSubmitted(true);};
+ const advanceAdaptive=()=>{if(mode==="self-study"){go(current+1);return;}if(!hasAnsweredCurrent)return;const used=new Set(catExam.map(q=>q.id));const counts=new Map<string,number>();catExam.forEach(q=>counts.set(q.category,(counts.get(q.category)??0)+1));let pool:Question[];if(mode==="readiness"){const advanced=published.filter(q=>!used.has(q.id)&&q.difficulty==="Advanced");pool=advanced.length?advanced:published.filter(q=>!used.has(q.id)&&q.difficulty==="Intermediate");}else{const ability=estimateCatAbility(catExam.map(q=>({earned:itemCredit(q,answers[q.id]??[]),difficulty:q.difficulty})));const target=ability< -0.45?"Foundational":ability>0.55?"Advanced":"Intermediate";pool=published.filter(q=>!used.has(q.id));pool=seededShuffle(pool,samplerSeed+catExam.length).sort((a,b)=>(a.difficulty===target?0:a.difficulty==="Intermediate"?1:2)-(b.difficulty===target?0:b.difficulty==="Intermediate"?1:2));}const randomized=seededShuffle(pool,samplerSeed+catExam.length);const ranked=randomized.map(q=>({q,score:(counts.get(q.category)??0)*0.08})).sort((a,b)=>a.score-b.score);const nextQuestion=ranked[0]?.q;if(nextQuestion&&catExam.length<150){setCatExam(old=>[...old,nextQuestion]);go(current+1);}else{setReviewFilter("all");setShowReview(true);}};
  useEffect(()=>{if(!started||submitted||mode==="self-study")return;const timer=window.setInterval(()=>setRemainingSeconds(value=>Math.max(0,value-1)),1000);return()=>window.clearInterval(timer);},[started,submitted,mode]);
  useEffect(()=>{if(started&&!submitted&&mode!=="self-study"&&remainingSeconds===0)submitExam();},[remainingSeconds,started,submitted,mode]);
  const breakThresholds=[3*60*60,90*60];
@@ -150,7 +151,7 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
  useEffect(()=>{if(!showBreakScreen)return;const timer=window.setInterval(()=>setBreakSeconds(value=>Math.max(0,value-1)),1000);return()=>window.clearInterval(timer);},[showBreakScreen]);
  useEffect(()=>{if(showBreakScreen&&breakSeconds===0)setShowBreakScreen(false);},[showBreakScreen,breakSeconds]);
  if(!published.length)return <div className="exam-screen"><div className="exam-empty"><h2>No published questions available</h2><p>There are no published questions available for this examination.</p><button className="exam-next" onClick={onExit}>Return to QuickRN</button></div></div>;
- const canStartExam = mode === "cat" || (formatSampler ? selectedExam.length === FORMAT_SAMPLER_TYPES.length : selectedExam.length === (questionCount === "all" ? published.length : Number(questionCount)));
+ const canStartExam = mode !== "self-study" || (formatSampler ? selectedExam.length === FORMAT_SAMPLER_TYPES.length : selectedExam.length === (questionCount === "all" ? published.length : Number(questionCount)));
  const handleStartExam = () => {
   const nextSeed = Math.floor(Math.random() * 0x100000000);
   setSamplerSeed(nextSeed);
@@ -169,10 +170,10 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
   setShowBreakPrompt(false);
   setShowBreakScreen(false);
   setBreakSeconds(10 * 60);
-  const firstCatQuestion =
-   seededShuffle(published.filter(q => q.difficulty === "Intermediate"), nextSeed)[0] ??
-   seededShuffle(published, nextSeed)[0];
-  setCatExam(mode === "cat" && firstCatQuestion ? [firstCatQuestion] : []);
+  const firstCatQuestion = mode === "readiness"
+   ? seededShuffle(published.filter(q => q.difficulty === "Advanced"), nextSeed)[0] ?? seededShuffle(published.filter(q => q.difficulty === "Intermediate"), nextSeed)[0]
+   : seededShuffle(published.filter(q => q.difficulty === "Intermediate"), nextSeed)[0] ?? seededShuffle(published, nextSeed)[0];
+  setCatExam(mode !== "self-study" && firstCatQuestion ? [firstCatQuestion] : []);
  };
  if (!started) {
   return (
@@ -192,26 +193,19 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
       {mode === "cat"
        ? "The next question is selected based on your response history. The session runs for up to five hours and ends between 85 and 150 questions."
        : mode === "readiness"
-        ? "Choose an 85-, 100-, or 150-question timed practice assessment. Your report will show performance by category and questions to review; it is not a pass prediction."
+        ? "A harder-item adaptive readiness CAT. It runs for 85 to 150 questions and applies a stricter internal benchmark: at least 80% partial-credit score, +1.25 provisional ability, and 70% in each sufficiently sampled category."
         : "Work through the questions at your own pace. There is no countdown timer."}
      </p>
-     {(mode === "self-study" || mode === "readiness") && (
+     {mode === "self-study" && (
       <>
        <div className="exam-length-options">
-        {(mode === "readiness"
-         ? [
-            { value: "85", label: "85 questions", detail: "Practice-length assessment" },
-            { value: "100", label: "100 questions", detail: "Extended assessment" },
-            { value: "150", label: "150 questions", detail: "Maximum-length practice" }
-           ]
-         : [
+        {[
             { value: "20", label: "20 questions", detail: "Quick practice" },
             { value: "60", label: "60 questions", detail: "Focused session" },
             { value: "85", label: "85 questions", detail: "NCLEX-length practice" },
             { value: "150", label: "150 questions", detail: "Extended practice" },
             { value: "all", label: "All questions", detail: published.length + " available" }
-           ]
-        ).map(option => (
+           ].map(option => (
          <button
           type="button"
           key={option.value}
@@ -226,11 +220,6 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
          </button>
         ))}
        </div>
-       {mode === "readiness" && (
-        <p className="exam-setup-note">
-         Selected assessment: {selectedExam.length} of {Number(questionCount)} requested questions available in the published bank.
-        </p>
-       )}
        {mode === "self-study" && (
         <button
          type="button"
@@ -277,7 +266,7 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
   ]:[];
   const reviewRecordActive=reviewRecordTabs.find(tab=>tab.key===activeRecordTab)??reviewRecordTabs[0];
   const actualLabels=reviewLabels(q,response);
-  const correctLabels=reviewLabels(q,expectedResponse);const catAbility=mode==="cat"?estimateCatAbility(catExam.map(question=>({earned:itemCredit(question,answers[question.id]??[]),difficulty:question.difficulty}))):0;
+  const correctLabels=reviewLabels(q,expectedResponse);const catAbility=mode!=="self-study"?estimateCatAbility(exam.map(question=>({earned:itemCredit(question,answers[question.id]??[]),difficulty:question.difficulty}))):0;const readinessResult=mode==="readiness"?evaluateReadiness(exam.map(question=>({earned:itemCredit(question,answers[question.id]??[]),difficulty:question.difficulty,category:question.category}))):null;
   const credit=itemCredit(q,response);const status=response.every(value=>value==="")?"Unanswered":credit===1?"Correct":credit>0?"Partially correct":"Incorrect";
   const readinessCategoryMetrics=exam.reduce((groups,question)=>{const current=groups[question.category]??{total:0,earned:0};current.total+=1;current.earned+=itemCredit(question,answers[question.id]??[]);groups[question.category]=current;return groups;},{} as Record<string,{total:number;earned:number}>);
   const readinessCategoryRows=Object.entries(readinessCategoryMetrics).map(([name,value])=>({name,...value,percent:Math.round(value.earned/value.total*100)})).sort((a,b)=>a.percent-b.percent);
@@ -285,7 +274,8 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
   const needsReviewCount=exam.filter(question=>!isQuestionCorrect(question,answers[question.id]??[])).length;
   return <div className="exam-screen exam-review-screen">
    <header className="exam-header"><QuickRNBrand className="exam-brand" tagline="RN LICENSURE PRACTICE" compact /><div className="exam-header-center"><strong>Examination Review</strong><span>Submitted responses and rationales</span></div><button type="button" className="exam-exit" onClick={onExit}>Return to dashboard</button></header>
-   <section className="exam-review-summary"><div><span>EXAMINATION COMPLETE</span><h1>Review your performance</h1><p>Review each item, compare your response with the keyed answer, and read the rationale.</p>{mode!=="self-study"&&done===exam.length&&<p className="exam-review-flag-summary">{flagged.length} question{flagged.length===1?"":"s"} flagged for review</p>}</div><div className="exam-review-score"><strong>{score}/{exam.length}</strong><span>{Math.round(score/exam.length*100)}% partial-credit score</span>{mode==="readiness"&&<small>Practice assessment result only. This score is not a validated readiness classification or an NCLEX pass prediction.</small>}{mode==="cat"&&<small>Uncalibrated CAT-style ability estimate: {catAbility.toFixed(2)} · not an official NCLEX result</small>}</div></section>
+   <section className="exam-review-summary"><div><span>EXAMINATION COMPLETE</span><h1>Review your performance</h1><p>Review each item, compare your response with the keyed answer, and read the rationale.</p>{mode!=="self-study"&&done===exam.length&&<p className="exam-review-flag-summary">{flagged.length} question{flagged.length===1?"":"s"} flagged for review</p>}</div><div className="exam-review-score"><strong>{score}/{exam.length}</strong><span>{Math.round(score/exam.length*100)}% partial-credit score</span>{mode==="readiness"&&<small>Strict readiness benchmark: {readinessResult?.passed?"PASS":"NOT YET READY"} · {readinessResult?.scorePercent}% score · ability {readinessResult?.ability.toFixed(2)} / +1.25 required. This is a QuickRN practice standard, not an official NCLEX result.</small>}{mode==="cat"&&<small>Uncalibrated CAT-style ability estimate: {catAbility.toFixed(2)} · not an official NCLEX result</small>}</div></section>
+   {mode==="readiness"&&readinessResult&&<section className={"exam-readiness-verdict "+(readinessResult.passed?"passed":"not-passed")} aria-live="polite"><strong>{readinessResult.passed?"READINESS STANDARD MET":"READINESS STANDARD NOT MET"}</strong><p>{readinessResult.passed?"You met all QuickRN hard-item readiness criteria.":"This attempt does not yet meet every strict readiness criterion."}</p><div><span>Minimum 85 questions · Completed {readinessResult.questionCount}</span><span>Score {readinessResult.scorePercent}% · Required 80%</span><span>Ability +{readinessResult.ability.toFixed(2)} · Required +1.25</span><span>Category floor 70% · Applied to categories with 5+ items</span></div>{readinessResult.reasons.length>0&&<ul>{readinessResult.reasons.map(reason=><li key={reason}>{reason}</li>)}</ul>}{readinessResult.weakCategories.length>0&&<p>Below-floor categories: {readinessResult.weakCategories.join(", ")}</p>}</section>}
    <section className="exam-readiness-report" aria-label="Assessment performance report"><div className="exam-readiness-report-head"><div><strong>Session performance</strong><span>{mode==="readiness"?"Readiness practice report":mode==="cat"?"CAT-style practice report":"Practice exam report"}</span></div><button type="button" className="exam-nav-review" disabled={firstNeedsReviewIndex<0} onClick={()=>setReviewIndex(Math.max(0,firstNeedsReviewIndex))}>Review items needing attention ({needsReviewCount}) <ArrowRight size={15}/></button></div><div className="exam-readiness-metrics"><div><strong>{done}/{exam.length}</strong><span>Answered</span></div><div><strong>{exam.length-done}</strong><span>Unanswered</span></div><div><strong>{exam.filter(question=>isQuestionCorrect(question,answers[question.id]??[])).length}</strong><span>Fully correct</span></div><div><strong>{Math.floor((startedAt?Math.max(0,Date.now()-startedAt):0)/60000)} min</strong><span>Elapsed time</span></div></div><div className="exam-readiness-category-list"><h2>Performance by question category</h2>{readinessCategoryRows.map((area,index)=><div className="exam-readiness-category" key={area.name}><div><strong>{area.name}</strong><span>{area.percent}% earned credit · {area.total} questions</span></div><div className="exam-readiness-track"><i style={{width:area.percent+"%"}}/></div>{index===0&&<button type="button" className="exam-readiness-practice-link" onClick={()=>onPracticeCategory?.(area.name)}>Practice priority category</button>}</div>)}</div><p className="exam-readiness-disclaimer">Category results are descriptive of the questions sampled in this session. Categories may have different sample sizes and are not calibrated against official NCLEX scoring.</p></section>
    <div className="exam-review-progress"><span style={{width:((reviewIndex+1)/exam.length*100)+"%"}}/></div>
    <div className="exam-review-workspace">
@@ -314,7 +304,7 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
     
     <section className="exam-question-card"><div className="exam-card-kicker">ITEM {String(current+1).padStart(2,"0")}</div>{!hasClinicalRecord&&(item.clinicalScenario||item.exhibit||item.caseStudy)&&<section className="exam-inline-scenario"><div className="exam-case-label">CLINICAL SCENARIO</div><p>{item.clinicalScenario??item.exhibit??item.caseStudy}</p></section>}<h1 className="exam-stem">{item.prompt}</h1>{type!=="numeric-entry"&&type!=="highlight-text"&&!/(select all that apply|select\s+\d+|select one|choose one|choose two|choose the best|select the best)/i.test(item.prompt)&&!((data.instruction??"").trim().toLowerCase()===item.prompt.trim().toLowerCase())&&<p className="exam-instruction">{data.instruction??(type==="multiple-response"||type==="extended-multiple-response"?"Select all that apply.":"Select the best response.")}</p>}{renderInteraction()}</section>
     <div className="exam-report-action"><button type="button" className="exam-tool-button" onClick={()=>{setReportError("");setShowReport(true);}}><MessageSquareWarning size={16}/> Report to Webmaster</button></div>
-    <div className="exam-controls">{mode==="self-study"&&<button type="button" className="exam-nav-review" onClick={()=>{setReviewFilter("all");setShowReview(true);}}><ClipboardList size={16}/> Question navigator</button>}<span className="exam-response-status">{selected.length?"Response saved":"No response yet"} · {done}/{exam.length} answered</span>{current===exam.length-1&&mode==="cat"&&exam.length>=85&&exam.length<150?<><button type="button" className="exam-next" disabled={!hasAnsweredCurrent} onClick={()=>{setReviewFilter("all");setShowReview(true);}}>End CAT <ArrowRight size={17}/></button><button type="button" className="exam-next" disabled={!hasAnsweredCurrent} onClick={advanceAdaptive}>Next <ArrowRight size={17}/></button></>:current===exam.length-1&&mode!=="cat"||current===exam.length-1&&mode==="cat"&&exam.length>=150?<button type="button" className="exam-next" disabled={mode!=="self-study"&&!hasAnsweredCurrent} onClick={()=>{setReviewFilter("all");setShowReview(true);}}>Review and submit <ArrowRight size={17}/></button>:<button type="button" className="exam-next" disabled={mode!=="self-study"&&!hasAnsweredCurrent} onClick={advanceAdaptive}>Next <ArrowRight size={17}/></button>}</div>
+    <div className="exam-controls">{mode==="self-study"&&<button type="button" className="exam-nav-review" onClick={()=>{setReviewFilter("all");setShowReview(true);}}><ClipboardList size={16}/> Question navigator</button>}<span className="exam-response-status">{selected.length?"Response saved":"No response yet"} · {done}/{exam.length} answered</span>{current===exam.length-1&&mode==="cat"&&exam.length>=85&&exam.length<150?<><button type="button" className="exam-next" disabled={!hasAnsweredCurrent} onClick={()=>{setReviewFilter("all");setShowReview(true);}}>End CAT <ArrowRight size={17}/></button><button type="button" className="exam-next" disabled={!hasAnsweredCurrent} onClick={advanceAdaptive}>Next <ArrowRight size={17}/></button></>:current===exam.length-1&&mode==="readiness"&&exam.length>=85&&exam.length<150?(readinessEvaluation?.passed?<><button type="button" className="exam-next" disabled={!hasAnsweredCurrent} onClick={()=>{setReviewFilter("all");setShowReview(true);}}>Finish readiness <ArrowRight size={17}/></button><button type="button" className="exam-next" disabled={!hasAnsweredCurrent} onClick={advanceAdaptive}>Continue harder CAT <ArrowRight size={17}/></button></>:<button type="button" className="exam-next" disabled={!hasAnsweredCurrent} onClick={advanceAdaptive}>Continue harder CAT <ArrowRight size={17}/></button>):current===exam.length-1&&mode!=="self-study"?<button type="button" className="exam-next" disabled={!hasAnsweredCurrent} onClick={()=>{setReviewFilter("all");setShowReview(true);}}>Review and submit <ArrowRight size={17}/></button>:current===exam.length-1?<button type="button" className="exam-next" onClick={()=>{setReviewFilter("all");setShowReview(true);}}>Review and submit <ArrowRight size={17}/></button>:<button type="button" className="exam-next" disabled={mode!=="self-study"&&!hasAnsweredCurrent} onClick={advanceAdaptive}>Next <ArrowRight size={17}/></button>}</div>
    </main>
   </div>
   {showReport&&<div className="exam-modal-backdrop exam-report-backdrop"><section className="exam-report-modal" role="dialog" aria-modal="true" aria-labelledby="exam-report-title"><div className="exam-notes-head"><div><strong id="exam-report-title">Report question feedback</strong><span>Question {current+1} · {item.id}</span></div><button type="button" onClick={()=>setShowReport(false)} aria-label="Close report"><X size={18}/></button></div><p>Tell the webmaster what needs attention in this question. Include the issue and any suggested correction.</p><textarea aria-label="Feedback for webmaster" value={reportText} onChange={event=>setReportText(event.target.value)} placeholder="Describe the problem with the question, answer, rationale, or interaction..." rows={6}/>{reportError&&<p className="exam-report-error" role="alert">{reportError}</p>}<div className="exam-notes-foot"><span>Includes the question ID and item details automatically.</span><button type="button" className="exam-next" disabled={!reportText.trim()||reportSubmitting} onClick={()=>void submitItemReport()}>{reportSubmitting?"Submitting…":"Submit report"}</button></div></section></div>}
