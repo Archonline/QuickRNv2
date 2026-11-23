@@ -89,7 +89,18 @@ export function validateQuestionBank(items) {
     return { id:q?.id ?? "(missing id)", ...validateQuestion(q) };
   });
   const groups = new Map();
-  for (const q of items ?? []) if (q?.caseStudyId) groups.set(q.caseStudyId, (groups.get(q.caseStudyId) ?? 0) + 1);
+  const formatCounts = {};
+  const invalidByType = {};
+  for (const q of items ?? []) {
+    if (q?.caseStudyId) groups.set(q.caseStudyId, (groups.get(q.caseStudyId) ?? 0) + 1);
+    const type = asType(q ?? {});
+    formatCounts[type] = (formatCounts[type] ?? 0) + 1;
+  }
+  for (const result of results) if (!result.valid) {
+    const question = (items ?? []).find(item => item?.id === result.id);
+    const type = asType(question ?? {});
+    invalidByType[type] = (invalidByType[type] ?? 0) + 1;
+  }
   const orphanedCaseGroups = [...groups].filter(([,count]) => count < 2).map(([id]) => id);
-  return { total:results.length, valid:results.filter(x=>x.valid).length, invalid:results.filter(x=>!x.valid).length, duplicateIds, orphanedCaseGroups, results };
+  return { total:results.length, valid:results.filter(x=>x.valid).length, invalid:results.filter(x=>!x.valid).length, duplicateIds, orphanedCaseGroups, formatCounts, invalidByType, results };
 }
