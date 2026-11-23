@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 const TARGET=Number(process.env.TARGET_QUESTION_COUNT||3600), BASELINE=Number(process.env.BASELINE_QUESTION_COUNT||600);
-const DEADLINE=new Date(process.env.DEADLINE_UTC||"2026-11-29T16:00:00Z"), BATCH_SIZE=50, MAX_BATCHES=10;
-const KEY=process.env.GEMINI_API_KEY, MODEL=process.env.GEMINI_MODEL||"gemini-2.5-flash";
+const DEADLINE=new Date(process.env.DEADLINE_UTC||"2026-11-29T16:00:00Z"), BATCH_SIZE=10, MAX_BATCHES=10;
+const OLLAMA_HOST=(process.env.OLLAMA_HOST||"http://127.0.0.1:11434").replace(/\\/$/, ""), MODEL=process.env.OLLAMA_MODEL||"qwen2.5:7b-instruct";
 const OUT="question-bank-generated", MANIFEST=path.join(OUT,"automation-manifest.json");
 const read=p=>JSON.parse(fs.readFileSync(p,"utf8")), write=(p,v)=>fs.writeFileSync(p,JSON.stringify(v,null,2)+"\n");
 const schema=read("docs/question-bank/quickrn-question-schema.json"), rules=read("docs/question-bank/quickrn-validation-rules.json");
@@ -19,7 +19,7 @@ const elapsedFraction=Math.max(0,Math.min(1,(now-campaignStart)/(DEADLINE-campai
 const cumulativeTarget=Math.min(TARGET,BASELINE+Math.ceil((TARGET-BASELINE)*elapsedFraction));
 const due=Math.max(0,cumulativeTarget-(BASELINE+accepted));
 const runBudget=Math.min(remaining,due,BATCH_SIZE*MAX_BATCHES);
-if(remaining&& !KEY){console.error("GEMINI_API_KEY missing; no items generated.");process.exit(2);}
+if(remaining){try{const ping=await fetch(OLLAMA_HOST+"/api/version");if(!ping.ok)throw new Error("Ollama server unavailable");}catch(e){console.error("Ollama is required and must be running locally:",e.message);process.exit(2);}}
 const types=rules.question_integrity.valid_question_types.filter(type=>type!=="hot_spot");
 const topics=(blueprint.domains||[]).map(d=>({domain:d.name,topics:d.topics,conditions:d.seed_conditions}));
 function validate(q,id){
@@ -66,7 +66,7 @@ while(runAccepted+runRejected<runBudget&&attempts<MAX_BATCHES){
   if(good.length){
    good.sort((a,b)=>a.id.localeCompare(b.id));
    const seq=manifest.batches.length+1,batchId="QRN-BATCH-"+String(seq).padStart(3,"0");
-   const batch={schema_version:"1.0.0",bank:"QuickRNv2",batch:{batch_id:batchId,sequence:seq,requested_count:count,generated_count:good.length,first_question_id:good[0].id,last_question_id:good.at(-1).id,status:good.length===count?"complete":"partial"},questions:good};
+   const batch={schema_version:schema.schema_version||"1.0.0",bank:"QuickRNv2",batch:{batch_id:batchId,sequence:seq,requested_count:count,generated_count:good.length,first_question_id:good[0].id,last_question_id:good.at(-1).id,status:good.length===count?"complete":"partial"},questions:good};
    const file=batchId.toLowerCase()+".json";write(path.join(OUT,file),batch);
    manifest.batches.push({batch_id:batchId,file:OUT+"/"+file,requested:count,accepted:good.length,rejected:count-good.length,created_at:new Date().toISOString()});
    runAccepted+=good.length;runRejected+=count-good.length;
