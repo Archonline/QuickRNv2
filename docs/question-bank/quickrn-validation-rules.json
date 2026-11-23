@@ -513,7 +513,7 @@
       }
     },
     "legacy_invariants": {
-      "authored_replacement_count": 20,
+      "authored_replacement_count": 40,
       "core_bank_export": "questionBank500",
       "core_bank_count": 500,
       "combined_bank_export": "questionBank600",
