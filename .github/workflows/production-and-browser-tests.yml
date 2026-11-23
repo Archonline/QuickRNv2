@@ -1,4 +1,4 @@
-name: Production Build and Browser Regression
+name: Production Build and Browser Regression # CI verification
 
 on:
   push:
