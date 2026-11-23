@@ -260,7 +260,7 @@ const invalidPublishedChoiceItems=questionBank600.filter(q=>{
  if(q.status!=="published"||!choiceBasedTypes.has(q.itemType??"single-response"))return false;
  const choices=q.interaction?.choices??q.options??[];
  const correct=q.interaction?.correctResponse??[];
- return choices.length<2||!correct.length||correct.some(value=>!/^\\d+$/.test(value)||Number(value)<0||Number(value)>=choices.length);
+ return choices.length<2||!correct.length||correct.some(value=>!/^\d+$/.test(value)||Number(value)<0||Number(value)>=choices.length);
 });
 if(invalidPublishedChoiceItems.length)throw new Error("Published choice-based questions have missing choices or invalid answer keys: "+invalidPublishedChoiceItems.map(q=>q.id+" ("+q.itemType+")").join(", "));
 
