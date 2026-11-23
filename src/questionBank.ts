@@ -615,7 +615,7 @@ const categoryTopicOverrides: Record<string, ClinicalOverride> = {
   "Pediatrics / Growth and Development::Newborn thermoregulation": {
     prompt: "Which intervention should the nurse implement first to stabilize this newborn?",
     scenario: "A 32-week preterm newborn is 45 minutes old and has been transferred to the radiant warmer after initial stabilization. Axillary temperature is 35.7°C, glucose is 38 mg/dL, heart rate is 156/min, and respiratory rate is 54/min. The infant is mildly jittery but has no grunting or retractions.",
-    priority: "Begin controlled rewarming under the servo-controlled radiant warmer or incubator, verify the thermal environment, and promptly follow the neonatal hypoglycemia protocol with repeat temperature and glucose checks.",
+    priority: "Begin controlled rewarming under a monitored radiant warmer or incubator, verify the thermal environment, and urgently treat symptomatic hypoglycemia according to the neonatal protocol (typically IV dextrose), with repeat temperature and glucose checks.",
     distractors: [
       "Bathe the newborn promptly to remove vernix and stimulate circulation",
       "Place the newborn skin-to-skin with an unwrapped caregiver without temperature monitoring",
