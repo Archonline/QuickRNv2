@@ -193,7 +193,7 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
       {mode === "cat"
        ? "The next question is selected based on your response history. The session runs for up to five hours and ends between 85 and 150 questions."
        : mode === "readiness"
-        ? "A harder-item adaptive readiness CAT. It runs for 85 to 150 questions and applies a stricter internal benchmark: at least 85% partial-credit score, +2.25 provisional ability, and 75% in each sufficiently sampled category."
+        ? "A hard-item adaptive readiness CAT. It selects unused Advanced questions first, then Intermediate only if the Advanced pool is exhausted; it never selects Foundational items. It runs for 85 to 150 questions and passes only at 85% partial-credit score, +2.25 provisional ability, and 75% in each category sampled at least five times."
         : "Work through the questions at your own pace. There is no countdown timer."}
      </p>
      {mode === "self-study" && (
