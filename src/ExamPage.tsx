@@ -57,7 +57,7 @@ const selectedExam=useMemo(()=>{const formatType=(q:Question)=>normalizedType(q)
  const [reportText,setReportText]=useState("");
  const [reportSubmitting,setReportSubmitting]=useState(false);
  const [reportError,setReportError]=useState("");
- const submitItemReport=async()=>{if(!item||!reportText.trim()||!onReportFeedback)return;setReportSubmitting(true);setReportError("");try{await onReportFeedback({questionId:item.id,itemType:type,topic:item.topic,prompt:item.prompt,feedback:reportText.trim(),mode});setShowReport(false);setReportText("");}catch(error){console.error("Unable to submit question report",error);setReportError("Your report could not be submitted. Please try again.");}finally{setReportSubmitting(false);}};
+ const submitItemReport=async()=>{if(!item||!reportText.trim())return;if(!onReportFeedback){setReportError("Question feedback submission is unavailable. Please reload the app and try again.");return;}setReportSubmitting(true);setReportError("");try{await onReportFeedback({questionId:item.id,itemType:type,topic:item.topic,prompt:item.prompt,feedback:reportText.trim(),mode});setShowReport(false);setReportText("");}catch(error){console.error("Unable to submit question report",error);setReportError(error instanceof Error?error.message:"Your report could not be submitted. Please try again.");}finally{setReportSubmitting(false);}};
  const [calcValue,setCalcValue]=useState("0");
  const [reviewFilter,setReviewFilter]=useState<"all"|"incorrect"|"unanswered"|"flagged">("all");
  const [activeRecordTab,setActiveRecordTab]=useState<"notes"|"history"|"medications"|"assessment"|"vitals"|"labs"|"orders"|"flowsheet">("notes");
