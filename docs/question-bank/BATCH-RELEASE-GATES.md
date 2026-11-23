@@ -4,7 +4,7 @@
 
 Core question batches are staged as `core-batch-NNN.json` and contain exactly 100 records in the canonical `Question` shape from `src/questions.ts`.
 
-A batch is **not integrated** merely because its JSON or schema checks pass. Every item must be developed under [AUTH­ORING-QUALITY-STANDARD.md](./AUTHORING-QUALITY-STANDARD.md) (filename: `AUTHORING-QUALITY-STANDARD.md`) and the batch must pass all five gates:
+A batch is **not integrated** merely because its JSON or schema checks pass. Every item must be developed under [AUTHORING-QUALITY-STANDARD.md](./AUTHORING-QUALITY-STANDARD.md) and the batch must pass all five gates:
 
 1. **Uniqueness and blueprint alignment:** stable IDs and normalized prompts are unique against the current curated inventories and every staged batch; scenario, clinical decision, and learning objective are not recycled under new wording.
 2. **Answer-key and distractor integrity:** valid answer structure; exactly one defensible best answer for single-best-answer items; all distractors are clinically plausible and wrong for a clear case-specific reason; no answer cues.
