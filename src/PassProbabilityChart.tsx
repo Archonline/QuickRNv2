@@ -7,13 +7,9 @@ const HEIGHT = 286;
 const LEFT = 54;
 const RIGHT = 730;
 const TOP = 18;
-const BOTTOM = 222;
 
 function xAt(index: number, count: number) {
   return count <= 1 ? (LEFT + RIGHT) / 2 : LEFT + (index / (count - 1)) * (RIGHT - LEFT);
-}
-function yAt(value: number) {
-  return BOTTOM - (value / 100) * (BOTTOM - TOP);
 }
 function dateLabel(value: number) {
   return new Date(value).toLocaleDateString(undefined, { month: "short", day: "numeric" });
