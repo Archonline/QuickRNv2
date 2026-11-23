@@ -386,7 +386,7 @@ function curatedTraditionalQuestion(raw:CuratedTraditionalItem,index:number):Que
     const correctCondition=conditions.indexOf(String(key.condition??""));
     const correctActions=(key.actions??[]).map(item=>actions.indexOf(item)).filter(value=>value>=0);
     const correctMonitoring=(key.parameters??[]).map(item=>parameters.indexOf(item)).filter(value=>value>=0);
-    itemType="bow-tie";outputOptions=[];answer=correctCondition;
+    itemType="bow-tie";outputOptions=conditions;answer=correctCondition;
     if(!conditions.length||!actions.length||!parameters.length||correctCondition<0||correctActions.length!==2||correctMonitoring.length!==2)throw new Error(`Curated bow-tie ${raw.id} has incomplete authored choices or answer keys.`);
     interaction={instruction:"Identify the most likely condition, two priority actions, and two parameters to monitor.",choices:[],correctResponse:["c"+correctCondition,...correctActions.map((value,i)=>"a"+i+"-"+value),...correctMonitoring.map((value,i)=>"m"+i+"-"+value)],bowTie:{conditions,actions,monitoring:parameters,correctCondition,correctActions,correctMonitoring},optionRationales:[rationales.condition??"",rationales.actions??"",rationales.parameters??""]};
   } else if(raw.question_type==="matrix_grid"){
@@ -396,7 +396,7 @@ function curatedTraditionalQuestion(raw:CuratedTraditionalItem,index:number):Que
     const selectedColumns=rows.map(row=>columns.indexOf(String(key[row.id]??"")));
     if(rows.length<3||columns.length<2||selectedColumns.some(value=>value<0))throw new Error(`Curated matrix ${raw.id} has incomplete rows, columns, or answer keys.`);
     const expected=selectedColumns.map((column,index)=>index+":"+column);
-    itemType="matrix-single";outputOptions=[];answer=0;
+    itemType="matrix-single";outputOptions=columns;answer=selectedColumns[0]??0;
     interaction={instruction:"Select the best classification for each clinical finding.",choices:[],rows:rows.map(row=>row.text),columns,matrixMode:"single",correctResponse:expected,correctMatrix:Object.fromEntries(rows.map((row,index)=>[String(index),String(key[row.id]??"")]))};
   }
   return {
@@ -739,4 +739,18 @@ if (new Set(questionBank500.map((question) => question.id)).size !== 500) {
 }
 if (authoredReplacementIds.size !== authoredCoreRewriteBatch.length) {
   throw new Error("Authored replacement integration count does not match the authored batch.");
+}
+ 
+// Legacy option-index checks apply only to option-based items. Numeric-entry
+// questions intentionally have no options and carry their answer as a number.
+const invalidCoreStructure = questionBank500.filter((question) => {
+  if (question.itemType === "numeric-entry") {
+    return question.options.length !== 0 || !Number.isFinite(question.answer) ||
+      !question.interaction?.numericUnit || !Number.isFinite(Number(question.interaction.correctResponse?.[0]));
+  }
+  return question.options.length < 2 || !Number.isInteger(question.answer) ||
+    question.answer < 0 || question.answer >= question.options.length;
+});
+if (invalidCoreStructure.length) {
+  throw new Error("Core question structure is invalid for: " + invalidCoreStructure.map((question) => question.id).join(", "));
 }
