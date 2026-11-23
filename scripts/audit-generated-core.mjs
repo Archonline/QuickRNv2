@@ -66,6 +66,13 @@ const keyIsDerivedFromAnswerText = makeBlock.includes("opts.indexOf(answerText)"
 const hasPerOptionRationales = /optionRationales\s*:/.test(makeBlock);
 const hasEvidenceMetadata = /clinicalEvidence|references\s*:\s*\[[^\]]+\]/.test(makeBlock);
 const cyclicDistractorSelection = makeBlock.includes("distractorStart") && makeBlock.includes("distractors[(distractorStart + offset) % distractors.length]");
+const generatedItemsAreQuarantined = makeBlock.includes('status: "development"') &&
+  makeBlock.includes('publicationStatus: "draft"') &&
+  makeBlock.includes('status: "not-clinically-verified"');
+
+if (!generatedItemsAreQuarantined) {
+  throw new Error("Unverified topic-profile-generated questions must remain development/draft until item-level remediation and clinical review are complete.");
+}
 
 if (!hasCategorySpecificResolution || missingVariantKeys.length) {
   throw new Error("Missing category-specific clinical variants: " + missingVariantKeys.join("; "));
@@ -83,6 +90,7 @@ const report = {
   extraCopiesBeyondOnePerGroup: repeatedItems - repeatedGroups.length,
   repeatedAcrossCategories,
   structuralAnswerKey: keyIsDerivedFromAnswerText ? "PASS: option index is calculated from the exact keyed answer text after option shuffling." : "FAIL: answer-key derivation pattern not found.",
+  publicationSafeguard: generatedItemsAreQuarantined ? "PASS: topic-profile-generated items are development/draft and not represented as clinically approved." : "FAIL: unverified generated items must remain draft.",
   clinicalAnswerDefensibility: "NOT VERIFIED: generated items contain no item-level clinical source/evidence record and the answer text is inherited from a topic profile.",
   distractorConstruction: cyclicDistractorSelection
     ? "RISK: three options are selected by cyclic rotation from a shared topic-level pool; the algorithm does not establish that each distractor is a competitive, stem-specific near miss."
