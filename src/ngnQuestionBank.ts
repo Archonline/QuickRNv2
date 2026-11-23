@@ -24,6 +24,40 @@ function curatedCaseRecord(record:any,follow:any){
  const progress=[formatNgnContent(follow?.clinical_development),formatNgnContent(follow?.new_information)].filter(Boolean).join("\n");
  return {progressNotes:progress,history:formatNgnContent(record?.patient_profile),medicationList:formatNgnContent(record?.medications),assessment:formatNgnContent(record?.assessment),vitalSigns:formatNgnContent(record?.vital_signs),labs:formatNgnContent(record?.laboratory_results),providerOrders:formatNgnContent(record?.provider_orders),flowSheet:formatNgnContent(follow)};
 }
+
+function legacyOptionProjection(
+ itemType:NclexItemType,
+ interaction:QuestionInteraction,
+ sourceOptions:string[],
+ sourceAnswer:number
+):{options:string[];answer:number}{
+ let options=sourceOptions;
+ let answer=sourceAnswer;
+ const firstCorrect=interaction.correctResponse?.[0]??"0";
+ if(itemType==="drop-down-rationale"){
+  options=interaction.rationaleChoicesByBlank?.[0]??[];
+  answer=Number(firstCorrect);
+ }else if(itemType==="drop-down-cloze"){
+  options=interaction.clozeChoicesByBlank?.[0]??(interaction.clozeChoices??[]);
+  answer=Number(firstCorrect);
+ }else if(itemType==="matrix-single"||itemType==="matrix-multiple"||itemType==="matrix-grid"){
+  options=interaction.columns??[];
+  answer=Number(firstCorrect.split(":").at(-1)??0);
+ }else if(itemType==="highlight-text"){
+  options=interaction.segments??[];
+  answer=Math.max(0,options.findIndex(option=>interaction.correctResponse?.includes(option)));
+ }else if(itemType==="highlight-table"){
+  options=interaction.segments??[];
+  answer=Number(firstCorrect);
+ }else if(itemType==="bow-tie"){
+  options=interaction.bowTie?.conditions??[];
+  answer=interaction.bowTie?.correctCondition??sourceAnswer;
+ }else if(itemType==="numeric-entry"){
+  options=[];
+  answer=Number(firstCorrect);
+ }
+ return {options,answer};
+}
 function curateNgnQuestion(raw:CuratedNgnItem,index:number):Question{
  const data=raw.interaction??{},key=raw.correct_response??{},r=raw.rationales??{};
  const optionRows=Array.isArray(data.options)?data.options as {id:string;text:string}[]:[];
@@ -132,10 +166,12 @@ function curateNgnQuestion(raw:CuratedNgnItem,index:number):Question{
  const cjMap:Record<string,Question["clinicalJudgmentStep"]>={recognize_cues:"recognize-cues",analyze_cues:"analyze-cues",prioritize_hypotheses:"prioritize-hypotheses",generate_solutions:"generate-solutions",take_action:"take-action",evaluate_outcomes:"evaluate-outcomes"};
  const difficulty=raw.difficulty==="very_difficult"||raw.difficulty==="difficult"?"Advanced":raw.difficulty==="easy"?"Foundational":"Intermediate";
  const isMultiple=itemType==="multiple-response"||itemType==="extended-multiple-response"||itemType==="select-n";
- return {id:"ngn-"+String(index+1).padStart(3,"0"),category:raw.topic,topic:raw.subtopic,difficulty,prompt,options,answer,rationale:String(r.correct??r.summary??r.calculation??""),status:"published",format:isGroupedCase?"case-study":isMultiple?"multiple":"single",itemType,interaction,clinicalScenario,caseStudy:isGroupedCase?caseText:undefined,caseRecord:record,caseStudyId:isGroupedCase?group:undefined,exhibit:exhibit||undefined,clinicalJudgmentStep:cjMap[String(raw.clinical_judgment?.skill??"")],contentVersion:3,reviewStatus:"generated",reviewMetadata:{status:"not-clinically-verified",references:[],publicationStatus:"published"}};
+ const legacy=legacyOptionProjection(itemType,interaction,options,answer);
+ return {id:"ngn-"+String(index+1).padStart(3,"0"),category:raw.topic,topic:raw.subtopic,difficulty,prompt,options:legacy.options,answer:legacy.answer,rationale:String(r.correct??r.summary??r.calculation??""),status:"published",format:isGroupedCase?"case-study":isMultiple?"multiple":"single",itemType,interaction,clinicalScenario,caseStudy:isGroupedCase?caseText:undefined,caseRecord:record,caseStudyId:isGroupedCase?group:undefined,exhibit:exhibit||undefined,clinicalJudgmentStep:cjMap[String(raw.clinical_judgment?.skill??"")],contentVersion:3,reviewStatus:"generated",reviewMetadata:{status:"not-clinically-verified",references:[],publicationStatus:"published"}};
 }
 function customNgnQuestion(id:string,category:string,topic:string,difficulty:Question["difficulty"],prompt:string,scenario:string,rationale:string,itemType:NclexItemType,interaction:QuestionInteraction):Question{
- return {id,category,topic,difficulty,prompt,options:interaction.choices??[],answer:0,rationale,status:"published",format:itemType==="multiple-response"||itemType==="select-n"||itemType==="extended-multiple-response"?"multiple":"single",itemType,interaction,clinicalScenario:scenario,exhibit:"CLINICAL RECORD\n"+scenario,contentVersion:3,reviewStatus:"generated",reviewMetadata:{status:"not-clinically-verified",references:[],publicationStatus:"published"},clinicalJudgmentStep:"analyze-cues"};
+ const legacy=legacyOptionProjection(itemType,interaction,interaction.choices??[],0);
+ return {id,category,topic,difficulty,prompt,options:legacy.options,answer:legacy.answer,rationale,status:"published",format:itemType==="multiple-response"||itemType==="select-n"||itemType==="extended-multiple-response"?"multiple":"single",itemType,interaction,clinicalScenario:scenario,exhibit:"CLINICAL RECORD\n"+scenario,contentVersion:3,reviewStatus:"generated",reviewMetadata:{status:"not-clinically-verified",references:[],publicationStatus:"published"},clinicalJudgmentStep:"analyze-cues"};
 }
 function buildCuratedExtension():Question[]{
  const customA=customNgnQuestion("ngn-009","Mental Health","Lithium toxicity","Advanced","Complete the clinical reasoning statement about the client's acute change.","A 31-year-old client with bipolar I disorder takes lithium 900 mg/day. After 2 days of vomiting and diarrhea, the client develops coarse hand tremors, unsteady gait, slurred speech, and confusion. Lithium level is 2.1 mEq/L; creatinine is 1.6 mg/dL, increased from 0.9 mg/dL. The client is due for the evening lithium dose.","A lithium level above the therapeutic range with gastrointestinal fluid loss, coarse tremor, ataxia, confusion, and rising creatinine indicates toxicity with neurologic and renal risk. Hold the next dose, urgently notify the provider, assess neurologic and cardiac status, and anticipate prescribed isotonic IV fluids and serial lithium/renal/electrolyte monitoring.","drop-down-rationale",{instruction:"Complete both blanks using the best clinical reasoning.",choices:[],correctResponse:["0","0"],rationaleTemplate:"The nurse should [BLANK_1] because the findings indicate [BLANK_2].",rationaleChoicesByBlank:[["hold lithium and urgently notify the provider","administer the scheduled lithium dose with food","restrict oral and IV fluids","give an NSAID for the tremor"],["lithium toxicity with neurologic and renal risk","an expected transient medication effect","acute mania without medication toxicity","serotonin syndrome from serotonergic excess"] ]});
@@ -189,6 +225,11 @@ const invalidFormatItems=questionBank100.filter(q=>{
  }
 });
 if(invalidFormatItems.length) throw new Error("NGN format remediation failed for: "+invalidFormatItems.map(q=>q.id+" ("+q.itemType+")").join(", "));
+const invalidLegacyStructure=questionBank100.filter(q=>{
+ if(q.itemType==="numeric-entry")return q.options.length!==0||!Number.isFinite(q.answer)||!q.interaction?.numericUnit||!Number.isFinite(Number(q.interaction.correctResponse?.[0]));
+ return q.options.length<2||!Number.isInteger(q.answer)||q.answer<0||q.answer>=q.options.length;
+});
+if(invalidLegacyStructure.length)throw new Error("NGN legacy structure is invalid for: "+invalidLegacyStructure.map(q=>q.id+" ("+q.itemType+")").join(", "));
 const bowTieItems=questionBank100.filter(q=>q.itemType==="bow-tie");
 if(bowTieItems.some(q=>!q.exhibit?.includes("CLINICAL RECORD")&&!q.exhibit?.includes("EMERGENCY DEPARTMENT RECORD")||/Review the current assessment and record/i.test(q.exhibit??""))) throw new Error("Every bow-tie item must include an actual, non-placeholder clinical record.");
 if(bowTieItems.some(q=>{const b=q.interaction?.bowTie;if(!b)return true;return new Set(b.actions).size!==b.actions.length||new Set(b.monitoring).size!==b.monitoring.length;})) throw new Error("Bow-tie choices must be distinct within each item.");
