@@ -38,8 +38,8 @@ test("readiness requires minimum length, score, ability, and category floor", ()
 });
 
 test("readiness fails a high score when the provisional ability threshold is not met", () => {
-  const responses = Array.from({ length: 90 }, (_, index) => ({
-    earned: index % 5 === 0 ? 0 : 1,
+  const responses = Array.from({ length: 100 }, (_, index) => ({
+    earned: index % 20 < 3 ? 0 : 1,
     difficulty: "Foundational",
     category: "Adult Health"
   }));
@@ -64,4 +64,16 @@ test("readiness does not pass before 85 completed items", () => {
   })));
   assert.equal(result.passed, false);
   assert.equal(READINESS_RULES.maximumQuestions, 150);
+});
+
+test("readiness rejects scores below the 85 percent hard-item benchmark", () => {
+  const responses = Array.from({ length: 100 }, (_, index) => ({
+    earned: index < 16 ? 0 : 1,
+    difficulty: "Advanced",
+    category: "Adult Health"
+  }));
+  const result = evaluateReadiness(responses);
+  assert.equal(result.scorePercent, 84);
+  assert.equal(result.passed, false);
+  assert.ok(result.reasons.some(reason => reason.includes("85% overall")));
 });
