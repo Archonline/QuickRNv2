@@ -1,0 +1,58 @@
+{
+  "target_total": 3600,
+  "baseline_count": 600,
+  "accepted_count": 0,
+  "rejected_count": 64,
+  "repaired_count": 0,
+  "batches": [],
+  "failures": [
+    {
+      "at": "2026-11-23T03:27:25.229Z",
+      "first_id": 547,
+      "count": 10,
+      "error": "fetch failed"
+    },
+    {
+      "at": "2026-11-23T03:32:25.955Z",
+      "first_id": 557,
+      "count": 10,
+      "error": "fetch failed"
+    },
+    {
+      "at": "2026-11-23T03:37:26.675Z",
+      "first_id": 567,
+      "count": 10,
+      "error": "fetch failed"
+    },
+    {
+      "at": "2026-11-23T03:42:27.417Z",
+      "first_id": 577,
+      "count": 10,
+      "error": "fetch failed"
+    },
+    {
+      "at": "2026-11-23T03:47:28.153Z",
+      "first_id": 587,
+      "count": 10,
+      "error": "fetch failed"
+    },
+    {
+      "at": "2026-11-23T03:52:28.875Z",
+      "first_id": 597,
+      "count": 10,
+      "error": "fetch failed"
+    },
+    {
+      "at": "2026-11-23T03:57:29.604Z",
+      "first_id": 607,
+      "count": 4,
+      "error": "fetch failed"
+    }
+  ],
+  "deadline_utc": "2026-11-29T16:00:00.000Z",
+  "remaining_count": 3000,
+  "daily_required": 429,
+  "last_run_at": "2026-11-23T03:57:29.604Z",
+  "last_run_accepted": 0,
+  "last_run_rejected": 64
+}
