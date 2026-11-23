@@ -30,3 +30,19 @@ test("exam layout retains responsive rendering and sticky-header separation", ()
   assert.ok(css.includes("top:64px"));
   assert.ok(css.includes("z-index:60"));
 });
+
+test("readiness is an adaptive hard-item CAT with a stricter pass gate", () => {
+  const exam = read("src/ExamPage.tsx");
+  const scoring = read("src/examScoring.js");
+  assert.ok(exam.includes('mode==="readiness"'));
+  assert.ok(exam.includes('q.difficulty==="Advanced"'));
+  assert.ok(exam.includes('q.difficulty==="Intermediate"'));
+  assert.ok(exam.includes("evaluateReadiness"));
+  assert.ok(scoring.includes("minimumQuestions: 85"));
+  assert.ok(scoring.includes("maximumQuestions: 150"));
+  assert.ok(scoring.includes("minimumScorePercent: 85"));
+  assert.ok(scoring.includes("minimumAbility: 2.25"));
+  assert.ok(scoring.includes("minimumCategoryPercent: 75"));
+  const controls = exam.slice(exam.indexOf('<div className="exam-controls">'), exam.indexOf("</div>", exam.indexOf('<div className="exam-controls">')));
+  assert.doesNotMatch(controls, /exam-prev|Previous/);
+});
