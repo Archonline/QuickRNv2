@@ -44,16 +44,8 @@ export default function PassProbabilityChart({ points }: Props) {
           {previous && <small className={change >= 0 ? "trend-up" : "trend-down"}>{change > 0 ? "+" : ""}{change} pts since last test</small>}
         </div> : null}
       </div>
-      {points.length > 0 && points.length < 3 && <div className="pass-probability-empty"><strong>Building a reliable estimate</strong><span>Complete {3-points.length} more CAT or Readiness Exam{3-points.length===1?"":"s"} before QuickRN displays a probability. Your assessment trend is shown below as data accumulates.</span></div>}\n      {points.length === 0 ? (
-        <div className="pass-probability-empty">
-          <span className="pass-probability-empty-mark">↗</span>
-          <strong>Your trend starts after your first completed assessment</strong>
-          <span>Finish a CAT or Readiness Exam to add your first data point. In-progress and self-paced tests are excluded.</span>
-        </div>
-      ) : (
-        <>
-          <div className="pass-probability-chart-wrap">
-            <svg className="pass-probability-chart" viewBox={`0 0 ${WIDTH} ${HEIGHT}`} role="img" aria-label="Line chart showing estimated NCLEX pass probability after each completed CAT or Readiness Exam">
+      {points.length > 0 && points.length < 3 && <div className="pass-probability-empty"><strong>Building a reliable estimate</strong><span>Complete {3-points.length} more CAT or Readiness Exam{3-points.length===1?"":"s"} before QuickRN displays a probability. The chart will populate as you complete assessments.</span></div>}
+      <div className="pass-probability-chart-wrap">            <svg className="pass-probability-chart" viewBox={`0 0 ${WIDTH} ${HEIGHT}`} role="img" aria-label="Line chart showing estimated NCLEX pass probability after each completed CAT or Readiness Exam">
               <defs>
                 <linearGradient id="passProbabilityFill" x1="0" x2="0" y1="0" y2="1">
                   <stop offset="0%" stopColor="#6558dc" stopOpacity=".19" />
@@ -66,7 +58,7 @@ export default function PassProbabilityChart({ points }: Props) {
                   <text x={LEFT - 12} y={yAt(value) + 4} textAnchor="end" className="pass-chart-axis">{value}%</text>
                 </g>
               ))}
-              <path d={area} fill="url(#passProbabilityFill)" />
+              {points.length > 0 && <path d={area} fill="url(#passProbabilityFill)" />}
               {coords.length > 1 && <path d={line} className="pass-chart-line" />}
               {points.map((point, index) => {
                 const [x, y] = coords[index];
@@ -83,7 +75,7 @@ export default function PassProbabilityChart({ points }: Props) {
               ))}
             </svg>
           </div>
-          <div className="pass-probability-legend">
+          {points.length>0 && <div className="pass-probability-legend">
             <span><i /> Estimated pass probability</span>
             <span>{points.length} completed assessment{points.length === 1 ? "" : "s"}</span>
           </div>
