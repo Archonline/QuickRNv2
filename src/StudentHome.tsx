@@ -9,7 +9,7 @@ type StudentHomeProps = {
   activeDays: number;
   studyMinutes: number;
   weakestCategory: string | null;
-  onNavigate: (page: "practice" | "progress" | "history" | "calendar" | "saved") => void;
+  onNavigate: (page: "practice" | "progress" | "history" | "calendar" | "planner" | "saved") => void;
   onPractice: () => void;
   onSimulator: () => void;
   onCat: () => void;
@@ -90,7 +90,7 @@ export default function StudentHome(props: StudentHomeProps) {
     <section className="student-quick-links">
       <button onClick={()=>props.onNavigate("progress")}><BarChart3 size={18}/><span><strong>My performance</strong><small>Track progress by category</small></span><ArrowRight size={16}/></button>
       <button onClick={()=>props.onNavigate("history")}><Activity size={18}/><span><strong>Exam history</strong><small>Review completed sessions</small></span><ArrowRight size={16}/></button>
-      <button onClick={()=>props.onNavigate("calendar")}><CalendarDays size={18}/><span><strong>Study calendar</strong><small>See your study activity</small></span><ArrowRight size={16}/></button>
+      <button onClick={()=>props.onNavigate("planner")}><Target size={18}/><span><strong>Study plan</strong><small>Follow today's focused checklist</small></span><ArrowRight size={16}/></button><button onClick={()=>props.onNavigate("calendar")}><CalendarDays size={18}/><span><strong>Study calendar</strong><small>See your study activity</small></span><ArrowRight size={16}/></button>
       <button onClick={()=>props.onNavigate("saved")}><ClipboardList size={18}/><span><strong>My notebook</strong><small>{props.savedCount} saved questions</small></span><ArrowRight size={16}/></button>
     </section>
     <div className="student-dashboard-disclaimer">QuickRN practice assessments are educational tools, not official NCLEX examinations or validated pass predictions.</div>
