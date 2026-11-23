@@ -616,12 +616,13 @@ const availableTopicProfiles: Record<string, ClinicalOverride> = {
   ...respiratoryTopicOverrides,
   ...second300TopicOverrides,
 };
-for (const key of requiredTopicProfileKeys) {
+const allGeneratedTopics = [...new Set(B.flatMap(category => category.topics))];
+for (const key of allGeneratedTopics) {
   const profile = availableTopicProfiles[key];
-  if (!profile || !profile.prompt || !profile.scenario || !profile.priority ||
-      !profile.rationale || !profile.record || !profile.distractors ||
-      profile.distractors.length < 3) {
-    throw new Error(`Missing or incomplete topic-specific clinical profile: ${key}`);
+  if (!profile || !profile.prompt?.trim() || !profile.scenario?.trim() || !profile.priority?.trim() ||
+      !profile.rationale?.trim() || !profile.distractors || profile.distractors.length < 3 ||
+      profile.distractors.some(option => typeof option !== "string" || option.trim().length < 12)) {
+    throw new Error(`Missing or incomplete topic-specific clinical profile (prompt, scenario, priority, rationale, and three clinical near-miss distractors required): ${key}`);
   }
 }
 
@@ -639,10 +640,8 @@ function make(b: B, i: number, global: number): Question {
     "Delegation": "UAP delegation",
   };
 
-  const clinical =
-    availableTopicProfiles[topic] ??
-    availableTopicProfiles[alias[topic] ?? ""] ??
-    {};
+  const clinical = availableTopicProfiles[topic] ?? availableTopicProfiles[alias[topic] ?? ""];
+  if (!clinical) throw new Error(`Refusing to generate a category-level fallback question for topic: ${topic}`);
 
   const source: B & {
     caseRecord?: Question["caseRecord"];
@@ -677,9 +676,10 @@ function make(b: B, i: number, global: number): Question {
   const opts = base.slice(shift).concat(base.slice(0, shift));
   const answerIdx = opts.indexOf(answerText);
 
-  const scenario =
-    source.scenario ??
-    `A client is receiving care for ${topic.toLowerCase()}. ${lens.cue}`;
+  const scenario = source.scenario;
+  if (!scenario?.trim() || !source.prompt?.trim() || !source.rationale?.trim()) {
+    throw new Error(`Refusing to publish a generic or incomplete generated item for topic: ${topic}`);
+  }
   const record = source.record ?? b.record;
   const rationale = source.rationale;
 
