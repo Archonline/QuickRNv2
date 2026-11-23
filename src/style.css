@@ -648,3 +648,4 @@
 .wm-draft-card p{margin:0;font-size:11px;line-height:1.5;color:#555c72}
 .wm-confirm{display:flex;gap:9px;align-items:flex-start;margin:15px 0;color:#51586e;font-size:11px;line-height:1.5}.wm-confirm input{margin-top:2px}
 @media(max-width:700px){.wm-tool-cards,.wm-draft-grid{grid-template-columns:1fr}.wm-metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wm-hub-header{flex-direction:column}.wm-tool-card{min-height:92px}}
+.wm-import-label{display:inline-flex;align-items:center;gap:7px;cursor:pointer}.wm-import-label input{display:none}
