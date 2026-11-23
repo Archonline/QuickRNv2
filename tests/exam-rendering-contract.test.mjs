@@ -44,5 +44,5 @@ test("readiness is an adaptive hard-item CAT with a stricter pass gate", () => {
   assert.ok(scoring.includes("minimumAbility: 2.25"));
   assert.ok(scoring.includes("minimumCategoryPercent: 75"));
   const controls = exam.slice(exam.indexOf('<div className="exam-controls">'), exam.indexOf("</div>", exam.indexOf('<div className="exam-controls">')));
-  assert.doesNotMatch(controls, /exam-prev|Previous/);
+  assert.match(controls, /mode==="self-study"&&<button type="button" className="exam-prev"/);
 });
