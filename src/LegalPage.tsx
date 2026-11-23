@@ -82,6 +82,23 @@ const content: Record<LegalSection, { eyebrow: string; title: string; intro: str
       { heading: "Managing browser data", body: ["You can usually clear cookies and site data through your browser settings. Doing so may sign you out or reset locally stored preferences. Your browser may also offer controls for blocking or limiting cookies."] }
     ]
   },
+  faq: {
+    eyebrow: "QUICK ANSWERS", title: "Frequently Asked Questions",
+    intro: "Answers to common questions about using QuickRN, understanding practice results, and getting help. These answers describe the current learning platform and its educational limitations.",
+    updated: "November 23, 2026",
+    blocks: [
+      { heading: "What is QuickRN?", body: ["QuickRN is an independent NCLEX-RN learning and practice platform. It provides nursing-style practice questions, exam practice modes, rationales, and study progress features to support preparation."] },
+      { heading: "Are these official NCLEX questions?", body: ["No. QuickRN is not affiliated with or endorsed by the National Council of State Boards of Nursing (NCSBN). Its questions are independent practice materials, not official NCLEX questions or confidential examination content."] },
+      { heading: "Can QuickRN guarantee that I will pass the NCLEX?", body: ["No. Practice scores, CAT-style adaptation, readiness labels, and pass-probability estimates are learning aids based on activity in this platform. They are not official NCSBN scoring, validated psychometric predictions, or guarantees of an examination outcome."] },
+      { heading: "What is the difference between the exam modes?", body: ["Practice questions let you work through individual items and review explanations. The Exam Simulator provides a self-paced examination workspace. CAT & Readiness offers timed practice assessments; these are QuickRN practice implementations and do not reproduce the official NCLEX CAT algorithm or exam."] },
+      { heading: "Does QuickRN include Next Generation NCLEX (NGN) question types?", body: ["The question bank and exam workspace are designed to support NGN-style item formats and interactions. Availability and coverage depend on the questions currently published in the bank. An NGN-style format does not make an item an official NCLEX question."] },
+      { heading: "How are my study results and history saved?", body: ["When Firebase services are configured and you are signed in, QuickRN uses your account to save learning progress, saved questions, settings, and examination history. The exact features available can depend on the deployed configuration and your connection."] },
+      { heading: "What should I do if a question or rationale seems wrong?", body: ["Do not rely on content you believe may be unsafe or inaccurate. Use the in-app report option when available and include the question identifier and a clear explanation. Do not include patient names, medical-record numbers, or other identifiable health information. Reports may require review and are not guaranteed to be corrected immediately."] },
+      { heading: "Can I use QuickRN for actual patient-care decisions?", body: ["No. QuickRN is for education and examination preparation only. It is not medical advice or a clinical decision-support tool. Verify clinical information using current authoritative references, facility policy, and qualified clinical supervision."] },
+      { heading: "How can I request help or deletion of my account data?", body: ["Use the support route provided by the organization or administrator who gave you access. The current application does not publish a verified general support email. Account-deletion requests submitted through Settings are queued for administrator review; submission does not automatically erase the account or its data."] },
+      { heading: "Who operates or endorses QuickRN?", body: ["QuickRN is presented as an independent learning platform and is not an official NCSBN or NCLEX product. Consult the Legal & Trust Center for the platform's current educational disclaimer, privacy information, terms, and AI-use notice."] }
+    ]
+  },
   contact: {
     eyebrow: "WE'RE HERE TO HELP", title: "Contact & Support",
     intro: "Use the support channel provided by the QuickRN operator or the organization that gave you access. Please do not send passwords, payment credentials, or patient-identifiable health information.",
