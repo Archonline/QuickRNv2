@@ -218,7 +218,7 @@ Before returning a batch, validate:
 11. Difficulty and question-format distributions are reported accurately.
 12. No unsupported claim of human review or official NCLEX endorsement.
 
-Do not block publication on a separate human approval step. Publish items after the required automated schema, answer-key, consistency, and rendering checks pass. Keep generated-content status visible in internal metadata; never claim that automated checks establish clinical validation or official NCLEX endorsement.
+Publication requires a separate authorized human clinical review and explicit approval. Automated schema, answer-key, consistency, duplicate, rationale, or rendering checks are necessary but never sufficient for publication. Keep generated-content status visible in internal metadata. Model-generated critiques are challenge aids, not clinical sign-off; never claim that automated checks establish clinical validation or official NCLEX endorsement.
 
 ## Commands
 
