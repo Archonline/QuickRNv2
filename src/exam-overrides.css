@@ -592,3 +592,5 @@
  .exam-header-countdown{order:-1;min-width:94px;font-size:11px!important}
  .exam-record-content,.exam-record-content p{font-size:13px!important}
 }
+
+.exam-break-exam-clock{display:block;margin-top:6px;text-align:center;color:#718096;font-size:11px;font-variant-numeric:tabular-nums}
