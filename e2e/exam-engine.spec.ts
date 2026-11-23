@@ -80,3 +80,16 @@ test("practice launches an unfolding case in authored screen order", async ({ pa
   await page.getByRole("button", { name: /^Next/ }).click();
   await expect(page.locator(".exam-question-counter")).toContainText(`SCREEN 2 OF ${expectedScreens}`);
 });
+
+test("CAT is forward-only and cannot skip an unanswered adaptive item", async ({ page }) => {
+  await page.goto("/e2e/exam-harness.html?mode=cat");
+  await page.getByRole("button", { name: /Begin examination/ }).click();
+  await expect(page.getByRole("button", { name: /Previous/ })).toBeHidden();
+  await expect(page.getByRole("button", { name: /Navigation/ })).toBeHidden();
+  page.once("dialog", dialog => dialog.accept());
+  await page.getByRole("button", { name: /Next adaptive question/ }).click();
+  await expect(page.locator(".exam-question-counter")).toContainText("QUESTION 1 OF 1");
+  await page.getByRole("radio").first().check();
+  await page.getByRole("button", { name: /Next adaptive question/ }).click();
+  await expect(page.locator(".exam-question-counter")).toContainText("QUESTION 2 OF 2");
+});
