@@ -11,7 +11,7 @@
       "topic": "Cardiovascular Disorders",
       "subtopic": "Acute Coronary Syndrome",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "58-year-old male admitted to the emergency department with substernal chest pressure radiating to the left jaw for 45 minutes.",
@@ -41,24 +41,24 @@
           "Establish two large-bore IV lines"
         ]
       },
-      "stem": "Which action should the nurse prioritize immediately after administering sublingual nitroglycerin to this client?",
+      "stem": "The client reports that the chest pressure has decreased from 8/10 to 5/10 after the first nitroglycerin dose. The blood pressure is now 104/66 mmHg, compared with 154/92 mmHg before the dose. Which action should the nurse take next?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Reassess blood pressure and chest pain intensity within 5 minutes"
+            "text": "Withhold another nitroglycerin dose, reassess perfusion and symptoms, and promptly report the marked blood-pressure decrease"
           },
           {
             "id": "B",
-            "text": "Obtain a repeat 12-lead electrocardiogram in 30 minutes"
+            "text": "Repeat nitroglycerin because persistent chest pressure indicates that the first dose was ineffective"
           },
           {
             "id": "C",
-            "text": "Administer metoprolol 50 mg orally with a full glass of water"
+            "text": "Administer the prescribed oral beta blocker now to reduce myocardial oxygen demand"
           },
           {
             "id": "D",
-            "text": "Place the client in a supine position with legs elevated"
+            "text": "Lower the head of the bed and elevate the legs to restore preload before reassessing"
           }
         ]
       },
@@ -70,11 +70,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Sublingual nitroglycerin acts within 1 to 3 minutes and causes potent vasodilation, requiring blood pressure and symptom reassessment at 5 minutes before considering repeat dosing.",
-        "A": "Correct. Nitroglycerin can cause abrupt hypotension; blood pressure and pain score must be checked 5 minutes after each dose.",
-        "B": "Incorrect. Waiting 30 minutes delays evaluation of acute hemodynamic response and potential hypotension.",
-        "C": "Incorrect. Oral beta-blockers are not given immediately without verifying hemodynamic stability and withholding oral intake prior to emergent PCI.",
-        "D": "Incorrect. Supine positioning increases preload and myocardial oxygen demand; semi-Fowler positioning is preferred unless hypotensive."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "The substantial pressure decrease makes another vasodilator dose unsafe until hemodynamic status is reassessed; ongoing ischemia also requires urgent escalation.",
+        "B": "Persistent pain alone does not justify repeating nitroglycerin when blood pressure has fallen substantially.",
+        "C": "A beta blocker should not be given reflexively during evolving hemodynamic compromise; reassess and follow the acute coronary plan.",
+        "D": "Routine leg elevation does not treat the cause and may worsen pulmonary congestion if ventricular function is impaired."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -96,7 +96,7 @@
       "topic": "Cardiovascular Disorders",
       "subtopic": "Heart Failure",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "72-year-old female with chronic systolic heart failure (LVEF 30%) being discharged home after acute decompensation.",
@@ -127,28 +127,28 @@
           "Daily weight log"
         ]
       },
-      "stem": "Which statements by the client indicate a correct understanding of heart failure discharge teaching? Select all that apply.",
+      "stem": "The client is preparing for discharge after treatment for decompensated heart failure. Which statements show that the client can recognize early fluid retention and use the medication plan safely? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "I will weigh myself every morning after urinating and before eating breakfast."
+            "text": "I will weigh under the same conditions each morning and record the result."
           },
           {
             "id": "B",
-            "text": "I will call my provider if I gain 3 pounds in 2 days or 5 pounds in a week."
+            "text": "I will contact the heart-failure team for the weight increase threshold in my written action plan, even if I feel well."
           },
           {
             "id": "C",
-            "text": "I can use salt substitutes containing potassium chloride freely to flavor my food."
+            "text": "I can replace table salt with a potassium-based salt substitute because it contains no sodium."
           },
           {
             "id": "D",
-            "text": "I will take my furosemide in the morning so it does not interrupt my sleep."
+            "text": "I will take the loop diuretic early in the day unless my prescriber gives different instructions."
           },
           {
             "id": "E",
-            "text": "I should stop taking carvedilol if I feel mildly tired during the first week."
+            "text": "If I become dizzy after a dose, I will stop all my heart medicines until the next appointment."
           }
         ]
       },
@@ -162,12 +162,12 @@
         "max_points": 3
       },
       "rationales": {
-        "summary": "Consistent morning weights, early reporting of fluid retention thresholds, and morning loop diuretic timing are essential self-management behaviors in heart failure.",
-        "A": "Correct. Weighing at the same time each morning on the same scale after voiding and before eating provides the most accurate fluid balance measurement.",
-        "B": "Correct. Weight gain of 2-3 lb in 1-2 days or 5 lb in 1 week indicates early fluid retention requiring medication adjustment.",
-        "C": "Incorrect. Lisinopril (an ACE inhibitor) retains potassium; potassium-based salt substitutes can cause dangerous hyperkalemia.",
-        "D": "Correct. Morning dosing prevents nocturia and sleep disruption.",
-        "E": "Incorrect. Beta-blockers like carvedilol should never be stopped abruptly due to rebound tachycardia and ischemia risk."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "Standardized daily weights make trends more reliable and can reveal fluid retention before symptoms develop.",
+        "B": "The client's individualized action-plan threshold should trigger contact; waiting for dyspnea can delay treatment.",
+        "C": "Potassium-containing salt substitutes may cause hyperkalemia, particularly with renin-angiotensin system medicines or impaired renal function.",
+        "D": "Morning dosing generally reduces nocturia; timing should still follow the prescribed regimen.",
+        "E": "The client should report dizziness and obtain instructions rather than independently stopping multiple cardiac medicines."
       },
       "clinical_judgment": "evaluate_outcomes",
       "tags": [
@@ -216,24 +216,24 @@
           "ACLS protocol for unstable tachyarrhythmias"
         ]
       },
-      "stem": "Which intervention should the nurse prepare to perform immediately?",
+      "stem": "The telemetry alarm shows a regular wide-complex rhythm at 176/min. The client is pale and diaphoretic, reports near-syncope, and has a blood pressure of 78/46 mmHg. A pulse is present. Which intervention should the nurse anticipate without delay?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Synchronized cardioversion"
+            "text": "Synchronized cardioversion while maintaining airway support and continuous monitoring"
           },
           {
             "id": "B",
-            "text": "Unsynchronized defibrillation"
+            "text": "Unsynchronized defibrillation because any wide-complex tachycardia is a shockable rhythm"
           },
           {
             "id": "C",
-            "text": "Adenosine 6 mg rapid IV push"
+            "text": "Adenosine administration before determining whether the rhythm is ventricular in origin"
           },
           {
             "id": "D",
-            "text": "Carotid sinus massage"
+            "text": "A vagal maneuver followed by reassessment of blood pressure"
           }
         ]
       },
@@ -245,11 +245,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Unstable monomorphic ventricular tachycardia with a pulse requires immediate synchronized cardioversion per ACLS guidelines.",
-        "A": "Correct. The client has a pulse but demonstrates hemodynamic instability (BP 78/46 mmHg, lightheadedness, diaphoresis), requiring immediate synchronized cardioversion.",
-        "B": "Incorrect. Unsynchronized defibrillation is reserved for pulseless ventricular tachycardia or ventricular fibrillation; delivering an unsynchronized shock on a pulse can induce R-on-T ventricular fibrillation.",
-        "C": "Incorrect. Adenosine is used for stable narrow-complex supraventricular tachycardia, not unstable wide-complex ventricular tachycardia.",
-        "D": "Incorrect. Vagal maneuvers are contraindicated in unstable wide-complex tachycardia and risky in post-CABG patients with potential carotid atherosclerosis."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "A pulse with hypotension and signs of poor perfusion indicates unstable tachycardia; synchronized cardioversion is the immediate treatment for unstable monomorphic VT with a pulse.",
+        "B": "Defibrillation is used for pulseless VT/VF or when synchronization is not possible in a critically unstable rhythm; this client has a pulse and a regular rhythm suitable for synchronization.",
+        "C": "Adenosine is not the first-line response to unstable wide-complex tachycardia and must not delay cardioversion.",
+        "D": "Vagal maneuvers are inappropriate for an unstable wide-complex rhythm and would delay definitive treatment."
       },
       "clinical_judgment": "prioritize_hypotheses",
       "tags": [
@@ -271,7 +271,7 @@
       "topic": "Cardiovascular Disorders",
       "subtopic": "Peripheral Arterial Disease",
       "specialty": "Adult Health",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "69-year-old male with peripheral arterial disease (PAD) of the bilateral lower extremities.",
@@ -299,24 +299,24 @@
           "Foot care education"
         ]
       },
-      "stem": "Which instruction should the nurse include when teaching this client how to promote arterial blood flow to the lower extremities?",
+      "stem": "The client reports that calf pain is worse when the legs are elevated and improves when sitting at the bedside with the feet dependent. Which teaching best addresses this pattern while protecting the ischemic feet?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Keep the legs in a neutral or slightly dependent position while resting"
+            "text": "Use a neutral or dependent position for comfort and inspect the feet daily for pressure injury"
           },
           {
             "id": "B",
-            "text": "Elevate the legs on two pillows above heart level whenever seated"
+            "text": "Elevate the legs above the heart several times daily to improve venous return"
           },
           {
             "id": "C",
-            "text": "Apply a heating pad directly to the feet each evening to warm the skin"
+            "text": "Apply a heating pad on low setting for 20 minutes when the feet feel cold"
           },
           {
             "id": "D",
-            "text": "Wear knee-high elastic compression stockings throughout the day"
+            "text": "Wear compression stockings during waking hours to reduce dependent edema"
           }
         ]
       },
@@ -328,11 +328,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Gravity assists arterial perfusion into distal extremities in PAD, whereas elevation and compression further compromise arterial inflow.",
-        "A": "Correct. Neutral or dependent positioning uses gravity to enhance arterial blood flow to ischemic lower extremities.",
-        "B": "Incorrect. Elevating legs above heart level reduces arterial perfusion and worsens ischemic rest pain (appropriate for venous insufficiency, not PAD).",
-        "C": "Incorrect. Decreased sensory perception increases the risk of severe thermal burns from direct heating pads.",
-        "D": "Incorrect. Compression stockings impair already diminished arterial circulation."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "Dependent positioning may improve arterial perfusion and relieve ischemic rest discomfort; daily inspection is important because impaired perfusion delays healing.",
+        "B": "Elevation can further reduce arterial inflow and worsen ischemic pain in significant PAD.",
+        "C": "Direct heat can cause burns, especially when sensation and perfusion are impaired.",
+        "D": "Compression may compromise arterial inflow and should not be used without a specific vascular assessment and prescription."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -354,7 +354,7 @@
       "topic": "Cardiovascular Disorders",
       "subtopic": "Deep Vein Thrombosis & Anticoagulation",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "52-year-old female receiving a continuous unfractionated heparin infusion for an acute proximal left femoral deep vein thrombosis (DVT).",
@@ -382,24 +382,24 @@
           "Check aPTT every 6 hours"
         ]
       },
-      "stem": "Based on the client's current aPTT result, which action should the nurse take first?",
+      "stem": "The client's aPTT is 118 seconds against the facility's therapeutic range of 60–80 seconds. The client has new gingival oozing but is hemodynamically stable. Which action is most appropriate?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Pause the heparin infusion per protocol and assess for signs of bleeding"
+            "text": "Stop or hold the infusion and follow the heparin nomogram, including repeat coagulation testing and bleeding assessment"
           },
           {
             "id": "B",
-            "text": "Administer protamine sulfate 50 mg IV push immediately"
+            "text": "Administer protamine immediately before determining the extent or severity of bleeding"
           },
           {
             "id": "C",
-            "text": "Increase the heparin infusion rate by 200 units/hr"
+            "text": "Decrease the infusion slightly and repeat the aPTT with the next routine morning laboratory draw"
           },
           {
             "id": "D",
-            "text": "Continue the current infusion rate and recheck aPTT in 24 hours"
+            "text": "Continue the infusion because aPTT values are expected to fluctuate during initial treatment"
           }
         ]
       },
@@ -411,11 +411,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "An aPTT of 118 seconds exceeds the therapeutic target (60-80 seconds), placing the client at high hemorrhage risk and requiring immediate infusion hold and bleeding assessment.",
-        "A": "Correct. Standard heparin protocols require holding the infusion temporarily (typically 30-60 minutes), assessing for occult or overt bleeding, and reducing the infusion rate.",
-        "B": "Incorrect. Protamine sulfate is reserved for severe, life-threatening heparin-induced hemorrhage, not an asymptomatic supratherapeutic aPTT.",
-        "C": "Incorrect. Increasing the rate would dangerously worsen anticoagulation.",
-        "D": "Incorrect. Continuing a supratherapeutic infusion without adjustment risks major hemorrhage."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "The supratherapeutic aPTT with active minor bleeding requires prompt protocol-based interruption or adjustment, focused assessment, and timely repeat testing.",
+        "B": "Protamine is generally reserved for serious bleeding or urgent reversal; the nomogram and clinical severity guide its use.",
+        "C": "A slight empiric reduction and delayed testing may leave the client anticoagulated above target.",
+        "D": "Continuing unchanged despite an above-range result and bleeding increases hemorrhage risk."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -465,24 +465,24 @@
           "Arterial line monitoring"
         ]
       },
-      "stem": "Why must the nurse avoid lowering this client's mean arterial pressure (MAP) too rapidly during the first hour of therapy?",
+      "stem": "A client with a hypertensive emergency is receiving titrated IV nicardipine. The initial MAP is 150 mmHg. Which target best reflects safe early blood-pressure reduction when no condition-specific exception is present?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Rapid blood pressure reduction can precipitate cerebral, myocardial, or renal ischemia"
+            "text": "Reduce MAP by no more than approximately 20%–25% during the first hour, then titrate according to response"
           },
           {
             "id": "B",
-            "text": "Nicardipine causes severe reflex bradycardia and third-degree heart block"
+            "text": "Normalize the blood pressure to below 120/80 mmHg within 15 minutes to prevent further organ injury"
           },
           {
             "id": "C",
-            "text": "Abrupt vasodilation triggers acute hyperkalemia from intracellular shifts"
+            "text": "Maintain the initial MAP until all symptoms resolve, then lower it rapidly over the next hour"
           },
           {
             "id": "D",
-            "text": "Rapid MAP reduction induces rebound pulmonary hypertension"
+            "text": "Reduce systolic pressure by at least 50% during the first hour regardless of neurologic status"
           }
         ]
       },
@@ -494,11 +494,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Chronic severe hypertension shifts cerebral and renal autoregulation curves upward; abrupt normalization drops perfusion pressure below autoregulatory thresholds.",
-        "A": "Correct. Reducing MAP by more than 25% in the first hour compromises cerebral, coronary, and renal autoregulation, risking watershed stroke or acute tubular necrosis.",
-        "B": "Incorrect. Dihydropyridine calcium channel blockers like nicardipine typically cause mild reflex tachycardia rather than heart block.",
-        "C": "Incorrect. Nicardipine does not cause acute hyperkalemia.",
-        "D": "Incorrect. Systemic vasodilation does not trigger rebound pulmonary hypertension."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "In many hypertensive emergencies, controlled initial reduction limits ongoing injury while preserving perfusion to organs adapted to high pressure; targets vary by condition.",
+        "B": "Abrupt normalization can cause cerebral, coronary, and renal hypoperfusion.",
+        "C": "Leaving pressure untreated may worsen acute target-organ injury; reduction should be controlled, not deferred until symptoms resolve.",
+        "D": "A fixed 50% reduction is excessive and ignores the affected organ and clinical context."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -520,7 +520,7 @@
       "topic": "Cardiovascular Disorders",
       "subtopic": "Infective Endocarditis",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "36-year-old male admitted with fever, night sweats, and a new regurgitant mitral murmur.",
@@ -548,48 +548,47 @@
           "Transesophageal echocardiogram (TEE)"
         ]
       },
-      "stem": "Which nursing actions are appropriate when implementing the plan of care for this client? Select all that apply.",
+      "stem": "A client with suspected infective endocarditis is stable, and the first IV antibiotic dose has not yet been administered. Which actions belong in the plan of care? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Draw all three sets of blood cultures prior to infusing the first dose of vancomycin."
+            "text": "Obtain the ordered blood-culture sets from separate venipuncture sites before antibiotics, if this does not delay emergency treatment"
           },
           {
             "id": "B",
-            "text": "Monitor the client closely for sudden neurological changes or flank pain."
+            "text": "Assess for new focal neurologic deficits, acute limb pain, or flank pain that may indicate embolization"
           },
           {
             "id": "C",
-            "text": "Educate the client on the need for prophylactic antibiotics prior to invasive dental procedures."
+            "text": "Monitor for heart-failure findings and changes in the character of the murmur"
           },
           {
             "id": "D",
-            "text": "Discontinue IV antibiotic therapy once the client has been afebrile for 48 hours."
+            "text": "Stop antimicrobial therapy once the temperature has remained normal for 24 hours"
           },
           {
             "id": "E",
-            "text": "Prepare for a peripherally inserted central catheter (PICC) for long-term outpatient IV therapy."
+            "text": "Teach that prophylaxis is recommended before every dental cleaning for all clients with a history of any heart murmur"
           }
         ]
       },
       "correct_response": [
         "A",
         "B",
-        "C",
-        "E"
+        "C"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 4
       },
       "rationales": {
-        "summary": "Infective endocarditis management centers on pre-antibiotic blood cultures, systemic emboli surveillance, prolonged IV therapy via central access, and future dental prophylaxis.",
-        "A": "Correct. Drawing blood cultures before antibiotics prevents false-negative pathogen identification.",
-        "B": "Correct. Friable valvular vegetations can embolize to the brain (stroke), kidneys (flank pain/hematuria), or spleen.",
-        "C": "Correct. History of infective endocarditis is a high-risk indication for antibiotic prophylaxis before invasive dental procedures.",
-        "D": "Incorrect. Infective endocarditis requires 4 to 6 weeks of continuous IV bactericidal therapy to eradicate organisms embedded in fibrin vegetations.",
-        "E": "Correct. Multi-week IV antibiotic courses typically require a PICC line."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "Cultures obtained before antibiotics improve organism identification and guide targeted therapy when the client is stable enough for collection.",
+        "B": "Vegetations can embolize to the brain, kidneys, spleen, or extremities; new symptoms require urgent evaluation.",
+        "C": "Valve destruction and regurgitation can precipitate heart failure, so cardiopulmonary trends matter.",
+        "D": "Endocarditis requires a prescribed full course; defervescence alone is not a stopping criterion.",
+        "E": "Dental prophylaxis is limited to defined high-risk cardiac conditions and procedures, not every murmur."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -637,24 +636,24 @@
           "STAT cardiology consult for emergent pericardiocentesis"
         ]
       },
-      "stem": "Which classic triad of assessment findings (Beck triad) is demonstrated in this client's presentation?",
+      "stem": "Six hours after a transcatheter mitral-valve procedure, the client becomes increasingly dyspneic. Blood pressure is falling, neck veins are distended, and heart sounds are difficult to hear. Which interpretation best links these findings?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Hypotension, jugular venous distension, and muffled heart sounds"
+            "text": "Pericardial fluid is impairing diastolic filling and reducing cardiac output"
           },
           {
             "id": "B",
-            "text": "Hypertension, bradycardia, and irregular Cheyne-Stokes respirations"
+            "text": "Acute left ventricular failure is causing isolated pulmonary venous congestion"
           },
           {
             "id": "C",
-            "text": "Fever, chest pain relieved by leaning forward, and pericardial friction rub"
+            "text": "Aortic dissection is producing a widened pulse pressure and bounding peripheral pulses"
           },
           {
             "id": "D",
-            "text": "Widened pulse pressure, bounding pulses, and bibasilar crackles"
+            "text": "Pulmonary embolism is causing increased left ventricular preload and a new diastolic murmur"
           }
         ]
       },
@@ -666,11 +665,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Beck triad is the hallmark clinical presentation of acute cardiac tamponade resulting from pericardial fluid compressing the cardiac chambers.",
-        "A": "Correct. Hypotension (narrowed pulse pressure), jugular venous distension, and muffled heart sounds constitute Beck triad.",
-        "B": "Incorrect. Hypertension, bradycardia, and irregular respirations describe Cushing triad (increased intracranial pressure).",
-        "C": "Incorrect. These findings characterize acute uncomplicated pericarditis.",
-        "D": "Incorrect. Widened pulse pressure and bounding pulses are seen in aortic regurgitation or early distributive shock, whereas tamponade causes narrowed pulse pressure."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "Hypotension, jugular venous distention, and muffled heart sounds after an invasive cardiac procedure strongly suggest tamponade with impaired ventricular filling.",
+        "B": "Left-sided failure can cause crackles and pulmonary edema but does not best explain the combination of distended neck veins and muffled sounds in this setting.",
+        "C": "The described hemodynamic pattern is not characteristic of aortic dissection; urgent evaluation for tamponade is needed.",
+        "D": "Pulmonary embolism can cause acute right-heart strain, but it does not explain the classic tamponade pattern."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
@@ -692,7 +691,7 @@
       "topic": "Cardiovascular Disorders",
       "subtopic": "Atrial Fibrillation",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "74-year-old female with persistent atrial fibrillation (CHA2DS2-VASc score 4) starting oral anticoagulation.",
@@ -721,24 +720,24 @@
           "Outpatient INR check in 3 days"
         ]
       },
-      "stem": "Which dietary instruction should the nurse provide to this client regarding warfarin therapy?",
+      "stem": "A client taking warfarin asks whether leafy vegetables must be eliminated after an INR becomes therapeutic. Which response is most accurate?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Maintain a consistent daily intake of foods containing vitamin K rather than eliminating them"
+            "text": "Keep vitamin K intake reasonably consistent and report major dietary changes so the anticoagulation plan can be adjusted"
           },
           {
             "id": "B",
-            "text": "Strictly avoid all green leafy vegetables, broccoli, and soybeans while taking warfarin"
+            "text": "Avoid all foods containing vitamin K because even small amounts will reverse the anticoagulant effect"
           },
           {
             "id": "C",
-            "text": "Increase intake of spinach and kale whenever minor gum bleeding occurs"
+            "text": "Eat extra spinach whenever bruising occurs to reduce the risk of bleeding"
           },
           {
             "id": "D",
-            "text": "Take warfarin with grapefruit juice each morning to enhance intestinal absorption"
+            "text": "Change the amount of leafy vegetables from day to day because warfarin dosing is adjusted to each meal"
           }
         ]
       },
@@ -750,11 +749,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Warfarin antagonizes vitamin K-dependent clotting factors; stable vitamin K intake allows predictable dosing without wide INR fluctuations.",
-        "A": "Correct. Consistent intake of vitamin K-rich foods keeps INR stable within the 2.0-3.0 therapeutic range.",
-        "B": "Incorrect. Complete elimination deprives the client of nutrients and makes INR overly sensitive to incidental vitamin K exposure.",
-        "C": "Incorrect. Self-adjusting vitamin K intake to treat bleeding is unsafe; bleeding requires provider evaluation and INR testing.",
-        "D": "Incorrect. Grapefruit juice inhibits CYP enzymes and interacts with diltiazem, risking hypotension and bradycardia."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "Consistency in vitamin K intake supports stable anticoagulation; large changes should be discussed with the anticoagulation team.",
+        "B": "Eliminating vitamin K is unnecessary and can destabilize dietary intake and INR control.",
+        "C": "Bruising requires assessment and possible INR review, not self-treatment with vitamin K-rich foods.",
+        "D": "Day-to-day variation can contribute to INR instability."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -776,7 +775,7 @@
       "topic": "Cardiovascular Disorders",
       "subtopic": "Pacemaker Management",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "78-year-old male 12 hours after permanent dual-chamber pacemaker insertion via the left subclavian vein.",
@@ -803,24 +802,24 @@
           "Discharge education"
         ]
       },
-      "stem": "Which instruction should the nurse emphasize to prevent lead dislodgement during the first several weeks after pacemaker placement?",
+      "stem": "The client is 12 hours post-pacemaker insertion. Which discharge instruction best balances protection of the new lead with prevention of unnecessary long-term shoulder immobility?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Avoid raising the left elbow above shoulder level or lifting more than 5 to 10 pounds"
+            "text": "Follow the implanting team's temporary lifting and shoulder-motion limits, and report syncope, persistent hiccups, or new diaphragmatic twitching"
           },
           {
             "id": "B",
-            "text": "Keep the left arm completely immobilized in a sling for 6 weeks"
+            "text": "Keep the ipsilateral arm immobilized in a sling continuously for 6 weeks, including during hygiene"
           },
           {
             "id": "C",
-            "text": "Avoid using household microwave ovens within 10 feet of the chest"
+            "text": "Begin repeated overhead stretching tomorrow to prevent adhesive capsulitis"
           },
           {
             "id": "D",
-            "text": "Perform overhead arm-stretching exercises three times daily starting tomorrow"
+            "text": "Avoid all household appliances that generate electromagnetic fields, including microwave ovens"
           }
         ]
       },
@@ -832,11 +831,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Limiting abduction and overhead movement on the affected side prevents mechanical traction and dislodgement of newly implanted endocardial leads.",
-        "A": "Correct. Avoiding raising the arm above shoulder height and avoiding heavy lifting for 4-6 weeks allows lead tips to endothelialize securely.",
-        "B": "Incorrect. Prolonged complete immobilization causes adhesive capsulitis (frozen shoulder); gentle below-shoulder movement is encouraged after 24-48 hours.",
-        "C": "Incorrect. Modern pacemakers are shielded against properly functioning household microwaves.",
-        "D": "Incorrect. Overhead stretching in the immediate postoperative period risks lead dislodgement."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "Temporary movement restrictions vary by device and clinician; new presyncope or unusual stimulation symptoms may indicate lead or device problems.",
+        "B": "Prolonged complete immobilization is not routinely required and can cause stiffness; follow the specific postimplant plan.",
+        "C": "Early unrestricted overhead movement may stress the lead; exercises should follow the implant team's timing.",
+        "D": "Modern household appliances such as microwave ovens are generally safe when functioning properly; broad avoidance is unnecessary."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -884,24 +883,24 @@
           "NPO status"
         ]
       },
-      "stem": "A client with a known 5.8-cm abdominal aortic aneurysm develops sudden tearing back pain, pallor, and diaphoresis. Which action should the nurse take first?",
+      "stem": "While awaiting repair of a known abdominal aortic aneurysm, the client develops abrupt severe back pain, pallor, diaphoresis, and a falling blood pressure. Which response is the priority?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Notify the vascular surgeon immediately while ensuring two large-bore IV lines are patent"
+            "text": "Activate the emergency vascular response, maintain large-bore IV access, and prepare for immediate definitive evaluation and repair"
           },
           {
             "id": "B",
-            "text": "Palpate the abdomen deeply to assess for an expanding pulsatile mass"
+            "text": "Palpate the abdomen repeatedly to determine whether the aneurysm has enlarged"
           },
           {
             "id": "C",
-            "text": "Administer the scheduled oral metoprolol to lower heart rate"
+            "text": "Administer the scheduled antihypertensive and reassess the pain after its peak effect"
           },
           {
             "id": "D",
-            "text": "Infuse 2 liters of warm normal saline rapidly to normalize blood pressure to 140/80 mmHg"
+            "text": "Rapidly infuse enough crystalloid to restore the blood pressure to the client's usual baseline"
           }
         ]
       },
@@ -913,11 +912,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Sudden tearing back/flank pain with hypotension and tachycardia indicates impending or active AAA rupture requiring immediate surgical intervention.",
-        "A": "Correct. Ruptured AAA is a surgical emergency; immediate surgeon notification and large-bore IV access for blood product resuscitation are top priorities.",
-        "B": "Incorrect. Deep abdominal palpation is strictly contraindicated as mechanical pressure can precipitate catastrophic free rupture.",
-        "C": "Incorrect. Administering a beta-blocker during hemorrhagic shock worsens hypotension and is unsafe in an NPO surgical candidate.",
-        "D": "Incorrect. Aggressive crystalloid resuscitation to normotension ('popping the clot') worsens hemorrhage; permissive hypotension until surgical control is standard."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "The presentation is concerning for rupture; rapid escalation, access, blood-product readiness, and definitive vascular management are priorities.",
+        "B": "Deep or repeated palpation can be harmful and does not establish rupture.",
+        "C": "A routine oral medication delays emergency management and may worsen hypotension.",
+        "D": "Uncontrolled crystalloid loading to a normal baseline can worsen bleeding; resuscitation targets are directed by the emergency team."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -1031,7 +1030,7 @@
       "topic": "Cardiovascular Disorders",
       "subtopic": "Digoxin Toxicity",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "81-year-old female taking digoxin and furosemide for heart failure and atrial fibrillation.",
@@ -1060,24 +1059,24 @@
           "Draw STAT electrolytes and digoxin level"
         ]
       },
-      "stem": "Which electrolyte abnormality contributed most directly to this client's digoxin toxicity?",
+      "stem": "The client taking digoxin and furosemide reports nausea and yellow-green halos. The ECG shows frequent ventricular ectopy, and potassium is 2.8 mEq/L. Which factor most likely increased myocardial sensitivity to digoxin?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Hypokalemia"
+            "text": "Reduced extracellular potassium increases digoxin binding at the sodium-potassium ATPase"
           },
           {
             "id": "B",
-            "text": "Hypernatremia"
+            "text": "Low potassium increases renal clearance of digoxin and causes rebound toxicity"
           },
           {
             "id": "C",
-            "text": "Hypocalcemia"
+            "text": "Hypokalemia blocks digoxin absorption, causing accumulation of an active metabolite"
           },
           {
             "id": "D",
-            "text": "Hyperphosphatemia"
+            "text": "Low potassium directly increases serum calcium and produces the visual disturbance"
           }
         ]
       },
@@ -1089,11 +1088,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Hypokalemia enhances digoxin binding to myocardial Na+/K+-ATPase pumps, precipitating toxicity even at borderline serum concentrations.",
-        "A": "Correct. Potassium competes with digoxin for binding sites on Na+/K+-ATPase; loop diuretic-induced hypokalemia (3.1 mEq/L) markedly increases digoxin toxicity.",
-        "B": "Incorrect. Hypernatremia does not directly potentiate digoxin binding.",
-        "C": "Incorrect. Hypercalcemia (not hypocalcemia) increases intracellular calcium and worsens digoxin-induced arrhythmias.",
-        "D": "Incorrect. Hyperphosphatemia is not a primary trigger of digoxin toxicity."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "Potassium competes with digoxin at the sodium-potassium ATPase; hypokalemia increases binding and toxicity risk.",
+        "B": "Hypokalemia does not increase digoxin clearance; renal function and drug interactions influence serum exposure.",
+        "C": "The mechanism is not impaired absorption or metabolite accumulation.",
+        "D": "The visual symptoms and dysrhythmias are consistent with digoxin toxicity; this option gives an incorrect electrolyte mechanism."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -1188,7 +1187,7 @@
       "topic": "Cardiovascular Disorders",
       "subtopic": "Venous Thromboembolism Prevention",
       "specialty": "Adult Health",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "63-year-old female 1 day post-total hip arthroplasty.",
@@ -1215,24 +1214,24 @@
           "Physical therapy ambulation twice daily"
         ]
       },
-      "stem": "Which nursing action is essential when administering enoxaparin to this client?",
+      "stem": "The nurse is preparing a prefilled enoxaparin syringe for a client after hip arthroplasty. Which technique is correct?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Inject into the anterolateral abdominal wall without expelling the air bubble from the prefilled syringe"
+            "text": "Inject into the anterolateral or posterolateral abdominal tissue, leave the air bubble in the prefilled syringe, and do not massage afterward"
           },
           {
             "id": "B",
-            "text": "Aspirate gently after needle insertion and massage the site for 1 minute afterward"
+            "text": "Inject into the deltoid muscle and aspirate before depressing the plunger"
           },
           {
             "id": "C",
-            "text": "Administer the injection intramuscularly into the deltoid muscle"
+            "text": "Expel the air bubble, inject into the abdomen, then massage firmly to distribute the medication"
           },
           {
             "id": "D",
-            "text": "Expel the nitrogen air bubble before injecting to prevent tissue necrosis"
+            "text": "Inject into the thigh through clothing and apply pressure for 5 minutes"
           }
         ]
       },
@@ -1244,11 +1243,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Prefilled low-molecular-weight heparin syringes contain a calibrated air lock that clears the needle hub and prevents subcutaneous bruising.",
-        "A": "Correct. Injecting into the love-handle area (at least 2 inches from the umbilicus) with the air bubble intact ensures full dose delivery and reduces bruising.",
-        "B": "Incorrect. Aspirating and massaging after subcutaneous heparin/enoxaparin causes capillary trauma and hematoma formation.",
-        "C": "Incorrect. Enoxaparin is given strictly subcutaneously, never intramuscularly.",
-        "D": "Incorrect. Expelling the air bubble results in medication loss and surface tracking."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "Subcutaneous abdominal administration is standard; the air bubble in many prefilled syringes helps deliver the full dose, and massage increases bruising.",
+        "B": "Enoxaparin is not administered intramuscularly; aspiration is not recommended for routine subcutaneous injection.",
+        "C": "Expelling the bubble and massaging may increase bruising or reduce accurate delivery.",
+        "D": "Injection through clothing is not appropriate technique; the site should be prepared and exposed."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -1269,7 +1268,7 @@
       "topic": "Cardiovascular Disorders",
       "subtopic": "Acute Pericarditis",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "34-year-old male admitted with sharp, pleuritic substernal chest pain following a viral upper respiratory infection.",
@@ -1298,7 +1297,7 @@
           "Activity restriction"
         ]
       },
-      "stem": "Which complication should the nurse monitor for most closely in this client?",
+      "stem": "A client with acute pericarditis develops increasing dyspnea, narrowing pulse pressure, jugular venous distention, and a new decrease in blood pressure. Which complication should the nurse suspect?",
       "interaction": {
         "options": [
           {
@@ -1307,15 +1306,15 @@
           },
           {
             "id": "B",
-            "text": "Acute mitral valve papillary muscle rupture"
+            "text": "Papillary muscle rupture causing acute mitral regurgitation"
           },
           {
             "id": "C",
-            "text": "Ascending thoracic aortic dissection"
+            "text": "Aortic stenosis causing fixed left ventricular outflow obstruction"
           },
           {
             "id": "D",
-            "text": "Pulmonary arterial embolism"
+            "text": "Uncomplicated pleurisy causing pain-limited inspiration"
           }
         ]
       },
@@ -1327,11 +1326,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Pericardial inflammation causes fluid accumulation within the pericardial sac, which can compress the heart chambers and lead to cardiac tamponade.",
-        "A": "Correct. Acute pericarditis can produce a rapidly accumulating pericardial effusion resulting in life-threatening cardiac tamponade.",
-        "B": "Incorrect. Papillary muscle rupture is a mechanical complication of acute myocardial infarction, not viral pericarditis.",
-        "C": "Incorrect. Aortic dissection is associated with severe hypertension or connective tissue disorders.",
-        "D": "Incorrect. Pulmonary embolism is unrelated to viral pericardial inflammation."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "The evolving signs suggest impaired cardiac filling from an enlarging effusion and require immediate escalation.",
+        "B": "Papillary muscle rupture usually causes acute pulmonary edema and a new murmur after myocardial infarction.",
+        "C": "Aortic stenosis is not an acute complication of pericarditis and does not explain this progression.",
+        "D": "Pleurisy can cause pain and shallow breathing but not the hemodynamic pattern described."
       },
       "clinical_judgment": "prioritize_hypotheses",
       "tags": [
@@ -1352,7 +1351,7 @@
       "topic": "Respiratory Disorders",
       "subtopic": "Chronic Obstructive Pulmonary Disease (COPD)",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "68-year-old male admitted with an acute exacerbation of severe COPD.",
@@ -1378,24 +1377,24 @@
           "Titrate supplemental oxygen to maintain SpO2 88% to 92%"
         ]
       },
-      "stem": "Which oxygen delivery device is most appropriate for achieving the prescribed target saturation in this client?",
+      "stem": "The client with an acute COPD exacerbation has an order to maintain SpO2 between 88% and 92%. The client is alert, breathing spontaneously, and requires a controlled oxygen concentration. Which device best supports precise titration?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Venturi mask set at 28% FiO2"
+            "text": "Venturi mask at the prescribed FiO2, adjusted to maintain the target range"
           },
           {
             "id": "B",
-            "text": "Non-rebreather mask at 15 L/min"
+            "text": "Non-rebreather mask at maximum flow until saturation reaches 100%"
           },
           {
             "id": "C",
-            "text": "Simple face mask at 10 L/min"
+            "text": "Simple face mask at 10 L/min without reassessment"
           },
           {
             "id": "D",
-            "text": "Nasal cannula at 6 L/min"
+            "text": "Nasal cannula at 6 L/min because higher flow is needed for all exacerbations"
           }
         ]
       },
@@ -1407,11 +1406,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "A Venturi mask delivers a precise, fixed FiO2 regardless of the client's breathing pattern, preventing hyperoxia-induced hypercapnia in COPD.",
-        "A": "Correct. The Venturi mask provides exact FiO2 control (e.g., 24%-28%) to safely maintain SpO2 at 88%-92%.",
-        "B": "Incorrect. Delivering ~90%-100% FiO2 via non-rebreather worsens ventilation-perfusion mismatch and Haldane effect, aggravating hypercapnic acidosis.",
-        "C": "Incorrect. Simple face masks deliver variable high FiO2 (40%-60%) and risk CO2 retention if flow is too low.",
-        "D": "Incorrect. High nasal cannula flow rates deliver unpredictable FiO2 depending on minute ventilation."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "A Venturi system delivers a controlled FiO2 and is useful when precise oxygen titration is needed.",
+        "B": "Routine pursuit of 100% saturation can provide excessive oxygen and is not the prescribed target.",
+        "C": "A simple mask does not provide the same precision and should be titrated to clinical response.",
+        "D": "A fixed high nasal-cannula flow is not appropriate for every client and may exceed the ordered target."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -1433,7 +1432,7 @@
       "topic": "Respiratory Disorders",
       "subtopic": "Chest Tube Management",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "44-year-old male with a right-sided chest tube connected to a wet-suction water-seal drainage system for a spontaneous pneumothorax.",
@@ -1459,28 +1458,28 @@
           "Keep sterile petroleum gauze and hemostats at bedside"
         ]
       },
-      "stem": "Which findings in the chest tube drainage system require immediate nursing intervention? Select all that apply.",
+      "stem": "The nurse assesses a client with a chest tube after treatment of a pneumothorax. Which findings require prompt intervention? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Continuous vigorous bubbling in the water-seal chamber"
+            "text": "Continuous bubbling in the water-seal chamber after checking that the system connections are secure"
           },
           {
             "id": "B",
-            "text": "Gentle fluctuation (tidaling) of fluid in the water-seal chamber during respiration"
+            "text": "Tidaling in the water-seal chamber that varies with respiration"
           },
           {
             "id": "C",
-            "text": "Bright red drainage of 250 mL in the collection chamber over 1 hour"
+            "text": "New bright-red drainage of 250 mL in one hour"
           },
           {
             "id": "D",
-            "text": "Chest tube accidentally disconnects from the drainage tubing"
+            "text": "The chest tube becomes disconnected from the drainage tubing"
           },
           {
             "id": "E",
-            "text": "Drainage collection unit placed on the floor below chest level"
+            "text": "The collection unit remains upright and below the level of the chest"
           }
         ]
       },
@@ -1494,12 +1493,12 @@
         "max_points": 3
       },
       "rationales": {
-        "summary": "Continuous bubbling in the water-seal chamber indicates an air leak, brisk bloody output signals hemorrhage, and tubing disconnection risks open pneumothorax.",
-        "A": "Correct. Continuous bubbling in the water-seal chamber (unlike the suction control chamber) indicates an air leak in the system or pleural space.",
-        "B": "Incorrect. Tidaling with inhalation and exhalation is a normal expected finding showing system patency.",
-        "C": "Correct. Drainage exceeding 100-150 mL/hr (250 mL/hr) indicates active intrathoracic hemorrhage requiring urgent provider notification.",
-        "D": "Correct. Disconnection exposes the pleural space to atmospheric air; the tube tip should immediately be submerged in sterile water while reconnecting.",
-        "E": "Incorrect. Keeping the unit below chest level is standard practice to prevent retrograde fluid entry."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "Persistent bubbling in the water seal suggests an air leak; assess the client and system, then locate and correct the leak per policy.",
+        "B": "Tidaling can be an expected reflection of pressure changes; its absence or presence must be interpreted with the clinical picture.",
+        "C": "A sudden large volume of bright-red drainage may indicate hemorrhage and requires immediate assessment and escalation.",
+        "D": "Disconnection breaks the closed system; restore the prescribed system promptly using facility protocol while assessing the client.",
+        "E": "Keeping the unit upright and below chest level is correct practice."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
@@ -1548,24 +1547,24 @@
           "Initiate unfractionated heparin protocol"
         ]
       },
-      "stem": "Which action should the nurse perform first?",
+      "stem": "Three days after pelvic surgery, the client suddenly becomes dyspneic and anxious. SpO2 is 84%, heart rate is 128/min, and blood pressure is 106/68 mmHg. Which action should the nurse take first while activating emergency assistance?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Apply high-flow oxygen via non-rebreather mask and elevate the head of the bed"
+            "text": "Support oxygenation, position to ease breathing, and rapidly assess airway and circulation"
           },
           {
             "id": "B",
-            "text": "Administer the initial intravenous bolus of unfractionated heparin"
+            "text": "Administer the prescribed heparin bolus before confirming that the client can tolerate anticoagulation"
           },
           {
             "id": "C",
-            "text": "Insert a Foley catheter to monitor hourly urine output"
+            "text": "Obtain a 12-lead ECG before intervening because pulmonary embolism is a diagnosis of exclusion"
           },
           {
             "id": "D",
-            "text": "Obtain a 12-lead electrocardiogram"
+            "text": "Insert a urinary catheter to quantify perfusion before providing oxygen"
           }
         ]
       },
@@ -1577,11 +1576,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Using the Airway-Breathing-Circulation framework, correcting severe acute hypoxemia (SpO2 86%) takes immediate precedence before anticoagulation.",
-        "A": "Correct. Oxygenation and upright positioning immediately improve alveolar oxygen tension and reduce pulmonary vasoconstriction.",
-        "B": "Incorrect. Anticoagulation is critical immediately after oxygenation, as it prevents clot propagation rather than immediately reversing hypoxemia.",
-        "C": "Incorrect. Urine output monitoring is secondary to oxygenation and anticoagulation.",
-        "D": "Incorrect. Obtaining an ECG should not delay oxygen delivery."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "Acute hypoxemia and respiratory distress require immediate support of oxygenation and ABC assessment while the emergency response is activated.",
+        "B": "Anticoagulation may be indicated after rapid evaluation, but it does not replace immediate stabilization and requires attention to bleeding risk.",
+        "C": "ECG may assist evaluation but must not delay treatment of severe hypoxemia.",
+        "D": "Urine-output monitoring is not the first intervention in an acutely hypoxemic client."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -1630,24 +1629,24 @@
           "Initiate prone positioning protocol for 16 hours/day"
         ]
       },
-      "stem": "What is the primary physiological mechanism by which prone positioning improves oxygenation in severe ARDS?",
+      "stem": "A client with severe ARDS remains hypoxemic despite lung-protective ventilation and appropriate PEEP. The team plans prolonged prone sessions. Which physiologic change most directly explains the expected improvement?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "It recruits collapsed dorsal alveoli and promotes more uniform ventilation-perfusion matching"
+            "text": "Improved recruitment of dependent dorsal lung regions and a more even distribution of ventilation relative to perfusion"
           },
           {
             "id": "B",
-            "text": "It increases peak inspiratory airway pressures to force fluid out of the alveoli"
+            "text": "A reduction in pulmonary capillary permeability that rapidly removes alveolar edema"
           },
           {
             "id": "C",
-            "text": "It reduces left ventricular afterload by compressing the abdominal aorta"
+            "text": "An increase in tidal volume that stretches previously collapsed alveoli beyond their normal capacity"
           },
           {
             "id": "D",
-            "text": "It stimulates endogenous surfactant synthesis within 30 minutes"
+            "text": "A decrease in pulmonary blood flow that reduces the amount of blood exposed to poorly ventilated alveoli"
           }
         ]
       },
@@ -1659,11 +1658,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Prone positioning relieves dorsal lung compression caused by the heart and abdominal contents, recruiting dependent alveoli and homogenizing V/Q matching.",
-        "A": "Correct. In supine patients, dependent dorsal lung regions collapse under the weight of the heart and mediastinum; proning opens dorsal alveoli while perfusion remains well distributed.",
-        "B": "Incorrect. High peak pressures cause barotrauma and volutrauma, which lung-protective ARDS care actively avoids.",
-        "C": "Incorrect. Prone positioning does not work via aortic compression.",
-        "D": "Incorrect. Proning is a mechanical recruitment strategy, not a rapid surfactant stimulant."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "Proning redistributes transpulmonary pressure and recruits dorsal lung units, improving ventilation-perfusion matching and oxygenation.",
+        "B": "Prone positioning does not directly reverse the inflammatory capillary leak causing ARDS.",
+        "C": "Lung-protective ventilation aims to avoid excessive tidal volume and overdistension.",
+        "D": "The benefit is improved regional matching, not global reduction of pulmonary perfusion."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -1685,7 +1684,7 @@
       "topic": "Respiratory Disorders",
       "subtopic": "Asthma Management",
       "specialty": "Adult Health",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "27-year-old female with moderate persistent asthma attending an outpatient follow-up visit.",
@@ -1711,24 +1710,24 @@
           "Review inhaler technique and asthma action plan"
         ]
       },
-      "stem": "Which instruction should the nurse emphasize to prevent a common local adverse effect of fluticasone propionate?",
+      "stem": "The client uses inhaled fluticasone twice daily and reports a new white coating in the mouth with soreness. Which teaching best prevents recurrence while supporting continued controller therapy?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Rinse the mouth with water and spit it out after each inhalation"
+            "text": "Rinse the mouth and gargle with water after each dose, then spit the water out; use a spacer if appropriate for the device"
           },
           {
             "id": "B",
-            "text": "Inhale the medication rapidly before using the albuterol inhaler"
+            "text": "Stop fluticasone whenever symptoms improve and restart it during wheezing episodes"
           },
           {
             "id": "C",
-            "text": "Use the fluticasone inhaler only when experiencing acute wheezing"
+            "text": "Swallow water immediately after inhalation so the medication reaches the stomach"
           },
           {
             "id": "D",
-            "text": "Swallow a full glass of milk immediately after using the inhaler"
+            "text": "Use albuterol immediately before every fluticasone dose to prevent oral candidiasis"
           }
         ]
       },
@@ -1740,11 +1739,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Inhaled corticosteroids deposit on the oropharyngeal mucosa, predisposing clients to oral candidiasis (thrush) and dysphonia unless rinsed out.",
-        "A": "Correct. Rinsing and spitting removes residual corticosteroid from the oral mucosa and prevents oropharyngeal candidiasis.",
-        "B": "Incorrect. When both are used together, the bronchodilator (albuterol) is administered first to open airways, and MDI inhalations should be slow and deep.",
-        "C": "Incorrect. Fluticasone is a maintenance anti-inflammatory controller medication, not a rescue bronchodilator.",
-        "D": "Incorrect. Swallowing milk does not clear mucosal steroid residue as effectively as rinsing and spitting."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "Rinsing and spitting reduces oropharyngeal steroid residue and candidiasis risk; a spacer can reduce deposition for compatible inhalers.",
+        "B": "Inhaled corticosteroids are maintenance therapy and should not be stopped solely because symptoms improve unless the prescriber adjusts the plan.",
+        "C": "Swallowing does not remove medication from the oral mucosa and is not the recommended prevention strategy.",
+        "D": "A bronchodilator may be used before a controller when prescribed, but it does not prevent local candidiasis."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -1766,7 +1765,7 @@
       "topic": "Respiratory Disorders",
       "subtopic": "Tracheostomy Care",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "62-year-old male 48 hours post-surgical tracheostomy placement for laryngeal carcinoma.",
@@ -1791,24 +1790,24 @@
           "Keep spare tracheostomy tube (same size and one size smaller) and obturator at bedside"
         ]
       },
-      "stem": "A client’s tracheostomy tube becomes completely dislodged during repositioning 48 hours after surgery. Which action should the nurse take immediately?",
+      "stem": "A tracheostomy placed 48 hours ago becomes completely dislodged. The client is coughing, anxious, and has falling oxygen saturation. What is the safest immediate nursing response?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Call for emergency assistance, pull the stay sutures to open the stoma, and insert the spare tracheostomy tube with obturator"
+            "text": "Call for emergency airway assistance, provide oxygen to the face and stoma as appropriate, and prepare for expert airway management without blind reinsertion"
           },
           {
             "id": "B",
-            "text": "Cover the neck stoma with an occlusive dressing and perform a jaw-thrust maneuver"
+            "text": "Force the spare tube through the immature stoma using the obturator before calling for help"
           },
           {
             "id": "C",
-            "text": "Attempt to force the dislodged, uncleaned tracheostomy tube back in without an obturator"
+            "text": "Seal the stoma with an occlusive dressing and provide oxygen only by nasal cannula"
           },
           {
             "id": "D",
-            "text": "Administer 100% oxygen via nasal cannula while waiting for the surgeon to arrive"
+            "text": "Wait for the surgeon at bedside because any attempt to oxygenate may close the stoma"
           }
         ]
       },
@@ -1820,11 +1819,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Accidental decannulation within the first 72 hours is an airway emergency because the stomal tract is immature and can close rapidly.",
-        "A": "Correct. Summoning emergency airway support while gently retracting stay sutures and inserting the sterile spare tube with obturator (removing the obturator immediately after entry) restores the airway.",
-        "B": "Incorrect. An occlusive dressing blocks the surgical airway in a client with laryngeal obstruction.",
-        "C": "Incorrect. Reinserting without an obturator risks creating a false tract in the pretracheal tissue.",
-        "D": "Incorrect. Nasal cannula oxygen cannot bypass a laryngeal tumor when the stoma is closing."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "A fresh tract can close or create a false passage; immediate oxygenation and expert airway support are essential, and reinsertion should follow the facility's emergency algorithm by trained personnel.",
+        "B": "Blind forceful reinsertion in a fresh tract can create a false passage and worsen airway loss.",
+        "C": "Occluding the stoma without knowing the airway anatomy can prevent ventilation; oxygen delivery must account for the upper airway and stoma.",
+        "D": "Oxygenation and emergency assistance must begin immediately; waiting without intervention is unsafe."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -1845,7 +1844,7 @@
       "topic": "Respiratory Disorders",
       "subtopic": "Tuberculosis & Airborne Precautions",
       "specialty": "Adult Health",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "41-year-old male admitted with a 4-week history of productive cough, hemoptysis, fever, and 15-pound unintentional weight loss.",
@@ -1874,28 +1873,28 @@
           "Baseline liver function tests and visual acuity exam"
         ]
       },
-      "stem": "Which infection control measures must the nurse implement for this client? Select all that apply.",
+      "stem": "A client is admitted with suspected infectious pulmonary tuberculosis. Which actions are appropriate? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Place the client in a negative-pressure airborne infection isolation room with the door kept closed"
+            "text": "Place the client in an airborne infection isolation room with the door closed"
           },
           {
             "id": "B",
-            "text": "Wear a fit-tested N95 or higher-level particulate respirator upon entering the room"
+            "text": "Wear a fit-tested N95 or higher-level respirator when entering the room"
           },
           {
             "id": "C",
-            "text": "Place a surgical mask on the client if transport out of the room is medically necessary"
+            "text": "Place a surgical mask on the client during medically necessary transport and limit transport"
           },
           {
             "id": "D",
-            "text": "Wear a standard surgical mask when standing within 3 feet of the client"
+            "text": "Use a standard surgical mask instead of a respirator if the nurse remains more than 1 meter away"
           },
           {
             "id": "E",
-            "text": "Explain that RIPE medications may turn body fluids reddish-orange and require periodic liver monitoring"
+            "text": "Coordinate sputum collection and treatment while maintaining airborne precautions"
           }
         ]
       },
@@ -1910,12 +1909,12 @@
         "max_points": 4
       },
       "rationales": {
-        "summary": "Active pulmonary tuberculosis requires airborne precautions (negative-pressure room, N95 respirator for staff, surgical mask on client during transport) and RIPE hepatotoxicity/adverse effect teaching.",
-        "A": "Correct. Negative-pressure ventilation (6-12 air changes/hr) prevents droplet nuclei from escaping into corridors.",
-        "B": "Correct. Staff must wear fit-tested N95 respirators to filter airborne Mycobacterium tuberculosis droplet nuclei.",
-        "C": "Correct. A surgical mask worn by the client contains respiratory secretions during essential transport.",
-        "D": "Incorrect. Standard surgical masks are for droplet precautions, not airborne precautions.",
-        "E": "Correct. Rifampin causes harmless orange-red discoloration of urine/tears/sweat, and INH/rifampin/pyrazinamide carry hepatotoxicity risk."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "Airborne isolation in an appropriate room is required for suspected infectious pulmonary TB.",
+        "B": "A fit-tested respirator is required for staff entering the room.",
+        "C": "Source control and limiting transport reduce transmission risk during necessary movement.",
+        "D": "Distance alone does not replace respiratory protection for airborne precautions.",
+        "E": "Diagnostic testing and treatment should proceed without relaxing isolation measures."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -1937,7 +1936,7 @@
       "topic": "Respiratory Disorders",
       "subtopic": "Mechanical Ventilation Alarms",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "66-year-old female mechanically ventilated via an endotracheal tube for pneumonia-induced respiratory failure.",
@@ -1963,24 +1962,24 @@
           "Volume-assist control ventilation, Vt 420 mL, PEEP 8 cm H2O"
         ]
       },
-      "stem": "Which action should the nurse take first to resolve the high-pressure ventilator alarm?",
+      "stem": "A ventilated client triggers a high-pressure alarm. The client is restless, oxygen saturation is falling, and coarse breath sounds are heard. Which action should the nurse take first?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Assess the client's airway, suction secretions, and insert a bite block if needed"
+            "text": "Assess the client and airway patency, then suction if secretions are present while another team member checks the circuit"
           },
           {
             "id": "B",
-            "text": "Check the ventilator circuit for a disconnected tube or deflated ET tube cuff"
+            "text": "Silence the alarm and increase the high-pressure limit to prevent repeated alerts"
           },
           {
             "id": "C",
-            "text": "Silence the alarm and increase the high-pressure limit setting"
+            "text": "Disconnect the ventilator and leave the client unsupported while troubleshooting the machine"
           },
           {
             "id": "D",
-            "text": "Extubate the client immediately and initiate bag-valve-mask ventilation"
+            "text": "Decrease the prescribed PEEP and tidal volume before assessing the client"
           }
         ]
       },
@@ -1992,11 +1991,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "High-pressure ventilator alarms indicate increased airway resistance or decreased lung compliance (secretions, biting tube, kinked tubing, bronchospasm, pneumothorax).",
-        "A": "Correct. Assessing the client first—clearing secretions via suctioning and preventing tube biting—directly addresses the most common causes of high peak airway pressure.",
-        "B": "Incorrect. Circuit disconnection or cuff leak causes a low-pressure alarm, not a high-pressure alarm.",
-        "C": "Incorrect. Raising alarm limits masks airway obstruction and risks barotrauma.",
-        "D": "Incorrect. Unplanned extubation removes a secure airway unnecessarily."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "High-pressure alarms commonly reflect increased resistance or reduced compliance; assess the patient first and address secretions or obstruction while checking the circuit.",
+        "B": "Changing alarm limits can conceal deterioration and does not correct the cause.",
+        "C": "If disconnection is necessary, the client must be supported with an appropriate manual ventilation strategy; leaving the client unsupported is unsafe.",
+        "D": "Ventilator settings should not be changed blindly before identifying the cause and assessing the client."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -2017,7 +2016,7 @@
       "topic": "Respiratory Disorders",
       "subtopic": "Pneumonia in Older Adults",
       "specialty": "Adult Health",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "84-year-old female brought from an assisted living facility with new-onset acute confusion and lethargy.",
@@ -2045,24 +2044,24 @@
           "Incentive spirometry every hour while awake"
         ]
       },
-      "stem": "Which finding is most characteristic of atypical presentation of pneumonia in older adults?",
+      "stem": "An 84-year-old resident develops new confusion, reduced appetite, and a respiratory rate of 26/min. Temperature is 37.2°C, and the client has a new cough. Which interpretation should guide the nurse's next action?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Acute confusion and tachypnea without a high fever"
+            "text": "Pneumonia remains possible despite the absence of a high fever; assess oxygenation and escalate the acute change"
           },
           {
             "id": "B",
-            "text": "High spiking fever above 40 C with rigors"
+            "text": "Pneumonia is unlikely because older adults consistently develop high fever with bacterial infection"
           },
           {
             "id": "C",
-            "text": "Bradycardia and hypertension"
+            "text": "Confusion is most likely chronic dementia and does not require an acute assessment"
           },
           {
             "id": "D",
-            "text": "Generalized urticarial rash"
+            "text": "The findings indicate dehydration alone, so oral fluids should be offered before further assessment"
           }
         ]
       },
@@ -2074,11 +2073,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Older adults frequently present with blunted febrile responses and exhibit acute delirium/confusion and tachypnea as early signs of pneumonia.",
-        "A": "Correct. Acute mental status change and elevated respiratory rate (>24 breaths/min) are often the earliest indicators of infection in geriatric clients even when afebrile.",
-        "B": "Incorrect. High spiking fevers are more typical in younger adults.",
-        "C": "Incorrect. Tachycardia and borderline hypotension occur rather than bradycardia and hypertension.",
-        "D": "Incorrect. Rash is not a typical presentation of bacterial pneumonia."
+        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "A": "Older adults may present with delirium, tachypnea, or functional decline rather than prominent fever; acute respiratory assessment is warranted.",
+        "B": "Older adults may have blunted febrile responses, so absence of high fever does not exclude infection.",
+        "C": "A sudden change in cognition must be evaluated for acute illness rather than attributed to baseline dementia.",
+        "D": "Dehydration may coexist, but respiratory symptoms and tachypnea require assessment for infection and hypoxemia."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
