@@ -608,6 +608,89 @@ const availableTopicProfiles: Record<string, ClinicalOverride> = {
   ...respiratoryTopicOverrides,
   ...second300TopicOverrides,
 };
+// Category-specific variants prevent the same topic label from resolving to one
+// identical scenario and decision task in two different curriculum domains.
+// These variants change the clinical context, cues, priority, distractors, and rationale.
+const categoryTopicOverrides: Record<string, ClinicalOverride> = {
+  "Pediatrics / Growth and Development::Newborn thermoregulation": {
+    prompt: "Which intervention should the nurse implement first to stabilize this newborn?",
+    scenario: "A 32-week preterm newborn is 45 minutes old and has been transferred to the radiant warmer after initial stabilization. Axillary temperature is 35.7°C, glucose is 38 mg/dL, heart rate is 156/min, and respiratory rate is 54/min. The infant is mildly jittery but has no grunting or retractions.",
+    priority: "Begin controlled rewarming under the servo-controlled radiant warmer or incubator, verify the thermal environment, and promptly follow the neonatal hypoglycemia protocol with repeat temperature and glucose checks.",
+    distractors: [
+      "Bathe the newborn promptly to remove vernix and stimulate circulation",
+      "Place the newborn skin-to-skin with an unwrapped caregiver without temperature monitoring",
+      "Use a heating pad directly against the newborn's skin until the temperature reaches 37°C",
+      "Delay glucose reassessment until the next routine feeding because cold stress is the only concern"
+    ],
+    rationale: "A preterm newborn has limited thermoregulation and is vulnerable to cold stress, which increases glucose and oxygen consumption. Controlled warming and prompt treatment/reassessment of the documented low glucose are required. Direct heating devices and unmonitored warming can cause burns or instability.",
+    record: "Birth at 32 weeks; age 45 minutes. Axillary temperature 35.7°C; point-of-care glucose 38 mg/dL; HR 156/min; RR 54/min; SpO2 95% in room air. Mild jitteriness; no grunting, retractions, or apnea."
+  },
+  "Respiratory / Airway::Pulmonary embolism": {
+    prompt: "Which action should the nurse take immediately while evaluating this new respiratory deterioration?",
+    scenario: "A 34-year-old client is 8 days postpartum after cesarean birth and reports abrupt pleuritic chest pain and shortness of breath while walking to the bathroom. HR is 128/min, RR 30/min, BP 108/68 mm Hg, and SpO2 87% on room air. The client is anxious and has no wheezing; the surgical incision is intact.",
+    priority: "Stop exertion, remain with the client, support oxygenation, activate urgent medical evaluation for suspected pulmonary embolism, and maintain continuous cardiopulmonary monitoring.",
+    distractors: [
+      "Encourage the client to walk slowly to improve venous return",
+      "Apply compression and massage to the calf before notifying the provider",
+      "Administer a bronchodilator as the sole intervention because dyspnea is the primary symptom",
+      "Wait for a D-dimer result before escalating the acute hypoxemia and tachycardia"
+    ],
+    rationale: "Recent cesarean birth and the postpartum state increase venous thromboembolism risk. Sudden pleuritic pain, tachycardia, tachypnea, and hypoxemia require immediate escalation and oxygenation support; diagnostic testing must not delay stabilization.",
+    record: "Postpartum day 8 after cesarean birth; sudden pleuritic chest pain and dyspnea. HR 128/min; RR 30/min; BP 108/68 mm Hg; SpO2 87% on room air. No wheezing; incision intact."
+  },
+  "Infection Control / Infectious Disease::Meningitis": {
+    prompt: "Which infection-control action is required before routine care or transport proceeds?",
+    scenario: "A 19-year-old college student presents with fever, severe headache, neck stiffness, photophobia, and a nonblanching petechial rash. The client is alert but ill-appearing; temperature is 39.4°C and HR is 124/min. Blood cultures have been ordered, and bacterial meningitis is suspected.",
+    priority: "Place the client on droplet precautions immediately, use a surgical mask for close-range care and transport per policy, and coordinate urgent evaluation and antimicrobial treatment without waiting for culture confirmation.",
+    distractors: [
+      "Use airborne isolation in a negative-pressure room as the only required precaution",
+      "Delay isolation until cerebrospinal-fluid culture identifies the organism",
+      "Use contact precautions only and allow unmasked close contact",
+      "Place the client in protective positive-pressure isolation to prevent acquisition of another infection"
+    ],
+    rationale: "The presentation raises concern for invasive meningococcal disease. Droplet precautions should begin promptly for suspected meningococcal meningitis and continue until the recommended period after effective antimicrobial therapy. Do not delay precautions for definitive microbiology.",
+    record: "Temperature 39.4°C; HR 124/min; severe headache, nuchal rigidity, photophobia, and petechial rash. Blood cultures ordered; empiric antimicrobial treatment pending urgent provider assessment."
+  },
+  "Pediatrics / Growth and Development::Pertussis": {
+    prompt: "Which assessment finding makes immediate escalation most important for this infant?",
+    scenario: "A 7-week-old infant has had 6 days of worsening coughing spells after exposure to a household member with a prolonged cough. During an observed episode, the infant becomes dusky and has a 12-second apnea; temperature is 37.2°C, RR is 58/min between episodes, and feeding volume has fallen by half.",
+    priority: "Initiate continuous cardiorespiratory and oxygen-saturation monitoring, support the airway during episodes, and urgently notify the pediatric clinician for suspected pertussis with apnea.",
+    distractors: [
+      "Discharge the infant with routine cough hygiene teaching because there is no fever",
+      "Offer a large oral feeding immediately after the coughing spell to replace missed volume",
+      "Suppress the cough with an over-the-counter antitussive and reassess at the next visit",
+      "Wait for the characteristic whoop to appear before escalating care"
+    ],
+    rationale: "Young infants with pertussis may present with apnea, cyanosis, and feeding difficulty without a classic whoop or prominent fever. Apnea and desaturation are immediate threats and require monitoring and urgent assessment; oral feeding during respiratory instability increases aspiration risk.",
+    record: "Age 7 weeks; household exposure to prolonged cough; paroxysmal cough; observed 12-second apnea with duskiness; temperature 37.2°C; reduced intake by 50%; pertussis testing ordered."
+  },
+  "Pediatrics / Growth and Development::RSV": {
+    prompt: "Which intervention should the nurse prioritize for this infant with bronchiolitis?",
+    scenario: "A 4-month-old infant with laboratory-confirmed respiratory syncytial virus has nasal congestion, subcostal retractions, RR 66/min, and SpO2 89% on room air. The infant has taken only 25 mL of a usual 120-mL feeding and has had one wet diaper in 10 hours.",
+    priority: "Assess work of breathing and hydration, provide oxygen support according to the infant's target and local protocol, gently clear nasal secretions when they interfere with breathing or feeding, and escalate the poor intake and reduced urine output.",
+    distractors: [
+      "Administer routine antibiotics because RSV bronchiolitis is presumed bacterial",
+      "Give cough suppressant medication to reduce respiratory effort",
+      "Force a full-volume oral feeding despite tachypnea and retractions",
+      "Use chest physiotherapy routinely to mobilize secretions in uncomplicated bronchiolitis"
+    ],
+    rationale: "Hypoxemia, retractions, tachypnea, poor intake, and oliguria indicate clinically significant bronchiolitis with respiratory and hydration concerns. Support oxygenation and hydration, use gentle superficial nasal suction when needed, and avoid routine antibiotics, cough suppressants, and chest physiotherapy.",
+    record: "Age 4 months; RSV positive; RR 66/min; subcostal retractions; SpO2 89% on room air; intake 25 mL of usual 120 mL; one wet diaper in 10 hours."
+  },
+  "Pediatrics / Growth and Development::Autism spectrum disorder": {
+    prompt: "Which nursing approach best supports this child's participation in the assessment?",
+    scenario: "A 6-year-old child with autism spectrum disorder is admitted for dehydration after 2 days of gastroenteritis. The child covers the ears, avoids eye contact, and becomes distressed when several staff members speak at once. The caregiver reports that the child communicates best with picture cards and a predictable sequence of steps.",
+    priority: "Reduce sensory stimulation, use one staff member and the child's established picture-based communication, explain each step in a predictable sequence, and assess hydration using the least distressing approach possible.",
+    distractors: [
+      "Require sustained eye contact before explaining the assessment",
+      "Have several staff members repeat instructions more loudly until the child responds",
+      "Remove the caregiver and communication aids to prevent dependence",
+      "Interpret avoidance of eye contact as refusal of all care and postpone hydration assessment"
+    ],
+    rationale: "Autism is associated with diverse communication and sensory-processing differences. Individualize communication using the child's known supports, reduce unnecessary sensory input, and preserve caregiver collaboration while completing essential assessment and treatment.",
+    record: "Age 6 years; autism spectrum disorder; acute gastroenteritis with reduced intake and dry mucous membranes. Caregiver reports picture cards and predictable sequencing improve communication; child is distressed by multiple simultaneous voices."
+  }
+};
 const allGeneratedTopics = [...new Set([...B.flatMap(category => category.topics), ...requiredTopicProfileKeys])];
 for (const key of allGeneratedTopics) {
   const profile = availableTopicProfiles[key];
@@ -634,7 +717,7 @@ function make(b: B, i: number, global: number): Question {
     "Delegation": "UAP delegation",
   };
 
-  const clinical = availableTopicProfiles[topic] ?? availableTopicProfiles[alias[topic] ?? ""];
+  const clinical = categoryTopicOverrides[b.category + "::" + topic] ?? availableTopicProfiles[topic] ?? availableTopicProfiles[alias[topic] ?? ""];
   if (!clinical) throw new Error(`Refusing to generate a category-level fallback question for topic: ${topic}`);
 
   const source: B & {
