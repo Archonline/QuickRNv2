@@ -712,7 +712,7 @@ function make(b: B, i: number, global: number): Question {
 const all:Question[]=[];for(const b of B){for(let i=0;i<b.count;i++)all.push(make(b,i,all.length));}
 for(let c=0;c<cases.length;c++){for(let j=0;j<6;j++){const q=all[c*6+j],f=caseSpecificFollowups[c]?.[j]??followups[j],file=cases[c];if(q)all[c*6+j]={...q,id:"qrn-case-"+(c+1)+"-"+(j+1),topic:file.name,format:"case-study",difficulty:j===0||j===3?"Advanced":"Intermediate",caseStudy:file.record,exhibit:file.exhibit,caseRecord:{progressNotes:file.record,labs:file.exhibit,flowSheet:""},prompt:f.prompt,options:f.options,answer:f.answer,rationale:f.rationale,status:"published",clinicalScenario:undefined};}}
 for(let i=0;i<curatedTraditionalQuestions.length;i++)all[36+i]=curatedTraditionalQuestions[i];
-// Replace the first 20 repetitive generated records with independently authored items.
+// Replace the first 40 repetitive generated records with independently authored items.
 for(let i=0;i<authoredCoreRewriteBatch.length;i++)all[136+i]=authoredCoreRewriteBatch[i];
 export const questionBank500:Question[]=all.slice(0,500);
 if(questionBank500.length!==500)throw new Error("Question bank must contain exactly 500 items.");
