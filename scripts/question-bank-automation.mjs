@@ -14,11 +14,11 @@ const priorIds=new Set(), stems=new Set();
 for(const f of files){const b=read(path.join(OUT,f));for(const q of b.questions||[]){priorIds.add(q.id);stems.add(norm(q.stem));}}
 function norm(s){return String(s||"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();}
 const accepted=Math.max(manifest.accepted_count||0,priorIds.size), remaining=Math.max(0,TARGET-BASELINE-accepted);
-const days=Math.max(1,Math.ceil((DEADLINE-now)/86400000)), dailyNeed=Math.ceil(remaining/days);
-const dayStart=Date.UTC(now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate()), start=Date.UTC(2026,10,23);
-const elapsed=Math.max(0,Math.floor((dayStart-start)/86400000)), dailyFloor=Math.ceil((TARGET-BASELINE)/7);
-const due=Math.max(0,Math.min(TARGET,BASELINE+dailyFloor*(elapsed+1))-(BASELINE+accepted));
-const runBudget=Math.min(remaining,Math.max(dailyNeed,due),BATCH_SIZE*MAX_BATCHES);
+const campaignStart=new Date("2026-11-23T00:00:00Z");
+const elapsedFraction=Math.max(0,Math.min(1,(now-campaignStart)/(DEADLINE-campaignStart)));
+const cumulativeTarget=Math.min(TARGET,BASELINE+Math.ceil((TARGET-BASELINE)*elapsedFraction));
+const due=Math.max(0,cumulativeTarget-(BASELINE+accepted));
+const runBudget=Math.min(remaining,due,BATCH_SIZE*MAX_BATCHES);
 if(remaining&& !KEY){console.error("GEMINI_API_KEY missing; no items generated.");process.exit(2);}
 const types=rules.question_integrity.valid_question_types.filter(type=>type!=="hot_spot");
 const topics=(blueprint.domains||[]).map(d=>({domain:d.name,topics:d.topics,conditions:d.seed_conditions}));
@@ -50,17 +50,18 @@ async function generate(count,first,repairText=""){
  if(!raw)throw new Error("Empty model response");return JSON.parse(raw.replace(/^\s*```(?:json)?/i,"").replace(/```\s*$/,""));
 }
 let runAccepted=0,runRejected=0,attempts=0;
-while(runAccepted<runBudget&&attempts<MAX_BATCHES){
- const count=Math.min(BATCH_SIZE,runBudget-runAccepted), first=547+accepted+runAccepted;
+let nextId=priorIds.size?Math.max(546,...[...priorIds].map(id=>Number(String(id).replace("QRN-",""))||0))+1:547;
+while(runAccepted+runRejected<runBudget&&attempts<MAX_BATCHES){
+ const count=Math.min(BATCH_SIZE,runBudget-runAccepted-runRejected), first=nextId;
  try{
-  let data=await generate(count,first);
+  const data=await generate(count,first);
   if(!Array.isArray(data.questions)||data.questions.length!==count)throw new Error("wrong_item_count");
   const bad=[];
   for(let i=0;i<count;i++){const q=data.questions[i],id="QRN-"+String(first+i).padStart(6,"0"),issue=validate(q,id);if(issue)bad.push({id,issue,original:q});else stems.add(norm(q.stem));}
-  let good=data.questions.filter((q,i)=>!bad.some(b=>b.id==="QRN-"+String(first+i).padStart(6,"0")));
+  let good=data.questions.filter((q,i)=>!bad.some(x=>x.id==="QRN-"+String(first+i).padStart(6,"0")));
   if(bad.length){
-   const fixed=await generate(bad.length,first,"Repair these failed items in the exact order and IDs; fix the issues: "+JSON.stringify(bad.map(b=>({id:b.id,issue:b.issue,original:b.original}))),bad.map(b=>b.id));
-   for(let i=0;i<bad.length;i++){const q=fixed.questions?.[i],issue=validate(q,bad[i].id);if(!issue){good.push(q);stems.add(norm(q.stem));manifest.repaired_count++;}else runRejected++;}
+   const fixed=await generate(bad.length,first,"Repair these failed items in the exact order and IDs; fix the issues: "+JSON.stringify(bad.map(x=>({id:x.id,issue:x.issue,original:x.original}))),bad.map(x=>x.id));
+   for(let i=0;i<bad.length;i++){const q=fixed.questions?.[i],issue=validate(q,bad[i].id);if(!issue){good.push(q);stems.add(norm(q.stem));manifest.repaired_count++;}}
   }
   if(good.length){
    good.sort((a,b)=>a.id.localeCompare(b.id));
@@ -71,7 +72,7 @@ while(runAccepted<runBudget&&attempts<MAX_BATCHES){
    runAccepted+=good.length;runRejected+=count-good.length;
   }else runRejected+=count;
  }catch(e){console.error("Generation batch failed:",e.message);runRejected+=count;manifest.failures=[...(manifest.failures||[]),{at:new Date().toISOString(),first_id:first,count,error:e.message}];}
- attempts++;
+ attempts++;nextId+=count;
 }
 manifest.target_total=TARGET;manifest.baseline_count=BASELINE;manifest.accepted_count=accepted+runAccepted;
 manifest.rejected_count=(manifest.rejected_count||0)+runRejected;manifest.deadline_utc=DEADLINE.toISOString();
