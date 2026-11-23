@@ -209,9 +209,9 @@ function auditCoreGenerator(rules, findings) {
     finding(findings, "error", QUESTION_BANK_PATH, "Generic category-lens scenario fallback is still present.");
   }
   const categoryBlock = source.slice(source.indexOf("const B:B[]="), source.indexOf("const cases="));
-  const candidateCount = [...categoryBlock.matchAll(/count:(\\d+)/g)].reduce((total, match) => total + Number(match[1]), 0);
+  const candidateCount = [...categoryBlock.matchAll(/count:(\d+)/g)].reduce((total, match) => total + Number(match[1]), 0);
   const rewriteSource = readText(REWRITE_BATCH_PATH) ?? "";
-  const authoredCount = [...rewriteSource.matchAll(/\\bsingle\\(\\s*"([^"]+)"/g)].length;
+  const authoredCount = [...rewriteSource.matchAll(/\bsingle\(\s*"([^"]+)"/g)].length;
   const caseScreens = 36;
   const curatedTraditional = 100;
   const generatedCount = candidateCount - caseScreens - curatedTraditional - authoredCount;
