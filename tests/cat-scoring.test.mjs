@@ -40,7 +40,7 @@ test("readiness requires minimum length, score, ability, and category floor", ()
 test("readiness fails a high score when the provisional ability threshold is not met", () => {
   const responses = Array.from({ length: 90 }, (_, index) => ({
     earned: index % 5 === 0 ? 0 : 1,
-    difficulty: "Advanced",
+    difficulty: "Foundational",
     category: "Adult Health"
   }));
   const result = evaluateReadiness(responses);
