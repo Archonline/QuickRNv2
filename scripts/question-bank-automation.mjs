@@ -35,7 +35,7 @@ function validate(q,id){
  for(const k of req)if(!(k in q))return "missing_"+k;
  if(q.id!==id)return "id_mismatch";
  if(!q.topic?.trim()||!q.subtopic?.trim()||!q.stem?.trim()||norm(q.stem).length<35)return "empty_or_short_text";
- if(!rules.question_integrity.valid_difficulty_values.includes(q.difficulty)||!types.includes(q.question_type))return "invalid_enum";
+ if(!rules.question_integrity.valid_difficulty_values.includes(q.difficulty)||!(ngnTypes.includes(q.question_type)||traditionalTypes.includes(q.question_type)))return "invalid_enum";
  if(!q.rationales?.correct?.trim()||!Array.isArray(q.rationales.incorrect)||!q.clinical_judgment?.explanation?.trim())return "missing_rationale";
  if(!Number.isInteger(q.estimated_time_seconds)||q.estimated_time_seconds<15)return "invalid_time";
  if(stems.has(norm(q.stem)))return "duplicate_stem";
