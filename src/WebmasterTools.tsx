@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Activity, AlertTriangle, ArrowLeft, ArrowRight, BookOpen, Check, ClipboardCheck, Clock3, Database, FileClock, Gauge, MessageSquareWarning, RefreshCw, ShieldCheck, Stethoscope, XCircle } from "lucide-react";
+import { Activity, AlertTriangle, ArrowLeft, ArrowRight, Check, ClipboardCheck, Clock3, Database, FileClock, Gauge, MessageSquareWarning, RefreshCw, ShieldCheck, Stethoscope, XCircle } from "lucide-react";
 import { collection, doc, getDocs, orderBy, query, limit, serverTimestamp, setDoc, updateDoc, writeBatch } from "firebase/firestore";
 import { db, firebaseConfigured } from "./firebase";
 import { useAuth } from "./AuthContext";
