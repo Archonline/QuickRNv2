@@ -24,6 +24,7 @@ function rationaleIds(item) {
   if (Array.isArray(rationale.incorrect)) {
     for (const entry of rationale.incorrect) if (entry?.option) ids.add(String(entry.option));
   }
+  if (rationale.correct) for (const key of correctIds(item)) ids.add(key);
   for (const key of Object.keys(rationale)) {
     if (/^[A-Z]$/.test(key) || /^[A-Z0-9_-]+$/.test(key)) ids.add(key);
   }
