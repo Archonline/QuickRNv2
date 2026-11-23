@@ -76,6 +76,12 @@ const hasPerOptionRationales = /optionRationales\s*:/.test(makeBlock);
 const hasEvidenceMetadata = /clinicalEvidence|references\s*:\s*\[[^\]]+\]/.test(makeBlock);
 const cyclicDistractorSelection = makeBlock.includes("distractorStart") && makeBlock.includes("distractors[(distractorStart + offset) % distractors.length]");
 
+if (!hasCategorySpecificResolution || missingVariantKeys.length) {
+  throw new Error("Missing category-specific clinical variants: " + missingVariantKeys.join("; "));
+}
+if (!keyIsDerivedFromAnswerText) {
+  throw new Error("Generated answer key is no longer structurally derived from the designated answer text.");
+}
 const report = {
   scope: "Topic-profile-generated core items only; excludes 36 unfolding-case screens, 100 curated traditional items, and 40 authored replacement drafts.",
   reconstructedCount: generated.length,
