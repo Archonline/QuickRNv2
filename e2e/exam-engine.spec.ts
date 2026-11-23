@@ -51,3 +51,22 @@ test("timer expires against an absolute deadline even after a background-style c
   expect(report.scoringFailures, JSON.stringify(report.scoringFailures)).toEqual([]);
   expect(Object.keys(report.formatCounts).length).toBeGreaterThan(1);
 });
+
+test("all response formats represented in the published bank render in the shared player", async ({ page }) => {
+  await page.goto("/e2e/bank-player.html");
+  await page.getByRole("button", { name: /All-format NGN sampler/ }).click();
+  await page.getByRole("button", { name: /Begin examination/ }).click();
+  const expected = Number(await page.getByTestId("expected-format-count").textContent());
+  const counter = await page.locator(".exam-question-counter").textContent();
+  const total = Number(counter?.match(/OF (\\d+)/)?.[1] ?? 0);
+  expect(total, "The sampler should include one published item per available item type").toBe(expected);
+  for (let index = 0; index < total; index += 1) {
+    await expect(page.locator(".exam-question-card")).toBeVisible();
+    await expect(page.locator(".exam-stem")).not.toBeEmpty();
+    await expect(page.locator(".exam-question-card input, .exam-question-card select, .exam-question-card textarea, .exam-question-card button").first()).toBeVisible();
+    if (index < total - 1) {
+      await page.getByRole("button", { name: /^Next/ }).click();
+      await expect(page.locator(".exam-question-counter")).toContainText(`QUESTION ${index + 2} OF ${total}`);
+    }
+  }
+});
