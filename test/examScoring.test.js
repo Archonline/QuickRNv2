@@ -15,3 +15,25 @@ const valid={id:"x",category:"A",topic:"B",difficulty:"Foundational",prompt:"Q",
 test("validator rejects malformed keyed response",()=>{assert.equal(validateQuestion({...valid,interaction:{choices:["a","b"],correctResponse:["9"]}}).valid,false);});
 test("validator accepts well-formed single response",()=>{assert.equal(validateQuestion(valid).valid,true);});
 test("bank audit detects duplicate IDs",()=>{const result=validateQuestionBank([valid,{...valid}]);assert.deepEqual(result.duplicateIds,["x"]);});
+
+test("structural validator accepts each supported NCLEX interaction family",()=>{
+ const base={id:"format",category:"A",topic:"B",difficulty:"Intermediate",prompt:"Prompt",options:["A","B"],answer:0,status:"published"};
+ const fixtures=[
+  {...base,itemType:"single-response",interaction:{choices:["A","B"],correctResponse:["0"]}},
+  {...base,itemType:"multiple-response",interaction:{choices:["A","B"],correctResponse:["0","1"]}},
+  {...base,itemType:"select-n",interaction:{choices:["A","B"],selectCount:1,correctResponse:["0"]}},
+  {...base,itemType:"drop-down-cloze",interaction:{clozeTemplate:"Choose [BLANK_1].",clozeChoicesByBlank:[["A","B"]],correctResponse:["0"]}},
+  {...base,itemType:"drop-down-rationale",interaction:{rationaleTemplate:"Because [BLANK_1].",rationaleChoicesByBlank:[["A","B"]],correctResponse:["0"]}},
+  {...base,itemType:"highlight-text",interaction:{segments:["Cue A","Cue B"],highlightableSegments:["Cue A","Cue B"],correctResponse:["Cue A"]}},
+  {...base,itemType:"matrix-single",interaction:{rows:["Row 1"],columns:["A","B"],correctResponse:["0:0"]}},
+  {...base,itemType:"matrix-multiple",interaction:{rows:["Row 1"],columns:["A","B"],correctResponse:["0:0"]}},
+  {...base,itemType:"numeric-entry",interaction:{correctResponse:["12.5"]}},
+  {...base,itemType:"ordered-response",interaction:{orderItems:["A","B"],correctOrder:[0,1],correctResponse:["0","1"]}},
+  {...base,itemType:"bow-tie",interaction:{bowTie:{conditions:["A","B"],actions:["A","B"],monitoring:["A","B"],correctCondition:0,correctActions:[0,1],correctMonitoring:[0,1]},correctResponse:["c0","a0-0","a1-1","m0-0","m1-1"]}},
+  {...base,itemType:"drag-drop",interaction:{dragDropTemplate:"[BLANK_1]",dragDropChoices:["A","B"],correctResponse:["0"]}},
+  {...base,itemType:"trend",interaction:{choices:["A","B"],trend:[{time:"1",findings:"A"},{time:"2",findings:"B"}],correctResponse:["0"]}},
+  {...base,itemType:"graphics-based",interaction:{graphic:{title:"Diagram",description:"Choose",labels:["A","B"],correctLabels:[0]},correctResponse:["0"]}}
+ ];
+ const results=fixtures.map(q=>({type:q.itemType,...validateQuestion(q)}));
+ assert.deepEqual(results.filter(x=>!x.valid).map(x=>({type:x.type,errors:x.errors})),[]);
+});
