@@ -2541,24 +2541,24 @@
           "Lower blood pressure to < 185/110 mmHg prior to thrombolysis"
         ]
       },
-      "stem": "Which medication should the nurse prepare to administer first to safely qualify this client for intravenous thrombolytic therapy?",
+      "stem": "The client arrives with aphasia and right-sided weakness that began 70 minutes ago. Point-of-care glucose is 48 mg/dL. The stroke team is evaluating eligibility for thrombolysis. Which action should the nurse anticipate first?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Labetalol 10 to 20 mg intravenously"
+            "text": "Treat the hypoglycemia promptly and reassess the neurologic deficits before proceeding with thrombolysis decisions"
           },
           {
             "id": "B",
-            "text": "Aspirin 325 mg orally"
+            "text": "Administer alteplase immediately because the symptom-onset window is more important than the glucose result"
           },
           {
             "id": "C",
-            "text": "Sublingual nifedipine 10 mg"
+            "text": "Give aspirin and clopidogrel before repeating the neurologic assessment"
           },
           {
             "id": "D",
-            "text": "Heparin 5,000 units intravenously"
+            "text": "Lower the blood pressure rapidly to below 120/80 mmHg before obtaining brain imaging"
           }
         ]
       },
@@ -2570,11 +2570,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Blood pressure must be gently lowered below 185/110 mmHg using IV labetalol or nicardipine before administering thrombolytics to prevent hemorrhagic transformation.",
-        "A": "Correct. IV labetalol (or nicardipine) allows controlled BP reduction to <185/110 mmHg required before IV thrombolysis.",
-        "B": "Incorrect. Antiplatelet agents and anticoagulants are contraindicated for 24 hours after thrombolytic administration, and the client has not had a dysphagia screen.",
-        "C": "Incorrect. Sublingual nifedipine causes precipitous, unpredictable hypotension that worsens cerebral penumbral ischemia.",
-        "D": "Incorrect. Heparin increases intracranial hemorrhage risk and is contraindicated with thrombolytics."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Hypoglycemia can mimic acute stroke and must be corrected promptly; persistent deficits then require continued stroke evaluation and imaging-based decisions.",
+        "B": "Treatable mimics and contraindications must be assessed; thrombolysis should not be given before addressing severe hypoglycemia.",
+        "C": "Antiplatelet therapy is not given before thrombolysis decisions and may increase bleeding risk if thrombolysis is used.",
+        "D": "Rapid normalization of blood pressure is not routinely indicated and can reduce cerebral perfusion; imaging and protocol-specific thresholds guide management."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -2596,7 +2596,7 @@
       "topic": "Neurological Disorders",
       "subtopic": "Increased Intracranial Pressure (ICP)",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "39-year-old male in the neuro-ICU following a severe traumatic brain injury (TBI) with an intraventricular ICP monitor.",
@@ -2627,47 +2627,47 @@
           "Maintain PaCO2 35-40 mmHg"
         ]
       },
-      "stem": "Which nursing interventions help reduce elevated intracranial pressure in this client? Select all that apply.",
+      "stem": "A client with traumatic brain injury has an ICP of 24 mmHg and worsening headache. Which interventions should the nurse implement while escalating the sustained elevation? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Maintain the head and neck in a neutral midline position"
+            "text": "Maintain the head midline and elevate the head of bed about 30 degrees if not contraindicated"
           },
           {
             "id": "B",
-            "text": "Administer antipyretics and cooling measures promptly to prevent fever"
+            "text": "Avoid prolonged hip flexion and unnecessary stimulation that can increase intrathoracic or intracranial pressure"
           },
           {
             "id": "C",
-            "text": "Cluster nursing care activities such as suctioning, bathing, and turning together"
+            "text": "Coordinate care to allow rest periods and prevent repeated painful stimulation"
           },
           {
             "id": "D",
-            "text": "Pre-oxygenate with 100% oxygen and limit endotracheal suctioning to <= 10-15 seconds"
+            "text": "Suction the endotracheal tube on a fixed schedule every hour even when secretions are absent"
           },
           {
             "id": "E",
-            "text": "Flex the client's hips sharply to 90 degrees to promote venous return"
+            "text": "Place the client in Trendelenburg position to increase cerebral venous return"
           }
         ]
       },
       "correct_response": [
         "A",
         "B",
-        "D"
+        "C"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 3
       },
       "rationales": {
-        "summary": "ICP management relies on facilitating cerebral venous drainage (midline neck, 30-degree HOB), avoiding hyperthermia/hypoxia/hypercapnia, and spacing stimulating interventions.",
-        "A": "Correct. Neutral midline neck alignment prevents jugular venous compression and promotes cerebral venous outflow.",
-        "B": "Correct. Fever increases cerebral metabolic demand and cerebral blood flow, driving ICP higher.",
-        "C": "Incorrect. Clustering multiple stimulating activities causes cumulative spikes in ICP; care should be spaced.",
-        "D": "Correct. Pre-oxygenating and limiting suction duration prevents hypoxia and hypercapnia-induced cerebral vasodilation.",
-        "E": "Incorrect. Extreme hip flexion increases intra-abdominal and intrathoracic pressure, impairing cerebral venous drainage."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Midline alignment and modest head elevation promote venous drainage when hemodynamically tolerated.",
+        "B": "Hip flexion, straining, and avoidable stimulation can impede venous return or provoke ICP elevations.",
+        "C": "Clustering care with rest periods reduces avoidable stimulation while the client is monitored closely.",
+        "D": "Unnecessary suctioning can transiently raise ICP; suction only when clinically indicated and preoxygenate as appropriate.",
+        "E": "Trendelenburg impairs cerebral venous drainage and may worsen ICP."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -2761,7 +2761,7 @@
       "topic": "Neurological Disorders",
       "subtopic": "Seizure Precautions & Status Epilepticus",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "29-year-old female with epilepsy admitted after breakthrough generalized tonic-clonic seizures.",
@@ -2787,24 +2787,24 @@
           "Seizure precautions at bedside"
         ]
       },
-      "stem": "Which action should the nurse take during the active tonic-clonic phase of the seizure?",
+      "stem": "A client begins a generalized tonic-clonic seizure while standing beside the bed. Which action should the nurse take during the seizure?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Turn the client onto her side, protect her head, loosen tight neck clothing, and note the exact start time"
+            "text": "Guide the client to the floor, protect the head, loosen restrictive clothing, and turn to the side when feasible"
           },
           {
             "id": "B",
-            "text": "Insert a padded tongue blade between her teeth to prevent tongue biting"
+            "text": "Restrain the arms and legs to prevent musculoskeletal injury"
           },
           {
             "id": "C",
-            "text": "Restrain her upper and lower extremities firmly to prevent musculoskeletal fractures"
+            "text": "Insert an oral airway between clenched teeth to prevent tongue injury"
           },
           {
             "id": "D",
-            "text": "Immediately insert a rigid Yankauer suction catheter into the back of the pharynx"
+            "text": "Leave the client briefly to obtain IV medication before protecting the airway"
           }
         ]
       },
@@ -2816,11 +2816,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "During an active seizure, airway protection via lateral positioning, injury prevention, and timing seizure duration (to identify status epilepticus at 5 minutes) are essential.",
-        "A": "Correct. Side-lying positioning prevents aspiration of saliva, head padding prevents trauma, and timing determines when rescue benzodiazepines are indicated.",
-        "B": "Incorrect. Forcing anything into the mouth during tonic jaw clenching breaks teeth and causes airway obstruction.",
-        "C": "Incorrect. Restraining convulsing limbs increases the risk of fractures and soft-tissue injury.",
-        "D": "Incorrect. Suctioning is performed after motor activity stops if secretions remain; forcing a rigid catheter into a clenched jaw causes trauma."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Protecting from injury, supporting a side-lying position when possible, and timing the seizure are appropriate immediate actions.",
+        "B": "Restraints can cause injury and do not stop seizure activity.",
+        "C": "Nothing should be forced into the mouth during an active seizure; this can cause dental and airway injury.",
+        "D": "Stay with the client, summon help, and protect the airway and environment; medication follows protocol and does not replace immediate safety."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -2868,24 +2868,24 @@
           "Hold oral medications if dysphagia worsens"
         ]
       },
-      "stem": "Based on the client's forced vital capacity and respiratory status, which intervention is the immediate priority?",
+      "stem": "A client with myasthenia gravis develops a weak cough, difficulty handling secretions, and a forced vital capacity that has fallen from 24 to 14 mL/kg. Oxygen saturation remains 95% on room air. Which action is the priority?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Prepare for emergent endotracheal intubation and mechanical ventilation"
+            "text": "Escalate immediately for critical-care airway assessment and prepare for ventilatory support"
           },
           {
             "id": "B",
-            "text": "Administer the scheduled dose of pyridostigmine with applesauce"
+            "text": "Administer the next oral pyridostigmine dose and reassess respiratory strength in 2 hours"
           },
           {
             "id": "C",
-            "text": "Encourage deep breathing and incentive spirometry every hour"
+            "text": "Encourage repeated incentive spirometry and ambulation to improve respiratory muscle endurance"
           },
           {
             "id": "D",
-            "text": "Administer lorazepam 1 mg IV to relieve respiratory anxiety"
+            "text": "Provide oral fluids to thin secretions and reduce the work of coughing"
           }
         ]
       },
@@ -2897,11 +2897,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "An FVC < 15 mL/kg (client is at 11 mL/kg) with rising PaCO2 signals neuromuscular respiratory failure (myasthenic crisis) requiring elective intubation before arrest.",
-        "A": "Correct. FVC < 15 mL/kg or NIF < -20 cm H2O indicates severe diaphragmatic weakness requiring immediate airway support.",
-        "B": "Incorrect. Oral administration is unsafe with severe dysphagia and weak cough (aspiration risk), and pyridostigmine is often temporarily held during mechanical ventilation in myasthenic crisis to reduce secretions.",
-        "C": "Incorrect. Incentive spirometry cannot reverse diaphragmatic neuromuscular failure.",
-        "D": "Incorrect. Benzodiazepines suppress central respiratory drive and worsen neuromuscular hypoventilation."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Declining vital capacity, weak cough, and secretion difficulty signal impending respiratory failure; oxygen saturation can remain normal until late.",
+        "B": "Oral medication may be unsafe with bulbar weakness and must not delay airway support.",
+        "C": "Exercise and incentive spirometry are not adequate treatment for rapidly worsening neuromuscular respiratory weakness.",
+        "D": "Oral fluids increase aspiration risk when swallowing and cough are impaired."
       },
       "clinical_judgment": "prioritize_hypotheses",
       "tags": [
@@ -2923,7 +2923,7 @@
       "topic": "Neurological Disorders",
       "subtopic": "Guillain-Barre Syndrome",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "38-year-old male admitted 2 weeks after Campylobacter jejuni gastroenteritis with symmetric ascending lower-extremity weakness and paresthesias.",
@@ -2950,24 +2950,24 @@
           "Continuous telemetry"
         ]
       },
-      "stem": "Which assessment finding indicates that the demyelination is progressing to a life-threatening stage?",
+      "stem": "A client with Guillain-Barré syndrome has ascending weakness. Which new finding most strongly indicates progression toward respiratory failure and requires immediate escalation?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Weak cough, inability to count to 15 in a single breath, and declining vital capacity"
+            "text": "A declining vital capacity with a weaker cough and difficulty counting to ten in one breath"
           },
           {
             "id": "B",
-            "text": "Tingling sensations in the soles of both feet"
+            "text": "Bilateral absent ankle reflexes with preserved cough and stable respiratory measurements"
           },
           {
             "id": "C",
-            "text": "Absent ankle jerk reflexes"
+            "text": "Burning paresthesia in both feet that is unchanged from the previous assessment"
           },
           {
             "id": "D",
-            "text": "Mild aching pain in the lumbar paraspinal muscles"
+            "text": "Mild constipation after reduced mobility"
           }
         ]
       },
@@ -2979,11 +2979,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Ascending paralysis in Guillain-Barre syndrome can rapidly involve the phrenic and intercostal nerves, causing acute respiratory failure.",
-        "A": "Correct. Inability to count to 15-20 on one breath, weak cough, and falling vital capacity indicate diaphragmatic involvement requiring urgent ventilatory preparation.",
-        "B": "Incorrect. Distal paresthesias are an early baseline symptom.",
-        "C": "Incorrect. Areflexia in the lower extremities is a standard diagnostic feature.",
-        "D": "Incorrect. Neuropathic back/leg pain is common and not immediately life-threatening."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Serial respiratory mechanics and bulbar/cough function identify impending ventilatory failure; deterioration requires urgent airway planning.",
+        "B": "Areflexia is expected in GBS but does not by itself indicate imminent respiratory failure.",
+        "C": "Stable sensory symptoms do not indicate acute respiratory deterioration.",
+        "D": "Constipation is important to manage but is not the immediate life threat."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
@@ -3004,7 +3004,7 @@
       "topic": "Neurological Disorders",
       "subtopic": "Parkinson Disease",
       "specialty": "Adult Health",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "73-year-old male with Parkinson disease admitted for a minor urologic procedure.",
@@ -3030,24 +3030,24 @@
           "Fall precautions"
         ]
       },
-      "stem": "Which nursing intervention is most important when administering carbidopa-levodopa to this client?",
+      "stem": "A client with Parkinson disease reports that carbidopa-levodopa takes longer to work after breakfast. The meal is high in protein. Which teaching is most appropriate?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Administer each dose at the exact scheduled time and avoid giving it with high-protein meals"
+            "text": "Discuss consistent dose timing and separating doses from high-protein meals when directed, without reducing total protein intake independently"
           },
           {
             "id": "B",
-            "text": "Hold the morning dose until physical therapy has been completed"
+            "text": "Eliminate protein from the diet because it permanently blocks levodopa absorption"
           },
           {
             "id": "C",
-            "text": "Administer the medication with a high-protein nutritional shake to enhance absorption"
+            "text": "Take each dose only when tremors become severe to prevent tolerance"
           },
           {
             "id": "D",
-            "text": "Discontinue the drug abruptly if orthostatic dizziness develops"
+            "text": "Crush all extended-release tablets and mix them with a protein shake"
           }
         ]
       },
@@ -3059,11 +3059,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Carbidopa-levodopa has a short half-life requiring precise timing to prevent 'off' akinesia, and large neutral amino acids compete with levodopa transport across the gut and blood-brain barrier.",
-        "A": "Correct. Exact dosing times prevent severe motor freezing, and separating doses from high-protein meals avoids amino acid competition for absorption.",
-        "B": "Incorrect. Delaying doses impairs mobility and increases fall risk during physical therapy.",
-        "C": "Incorrect. High-protein shakes impair levodopa absorption.",
-        "D": "Incorrect. Abrupt withdrawal of dopaminergic therapy can precipitate neuroleptic malignant-like syndrome (parkinsonism-hyperpyrexia syndrome)."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Dietary amino acids can compete with levodopa transport; consistent timing and individualized meal scheduling may improve response while preserving nutrition.",
+        "B": "Protein is essential and should not be eliminated; timing rather than global restriction is considered.",
+        "C": "Levodopa is generally scheduled to maintain symptom control, not taken only when symptoms peak.",
+        "D": "Extended-release formulations should not be crushed, and a protein shake may worsen competition for absorption."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -3084,7 +3084,7 @@
       "topic": "Neurological Disorders",
       "subtopic": "Bacterial Meningitis",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "20-year-old college student brought to the emergency department with severe headache, neck stiffness, photophobia, and fever.",
@@ -3112,24 +3112,24 @@
           "STAT blood cultures followed by empiric IV antibiotics"
         ]
       },
-      "stem": "Which type of isolation precautions should the nurse initiate immediately upon suspicion of bacterial meningitis?",
+      "stem": "A client presents with fever, severe headache, neck stiffness, and photophobia. Bacterial meningitis is suspected. Which action should the nurse implement immediately while diagnostic evaluation proceeds?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Droplet precautions until the client has received 24 hours of effective antibiotic therapy"
+            "text": "Initiate droplet precautions and ensure prompt antimicrobial treatment is not delayed for nonessential procedures"
           },
           {
             "id": "B",
-            "text": "Airborne precautions in a negative-pressure room for 14 days"
+            "text": "Place the client in airborne isolation and defer antibiotics until the culture results are final"
           },
           {
             "id": "C",
-            "text": "Contact precautions only, using gown and gloves"
+            "text": "Use contact precautions only because transmission occurs through contaminated surfaces"
           },
           {
             "id": "D",
-            "text": "Standard precautions only until CSF culture confirms Neisseria meningitidis"
+            "text": "Wait for lumbar puncture results before initiating any isolation measures"
           }
         ]
       },
@@ -3141,11 +3141,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Suspected bacterial meningitis (especially Neisseria meningitidis, suggested by petechiae) requires immediate droplet precautions until 24 hours after starting effective antimicrobials.",
-        "A": "Correct. Droplet precautions (surgical mask within 3-6 feet, private room) are instituted immediately and maintained for the first 24 hours of effective antibiotic therapy.",
-        "B": "Incorrect. Meningococcal organisms spread via large respiratory droplets, not airborne nuclei.",
-        "C": "Incorrect. Contact precautions alone do not protect mucosal surfaces from respiratory droplets.",
-        "D": "Incorrect. Waiting for culture confirmation exposes staff and visitors to transmissible meningococcal infection."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Droplet precautions are indicated for suspected meningococcal disease and many bacterial meningitis protocols; urgent antibiotics should not be unnecessarily delayed.",
+        "B": "Airborne isolation is not the routine precaution for meningococcal meningitis, and culture results take time.",
+        "C": "Contact precautions alone are insufficient for droplet-transmitted pathogens.",
+        "D": "Isolation should begin on suspicion, not after results return."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -3194,24 +3194,24 @@
           "Maintain euvolemia"
         ]
       },
-      "stem": "What is the primary therapeutic purpose of administering nimodipine to this client?",
+      "stem": "A client is receiving nimodipine after aneurysmal subarachnoid hemorrhage. Which outcome best explains the purpose of this medication?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "To prevent and minimize delayed cerebral ischemia caused by cerebral vasospasm"
+            "text": "Reduced risk of delayed cerebral ischemic deficits associated with post-hemorrhagic vasospasm"
           },
           {
             "id": "B",
-            "text": "To dissolve residual subarachnoid blood clots in the basal cisterns"
+            "text": "Immediate reduction of intracranial pressure by osmotic diuresis"
           },
           {
             "id": "C",
-            "text": "To prevent post-aneurysmal generalized tonic-clonic seizures"
+            "text": "Prevention of rebleeding by directly sealing the aneurysm"
           },
           {
             "id": "D",
-            "text": "To aggressively lower systemic systolic blood pressure below 100 mmHg"
+            "text": "Dissolution of the subarachnoid clot to restore cerebral blood flow"
           }
         ]
       },
@@ -3223,11 +3223,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Cerebral vasospasm peaks 4 to 14 days after aneurysmal subarachnoid hemorrhage; nimodipine (a dihydropyridine calcium channel blocker) improves neurological outcomes from vasospasm.",
-        "A": "Correct. Nimodipine selectively crosses the blood-brain barrier to reduce ischemic neurological deficits associated with cerebral vasospasm.",
-        "B": "Incorrect. Nimodipine is not a thrombolytic agent.",
-        "C": "Incorrect. Antiseizure medications (e.g., levetiracetam), not calcium channel blockers, prevent seizures.",
-        "D": "Incorrect. Dropping systolic BP below 100 mmHg during vasospasm would worsen cerebral ischemia."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Nimodipine improves neurologic outcomes by reducing delayed ischemic deficits after aneurysmal SAH; it does not directly reverse the bleed.",
+        "B": "It is not an osmotic agent and does not directly lower ICP.",
+        "C": "Aneurysm securing, not nimodipine, addresses the source of rebleeding.",
+        "D": "Nimodipine is not a thrombolytic and does not dissolve the clot."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -3248,7 +3248,7 @@
       "topic": "Neurological Disorders",
       "subtopic": "Alzheimer Disease",
       "specialty": "Adult Health",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "82-year-old male with moderate Alzheimer disease admitted to a medical unit for cellulitis.",
@@ -3275,24 +3275,24 @@
           "Fall and elopement precautions"
         ]
       },
-      "stem": "Which nursing approach is most therapeutic for managing this client's sundowning agitation?",
+      "stem": "A client with Alzheimer disease becomes more restless each evening, repeatedly attempts to leave the unit, and is more distressed in a noisy dayroom. Which nursing approach is best?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Acknowledge his feelings calmly, redirect him to a familiar activity, and maintain a well-lit, quiet environment"
+            "text": "Reduce environmental stimulation, maintain a predictable evening routine, and assess for unmet needs such as pain, toileting, or fatigue"
           },
           {
             "id": "B",
-            "text": "Firmly argue with him that he sold his car five years ago and is in a hospital"
+            "text": "Confront the client firmly with the correct date and insist that the client remain seated"
           },
           {
             "id": "C",
-            "text": "Apply bilateral wrist restraints immediately to prevent him from leaving the bed"
+            "text": "Use a physical restraint at the start of each evening to prevent wandering"
           },
           {
             "id": "D",
-            "text": "Turn off all room lights at 1830 so he will go to sleep early"
+            "text": "Keep the lights dim and the room completely dark to encourage sleep"
           }
         ]
       },
@@ -3304,11 +3304,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Validation, calm redirection, adequate evening lighting to reduce shadows, and minimizing overstimulation effectively de-escalate sundowning behaviors.",
-        "A": "Correct. Validating emotion without confrontation and redirecting while reducing visual shadows lowers evening confusion and agitation.",
-        "B": "Incorrect. Confrontation and logical arguing escalate frustration and fear in moderate dementia.",
-        "C": "Incorrect. Physical restraints worsen agitation, increase injury risk, and are a last resort.",
-        "D": "Incorrect. Dim lighting creates frightening shadows that exacerbate sundowning."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "A calm, structured environment and assessment for triggers can reduce sundowning-related distress while preserving safety.",
+        "B": "Repeated confrontation can increase anxiety and does not address the cause of the behavior.",
+        "C": "Restraints can worsen agitation and cause harm; use individualized least-restrictive safety measures.",
+        "D": "Complete darkness may increase disorientation and fall risk; lighting should support orientation and safe mobility."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -3330,7 +3330,7 @@
       "topic": "Neurological Disorders",
       "subtopic": "Multiple Sclerosis",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "35-year-old female with relapsing-remitting multiple sclerosis (MS) discharged after IV methylprednisolone therapy for an acute optic neuritis flare.",
@@ -3356,47 +3356,48 @@
           "Outpatient physical and occupational therapy"
         ]
       },
-      "stem": "Which self-management strategies should the nurse include in the client's discharge teaching? Select all that apply.",
+      "stem": "A client with multiple sclerosis is planning home routines after discharge. Which strategies are appropriate to reduce symptom exacerbation and preserve function? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Avoid hot baths, saunas, and overheating, which can temporarily worsen neurologic symptoms"
+            "text": "Schedule demanding activities during periods of greatest energy and include planned rest periods"
           },
           {
             "id": "B",
-            "text": "Schedule demanding activities and exercise during the cooler morning hours with planned rest periods"
+            "text": "Use cooling strategies and avoid overheating when heat worsens symptoms"
           },
           {
             "id": "C",
-            "text": "Use a timed voiding schedule and adequate fluid intake to manage neurogenic bladder symptoms"
+            "text": "Continue prescribed exercise within tolerance to maintain strength and mobility"
           },
           {
             "id": "D",
-            "text": "Perform vigorous aerobic exercise to the point of exhaustion daily to build muscle strength"
+            "text": "Stop all physical activity whenever fatigue occurs, even after rest improves symptoms"
           },
           {
             "id": "E",
-            "text": "Stop taking baclofen abruptly once leg stiffness improves"
+            "text": "Report new or rapidly worsening neurologic symptoms rather than assuming every change is a routine flare"
           }
         ]
       },
       "correct_response": [
         "A",
         "B",
-        "C"
+        "C",
+        "E"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 3
       },
       "rationales": {
-        "summary": "Heat sensitivity (Uhthoff phenomenon), energy conservation, and bladder retraining are cornerstones of multiple sclerosis self-management.",
-        "A": "Correct. Elevated core body temperature slows conduction across demyelinated axons (Uhthoff phenomenon), exacerbating weakness and vision changes.",
-        "B": "Correct. Morning pacing with scheduled rest combats MS-related fatigue.",
-        "C": "Correct. Scheduled voiding prevents urinary retention, incontinence, and UTIs.",
-        "D": "Incorrect. Exercising to exhaustion induces overheating and prolonged fatigue.",
-        "E": "Incorrect. Abrupt baclofen withdrawal can cause severe rebound spasticity, hallucinations, and seizures."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Energy conservation helps manage fatigue without abandoning activity.",
+        "B": "Heat can temporarily worsen neurologic symptoms; cooling and avoiding overheating may help.",
+        "C": "Appropriate exercise supports function and should be individualized to tolerance.",
+        "D": "Complete inactivity promotes deconditioning; balance activity with rest.",
+        "E": "New symptoms may reflect relapse, infection, or another urgent condition and warrant assessment."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -3418,7 +3419,7 @@
       "topic": "Neurological Disorders",
       "subtopic": "Lumbar Puncture",
       "specialty": "Adult Health",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "42-year-old female who underwent a diagnostic lumbar puncture 2 hours ago.",
@@ -3444,24 +3445,24 @@
           "Bed rest per post-procedure protocol"
         ]
       },
-      "stem": "Which nursing action is most appropriate to relieve this client's post-lumbar puncture headache?",
+      "stem": "Several hours after a lumbar puncture, the client reports a severe headache that worsens when sitting and improves when lying flat. There is no fever, neck rigidity, or focal deficit. Which intervention is most appropriate initially?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Place the client in a flat supine position and encourage oral or intravenous hydration"
+            "text": "Assist the client to lie flat for comfort, encourage fluids if not contraindicated, and notify the provider if symptoms persist or worsen"
           },
           {
             "id": "B",
-            "text": "Elevate the head of the bed to 60 degrees to reduce intracranial venous pressure"
+            "text": "Keep the client upright and encourage walking to accelerate cerebrospinal-fluid replacement"
           },
           {
             "id": "C",
-            "text": "Restrict fluid intake to 1,000 mL/day to decrease cerebrospinal fluid production"
+            "text": "Administer an anticoagulant to prevent a post-procedure clot"
           },
           {
             "id": "D",
-            "text": "Ambulate the client in the hallway to stimulate circulation"
+            "text": "Perform repeated lumbar punctures to equalize cerebrospinal-fluid pressure"
           }
         ]
       },
@@ -3473,11 +3474,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Post-dural puncture headache results from CSF leakage through the dural defect causing downward traction on pain-sensitive meningeal structures when upright.",
-        "A": "Correct. Supine positioning eliminates hydrostatic pressure across the dural puncture site, and hydration supports CSF replenishment.",
-        "B": "Incorrect. Elevating the head increases CSF leakage and worsens orthostatic post-LP headache.",
-        "C": "Incorrect. Fluid restriction delays CSF volume restoration.",
-        "D": "Incorrect. Upright ambulation exacerbates the headache."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "A positional headache is consistent with post-dural puncture headache; supportive measures and provider notification guide further management, including possible blood patch.",
+        "B": "Upright posture typically worsens the headache.",
+        "C": "Anticoagulation is not indicated and may increase procedural bleeding risk.",
+        "D": "Repeated puncture is not a treatment and could worsen the leak."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -3529,24 +3530,24 @@
           "DKA protocol: IV fluids, potassium replacement, regular insulin infusion"
         ]
       },
-      "stem": "Which action must the nurse take before initiating the continuous intravenous regular insulin infusion?",
+      "stem": "A client with DKA has received initial isotonic fluid. Potassium is 3.1 mEq/L, glucose is 520 mg/dL, and an insulin infusion is prescribed. What should the nurse do before starting insulin?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Hold the insulin infusion and administer prescribed IV potassium replacement until serum potassium is >= 3.3 mEq/L"
+            "text": "Hold insulin temporarily and initiate prescribed potassium replacement with close ECG and laboratory monitoring"
           },
           {
             "id": "B",
-            "text": "Administer an IV bolus of sodium bicarbonate to correct the pH of 7.16"
+            "text": "Start insulin at the full rate because glucose is critically elevated and potassium will rise"
           },
           {
             "id": "C",
-            "text": "Start the insulin infusion immediately at double the ordered rate to rapidly drop glucose"
+            "text": "Administer sodium bicarbonate before checking the serum potassium again"
           },
           {
             "id": "D",
-            "text": "Add 5% dextrose to the initial liter of normal saline"
+            "text": "Restrict IV fluids until the potassium concentration returns to normal"
           }
         ]
       },
@@ -3558,11 +3559,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Insulin drives extracellular potassium into cells; starting IV insulin when serum potassium is < 3.3 mEq/L can trigger fatal hypokalemic cardiac dysrhythmias.",
-        "A": "Correct. Per ADA DKA guidelines, IV fluids and potassium replacement must precede insulin therapy whenever serum potassium is < 3.3 mEq/L.",
-        "B": "Incorrect. Sodium bicarbonate is generally avoided unless pH is < 6.9 because it worsens hypokalemia and paradoxical CNS acidosis.",
-        "C": "Incorrect. Starting insulin at K+ 3.1 mEq/L risks ventricular fibrillation or cardiac arrest.",
-        "D": "Incorrect. Dextrose is added once blood glucose falls to ~200-250 mg/dL so insulin can continue clearing ketones without causing hypoglycemia."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Insulin shifts potassium intracellularly; when potassium is below 3.3 mEq/L, replacement is required before insulin to reduce life-threatening dysrhythmia risk.",
+        "B": "Starting insulin with significant hypokalemia can worsen the deficit and precipitate arrhythmias.",
+        "C": "Bicarbonate is not routine DKA therapy and can further lower potassium; treatment depends on severe acidosis criteria.",
+        "D": "Fluid resuscitation remains important; restriction does not correct the potassium deficit or DKA."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -3614,24 +3615,24 @@
           "Cooling blanket and acetaminophen"
         ]
       },
-      "stem": "Why must propylthiouracil (PTU) be administered at least 1 hour before potassium iodide (Lugol solution)?",
+      "stem": "A client with thyroid storm is prescribed propylthiouracil (PTU), followed by potassium iodide. Why should PTU be given first?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "To block thyroid hormone synthesis first so the iodine load is not used as substrate to produce more thyroid hormone"
+            "text": "Blocking new thyroid hormone synthesis before iodine administration reduces the risk that iodine will be used as substrate for additional hormone production"
           },
           {
             "id": "B",
-            "text": "Because Lugol solution causes severe gastritis unless neutralized by PTU"
+            "text": "PTU increases iodine absorption so potassium iodide can rapidly enter the thyroid gland"
           },
           {
             "id": "C",
-            "text": "To prevent iodide-induced agranulocytosis and neutropenia"
+            "text": "Potassium iodide inactivates PTU if both medications are administered together"
           },
           {
             "id": "D",
-            "text": "Because PTU chelates excess circulating thyroxine in the bloodstream"
+            "text": "PTU prevents the hypotension caused by potassium iodide"
           }
         ]
       },
@@ -3643,11 +3644,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Iodine inhibits preformed hormone release (Wolff-Chaikoff effect), but if given before thioamides block organification, the hyperactive gland uses the iodine to synthesize new hormone.",
-        "A": "Correct. Administering PTU (or methimazole) 1 hour beforehand blocks thyroid peroxidase synthesis before iodide inhibits hormone release.",
-        "B": "Incorrect. PTU does not neutralize gastric acidity.",
-        "C": "Incorrect. Agranulocytosis is a rare side effect of PTU/methimazole, not prevented by dosing order.",
-        "D": "Incorrect. PTU inhibits new hormone synthesis and peripheral T4-to-T3 conversion rather than chelating circulating hormone."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Thionamides are administered before iodine so organification and new hormone synthesis are blocked before iodine is supplied.",
+        "B": "PTU does not work by increasing iodine absorption.",
+        "C": "The sequencing is intended to block hormone synthesis before iodine is given, not to prevent direct chemical inactivation.",
+        "D": "The sequence is based on thyroid hormone synthesis, not prevention of hypotension."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -3669,7 +3670,7 @@
       "topic": "Endocrine Disorders",
       "subtopic": "Adrenal Insufficiency (Addisonian Crisis)",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "44-year-old female with primary adrenal insufficiency (Addison disease) brought to the emergency department after 2 days of viral gastroenteritis.",
@@ -3700,7 +3701,7 @@
           "Continuous telemetry"
         ]
       },
-      "stem": "Which combination of electrolyte and metabolic abnormalities is classic for acute adrenal crisis?",
+      "stem": "A client with primary adrenal insufficiency presents with vomiting, profound weakness, and hypotension. Which laboratory pattern most strongly supports adrenal crisis?",
       "interaction": {
         "options": [
           {
@@ -3713,11 +3714,11 @@
           },
           {
             "id": "C",
-            "text": "Hypercalcemia, hypophosphatemia, and metabolic alkalosis"
+            "text": "Hyponatremia, hypokalemia, and hypercalcemia"
           },
           {
             "id": "D",
-            "text": "Hyponatremia, hypokalemia, and hypercalcemia"
+            "text": "Hypernatremia, hyperkalemia, and hyperglycemia"
           }
         ]
       },
@@ -3729,11 +3730,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Deficiency of both aldosterone (sodium wasting, potassium retention) and cortisol (impaired gluconeogenesis and vascular tone) produces hyponatremia, hyperkalemia, and hypoglycemia.",
-        "A": "Correct. Lack of aldosterone causes renal sodium loss and potassium retention, while lack of cortisol impairs gluconeogenesis and catecholamine sensitivity.",
-        "B": "Incorrect. Hypernatremia, hypokalemia, and hyperglycemia characterize Cushing syndrome (cortisol/aldosterone excess).",
-        "C": "Incorrect. These characterize primary hyperparathyroidism.",
-        "D": "Incorrect. Potassium is elevated, not depleted, in primary adrenal insufficiency."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Cortisol and aldosterone deficiency can produce sodium loss, potassium retention, volume depletion, and low glucose.",
+        "B": "This pattern is opposite to the usual mineralocorticoid-deficient state.",
+        "C": "Hypokalemia is not expected in primary adrenal crisis.",
+        "D": "Hypernatremia and hyperglycemia do not fit the typical crisis pattern."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
@@ -3755,7 +3756,7 @@
       "topic": "Endocrine Disorders",
       "subtopic": "Syndrome of Inappropriate Antidiuretic Hormone (SIADH)",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "60-year-old male with small-cell lung cancer admitted with worsening confusion and lethargy.",
@@ -3785,24 +3786,24 @@
           "Check serum sodium every 2 hours"
         ]
       },
-      "stem": "Why must the nurse monitor serum sodium every 2 hours so that correction does not exceed 8 to 10 mEq/L in 24 hours?",
+      "stem": "A client with severe symptomatic hyponatremia is receiving carefully controlled hypertonic saline. Why must the nurse monitor sodium closely and avoid overly rapid correction?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Overly rapid correction of hyponatremia can cause osmotic demyelination syndrome (ODS)"
+            "text": "Rapid correction can cause osmotic demyelination, with potentially irreversible neurologic injury"
           },
           {
             "id": "B",
-            "text": "Hypertonic saline rapidly induces acute hyperkalemic cardiac arrest"
+            "text": "Slow correction causes cerebral edema to worsen indefinitely and must be avoided"
           },
           {
             "id": "C",
-            "text": "Rapid sodium elevation triggers nephrogenic diabetes insipidus"
+            "text": "Frequent sodium checks prevent hyperkalemia caused by saline infusion"
           },
           {
             "id": "D",
-            "text": "Serum sodium above 125 mEq/L precipitates acute pulmonary edema"
+            "text": "Rapid correction causes acute renal failure by precipitating sodium crystals"
           }
         ]
       },
@@ -3814,11 +3815,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Brain cells adapt to chronic hyponatremia by shedding intracellular osmolytes; rapid serum sodium elevation shrinks oligodendrocytes and causes osmotic demyelination syndrome.",
-        "A": "Correct. Raising serum sodium faster than 8-10 mEq/L per 24 hours causes irreversible pontine and extrapontine myelinolysis (dysarthria, dysphagia, quadriparesis).",
-        "B": "Incorrect. Hypertonic saline does not cause hyperkalemic arrest.",
-        "C": "Incorrect. Nephrogenic DI is not caused by sodium correction.",
-        "D": "Incorrect. Careful rate control (30 mL/hr) prevents volume overload while protecting the brain."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Chronic hyponatremia allows brain adaptation; rapid rise in serum sodium can cause osmotic demyelination, so correction limits and monitoring are essential.",
+        "B": "The goal is controlled correction; overly rapid correction is the major neurologic hazard.",
+        "C": "Sodium monitoring is directed at correction rate and neurologic safety, not prevention of hyperkalemia.",
+        "D": "Sodium does not precipitate as crystals in this manner; the concern is osmotic injury."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -3840,7 +3841,7 @@
       "topic": "Endocrine Disorders",
       "subtopic": "Post-Thyroidectomy Care",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "46-year-old female 6 hours post-total thyroidectomy for papillary thyroid carcinoma.",
@@ -3867,48 +3868,47 @@
           "Semi-Fowler position"
         ]
       },
-      "stem": "Which nursing actions are appropriate in caring for this client? Select all that apply.",
+      "stem": "Four hours after thyroidectomy, a client reports tingling around the mouth and fingertips. The nurse notes intermittent hand spasms. Which actions are appropriate? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Prepare to administer intravenous calcium gluconate as prescribed"
+            "text": "Assess for hypocalcemia and obtain the prescribed calcium level"
           },
           {
             "id": "B",
-            "text": "Assess for inspiratory stridor, hoarseness, and neck dressing tightness"
+            "text": "Keep emergency airway equipment available and assess for laryngospasm or stridor"
           },
           {
             "id": "C",
-            "text": "Support the head and neck with pillows to avoid hyperextension of the suture line"
+            "text": "Notify the provider promptly and anticipate prescribed IV calcium for symptomatic hypocalcemia"
           },
           {
             "id": "D",
-            "text": "Lower the head of the bed flat to reduce venous oozing at the surgical site"
+            "text": "Massage the neck incision firmly to relieve the muscle spasms"
           },
           {
             "id": "E",
-            "text": "Monitor for carpopedal spasm (Trousseau sign) and laryngeal spasm"
+            "text": "Reassure the client that these findings are an expected effect of anesthesia and need no follow-up"
           }
         ]
       },
       "correct_response": [
         "A",
         "B",
-        "C",
-        "E"
+        "C"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 4
       },
       "rationales": {
-        "summary": "Transient or permanent hypoparathyroidism after thyroidectomy causes acute hypocalcemia (circumoral paresthesias, positive Chvostek/Trousseau signs, laryngospasm) alongside airway hematoma risks.",
-        "A": "Correct. Symptomatic post-thyroidectomy hypocalcemia requires IV calcium gluconate to prevent tetany and laryngospasm.",
-        "B": "Correct. Stridor or neck tightness can signal expanding hematoma compressing the trachea or hypocalcemic laryngospasm.",
-        "C": "Correct. Neutral neck support protects suture line integrity.",
-        "D": "Incorrect. Semi-Fowler positioning (30-45 degrees) reduces neck edema and venous pressure.",
-        "E": "Correct. Neuromuscular irritability progresses from paresthesias to carpopedal and laryngeal spasm."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Perioral tingling and carpopedal spasm suggest hypocalcemia from parathyroid injury or stunning.",
+        "B": "Hypocalcemia can cause laryngospasm; airway readiness is essential.",
+        "C": "Symptomatic hypocalcemia may require prompt IV calcium under monitoring.",
+        "D": "Pressure or massage over the incision is not an appropriate treatment and may cause harm.",
+        "E": "These are warning signs, not routine anesthesia effects."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -3930,7 +3930,7 @@
       "topic": "Endocrine Disorders",
       "subtopic": "Diabetes Insipidus",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "49-year-old male 24 hours post-transsphenoidal hypophysectomy for a pituitary macroadenoma.",
@@ -3959,24 +3959,24 @@
           "Avoid toothbrushing and nose blowing"
         ]
       },
-      "stem": "Which nursing intervention is the highest priority for this client?",
+      "stem": "A client with central diabetes insipidus has urine output of 700 mL/hr, serum sodium of 154 mEq/L, and increasing thirst. Which nursing action has the highest priority?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Administer the prescribed desmopressin (DDAVP) and replace fluid losses carefully"
+            "text": "Assess hemodynamic status and fluid deficit, replace fluids as prescribed, and administer desmopressin as ordered"
           },
           {
             "id": "B",
-            "text": "Restrict oral and intravenous fluid intake to 1,000 mL/day"
+            "text": "Restrict fluids to reduce urinary output until serum sodium normalizes"
           },
           {
             "id": "C",
-            "text": "Administer furosemide 20 mg IV to clear excess serum sodium"
+            "text": "Administer a loop diuretic to reduce free-water loss"
           },
           {
             "id": "D",
-            "text": "Pack both nostrils tightly with dry gauze to check for CSF leak"
+            "text": "Delay treatment until urine osmolality results confirm the diagnosis"
           }
         ]
       },
@@ -3988,11 +3988,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Central diabetes insipidus following pituitary surgery causes massive free-water diuresis (specific gravity < 1.005) and hypernatremic dehydration requiring desmopressin and fluid replacement.",
-        "A": "Correct. Desmopressin replaces deficient antidiuretic hormone to halt polyuria while hypotonic/balanced fluids correct the free-water deficit.",
-        "B": "Incorrect. Restricting fluids in DI precipitates life-threatening hypernatremic hypovolemic shock.",
-        "C": "Incorrect. Loop diuretics worsen free-water loss and hypernatremia.",
-        "D": "Incorrect. Nasal packing is contraindicated post-transsphenoidal surgery; clear drainage should be tested for glucose/beta-2 transferrin without packing."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "The client is losing large volumes of free water and is hypernatremic; prompt volume assessment, replacement, and antidiuretic therapy are central.",
+        "B": "Fluid restriction worsens dehydration and hypernatremia.",
+        "C": "Loop diuretics can increase water loss and are not treatment for central DI.",
+        "D": "Treatment should not be unnecessarily delayed when the clinical picture is clear and the client is deteriorating."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -4045,24 +4045,24 @@
           "Nephrology consult for emergent hemodialysis"
         ]
       },
-      "stem": "Which prescribed medication should the nurse administer first to immediately protect the myocardium?",
+      "stem": "A client with acute kidney injury has potassium of 6.8 mEq/L and peaked T waves. Which prescribed medication should the nurse administer first to reduce the immediate risk of a fatal dysrhythmia?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Calcium gluconate 10% intravenously"
+            "text": "IV calcium gluconate"
           },
           {
             "id": "B",
-            "text": "Sodium zirconium cyclosilicate orally"
+            "text": "Regular insulin with dextrose"
           },
           {
             "id": "C",
-            "text": "Regular insulin 10 units intravenously with 50% dextrose"
+            "text": "Nebulized albuterol"
           },
           {
             "id": "D",
-            "text": "Albuterol 10 mg via nebulizer"
+            "text": "Sodium zirconium cyclosilicate"
           }
         ]
       },
@@ -4074,11 +4074,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "When hyperkalemia produces ECG conduction changes (peaked T waves, widened QRS), IV calcium gluconate antagonizes cardiac membrane excitability within 1 to 3 minutes.",
-        "A": "Correct. Calcium gluconate stabilizes myocardial cell membranes immediately without altering serum potassium levels, buying time for shifting and removal therapies.",
-        "B": "Incorrect. Gastrointestinal potassium binders take hours to remove potassium from the body.",
-        "C": "Incorrect. IV insulin with dextrose shifts potassium intracellularly within 15-30 minutes and is given immediately after calcium membrane stabilization.",
-        "D": "Incorrect. Beta-agonists shift potassium over 15-30 minutes and do not provide immediate membrane stabilization."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "IV calcium stabilizes the cardiac membrane and is the immediate priority when hyperkalemia produces ECG changes; it does not lower serum potassium.",
+        "B": "Insulin with dextrose shifts potassium intracellularly but does not provide immediate membrane stabilization.",
+        "C": "Albuterol can shift potassium intracellularly but is adjunctive and not a substitute for calcium with ECG changes.",
+        "D": "Potassium binders remove potassium over time and are not the immediate intervention for ECG toxicity."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -4100,7 +4100,7 @@
       "topic": "Renal & Fluid/Electrolyte Disorders",
       "subtopic": "Hemodialysis Access Care",
       "specialty": "Adult Health",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "question_type": "multiple_response",
       "clinical_scenario": {
         "patient_profile": "63-year-old female with end-stage renal disease (ESRD) admitted for pneumonia; has a mature left forearm arteriovenous (AV) fistula.",
@@ -4129,28 +4129,28 @@
           "Hemodialysis Monday/Wednesday/Friday"
         ]
       },
-      "stem": "Which nursing measures are essential to protect the client's left arteriovenous fistula? Select all that apply.",
+      "stem": "A client with a left-arm arteriovenous fistula is admitted for pneumonia. Which nursing actions protect the access? Select all that apply.",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Post signage and apply a limb-alert band prohibiting blood pressures and venipunctures on the left arm"
+            "text": "Assess for a palpable thrill and audible bruit according to policy"
           },
           {
             "id": "B",
-            "text": "Auscultate for a bruit and palpate for a thrill over the fistula every shift"
+            "text": "Use the opposite arm for blood pressure measurements and venipuncture"
           },
           {
             "id": "C",
-            "text": "Avoid tight dressings, watches, or sleeping on the left arm"
+            "text": "Avoid constrictive clothing or prolonged pressure over the fistula"
           },
           {
             "id": "D",
-            "text": "Use the AV fistula for routine peripheral IV antibiotic infusions between dialysis sessions"
+            "text": "Apply a tight dressing over the access whenever the client sleeps"
           },
           {
             "id": "E",
-            "text": "Notify the provider immediately if the thrill or bruit disappears"
+            "text": "Report loss of thrill or bruit immediately"
           }
         ]
       },
@@ -4165,12 +4165,12 @@
         "max_points": 4
       },
       "rationales": {
-        "summary": "AV fistula preservation requires preventing external compression/trauma, prohibiting BP/venipuncture/routine IV access, and monitoring patency via thrill and bruit.",
-        "A": "Correct. Cuff inflation and needle sticks can thrombose or rupture the high-flow vascular access.",
-        "B": "Correct. Assessing both palpable thrill and audible bruit confirms continuous turbulent blood flow.",
-        "C": "Correct. External constriction compromises fistula flow and promotes thrombosis.",
-        "D": "Incorrect. AV fistulas are reserved exclusively for hemodialysis cannulation by trained dialysis staff.",
-        "E": "Correct. Absence of a thrill/bruit indicates acute fistula thrombosis requiring urgent vascular intervention."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "A thrill and bruit help indicate fistula patency; changes require prompt assessment.",
+        "B": "Blood pressure cuffs and venipuncture can injure or compromise the access.",
+        "C": "External compression can impair blood flow and thrombose the fistula.",
+        "D": "Routine tight dressing is contraindicated because it can obstruct flow.",
+        "E": "Loss of thrill or bruit may indicate thrombosis and requires urgent escalation."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -4192,7 +4192,7 @@
       "topic": "Renal & Fluid/Electrolyte Disorders",
       "subtopic": "Peritoneal Dialysis",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "55-year-old male performing continuous ambulatory peritoneal dialysis (CAPD) admitted with abdominal pain and low-grade fever.",
@@ -4219,24 +4219,24 @@
           "Continue peritoneal dialysis exchanges"
         ]
       },
-      "stem": "Which finding is the earliest and most cardinal indicator of peritoneal dialysis-associated peritonitis?",
+      "stem": "During peritoneal dialysis, the client reports new diffuse abdominal discomfort. The drained dialysate is cloudy. Which action should the nurse take?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Cloudy peritoneal dialysate effluent"
+            "text": "Obtain a specimen of the effluent for cell count and culture using aseptic technique and notify the dialysis team promptly"
           },
           {
             "id": "B",
-            "text": "Blood-tinged effluent during the first exchange after catheter placement"
+            "text": "Increase the dwell time and reassess the clarity of the next exchange"
           },
           {
             "id": "C",
-            "text": "Referred shoulder-tip pain during dialysate inflow"
+            "text": "Add an over-the-counter antacid to the dialysate to reduce irritation"
           },
           {
             "id": "D",
-            "text": "Slow outflow caused by fibrin strands in the tubing"
+            "text": "Discard the cloudy effluent and document it as an expected finding after several exchanges"
           }
         ]
       },
@@ -4248,11 +4248,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Cloudy dialysate effluent (due to elevated leukocytes and fibrin) is the earliest hallmark sign of peritonitis in peritoneal dialysis clients.",
-        "A": "Correct. Peritonitis typically manifests first with cloudy outflow effluent, followed by abdominal pain and fever.",
-        "B": "Incorrect. Pink or blood-tinged drainage is common in the first few exchanges after initial catheter insertion.",
-        "C": "Incorrect. Shoulder-tip pain occurs from diaphragmatic irritation due to air or cold dialysate.",
-        "D": "Incorrect. Fibrin strands can slow drainage mechanically without necessarily indicating infection."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Cloudy effluent with abdominal pain is peritonitis until proven otherwise; obtain specimens and initiate prompt evaluation and treatment.",
+        "B": "Delaying assessment can worsen infection and compromise treatment.",
+        "C": "Nothing should be added to dialysate without an explicit sterile prescription.",
+        "D": "Cloudiness is not an expected benign finding and must be investigated."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
@@ -4273,7 +4273,7 @@
       "topic": "Renal & Fluid/Electrolyte Disorders",
       "subtopic": "Transurethral Resection of the Prostate (TURP)",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "70-year-old male 4 hours post-transurethral resection of the prostate (TURP) with a 3-way indwelling Foley catheter and continuous bladder irrigation (CBI).",
@@ -4299,24 +4299,24 @@
           "Titrate CBI rate to maintain light pink to clear urine output"
         ]
       },
-      "stem": "Four hours after TURP, a client has severe bladder spasms, dark-red drainage, clots, and reduced CBI outflow. Which action should the nurse take first?",
+      "stem": "Four hours after TURP, the client reports severe suprapubic pressure. The bladder is distended, drainage has slowed, and clots are visible in the tubing. What should the nurse do first?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Check the catheter drainage tubing for kinks or blood clot obstruction and manually irrigate per protocol if occluded"
+            "text": "Assess the tubing for kinks or obstruction and restore prescribed continuous bladder irrigation patency according to protocol"
           },
           {
             "id": "B",
-            "text": "Administer a belladonna and opium suppository immediately without checking catheter patency"
+            "text": "Increase the irrigation rate to maximum without assessing the outflow"
           },
           {
             "id": "C",
-            "text": "Increase the continuous bladder irrigation inflow rate while outflow remains sluggish"
+            "text": "Clamp the catheter for 30 minutes to allow the bladder to rest"
           },
           {
             "id": "D",
-            "text": "Deflate the 30-mL catheter retention balloon to relieve pressure on the bladder neck"
+            "text": "Remove the three-way catheter and insert a smaller catheter to improve drainage"
           }
         ]
       },
@@ -4328,11 +4328,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Sudden bladder spasms with dark red sluggish drainage post-TURP usually indicate catheter occlusion by blood clots; patency must be verified before giving antispasmodics or increasing inflow.",
-        "A": "Correct. Assessing for kinks and clearing clot obstruction prevents bladder overdistension and venous hemorrhage.",
-        "B": "Incorrect. Giving antispasmodics without relieving mechanical obstruction masks bladder distension.",
-        "C": "Incorrect. Increasing inflow against an obstructed outflow tract risks bladder rupture or TURP syndrome.",
-        "D": "Incorrect. The large balloon provides essential hemostatic tamponade against the prostatic fossa."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Bladder distention and reduced outflow suggest obstruction; assess the system and restore patency per protocol, including prescribed irrigation management.",
+        "B": "Increasing inflow without ensuring outflow can worsen bladder distention and injury.",
+        "C": "Clamping the catheter worsens retention and pressure.",
+        "D": "Removing or exchanging a fresh postoperative catheter risks trauma and should be directed by the urology team."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -4353,7 +4353,7 @@
       "topic": "Renal & Fluid/Electrolyte Disorders",
       "subtopic": "Acid-Base Balance",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "56-year-old female admitted with severe intractable vomiting and high-output nasogastric tube suctioning for 3 days.",
@@ -4380,24 +4380,24 @@
           "Replace NG output mL-for-mL with 0.45% NaCl + 20 mEq KCl/L"
         ]
       },
-      "stem": "How should the nurse interpret this client's arterial blood gas results?",
+      "stem": "A client with COPD is drowsier than earlier. ABG results are pH 7.29, PaCO2 62 mmHg, HCO3 29 mEq/L, and PaO2 58 mmHg. How should the nurse interpret these results?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Partially compensated metabolic alkalosis"
+            "text": "Acute-on-chronic respiratory acidosis with hypoxemia"
           },
           {
             "id": "B",
-            "text": "Uncompensated respiratory acidosis"
+            "text": "Fully compensated metabolic alkalosis with expected oxygenation"
           },
           {
             "id": "C",
-            "text": "Fully compensated metabolic acidosis"
+            "text": "Uncompensated metabolic acidosis with respiratory compensation"
           },
           {
             "id": "D",
-            "text": "Uncompensated respiratory alkalosis"
+            "text": "Acute respiratory alkalosis with severe hypoxemia"
           }
         ]
       },
@@ -4409,11 +4409,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "pH > 7.45 (7.51) indicates alkalemia; elevated HCO3 (35 mEq/L) identifies a metabolic origin from gastric acid loss, and elevated PaCO2 (47 mmHg) shows respiratory hypoventilation attempting to compensate.",
-        "A": "Correct. pH is alkaline (7.51), HCO3 is elevated (35 mEq/L), and PaCO2 is elevated (47 mmHg) in partial respiratory compensation.",
-        "B": "Incorrect. Respiratory acidosis presents with pH < 7.35.",
-        "C": "Incorrect. Metabolic acidosis presents with low HCO3 (< 22 mEq/L).",
-        "D": "Incorrect. Respiratory alkalosis presents with low PaCO2 (< 35 mmHg)."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "The low pH and elevated PaCO2 indicate respiratory acidosis; elevated bicarbonate suggests some chronic renal compensation, while low PaO2 indicates hypoxemia.",
+        "B": "The pH is acidemic and PaCO2 is elevated, not a primary metabolic alkalosis.",
+        "C": "The primary change is increased CO2, not reduced bicarbonate.",
+        "D": "Respiratory alkalosis would have a low PaCO2 and elevated pH."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -4435,7 +4435,7 @@
       "topic": "Renal & Fluid/Electrolyte Disorders",
       "subtopic": "Hypomagnesemia",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "50-year-old male with alcohol use disorder admitted for acute pancreatitis and refractory hypokalemia.",
@@ -4463,24 +4463,24 @@
           "Replace magnesium before potassium"
         ]
       },
-      "stem": "Why is it essential to correct hypomagnesemia in order to successfully treat this client's concurrent hypokalemia?",
+      "stem": "A client with persistent hypokalemia has a magnesium level of 1.1 mg/dL despite repeated potassium replacement. Why should the nurse anticipate magnesium replacement?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Magnesium deficiency impairs renal potassium conservation, causing ongoing urinary potassium wasting"
+            "text": "Magnesium deficiency promotes renal potassium wasting, making hypokalemia difficult to correct until magnesium is restored"
           },
           {
             "id": "B",
-            "text": "Magnesium sulfate chemically binds potassium in the bloodstream to prevent excretion"
+            "text": "Magnesium replacement directly converts intracellular potassium into serum potassium"
           },
           {
             "id": "C",
-            "text": "Hypomagnesemia stimulates excessive aldosterone release from the pituitary gland"
+            "text": "Low magnesium prevents potassium absorption from the gastrointestinal tract only"
           },
           {
             "id": "D",
-            "text": "Intravenous potassium cannot dissolve in saline unless magnesium is co-infused"
+            "text": "Magnesium is given to prevent calcium from binding potassium in the bloodstream"
           }
         ]
       },
@@ -4492,11 +4492,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Intracellular magnesium inhibits renal outer medullary potassium (ROMK) channels in the collecting duct; low magnesium leads to unchecked renal potassium wasting.",
-        "A": "Correct. Until hypomagnesemia is corrected, the kidneys continue wasting administered potassium, rendering hypokalemia refractory.",
-        "B": "Incorrect. Magnesium does not chelate potassium in plasma.",
-        "C": "Incorrect. Aldosterone is secreted by the adrenal cortex, not the pituitary gland.",
-        "D": "Incorrect. Potassium chloride is fully soluble in normal saline."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Hypomagnesemia increases renal potassium loss and can make hypokalemia refractory to replacement.",
+        "B": "Magnesium does not directly move potassium into serum in this way.",
+        "C": "The mechanism is not limited to gastrointestinal absorption; renal wasting is important.",
+        "D": "Calcium-potassium binding is not the relevant mechanism."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -4518,7 +4518,7 @@
       "topic": "Gastrointestinal Disorders",
       "subtopic": "Cirrhosis & Hepatic Encephalopathy",
       "specialty": "Adult Health",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "58-year-old male with decompensated alcoholic cirrhosis admitted with confusion, inverted sleep-wake cycle, and asterixis.",
@@ -4548,24 +4548,24 @@
           "Fall precautions"
         ]
       },
-      "stem": "Which assessment finding demonstrates that lactulose therapy is achieving its intended therapeutic outcome?",
+      "stem": "A client with hepatic encephalopathy is receiving lactulose. Which finding best indicates that the treatment is achieving its intended effect without excessive fluid loss?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Resolution of asterixis, improved orientation, and 2 to 3 soft stools daily"
+            "text": "The client is more alert and has approximately 2–3 soft stools per day"
           },
           {
             "id": "B",
-            "text": "Ten watery stools per day with rising serum sodium"
+            "text": "The client has no bowel movement for 48 hours and increasing confusion"
           },
           {
             "id": "C",
-            "text": "Decrease in abdominal girth by 6 cm within 12 hours"
+            "text": "The client develops 8 watery stools daily with orthostatic hypotension"
           },
           {
             "id": "D",
-            "text": "Normalization of serum INR from 1.9 to 1.0"
+            "text": "The serum ammonia rises while the client becomes increasingly somnolent"
           }
         ]
       },
@@ -4577,11 +4577,11 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Lactulose acidifies colonic contents, converting absorbable ammonia (NH3) into non-absorbable ammonium (NH4+) excreted in stool, improving neurological status.",
-        "A": "Correct. Cleared sensorium, resolution of asterixis, and 2-3 soft bowel movements per day confirm effective ammonia trapping and excretion.",
-        "B": "Incorrect. Excessive watery diarrhea causes dehydration and hypernatremia, which can worsen hepatic encephalopathy.",
-        "C": "Incorrect. Lactulose treats encephalopathy, not ascites.",
-        "D": "Incorrect. Lactulose does not restore hepatic clotting factor synthesis."
+        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "A": "Lactulose reduces intestinal ammonia absorption; improved mentation and a target of a few soft stools daily indicate response.",
+        "B": "Constipation can reduce treatment effectiveness and worsening confusion suggests deterioration.",
+        "C": "Excessive diarrhea can cause dehydration and electrolyte disturbances; the dose requires reassessment.",
+        "D": "Rising ammonia with worsening mental status suggests inadequate response or another cause requiring evaluation."
       },
       "clinical_judgment": "evaluate_outcomes",
       "tags": [
