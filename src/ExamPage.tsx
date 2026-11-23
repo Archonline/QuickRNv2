@@ -159,7 +159,7 @@ const renderOrdered=()=>{const source=data.orderItems??choices;const order=selec
   ]:[];
   const reviewRecordActive=reviewRecordTabs.find(tab=>tab.key===activeRecordTab)??reviewRecordTabs[0];
   const actualLabels=reviewLabels(q,response);
-  const correctLabels=reviewLabels(q,expectedResponse);const catAbility=mode==="cat"?estimateCatAbility(catExam.map(question=>({earned:itemCredit(question,answers[question.id]??[]),difficulty:question.difficulty}))):0;
+  const correctLabels=reviewLabels(q,expectedResponse);const catAbility=mode==="cat"?estimateCatMeasurement(catExam.map(question=>({question,earned:itemCredit(question,answers[question.id]??[])}))).theta:0;
   const credit=itemCredit(q,response);const status=response.every(value=>value==="")?"Unanswered":credit===1?"Correct":credit>0?"Partially correct":"Incorrect";
   return <div className="exam-screen exam-review-screen">
    <header className="exam-header"><div className="exam-brand"><span className="exam-brand-mark">Q</span><div><strong>QuickRN</strong><small>RN LICENSURE PRACTICE</small></div></div><div className="exam-header-center"><strong>Examination Review</strong><span>Submitted responses and rationales</span></div><button type="button" className="exam-exit" onClick={onExit}>Return to dashboard</button></header>
