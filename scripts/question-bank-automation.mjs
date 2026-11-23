@@ -20,7 +20,7 @@ const elapsed=Math.max(0,Math.floor((dayStart-start)/86400000)), dailyFloor=Math
 const due=Math.max(0,Math.min(TARGET,BASELINE+dailyFloor*(elapsed+1))-(BASELINE+accepted));
 const runBudget=Math.min(remaining,Math.max(dailyNeed,due),BATCH_SIZE*MAX_BATCHES);
 if(remaining&& !KEY){console.error("GEMINI_API_KEY missing; no items generated.");process.exit(2);}
-const types=rules.question_integrity.valid_question_types;
+const types=rules.question_integrity.valid_question_types.filter(type=>type!=="hot_spot");
 const topics=(blueprint.domains||[]).map(d=>({domain:d.name,topics:d.topics,conditions:d.seed_conditions}));
 function validate(q,id){
  const req=schema.$defs.question.required;
