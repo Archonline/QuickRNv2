@@ -25,7 +25,7 @@ for (const profile of categories) {
     index += 1;
   }
 }
-if (generated.length !== 284) throw new Error(`Expected 284 remaining generated core questions after 80 authored replacements; reconstructed ${generated.length}.`);
+if (generated.length !== 264) throw new Error(`Expected 264 remaining generated core questions after 100 authored replacements; reconstructed ${generated.length}.`);
 
 const byCategoryTopic = new Map();
 for (const item of generated) {
@@ -81,7 +81,7 @@ if (!keyIsDerivedFromAnswerText) {
   throw new Error("Generated answer key is no longer structurally derived from the designated answer text.");
 }
 const report = {
-  scope: "Topic-profile-generated core items only; excludes 36 unfolding-case screens, 100 curated traditional items, and 80 authored replacement drafts (40 initial replacements plus 40 replacements from the current tranche).",
+  scope: "Topic-profile-generated core items only; excludes 36 unfolding-case screens, 100 curated traditional items, and 100 authored replacement drafts (40 initial replacements plus 60 replacements from the current tranche).",
   reconstructedCount: generated.length,
   categoryTopicCombinations: byCategoryTopic.size,
   repeatedScenarioGroups: repeatedGroups.length,
