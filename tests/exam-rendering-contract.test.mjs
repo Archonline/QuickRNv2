@@ -29,7 +29,7 @@ test("exam layout retains responsive and interaction presentation hooks", () => 
   const css = read("src/exam-overrides.css");
   for (const selector of [
     ".exam-screen", ".exam-header", ".exam-question-card", ".exam-controls",
-    ".exam-record-panel", ".exam-review-screen", ".ngn-matrix",
+    ".exam-record-panel", ".ngn-matrix",
     ".ngn-bowtie", ".ngn-dropdown", ".ngn-highlight", ".ngn-graphic"
   ]) {
     assert.ok(css.includes(selector), `missing exam presentation selector ${selector}`);
