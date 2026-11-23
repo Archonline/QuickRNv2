@@ -669,3 +669,37 @@
 .exam-screen .exam-option.selected .exam-option-letter {
   color: #ffffff !important;
 }
+
+
+/* Exam header contrast adjustment only: darker workstation header with readable light text. */
+.exam-screen .exam-header {
+  background: #102a43 !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid #29445e !important;
+}
+.exam-screen .exam-header .exam-brand,
+.exam-screen .exam-header .exam-brand strong,
+.exam-screen .exam-header .exam-header-center,
+.exam-screen .exam-header .exam-header-center strong,
+.exam-screen .exam-header .exam-header-center span {
+  color: #f8fafc !important;
+}
+.exam-screen .exam-header .exam-brand small {
+  color: #d5e2ef !important;
+  opacity: 1 !important;
+}
+.exam-screen .exam-header .exam-tool-button,
+.exam-screen .exam-header .exam-exit {
+  color: #f8fafc !important;
+  border-color: #7890a7 !important;
+  background: #1b3a56 !important;
+}
+.exam-screen .exam-header .exam-tool-button:hover,
+.exam-screen .exam-header .exam-exit:hover {
+  background: #294d6b !important;
+}
+.exam-screen .exam-header .exam-header-countdown {
+  color: #173b5c !important;
+  background: #f8fafc !important;
+  border-color: #a9bacb !important;
+}
