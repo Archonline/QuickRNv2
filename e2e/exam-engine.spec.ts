@@ -64,7 +64,7 @@ test("all response formats represented in the published bank render in the share
   for (let index = 0; index < total; index += 1) {
     await expect(page.locator(".exam-question-card")).toBeVisible();
     await expect(page.locator(".exam-stem")).not.toBeEmpty();
-    await expect(page.locator(".exam-question-card input, .exam-question-card select, .exam-question-card textarea, .exam-question-card button").first()).toBeVisible();
+    await expect(page.locator(".exam-question-card input, .exam-question-card select, .exam-question-card textarea, .exam-question-card button, .exam-question-card [draggable="true"]").first()).toBeVisible();
     if (index < total - 1) {
       await page.getByRole("button", { name: /^Next/ }).click();
       await expect(page.locator(".exam-question-counter")).toContainText(`QUESTION ${index + 2} OF ${total}`);
