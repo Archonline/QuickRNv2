@@ -39,7 +39,8 @@ test("timer expires against an absolute deadline even after a background-style c
   await page.clock.fastForward(5 * 60 * 60 * 1000);
   await expect(page.getByTestId("completion")).toContainText('"mode":"readiness"', { timeout: 10_000 });
 });
-\ntest("actual published 600-item bank passes structural and keyed-scoring audit", async ({ page }) => {
+
+test("actual published 600-item bank passes structural and keyed-scoring audit", async ({ page }) => {
   await page.goto("/e2e/bank-audit.html");
   const output = await page.locator("#bank-audit").textContent();
   expect(output).not.toContain("Auditing");
