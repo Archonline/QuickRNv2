@@ -703,3 +703,15 @@
   background: #f8fafc !important;
   border-color: #a9bacb !important;
 }
+
+
+/* Strict adaptive readiness result */
+.exam-readiness-verdict{margin:0 auto 18px;max-width:1320px;padding:18px 20px;border:1px solid #cbd5e1;border-left:5px solid #64748b;background:#fff;color:#24364b}
+.exam-readiness-verdict.passed{border-left-color:#16845b}
+.exam-readiness-verdict.not-passed{border-left-color:#b7791f}
+.exam-readiness-verdict>strong{display:block;font-size:13px;letter-spacing:.06em;color:#24364b}
+.exam-readiness-verdict>p{margin:7px 0 10px;font-size:12px;line-height:1.5;color:#52647a}
+.exam-readiness-verdict>div{display:flex;flex-wrap:wrap;gap:8px 18px}
+.exam-readiness-verdict>div span{font-size:11px;color:#40536a}
+.exam-readiness-verdict ul{margin:10px 0 0;padding-left:18px;color:#8a5415;font-size:11px;line-height:1.6}
+@media(max-width:700px){.exam-readiness-verdict{margin:0 12px 14px;padding:14px}.exam-readiness-verdict>div{display:grid;gap:6px}}
