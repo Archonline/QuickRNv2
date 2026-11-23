@@ -17,6 +17,9 @@ test("starts and renders a real published item for every supported NCLEX format"
   const stem=page.locator(".exam-stem");
   await expect(stem).toBeVisible();
   await expect(stem).not.toBeEmpty();
+  await expect(page.locator(".exam-inline-scenario, .exam-left-scenario, .exam-record-panel").first()).toBeVisible();
+  const record=page.locator(".exam-record-panel");
+  if(await record.count()) await expect(record.locator(".exam-record-content p")).not.toBeEmpty();
   const rawType=(await page.locator(".exam-type-pill").innerText()).trim().replace(/\s+/g,"-");
   seen.add(rawType);
 
@@ -57,6 +60,7 @@ test("all published formats fit a mobile viewport without clipping the question 
  for(let i=0;i<expectedFormats.length;i++){
   await expect(page.locator(".exam-question-card")).toBeVisible();
   await expect(page.locator(".exam-stem")).not.toBeEmpty();
+  await expect(page.locator(".exam-inline-scenario, .exam-left-scenario, .exam-record-panel").first()).toBeVisible();
   const dimensions=await page.evaluate(()=>{
    const card=document.querySelector(".exam-question-card") as HTMLElement;
    const rect=card.getBoundingClientRect();
