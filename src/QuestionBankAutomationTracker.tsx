@@ -35,8 +35,8 @@ export default function QuestionBankAutomationTracker({
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const reports = useMemo(
     () => [...feedbackReports].sort((a, b) => {
-      const at = a.createdAt?.toDate?.().getTime?.() ?? 0;
-      const bt = b.createdAt?.toDate?.().getTime?.() ?? 0;
+      const at = a.createdAt?.toDate?.()?.getTime?.() ?? 0;
+      const bt = b.createdAt?.toDate?.()?.getTime?.() ?? 0;
       return bt - at;
     }),
     [feedbackReports],
