@@ -245,6 +245,21 @@ function auditCoreGenerator(rules, findings) {
     finding(findings, "error", QUESTION_BANK_PATH, "Generic category-lens scenario fallback is still present.");
   }
   const categoryBlock = source.slice(source.indexOf("const B:B[]="), source.indexOf("const cases="));
+  const topicCategories = new Map();
+  for (const match of categoryBlock.matchAll(/\\{category:"([^"]+)",count:\\d+,topics:\\[([\\s\\S]*?)\\],scenario:/g)) {
+    const category = match[1];
+    for (const topicMatch of match[2].matchAll(/"([^"]+)"/g)) {
+      const topic = topicMatch[1];
+      const categories = topicCategories.get(topic) ?? [];
+      categories.push(category);
+      topicCategories.set(topic, categories);
+    }
+  }
+  const repeatedTopics = [...topicCategories.entries()].filter(([, categories]) => categories.length > 1);
+  if (repeatedTopics.length) {
+    finding(findings, "warning", QUESTION_BANK_PATH,
+      `Topics reused across category profiles need category-specific scenarios before release: ${repeatedTopics.map(([topic, categories]) => `${topic} (${categories.join(" / ")})`).join("; ")}.`);
+  }
   const candidateCount = [...categoryBlock.matchAll(/count:(\d+)/g)].reduce((total, match) => total + Number(match[1]), 0);
   const rewriteSource = readText(REWRITE_BATCH_PATH) ?? "";
   const authoredCount = [...rewriteSource.matchAll(/\bsingle\(\s*"([^"]+)"/g)].length;
