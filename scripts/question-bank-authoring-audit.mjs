@@ -137,9 +137,7 @@ function validateRawQuestion(item, rules, findings, index) {
       ? [String(item.correct_response.selected_option)]
       : Array.isArray(item?.correct_response?.selected_options)
         ? item.correct_response.selected_options.map(String) : [];
-    if (keyed.some(id => !optionIds.includes(id)) || (item?.question_type !== "multiple_choice" && item?.question_type !== "multiple_response" && item?.question_type !== "extended_multiple_response" && item?.question_type !== "case_study" && item?.question_type !== "trend" && item?.question_type !== "multiple_choice")) {
-      if (keyed.some(id => !optionIds.includes(id))) add("error", "Correct response references an option ID that does not exist.");
-    }
+    if (keyed.some(id => !optionIds.includes(id))) add("error", "Correct response references an option ID that does not exist.");
     const normalizedOptions = optionRows.map(option => normalizeText(option?.text));
     if (new Set(normalizedOptions).size !== normalizedOptions.length) add("warning", "Option text contains duplicates; distractors must be distinct.");
     if (optionRows.some(option => normalizeText(option?.text).length < 18)) add("warning", "At least one option is unusually short; manually verify it is a clinically plausible near-miss rather than an obvious throwaway.");
