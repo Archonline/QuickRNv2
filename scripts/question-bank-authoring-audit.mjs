@@ -284,7 +284,7 @@ function auditCoreGenerator(rules, findings) {
 function runAudit() {
   const rules = loadJson(RULES_PATH);
   const findings = [];
-  auditAuthoredCoreRewriteBatch((readText(REWRITE_BATCH_PATH) ?? "") + "\n" + (readText(REWRITE_BATCH_2_PATH) ?? ""), rules, findings);
+  auditAuthoredCoreRewriteBatch((readText(REWRITE_BATCH_PATH) ?? "") + "\n" + (readText(REWRITE_BATCH_2_PATH) ?? "") + "\n" + (readText(REWRITE_BATCH_3_PATH) ?? ""), rules, findings);
   auditCoreGenerator(rules, findings);
   auditNgnBatch(rules, findings);
   const errors = findings.filter((item) => item.level === "error");
