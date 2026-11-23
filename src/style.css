@@ -558,7 +558,7 @@
 .dashboard-overview .pass-probability-heading p { font-size: 9px; }
 .dashboard-overview .pass-probability-current strong { font-size: 22px; }
 .dashboard-overview .pass-probability-chart-wrap.compact { margin-top: 5px; }
-.dashboard-overview .pass-probability-chart.compact { min-height: 0; height: 145px; }
+.dashboard-overview .pass-probability-chart.compact { min-height: 0; height: auto; }
 .dashboard-overview .pass-probability-empty.compact { min-height: 0; padding: 7px 10px; gap: 4px; font-size: 10px; }
 .dashboard-overview .pass-probability-empty.compact strong { font-size: 11px; }
 .dashboard-overview .pass-probability-empty.compact span { font-size: 9px; line-height: 1.35; }
@@ -569,6 +569,6 @@
  .dashboard-overview .dashboard-insight-tile { min-height: 82px; padding: 8px; }
  .dashboard-overview .dashboard-insight-tile > strong { font-size: 13px; }
  .dashboard-overview .pass-probability-card { padding: 10px; }
- .dashboard-overview .pass-probability-chart.compact { height: 125px; }
+ 
  .dashboard-overview .pass-probability-heading { gap: 8px; }
 }
