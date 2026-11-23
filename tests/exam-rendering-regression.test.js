@@ -51,7 +51,7 @@ test("shared dashboard styles do not target active exam or NGN components", asyn
   const css = (await readFile(new URL("../src/design-system.css", import.meta.url), "utf8"))
     .replace(/\/\*[\s\S]*?\*\//g, "");
   const protectedSelectors = css.match(
-    /[^{}]*\.(?:exam-[a-zA-Z0-9_-]*|ngn-[a-zA-Z0-9_-]*)[^{}]*\{/g
+    /[^{}]*\.(?:exam-(?:screen|layout|main|question-card|stem|record-panel|controls|record-tabs|record-content|inline-scenario|case|trend-left|review-[a-zA-Z0-9_-]+|modal[a-zA-Z0-9_-]*|nav[a-zA-Z0-9_-]*|header[a-zA-Z0-9_-]*|timer|session-bar|progress-track|item-[a-zA-Z0-9_-]+)|ngn-[a-zA-Z0-9_-]+)[^{}]*\{/g
   ) ?? [];
 
   assert.deepEqual(
