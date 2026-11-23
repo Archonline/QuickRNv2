@@ -12,6 +12,8 @@ export function validateQuestion(q) {
   if (!nonEmpty(q.category) || !nonEmpty(q.topic)) add("Category and topic are required.");
   if (!nonEmpty(q.prompt)) add("Prompt is required.");
   if (!["Foundational","Intermediate","Advanced"].includes(q.difficulty)) add("Difficulty must be Foundational, Intermediate, or Advanced.");
+  if (q.catDifficulty !== undefined && (!Number.isFinite(q.catDifficulty) || q.catDifficulty < -3 || q.catDifficulty > 3)) add("CAT difficulty must be a finite logit value between -3 and 3.");
+  if (q.catDiscrimination !== undefined && (!Number.isFinite(q.catDiscrimination) || q.catDiscrimination < 0.35 || q.catDiscrimination > 2.5)) add("CAT discrimination must be a finite value between 0.35 and 2.5.");
   if (!Array.isArray(q.options)) add("Options must be an array.");
   const type = asType(q);
   if (!TYPES.has(type)) add("Unsupported item type: " + type);
