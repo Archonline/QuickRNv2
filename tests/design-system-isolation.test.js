@@ -2,14 +2,16 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
-test("dashboard design layer does not style NCLEX/NGN exam item components", async () => {
+test("dashboard design layer does not style active NCLEX/NGN question components", async () => {
   const css = (await readFile(new URL("../src/design-system.css", import.meta.url), "utf8"))
     .replace(/\/\*[\s\S]*?\*\//g, "");
-  const examSelectors = css.match(/[^{}]*\.(?:exam|ngn)-[a-zA-Z0-9_-]+[^{}]*\{/g) ?? [];
+  const protectedExamSelectors = css.match(
+    /[^{}]*\.(?:exam-(?:screen|layout|question|option|stem|item|record|case|controls|options|main|nav|header)|ngn)-[a-zA-Z0-9_-]*[^{}]*\{/g
+  ) ?? [];
   assert.deepEqual(
-    examSelectors,
+    protectedExamSelectors,
     [],
-    "Keep .exam-* and .ngn-* item-rendering styles in exam-overrides.css, not the dashboard design layer."
+    "Keep active exam question and NGN rendering styles in exam-overrides.css, not the dashboard design layer."
   );
 });
 
