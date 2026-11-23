@@ -7,5 +7,7 @@ export function validateQuestionBank(items: Question[]): {
   invalid: number;
   duplicateIds: string[];
   orphanedCaseGroups: string[];
+  formatCounts: Record<string, number>;
+  invalidByType: Record<string, number>;
   results: Array<{ id: string; valid: boolean; errors: string[] }>;
 };
