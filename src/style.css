@@ -807,3 +807,6 @@
 .exam-readiness-track i{display:block;height:100%;border-radius:inherit;background:#5c91b7}
 .exam-readiness-disclaimer{margin:15px 0 0;color:#7c8997;font-size:10px;line-height:1.5}
 @media(max-width:620px){.exam-readiness-report{padding:14px}.exam-readiness-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.exam-readiness-category{grid-template-columns:1fr}.exam-readiness-category .exam-readiness-track{max-width:none}}
+
+.exam-readiness-practice-link{justify-self:start;padding:5px 0;border:0;background:transparent;color:#326d94;font-size:10px;font-weight:700;cursor:pointer}
+.exam-readiness-practice-link:hover{text-decoration:underline}
