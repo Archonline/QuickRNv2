@@ -12,14 +12,14 @@ test("answers persist when navigating away and back; review flag is retained",as
  await page.getByRole("button",{name:/Previous/}).click();
  await expect(page.locator(".exam-options input").first()).toBeChecked();
  await expect(page.getByRole("button",{name:"Remove flag"})).toBeVisible();
- await page.getByRole("button",{name:/Navigation/}).click();
+ await page.getByRole("button",{name:/Question navigator/}).click();
  await expect(page.getByRole("button",{name:"Flagged",exact:true})).toBeVisible();
 });
 
 test("review and submit records a single completion with answer totals",async({page})=>{
  await page.getByRole("button",{name:/Begin examination/}).click();
  await page.locator(".exam-options input").first().check();
- await page.getByRole("button",{name:/Navigation/}).click();
+ await page.getByRole("button",{name:/Question navigator/}).click();
  await page.getByRole("button",{name:/Question 20/}).click();
  await page.getByRole("button",{name:/Review and submit/}).click();
  await page.getByRole("button",{name:/End and submit/}).click();
