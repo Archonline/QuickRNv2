@@ -25,7 +25,7 @@ test("dashboard polish remains isolated from exam and NGN rendering", () => {
     "dashboard-only stylesheet must not override live exam or NGN components");
 });
 
-test("exam layout retains responsive and interaction presentation hooks", () => {
+test("exam replaces inline item feedback with a report-to-webmaster modal", () => {\n  const exam = read("src/ExamPage.tsx");\n  assert.ok(exam.includes("Report to Webmaster"));\n  assert.ok(exam.includes("Submit report"));\n  assert.doesNotMatch(exam, /exam-item-feedback|quickrn-ngn-item-feedback|Export feedback/);\n});\n\ntest("exam layout retains responsive and interaction presentation hooks", () => {
   const css = read("src/exam-overrides.css");
   for (const selector of [
     ".exam-screen", ".exam-header", ".exam-question-card", ".exam-controls",
