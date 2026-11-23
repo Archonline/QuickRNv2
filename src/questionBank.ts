@@ -714,8 +714,29 @@ function make(b: B, i: number, global: number): Question {
 const all:Question[]=[];for(const b of B){for(let i=0;i<b.count;i++)all.push(make(b,i,all.length));}
 for(let c=0;c<cases.length;c++){for(let j=0;j<6;j++){const q=all[c*6+j],f=caseSpecificFollowups[c]?.[j]??followups[j],file=cases[c];if(q)all[c*6+j]={...q,id:"qrn-case-"+(c+1)+"-"+(j+1),topic:file.name,format:"case-study",difficulty:j===0||j===3?"Advanced":"Intermediate",caseStudy:file.record,exhibit:file.exhibit,caseRecord:{progressNotes:file.record,labs:file.exhibit,flowSheet:""},prompt:f.prompt,options:f.options,answer:f.answer,rationale:f.rationale,status:"published",clinicalScenario:undefined};}}
 for(let i=0;i<curatedTraditionalQuestions.length;i++)all[36+i]=curatedTraditionalQuestions[i];
-// Replace the first 40 repetitive generated records with independently authored items.
-for(let i=0;i<authoredCoreRewriteBatch.length;i++)all[136+i]=authoredCoreRewriteBatch[i];
-export const questionBank500:Question[]=all.slice(0,500);
-if(questionBank500.length!==500)throw new Error("Question bank must contain exactly 500 items.");
-if(new Set(questionBank500.map(q=>q.id)).size!==500)throw new Error("Duplicate question IDs detected.");
+// Integrate authored replacements by stable question ID, never by array position.
+// This preserves learner history and prevents category/order changes from silently
+// replacing an unrelated question.
+const authoredReplacementIds = new Set<string>();
+for (const replacement of authoredCoreRewriteBatch) {
+  if (authoredReplacementIds.has(replacement.id)) {
+    throw new Error(`Duplicate authored replacement ID: ${replacement.id}`);
+  }
+  authoredReplacementIds.add(replacement.id);
+  const targetIndex = all.findIndex((question) => question.id === replacement.id);
+  if (targetIndex < 0) {
+    throw new Error(`Authored replacement target does not exist in the core bank: ${replacement.id}`);
+  }
+  all[targetIndex] = replacement;
+}
+
+export const questionBank500: Question[] = all.slice(0, 500);
+if (questionBank500.length !== 500) {
+  throw new Error("Question bank must contain exactly 500 items.");
+}
+if (new Set(questionBank500.map((question) => question.id)).size !== 500) {
+  throw new Error("Duplicate question IDs detected.");
+}
+if (authoredReplacementIds.size !== authoredCoreRewriteBatch.length) {
+  throw new Error("Authored replacement integration count does not match the authored batch.");
+}
