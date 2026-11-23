@@ -8,11 +8,12 @@
 
 2. **The first 40 authored replacement items contained repeated generic prompt wording.** Source inspection found seven repeated prompt strings across different clinical scenarios (for example, repeated variants of “What should the nurse do first?”). Those prompts have now been rewritten to ask a more scenario-specific clinical decision. The audit script now rejects duplicate normalized prompts within this authored replacement batch. This check reduces template repetition; it does not establish clinical validity.
 
-3. **Distractors are selected by cyclic rotation from topic profiles.** The generator selects three distractors using a modulo-based start position. This guarantees variation in selection order, not that all possible combinations are the closest clinically defensible alternatives for the particular stem. Each generated item still needs item-level adversarial review.
+3. **Six topic labels are reused across category profiles.** Source inspection found duplicate topic entries for Newborn thermoregulation, Pulmonary embolism, Meningitis, Pertussis, RSV, and Autism spectrum disorder. Because the generator resolves profiles by topic label rather than category-plus-topic, these entries can reuse the same underlying scenario and decision task in different categories. The audit now reports these cross-category repeats as warnings pending category-specific clinical variants.
+4. **Distractors are selected by cyclic rotation from topic profiles.** The generator selects three distractors using a modulo-based start position. This guarantees variation in selection order, not that all possible combinations are the closest clinically defensible alternatives for the particular stem. Each generated item still needs item-level adversarial review.
 
-4. **Unfolding-case fallback behavior has been removed.** Previously, a missing case-specific screen could silently fall back to a generic question shared across unrelated emergencies. The generator now throws an error if a case-specific follow-up is missing. The six case studies must still be reviewed for clinical progression, evidence, and answer defensibility.
+5. **Unfolding-case fallback behavior has been removed.** Previously, a missing case-specific screen could silently fall back to a generic question shared across unrelated emergencies. The generator now throws an error if a case-specific follow-up is missing. The six case studies must still be reviewed for clinical progression, evidence, and answer defensibility.
 
-5. **Automated structural checks cannot establish clinical validity.** Four options, an in-range key, nonempty rationales, and unique IDs are necessary but do not prove a single defensible answer, accurate evidence, or appropriate clinical prioritization.
+6. **Automated structural checks cannot establish clinical validity.** Four options, an in-range key, nonempty rationales, and unique IDs are necessary but do not prove a single defensible answer, accurate evidence, or appropriate clinical prioritization.
 
 ## Inventory clarification
 
