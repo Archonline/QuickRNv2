@@ -95,6 +95,19 @@ service cloud.firestore {
       }
     }
 
+    match /questionFeedback/{reportId} {
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['questionId','itemType','topic','prompt','feedback','mode','reporterEmail','createdAt','status'])
+        && request.resource.data.questionId is string
+        && request.resource.data.feedback is string
+        && request.resource.data.feedback.size() > 0
+        && request.resource.data.feedback.size() <= 5000
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.status == 'new';
+      allow read: if signedIn();
+      allow update, delete: if false;
+    }
+
     match /questions/{questionId} {
       allow read: if signedIn() && resource.data.status == 'published';
       allow create, update, delete: if false;
