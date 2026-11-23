@@ -400,6 +400,7 @@ export const authoredCoreRewriteBatch: Question[] = [
   ),
   single(
     "qrn-0170", "Safety / Infection Control", "Acute hemolytic transfusion reaction",
+    "Advanced",
     "A client receiving packed red blood cells develops fever, chills, flank pain, dyspnea, and hypotension 10 minutes after the transfusion begins.",
     "What should the nurse do first?",
     ["Slow the transfusion and continue to observe", "Stop the transfusion, maintain IV access with normal saline using new tubing, and activate the reaction protocol", "Discard the blood bag before documenting the event", "Administer the next unit after giving an antipyretic"],
