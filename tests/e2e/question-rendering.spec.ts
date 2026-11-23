@@ -50,17 +50,20 @@ test("starts and renders a real published item for every supported NCLEX format"
  }
 });
 
-test("published question workspace remains within a mobile viewport",async({page})=>{
+test("all published formats fit a mobile viewport without clipping the question card",async({page})=>{
  await page.setViewportSize({width:390,height:844});
  await page.getByRole("button",{name:/14-format NGN sampler/}).click();
  await page.getByRole("button",{name:/Begin examination/}).click();
- await expect(page.locator(".exam-question-card")).toBeVisible();
- await expect(page.locator(".exam-stem")).not.toBeEmpty();
- const dimensions=await page.evaluate(()=>{
-  const card=document.querySelector(".exam-question-card") as HTMLElement;
-  const rect=card.getBoundingClientRect();
-  return {left:rect.left,right:rect.right,viewport:document.documentElement.clientWidth,scrollWidth:document.documentElement.scrollWidth};
- });
- expect(dimensions.left).toBeGreaterThanOrEqual(0);
- expect(dimensions.right).toBeLessThanOrEqual(dimensions.viewport+1);
+ for(let i=0;i<expectedFormats.length;i++){
+  await expect(page.locator(".exam-question-card")).toBeVisible();
+  await expect(page.locator(".exam-stem")).not.toBeEmpty();
+  const dimensions=await page.evaluate(()=>{
+   const card=document.querySelector(".exam-question-card") as HTMLElement;
+   const rect=card.getBoundingClientRect();
+   return {left:rect.left,right:rect.right,viewport:document.documentElement.clientWidth};
+  });
+  expect(dimensions.left).toBeGreaterThanOrEqual(0);
+  expect(dimensions.right).toBeLessThanOrEqual(dimensions.viewport+1);
+  if(i<expectedFormats.length-1) await page.getByRole("button",{name:/Next/}).click();
+ }
 });
