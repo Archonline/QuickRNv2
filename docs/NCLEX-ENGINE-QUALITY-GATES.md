@@ -37,7 +37,7 @@ All item scores are normalized to 0–1 and aggregated against one possible poin
 ## CAT measurement and analytics
 - The practice CAT uses a provisional two-parameter logistic-style information model with a Bayesian prior, partial-credit observations, an item information calculation, and a standard-error estimate.
 - Candidate selection balances information near current ability and penalizes category overrepresentation against the available published-bank mix. CAT stopping enforces a minimum of 85 items, a maximum of 150, and may stop once measurement standard error reaches the provisional 0.35 threshold.
-- Linked case-study members are excluded from the adaptive candidate pool so a CAT does not split an unfolding case across adaptive decisions.
+- CAT is forward-only: learners must answer before advancing and cannot revisit earlier items or use the navigation/flag controls. Manual submission is blocked before 85 items; timer expiry remains an automatic submission path.\n- Linked case-study members are excluded from the adaptive candidate pool so a CAT does not split an unfolding case across adaptive decisions.
 - Item difficulty defaults to the existing Foundational/Intermediate/Advanced mapping. Optional numeric catDifficulty and catDiscrimination fields may be used when items have defensible calibration data.
 - Readiness bands and remediation targets are descriptive study signals. The model is not NCSBN CAT scoring, and the app must not represent these outputs as validated NCLEX pass probabilities.
 
