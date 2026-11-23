@@ -371,3 +371,36 @@
  .exam-screen .exam-brand{min-width:0}
  .exam-screen .exam-brand .qrn-brand-tagline{display:none}
 }
+
+/* Branded public and account experiences. */
+.landing{background:#f7f8fc;color:#19263d}
+.landing-nav{max-width:1240px;height:78px;border-bottom-color:#e7ebf2}
+.landing-hero{max-width:1240px;padding-top:84px;padding-bottom:88px}
+.landing-copy h1{color:#19263d;letter-spacing:-2.8px}
+.landing-copy h1 em{color:#5b53cf}
+.landing-kicker{color:#5b53cf}
+.landing-nav nav a:hover,.landing .text-link:hover{color:#4f46c8}
+.landing .button.primary{background:#5148c7;border:1px solid #5148c7;border-radius:10px;box-shadow:0 7px 17px rgba(79,70,200,.18)}
+.landing .button.primary:hover{background:#4038aa;border-color:#4038aa;transform:translateY(-1px)}
+.landing .button.large{min-height:46px;padding:12px 18px}
+.landing-preview .preview-window{border:1px solid #e2e7f0;border-radius:18px;box-shadow:0 24px 70px rgba(24,38,66,.11)}
+.landing-preview .preview-top{background:#111c32;color:#e9edfa}
+.landing-preview .preview-float{border:1px solid #e5e8f0;border-radius:13px;box-shadow:0 12px 32px rgba(24,38,66,.09)}
+.landing-strip,.landing-features article,.landing-how,.landing-cta{border-color:#e5eaf2}
+.landing-features article{border-radius:15px;background:#fff;box-shadow:0 8px 28px rgba(25,39,69,.045)}
+.landing-features article>span{background:#efeeff;color:#5148c7;border-radius:11px}
+.landing-cta{border:1px solid #dfddff;border-radius:18px;background:linear-gradient(115deg,#f0efff,#fff 78%)}
+.landing-footer{border-top:1px solid #e5eaf2}
+.auth-screen{background:radial-gradient(ellipse at 12% 8%,#eeedff 0,transparent 38%),radial-gradient(ellipse at 90% 92%,#eaf3fb 0,transparent 36%),#f5f7fb}
+.auth-card{border:1px solid #e3e8f0;border-radius:20px;box-shadow:0 24px 75px rgba(24,38,66,.10)}
+.auth-card h1{color:#1b2942}
+.auth-input:focus-within{border-color:#8179e8;box-shadow:0 0 0 3px rgba(95,86,210,.10)}
+.auth-card .button.primary,.auth-card button[type=submit]{border-radius:10px;background:#5148c7;border-color:#5148c7}
+.auth-card .button.primary:hover,.auth-card button[type=submit]:hover{background:#4038aa}
+@media(max-width:720px){
+ .landing-nav{padding:0 16px}
+ .landing-nav nav{gap:14px}
+ .landing-hero{padding:48px 18px 56px;gap:34px}
+ .landing-copy h1{font-size:clamp(36px,10vw,48px)}
+ .landing-cta{margin-left:16px;margin-right:16px;padding:22px}
+}
