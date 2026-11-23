@@ -11,8 +11,8 @@ import SettingsPage from "./SettingsPage";
 import LegalPage from "./LegalPage";
 import PassProbabilityChart from "./PassProbabilityChart";
 import { buildPassProbabilitySeries } from "./passProbability.js";
-import { questionBank100, questionBank600 } from "./ngnQuestionBank";
-import { questionBank500 } from "./questionBank";
+import { questionBank600 } from "./ngnQuestionBank";
+
 import { responseScore } from "./examScoring.js";
 import { authoredCoreRewriteBatch } from "./authoredCoreRewriteBatch";
 import QuestionBankAutomationTracker from "./QuestionBankAutomationTracker";
