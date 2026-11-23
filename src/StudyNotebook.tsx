@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { collection, doc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
-import { BookmarkCheck, CalendarClock, CheckCircle2, NotebookPen, RotateCcw } from "lucide-react";
+import { BookmarkCheck, CalendarClock, NotebookPen, RotateCcw } from "lucide-react";
 import { db } from "./firebase";
 import type { Question } from "./questions";
 
