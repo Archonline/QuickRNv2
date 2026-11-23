@@ -286,13 +286,15 @@
       "rationale_validation",
       "clinical_consistency_validation",
       "duplicate_detection",
-      "render_smoke_test"
+      "render_smoke_test",
+      "human_clinical_review",
+      "distractor_quality_review"
     ],
     "hot_spot_asset_must_be_ready": true,
     "automated_validation_is_not_human_clinical_review": true,
     "official_nclex_endorsement_must_not_be_claimed": true,
-    "human_approval_required": false,
-    "publish_after_automated_checks": true,
+    "human_approval_required": true,
+    "publish_after_automated_checks": false,
     "generated_status_must_be_retained": true
   },
   "nclex_rendering_contract": {
