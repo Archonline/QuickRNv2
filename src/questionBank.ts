@@ -826,7 +826,28 @@ for (const replacement of allAuthoredCoreRewrites) {
   all[targetIndex] = replacement;
 }
 
-export const questionBank500: Question[] = all.slice(0, 500);
+// Only the 364 legacy development items are in the initial Webmaster audit queue.
+// Make them learner-accessible now while keeping clinical verification explicitly pending.
+const auditRequiredQuestions = all.filter((question) => question.status === "development");
+if (auditRequiredQuestions.length !== 364) {
+  throw new Error(`Expected 364 targeted audit items, found ${auditRequiredQuestions.length}.`);
+}
+const learnerReadyCore = all.map((question) => question.status === "development"
+  ? {
+      ...question,
+      status: "published" as const,
+      auditRequired: true,
+      reviewStatus: "generated" as const,
+      reviewMetadata: {
+        ...(question.reviewMetadata ?? { status: "not-clinically-verified" as const, references: [] }),
+        status: "not-clinically-verified" as const,
+        publicationStatus: "draft" as const,
+      },
+    }
+  : question
+);
+
+export const questionBank500: Question[] = learnerReadyCore.slice(0, 500);
 if (questionBank500.length !== 500) {
   throw new Error("Question bank must contain exactly 500 items.");
 }
