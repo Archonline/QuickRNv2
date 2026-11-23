@@ -45,6 +45,9 @@ export type Question = {
   category: string;
   topic: string;
   difficulty: "Foundational" | "Intermediate" | "Advanced";
+  /** Optional calibrated CAT parameters; defaults are provisional difficulty bands and discrimination 1.0. */
+  catDifficulty?: number;
+  catDiscrimination?: number;
   prompt: string;
   options: string[];
   answer: number;
