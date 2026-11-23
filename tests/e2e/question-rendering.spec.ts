@@ -48,8 +48,9 @@ test("starts and renders a real published item for every supported NCLEX format"
 
   if(i<expectedFormats.length-1) await page.getByRole("button",{name:/Next/}).click();
  }
+ console.log("Rendered published formats:",[...seen]);
  for(const format of expectedFormats){
-  expect(seen.has(format)||format==="matrix-multiple"&&seen.has("matrix-grid"),"missing rendered format: "+format).toBeTruthy();
+  expect(seen.has(format)||format==="matrix-multiple"&&seen.has("matrix-grid"),"missing rendered format: "+format+"; rendered: "+[...seen].join(", ")).toBeTruthy();
  }
 });
 
