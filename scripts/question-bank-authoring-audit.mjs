@@ -35,7 +35,7 @@ function auditAuthoredCoreRewriteBatch(source, rules, findings) {
   for (const id of ids) {
     if (!/^qrn-[a-z0-9-]+$/.test(id)) finding(findings, "error", REWRITE_BATCH_PATH, `Invalid authored question ID: ${id}`);
   }
-  for (const field of ["optionRationales", "clinicalJudgmentStep", "contentVersion", "reviewStatus: \"generated\"", "not-clinically-verified"]) {
+  if (!source.includes('status: "development"') || !source.includes('publicationStatus: "draft"')) {\n    finding(findings, "error", REWRITE_BATCH_PATH, "Unverified authored replacement items must remain development/draft until authorized clinical approval.");\n  }\n  for (const field of ["optionRationales", "clinicalJudgmentStep", "contentVersion", "reviewStatus: \"generated\"", "not-clinically-verified"]) {
     if (!source.includes(field)) finding(findings, "error", REWRITE_BATCH_PATH, `Missing required authoring metadata: ${field}`);
   }
   const bank = readText(QUESTION_BANK_PATH);
