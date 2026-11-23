@@ -2,6 +2,7 @@ import type { Question } from "./questions";
 import curatedTraditionalBatch from "./curatedQuestionBatch2_100.json";
 import { authoredCoreRewriteBatch } from "./authoredCoreRewriteBatch";
 import { authoredCoreRewriteBatch2 } from "./authoredCoreRewriteBatch2";
+import { authoredCoreRewriteBatch3 } from "./authoredCoreRewriteBatch3";
 type B={category:string;count:number;topics:string[];scenario:string;priority:string;distractors:string[];rationale:string;record:string};
 const B:B[]=[
 {category:"Maternal-Newborn / Obstetrics",count:60,topics:["Placental abruption","Cord prolapse","Preeclampsia with severe features","Magnesium sulfate toxicity","Late decelerations","PROM","Postpartum hemorrhage","Shoulder dystocia","Preterm labor","Newborn hypoglycemia","Chorioamnionitis","Gestational diabetes","Fetal heart-rate variability","Amniotic fluid embolism","Ectopic pregnancy","Hyperemesis gravidarum","Rh incompatibility","Postpartum infection","Breastfeeding complications","Newborn thermoregulation"],scenario:"A 29-year-old G2P1 at 34 weeks reports sudden constant abdominal pain and dark vaginal bleeding. BP 154/96 mm Hg, HR 118/min, RR 22/min, temperature 36.8°C. The uterus is firm and tender; fetal tracing shows minimal variability with recurrent late decelerations.",priority:"Activate the obstetric emergency response, assess maternal hemodynamic status and fetal status, establish IV access, and prepare for expedited birth as directed.",distractors:["Perform a digital vaginal examination before placental location is established","Encourage ambulation and reassess bleeding in 30 minutes","Administer a tocolytic before clarifying the cause of bleeding","Reassure the client that painful bleeding is an expected pregnancy finding"],rationale:"Painful bleeding, uterine tenderness and fetal compromise are concerning for placental abruption. Maternal stabilization and urgent obstetric evaluation take priority; avoid digital examination until placenta previa is excluded.",record:"CBC: Hgb 9.6 g/dL, platelets 112,000/mm³; fibrinogen 185 mg/dL; PT 15.8 seconds; type and crossmatch ordered; continuous fetal monitoring."},
@@ -811,7 +812,7 @@ for(let i=0;i<curatedTraditionalQuestions.length;i++)all[36+i]=curatedTraditiona
 // Integrate authored replacements by stable question ID, never by array position.
 // This preserves learner history and prevents category/order changes from silently
 // replacing an unrelated question.
-const allAuthoredCoreRewrites = [...authoredCoreRewriteBatch, ...authoredCoreRewriteBatch2];
+const allAuthoredCoreRewrites = [...authoredCoreRewriteBatch, ...authoredCoreRewriteBatch2, ...authoredCoreRewriteBatch3];
 const authoredReplacementIds = new Set<string>();
 for (const replacement of allAuthoredCoreRewrites) {
   if (authoredReplacementIds.has(replacement.id)) {
