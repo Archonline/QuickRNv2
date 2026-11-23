@@ -555,7 +555,7 @@ const categoryAliases:Record<string,string>={
 // The requested endocrine, renal, neurologic, musculoskeletal, hematology and
 // infectious-disease profiles are already curated in the override maps above.
 // Fail loudly if a requested topic ever loses its dedicated clinical profile.
-const requiredTopicProfileKeys = [
+export const requiredTopicProfileKeys = [
   "Addison disease",
   "Cushing syndrome",
   "Diabetic ketoacidosis",
