@@ -665,3 +665,7 @@
 .exam-screen .ngn-trend-tabs button.active {
   color: #173b5c !important;
 }
+
+.exam-screen .exam-option.selected .exam-option-letter {
+  color: #ffffff !important;
+}
