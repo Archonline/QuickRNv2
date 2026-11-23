@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { Activity, ArrowRight, BookOpen, Brain, CalendarDays, ChartNoAxesCombined, CheckCircle2, ClipboardCheck, Clock3, Flame, Layers3, NotebookPen, Play, Sparkles, Stethoscope, Target } from "lucide-react";
+import { Activity, ArrowRight, BookOpen, Brain, CalendarDays, BarChart3, CheckCircle2, ClipboardCheck, Clock3, Flame, Layers, ClipboardList, Play, Sparkles, Stethoscope, Target } from "lucide-react";
 
 type StudentHomeProps = {
   questionCount: number;
