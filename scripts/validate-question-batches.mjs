@@ -9,10 +9,10 @@ const EXISTING_JSON = [
 ];
 const errors = [];
 const warnings = [];
-const norm = value => String(value ?? "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().replace(/\\s+/g, " ");
+const norm = value => String(value ?? "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().replace(/\s+/g, " ");
 const fail = (file, message) => errors.push(`[${path.relative(ROOT,file)}] ${message}`);
 const warn = (file, message) => warnings.push(`[${path.relative(ROOT,file)}] ${message}`);
-const files = fs.existsSync(DIR) ? fs.readdirSync(DIR).filter(name => /^core-batch-\\d{3}\\.json$/.test(name)).sort() : [];
+const files = fs.existsSync(DIR) ? fs.readdirSync(DIR).filter(name => /^core-batch-\d{3}\.json$/.test(name)).sort() : [];
 const usedIds = new Set();
 const usedStems = new Map();
 const scenarioInventory = [];
@@ -59,7 +59,7 @@ for (const name of files) {
 
   questions.forEach((q, index) => {
     const tag = q.id ?? `row-${index+1}`;
-    if (!/^qrn-b\\d{3}-\\d{3}$/.test(String(q.id ?? ""))) fail(file, `[${tag}] ID must use qrn-bNNN-NNN.`);
+    if (!/^qrn-b\d{3}-\d{3}$/.test(String(q.id ?? ""))) fail(file, `[${tag}] ID must use qrn-bNNN-NNN.`);
     if (usedIds.has(q.id) || localIds.has(q.id)) fail(file, `[${tag}] duplicate ID found in existing or staged inventory.`);
     localIds.add(q.id);
     if (q.status !== "development") fail(file, `[${tag}] staged items must remain development until approved.`);
