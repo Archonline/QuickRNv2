@@ -80,7 +80,7 @@ export default function StudentHome(props: StudentHomeProps) {
       </section>
 
       <section className="student-panel">
-        <div className="student-panel-heading"><div><span>NGN CLINICAL JUDGMENT</span><h2>Think like a nurse</h2></div><Layers3 size={20}/></div>
+        <div className="student-panel-heading"><div><span>NGN CLINICAL JUDGMENT</span><h2>Think like a nurse</h2></div><Layers size={20}/></div>
         <p>Use the six clinical judgment functions as a framework when working through unfolding patient cases.</p>
         <div className="student-judgment-steps">{judgmentSteps.map((step,index)=><div key={step}><span>{index+1}</span><strong>{step}</strong></div>)}</div>
         <button className="student-inline-link" onClick={props.onSimulator}>Open case-based exam workspace <ArrowRight size={14}/></button>
@@ -88,10 +88,10 @@ export default function StudentHome(props: StudentHomeProps) {
     </div>
 
     <section className="student-quick-links">
-      <button onClick={()=>props.onNavigate("progress")}><ChartNoAxesCombined size={18}/><span><strong>My performance</strong><small>Track progress by category</small></span><ArrowRight size={16}/></button>
+      <button onClick={()=>props.onNavigate("progress")}><BarChart3 size={18}/><span><strong>My performance</strong><small>Track progress by category</small></span><ArrowRight size={16}/></button>
       <button onClick={()=>props.onNavigate("history")}><Activity size={18}/><span><strong>Exam history</strong><small>Review completed sessions</small></span><ArrowRight size={16}/></button>
       <button onClick={()=>props.onNavigate("calendar")}><CalendarDays size={18}/><span><strong>Study calendar</strong><small>See your study activity</small></span><ArrowRight size={16}/></button>
-      <button onClick={()=>props.onNavigate("saved")}><NotebookPen size={18}/><span><strong>My notebook</strong><small>{props.savedCount} saved questions</small></span><ArrowRight size={16}/></button>
+      <button onClick={()=>props.onNavigate("saved")}><ClipboardList size={18}/><span><strong>My notebook</strong><small>{props.savedCount} saved questions</small></span><ArrowRight size={16}/></button>
     </section>
     <div className="student-dashboard-disclaimer">QuickRN practice assessments are educational tools, not official NCLEX examinations or validated pass predictions.</div>
   </div>;
