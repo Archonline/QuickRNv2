@@ -58,10 +58,10 @@ export function validateQuestion(q) {
   if (type === "bow-tie") {
     const b = interaction.bowTie;
     if (!b || !arr(b.conditions) || !arr(b.actions) || !arr(b.monitoring) || !b.conditions.length || b.actions.length < 2 || b.monitoring.length < 2) add("Bow-tie requires condition, action, and monitoring choice groups.");
-    else if (!Number.isInteger(b.correctCondition) || !arr(b.correctActions) || b.correctActions.length !== 2 || !arr(b.correctMonitoring) || b.correctMonitoring.length !== 2) add("Bow-tie requires one correct condition, two actions, and two monitoring selections.");
+    else if (!Number.isInteger(b.correctCondition) || b.correctCondition < 0 || b.correctCondition >= b.conditions.length || !arr(b.correctActions) || b.correctActions.length !== 2 || b.correctActions.some(v=>!Number.isInteger(v)||v<0||v>=b.actions.length) || !arr(b.correctMonitoring) || b.correctMonitoring.length !== 2 || b.correctMonitoring.some(v=>!Number.isInteger(v)||v<0||v>=b.monitoring.length)) add("Bow-tie requires one in-range condition, two in-range actions, and two in-range monitoring selections.");
   }
   if (type === "trend" && (!arr(interaction.trend) || interaction.trend.length < 2)) add("Trend item requires at least two time-ordered observations.");
-  if (type === "graphics-based" && (!interaction.graphic || !arr(interaction.graphic.labels) || interaction.graphic.labels.length < 2 || !arr(interaction.graphic.correctLabels))) add("Graphics-based item requires a graphic description, labels, and keyed labels.");
+  if (type === "graphics-based" && (!interaction.graphic || !arr(interaction.graphic.labels) || interaction.graphic.labels.length < 2 || !arr(interaction.graphic.correctLabels) || interaction.graphic.correctLabels.some(v=>!Number.isInteger(v)||v<0||v>=interaction.graphic.labels.length))) add("Graphics-based item requires a graphic description, labels, and in-range keyed labels.");
   if (q.caseStudyId !== undefined && !nonEmpty(q.caseStudyId)) add("Case-study id cannot be blank.");
   if (q.caseStudyId && !q.caseStudy && !q.caseRecord && !q.clinicalScenario && !q.exhibit) add("Case-study items require linked clinical context or a patient record.");
   return { valid:errors.length===0, errors };
