@@ -2,6 +2,8 @@
 
 **Scope:** the 324 topic-profile-generated core items only. This baseline audit excludes 36 unfolding-case screens, 100 curated traditional items, and the 120 authored replacement drafts now integrated. The inventory arithmetic is reconstructed from the 500 source records and the stable replacement IDs.
 
+**Historical-baseline note:** The table and the 315/324 repeated-scenario finding below describe the original 324-item cohort before the later replacement tranches. The current source-level audit excludes all 120 authored replacements and reconstructs 244 remaining generated items (qrn-0257–qrn-0500); the companion script recalculates current group counts.
+
 **Method:** deterministic source-level reconstruction of the generator's category/topic sequence and its item-construction logic. This is a reproducible structural audit, not a clinical review. The companion `scripts/audit-generated-core.mjs` prints the complete per-topic ID grouping and key findings; it is included in `npm run audit:question-bank`.
 
 ## Findings
