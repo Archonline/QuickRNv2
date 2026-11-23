@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { DragEvent } from "react";
 import QuickRNBrand from "./QuickRNBrand";
-import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, X, Calculator, FileText, AlertCircle, ClipboardList, MessageSquareWarning } from "lucide-react";
+import { ArrowLeft, ArrowRight, X, Calculator, FileText, ClipboardList, MessageSquareWarning } from "lucide-react";
 import type { CanonicalNclexItemType, Question, QuestionInteraction } from "./questions";
 import { responseScore, estimateCatAbility } from "./examScoring.js";
 
