@@ -27,7 +27,7 @@ export default function QuestionBankAutomationTracker({
   authoredReplacementCount,
   boosterCount = 0,
 }: Props) {
-  const [pace, setPace] = useState(100);
+  const [pace, setPace] = useState(140);
   const uniqueQuestions = useMemo(
     () => [...new Map(questions.map((question) => [question.id, question])).values()],
     [questions],
@@ -115,7 +115,7 @@ export default function QuestionBankAutomationTracker({
         <div className="qb-pace-control">
           <label htmlFor="qb-pace">Planned net-new items per week</label>
           <strong>{pace} <small>items / week</small></strong>
-          <input id="qb-pace" type="range" min="25" max="250" step="25" value={pace} onChange={(event) => setPace(Number(event.target.value))} />
+          <input id="qb-pace" type="range" min="25" max="250" step="5" value={pace} onChange={(event) => setPace(Number(event.target.value))} />
           <div className="qb-pace-scale"><span>25 / week</span><span>250 / week</span></div>
         </div>
         <div className="qb-chart-wrap">
