@@ -616,7 +616,7 @@ const availableTopicProfiles: Record<string, ClinicalOverride> = {
   ...respiratoryTopicOverrides,
   ...second300TopicOverrides,
 };
-const allGeneratedTopics = [...new Set(B.flatMap(category => category.topics))];
+const allGeneratedTopics = [...new Set([...B.flatMap(category => category.topics), ...requiredTopicProfileKeys])];
 for (const key of allGeneratedTopics) {
   const profile = availableTopicProfiles[key];
   if (!profile || !profile.prompt?.trim() || !profile.scenario?.trim() || !profile.priority?.trim() ||
