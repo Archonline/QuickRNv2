@@ -18,7 +18,7 @@ test("answers persist when navigating away and back; review flag is retained",as
 
 test("review and submit records a single completion with answer totals",async({page})=>{
  await page.getByRole("button",{name:/Begin examination/}).click();
- await page.getByRole("radio",{name:/A\./}).check();
+ await page.locator(".exam-options input").first().check();
  await page.getByRole("button",{name:/Navigation/}).click();
  await page.getByRole("button",{name:/Question 20/}).click();
  await page.getByRole("button",{name:/Review and submit/}).click();
