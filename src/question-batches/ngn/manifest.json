@@ -1,0 +1,24 @@
+{
+  "project": "quickrn-ngn-300",
+  "target": 300,
+  "batchSize": 25,
+  "sourceOfTruth": "GitHub repository files",
+  "idPrefix": "QR-NGN-",
+  "idRegistryStatus": "unreconciled",
+  "nextQuestionId": null,
+  "reportedLegacyCandidates": {
+    "count": 30,
+    "firstId": "QR-NGN-001",
+    "lastId": "QR-NGN-030",
+    "status": "reported-but-not-archived",
+    "note": "Historical conversation claims only. These IDs are reserved pending recovery and reconciliation; do not reuse or count them as archived questions."
+  },
+  "questions": [],
+  "updatedAt": "2026-11-25",
+  "notes": [
+    "Only question objects committed under src/question-batches/ngn/ and listed in questions count toward this project.",
+    "A GitHub manifest record is an archive/tracking record, not clinical approval.",
+    "Only status FINALIZED-DRAFT counts toward the 300-item authored target. BLOCKED and REJECTED records are tracked separately.",
+    "Clinical approval and publication require a separate qualified human review."
+  ]
+}
