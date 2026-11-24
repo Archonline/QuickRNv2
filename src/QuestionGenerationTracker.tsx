@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import type { CSSProperties } from "react";
 import { collection, doc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
-import { RefreshCw, RotateCcw, Clock3, CheckCircle2, AlertTriangle } from "lucide-react";
+import { RefreshCw, RotateCcw, AlertTriangle } from "lucide-react";
 import { db } from "./firebase";
 import { useAuth } from "./AuthContext";
 
@@ -8,7 +9,7 @@ type Row = { id: string; status?: string; question?: { id?: string; itemType?: s
 
 const PROJECT = "quickrn-ngn-300";
 const TARGET = 300;
-const panel: React.CSSProperties = { background: "var(--surface, #fff)", border: "1px solid var(--border, #e5e7eb)", borderRadius: 14, padding: 18, marginBottom: 16 };
+const panel: CSSProperties = { background: "var(--surface, #fff)", border: "1px solid var(--border, #e5e7eb)", borderRadius: 14, padding: 18, marginBottom: 16 };
 const metric: React.CSSProperties = { border: "1px solid var(--border, #e5e7eb)", borderRadius: 12, padding: 14, display: "flex", flexDirection: "column", gap: 5 };
 const small: React.CSSProperties = { color: "var(--muted, #6b7280)", fontSize: 12 };
 
@@ -116,7 +117,7 @@ export default function QuestionGenerationTracker() {
       <div className="wm-list-row"><span>Batch size</span><b>25 questions</b></div>
       <div className="wm-list-row"><span>Target batches</span><b>12</b></div>
       <div className="wm-list-row"><span>Estimated production time</span><b>12 hours of batch work</b></div>
-      <p style={small}>The ChatGPT automation scheduler does not currently offer hourly recurrence. This is a production target, not a guaranteed completion time.</p>
+      <p style={small}>The ChatGPT automation scheduler does not currently offer hourly recurrence. This is a production target, not a guaranteed completion time. Current tracker state: {control?.state ?? "not initialized"}.</p>
     </div>
     <div style={panel}>
       <div className="wm-list-row"><h3 style={{ margin: 0 }}>Recent batch records</h3><span style={small}>{batches.length} shown</span></div>
