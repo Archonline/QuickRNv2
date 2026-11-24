@@ -1,0 +1,29 @@
+MODE: PRODUCTION
+PROJECT: QuickRNv2
+COMPLETED_BATCH: <verified-last-completed-batch>
+NEXT_BATCH: <next-batch-number>
+BATCH_SIZE: 25
+NEXT_QUESTION_ID: <verified-next-unused-question-id>
+TARGET: 300
+PREVIOUS_CHAT_REFERENCE: <actual-ChatGPT-conversation-URL-or-NOT-AVAILABLE>
+STATUS: READY_FOR_NEXT_BATCH
+
+COMPLETED_QUESTION_IDS:
+<list verified question IDs>
+
+CUMULATIVE_COUNTS:
+<finalized-drafts>: <count>
+<blocked>: <count>
+<remaining-to-target>: <count>
+
+FORMAT_DISTRIBUTION:
+<actual counts by NGN format>
+
+DOMAIN_COVERAGE:
+<actual domains covered and priorities for next batch>
+
+UNRESOLVED_ISSUES:
+<none or list>
+
+INSTRUCTIONS:
+ChatGPT is responsible for all question authoring, clinical reasoning, audit, correction, re-audit, and finalization. Ollama only reads this file and acknowledges receipt. Reconcile IDs and counts against the current archive and tracker before generating. Use the integrated per-question generate -> audit -> fix -> re-audit -> FINALIZED-DRAFT/BLOCKED workflow. Do not claim independent clinical approval or publication.
