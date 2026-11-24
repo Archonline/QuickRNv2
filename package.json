@@ -10,7 +10,8 @@
     "test": "node --test",
     "audit:question-bank": "node scripts/question-bank-authoring-audit.mjs && node scripts/audit-generated-core.mjs",
     "test:e2e": "playwright test",
-    "validate:question-batches": "node scripts/validate-question-batches.mjs"
+    "validate:question-batches": "node scripts/validate-question-batches.mjs",
+    "export:firestore-questions": "node scripts/export-firestore-question-archive.mjs"
   },
   "dependencies": {
     "firebase": "^11.6.0",
@@ -24,6 +25,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "typescript": "~5.7.2",
     "vite": "^6.1.0",
-    "@playwright/test": "^1.56.1"
+    "@playwright/test": "^1.56.1",
+    "firebase-admin": "^13.5.0"
   }
 }
