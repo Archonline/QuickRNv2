@@ -1,0 +1,15 @@
+MODE: TEST
+PROJECT: QuickRNv2
+COMPLETED_BATCH: TEST-000
+NEXT_BATCH: TEST-001
+BATCH_SIZE: 1
+NEXT_QUESTION_ID: TEST-ID-001
+TARGET: 300
+PREVIOUS_CHAT_REFERENCE: TEST-ONLY-NO-CONVERSATION-REFERENCE
+STATUS: TEST_ONLY_DO_NOT_GENERATE_QUESTIONS
+
+TEST PURPOSE:
+Verify that the Windows runner can read this file, reach local Ollama, receive the exact handoff receipt token, create a test-only prompt, and commit that prompt to the repository.
+
+SAFETY:
+Do not generate clinical questions. Do not change production question IDs. Do not update Firestore. Do not publish or stage any question content.
