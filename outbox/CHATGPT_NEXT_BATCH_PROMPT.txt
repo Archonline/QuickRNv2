@@ -1,0 +1,54 @@
+QUICKRNv2 — NEXT BATCH WAKE-UP PROMPT
+Read the complete handoff below before doing any work. Treat the GitHub handoff as the durable project state. The previous ChatGPT conversation may not be accessible, so do not assume you can see it.
+PROJECT: QuickRNv2
+NEXT BATCH: 003
+BATCH SIZE: 25
+NEXT QUESTION ID: QR-NGN-031
+TARGET: 300
+PREVIOUS CHAT REFERENCE: NOT_AVAILABLE
+YOUR ROLE:
+You are responsible for all NCLEX-RN question authoring, clinical reasoning, audit, correction, re-audit, and finalization. Ollama is only the messenger that reads handoff files and triggers this prepared prompt. Do not delegate clinical generation or review to Ollama.
+PRODUCTION RULES:
+1. Read and reconcile the handoff against the current repository archive and tracker before assigning IDs or claiming counts.
+2. Generate the requested next batch only. Never invent completed work or claim a question was saved unless the save is verified.
+3. For each question, perform one integrated cycle before moving to the next: construct to the QuickRN schema; audit clinical safety, NCLEX-RN alignment, answer defensibility, distractors, scoring, rationale, schema and available duplicate inventory; fix defects; re-audit; then mark FINALIZED-DRAFT or BLOCKED.
+4. Do not defer a second batch-wide audit/fix cycle. Do not count blocked items toward the target.
+5. Preserve actual NGN format distribution and domain coverage from the handoff. Avoid duplicate scenarios.
+6. Keep all content as draft pending qualified independent clinical review. Never claim independent clinical approval or publication.
+7. At the end, create the next handoff text file with the next batch number, next unused question ID, cumulative counts, blocked items, repository paths, and a reference to this ChatGPT conversation. Do not create a fabricated conversation URL; use a clearly labelled placeholder if no URL is available.
+8. Save the updated handoff in the repository or provide the exact file contents and path for the user to commit.
+HANDOFF CONTENT:
+MODE: PRODUCTION
+PROJECT: QuickRNv2
+COMPLETED_BATCH: 001-002 (30 historical draft candidates; Batch 001 contained 5 and Batch 002 contained 25; NOT independently clinically approved)
+NEXT_BATCH: 003
+BATCH_SIZE: 25
+NEXT_QUESTION_ID: QR-NGN-031
+TARGET: 300
+PREVIOUS_CHAT_REFERENCE: NOT_AVAILABLE
+STATUS: RECONCILE_REQUIRED_BEFORE_GENERATION
+
+COMPLETED_QUESTION_IDS:
+QR-NGN-001 through QR-NGN-030 are reported in the existing project generation handoff as ChatGPT-authored drafts. Treat these as candidate IDs only until reconciled against the current repository archive, Firestore questionDrafts/questions collections, and generation tracker. Do not assume all 30 are saved, finalized, unique, or counted.
+
+CUMULATIVE_COUNTS:
+Historical ChatGPT draft candidates: 30 (reported; verify)
+Verified FINALIZED-DRAFT: UNKNOWN — determine by inspecting source records and audit notes
+BLOCKED/REJECTED: UNKNOWN — determine by inspecting source records
+Remaining to 300: UNKNOWN until reconciliation
+Tracker-counted items: UNKNOWN — verify generationProject=quickrn-ngn-300 records
+
+FORMAT_DISTRIBUTION:
+Actual counts by format: UNKNOWN — calculate from reconciled records. Target distribution: 120 unfolding case-study items; 45 bow-tie; 35 matrix/grid; 30 trend interpretation; 25 highlight text; 25 dropdown cloze/rationale; 20 extended multiple response / Select N.
+
+DOMAIN_COVERAGE:
+Actual domain counts: UNKNOWN — calculate from reconciled records. Rotate med-surg, cardiovascular, respiratory, neurologic, endocrine, renal, maternal-newborn, pediatrics, psychiatric nursing, pharmacology, infection prevention, prioritization, and delegation. Prioritize genuine deficits after reconciliation.
+
+UNRESOLVED_ISSUES:
+1. Reconcile QR-NGN-001 through QR-NGN-030 against the current GitHub question archive and Firestore questionDrafts/questions collections before assigning any new ID.
+2. Reconcile Webmaster NGN Generation Tracker records tagged generationProject=quickrn-ngn-300; do not count untagged chat drafts as tracker items.
+3. Determine actual FINALIZED-DRAFT, BLOCKED/REJECTED, format, and domain counts from evidence. Do not invent missing data.
+4. Previous ChatGPT conversation URL was not supplied; do not fabricate one.
+
+INSTRUCTIONS:
+ChatGPT is responsible for all question authoring, clinical reasoning, audit, correction, re-audit, and finalization. Ollama only reads this file and acknowledges receipt. Reconcile IDs and counts against the current archive and tracker before generating. If the reconciliation sources are unavailable, stop before generation, report exactly what could and could not be verified, and request the missing source access or export. Once reconciliation is complete, generate exactly one batch of up to 25 new questions, starting with the next genuinely unused ID. Use the integrated per-question generate -> audit -> fix -> re-audit -> FINALIZED-DRAFT/BLOCKED workflow. Do not claim independent clinical approval or publication. After the batch, update this handoff with verified counts, next unused ID, completed IDs, format/domain distribution, unresolved issues, and the actual conversation reference if available.
