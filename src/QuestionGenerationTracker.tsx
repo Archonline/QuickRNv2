@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import type { CSSProperties } from "react";
 import manifest from "./question-batches/ngn/manifest.json";
 
 type Item = {
@@ -23,7 +24,7 @@ type Manifest = {
   notes: string[];
 };
 const data = manifest as Manifest;
-const panel: React.CSSProperties = { background: "var(--surface, #fff)", border: "1px solid var(--border, #e5e7eb)", borderRadius: 14, padding: 18, marginBottom: 16 };
+const panel: CSSProperties = { background: "var(--surface, #fff)", border: "1px solid var(--border, #e5e7eb)", borderRadius: 14, padding: 18, marginBottom: 16 };
 const metric: React.CSSProperties = { border: "1px solid var(--border, #e5e7eb)", borderRadius: 12, padding: 14, display: "flex", flexDirection: "column", gap: 5 };
 const small: React.CSSProperties = { color: "var(--muted, #6b7280)", fontSize: 12 };
 
