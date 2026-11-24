@@ -1,34 +1,40 @@
 MODE: PRODUCTION
 PROJECT: QuickRNv2
-COMPLETED_BATCH: 001-002 (30 historical draft candidates; Batch 001 contained 5 and Batch 002 contained 25; NOT independently clinically approved)
+COMPLETED_BATCH: 001-002 (30 historical draft candidates; Batch 001 reported as 5 and Batch 002 as 25; NOT independently clinically approved)
 NEXT_BATCH: 003
 BATCH_SIZE: 25
-NEXT_QUESTION_ID: QR-NGN-031
+PROVISIONAL_NEXT_QUESTION_ID: QR-NGN-031 (DO NOT ASSIGN UNTIL RECONCILIATION)
 TARGET: 300
 PREVIOUS_CHAT_REFERENCE: NOT_AVAILABLE
-STATUS: RECONCILE_REQUIRED_BEFORE_GENERATION
+STATUS: BLOCKED_PENDING_FIRESTORE_RECONCILIATION
 
-COMPLETED_QUESTION_IDS:
-QR-NGN-001 through QR-NGN-030 are reported in the existing project generation handoff as ChatGPT-authored drafts. Treat these as candidate IDs only until reconciled against the current repository archive, Firestore questionDrafts/questions collections, and generation tracker. Do not assume all 30 are saved, finalized, unique, or counted.
+RECONCILIATION_REPORT_2026-11-25:
+- Repository handoff docs report 30 prior ChatGPT-authored draft candidates, IDs QR-NGN-001 through QR-NGN-030. This is a historical claim, not proof that the items are stored or counted.
+- Repository source includes an existing 600-item bank and NGN source data, but those records use the application's existing bank identifiers and do not establish the existence, status, or uniqueness of the 30 QR-NGN candidate records.
+- Webmaster tracker implementation was inspected at src/QuestionGenerationTracker.tsx. It reads questionDrafts filtered by generationProject=quickrn-ngn-300, published questions filtered by the same project metadata, and questionGenerationControl/state.
+- Live Firestore records were NOT accessible in this session. Therefore the 30 candidate IDs, actual draft/finalized/rejected counts, tracker count, batch records, format distribution, and domain distribution cannot be verified.
+- The tracker code explicitly says untagged chat drafts are not counted until imported/tagged. Do not infer tracker count from chat history or GitHub handoff text.
+- No new questions were generated and no new question IDs were assigned.
 
 CUMULATIVE_COUNTS:
-Historical ChatGPT draft candidates: 30 (reported; verify)
-Verified FINALIZED-DRAFT: UNKNOWN — determine by inspecting source records and audit notes
-BLOCKED/REJECTED: UNKNOWN — determine by inspecting source records
-Remaining to 300: UNKNOWN until reconciliation
-Tracker-counted items: UNKNOWN — verify generationProject=quickrn-ngn-300 records
+Historical ChatGPT draft candidates: 30 (reported, not reconciled)
+Verified FINALIZED-DRAFT: UNKNOWN
+BLOCKED/REJECTED: UNKNOWN
+Tracker-counted records tagged quickrn-ngn-300: UNKNOWN
+Remaining to 300: UNKNOWN pending Firestore reconciliation
+Actual format/domain counts: UNKNOWN
 
-FORMAT_DISTRIBUTION:
-Actual counts by format: UNKNOWN — calculate from reconciled records. Target distribution: 120 unfolding case-study items; 45 bow-tie; 35 matrix/grid; 30 trend interpretation; 25 highlight text; 25 dropdown cloze/rationale; 20 extended multiple response / Select N.
+FORMAT_TARGETS:
+120 unfolding case-study items; 45 bow-tie; 35 matrix/grid; 30 trend interpretation; 25 highlight text; 25 dropdown cloze/rationale; 20 extended multiple response / Select N. Actual counts must be calculated from reconciled tagged records.
 
 DOMAIN_COVERAGE:
-Actual domain counts: UNKNOWN — calculate from reconciled records. Rotate med-surg, cardiovascular, respiratory, neurologic, endocrine, renal, maternal-newborn, pediatrics, psychiatric nursing, pharmacology, infection prevention, prioritization, and delegation. Prioritize genuine deficits after reconciliation.
+Rotate med-surg, cardiovascular, respiratory, neurologic, endocrine, renal, maternal-newborn, pediatrics, psychiatric nursing, pharmacology, infection prevention, prioritization, and delegation. Prioritize genuine deficits after reconciliation.
 
-UNRESOLVED_ISSUES:
-1. Reconcile QR-NGN-001 through QR-NGN-030 against the current GitHub question archive and Firestore questionDrafts/questions collections before assigning any new ID.
-2. Reconcile Webmaster NGN Generation Tracker records tagged generationProject=quickrn-ngn-300; do not count untagged chat drafts as tracker items.
-3. Determine actual FINALIZED-DRAFT, BLOCKED/REJECTED, format, and domain counts from evidence. Do not invent missing data.
-4. Previous ChatGPT conversation URL was not supplied; do not fabricate one.
+BLOCKERS:
+1. Obtain an authorized Firestore export or read-only access to questionDrafts and published questions including document IDs, question.id, generationProject, batchId, status, itemType, topic, and review metadata.
+2. Reconcile candidate IDs QR-NGN-001 through QR-NGN-030 against those records and repository archives.
+3. Read questionGenerationControl/state and the Webmaster tracker to establish actual tagged counts and batch IDs.
+4. Only after reconciliation, assign the next genuinely unused ID and generate up to 25 questions.
 
 INSTRUCTIONS:
-ChatGPT is responsible for all question authoring, clinical reasoning, audit, correction, re-audit, and finalization. Ollama only reads this file and acknowledges receipt. Reconcile IDs and counts against the current archive and tracker before generating. If the reconciliation sources are unavailable, stop before generation, report exactly what could and could not be verified, and request the missing source access or export. Once reconciliation is complete, generate exactly one batch of up to 25 new questions, starting with the next genuinely unused ID. Use the integrated per-question generate -> audit -> fix -> re-audit -> FINALIZED-DRAFT/BLOCKED workflow. Do not claim independent clinical approval or publication. After the batch, update this handoff with verified counts, next unused ID, completed IDs, format/domain distribution, unresolved issues, and the actual conversation reference if available.
+ChatGPT is responsible for all question authoring, clinical reasoning, audit, correction, re-audit, and finalization. Ollama only reads handoff files and acknowledges receipt. Do not generate while STATUS is BLOCKED_PENDING_FIRESTORE_RECONCILIATION. Once required Firestore records/export are available, reconcile IDs and counts, then generate exactly one batch of up to 25 new questions using the integrated per-question construct -> immediate audit -> fix -> re-audit -> FINALIZED-DRAFT or BLOCKED workflow. Follow docs/question-bank/AUTHORING-QUALITY-STANDARD.md, docs/question-bank/quickrn-master-prompt.md, docs/question-bank/quickrn-question-schema.json, and docs/question-bank/quickrn-topic-blueprint.json. Keep all content draft pending qualified independent clinical review. Never claim clinical approval or publication. Update this handoff only with verified results and the actual conversation reference if available; otherwise use NOT_AVAILABLE.
