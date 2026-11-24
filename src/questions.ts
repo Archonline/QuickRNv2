@@ -59,7 +59,7 @@ export type Question = {
   clinicalJudgmentStep?: "recognize-cues" | "analyze-cues" | "prioritize-hypotheses" | "generate-solutions" | "take-action" | "evaluate-outcomes";
   contentVersion?: number;
   reviewStatus?: "generated" | "editorially-reviewed" | "clinically-reviewed";
-  reviewMetadata?: { status: "not-clinically-verified" | "editorially-reviewed" | "clinically-verified"; references: string[]; verifiedAt?: string; publicationStatus: "published" | "draft" };
+  reviewMetadata?: { status: "not-clinically-verified" | "editorially-reviewed" | "clinically-verified" | "rejected"; references: string[]; verifiedAt?: string; reviewedAt?: string; reviewedBy?: string; rejectionFeedback?: string; quarantined?: boolean; publicationStatus: "published" | "draft" | "rejected" };
   clinicalScenario?: string;
   caseStudy?: string;
   exhibit?: string;
