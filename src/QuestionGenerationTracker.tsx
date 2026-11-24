@@ -1,128 +1,76 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import type { CSSProperties } from "react";
-import { collection, doc, getDocs, query, where, serverTimestamp, setDoc } from "firebase/firestore";
-import { RefreshCw, RotateCcw, AlertTriangle } from "lucide-react";
-import { db } from "./firebase";
-import { useAuth } from "./AuthContext";
+import { useMemo } from "react";
+import manifest from "./question-batches/ngn/manifest.json";
 
-type Row = { id: string; status?: string; question?: { id?: string; itemType?: string; topic?: string; generationProject?: string; batchId?: string; reviewStatus?: string; reviewMetadata?: any }; generationProject?: string; batchId?: string; createdAt?: any; [key: string]: any };
-
-const PROJECT = "quickrn-ngn-300";
-const TARGET = 300;
-const panel: CSSProperties = { background: "var(--surface, #fff)", border: "1px solid var(--border, #e5e7eb)", borderRadius: 14, padding: 18, marginBottom: 16 };
+type Item = {
+  id: string;
+  batchId: string;
+  status: "FINALIZED-DRAFT" | "BLOCKED" | "REJECTED" | string;
+  itemType?: string;
+  topic?: string;
+  prompt?: string;
+  reviewNote?: string;
+};
+type Manifest = {
+  project: string;
+  target: number;
+  batchSize: number;
+  sourceOfTruth: string;
+  idRegistryStatus: string;
+  nextQuestionId: string | null;
+  reportedLegacyCandidates: { count: number; firstId: string; lastId: string; status: string; note: string };
+  questions: Item[];
+  updatedAt: string;
+  notes: string[];
+};
+const data = manifest as Manifest;
+const panel: React.CSSProperties = { background: "var(--surface, #fff)", border: "1px solid var(--border, #e5e7eb)", borderRadius: 14, padding: 18, marginBottom: 16 };
 const metric: React.CSSProperties = { border: "1px solid var(--border, #e5e7eb)", borderRadius: 12, padding: 14, display: "flex", flexDirection: "column", gap: 5 };
 const small: React.CSSProperties = { color: "var(--muted, #6b7280)", fontSize: 12 };
 
 export default function QuestionGenerationTracker() {
-  const { user } = useAuth();
-  const [rows, setRows] = useState<Row[]>([]);
-  const [published, setPublished] = useState<Row[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
-  const [notice, setNotice] = useState("");
-  const [admin, setAdmin] = useState(false);
-  const [control, setControl] = useState<any>(null);
-
-  const refresh = useCallback(async () => {
-    if (!db) { setError("Firebase is not configured."); setLoading(false); return; }
-    setLoading(true); setError("");
-    try {
-      const [draftSnap, questionSnap, controlSnap] = await Promise.all([
-        getDocs(collection(db, "questionDrafts")),
-        getDocs(query(collection(db, "questions"), where("status", "==", "published"))),
-        getDocs(collection(db, "questionGenerationControl"))
-      ]);
-      const drafts = draftSnap.docs.map(d => ({ id: d.id, ...d.data() } as Row))
-        .filter(d => d.generationProject === PROJECT || d.question?.generationProject === PROJECT);
-      const approved = questionSnap.docs.map(d => ({ id: d.id, ...d.data() } as Row))
-        .filter(d => d.generationProject === PROJECT || d.reviewMetadata?.generationProject === PROJECT);
-      setRows(drafts); setPublished(approved);
-      const state = controlSnap.docs.find(d => d.id === "state");
-      setControl(state ? state.data() : null);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Unable to load generation records. Verify administrator access.");
-    } finally { setLoading(false); }
-  }, []);
-
-  useEffect(() => {
-    let live = true;
-    void (async () => {
-      try { const token = await user?.getIdTokenResult(); if (live) setAdmin(token?.claims.admin === true); }
-      catch { if (live) setAdmin(false); }
-    })();
-    return () => { live = false; };
-  }, [user]);
-  useEffect(() => { void refresh(); }, [refresh]);
-
   const stats = useMemo(() => {
-    const pending = rows.filter(r => !["rejected", "published", "approved"].includes(r.status ?? ""));
-    const rejected = rows.filter(r => r.status === "rejected");
-    const approvedCount = published.length + rows.filter(r => ["published", "approved"].includes(r.status ?? "")).length;
-    const generated = rows.length + published.length;
-    const batches = new Set([...rows, ...published].map(r => r.batchId ?? r.question?.batchId).filter(Boolean));
-    return { generated, pending: pending.length, rejected: rejected.length, approved: approvedCount, batches: batches.size, remaining: Math.max(0, TARGET - generated), percent: Math.min(100, Math.round(generated / TARGET * 100)) };
-  }, [rows, published]);
-
-  const reinitialize = async () => {
-    if (!db || !admin || !user || busy) return;
-    const confirmed = window.confirm("Record a restart request for the NGN automation? This does not launch the ChatGPT automation or delete generated questions.");
-    if (!confirmed) return;
-    setBusy(true); setError(""); setNotice("");
-    try {
-      await setDoc(doc(db, "questionGenerationControl", "state"), {
-        project: PROJECT, target: TARGET, restartRequested: true,
-        restartRequestedAt: serverTimestamp(), restartRequestedBy: user.email ?? user.uid,
-        state: "restart-requested", updatedAt: serverTimestamp()
-      }, { merge: true });
-      setNotice("Restart request recorded. The saved ChatGPT task still needs to be started or rescheduled separately; this button does not execute it.");
-      await refresh();
-    } catch (e) { setError(e instanceof Error ? e.message : "Unable to record restart request."); }
-    finally { setBusy(false); }
-  };
-
-  const batches = useMemo(() => {
-    const grouped = new Map<string, Row[]>();
-    [...rows, ...published].forEach(r => {
-      const key = r.batchId ?? r.question?.batchId ?? "Unassigned batch";
-      grouped.set(key, [...(grouped.get(key) ?? []), r]);
-    });
-    return [...grouped.entries()].sort((a, b) => b[0].localeCompare(a[0])).slice(0, 12);
-  }, [rows, published]);
+    const questions = data.questions ?? [];
+    const finalized = questions.filter(q => q.status === "FINALIZED-DRAFT");
+    const blocked = questions.filter(q => q.status === "BLOCKED");
+    const rejected = questions.filter(q => q.status === "REJECTED");
+    const pending = questions.filter(q => !["FINALIZED-DRAFT", "BLOCKED", "REJECTED"].includes(q.status));
+    const batches = new Set(questions.map(q => q.batchId).filter(Boolean));
+    const types = new Map<string, number>();
+    for (const q of finalized) { const key = q.itemType || "Unspecified"; types.set(key, (types.get(key) ?? 0) + 1); }
+    return { total: questions.length, finalized: finalized.length, blocked: blocked.length, rejected: rejected.length, pending: pending.length, batches: batches.size, remaining: Math.max(0, data.target - finalized.length), percent: Math.min(100, Math.round(finalized.length / data.target * 100)), types: [...types.entries()].sort((a,b) => b[1]-a[1]) };
+  }, []);
 
   return <section className="wm-panel" style={{ marginTop: 18 }}>
     <div className="wm-list-row" style={{ alignItems: "center", flexWrap: "wrap" }}>
-      <div><div className="eyebrow">QUESTION BANK · PRODUCTION</div><h2 style={{ margin: "4px 0" }}>NGN Generation Tracker</h2><p style={small}>Target: 300 new NGN items · 25 questions per planned batch · 12 batches</p></div>
-      <div className="wm-action-row">
-        <button className="button secondary" onClick={() => void refresh()} disabled={loading || busy}><RefreshCw size={14}/> Refresh</button>
-        <button className="button secondary" onClick={() => void reinitialize()} disabled={!admin || busy}><RotateCcw size={14}/> Reinitialize tracker</button>
-      </div>
+      <div><div className="eyebrow">QUESTION BANK · GITHUB ARCHIVE</div><h2 style={{ margin: "4px 0" }}>NGN Generation Tracker</h2><p style={small}>Target: {data.target} finalized drafts · {data.batchSize} questions per planned batch · {Math.ceil(data.target / data.batchSize)} batches</p></div>
+      <span className="wm-issue-label">GitHub manifest · {data.updatedAt}</span>
     </div>
-    {error && <div className="qb-feedback-error" role="alert">{error}</div>}
-    {notice && <div className="wm-disclaimer" role="status">{notice}</div>}
+    <div className="wm-disclaimer" role="status">Source of truth: committed GitHub question files and <code>src/question-batches/ngn/manifest.json</code>. This tracker does not read or write Firestore.</div>
     <div style={{ ...panel, marginTop: 14 }}>
-      <div className="wm-list-row"><b>Overall generation progress</b><strong>{stats.generated} / {TARGET}</strong></div>
-      <div style={{ height: 12, background: "var(--border, #e5e7eb)", borderRadius: 99, overflow: "hidden", margin: "12px 0 8px" }}><div style={{ width: stats.percent + "%", height: "100%", background: "var(--accent, #2563eb)", borderRadius: 99, transition: "width .25s" }}/></div>
-      <div className="wm-list-row"><span style={small}>{stats.percent}% complete</span><span style={small}>{stats.remaining} remaining</span></div>
+      <div className="wm-list-row"><b>Finalized-draft progress</b><strong>{stats.finalized} / {data.target}</strong></div>
+      <div style={{ height: 12, background: "var(--border, #e5e7eb)", borderRadius: 99, overflow: "hidden", margin: "12px 0 8px" }}><div style={{ width: stats.percent + "%", height: "100%", background: "var(--accent, #2563eb)", borderRadius: 99 }}/></div>
+      <div className="wm-list-row"><span style={small}>{stats.percent}% complete</span><span style={small}>{stats.remaining} finalized drafts remaining</span></div>
     </div>
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(130px,1fr))", gap: 10 }}>
-      <div style={metric}><strong style={{ fontSize: 25 }}>{stats.generated}</strong><span style={small}>Generated and tracked</span></div>
-      <div style={metric}><strong style={{ fontSize: 25 }}>{stats.pending}</strong><span style={small}>Pending review</span></div>
-      <div style={metric}><strong style={{ fontSize: 25 }}>{stats.approved}</strong><span style={small}>Approved / published</span></div>
-      <div style={metric}><strong style={{ fontSize: 25 }}>{stats.rejected}</strong><span style={small}>Rejected drafts</span></div>
+      <div style={metric}><strong style={{ fontSize: 25 }}>{stats.total}</strong><span style={small}>Archived records</span></div>
+      <div style={metric}><strong style={{ fontSize: 25 }}>{stats.finalized}</strong><span style={small}>Finalized drafts</span></div>
+      <div style={metric}><strong style={{ fontSize: 25 }}>{stats.blocked}</strong><span style={small}>Blocked</span></div>
+      <div style={metric}><strong style={{ fontSize: 25 }}>{stats.rejected}</strong><span style={small}>Rejected</span></div>
       <div style={metric}><strong style={{ fontSize: 25 }}>{stats.batches}</strong><span style={small}>Identified batches</span></div>
     </div>
     <div style={{ ...panel, marginTop: 16 }}>
-      <div className="wm-list-row"><h3 style={{ margin: 0 }}>Production schedule</h3><span style={small}>Planning estimate</span></div>
-      <div className="wm-list-row"><span>Batch size</span><b>25 questions</b></div>
-      <div className="wm-list-row"><span>Target batches</span><b>12</b></div>
-      <div className="wm-list-row"><span>Estimated production time</span><b>12 hours of batch work</b></div>
-      <p style={small}>The ChatGPT automation scheduler does not currently offer hourly recurrence. This is a production target, not a guaranteed completion time. Current tracker state: {control?.state ?? "not initialized"}.</p>
+      <h3 style={{ marginTop: 0 }}>ID registry</h3>
+      {data.idRegistryStatus === "reconciled" && data.nextQuestionId ? <p>Next unused ID: <b>{data.nextQuestionId}</b></p> : <p className="qb-feedback-error">ID assignment is blocked. The 30 historical candidates ({data.reportedLegacyCandidates.firstId}–{data.reportedLegacyCandidates.lastId}) are reported but not archived. Recover or explicitly adjudicate them before assigning IDs.</p>}
+      <p style={small}>{data.reportedLegacyCandidates.note}</p>
     </div>
     <div style={panel}>
-      <div className="wm-list-row"><h3 style={{ margin: 0 }}>Recent batch records</h3><span style={small}>{batches.length} shown</span></div>
-      {loading ? <p>Loading generation records…</p> : batches.length ? batches.map(([id, items]) => <div className="wm-list-row" key={id}><span><b>{id}</b><small style={{ display: "block", ...small }}>{items.filter(x => x.status === "rejected").length} rejected · {items.filter(x => ["published","approved"].includes(x.status ?? "")).length} approved</small></span><b>{items.length} items</b></div>) : <p style={small}>No questions tagged for this 300-item generation project have been imported yet. Existing chat drafts are not counted until they are recorded in the project tracker.</p>}
+      <h3 style={{ marginTop: 0 }}>Format distribution · finalized drafts</h3>
+      {stats.types.length ? stats.types.map(([type,count]) => <div className="wm-list-row" key={type}><span>{type}</span><b>{count}</b></div>) : <p style={small}>No finalized NGN questions are currently archived in this GitHub manifest.</p>}
     </div>
-    <p className="wm-disclaimer"><AlertTriangle size={14} style={{ display: "inline", verticalAlign: "middle" }}/> Generated count is not the same as clinically approved count. All items remain drafts until qualified independent review. The restart control logs a request only; it cannot invoke the separate ChatGPT automation from the browser.</p>
+    <div style={panel}>
+      <h3 style={{ marginTop: 0 }}>Production rules</h3>
+      <ul><li>Only FINALIZED-DRAFT records count toward the target.</li><li>BLOCKED and REJECTED items remain visible but do not count.</li><li>Every item remains pending qualified independent clinical review.</li><li>Commit each batch JSON and update this manifest in the same pull request or commit sequence.</li></ul>
+      <p style={small}>Reported historical candidates: {data.reportedLegacyCandidates.count} · Registry: {data.idRegistryStatus} · Source: {data.sourceOfTruth}</p>
+    </div>
   </section>;
 }
