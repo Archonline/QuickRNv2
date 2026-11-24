@@ -12,7 +12,7 @@ Create 300 new original NGN NCLEX-RN questions for QuickRNv2. Work in batches of
 - Remaining to target: 270.
 - Batch 001 was only 5 items; Batch 002 was 25 items. Do not misrepresent the first batch as a complete 25-item batch.
 - These 30 are drafts, not independently clinically approved.
-- They are not yet counted by the Webmaster Generation Tracker until imported into Firestore with the project tag.
+- They are not currently archived in the GitHub NGN project folder and therefore are not counted by the Webmaster Generation Tracker. Recover and reconcile them into the GitHub manifest before assigning further IDs.
 
 ## Integrated per-question production process (current standard)
 Do not generate a large unchecked batch and then repeat a separate batch-wide audit/fix cycle. Each item must complete this loop during generation before the next item is started:
