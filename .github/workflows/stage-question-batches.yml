@@ -1,22 +1,23 @@
-name: Stage Generated Question Batches
+name: Validate Question Batch Archive
 
 on:
   push:
     branches: [main]
     paths:
-      - "src/question-batches/core-batch-*.json"
+      - "src/question-batches/**"
+      - "scripts/validate-question-batches.mjs"
+  pull_request:
+    paths:
+      - "src/question-batches/**"
+      - "scripts/validate-question-batches.mjs"
   workflow_dispatch:
 
 permissions:
   contents: read
 
-concurrency:
-  group: stage-question-batches
-  cancel-in-progress: false
-
 jobs:
-  validate-and-stage:
-    name: Validate and stage drafts in Firestore
+  validate:
+    name: Validate GitHub question archive
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -26,11 +27,3 @@ jobs:
           node-version: 20
       - name: Validate generated question batches
         run: npm run validate:question-batches
-      - name: Install Firebase Admin SDK
-        run: npm install --no-save --package-lock=false firebase-admin@^13
-      - name: Stage generated questions in Firestore draft collection
-        env:
-          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
-          FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
-          GITHUB_SHA: ${{ github.sha }}
-        run: node scripts/stage-question-batches-to-firestore.mjs
