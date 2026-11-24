@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { CSSProperties } from "react";
-import { collection, doc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
+import { collection, doc, getDocs, query, where, serverTimestamp, setDoc } from "firebase/firestore";
 import { RefreshCw, RotateCcw, AlertTriangle } from "lucide-react";
 import { db } from "./firebase";
 import { useAuth } from "./AuthContext";
@@ -30,7 +30,7 @@ export default function QuestionGenerationTracker() {
     try {
       const [draftSnap, questionSnap, controlSnap] = await Promise.all([
         getDocs(collection(db, "questionDrafts")),
-        getDocs(collection(db, "questions")),
+        getDocs(query(collection(db, "questions"), where("status", "==", "published"))),
         getDocs(collection(db, "questionGenerationControl"))
       ]);
       const drafts = draftSnap.docs.map(d => ({ id: d.id, ...d.data() } as Row))
