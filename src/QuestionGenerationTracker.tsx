@@ -66,7 +66,7 @@ export default function QuestionGenerationTracker() {
 
   const reinitialize = async () => {
     if (!db || !admin || !user || busy) return;
-    const confirmed = window.confirm("Reinitialize the NGN generation tracker? This records a restart request and resets tracker-control metadata. It does not launch the ChatGPT automation or delete generated questions.");
+    const confirmed = window.confirm("Record a restart request for the NGN automation? This does not launch the ChatGPT automation or delete generated questions.");
     if (!confirmed) return;
     setBusy(true); setError(""); setNotice("");
     try {
