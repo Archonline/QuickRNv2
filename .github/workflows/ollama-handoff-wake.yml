@@ -1,0 +1,76 @@
+name: Ollama Handoff Wake-Up
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/automation-handoff/ACTIVE_HANDOFF.txt"
+      - "docs/automation-handoff/TEST_HANDOFF.txt"
+  workflow_dispatch:
+    inputs:
+      handoff_file:
+        description: Handoff file to process
+        required: true
+        type: choice
+        options:
+          - docs/automation-handoff/TEST_HANDOFF.txt
+          - docs/automation-handoff/ACTIVE_HANDOFF.txt
+        default: docs/automation-handoff/TEST_HANDOFF.txt
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ollama-handoff-wake
+  cancel-in-progress: false
+
+jobs:
+  prepare-next-prompt:
+    name: Read handoff with local Ollama and prepare ChatGPT prompt
+    runs-on: [self-hosted, Windows, X64]
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve handoff file
+        id: handoff
+        shell: pwsh
+        env:
+          REQUESTED_HANDOFF: ${{ inputs.handoff_file }}
+        run: |
+          $handoff = $env:REQUESTED_HANDOFF
+          if ([string]::IsNullOrWhiteSpace($handoff)) {
+            $changed = @(git diff-tree --no-commit-id --name-only -r $env:GITHUB_SHA)
+            $handoff = $changed | Where-Object {
+              $_ -in @(
+                "docs/automation-handoff/ACTIVE_HANDOFF.txt",
+                "docs/automation-handoff/TEST_HANDOFF.txt"
+              )
+            } | Select-Object -First 1
+          }
+          if ([string]::IsNullOrWhiteSpace($handoff)) {
+            throw "No supported handoff file was identified for this run."
+          }
+          "path=$handoff" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          Write-Host "Selected handoff: $handoff"
+
+      - name: Read handoff using local Ollama and prepare prompt
+        shell: pwsh
+        run: |
+          ./scripts/ollama-handoff-wake.ps1 -HandoffPath "${{ steps.handoff.outputs.path }}" -Model "qwen2.5:3b"
+
+      - name: Commit prepared prompt to repository
+        shell: pwsh
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- outbox/TEST_NEXT_BATCH_PROMPT.txt outbox/CHATGPT_NEXT_BATCH_PROMPT.txt
+          if (git diff --cached --quiet) {
+            Write-Host "No prompt changes to commit."
+            exit 0
+          }
+          git commit -m "Prepare ChatGPT prompt from QuickRN handoff"
+          git push origin "HEAD:$env:GITHUB_REF_NAME"
