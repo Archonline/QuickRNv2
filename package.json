@@ -10,7 +10,8 @@
     "test": "node --test",
     "audit:question-bank": "node scripts/question-bank-authoring-audit.mjs && node scripts/audit-generated-core.mjs",
     "test:e2e": "playwright test",
-    "validate:question-batches": "node scripts/validate-question-batches.mjs"
+    "validate:question-batches": "node scripts/validate-question-batches.mjs",
+    "validate:ngn-archive": "node scripts/validate-ngn-archive.mjs"
   },
   "dependencies": {
     "firebase": "^11.6.0",
