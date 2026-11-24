@@ -25,5 +25,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Validate generated question batches
+      - name: Validate existing core question batches
         run: npm run validate:question-batches
+      - name: Validate NGN GitHub archive and manifest
+        run: npm run validate:ngn-archive
