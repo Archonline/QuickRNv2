@@ -1,0 +1,11 @@
+QUICKRN HANDOFF PIPELINE TEST — NOT A PRODUCTION GENERATION REQUEST
+This is a system test only. Do not generate clinical questions and do not change production question IDs.
+Expected handoff:
+Project: QuickRNv2
+Test batch marker: TEST-001
+Test item marker: TEST-ID-001
+Configured batch size: 1
+Project target: 300
+Previous-chat reference: TEST-ONLY-NO-CONVERSATION-REFERENCE
+Ollama successfully read the handoff and returned HANDOFF_READ_OK.
+GitHub Actions prepared this deterministic test prompt.
