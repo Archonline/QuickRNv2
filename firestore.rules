@@ -120,6 +120,11 @@ service cloud.firestore {
       allow read, create, update, delete: if isWebmaster();
     }
 
+    match /questionGenerationControl/{controlId} {
+      allow read, create, update: if isWebmaster();
+      allow delete: if false;
+    }
+
     match /webmasterAuditLog/{entryId} {
       allow read: if isWebmaster();
       allow create: if isWebmaster();
