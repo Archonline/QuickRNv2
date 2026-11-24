@@ -14,14 +14,15 @@ Create 300 new original NGN NCLEX-RN questions for QuickRNv2. Work in batches of
 - These 30 are drafts, not independently clinically approved.
 - They are not yet counted by the Webmaster Generation Tracker until imported into Firestore with the project tag.
 
-## Required five-stage quality process
-1. Clinical construction: realistic patient context, relevant findings, defensible nursing problem.
-2. NCLEX alignment: client-needs relevance and clinical-judgment demand.
-3. Answer validation: independently check answer key and scoring logic.
-4. Rationale audit: explain the correct response and why alternatives are wrong.
-5. Compatibility and duplication audit: validate QuickRN question schema, scoring, unique IDs, and duplicates against available archives.
+## Integrated per-question production process (current standard)
+Do not generate a large unchecked batch and then repeat a separate batch-wide audit/fix cycle. Each item must complete this loop during generation before the next item is started:
+1. Construct the clinical scenario and item directly to QuickRN schema and the intended NGN format.
+2. Immediately audit clinical plausibility/safety, NCLEX-RN alignment, answer-key defensibility, distractors, scoring, rationale, schema compatibility, and duplication against available prior items/archive.
+3. Fix every detected defect immediately in the same working pass.
+4. Re-audit the correction and perform a final whole-item consistency check.
+5. Mark FINALIZED-DRAFT only if all checks pass. Otherwise mark BLOCKED/REJECTED and explain the unresolved issue.
 
-Failing an audit means revise or reject; never silently pass. Clearly distinguish structural screening from clinical validation. Qualified independent clinical review is required before approval/publication.
+This is one integrated production pass per item, not a deferred second batch. Keep a concise audit/fix note per item. Do not count blocked/rejected items toward the 300 finalized-draft target. This automated/content pass is not independent clinical approval; qualified independent clinical review remains mandatory before approval/publication.
 
 ## Planned format distribution
 - 120 unfolding case-study items
@@ -57,4 +58,4 @@ Rotate med-surg, cardiovascular, respiratory, neurologic, endocrine, renal, mate
 - Firestore rules restrict control records to users with admin:true.
 
 ## Resume instruction for a new ChatGPT window
-Continue from QR-NGN-031. Read this handoff first, inspect current tracker/archive records if available, reconcile counts and IDs, then generate exactly one next batch of up to 25 drafts. Maintain actual format counts, run the five-stage audit, clearly mark unresolved clinical checks, and do not claim publication or approval.
+Continue from QR-NGN-031. Read this handoff first, inspect current tracker/archive records if available, reconcile counts and IDs, then generate exactly one next batch of up to 25 items. Use the integrated per-question loop: generate -> immediate audit -> fix -> re-audit -> FINALIZED-DRAFT or BLOCKED. Do not defer a batch-wide audit/fix cycle. Maintain actual format counts, clearly mark unresolved clinical checks, and do not claim publication or independent clinical approval.
