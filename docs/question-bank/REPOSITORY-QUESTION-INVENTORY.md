@@ -51,7 +51,7 @@ Do not equate runtime `status: published` with clinical approval.
 
 | Review classification | Count |
 |---|---:|
-| Explicitly marked not clinically verified / draft | 564 |
+| Explicitly marked not clinically verified / draft | 600 |
 | Missing item-level review metadata in case-study screens | 36 |
 | Confirmed clinically verified in inspected source | 0 |
 | **Total runtime bank** | **600** |
