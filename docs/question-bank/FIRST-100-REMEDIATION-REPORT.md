@@ -27,7 +27,7 @@ Existing IDs and runtime order are preserved.
 - Replaced generic summary rationales with item-specific explanations derived from the keyed option rationales.
 - Corrected `QRN-000473` so the answer key includes A, B, C, and E, consistent with the option-level rationales.
 - Updated `QRN-000489` to the 2024 DKA potassium threshold of 3.5 mmol/L and added the 2024 consensus reference.
-- Marked the 64 items editorially reviewed while retaining `not_clinically_verified` status and existing runtime publication state.
+- Marked the 64 items `editorially_reviewed`; this is not clinical verification. Their existing runtime publication state was preserved, and no clinical approval was recorded.
 
 ## Validation gates
 
