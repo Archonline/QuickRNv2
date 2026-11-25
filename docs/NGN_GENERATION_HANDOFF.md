@@ -1,6 +1,6 @@
 # QuickRNv2 NGN 300-Question Generation Handoff
 
-Last updated: 2026-11-24 (Asia/Manila)
+Last updated: 2026-11-25 (Asia/Manila)
 
 ## Goal
 Create 300 new original NGN NCLEX-RN questions for QuickRNv2. Work in batches of 25 (12 planned batches). Do not publish drafts automatically.
@@ -8,11 +8,12 @@ Create 300 new original NGN NCLEX-RN questions for QuickRNv2. Work in batches of
 ## Current generation state
 - ChatGPT-authored draft items recorded in project conversation: 30.
 - IDs already used: QR-NGN-001 through QR-NGN-030.
-- Next available ID: QR-NGN-031.
-- Remaining to target: 270.
+- QR-NGN-031 is only the expected next candidate ID; it is not verified as assignable while the ID registry remains unreconciled.
+- Verified archived FINALIZED-DRAFT count: 0.
+- Remaining to target based on the GitHub source-of-truth manifest: 300.
 - Batch 001 was only 5 items; Batch 002 was 25 items. Do not misrepresent the first batch as a complete 25-item batch.
 - These 30 are drafts, not independently clinically approved.
-- They are not currently archived in the GitHub NGN project folder and therefore are not counted by the Webmaster Generation Tracker. Recover and reconcile them into the GitHub manifest before assigning further IDs.
+- They are not currently archived in the GitHub NGN project folder and are not counted. Their full question content was not recoverable during the 2026-11-25 run. Keep IDs 001-030 reserved; do not count them or assign new IDs until the registry is reconciled.
 
 ## Integrated per-question production process (current standard)
 Do not generate a large unchecked batch and then repeat a separate batch-wide audit/fix cycle. Each item must complete this loop during generation before the next item is started:
@@ -44,18 +45,31 @@ Rotate med-surg, cardiovascular, respiratory, neurologic, endocrine, renal, mate
 - Current schedule: daily, starting 2026-11-25 at approximately 08:00 Asia/Manila.
 - The ChatGPT automation scheduler supports daily/weekly/monthly/one-time schedules, not hourly recurrence.
 - Do not claim hourly scheduling has been configured.
-- A manual run can be requested with the automation's Run now action; this runs one batch, not a self-chaining 12-batch loop.
+- The 2026-11-25 run was blocked before generation and the automation was disabled pending reconciliation.
+- Do not assume a manual run or daily schedule can bypass the unresolved ID/content/schema gates.
 - If previous batch/archive context is missing, do not guess IDs or claim duplicate checking.
 
-## Webmaster tracker
+## Webmaster tracker and archive (verified 2026-11-25)
 - Component: src/QuestionGenerationTracker.tsx
 - Entry point: Webmaster tools > Question Bank > NGN Generation Tracker
-- Project tag: quickrn-ngn-300
-- Firestore collections: questionDrafts, questions, questionGenerationControl/state
-- Draft import through Webmaster tools tags incoming questions with generationProject=quickrn-ngn-300 and a batchId.
-- Only tagged records are included in the 300-item tracker.
-- Reinitialize tracker button records a restart request only. It does NOT invoke or restart the separate ChatGPT automation and does not delete questions.
-- Firestore rules restrict control records to users with admin:true.
+- Current source of truth: committed GitHub files and `src/question-batches/ngn/manifest.json`.
+- The current tracker imports the GitHub manifest and explicitly does not read or write Firestore. Earlier notes about Firestore-backed tracker counts are stale and must not be relied upon.
+- The current `src/question-batches/ngn/` directory contains only `manifest.json`; no `ngn-batch-NNN.json` files were present.
+- The manifest reports `questions: []`, `idRegistryStatus: unreconciled`, `nextQuestionId: null`, and 30 legacy candidates (QR-NGN-001 through QR-NGN-030) with status `reported-but-not-archived` and IDs reserved pending recovery/reconciliation.
+- A repository code search for `QR-NGN-` returned no matching archived question records.
+- The previous 30 question contents could not be recovered from the accessible prior-conversation context during the 2026-11-25 run. Cross-batch clinical-scenario/stem/learning-objective duplicate checking against those 30 items is therefore unavailable.
+- Schema-contract discrepancy: `docs/question-bank/quickrn-question-schema.json` specifies IDs `QRN-000001` and batch IDs `QRN-BATCH-NNN`, while the NGN archive README/validator requires `QR-NGN-NNN`, `ngn-batch-NNN`, `batchId`, `status`, `itemType`, `topic`, `prompt`, and `rationale`. A project-specific canonical NGN archive schema/mapping must be established before claiming schema compatibility.
+- The 2026-11-25 run generated no questions, assigned no IDs, and made no batch/manifest writes.
+- Reinitialize tracker controls, if present in older UI code, are not a substitute for archive reconciliation.
+
+## 2026-11-25 run checkpoint and resume gate
+- Today's finalized-draft output: 0.
+- Today's blocked/rejected question records: 0 (generation did not start; this is a project-level blocker, not 25 blocked items).
+- Verified cumulative FINALIZED-DRAFT count in the GitHub manifest: 0/300; remaining: 300.
+- Actual archived format counts: 0 for all seven project target formats. Deficits remain: case study 120, bow-tie 45, matrix/grid 35, trend 30, highlight text 25, dropdown cloze/rationale 25, extended multiple response/Select N 20.
+- Completed internal sub-batches: 0 of 12. Work stopped before Batch 003 because the prior 30 item contents/registry and the project-specific schema contract could not be reconciled.
+- No clinical content, GitHub batch file, manifest entry, Firestore record, or live-bank item was created or changed in this run.
+- Resume only after the prior 30 item contents are recovered and reconciled, or an authorized decision explicitly accepts reserving 001-030 while proceeding from 031 with cross-batch duplicate checking unavailable; also resolve the ID/schema mapping. Until then, do not assign IDs or generate archive-bound items.
 
 ## Resume instruction for a new ChatGPT window
-Continue from QR-NGN-031. Read this handoff first, inspect current tracker/archive records if available, reconcile counts and IDs, then generate exactly one next batch of up to 25 items. Use the integrated per-question loop: generate -> immediate audit -> fix -> re-audit -> FINALIZED-DRAFT or BLOCKED. Do not defer a batch-wide audit/fix cycle. Maintain actual format counts, clearly mark unresolved clinical checks, and do not claim publication or independent clinical approval.
+Read this handoff and inspect the current GitHub manifest and archive first. Do not assume QR-NGN-031 is assignable while `idRegistryStatus` is `unreconciled` and `nextQuestionId` is null. Resolve the 30 reserved historical candidates and the schema-contract discrepancy before generation. Once unblocked, generate up to 25 items per batch using the integrated per-question loop: construct -> immediate audit -> fix -> re-audit -> FINALIZED-DRAFT or BLOCKED. Keep the items in draft status, report actual counts, and never claim independent clinical approval or publication.
