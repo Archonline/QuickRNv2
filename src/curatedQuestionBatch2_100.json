@@ -5390,7 +5390,7 @@
       "estimated_time_seconds": 90,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -5470,7 +5470,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -5506,7 +5506,7 @@
           "Draw peak and trough levels around third dose"
         ]
       },
-      "stem": "A client receiving gentamicin reports new tinnitus and difficulty hearing high-pitched sounds. Creatinine has increased from 0.8 to 1.6 mg/dL. Which actions are appropriate? Select all that apply.",
+      "stem": "A client receiving gentamicin reports new tinnitus and difficulty hearing high-pitched sounds. Creatinine has increased from 0.9 to 1.9 mg/dL. Which actions are appropriate? Select all that apply.",
       "interaction": {
         "options": [
           {
@@ -5558,7 +5558,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -5572,12 +5572,12 @@
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "45-year-old female 2 hours post-abdominal hysterectomy receiving morphine via patient-controlled analgesia (PCA).",
-        "assessment": "Unarousable to sternal rub, pinpoint pupils (1 mm), snoring respirations.",
+        "assessment": "Initially unarousable to sternal rub with pinpoint pupils and snoring respirations. After naloxone 0.4 mg IV, the client awakens and respiratory rate improves to 14/min; close monitoring continues.",
         "vital_signs": {
-          "BP": "96/58 mmHg",
-          "HR": "58 bpm",
-          "RR": "6 breaths/min",
-          "SpO2": "84% on room air",
+          "BP": "108/66 mmHg",
+          "HR": "72 bpm",
+          "RR": "14 breaths/min",
+          "SpO2": "95% on 2 L nasal cannula",
           "Temp": "36.5 C"
         },
         "laboratory_results": {
@@ -5587,11 +5587,12 @@
           "None": "Acute opioid-induced respiratory depression"
         },
         "medications": [
-          "Morphine PCA 1 mg every 10 minutes",
-          "Naloxone 0.4 mg IV PRN respiratory depression"
+          "Morphine PCA 1 mg every 10 minutes (held after event)",
+          "Naloxone 0.4 mg IV administered for respiratory depression"
         ],
         "provider_orders": [
-          "PCA safety protocol"
+          "Hold PCA pending prescriber review",
+          "Continuous respiratory and sedation monitoring after naloxone; repeat naloxone if indicated by protocol"
         ]
       },
       "stem": "After naloxone reverses opioid-induced respiratory depression, the client becomes alert and respiratory rate improves. Why must the nurse continue close respiratory and sedation monitoring?",
@@ -5639,7 +5640,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -5669,11 +5670,11 @@
           "ECG": "Flattened T waves with prominent U waves"
         },
         "medications": [
-          "Potassium chloride 40 mEq in 1,000 mL 0.9% Sodium Chloride IV at 125 mL/hr"
+          "Potassium chloride 10 mEq in 100 mL 0.9% sodium chloride IV over 1 hour via infusion pump"
         ],
         "provider_orders": [
-          "Verify urine output >= 30 mL/hr prior to potassium infusion",
-          "Administer via volumetric infusion pump"
+          "Verify urine output is at least 30 mL/hr before potassium replacement",
+          "Administer the diluted infusion using a volumetric infusion pump; never administer potassium by IV push"
         ]
       },
       "stem": "The nurse receives an order for potassium chloride 10 mEq IV for a client with potassium 2.9 mEq/L. Which safety principle is essential?",
@@ -5720,7 +5721,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -5801,7 +5802,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -5858,7 +5859,7 @@
           },
           {
             "id": "E",
-            "text": "Discuss pregnancy planning and contraception because phenytoin has important fetal and drug-interaction risks"
+            "text": "Tell the prescriber and pharmacist about all prescription medicines, over-the-counter products, and supplements because phenytoin has important drug interactions."
           }
         ]
       },
@@ -5878,7 +5879,7 @@
         "B": "Phenytoin can cause gingival hyperplasia, making oral care important.",
         "C": "Rash may signal a serious reaction, and blood dyscrasias can occur; warning signs require prompt review.",
         "D": "Seizure control does not mean the disorder is cured; stopping suddenly is unsafe.",
-        "E": "Phenytoin is teratogenic and interacts with hormonal contraceptives; individualized counseling is important."
+        "E": "Phenytoin has clinically important interactions with many prescription medicines and supplements; medication reconciliation is relevant for every client and does not depend on pregnancy potential."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -5890,7 +5891,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -5974,7 +5975,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -5988,7 +5989,7 @@
       "question_type": "multiple_choice",
       "clinical_scenario": {
         "patient_profile": "51-year-old female receiving continuous total parenteral nutrition (TPN) via a right subclavian central venous catheter for severe Crohn enterocutaneous fistula.",
-        "assessment": "Alert, central line dressing clean and dry; nurse notices the current TPN bag has 15 mL remaining and the new bag from pharmacy is delayed by 45 minutes.",
+        "assessment": "Alert, central line dressing clean and dry; the current TPN bag has 15 mL remaining and the replacement bag from pharmacy is delayed by 90 minutes. A separate regular-insulin infusion is running at 2 units/hr under the glucose-management protocol.",
         "vital_signs": {
           "BP": "118/72 mmHg",
           "HR": "80 bpm",
@@ -6003,11 +6004,13 @@
           "Chest X-ray": "Catheter tip at cavoatrial junction"
         },
         "medications": [
-          "TPN (20% dextrose, amino acids, electrolytes) infusing at 85 mL/hr"
+          "TPN (20% dextrose, amino acids, electrolytes) infusing at 85 mL/hr",
+          "Regular insulin IV infusion at 2 units/hr per protocol"
         ],
         "provider_orders": [
           "Point-of-care blood glucose every 6 hours",
-          "Change TPN bag and tubing every 24 hours"
+          "Change TPN bag and tubing every 24 hours",
+          "If TPN is interrupted, begin the prescribed dextrose-containing bridge at 85 mL/hr and adjust the separate insulin infusion according to protocol"
         ]
       },
       "stem": "A client receiving continuous central-line TPN is told that the replacement bag will be delayed by 90 minutes. The current bag is nearly empty. Which action should the nurse take?",
@@ -6015,7 +6018,7 @@
         "options": [
           {
             "id": "A",
-            "text": "Follow the prescribed interruption protocol and begin the ordered dextrose-containing solution at the TPN rate while notifying the appropriate team"
+            "text": "Start the prescribed dextrose-containing bridge at the ordered rate, follow the protocol for the separate insulin infusion, and notify the appropriate team."
           },
           {
             "id": "B",
@@ -6040,10 +6043,10 @@
       },
       "rationales": {
         "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
-        "A": "Abrupt interruption of high-dextrose TPN can cause hypoglycemia; a prescribed dextrose solution may be used as a bridge with monitoring.",
-        "B": "Leaving the client without carbohydrate can precipitate hypoglycemia; central-line handling must follow protocol.",
-        "C": "Clients receiving continuous TPN may become hypoglycemic if it is stopped abruptly.",
-        "D": "Increasing the rate risks hyperglycemia and fluid/electrolyte complications and does not safely bridge the delay."
+        "A": "The client has a separate insulin infusion that may continue to lower glucose when the dextrose source is interrupted. Use the prescribed dextrose bridge and follow the insulin-interruption protocol with glucose monitoring.",
+        "B": "Leaving the client without the prescribed carbohydrate bridge while insulin continues can cause hypoglycemia; central-line handling must also follow policy.",
+        "C": "Stopping all IV fluids does not address the ongoing insulin effect or the risk of hypoglycemia.",
+        "D": "Increasing the TPN rate risks hyperglycemia and fluid complications and does not safely bridge the delay."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -6055,7 +6058,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -6137,7 +6140,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -6155,8 +6158,8 @@
         "vital_signs": {
           "BP": "142/88 mmHg",
           "HR": "78 bpm",
-          "RR": "10 breaths/min",
-          "SpO2": "93% on room air",
+          "RR": "8 breaths/min",
+          "SpO2": "89% on room air",
           "Temp": "36.8 C"
         },
         "laboratory_results": {
@@ -6218,7 +6221,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -6298,7 +6301,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -6333,12 +6336,12 @@
           "Continuous electronic fetal monitoring"
         ]
       },
-      "stem": "The fetal monitor shows recurrent abrupt decreases in fetal heart rate from 145 to 90/min, with rapid return to baseline. The client is 6 cm dilated and membranes ruptured 20 minutes ago. Which response is most appropriate?",
+      "stem": "The fetal monitor shows recurrent abrupt decreases in fetal heart rate from 140 to 95/min, with rapid return to baseline. The client is 6 cm dilated and membranes ruptured 20 minutes ago. Which response is most appropriate?",
       "interaction": {
         "options": [
           {
             "id": "A",
-            "text": "Reposition the client, assess for cord prolapse, and evaluate the tracing and fetal recovery"
+            "text": "Reposition the client laterally, assess for cord prolapse and fetal recovery, and promptly notify the obstetric clinician; address oxytocin or other reversible contributors according to the tracing and protocol."
           },
           {
             "id": "B",
@@ -6363,7 +6366,7 @@
       },
       "rationales": {
         "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
-        "A": "Abrupt variable decelerations suggest cord compression; maternal repositioning and assessment for prolapse or other reversible causes are appropriate first steps.",
+        "A": "Abrupt V-shaped decelerations are consistent with variable decelerations, often related to cord compression. Reposition, assess the tracing and for cord prolapse after membrane rupture, and escalate persistent or recurrent abnormalities; manage oxytocin according to the fetal tracing and uterine activity.",
         "B": "Increasing uterine activity can worsen fetal stress and is not appropriate with recurrent decelerations.",
         "C": "Immediate operative birth may be needed if the tracing remains nonreassuring, but initial assessment and intrauterine resuscitative measures are indicated.",
         "D": "Routine oxygen is not recommended for a normoxic mother; supine positioning may worsen uteroplacental perfusion."
@@ -6378,7 +6381,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -6415,7 +6418,7 @@
           "Postpartum hemorrhage protocol"
         ]
       },
-      "stem": "Forty-five minutes after birth, the client has heavy vaginal bleeding and a boggy uterus displaced to the right. Blood pressure is 92/58 mmHg and heart rate is 118/min. Which action should the nurse take first?",
+      "stem": "Forty-five minutes after birth, the client has heavy vaginal bleeding and a boggy uterus displaced to the right. Blood pressure is 94/56 mmHg and heart rate is 122/min. Which action should the nurse take first?",
       "interaction": {
         "options": [
           {
@@ -6459,7 +6462,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -6555,7 +6558,7 @@
       "estimated_time_seconds": 85,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -6636,7 +6639,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -6715,7 +6718,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -6764,7 +6767,7 @@
           },
           {
             "id": "C",
-            "text": "Remove eye protection during feeding and care to assess the eyes and support interaction"
+            "text": "Briefly remove eye protection during feeding and eye care while the infant is directly supervised, then reapply it promptly."
           },
           {
             "id": "D",
@@ -6790,7 +6793,7 @@
         "summary": "The best answer is supported by the client's specific cues, immediate risks, and safe nursing priorities.",
         "A": "Adequate skin exposure improves treatment while eye protection is used according to device guidance.",
         "B": "Phototherapy increases insensible water loss; temperature, hydration, and output require monitoring.",
-        "C": "Brief removal during care allows eye assessment and bonding while maintaining safe protection during exposure.",
+        "C": "Eye protection may be removed briefly for feeding and eye care under direct supervision; it should be reapplied promptly when phototherapy resumes.",
         "D": "Oils and lotions may alter heat absorption or cause skin injury and should not be applied unless specifically directed.",
         "E": "Correct equipment setup and serial bilirubin measurement ensure effective and safe therapy."
       },
@@ -6804,7 +6807,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -6887,7 +6890,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -6966,7 +6969,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -7047,7 +7050,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -7140,7 +7143,7 @@
       "estimated_time_seconds": 85,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -7179,7 +7182,7 @@
           "Correct fluid and electrolyte imbalances prior to laparoscopic pyloromyotomy"
         ]
       },
-      "stem": "An infant with pyloric stenosis has persistent projectile vomiting, chloride 88 mEq/L, potassium 3.0 mEq/L, and metabolic alkalosis. Why should surgery be delayed until fluid and electrolyte abnormalities are corrected?",
+      "stem": "An infant with pyloric stenosis has persistent projectile vomiting, chloride 86 mEq/L, potassium 3.1 mEq/L, and metabolic alkalosis. Why should surgery be delayed until fluid and electrolyte abnormalities are corrected?",
       "interaction": {
         "options": [
           {
@@ -7223,7 +7226,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -7303,7 +7306,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -7374,7 +7377,7 @@
       "estimated_time_seconds": 90,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -7454,7 +7457,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -7540,7 +7543,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -7619,7 +7622,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -7700,7 +7703,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -7785,7 +7788,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -7868,7 +7871,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -7947,7 +7950,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -8023,7 +8026,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -8099,7 +8102,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -8188,7 +8191,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -8204,7 +8207,7 @@
         "patient_profile": "Emergency department nurse performing START (Simple Triage and Rapid Treatment) mass-casualty triage following a multi-vehicle highway collision.",
         "assessment": "Four victims arrive simultaneously and are evaluated using Respirations, Perfusion, and Mental Status (RPM).",
         "vital_signs": {
-          "Summary": "Victim 1: RR 34, radial pulse present, follows commands; Victim 2: Apneic even after head-tilt/jaw-thrust; Victim 3: RR 18, capillary refill 1 sec, obeys commands, closed radius fracture; Victim 4: RR 20, capillary refill 2 sec, obeys commands, bilateral femur fractures unable to walk"
+          "Summary": "Victim 1: RR 34/min, radial pulse present, follows commands; Victim 2: remains apneic after head-tilt/jaw-thrust; Victim 3: ambulatory and walked to triage, RR 18/min, capillary refill 1 second, obeys commands, closed radius fracture; Victim 4: unable to walk because of bilateral femur fractures, RR 20/min, capillary refill 2 seconds, follows commands."
         },
         "laboratory_results": {
           "None": "Field triage"
@@ -8260,7 +8263,7 @@
         "summary": "START uses simple physiologic criteria to allocate resources rapidly. A respiratory rate above 30/min is red; apnea persisting after airway repositioning is black; ambulatory victims are green; nonambulatory victims with normal respirations, perfusion, and mental status are yellow.",
         "V1": "Red: respiratory rate is 34/min, exceeding the START threshold of 30/min.",
         "V2": "Black: the victim remains apneic after airway repositioning.",
-        "V3": "Green: the victim can walk and has reassuring respiratory, perfusion, and mental-status findings.",
+        "V3": "Green: the victim is ambulatory and has reassuring respiratory, perfusion, and mental-status findings.",
         "V4": "Yellow: the victim cannot walk but has RR below 30/min, capillary refill within 2 seconds, and follows commands."
       },
       "clinical_judgment": "prioritize_hypotheses",
@@ -8273,7 +8276,7 @@
       "estimated_time_seconds": 100,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
