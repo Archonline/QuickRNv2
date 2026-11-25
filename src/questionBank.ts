@@ -854,6 +854,7 @@ const caseOptionRationales:string[][]=[
  ["Worsening consciousness, inability to protect the airway, or failing gas exchange despite support requires preparation for invasive ventilation.","Improving alertness and ABGs indicate response, not need for intubation.","Reduced accessory-muscle use suggests reduced work of breathing.","Saturation within target with improving ventilation is reassuring and does not alone require invasive support."],
  ["Improving alertness, work of breathing, pH, and PaCO2 together indicate improved ventilation and response to treatment.","Rising PaCO2 with worsening somnolence indicates progressive ventilatory failure.","Persistent hypoxemia and increasing respiratory effort indicate inadequate response.","New hypotension and confusion suggest deterioration and possible systemic compromise."]
 ];
+for(let c=0;c<cases.length;c++){for(let j=0;j<6;j++){
  const q=all[c*6+j],f=caseSpecificFollowups[c]?.[j],file=cases[c],target=caseAnswerPositionOrder[c*6+j];
  if(!f)throw new Error(`Missing case-specific follow-up ${j+1} for ${file.name}`);
  if(q){
