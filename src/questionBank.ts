@@ -809,12 +809,12 @@ function make(b: B, i: number, global: number): Question {
 const all:Question[]=[];for(const b of B){for(let i=0;i<b.count;i++)all.push(make(b,i,all.length));}
 const caseAnswerPositionOrder=[2,0,1,0,2,3,1,1,1,1,3,2,2,3,3,2,3,2,3,2,1,2,3,1,3,0,0,1,1,0,0,2,3,0,0,0];
 const caseReferenceByIndex=[
- "AHA/ASA 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke (doi:10.1161/STR.0000000000000513)",
- "ACOG Clinical Practice Update: Update on Criteria for Suspected Diagnosis of Intraamniotic Infection (2024; doi:10.1097/AOG.0000000000005593)",
- "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (2024; doi:10.2337/dci24-0032)",
- "AAOS guidance on acute compartment syndrome; interpret pressure measurements with clinical findings",
- "ESC/PERT guidance on high-risk pulmonary embolism and systemic thrombolysis bleeding risk",
- "GOLD 2025 Report and acute COPD oxygen/ventilatory-support guidance"
+ "AHA/ASA 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke, https://doi.org/10.1161/STR.0000000000000513",
+ "ACOG Clinical Practice Update: Criteria for Suspected Diagnosis of Intraamniotic Infection (2024), https://doi.org/10.1097/AOG.0000000000005593",
+ "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (2024), https://doi.org/10.2337/dci24-0032",
+ "AAOS Clinical Practice Guideline: Management of Acute Compartment Syndrome (2025), https://www.aaos.org/globalassets/quality-and-practice-resources/acute-compartment-syndrome/2025-acs-rapid-update/acs-cpg-2025.pdf",
+ "AHA/ACC 2026 Guideline for Evaluation and Management of Acute Pulmonary Embolism in Adults, https://doi.org/10.1016/j.jacc.2025.11.005",
+ "Chronic Obstructive Pulmonary Disease Clinical Care Standard, oxygen and ventilatory support, https://www.safetyandquality.gov.au/standards/clinical-care-standards/chronic-obstructive-pulmonary-disease-clinical-care-standard"
 ];
 for(let c=0;c<cases.length;c++){for(let j=0;j<6;j++){
  const q=all[c*6+j],f=caseSpecificFollowups[c]?.[j],file=cases[c],target=caseAnswerPositionOrder[c*6+j];
