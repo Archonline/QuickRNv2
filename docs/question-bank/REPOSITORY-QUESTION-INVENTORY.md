@@ -42,8 +42,8 @@ All 364 replacement entries are integrated into the 500-item core bank by stable
 
 Do not equate runtime `status: published` with clinical approval.
 
-- The 364 replacement items are authored as development drafts with `reviewStatus: generated`, `reviewMetadata.status: not-clinically-verified`, and `publicationStatus: draft`. The core assembly currently maps these items to runtime `status: published` and sets `auditRequired: true`. This is a learner-accessibility/runtime status, not evidence of clinical approval.
-- The 100 curated traditional items are split by editorial status: the first 64 (`QRN-000447`–`QRN-000510`) now carry `review_metadata.status: editorially_reviewed`; the remaining 36 retain `not_clinically_verified`. Editorial review is not clinical verification. All 100 remain runtime-published.
+- The 364 replacement items remain development drafts with `publicationStatus: draft`; the core assembly maps them to runtime `status: published` and sets `auditRequired: true`. The first 64 replacements (`qrn-0137`–`qrn-0200`) now carry `reviewStatus: editorially-reviewed` and `reviewMetadata.status: editorially-reviewed`; the remaining 300 retain `generated` / `not-clinically-verified`. Editorial review is not clinical verification, and learner-accessibility/runtime publication is not evidence of clinical approval.
+- All 100 curated traditional items (`QRN-000447`–`QRN-000546`) now carry `review_metadata.status: editorially_reviewed`. The first 64 were reviewed during the first-100 remediation; the remaining 36 were reviewed and corrected during the second-100 remediation. Editorial review is not clinical verification. All 100 remain runtime-published.
 - The 100 NGN extension items are mapped to runtime `status: published`, while their generated records carry `reviewStatus: generated` and `reviewMetadata.status: not-clinically-verified`.
 - The 36 unfolding case-study screens now carry `reviewStatus: editorially-reviewed` and item-level option rationales, with source pointers for the relevant clinical decisions. They remain runtime-published and are not clinically approved.
 
@@ -86,4 +86,4 @@ The 30 historical candidates (QR-NGN-001–QR-NGN-030) are not present as recove
 
 ## Next recommended work
 
-The highest-value next task is to continue the item-level release audit beyond the first 100, beginning with the 244-entry third rewrite tranche. Source inspection already shows some entries with clinical scenario mismatches; they must be audited and corrected before being described as clinically approved. Keep the NGN 300-project manifest as a separate count.
+The next item-level release audit should cover runtime positions 201–300 (stable core IDs `qrn-0201`–`qrn-0300`). Continue to distinguish editorial review from independent clinical verification and keep the NGN 300-project manifest as a separate count.
