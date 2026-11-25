@@ -43,16 +43,17 @@ All 364 replacement entries are integrated into the 500-item core bank by stable
 Do not equate runtime `status: published` with clinical approval.
 
 - The 364 replacement items are authored as development drafts with `reviewStatus: generated`, `reviewMetadata.status: not-clinically-verified`, and `publicationStatus: draft`. The core assembly currently maps these items to runtime `status: published` and sets `auditRequired: true`. This is a learner-accessibility/runtime status, not evidence of clinical approval.
-- The 100 curated traditional items carry `review_metadata.status: not_clinically_verified` in their source JSON. They are mapped to runtime published records, but are not clinically verified by that metadata.
+- The 100 curated traditional items are split by editorial status: the first 64 (`QRN-000447`–`QRN-000510`) now carry `review_metadata.status: editorially_reviewed`; the remaining 36 retain `not_clinically_verified`. Editorial review is not clinical verification. All 100 remain runtime-published.
 - The 100 NGN extension items are mapped to runtime `status: published`, while their generated records carry `reviewStatus: generated` and `reviewMetadata.status: not-clinically-verified`.
-- The 36 unfolding case-study screens have runtime `status: published`, but the current case-screen construction does not attach item-level clinical review metadata. Their clinical approval status is therefore unsubstantiated by the inspected source.
+- The 36 unfolding case-study screens now carry `reviewStatus: generated` and `reviewMetadata.status: not-clinically-verified`, with source pointers for the relevant clinical decisions. They remain runtime-published and are not clinically approved.
 
 ### Conservative review tally
 
 | Review classification | Count |
 |---|---:|
-| Explicitly marked not clinically verified / draft | 600 |
-| Missing item-level review metadata in case-study screens | 36 |
+| Explicitly marked not clinically verified (364 rewrites + 100 NGN extension + 36 curated + 36 case screens) | 536 |
+| Editorially reviewed but not clinically verified (first 64 curated items) | 64 |
+| Missing item-level review metadata | 0 |
 | Confirmed clinically verified in inspected source | 0 |
 | **Total runtime bank** | **600** |
 
@@ -85,4 +86,4 @@ The 30 historical candidates (QR-NGN-001–QR-NGN-030) are not present as recove
 
 ## Next recommended work
 
-The highest-value next task is an item-level release audit of the 364 rewritten core items, starting with the 244-entry third rewrite tranche. Source inspection already shows some entries with clinical scenario mismatches; they must be audited and corrected before being described as clinically approved. In parallel, add explicit review metadata to the 36 case-study screens and keep the NGN 300-project manifest as a separate count.
+The highest-value next task is to continue the item-level release audit beyond the first 100, beginning with the 244-entry third rewrite tranche. Source inspection already shows some entries with clinical scenario mismatches; they must be audited and corrected before being described as clinically approved. Keep the NGN 300-project manifest as a separate count.
