@@ -48,7 +48,7 @@ All 36 now carry `review_metadata.status: editorially_reviewed`. Existing runtim
 - Stable question IDs and runtime order preserved.
 - Curated answer keys, option rationales, and interaction/scoring structures retained through the corrections.
 - Runtime assembly updated to preserve item-level editorial-review metadata rather than resetting reviewed authored replacements to generated status.
-- Automated authoring audit, batch validation, unit tests, browser regression, and production build must pass before technical completion is claimed.
+- GitHub Actions validation completed successfully on the remediation source: [QuickRN checks](https://github.com/Archonline/QuickRNv2/actions/runs/45645393345) passed the authoring audit, question-batch validation, Node test suite, Playwright browser regression, and production build; [Production Build and Browser Regression](https://github.com/Archonline/QuickRNv2/actions/runs/45645393325) also passed the production build, Node test suite, and Chromium browser regression; [Secret scan](https://github.com/Archonline/QuickRNv2/actions/runs/45645397562) passed.
 
 ## Clinical review limitation
 
