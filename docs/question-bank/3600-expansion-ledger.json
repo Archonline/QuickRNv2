@@ -71,7 +71,10 @@
     "priorState": "closed",
     "priorMerged": true,
     "mergeCommit": "7fcdee70467e2665cd6eb6b6ef826cd96e38158c",
-    "followUpDraftRequired": true
+    "followUpDraftRequired": false,
+    "followUpDraftNumber": 18,
+    "followUpDraftUrl": "https://github.com/Archonline/QuickRNv2/pull/18",
+    "followUpDraftState": "open-draft"
   },
   "ci": {
     "commit": "74f1a1a3184d064abba94bdae851ed0912ef4d04",
