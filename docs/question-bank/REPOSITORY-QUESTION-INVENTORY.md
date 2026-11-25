@@ -86,3 +86,16 @@ The 30 historical candidates (QR-NGN-001–QR-NGN-030) are not present as recove
 ## Next recommended work
 
 The highest-value next task is an item-level release audit of the 364 rewritten core items, starting with the 244-entry third rewrite tranche. Source inspection already shows some entries with clinical scenario mismatches; they must be audited and corrected before being described as clinically approved. In parallel, add explicit review metadata to the 36 case-study screens and keep the NGN 300-project manifest as a separate count.
+
+
+## 2026-11-25 item-level audit progress
+
+- Audit tranche: `src/authoredCoreRewriteBatch3.ts`
+- Items inspected this run: 20 (`qrn-0257`–`qrn-0276`)
+- Static triage result: 20 require substantive remediation; 0 passed for clinical release in this triage pass.
+- Common defects: obstetric topics paired with non-obstetric ages/contexts; unrelated laboratory and vital-sign abnormalities; missing pregnancy/postpartum/newborn context; generic stems, options, and rationales that do not test the named topic.
+- Representative IDs: `qrn-0258`, `qrn-0259`, `qrn-0263`, `qrn-0269`, `qrn-0271`.
+- No question content was modified, no learner-history ID was replaced, no clinical review was recorded, and no runtime inventory count changed.
+- Next item-level audit ID: `qrn-0277`; 224 records remain in the 244-item tranche after this first 20-item triage.
+- These flags are not clinical validation. Items remain not clinically verified and must not be represented as approved.
+- The 3,600-specific Webmaster tracker is currently absent; use the interim ledger `3600-expansion-ledger.json` until a dedicated tracker is restored.
