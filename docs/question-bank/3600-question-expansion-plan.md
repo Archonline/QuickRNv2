@@ -1,6 +1,6 @@
 # QuickRN 3,600-Question NCLEX-RN Expansion
 
-**Status:** Phase 1 — baseline reconciliation and expansion architecture  
+**Status:** Phase 1 — baseline reconciliation and expansion architecture; net-new authoring is gated pending item-level baseline audit  
 **Target inventory:** 3,000 core items + 600 Booster items  
 **Working branch:** feat/3600-question-bank-expansion
 
@@ -124,3 +124,23 @@ Every progress report must state:
 - Clinical review status and unresolved blockers.
 
 Never describe generated, unreviewed items as clinically validated or imply endorsement by NCSBN.
+
+
+## 2026-11-25 run checkpoint — baseline audit gate
+
+The feature branch head is `74f1a1a3184d064abba94bdae851ed0912ef4d04` and is identical to `main`. PR #9 has already been merged (merge commit `7fcdee70467e2665cd6eb6b6ef826cd96e38158c`), so it is no longer an open draft and cannot receive further commits as an open PR.
+
+The runtime inventory remains 600 unique IDs (500 core topic-bank + 100 NGN extension). The 364 authored rewrite records are replacements already included in the 500 core positions. They add zero net-new IDs. The current 600-item baseline is credited toward the 3,000 core target; Booster inventory is 0/600. No new question was authored or integrated in this run.
+
+The 3,600-specific Webmaster tracker, `src/QuestionBankAutomationTracker.tsx`, was removed in commit `7c453b58b5dc9b0115afa71d3b29f793b2df541a`. The remaining `src/QuestionGenerationTracker.tsx` is scoped to the separate NGN 300-draft archive and must not be used as the 3,600 tracker. A durable interim ledger is maintained at `docs/question-bank/3600-expansion-ledger.json`.
+
+A static item-level triage inspected the first 20 records in the 244-item third rewrite tranche: `qrn-0257`–`qrn-0276`. All 20 were flagged for substantive remediation due to topic/scenario mismatches, implausible patient demographics, unrelated physiologic findings, missing context, or generic non-discriminating stems/options. Representative examples include:
+- `qrn-0258`: a 7-year-old child described as having umbilical cord prolapse, with an unrelated elevated INR and gross hematuria.
+- `qrn-0259`: a 79-year-old client described as having severe preeclampsia, with hyponatremia and seizure findings but no pregnancy context.
+- `qrn-0263`: a 3-day-old newborn assigned a postpartum-hemorrhage scenario with adult hemodynamic and bleeding findings.
+- `qrn-0269`: a 7-year-old child described as having reduced fetal variability.
+- `qrn-0271`: a 68-year-old client described as having an ectopic pregnancy without reproductive context.
+
+These are static quality flags, not independent clinical validation. The 20 records remain unmodified and not clinically verified; no false review records were created. The next audit ID is `qrn-0277`. Do not add net-new core or Booster items until Phase 1 classifies the existing runtime inventory and resolves the 244-item rewrite tranche's quality defects. The next run should audit the next bounded group of 20 existing records.
+
+Latest CI at `74f1a1a` passed the authoring audit, question-batch validation, unit tests, Chromium regression, production build, and secret scan. Passing automation does not establish clinical correctness.
