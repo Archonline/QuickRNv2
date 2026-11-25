@@ -1,0 +1,108 @@
+{
+  "project": "quickrn-3600",
+  "updatedAt": "2026-11-25",
+  "branch": "feat/3600-question-bank-expansion",
+  "sourceOfTruth": "assembled runtime IDs in src/ngnQuestionBank.ts plus source inventory and this ledger",
+  "targets": {
+    "core": 3000,
+    "booster": 600,
+    "total": 3600
+  },
+  "runtimeInventory": {
+    "uniqueRuntimeIds": 600,
+    "coreTargetCredit": 600,
+    "coreTopicBankSegment": 500,
+    "ngnExtensionSegment": 100,
+    "boosterUniqueIds": 0,
+    "netNewCoreRequired": 2400,
+    "netNewBoosterRequired": 600,
+    "replacementRecordsIntegrated": 364,
+    "replacementRecordsCountAsNetNew": 0
+  },
+  "clinicalReview": {
+    "confirmedClinicallyVerified": 0,
+    "explicitlyNotClinicallyVerifiedOrDraft": 564,
+    "missingItemLevelReviewMetadata": 36,
+    "generatedItemsMustRemainNotClinicallyVerified": true
+  },
+  "baselineAudit": {
+    "phase": "phase-1",
+    "status": "in-progress",
+    "targetedRewriteTranche": "src/authoredCoreRewriteBatch3.ts",
+    "targetedRewriteTrancheSize": 244,
+    "inspectedThisRun": 20,
+    "inspectedIds": [
+      "qrn-0257",
+      "qrn-0258",
+      "qrn-0259",
+      "qrn-0260",
+      "qrn-0261",
+      "qrn-0262",
+      "qrn-0263",
+      "qrn-0264",
+      "qrn-0265",
+      "qrn-0266",
+      "qrn-0267",
+      "qrn-0268",
+      "qrn-0269",
+      "qrn-0270",
+      "qrn-0271",
+      "qrn-0272",
+      "qrn-0273",
+      "qrn-0274",
+      "qrn-0275",
+      "qrn-0276"
+    ],
+    "needsSubstantiveRemediation": 20,
+    "passedForClinicalReleaseThisRun": 0,
+    "nextAuditId": "qrn-0277",
+    "remainingInTargetedTranche": 224,
+    "notes": "Static triage only. No clinical approval or content change was recorded."
+  },
+  "tracker": {
+    "threeThousandSixHundredUiTracker": "removed",
+    "removedComponent": "src/QuestionBankAutomationTracker.tsx",
+    "removalCommit": "7c453b58b5dc9b0115afa71d3b29f793b2df541a",
+    "remainingWebmasterTracker": "src/QuestionGenerationTracker.tsx",
+    "remainingTrackerScope": "separate NGN 300-draft archive only"
+  },
+  "pullRequest": {
+    "priorNumber": 9,
+    "priorState": "closed",
+    "priorMerged": true,
+    "mergeCommit": "7fcdee70467e2665cd6eb6b6ef826cd96e38158c",
+    "followUpDraftRequired": true
+  },
+  "ci": {
+    "commit": "74f1a1a3184d064abba94bdae851ed0912ef4d04",
+    "status": "success",
+    "checks": [
+      "question-bank authoring audit",
+      "question-batch validation",
+      "unit tests",
+      "Chromium regression",
+      "production build",
+      "secret scan"
+    ],
+    "runs": [
+      "https://github.com/Archonline/QuickRNv2/actions/runs/45518568083",
+      "https://github.com/Archonline/QuickRNv2/actions/runs/45518568005",
+      "https://github.com/Archonline/QuickRNv2/actions/runs/45518568048"
+    ]
+  },
+  "lastRun": {
+    "date": "2026-11-25",
+    "newQuestionsAuthored": 0,
+    "newQuestionsIntegrated": 0,
+    "runtimeInventoryDelta": 0,
+    "existingItemsTriaged": 20
+  },
+  "nextNetNewCoreIdCandidate": {
+    "id": "qrn-0501",
+    "status": "unverified-not-assigned"
+  },
+  "nextBoosterId": {
+    "id": null,
+    "status": "namespace-not-established"
+  }
+}
