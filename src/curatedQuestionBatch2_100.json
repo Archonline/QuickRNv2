@@ -46,15 +46,15 @@
         "options": [
           {
             "id": "A",
-            "text": "Withhold another nitroglycerin dose, reassess perfusion and symptoms, and promptly report the marked blood-pressure decrease"
-          },
-          {
-            "id": "B",
             "text": "Repeat nitroglycerin because persistent chest pressure indicates that the first dose was ineffective"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Administer the prescribed oral beta blocker now to reduce myocardial oxygen demand"
+          },
+          {
+            "id": "C",
+            "text": "Withhold another nitroglycerin dose, reassess perfusion and symptoms, and promptly report the marked blood-pressure decrease"
           },
           {
             "id": "D",
@@ -63,17 +63,17 @@
         ]
       },
       "correct_response": [
-        "A"
+        "C"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
-        "A": "The substantial pressure decrease makes another vasodilator dose unsafe until hemodynamic status is reassessed; ongoing ischemia also requires urgent escalation.",
-        "B": "Persistent pain alone does not justify repeating nitroglycerin when blood pressure has fallen substantially.",
-        "C": "A beta blocker should not be given reflexively during evolving hemodynamic compromise; reassess and follow the acute coronary plan.",
+        "summary": "The best response is Withhold another nitroglycerin dose, reassess perfusion and symptoms, and promptly report the marked blood-pressure decrease — The substantial pressure decrease makes another vasodilator dose unsafe until hemodynamic status is reassessed; ongoing ischemia also requires urgent escalation.",
+        "C": "The substantial pressure decrease makes another vasodilator dose unsafe until hemodynamic status is reassessed; ongoing ischemia also requires urgent escalation.",
+        "A": "Persistent pain alone does not justify repeating nitroglycerin when blood pressure has fallen substantially.",
+        "B": "A beta blocker should not be given reflexively during evolving hemodynamic compromise; reassess and follow the acute coronary plan.",
         "D": "Routine leg elevation does not treat the cause and may worsen pulmonary congestion if ventricular function is impaired."
       },
       "clinical_judgment": "take_action",
@@ -86,7 +86,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -132,42 +132,42 @@
         "options": [
           {
             "id": "A",
-            "text": "I will weigh under the same conditions each morning and record the result."
-          },
-          {
-            "id": "B",
             "text": "I will contact the heart-failure team for the weight increase threshold in my written action plan, even if I feel well."
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "I can replace table salt with a potassium-based salt substitute because it contains no sodium."
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "I will take the loop diuretic early in the day unless my prescriber gives different instructions."
           },
           {
-            "id": "E",
+            "id": "D",
             "text": "If I become dizzy after a dose, I will stop all my heart medicines until the next appointment."
+          },
+          {
+            "id": "E",
+            "text": "I will weigh under the same conditions each morning and record the result."
           }
         ]
       },
       "correct_response": [
+        "E",
         "A",
-        "B",
-        "D"
+        "C"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 3
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
-        "A": "Standardized daily weights make trends more reliable and can reveal fluid retention before symptoms develop.",
-        "B": "The client's individualized action-plan threshold should trigger contact; waiting for dyspnea can delay treatment.",
-        "C": "Potassium-containing salt substitutes may cause hyperkalemia, particularly with renin-angiotensin system medicines or impaired renal function.",
-        "D": "Morning dosing generally reduces nocturia; timing should still follow the prescribed regimen.",
-        "E": "The client should report dizziness and obtain instructions rather than independently stopping multiple cardiac medicines."
+        "summary": "The correct selections are: I will weigh under the same conditions each morning and record the result. — Standardized daily weights make trends more reliable and can reveal fluid retention before symptoms develop. I will contact the heart-failure team for the weight increase threshold in my written action plan, even if I feel well. — The client's individualized action-plan threshold should trigger contact; waiting for dyspnea can delay treatment. I will take the loop diuretic early in the day unless my prescriber gives different instructions. — Morning dosing generally reduces nocturia; timing should still follow the prescribed regimen.",
+        "E": "Standardized daily weights make trends more reliable and can reveal fluid retention before symptoms develop.",
+        "A": "The client's individualized action-plan threshold should trigger contact; waiting for dyspnea can delay treatment.",
+        "B": "Potassium-containing salt substitutes may cause hyperkalemia, particularly with renin-angiotensin system medicines or impaired renal function.",
+        "C": "Morning dosing generally reduces nocturia; timing should still follow the prescribed regimen.",
+        "D": "The client should report dizziness and obtain instructions rather than independently stopping multiple cardiac medicines."
       },
       "clinical_judgment": "evaluate_outcomes",
       "tags": [
@@ -179,7 +179,7 @@
       "estimated_time_seconds": 90,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -221,11 +221,11 @@
         "options": [
           {
             "id": "A",
-            "text": "Synchronized cardioversion while maintaining airway support and continuous monitoring"
+            "text": "Unsynchronized defibrillation because any wide-complex tachycardia is a shockable rhythm"
           },
           {
             "id": "B",
-            "text": "Unsynchronized defibrillation because any wide-complex tachycardia is a shockable rhythm"
+            "text": "Synchronized cardioversion while maintaining airway support and continuous monitoring"
           },
           {
             "id": "C",
@@ -238,16 +238,16 @@
         ]
       },
       "correct_response": [
-        "A"
+        "B"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
-        "A": "A pulse with hypotension and signs of poor perfusion indicates unstable tachycardia; synchronized cardioversion is the immediate treatment for unstable monomorphic VT with a pulse.",
-        "B": "Defibrillation is used for pulseless VT/VF or when synchronization is not possible in a critically unstable rhythm; this client has a pulse and a regular rhythm suitable for synchronization.",
+        "summary": "The best response is Synchronized cardioversion while maintaining airway support and continuous monitoring — A pulse with hypotension and signs of poor perfusion indicates unstable tachycardia; synchronized cardioversion is the immediate treatment for unstable monomorphic VT with a pulse.",
+        "B": "A pulse with hypotension and signs of poor perfusion indicates unstable tachycardia; synchronized cardioversion is the immediate treatment for unstable monomorphic VT with a pulse.",
+        "A": "Defibrillation is used for pulseless VT/VF or when synchronization is not possible in a critically unstable rhythm; this client has a pulse and a regular rhythm suitable for synchronization.",
         "C": "Adenosine is not the first-line response to unstable wide-complex tachycardia and must not delay cardioversion.",
         "D": "Vagal maneuvers are inappropriate for an unstable wide-complex rhythm and would delay definitive treatment."
       },
@@ -261,7 +261,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -304,11 +304,11 @@
         "options": [
           {
             "id": "A",
-            "text": "Use a neutral or dependent position for comfort and inspect the feet daily for pressure injury"
+            "text": "Elevate the legs above the heart several times daily to improve venous return"
           },
           {
             "id": "B",
-            "text": "Elevate the legs above the heart several times daily to improve venous return"
+            "text": "Use a neutral or dependent position for comfort and inspect the feet daily for pressure injury"
           },
           {
             "id": "C",
@@ -321,16 +321,16 @@
         ]
       },
       "correct_response": [
-        "A"
+        "B"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
-        "A": "Dependent positioning may improve arterial perfusion and relieve ischemic rest discomfort; daily inspection is important because impaired perfusion delays healing.",
-        "B": "Elevation can further reduce arterial inflow and worsen ischemic pain in significant PAD.",
+        "summary": "The best response is Use a neutral or dependent position for comfort and inspect the feet daily for pressure injury — Dependent positioning may improve arterial perfusion and relieve ischemic rest discomfort; daily inspection is important because impaired perfusion delays healing.",
+        "B": "Dependent positioning may improve arterial perfusion and relieve ischemic rest discomfort; daily inspection is important because impaired perfusion delays healing.",
+        "A": "Elevation can further reduce arterial inflow and worsen ischemic pain in significant PAD.",
         "C": "Direct heat can cause burns, especially when sensation and perfusion are impaired.",
         "D": "Compression may compromise arterial inflow and should not be used without a specific vascular assessment and prescription."
       },
@@ -344,7 +344,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -411,7 +411,7 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "summary": "The best response is Stop or hold the infusion and follow the heparin nomogram, including repeat coagulation testing and bleeding assessment — The supratherapeutic aPTT with active minor bleeding requires prompt protocol-based interruption or adjustment, focused assessment, and timely repeat testing.",
         "A": "The supratherapeutic aPTT with active minor bleeding requires prompt protocol-based interruption or adjustment, focused assessment, and timely repeat testing.",
         "B": "Protamine is generally reserved for serious bleeding or urgent reversal; the nomogram and clinical severity guide its use.",
         "C": "A slight empiric reduction and delayed testing may leave the client anticoagulated above target.",
@@ -427,7 +427,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -470,11 +470,11 @@
         "options": [
           {
             "id": "A",
-            "text": "Reduce MAP by no more than approximately 20%–25% during the first hour, then titrate according to response"
+            "text": "Normalize the blood pressure to below 120/80 mmHg within 15 minutes to prevent further organ injury"
           },
           {
             "id": "B",
-            "text": "Normalize the blood pressure to below 120/80 mmHg within 15 minutes to prevent further organ injury"
+            "text": "Reduce MAP by no more than approximately 20%–25% during the first hour, then titrate according to response"
           },
           {
             "id": "C",
@@ -487,16 +487,16 @@
         ]
       },
       "correct_response": [
-        "A"
+        "B"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
-        "A": "In many hypertensive emergencies, controlled initial reduction limits ongoing injury while preserving perfusion to organs adapted to high pressure; targets vary by condition.",
-        "B": "Abrupt normalization can cause cerebral, coronary, and renal hypoperfusion.",
+        "summary": "The best response is Reduce MAP by no more than approximately 20%–25% during the first hour, then titrate according to response — In many hypertensive emergencies, controlled initial reduction limits ongoing injury while preserving perfusion to organs adapted to high pressure; targets vary by condition.",
+        "B": "In many hypertensive emergencies, controlled initial reduction limits ongoing injury while preserving perfusion to organs adapted to high pressure; targets vary by condition.",
+        "A": "Abrupt normalization can cause cerebral, coronary, and renal hypoperfusion.",
         "C": "Leaving pressure untreated may worsen acute target-organ injury; reduction should be controlled, not deferred until symptoms resolve.",
         "D": "A fixed 50% reduction is excessive and ignores the affected organ and clinical context."
       },
@@ -510,7 +510,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -553,42 +553,42 @@
         "options": [
           {
             "id": "A",
-            "text": "Obtain the ordered blood-culture sets from separate venipuncture sites before antibiotics, if this does not delay emergency treatment"
-          },
-          {
-            "id": "B",
-            "text": "Assess for new focal neurologic deficits, acute limb pain, or flank pain that may indicate embolization"
-          },
-          {
-            "id": "C",
-            "text": "Monitor for heart-failure findings and changes in the character of the murmur"
-          },
-          {
-            "id": "D",
             "text": "Stop antimicrobial therapy once the temperature has remained normal for 24 hours"
           },
           {
-            "id": "E",
+            "id": "B",
             "text": "Teach that prophylaxis is recommended before every dental cleaning for all clients with a history of any heart murmur"
+          },
+          {
+            "id": "C",
+            "text": "Obtain the ordered blood-culture sets from separate venipuncture sites before antibiotics, if this does not delay emergency treatment"
+          },
+          {
+            "id": "D",
+            "text": "Assess for new focal neurologic deficits, acute limb pain, or flank pain that may indicate embolization"
+          },
+          {
+            "id": "E",
+            "text": "Monitor for heart-failure findings and changes in the character of the murmur"
           }
         ]
       },
       "correct_response": [
-        "A",
-        "B",
-        "C"
+        "C",
+        "D",
+        "E"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 4
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
-        "A": "Cultures obtained before antibiotics improve organism identification and guide targeted therapy when the client is stable enough for collection.",
-        "B": "Vegetations can embolize to the brain, kidneys, spleen, or extremities; new symptoms require urgent evaluation.",
-        "C": "Valve destruction and regurgitation can precipitate heart failure, so cardiopulmonary trends matter.",
-        "D": "Endocarditis requires a prescribed full course; defervescence alone is not a stopping criterion.",
-        "E": "Dental prophylaxis is limited to defined high-risk cardiac conditions and procedures, not every murmur."
+        "summary": "The correct selections are: Obtain the ordered blood-culture sets from separate venipuncture sites before antibiotics, if this does not delay emergency treatment — Cultures obtained before antibiotics improve organism identification and guide targeted therapy when the client is stable enough for collection. Assess for new focal neurologic deficits, acute limb pain, or flank pain that may indicate embolization — Vegetations can embolize to the brain, kidneys, spleen, or extremities; new symptoms require urgent evaluation. Monitor for heart-failure findings and changes in the character of the murmur — Valve destruction and regurgitation can precipitate heart failure, so cardiopulmonary trends matter.",
+        "C": "Cultures obtained before antibiotics improve organism identification and guide targeted therapy when the client is stable enough for collection.",
+        "D": "Vegetations can embolize to the brain, kidneys, spleen, or extremities; new symptoms require urgent evaluation.",
+        "E": "Valve destruction and regurgitation can precipitate heart failure, so cardiopulmonary trends matter.",
+        "A": "Endocarditis requires a prescribed full course; defervescence alone is not a stopping criterion.",
+        "B": "Dental prophylaxis is limited to defined high-risk cardiac conditions and procedures, not every murmur."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -600,7 +600,7 @@
       "estimated_time_seconds": 90,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -665,7 +665,7 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "summary": "The best response is Pericardial fluid is impairing diastolic filling and reducing cardiac output — Hypotension, jugular venous distention, and muffled heart sounds after an invasive cardiac procedure strongly suggest tamponade with impaired ventricular filling.",
         "A": "Hypotension, jugular venous distention, and muffled heart sounds after an invasive cardiac procedure strongly suggest tamponade with impaired ventricular filling.",
         "B": "Left-sided failure can cause crackles and pulmonary edema but does not best explain the combination of distended neck veins and muffled sounds in this setting.",
         "C": "The described hemodynamic pattern is not characteristic of aortic dissection; urgent evaluation for tamponade is needed.",
@@ -681,7 +681,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -725,11 +725,11 @@
         "options": [
           {
             "id": "A",
-            "text": "Keep vitamin K intake reasonably consistent and report major dietary changes so the anticoagulation plan can be adjusted"
+            "text": "Avoid all foods containing vitamin K because even small amounts will reverse the anticoagulant effect"
           },
           {
             "id": "B",
-            "text": "Avoid all foods containing vitamin K because even small amounts will reverse the anticoagulant effect"
+            "text": "Keep vitamin K intake reasonably consistent and report major dietary changes so the anticoagulation plan can be adjusted"
           },
           {
             "id": "C",
@@ -742,16 +742,16 @@
         ]
       },
       "correct_response": [
-        "A"
+        "B"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
-        "A": "Consistency in vitamin K intake supports stable anticoagulation; large changes should be discussed with the anticoagulation team.",
-        "B": "Eliminating vitamin K is unnecessary and can destabilize dietary intake and INR control.",
+        "summary": "The best response is Keep vitamin K intake reasonably consistent and report major dietary changes so the anticoagulation plan can be adjusted — Consistency in vitamin K intake supports stable anticoagulation; large changes should be discussed with the anticoagulation team.",
+        "B": "Consistency in vitamin K intake supports stable anticoagulation; large changes should be discussed with the anticoagulation team.",
+        "A": "Eliminating vitamin K is unnecessary and can destabilize dietary intake and INR control.",
         "C": "Bruising requires assessment and possible INR review, not self-treatment with vitamin K-rich foods.",
         "D": "Day-to-day variation can contribute to INR instability."
       },
@@ -765,7 +765,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -807,35 +807,35 @@
         "options": [
           {
             "id": "A",
-            "text": "Follow the implanting team's temporary lifting and shoulder-motion limits, and report syncope, persistent hiccups, or new diaphragmatic twitching"
-          },
-          {
-            "id": "B",
             "text": "Keep the ipsilateral arm immobilized in a sling continuously for 6 weeks, including during hygiene"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Begin repeated overhead stretching tomorrow to prevent adhesive capsulitis"
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "Avoid all household appliances that generate electromagnetic fields, including microwave ovens"
+          },
+          {
+            "id": "D",
+            "text": "Follow the implanting team's temporary lifting and shoulder-motion limits, and report syncope, persistent hiccups, or new diaphragmatic twitching"
           }
         ]
       },
       "correct_response": [
-        "A"
+        "D"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
-        "A": "Temporary movement restrictions vary by device and clinician; new presyncope or unusual stimulation symptoms may indicate lead or device problems.",
-        "B": "Prolonged complete immobilization is not routinely required and can cause stiffness; follow the specific postimplant plan.",
-        "C": "Early unrestricted overhead movement may stress the lead; exercises should follow the implant team's timing.",
-        "D": "Modern household appliances such as microwave ovens are generally safe when functioning properly; broad avoidance is unnecessary."
+        "summary": "The best response is Follow the implanting team's temporary lifting and shoulder-motion limits, and report syncope, persistent hiccups, or new diaphragmatic twitching — Temporary movement restrictions vary by device and clinician; new presyncope or unusual stimulation symptoms may indicate lead or device problems.",
+        "D": "Temporary movement restrictions vary by device and clinician; new presyncope or unusual stimulation symptoms may indicate lead or device problems.",
+        "A": "Prolonged complete immobilization is not routinely required and can cause stiffness; follow the specific postimplant plan.",
+        "B": "Early unrestricted overhead movement may stress the lead; exercises should follow the implant team's timing.",
+        "C": "Modern household appliances such as microwave ovens are generally safe when functioning properly; broad avoidance is unnecessary."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -846,7 +846,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -888,35 +888,35 @@
         "options": [
           {
             "id": "A",
-            "text": "Activate the emergency vascular response, maintain large-bore IV access, and prepare for immediate definitive evaluation and repair"
-          },
-          {
-            "id": "B",
             "text": "Palpate the abdomen repeatedly to determine whether the aneurysm has enlarged"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Administer the scheduled antihypertensive and reassess the pain after its peak effect"
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "Rapidly infuse enough crystalloid to restore the blood pressure to the client's usual baseline"
+          },
+          {
+            "id": "D",
+            "text": "Activate the emergency vascular response, maintain large-bore IV access, and prepare for immediate definitive evaluation and repair"
           }
         ]
       },
       "correct_response": [
-        "A"
+        "D"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
-        "A": "The presentation is concerning for rupture; rapid escalation, access, blood-product readiness, and definitive vascular management are priorities.",
-        "B": "Deep or repeated palpation can be harmful and does not establish rupture.",
-        "C": "A routine oral medication delays emergency management and may worsen hypotension.",
-        "D": "Uncontrolled crystalloid loading to a normal baseline can worsen bleeding; resuscitation targets are directed by the emergency team."
+        "summary": "The best response is Activate the emergency vascular response, maintain large-bore IV access, and prepare for immediate definitive evaluation and repair — The presentation is concerning for rupture; rapid escalation, access, blood-product readiness, and definitive vascular management are priorities.",
+        "D": "The presentation is concerning for rupture; rapid escalation, access, blood-product readiness, and definitive vascular management are priorities.",
+        "A": "Deep or repeated palpation can be harmful and does not establish rupture.",
+        "B": "A routine oral medication delays emergency management and may worsen hypotension.",
+        "C": "Uncontrolled crystalloid loading to a normal baseline can worsen bleeding; resuscitation targets are directed by the emergency team."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -928,7 +928,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -1019,7 +1019,7 @@
       "estimated_time_seconds": 120,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -1063,35 +1063,35 @@
         "options": [
           {
             "id": "A",
-            "text": "Reduced extracellular potassium increases digoxin binding at the sodium-potassium ATPase"
-          },
-          {
-            "id": "B",
             "text": "Low potassium increases renal clearance of digoxin and causes rebound toxicity"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Hypokalemia blocks digoxin absorption, causing accumulation of an active metabolite"
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "Low potassium directly increases serum calcium and produces the visual disturbance"
+          },
+          {
+            "id": "D",
+            "text": "Reduced extracellular potassium increases digoxin binding at the sodium-potassium ATPase"
           }
         ]
       },
       "correct_response": [
-        "A"
+        "D"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
-        "A": "Potassium competes with digoxin at the sodium-potassium ATPase; hypokalemia increases binding and toxicity risk.",
-        "B": "Hypokalemia does not increase digoxin clearance; renal function and drug interactions influence serum exposure.",
-        "C": "The mechanism is not impaired absorption or metabolite accumulation.",
-        "D": "The visual symptoms and dysrhythmias are consistent with digoxin toxicity; this option gives an incorrect electrolyte mechanism."
+        "summary": "The best response is Reduced extracellular potassium increases digoxin binding at the sodium-potassium ATPase — Potassium competes with digoxin at the sodium-potassium ATPase; hypokalemia increases binding and toxicity risk.",
+        "D": "Potassium competes with digoxin at the sodium-potassium ATPase; hypokalemia increases binding and toxicity risk.",
+        "A": "Hypokalemia does not increase digoxin clearance; renal function and drug interactions influence serum exposure.",
+        "B": "The mechanism is not impaired absorption or metabolite accumulation.",
+        "C": "The visual symptoms and dysrhythmias are consistent with digoxin toxicity; this option gives an incorrect electrolyte mechanism."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -1103,7 +1103,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -1176,7 +1176,7 @@
       "estimated_time_seconds": 95,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -1218,11 +1218,11 @@
         "options": [
           {
             "id": "A",
-            "text": "Inject into the anterolateral or posterolateral abdominal tissue, leave the air bubble in the prefilled syringe, and do not massage afterward"
+            "text": "Inject into the deltoid muscle and aspirate before depressing the plunger"
           },
           {
             "id": "B",
-            "text": "Inject into the deltoid muscle and aspirate before depressing the plunger"
+            "text": "Inject into the anterolateral or posterolateral abdominal tissue, leave the air bubble in the prefilled syringe, and do not massage afterward"
           },
           {
             "id": "C",
@@ -1235,16 +1235,16 @@
         ]
       },
       "correct_response": [
-        "A"
+        "B"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
-        "A": "Subcutaneous abdominal administration is standard; the air bubble in many prefilled syringes helps deliver the full dose, and massage increases bruising.",
-        "B": "Enoxaparin is not administered intramuscularly; aspiration is not recommended for routine subcutaneous injection.",
+        "summary": "The best response is Inject into the anterolateral or posterolateral abdominal tissue, leave the air bubble in the prefilled syringe, and do not massage afterward — Subcutaneous abdominal administration is standard; the air bubble in many prefilled syringes helps deliver the full dose, and massage increases bruising.",
+        "B": "Subcutaneous abdominal administration is standard; the air bubble in many prefilled syringes helps deliver the full dose, and massage increases bruising.",
+        "A": "Enoxaparin is not administered intramuscularly; aspiration is not recommended for routine subcutaneous injection.",
         "C": "Expelling the bubble and massaging may increase bruising or reduce accurate delivery.",
         "D": "Injection through clothing is not appropriate technique; the site should be prepared and exposed."
       },
@@ -1257,7 +1257,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -1325,7 +1325,7 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "summary": "The best response is Pericardial effusion progressing to cardiac tamponade — The evolving signs suggest impaired cardiac filling from an enlarging effusion and require immediate escalation.",
         "A": "The evolving signs suggest impaired cardiac filling from an enlarging effusion and require immediate escalation.",
         "B": "Papillary muscle rupture usually causes acute pulmonary edema and a new murmur after myocardial infarction.",
         "C": "Aortic stenosis is not an acute complication of pericarditis and does not explain this progression.",
@@ -1340,7 +1340,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -1381,35 +1381,35 @@
         "options": [
           {
             "id": "A",
-            "text": "Venturi mask at the prescribed FiO2, adjusted to maintain the target range"
-          },
-          {
-            "id": "B",
             "text": "Non-rebreather mask at maximum flow until saturation reaches 100%"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Simple face mask at 10 L/min without reassessment"
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "Nasal cannula at 6 L/min because higher flow is needed for all exacerbations"
+          },
+          {
+            "id": "D",
+            "text": "Venturi mask at the prescribed FiO2, adjusted to maintain the target range"
           }
         ]
       },
       "correct_response": [
-        "A"
+        "D"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
-        "A": "A Venturi system delivers a controlled FiO2 and is useful when precise oxygen titration is needed.",
-        "B": "Routine pursuit of 100% saturation can provide excessive oxygen and is not the prescribed target.",
-        "C": "A simple mask does not provide the same precision and should be titrated to clinical response.",
-        "D": "A fixed high nasal-cannula flow is not appropriate for every client and may exceed the ordered target."
+        "summary": "The best response is Venturi mask at the prescribed FiO2, adjusted to maintain the target range — A Venturi system delivers a controlled FiO2 and is useful when precise oxygen titration is needed.",
+        "D": "A Venturi system delivers a controlled FiO2 and is useful when precise oxygen titration is needed.",
+        "A": "Routine pursuit of 100% saturation can provide excessive oxygen and is not the prescribed target.",
+        "B": "A simple mask does not provide the same precision and should be titrated to clinical response.",
+        "C": "A fixed high nasal-cannula flow is not appropriate for every client and may exceed the ordered target."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -1421,7 +1421,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -1492,7 +1492,7 @@
         "max_points": 3
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "summary": "The correct selections are: Continuous bubbling in the water-seal chamber after checking that the system connections are secure — Persistent bubbling in the water seal suggests an air leak; assess the client and system, then locate and correct the leak per policy. New bright-red drainage of 250 mL in one hour — A sudden large volume of bright-red drainage may indicate hemorrhage and requires immediate assessment and escalation. The chest tube becomes disconnected from the drainage tubing — Disconnection breaks the closed system; restore the prescribed system promptly using facility protocol while assessing the client.",
         "A": "Persistent bubbling in the water seal suggests an air leak; assess the client and system, then locate and correct the leak per policy.",
         "B": "Tidaling can be an expected reflection of pressure changes; its absence or presence must be interpreted with the clinical picture.",
         "C": "A sudden large volume of bright-red drainage may indicate hemorrhage and requires immediate assessment and escalation.",
@@ -1509,7 +1509,7 @@
       "estimated_time_seconds": 85,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -1575,7 +1575,7 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "summary": "The best response is Support oxygenation, position to ease breathing, and rapidly assess airway and circulation — Acute hypoxemia and respiratory distress require immediate support of oxygenation and ABC assessment while the emergency response is activated.",
         "A": "Acute hypoxemia and respiratory distress require immediate support of oxygenation and ABC assessment while the emergency response is activated.",
         "B": "Anticoagulation may be indicated after rapid evaluation, but it does not replace immediate stabilization and requires attention to bleeding risk.",
         "C": "ECG may assist evaluation but must not delay treatment of severe hypoxemia.",
@@ -1590,7 +1590,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -1657,7 +1657,7 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "summary": "The best response is Improved recruitment of dependent dorsal lung regions and a more even distribution of ventilation relative to perfusion — Proning redistributes transpulmonary pressure and recruits dorsal lung units, improving ventilation-perfusion matching and oxygenation.",
         "A": "Proning redistributes transpulmonary pressure and recruits dorsal lung units, improving ventilation-perfusion matching and oxygenation.",
         "B": "Prone positioning does not directly reverse the inflammatory capillary leak causing ARDS.",
         "C": "Lung-protective ventilation aims to avoid excessive tidal volume and overdistension.",
@@ -1673,7 +1673,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -1738,7 +1738,7 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "summary": "The best response is Rinse the mouth and gargle with water after each dose, then spit the water out; use a spacer if appropriate for the device — Rinsing and spitting reduces oropharyngeal steroid residue and candidiasis risk; a spacer can reduce deposition for compatible inhalers.",
         "A": "Rinsing and spitting reduces oropharyngeal steroid residue and candidiasis risk; a spacer can reduce deposition for compatible inhalers.",
         "B": "Inhaled corticosteroids are maintenance therapy and should not be stopped solely because symptoms improve unless the prescriber adjusts the plan.",
         "C": "Swallowing does not remove medication from the oral mucosa and is not the recommended prevention strategy.",
@@ -1754,7 +1754,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -1818,7 +1818,7 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "summary": "The best response is Call for emergency airway assistance, provide oxygen to the face and stoma as appropriate, and prepare for expert airway management without blind reinsertion — A fresh tract can close or create a false passage; immediate oxygenation and expert airway support are essential, and reinsertion should follow the facility's emergency algorithm by trained personnel.",
         "A": "A fresh tract can close or create a false passage; immediate oxygenation and expert airway support are essential, and reinsertion should follow the facility's emergency algorithm by trained personnel.",
         "B": "Blind forceful reinsertion in a fresh tract can create a false passage and worsen airway loss.",
         "C": "Occluding the stoma without knowing the airway anatomy can prevent ventilation; oxygen delivery must account for the upper airway and stoma.",
@@ -1833,7 +1833,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -1877,43 +1877,43 @@
         "options": [
           {
             "id": "A",
-            "text": "Place the client in an airborne infection isolation room with the door closed"
-          },
-          {
-            "id": "B",
-            "text": "Wear a fit-tested N95 or higher-level respirator when entering the room"
-          },
-          {
-            "id": "C",
             "text": "Place a surgical mask on the client during medically necessary transport and limit transport"
           },
           {
-            "id": "D",
+            "id": "B",
             "text": "Use a standard surgical mask instead of a respirator if the nurse remains more than 1 meter away"
           },
           {
-            "id": "E",
+            "id": "C",
             "text": "Coordinate sputum collection and treatment while maintaining airborne precautions"
+          },
+          {
+            "id": "D",
+            "text": "Place the client in an airborne infection isolation room with the door closed"
+          },
+          {
+            "id": "E",
+            "text": "Wear a fit-tested N95 or higher-level respirator when entering the room"
           }
         ]
       },
       "correct_response": [
+        "D",
+        "E",
         "A",
-        "B",
-        "C",
-        "E"
+        "C"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 4
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
-        "A": "Airborne isolation in an appropriate room is required for suspected infectious pulmonary TB.",
-        "B": "A fit-tested respirator is required for staff entering the room.",
-        "C": "Source control and limiting transport reduce transmission risk during necessary movement.",
-        "D": "Distance alone does not replace respiratory protection for airborne precautions.",
-        "E": "Diagnostic testing and treatment should proceed without relaxing isolation measures."
+        "summary": "The correct selections are: Place the client in an airborne infection isolation room with the door closed — Airborne isolation in an appropriate room is required for suspected infectious pulmonary TB. Wear a fit-tested N95 or higher-level respirator when entering the room — A fit-tested respirator is required for staff entering the room. Place a surgical mask on the client during medically necessary transport and limit transport — Source control and limiting transport reduce transmission risk during necessary movement. Coordinate sputum collection and treatment while maintaining airborne precautions — Diagnostic testing and treatment should proceed without relaxing isolation measures.",
+        "D": "Airborne isolation in an appropriate room is required for suspected infectious pulmonary TB.",
+        "E": "A fit-tested respirator is required for staff entering the room.",
+        "A": "Source control and limiting transport reduce transmission risk during necessary movement.",
+        "B": "Distance alone does not replace respiratory protection for airborne precautions.",
+        "C": "Diagnostic testing and treatment should proceed without relaxing isolation measures."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -1925,7 +1925,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -1966,11 +1966,11 @@
         "options": [
           {
             "id": "A",
-            "text": "Assess the client and airway patency, then suction if secretions are present while another team member checks the circuit"
+            "text": "Silence the alarm and increase the high-pressure limit to prevent repeated alerts"
           },
           {
             "id": "B",
-            "text": "Silence the alarm and increase the high-pressure limit to prevent repeated alerts"
+            "text": "Assess the client and airway patency, then suction if secretions are present while another team member checks the circuit"
           },
           {
             "id": "C",
@@ -1983,16 +1983,16 @@
         ]
       },
       "correct_response": [
-        "A"
+        "B"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
-        "A": "High-pressure alarms commonly reflect increased resistance or reduced compliance; assess the patient first and address secretions or obstruction while checking the circuit.",
-        "B": "Changing alarm limits can conceal deterioration and does not correct the cause.",
+        "summary": "The best response is Assess the client and airway patency, then suction if secretions are present while another team member checks the circuit — High-pressure alarms commonly reflect increased resistance or reduced compliance; assess the patient first and address secretions or obstruction while checking the circuit.",
+        "B": "High-pressure alarms commonly reflect increased resistance or reduced compliance; assess the patient first and address secretions or obstruction while checking the circuit.",
+        "A": "Changing alarm limits can conceal deterioration and does not correct the cause.",
         "C": "If disconnection is necessary, the client must be supported with an appropriate manual ventilation strategy; leaving the client unsupported is unsafe.",
         "D": "Ventilator settings should not be changed blindly before identifying the cause and assessing the client."
       },
@@ -2005,7 +2005,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -2072,7 +2072,7 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Use the complete clinical picture and the client's changing response to select the safest action; reassess and escalate when findings indicate deterioration.",
+        "summary": "The best response is Pneumonia remains possible despite the absence of a high fever; assess oxygenation and escalate the acute change — Older adults may present with delirium, tachypnea, or functional decline rather than prominent fever; acute respiratory assessment is warranted.",
         "A": "Older adults may present with delirium, tachypnea, or functional decline rather than prominent fever; acute respiratory assessment is warranted.",
         "B": "Older adults may have blunted febrile responses, so absence of high fever does not exclude infection.",
         "C": "A sudden change in cognition must be evaluated for acute illness rather than attributed to baseline dementia.",
@@ -2088,7 +2088,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -2130,35 +2130,35 @@
         "options": [
           {
             "id": "A",
-            "text": "Stop the procedure, support oxygenation, and promptly assess for pneumothorax or re-expansion pulmonary edema"
-          },
-          {
-            "id": "B",
             "text": "Encourage deeper breathing and continue drainage until the prescribed volume is removed"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Place the client flat and ask the client to suppress coughing"
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "Administer an oral antitussive and reassess oxygen saturation in 15 minutes"
+          },
+          {
+            "id": "D",
+            "text": "Stop the procedure, support oxygenation, and promptly assess for pneumothorax or re-expansion pulmonary edema"
           }
         ]
       },
       "correct_response": [
-        "A"
+        "D"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "The safest response is based on the change in the client's clinical condition and the risk of rapid deterioration.",
-        "A": "New respiratory symptoms and desaturation during thoracentesis require stopping fluid removal and immediate assessment for complications.",
-        "B": "Continuing drainage may worsen the complication and delay treatment.",
-        "C": "Supine positioning may worsen breathing and suppressing cough does not address the cause.",
-        "D": "An oral antitussive delays assessment and is inappropriate during acute respiratory deterioration."
+        "summary": "The best response is Stop the procedure, support oxygenation, and promptly assess for pneumothorax or re-expansion pulmonary edema — New respiratory symptoms and desaturation during thoracentesis require stopping fluid removal and immediate assessment for complications.",
+        "D": "New respiratory symptoms and desaturation during thoracentesis require stopping fluid removal and immediate assessment for complications.",
+        "A": "Continuing drainage may worsen the complication and delay treatment.",
+        "B": "Supine positioning may worsen breathing and suppressing cough does not address the cause.",
+        "C": "An oral antitussive delays assessment and is inappropriate during acute respiratory deterioration."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
@@ -2169,7 +2169,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -2214,27 +2214,30 @@
         "options": [
           {
             "id": "A",
-            "text": "Administer a prescribed bronchodilator before airway-clearance therapy when indicated"
+            "text": "Assess weight trends, stool characteristics, and respiratory response to treatment"
           },
           {
             "id": "B",
-            "text": "Give pancreatic enzymes with meals and snacks according to the prescribed dose"
+            "text": "Administer a prescribed bronchodilator before airway-clearance therapy when indicated"
           },
           {
             "id": "C",
-            "text": "Provide high-calorie, high-protein nutrition and prescribed fat-soluble vitamins"
+            "text": "Give pancreatic enzymes with meals and snacks according to the prescribed dose"
           },
           {
             "id": "D",
-            "text": "Schedule chest physiotherapy immediately after a full meal to improve tolerance"
+            "text": "Provide high-calorie, high-protein nutrition and prescribed fat-soluble vitamins"
           },
           {
             "id": "E",
-            "text": "Assess weight trends, stool characteristics, and respiratory response to treatment"
+            "text": "Schedule chest physiotherapy immediately after a full meal to improve tolerance"
           }
         ]
       },
       "correct_response": [
+        "B",
+        "C",
+        "D",
         "A"
       ],
       "scoring": {
@@ -2242,12 +2245,12 @@
         "max_points": 3
       },
       "rationales": {
-        "summary": "The safest response is based on the change in the client's clinical condition and the risk of rapid deterioration.",
-        "A": "Bronchodilation before airway clearance can improve airflow and secretion mobilization.",
-        "B": "Pancreatic enzymes must be taken with food to aid digestion and absorption.",
-        "C": "Increased energy needs and fat malabsorption often require calorie-dense nutrition and vitamins A, D, E, and K.",
-        "D": "Airway clearance immediately after meals may provoke vomiting; schedule around meals according to tolerance.",
-        "E": "Weight and stool trends help assess nutrition and enzyme effectiveness; respiratory reassessment evaluates treatment response."
+        "summary": "The correct selections are: Administer a prescribed bronchodilator before airway-clearance therapy when indicated — Bronchodilation before airway clearance can improve airflow and secretion mobilization. Give pancreatic enzymes with meals and snacks according to the prescribed dose — Pancreatic enzymes must be taken with food to aid digestion and absorption. Provide high-calorie, high-protein nutrition and prescribed fat-soluble vitamins — Increased energy needs and fat malabsorption often require calorie-dense nutrition and vitamins A, D, E, and K. Assess weight trends, stool characteristics, and respiratory response to treatment — Weight and stool trends help assess nutrition and enzyme effectiveness; respiratory reassessment evaluates treatment response.",
+        "B": "Bronchodilation before airway clearance can improve airflow and secretion mobilization.",
+        "C": "Pancreatic enzymes must be taken with food to aid digestion and absorption.",
+        "D": "Increased energy needs and fat malabsorption often require calorie-dense nutrition and vitamins A, D, E, and K.",
+        "E": "Airway clearance immediately after meals may provoke vomiting; schedule around meals according to tolerance.",
+        "A": "Weight and stool trends help assess nutrition and enzyme effectiveness; respiratory reassessment evaluates treatment response."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -2258,7 +2261,7 @@
       "estimated_time_seconds": 85,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -2300,15 +2303,15 @@
         "options": [
           {
             "id": "A",
-            "text": "Ventilatory failure is developing because airflow is critically limited and respiratory muscles are tiring"
-          },
-          {
-            "id": "B",
             "text": "Bronchospasm is resolving because wheezing has diminished"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "The rising PaCO2 is an expected effect of inhaled beta-agonists and requires no escalation"
+          },
+          {
+            "id": "C",
+            "text": "Ventilatory failure is developing because airflow is critically limited and respiratory muscles are tiring"
           },
           {
             "id": "D",
@@ -2317,17 +2320,17 @@
         ]
       },
       "correct_response": [
-        "A"
+        "C"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "The safest response is based on the change in the client's clinical condition and the risk of rapid deterioration.",
-        "A": "A quiet chest with rising CO2 and fatigue indicates poor ventilation and impending respiratory failure; prepare for urgent escalation and airway support.",
-        "B": "Wheezing may disappear when airflow becomes critically low, not because obstruction has resolved.",
-        "C": "Rising PaCO2 in severe asthma is a danger sign, not a benign medication effect.",
+        "summary": "The best response is Ventilatory failure is developing because airflow is critically limited and respiratory muscles are tiring — A quiet chest with rising CO2 and fatigue indicates poor ventilation and impending respiratory failure; prepare for urgent escalation and airway support.",
+        "C": "A quiet chest with rising CO2 and fatigue indicates poor ventilation and impending respiratory failure; prepare for urgent escalation and airway support.",
+        "A": "Wheezing may disappear when airflow becomes critically low, not because obstruction has resolved.",
+        "B": "Rising PaCO2 in severe asthma is a danger sign, not a benign medication effect.",
         "D": "The client is retaining CO2 because ventilation is failing, not hyperventilating effectively."
       },
       "clinical_judgment": "analyze_cues",
@@ -2340,7 +2343,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -2381,35 +2384,35 @@
         "options": [
           {
             "id": "A",
-            "text": "Position to maintain airway patency, resume prescribed CPAP when appropriate, and intensify respiratory monitoring"
-          },
-          {
-            "id": "B",
             "text": "Administer a benzodiazepine to reduce anxiety and promote uninterrupted sleep"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Withhold all analgesia and allow the client to sleep without monitoring"
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "Place the client flat and discontinue CPAP because positive pressure can cause gastric distention"
+          },
+          {
+            "id": "D",
+            "text": "Position to maintain airway patency, resume prescribed CPAP when appropriate, and intensify respiratory monitoring"
           }
         ]
       },
       "correct_response": [
-        "A"
+        "D"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "The safest response is based on the change in the client's clinical condition and the risk of rapid deterioration.",
-        "A": "OSA and opioids increase risk of obstruction and hypoventilation; airway positioning, prescribed CPAP, opioid-sparing analgesia, and monitoring are important.",
-        "B": "Sedatives can worsen airway obstruction and respiratory depression.",
-        "C": "Pain control remains necessary, but close monitoring and safer analgesic strategies are required.",
-        "D": "Flat positioning can worsen obstruction, and CPAP should not be stopped without clinical reason."
+        "summary": "The best response is Position to maintain airway patency, resume prescribed CPAP when appropriate, and intensify respiratory monitoring — OSA and opioids increase risk of obstruction and hypoventilation; airway positioning, prescribed CPAP, opioid-sparing analgesia, and monitoring are important.",
+        "D": "OSA and opioids increase risk of obstruction and hypoventilation; airway positioning, prescribed CPAP, opioid-sparing analgesia, and monitoring are important.",
+        "A": "Sedatives can worsen airway obstruction and respiratory depression.",
+        "B": "Pain control remains necessary, but close monitoring and safer analgesic strategies are required.",
+        "C": "Flat positioning can worsen obstruction, and CPAP should not be stopped without clinical reason."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -2421,7 +2424,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -2461,35 +2464,35 @@
         "options": [
           {
             "id": "A",
-            "text": "Follow the prescribed wear schedule, remove the old patch before applying a new one, rotate sites, and avoid smoking while using it unless specifically directed"
-          },
-          {
-            "id": "B",
             "text": "Apply a second patch if cravings occur and leave both patches in place overnight"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Cut the patch in half to adjust the dose and apply it over irritated skin"
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "Place the new patch over the previous patch to maintain a steady nicotine level"
+          },
+          {
+            "id": "D",
+            "text": "Follow the prescribed wear schedule, remove the old patch before applying a new one, rotate sites, and avoid smoking while using it unless specifically directed"
           }
         ]
       },
       "correct_response": [
-        "A"
+        "D"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "The safest response is based on the change in the client's clinical condition and the risk of rapid deterioration.",
-        "A": "Correct patch use includes removing the old patch, rotating clean dry sites, and following product-specific wear instructions; concurrent smoking can increase nicotine toxicity risk.",
-        "B": "Adding patches without direction can cause overdose.",
-        "C": "Patches should not be cut unless the product is specifically designed for it; irritated skin should be avoided.",
-        "D": "Leaving an old patch in place can cause excess nicotine exposure."
+        "summary": "The best response is Follow the prescribed wear schedule, remove the old patch before applying a new one, rotate sites, and avoid smoking while using it unless specifically directed — Correct patch use includes removing the old patch, rotating clean dry sites, and following product-specific wear instructions; concurrent smoking can increase nicotine toxicity risk.",
+        "D": "Correct patch use includes removing the old patch, rotating clean dry sites, and following product-specific wear instructions; concurrent smoking can increase nicotine toxicity risk.",
+        "A": "Adding patches without direction can cause overdose.",
+        "B": "Patches should not be cut unless the product is specifically designed for it; irritated skin should be avoided.",
+        "C": "Leaving an old patch in place can cause excess nicotine exposure."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -2500,7 +2503,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -2543,35 +2546,35 @@
         "options": [
           {
             "id": "A",
-            "text": "Treat the hypoglycemia promptly and reassess the neurologic deficits before proceeding with thrombolysis decisions"
-          },
-          {
-            "id": "B",
             "text": "Administer alteplase immediately because the symptom-onset window is more important than the glucose result"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Give aspirin and clopidogrel before repeating the neurologic assessment"
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "Lower the blood pressure rapidly to below 120/80 mmHg before obtaining brain imaging"
+          },
+          {
+            "id": "D",
+            "text": "Treat the hypoglycemia promptly and reassess the neurologic deficits before proceeding with thrombolysis decisions"
           }
         ]
       },
       "correct_response": [
-        "A"
+        "D"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Hypoglycemia can mimic acute stroke and must be corrected promptly; persistent deficits then require continued stroke evaluation and imaging-based decisions.",
-        "B": "Treatable mimics and contraindications must be assessed; thrombolysis should not be given before addressing severe hypoglycemia.",
-        "C": "Antiplatelet therapy is not given before thrombolysis decisions and may increase bleeding risk if thrombolysis is used.",
-        "D": "Rapid normalization of blood pressure is not routinely indicated and can reduce cerebral perfusion; imaging and protocol-specific thresholds guide management."
+        "summary": "The best response is Treat the hypoglycemia promptly and reassess the neurologic deficits before proceeding with thrombolysis decisions — Hypoglycemia can mimic acute stroke and must be corrected promptly; persistent deficits then require continued stroke evaluation and imaging-based decisions.",
+        "D": "Hypoglycemia can mimic acute stroke and must be corrected promptly; persistent deficits then require continued stroke evaluation and imaging-based decisions.",
+        "A": "Treatable mimics and contraindications must be assessed; thrombolysis should not be given before addressing severe hypoglycemia.",
+        "B": "Antiplatelet therapy is not given before thrombolysis decisions and may increase bleeding risk if thrombolysis is used.",
+        "C": "Rapid normalization of blood pressure is not routinely indicated and can reduce cerebral perfusion; imaging and protocol-specific thresholds guide management."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -2583,7 +2586,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -2629,42 +2632,42 @@
         "options": [
           {
             "id": "A",
-            "text": "Maintain the head midline and elevate the head of bed about 30 degrees if not contraindicated"
-          },
-          {
-            "id": "B",
             "text": "Avoid prolonged hip flexion and unnecessary stimulation that can increase intrathoracic or intracranial pressure"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Coordinate care to allow rest periods and prevent repeated painful stimulation"
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "Suction the endotracheal tube on a fixed schedule every hour even when secretions are absent"
           },
           {
-            "id": "E",
+            "id": "D",
             "text": "Place the client in Trendelenburg position to increase cerebral venous return"
+          },
+          {
+            "id": "E",
+            "text": "Maintain the head midline and elevate the head of bed about 30 degrees if not contraindicated"
           }
         ]
       },
       "correct_response": [
+        "E",
         "A",
-        "B",
-        "C"
+        "B"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 3
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Midline alignment and modest head elevation promote venous drainage when hemodynamically tolerated.",
-        "B": "Hip flexion, straining, and avoidable stimulation can impede venous return or provoke ICP elevations.",
-        "C": "Clustering care with rest periods reduces avoidable stimulation while the client is monitored closely.",
-        "D": "Unnecessary suctioning can transiently raise ICP; suction only when clinically indicated and preoxygenate as appropriate.",
-        "E": "Trendelenburg impairs cerebral venous drainage and may worsen ICP."
+        "summary": "The correct selections are: Maintain the head midline and elevate the head of bed about 30 degrees if not contraindicated — Midline alignment and modest head elevation promote venous drainage when hemodynamically tolerated. Avoid prolonged hip flexion and unnecessary stimulation that can increase intrathoracic or intracranial pressure — Hip flexion, straining, and avoidable stimulation can impede venous return or provoke ICP elevations. Coordinate care to allow rest periods and prevent repeated painful stimulation — Clustering care with rest periods reduces avoidable stimulation while the client is monitored closely.",
+        "E": "Midline alignment and modest head elevation promote venous drainage when hemodynamically tolerated.",
+        "A": "Hip flexion, straining, and avoidable stimulation can impede venous return or provoke ICP elevations.",
+        "B": "Clustering care with rest periods reduces avoidable stimulation while the client is monitored closely.",
+        "C": "Unnecessary suctioning can transiently raise ICP; suction only when clinically indicated and preoxygenate as appropriate.",
+        "D": "Trendelenburg impairs cerebral venous drainage and may worsen ICP."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -2676,7 +2679,7 @@
       "estimated_time_seconds": 85,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -2748,7 +2751,7 @@
       "estimated_time_seconds": 95,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -2789,15 +2792,15 @@
         "options": [
           {
             "id": "A",
-            "text": "Guide the client to the floor, protect the head, loosen restrictive clothing, and turn to the side when feasible"
-          },
-          {
-            "id": "B",
             "text": "Restrain the arms and legs to prevent musculoskeletal injury"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Insert an oral airway between clenched teeth to prevent tongue injury"
+          },
+          {
+            "id": "C",
+            "text": "Guide the client to the floor, protect the head, loosen restrictive clothing, and turn to the side when feasible"
           },
           {
             "id": "D",
@@ -2806,17 +2809,17 @@
         ]
       },
       "correct_response": [
-        "A"
+        "C"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Protecting from injury, supporting a side-lying position when possible, and timing the seizure are appropriate immediate actions.",
-        "B": "Restraints can cause injury and do not stop seizure activity.",
-        "C": "Nothing should be forced into the mouth during an active seizure; this can cause dental and airway injury.",
+        "summary": "The best response is Guide the client to the floor, protect the head, loosen restrictive clothing, and turn to the side when feasible — Protecting from injury, supporting a side-lying position when possible, and timing the seizure are appropriate immediate actions.",
+        "C": "Protecting from injury, supporting a side-lying position when possible, and timing the seizure are appropriate immediate actions.",
+        "A": "Restraints can cause injury and do not stop seizure activity.",
+        "B": "Nothing should be forced into the mouth during an active seizure; this can cause dental and airway injury.",
         "D": "Stay with the client, summon help, and protect the airway and environment; medication follows protocol and does not replace immediate safety."
       },
       "clinical_judgment": "take_action",
@@ -2828,7 +2831,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -2870,11 +2873,11 @@
         "options": [
           {
             "id": "A",
-            "text": "Escalate immediately for critical-care airway assessment and prepare for ventilatory support"
+            "text": "Administer the next oral pyridostigmine dose and reassess respiratory strength in 2 hours"
           },
           {
             "id": "B",
-            "text": "Administer the next oral pyridostigmine dose and reassess respiratory strength in 2 hours"
+            "text": "Escalate immediately for critical-care airway assessment and prepare for ventilatory support"
           },
           {
             "id": "C",
@@ -2887,16 +2890,16 @@
         ]
       },
       "correct_response": [
-        "A"
+        "B"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Declining vital capacity, weak cough, and secretion difficulty signal impending respiratory failure; oxygen saturation can remain normal until late.",
-        "B": "Oral medication may be unsafe with bulbar weakness and must not delay airway support.",
+        "summary": "The best response is Escalate immediately for critical-care airway assessment and prepare for ventilatory support — Declining vital capacity, weak cough, and secretion difficulty signal impending respiratory failure; oxygen saturation can remain normal until late.",
+        "B": "Declining vital capacity, weak cough, and secretion difficulty signal impending respiratory failure; oxygen saturation can remain normal until late.",
+        "A": "Oral medication may be unsafe with bulbar weakness and must not delay airway support.",
         "C": "Exercise and incentive spirometry are not adequate treatment for rapidly worsening neuromuscular respiratory weakness.",
         "D": "Oral fluids increase aspiration risk when swallowing and cough are impaired."
       },
@@ -2910,7 +2913,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -2952,15 +2955,15 @@
         "options": [
           {
             "id": "A",
-            "text": "A declining vital capacity with a weaker cough and difficulty counting to ten in one breath"
-          },
-          {
-            "id": "B",
             "text": "Bilateral absent ankle reflexes with preserved cough and stable respiratory measurements"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Burning paresthesia in both feet that is unchanged from the previous assessment"
+          },
+          {
+            "id": "C",
+            "text": "A declining vital capacity with a weaker cough and difficulty counting to ten in one breath"
           },
           {
             "id": "D",
@@ -2969,17 +2972,17 @@
         ]
       },
       "correct_response": [
-        "A"
+        "C"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Serial respiratory mechanics and bulbar/cough function identify impending ventilatory failure; deterioration requires urgent airway planning.",
-        "B": "Areflexia is expected in GBS but does not by itself indicate imminent respiratory failure.",
-        "C": "Stable sensory symptoms do not indicate acute respiratory deterioration.",
+        "summary": "The best response is A declining vital capacity with a weaker cough and difficulty counting to ten in one breath — Serial respiratory mechanics and bulbar/cough function identify impending ventilatory failure; deterioration requires urgent airway planning.",
+        "C": "Serial respiratory mechanics and bulbar/cough function identify impending ventilatory failure; deterioration requires urgent airway planning.",
+        "A": "Areflexia is expected in GBS but does not by itself indicate imminent respiratory failure.",
+        "B": "Stable sensory symptoms do not indicate acute respiratory deterioration.",
         "D": "Constipation is important to manage but is not the immediate life threat."
       },
       "clinical_judgment": "recognize_cues",
@@ -2991,7 +2994,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -3032,11 +3035,11 @@
         "options": [
           {
             "id": "A",
-            "text": "Discuss consistent dose timing and separating doses from high-protein meals when directed, without reducing total protein intake independently"
+            "text": "Eliminate protein from the diet because it permanently blocks levodopa absorption"
           },
           {
             "id": "B",
-            "text": "Eliminate protein from the diet because it permanently blocks levodopa absorption"
+            "text": "Discuss consistent dose timing and separating doses from high-protein meals when directed, without reducing total protein intake independently"
           },
           {
             "id": "C",
@@ -3049,16 +3052,16 @@
         ]
       },
       "correct_response": [
-        "A"
+        "B"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Dietary amino acids can compete with levodopa transport; consistent timing and individualized meal scheduling may improve response while preserving nutrition.",
-        "B": "Protein is essential and should not be eliminated; timing rather than global restriction is considered.",
+        "summary": "The best response is Discuss consistent dose timing and separating doses from high-protein meals when directed, without reducing total protein intake independently — Dietary amino acids can compete with levodopa transport; consistent timing and individualized meal scheduling may improve response while preserving nutrition.",
+        "B": "Dietary amino acids can compete with levodopa transport; consistent timing and individualized meal scheduling may improve response while preserving nutrition.",
+        "A": "Protein is essential and should not be eliminated; timing rather than global restriction is considered.",
         "C": "Levodopa is generally scheduled to maintain symptom control, not taken only when symptoms peak.",
         "D": "Extended-release formulations should not be crushed, and a protein shake may worsen competition for absorption."
       },
@@ -3071,7 +3074,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -3114,11 +3117,11 @@
         "options": [
           {
             "id": "A",
-            "text": "Initiate droplet precautions and ensure prompt antimicrobial treatment is not delayed for nonessential procedures"
+            "text": "Place the client in airborne isolation and defer antibiotics until the culture results are final"
           },
           {
             "id": "B",
-            "text": "Place the client in airborne isolation and defer antibiotics until the culture results are final"
+            "text": "Initiate droplet precautions and ensure prompt antimicrobial treatment is not delayed for nonessential procedures"
           },
           {
             "id": "C",
@@ -3131,16 +3134,16 @@
         ]
       },
       "correct_response": [
-        "A"
+        "B"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Droplet precautions are indicated for suspected meningococcal disease and many bacterial meningitis protocols; urgent antibiotics should not be unnecessarily delayed.",
-        "B": "Airborne isolation is not the routine precaution for meningococcal meningitis, and culture results take time.",
+        "summary": "The best response is Initiate droplet precautions and ensure prompt antimicrobial treatment is not delayed for nonessential procedures — Droplet precautions are indicated for suspected meningococcal disease and many bacterial meningitis protocols; urgent antibiotics should not be unnecessarily delayed.",
+        "B": "Droplet precautions are indicated for suspected meningococcal disease and many bacterial meningitis protocols; urgent antibiotics should not be unnecessarily delayed.",
+        "A": "Airborne isolation is not the routine precaution for meningococcal meningitis, and culture results take time.",
         "C": "Contact precautions alone are insufficient for droplet-transmitted pathogens.",
         "D": "Isolation should begin on suspicion, not after results return."
       },
@@ -3153,7 +3156,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -3196,35 +3199,35 @@
         "options": [
           {
             "id": "A",
-            "text": "Reduced risk of delayed cerebral ischemic deficits associated with post-hemorrhagic vasospasm"
-          },
-          {
-            "id": "B",
             "text": "Immediate reduction of intracranial pressure by osmotic diuresis"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Prevention of rebleeding by directly sealing the aneurysm"
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "Dissolution of the subarachnoid clot to restore cerebral blood flow"
+          },
+          {
+            "id": "D",
+            "text": "Reduced risk of delayed cerebral ischemic deficits associated with post-hemorrhagic vasospasm"
           }
         ]
       },
       "correct_response": [
-        "A"
+        "D"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Nimodipine improves neurologic outcomes by reducing delayed ischemic deficits after aneurysmal SAH; it does not directly reverse the bleed.",
-        "B": "It is not an osmotic agent and does not directly lower ICP.",
-        "C": "Aneurysm securing, not nimodipine, addresses the source of rebleeding.",
-        "D": "Nimodipine is not a thrombolytic and does not dissolve the clot."
+        "summary": "The best response is Reduced risk of delayed cerebral ischemic deficits associated with post-hemorrhagic vasospasm — Nimodipine improves neurologic outcomes by reducing delayed ischemic deficits after aneurysmal SAH; it does not directly reverse the bleed.",
+        "D": "Nimodipine improves neurologic outcomes by reducing delayed ischemic deficits after aneurysmal SAH; it does not directly reverse the bleed.",
+        "A": "It is not an osmotic agent and does not directly lower ICP.",
+        "B": "Aneurysm securing, not nimodipine, addresses the source of rebleeding.",
+        "C": "Nimodipine is not a thrombolytic and does not dissolve the clot."
       },
       "clinical_judgment": "analyze_cues",
       "tags": [
@@ -3235,7 +3238,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -3277,35 +3280,35 @@
         "options": [
           {
             "id": "A",
-            "text": "Reduce environmental stimulation, maintain a predictable evening routine, and assess for unmet needs such as pain, toileting, or fatigue"
-          },
-          {
-            "id": "B",
             "text": "Confront the client firmly with the correct date and insist that the client remain seated"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Use a physical restraint at the start of each evening to prevent wandering"
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "Keep the lights dim and the room completely dark to encourage sleep"
+          },
+          {
+            "id": "D",
+            "text": "Reduce environmental stimulation, maintain a predictable evening routine, and assess for unmet needs such as pain, toileting, or fatigue"
           }
         ]
       },
       "correct_response": [
-        "A"
+        "D"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "A calm, structured environment and assessment for triggers can reduce sundowning-related distress while preserving safety.",
-        "B": "Repeated confrontation can increase anxiety and does not address the cause of the behavior.",
-        "C": "Restraints can worsen agitation and cause harm; use individualized least-restrictive safety measures.",
-        "D": "Complete darkness may increase disorientation and fall risk; lighting should support orientation and safe mobility."
+        "summary": "The best response is Reduce environmental stimulation, maintain a predictable evening routine, and assess for unmet needs such as pain, toileting, or fatigue — A calm, structured environment and assessment for triggers can reduce sundowning-related distress while preserving safety.",
+        "D": "A calm, structured environment and assessment for triggers can reduce sundowning-related distress while preserving safety.",
+        "A": "Repeated confrontation can increase anxiety and does not address the cause of the behavior.",
+        "B": "Restraints can worsen agitation and cause harm; use individualized least-restrictive safety measures.",
+        "C": "Complete darkness may increase disorientation and fall risk; lighting should support orientation and safe mobility."
       },
       "clinical_judgment": "take_action",
       "tags": [
@@ -3317,7 +3320,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -3358,43 +3361,43 @@
         "options": [
           {
             "id": "A",
-            "text": "Schedule demanding activities during periods of greatest energy and include planned rest periods"
-          },
-          {
-            "id": "B",
-            "text": "Use cooling strategies and avoid overheating when heat worsens symptoms"
-          },
-          {
-            "id": "C",
-            "text": "Continue prescribed exercise within tolerance to maintain strength and mobility"
-          },
-          {
-            "id": "D",
             "text": "Stop all physical activity whenever fatigue occurs, even after rest improves symptoms"
           },
           {
-            "id": "E",
+            "id": "B",
             "text": "Report new or rapidly worsening neurologic symptoms rather than assuming every change is a routine flare"
+          },
+          {
+            "id": "C",
+            "text": "Schedule demanding activities during periods of greatest energy and include planned rest periods"
+          },
+          {
+            "id": "D",
+            "text": "Use cooling strategies and avoid overheating when heat worsens symptoms"
+          },
+          {
+            "id": "E",
+            "text": "Continue prescribed exercise within tolerance to maintain strength and mobility"
           }
         ]
       },
       "correct_response": [
-        "A",
-        "B",
         "C",
-        "E"
+        "D",
+        "E",
+        "B"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 3
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Energy conservation helps manage fatigue without abandoning activity.",
-        "B": "Heat can temporarily worsen neurologic symptoms; cooling and avoiding overheating may help.",
-        "C": "Appropriate exercise supports function and should be individualized to tolerance.",
-        "D": "Complete inactivity promotes deconditioning; balance activity with rest.",
-        "E": "New symptoms may reflect relapse, infection, or another urgent condition and warrant assessment."
+        "summary": "The correct selections are: Schedule demanding activities during periods of greatest energy and include planned rest periods — Energy conservation helps manage fatigue without abandoning activity. Use cooling strategies and avoid overheating when heat worsens symptoms — Heat can temporarily worsen neurologic symptoms; cooling and avoiding overheating may help. Continue prescribed exercise within tolerance to maintain strength and mobility — Appropriate exercise supports function and should be individualized to tolerance. Report new or rapidly worsening neurologic symptoms rather than assuming every change is a routine flare — New symptoms may reflect relapse, infection, or another urgent condition and warrant assessment.",
+        "C": "Energy conservation helps manage fatigue without abandoning activity.",
+        "D": "Heat can temporarily worsen neurologic symptoms; cooling and avoiding overheating may help.",
+        "E": "Appropriate exercise supports function and should be individualized to tolerance.",
+        "A": "Complete inactivity promotes deconditioning; balance activity with rest.",
+        "B": "New symptoms may reflect relapse, infection, or another urgent condition and warrant assessment."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -3406,7 +3409,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -3471,7 +3474,7 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "summary": "The best response is Assist the client to lie flat for comfort, encourage fluids if not contraindicated, and notify the provider if symptoms persist or worsen — A positional headache is consistent with post-dural puncture headache; supportive measures and provider notification guide further management, including possible blood patch.",
         "A": "A positional headache is consistent with post-dural puncture headache; supportive measures and provider notification guide further management, including possible blood patch.",
         "B": "Upright posture typically worsens the headache.",
         "C": "Anticoagulation is not indicated and may increase procedural bleeding risk.",
@@ -3486,7 +3489,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -3532,11 +3535,11 @@
         "options": [
           {
             "id": "A",
-            "text": "Hold insulin temporarily and initiate prescribed potassium replacement with close ECG and laboratory monitoring"
+            "text": "Start insulin at the full rate because glucose is critically elevated and potassium will rise"
           },
           {
             "id": "B",
-            "text": "Start insulin at the full rate because glucose is critically elevated and potassium will rise"
+            "text": "Hold insulin temporarily and initiate prescribed potassium replacement with close ECG and laboratory monitoring"
           },
           {
             "id": "C",
@@ -3549,17 +3552,17 @@
         ]
       },
       "correct_response": [
-        "A"
+        "B"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Insulin shifts potassium intracellularly; when potassium is below 3.3 mEq/L, replacement is required before insulin to reduce life-threatening dysrhythmia risk.",
-        "B": "Starting insulin with significant hypokalemia can worsen the deficit and precipitate arrhythmias.",
-        "C": "Bicarbonate is not routine DKA therapy and can further lower potassium; treatment depends on severe acidosis criteria.",
+        "summary": "The best response is Hold insulin temporarily and initiate prescribed potassium replacement with close ECG and laboratory monitoring — Insulin shifts potassium into cells. The 2024 international consensus recommends potassium replacement and delaying insulin when serum potassium is below 3.5 mmol/L; begin insulin only after potassium rises above 3.5 mmol/L, with close ECG and laboratory monitoring.",
+        "B": "Insulin shifts potassium into cells. The 2024 international consensus recommends potassium replacement and delaying insulin when serum potassium is below 3.5 mmol/L; begin insulin only after potassium rises above 3.5 mmol/L, with close ECG and laboratory monitoring.",
+        "A": "Starting insulin with significant hypokalemia can worsen the deficit and precipitate arrhythmias.",
+        "C": "Bicarbonate is not routine DKA therapy and may further lower serum potassium. It is reserved for selected cases of severe acidosis under the treatment protocol.",
         "D": "Fluid resuscitation remains important; restriction does not correct the potassium deficit or DKA."
       },
       "clinical_judgment": "take_action",
@@ -3572,8 +3575,10 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
-        "references": [],
+        "status": "editorially_reviewed",
+        "references": [
+          "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (2024), https://doi.org/10.2337/dci24-0032"
+        ],
         "publication_status": "published"
       }
     },
@@ -3641,7 +3646,7 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "summary": "The best response is Blocking new thyroid hormone synthesis before iodine administration reduces the risk that iodine will be used as substrate for additional hormone production — Thionamides are administered before iodine so organification and new hormone synthesis are blocked before iodine is supplied.",
         "A": "Thionamides are administered before iodine so organification and new hormone synthesis are blocked before iodine is supplied.",
         "B": "PTU does not work by increasing iodine absorption.",
         "C": "The sequencing is intended to block hormone synthesis before iodine is given, not to prevent direct chemical inactivation.",
@@ -3657,7 +3662,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -3703,35 +3708,35 @@
         "options": [
           {
             "id": "A",
-            "text": "Hyponatremia, hyperkalemia, and hypoglycemia"
-          },
-          {
-            "id": "B",
             "text": "Hypernatremia, hypokalemia, and hyperglycemia"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Hyponatremia, hypokalemia, and hypercalcemia"
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "Hypernatremia, hyperkalemia, and hyperglycemia"
+          },
+          {
+            "id": "D",
+            "text": "Hyponatremia, hyperkalemia, and hypoglycemia"
           }
         ]
       },
       "correct_response": [
-        "A"
+        "D"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Cortisol and aldosterone deficiency can produce sodium loss, potassium retention, volume depletion, and low glucose.",
-        "B": "This pattern is opposite to the usual mineralocorticoid-deficient state.",
-        "C": "Hypokalemia is not expected in primary adrenal crisis.",
-        "D": "Hypernatremia and hyperglycemia do not fit the typical crisis pattern."
+        "summary": "The best response is Hyponatremia, hyperkalemia, and hypoglycemia — Cortisol and aldosterone deficiency can produce sodium loss, potassium retention, volume depletion, and low glucose.",
+        "D": "Cortisol and aldosterone deficiency can produce sodium loss, potassium retention, volume depletion, and low glucose.",
+        "A": "This pattern is opposite to the usual mineralocorticoid-deficient state.",
+        "B": "Hypokalemia is not expected in primary adrenal crisis.",
+        "C": "Hypernatremia and hyperglycemia do not fit the typical crisis pattern."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
@@ -3743,7 +3748,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -3788,15 +3793,15 @@
         "options": [
           {
             "id": "A",
-            "text": "Rapid correction can cause osmotic demyelination, with potentially irreversible neurologic injury"
-          },
-          {
-            "id": "B",
             "text": "Slow correction causes cerebral edema to worsen indefinitely and must be avoided"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Frequent sodium checks prevent hyperkalemia caused by saline infusion"
+          },
+          {
+            "id": "C",
+            "text": "Rapid correction can cause osmotic demyelination, with potentially irreversible neurologic injury"
           },
           {
             "id": "D",
@@ -3805,17 +3810,17 @@
         ]
       },
       "correct_response": [
-        "A"
+        "C"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Chronic hyponatremia allows brain adaptation; rapid rise in serum sodium can cause osmotic demyelination, so correction limits and monitoring are essential.",
-        "B": "The goal is controlled correction; overly rapid correction is the major neurologic hazard.",
-        "C": "Sodium monitoring is directed at correction rate and neurologic safety, not prevention of hyperkalemia.",
+        "summary": "The best response is Rapid correction can cause osmotic demyelination, with potentially irreversible neurologic injury — Chronic hyponatremia allows brain adaptation; rapid rise in serum sodium can cause osmotic demyelination, so correction limits and monitoring are essential.",
+        "C": "Chronic hyponatremia allows brain adaptation; rapid rise in serum sodium can cause osmotic demyelination, so correction limits and monitoring are essential.",
+        "A": "The goal is controlled correction; overly rapid correction is the major neurologic hazard.",
+        "B": "Sodium monitoring is directed at correction rate and neurologic safety, not prevention of hyperkalemia.",
         "D": "Sodium does not precipitate as crystals in this manner; the concern is osmotic injury."
       },
       "clinical_judgment": "analyze_cues",
@@ -3828,7 +3833,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -3900,7 +3905,7 @@
         "max_points": 4
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "summary": "The correct selections are: Assess for hypocalcemia and obtain the prescribed calcium level — Perioral tingling and carpopedal spasm suggest hypocalcemia from parathyroid injury or stunning. Keep emergency airway equipment available and assess for laryngospasm or stridor — Hypocalcemia can cause laryngospasm; airway readiness is essential. Notify the provider promptly and anticipate prescribed IV calcium for symptomatic hypocalcemia — Symptomatic hypocalcemia may require prompt IV calcium under monitoring.",
         "A": "Perioral tingling and carpopedal spasm suggest hypocalcemia from parathyroid injury or stunning.",
         "B": "Hypocalcemia can cause laryngospasm; airway readiness is essential.",
         "C": "Symptomatic hypocalcemia may require prompt IV calcium under monitoring.",
@@ -3917,7 +3922,7 @@
       "estimated_time_seconds": 85,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -3961,15 +3966,15 @@
         "options": [
           {
             "id": "A",
-            "text": "Assess hemodynamic status and fluid deficit, replace fluids as prescribed, and administer desmopressin as ordered"
-          },
-          {
-            "id": "B",
             "text": "Restrict fluids to reduce urinary output until serum sodium normalizes"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Administer a loop diuretic to reduce free-water loss"
+          },
+          {
+            "id": "C",
+            "text": "Assess hemodynamic status and fluid deficit, replace fluids as prescribed, and administer desmopressin as ordered"
           },
           {
             "id": "D",
@@ -3978,17 +3983,17 @@
         ]
       },
       "correct_response": [
-        "A"
+        "C"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "The client is losing large volumes of free water and is hypernatremic; prompt volume assessment, replacement, and antidiuretic therapy are central.",
-        "B": "Fluid restriction worsens dehydration and hypernatremia.",
-        "C": "Loop diuretics can increase water loss and are not treatment for central DI.",
+        "summary": "The best response is Assess hemodynamic status and fluid deficit, replace fluids as prescribed, and administer desmopressin as ordered — The client is losing large volumes of free water and is hypernatremic; prompt volume assessment, replacement, and antidiuretic therapy are central.",
+        "C": "The client is losing large volumes of free water and is hypernatremic; prompt volume assessment, replacement, and antidiuretic therapy are central.",
+        "A": "Fluid restriction worsens dehydration and hypernatremia.",
+        "B": "Loop diuretics can increase water loss and are not treatment for central DI.",
         "D": "Treatment should not be unnecessarily delayed when the clinical picture is clear and the client is deteriorating."
       },
       "clinical_judgment": "take_action",
@@ -4001,7 +4006,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -4047,15 +4052,15 @@
         "options": [
           {
             "id": "A",
-            "text": "IV calcium gluconate"
-          },
-          {
-            "id": "B",
             "text": "Regular insulin with dextrose"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Nebulized albuterol"
+          },
+          {
+            "id": "C",
+            "text": "IV calcium gluconate"
           },
           {
             "id": "D",
@@ -4064,17 +4069,17 @@
         ]
       },
       "correct_response": [
-        "A"
+        "C"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "IV calcium stabilizes the cardiac membrane and is the immediate priority when hyperkalemia produces ECG changes; it does not lower serum potassium.",
-        "B": "Insulin with dextrose shifts potassium intracellularly but does not provide immediate membrane stabilization.",
-        "C": "Albuterol can shift potassium intracellularly but is adjunctive and not a substitute for calcium with ECG changes.",
+        "summary": "The best response is IV calcium gluconate — IV calcium stabilizes the cardiac membrane and is the immediate priority when hyperkalemia produces ECG changes; it does not lower serum potassium.",
+        "C": "IV calcium stabilizes the cardiac membrane and is the immediate priority when hyperkalemia produces ECG changes; it does not lower serum potassium.",
+        "A": "Insulin with dextrose shifts potassium intracellularly but does not provide immediate membrane stabilization.",
+        "B": "Albuterol can shift potassium intracellularly but is adjunctive and not a substitute for calcium with ECG changes.",
         "D": "Potassium binders remove potassium over time and are not the immediate intervention for ECG toxicity."
       },
       "clinical_judgment": "take_action",
@@ -4087,7 +4092,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -4131,43 +4136,43 @@
         "options": [
           {
             "id": "A",
-            "text": "Assess for a palpable thrill and audible bruit according to policy"
-          },
-          {
-            "id": "B",
-            "text": "Use the opposite arm for blood pressure measurements and venipuncture"
-          },
-          {
-            "id": "C",
             "text": "Avoid constrictive clothing or prolonged pressure over the fistula"
           },
           {
-            "id": "D",
+            "id": "B",
             "text": "Apply a tight dressing over the access whenever the client sleeps"
           },
           {
-            "id": "E",
+            "id": "C",
             "text": "Report loss of thrill or bruit immediately"
+          },
+          {
+            "id": "D",
+            "text": "Assess for a palpable thrill and audible bruit according to policy"
+          },
+          {
+            "id": "E",
+            "text": "Use the opposite arm for blood pressure measurements and venipuncture"
           }
         ]
       },
       "correct_response": [
+        "D",
+        "E",
         "A",
-        "B",
-        "C",
-        "E"
+        "C"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 4
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "A thrill and bruit help indicate fistula patency; changes require prompt assessment.",
-        "B": "Blood pressure cuffs and venipuncture can injure or compromise the access.",
-        "C": "External compression can impair blood flow and thrombose the fistula.",
-        "D": "Routine tight dressing is contraindicated because it can obstruct flow.",
-        "E": "Loss of thrill or bruit may indicate thrombosis and requires urgent escalation."
+        "summary": "The correct selections are: Assess for a palpable thrill and audible bruit according to policy — A thrill and bruit help indicate fistula patency; changes require prompt assessment. Use the opposite arm for blood pressure measurements and venipuncture — Blood pressure cuffs and venipuncture can injure or compromise the access. Avoid constrictive clothing or prolonged pressure over the fistula — External compression can impair blood flow and thrombose the fistula. Report loss of thrill or bruit immediately — Loss of thrill or bruit may indicate thrombosis and requires urgent escalation.",
+        "D": "A thrill and bruit help indicate fistula patency; changes require prompt assessment.",
+        "E": "Blood pressure cuffs and venipuncture can injure or compromise the access.",
+        "A": "External compression can impair blood flow and thrombose the fistula.",
+        "B": "Routine tight dressing is contraindicated because it can obstruct flow.",
+        "C": "Loss of thrill or bruit may indicate thrombosis and requires urgent escalation."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -4179,7 +4184,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -4221,11 +4226,11 @@
         "options": [
           {
             "id": "A",
-            "text": "Obtain a specimen of the effluent for cell count and culture using aseptic technique and notify the dialysis team promptly"
+            "text": "Increase the dwell time and reassess the clarity of the next exchange"
           },
           {
             "id": "B",
-            "text": "Increase the dwell time and reassess the clarity of the next exchange"
+            "text": "Obtain a specimen of the effluent for cell count and culture using aseptic technique and notify the dialysis team promptly"
           },
           {
             "id": "C",
@@ -4238,16 +4243,16 @@
         ]
       },
       "correct_response": [
-        "A"
+        "B"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Cloudy effluent with abdominal pain is peritonitis until proven otherwise; obtain specimens and initiate prompt evaluation and treatment.",
-        "B": "Delaying assessment can worsen infection and compromise treatment.",
+        "summary": "The best response is Obtain a specimen of the effluent for cell count and culture using aseptic technique and notify the dialysis team promptly — Cloudy effluent with abdominal pain is peritonitis until proven otherwise; obtain specimens and initiate prompt evaluation and treatment.",
+        "B": "Cloudy effluent with abdominal pain is peritonitis until proven otherwise; obtain specimens and initiate prompt evaluation and treatment.",
+        "A": "Delaying assessment can worsen infection and compromise treatment.",
         "C": "Nothing should be added to dialysate without an explicit sterile prescription.",
         "D": "Cloudiness is not an expected benign finding and must be investigated."
       },
@@ -4260,7 +4265,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -4301,15 +4306,15 @@
         "options": [
           {
             "id": "A",
-            "text": "Assess the tubing for kinks or obstruction and restore prescribed continuous bladder irrigation patency according to protocol"
-          },
-          {
-            "id": "B",
             "text": "Increase the irrigation rate to maximum without assessing the outflow"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Clamp the catheter for 30 minutes to allow the bladder to rest"
+          },
+          {
+            "id": "C",
+            "text": "Assess the tubing for kinks or obstruction and restore prescribed continuous bladder irrigation patency according to protocol"
           },
           {
             "id": "D",
@@ -4318,17 +4323,17 @@
         ]
       },
       "correct_response": [
-        "A"
+        "C"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Bladder distention and reduced outflow suggest obstruction; assess the system and restore patency per protocol, including prescribed irrigation management.",
-        "B": "Increasing inflow without ensuring outflow can worsen bladder distention and injury.",
-        "C": "Clamping the catheter worsens retention and pressure.",
+        "summary": "The best response is Assess the tubing for kinks or obstruction and restore prescribed continuous bladder irrigation patency according to protocol — Bladder distention and reduced outflow suggest obstruction; assess the system and restore patency per protocol, including prescribed irrigation management.",
+        "C": "Bladder distention and reduced outflow suggest obstruction; assess the system and restore patency per protocol, including prescribed irrigation management.",
+        "A": "Increasing inflow without ensuring outflow can worsen bladder distention and injury.",
+        "B": "Clamping the catheter worsens retention and pressure.",
         "D": "Removing or exchanging a fresh postoperative catheter risks trauma and should be directed by the urology team."
       },
       "clinical_judgment": "take_action",
@@ -4340,7 +4345,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -4406,7 +4411,7 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
+        "summary": "The best response is Acute-on-chronic respiratory acidosis with hypoxemia — The low pH and elevated PaCO2 indicate respiratory acidosis; elevated bicarbonate suggests some chronic renal compensation, while low PaO2 indicates hypoxemia.",
         "A": "The low pH and elevated PaCO2 indicate respiratory acidosis; elevated bicarbonate suggests some chronic renal compensation, while low PaO2 indicates hypoxemia.",
         "B": "The pH is acidemic and PaCO2 is elevated, not a primary metabolic alkalosis.",
         "C": "The primary change is increased CO2, not reduced bicarbonate.",
@@ -4422,7 +4427,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -4465,15 +4470,15 @@
         "options": [
           {
             "id": "A",
-            "text": "Magnesium deficiency promotes renal potassium wasting, making hypokalemia difficult to correct until magnesium is restored"
-          },
-          {
-            "id": "B",
             "text": "Magnesium replacement directly converts intracellular potassium into serum potassium"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Low magnesium prevents potassium absorption from the gastrointestinal tract only"
+          },
+          {
+            "id": "C",
+            "text": "Magnesium deficiency promotes renal potassium wasting, making hypokalemia difficult to correct until magnesium is restored"
           },
           {
             "id": "D",
@@ -4482,17 +4487,17 @@
         ]
       },
       "correct_response": [
-        "A"
+        "C"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Hypomagnesemia increases renal potassium loss and can make hypokalemia refractory to replacement.",
-        "B": "Magnesium does not directly move potassium into serum in this way.",
-        "C": "The mechanism is not limited to gastrointestinal absorption; renal wasting is important.",
+        "summary": "The best response is Magnesium deficiency promotes renal potassium wasting, making hypokalemia difficult to correct until magnesium is restored — Hypomagnesemia increases renal potassium loss and can make hypokalemia refractory to replacement.",
+        "C": "Hypomagnesemia increases renal potassium loss and can make hypokalemia refractory to replacement.",
+        "A": "Magnesium does not directly move potassium into serum in this way.",
+        "B": "The mechanism is not limited to gastrointestinal absorption; renal wasting is important.",
         "D": "Calcium-potassium binding is not the relevant mechanism."
       },
       "clinical_judgment": "analyze_cues",
@@ -4505,7 +4510,7 @@
       "estimated_time_seconds": 75,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -4550,11 +4555,11 @@
         "options": [
           {
             "id": "A",
-            "text": "The client is more alert and has approximately 2–3 soft stools per day"
+            "text": "The client has no bowel movement for 48 hours and increasing confusion"
           },
           {
             "id": "B",
-            "text": "The client has no bowel movement for 48 hours and increasing confusion"
+            "text": "The client is more alert and has approximately 2–3 soft stools per day"
           },
           {
             "id": "C",
@@ -4567,16 +4572,16 @@
         ]
       },
       "correct_response": [
-        "A"
+        "B"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "Interpret the evolving clinical data and select the safest evidence-informed nursing response.",
-        "A": "Lactulose reduces intestinal ammonia absorption; improved mentation and a target of a few soft stools daily indicate response.",
-        "B": "Constipation can reduce treatment effectiveness and worsening confusion suggests deterioration.",
+        "summary": "The best response is The client is more alert and has approximately 2–3 soft stools per day — Lactulose reduces intestinal ammonia absorption; improved mentation and a target of a few soft stools daily indicate response.",
+        "B": "Lactulose reduces intestinal ammonia absorption; improved mentation and a target of a few soft stools daily indicate response.",
+        "A": "Constipation can reduce treatment effectiveness and worsening confusion suggests deterioration.",
         "C": "Excessive diarrhea can cause dehydration and electrolyte disturbances; the dose requires reassessment.",
         "D": "Rising ammonia with worsening mental status suggests inadequate response or another cause requiring evaluation."
       },
@@ -4590,7 +4595,7 @@
       "estimated_time_seconds": 65,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -4636,43 +4641,43 @@
         "options": [
           {
             "id": "A",
-            "text": "Administer prescribed isotonic IV fluids and reassess perfusion, urine output, and respiratory status"
+            "text": "Maintain NPO status only while vomiting or severe symptoms persist, then advance nutrition as clinically appropriate"
           },
           {
             "id": "B",
-            "text": "Provide prescribed analgesia and reassess pain and sedation"
+            "text": "Administer prescribed isotonic IV fluids and reassess perfusion, urine output, and respiratory status"
           },
           {
             "id": "C",
-            "text": "Monitor for hypoxemia, increasing work of breathing, and signs of systemic complications"
+            "text": "Provide prescribed analgesia and reassess pain and sedation"
           },
           {
             "id": "D",
-            "text": "Offer a high-fat meal to stimulate pancreatic enzyme release and restore nutrition"
+            "text": "Monitor for hypoxemia, increasing work of breathing, and signs of systemic complications"
           },
           {
             "id": "E",
-            "text": "Maintain NPO status only while vomiting or severe symptoms persist, then advance nutrition as clinically appropriate"
+            "text": "Offer a high-fat meal to stimulate pancreatic enzyme release and restore nutrition"
           }
         ]
       },
       "correct_response": [
-        "A",
         "B",
         "C",
-        "E"
+        "D",
+        "A"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 4
       },
       "rationales": {
-        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
-        "A": "Early fluid resuscitation addresses intravascular depletion, but must be titrated with frequent reassessment to avoid overload.",
-        "B": "Pain control is important and should be monitored for therapeutic and adverse effects.",
-        "C": "Pancreatitis can cause systemic inflammation, pleural effusion, and respiratory failure; respiratory monitoring is essential.",
-        "D": "High-fat meals stimulate pancreatic secretion and are inappropriate during acute illness.",
-        "E": "Feeding should be individualized; prolonged unnecessary fasting is not beneficial, but oral intake may be deferred during uncontrolled vomiting or severe symptoms."
+        "summary": "The correct selections are: Administer prescribed isotonic IV fluids and reassess perfusion, urine output, and respiratory status — Early fluid resuscitation addresses intravascular depletion, but must be titrated with frequent reassessment to avoid overload. Provide prescribed analgesia and reassess pain and sedation — Pain control is important and should be monitored for therapeutic and adverse effects. Monitor for hypoxemia, increasing work of breathing, and signs of systemic complications — Pancreatitis can cause systemic inflammation, pleural effusion, and respiratory failure; respiratory monitoring is essential. Maintain NPO status only while vomiting or severe symptoms persist, then advance nutrition as clinically appropriate — Feeding should be individualized; prolonged unnecessary fasting is not beneficial, but oral intake may be deferred during uncontrolled vomiting or severe symptoms.",
+        "B": "Early fluid resuscitation addresses intravascular depletion, but must be titrated with frequent reassessment to avoid overload.",
+        "C": "Pain control is important and should be monitored for therapeutic and adverse effects.",
+        "D": "Pancreatitis can cause systemic inflammation, pleural effusion, and respiratory failure; respiratory monitoring is essential.",
+        "E": "High-fat meals stimulate pancreatic secretion and are inappropriate during acute illness.",
+        "A": "Feeding should be individualized; prolonged unnecessary fasting is not beneficial, but oral intake may be deferred during uncontrolled vomiting or severe symptoms."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -4684,7 +4689,7 @@
       "estimated_time_seconds": 85,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -4729,15 +4734,15 @@
         "options": [
           {
             "id": "A",
-            "text": "Establish large-bore IV access, begin prescribed resuscitation, and prepare blood products while reassessing hemodynamic response"
-          },
-          {
-            "id": "B",
             "text": "Administer the prescribed oral proton-pump inhibitor with a sip of water and transport immediately"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Obtain a stool occult-blood sample before initiating IV therapy"
+          },
+          {
+            "id": "C",
+            "text": "Establish large-bore IV access, begin prescribed resuscitation, and prepare blood products while reassessing hemodynamic response"
           },
           {
             "id": "D",
@@ -4746,17 +4751,17 @@
         ]
       },
       "correct_response": [
-        "A"
+        "C"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
-        "A": "The client has signs of hemorrhagic shock; circulation stabilization, access, blood-product readiness, and ongoing reassessment precede transport when feasible.",
-        "B": "Oral medication is inappropriate in active hematemesis and does not address shock.",
-        "C": "A stool test does not change immediate management and delays resuscitation.",
+        "summary": "The best response is Establish large-bore IV access, begin prescribed resuscitation, and prepare blood products while reassessing hemodynamic response — The client has signs of hemorrhagic shock; circulation stabilization, access, blood-product readiness, and ongoing reassessment precede transport when feasible.",
+        "C": "The client has signs of hemorrhagic shock; circulation stabilization, access, blood-product readiness, and ongoing reassessment precede transport when feasible.",
+        "A": "Oral medication is inappropriate in active hematemesis and does not address shock.",
+        "B": "A stool test does not change immediate management and delays resuscitation.",
         "D": "Sedation can worsen hypotension and airway risk; stabilization is the priority."
       },
       "clinical_judgment": "take_action",
@@ -4769,7 +4774,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -4809,35 +4814,35 @@
         "options": [
           {
             "id": "A",
-            "text": "A dusky purple, cool stoma with delayed capillary refill"
-          },
-          {
-            "id": "B",
             "text": "A moist, pink-red stoma with mild edema"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Scant blood-tinged mucus on the pouch during the first postoperative day"
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "No formed stool in the pouch during the first several hours after surgery"
+          },
+          {
+            "id": "D",
+            "text": "A dusky purple, cool stoma with delayed capillary refill"
           }
         ]
       },
       "correct_response": [
-        "A"
+        "D"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
-        "A": "A dusky, cool stoma with poor perfusion suggests ischemia or necrosis and requires urgent evaluation.",
-        "B": "Mild edema and a moist pink-red appearance are expected early postoperative findings.",
-        "C": "Small amounts of blood-tinged mucus can occur after surgery.",
-        "D": "Bowel function may take time to return; absence of formed stool in the first hours is not by itself evidence of compromise."
+        "summary": "The best response is A dusky purple, cool stoma with delayed capillary refill — A dusky, cool stoma with poor perfusion suggests ischemia or necrosis and requires urgent evaluation.",
+        "D": "A dusky, cool stoma with poor perfusion suggests ischemia or necrosis and requires urgent evaluation.",
+        "A": "Mild edema and a moist pink-red appearance are expected early postoperative findings.",
+        "B": "Small amounts of blood-tinged mucus can occur after surgery.",
+        "C": "Bowel function may take time to return; absence of formed stool in the first hours is not by itself evidence of compromise."
       },
       "clinical_judgment": "recognize_cues",
       "tags": [
@@ -4848,7 +4853,7 @@
       "estimated_time_seconds": 60,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -4919,7 +4924,7 @@
       "estimated_time_seconds": 90,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -4964,43 +4969,43 @@
         "options": [
           {
             "id": "A",
-            "text": "Perform meticulous hand hygiene and require visitors with respiratory symptoms to defer visits"
-          },
-          {
-            "id": "B",
             "text": "Monitor temperature and report a single oral temperature of 38.0°C (100.4°F) or higher promptly"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Avoid rectal temperatures, suppositories, and rectal examinations"
           },
           {
-            "id": "D",
+            "id": "C",
             "text": "Allow fresh flowers and raw sprouts if the client washes hands before eating"
           },
           {
-            "id": "E",
+            "id": "D",
             "text": "Use meticulous central-line care and assess for subtle signs of infection"
+          },
+          {
+            "id": "E",
+            "text": "Perform meticulous hand hygiene and require visitors with respiratory symptoms to defer visits"
           }
         ]
       },
       "correct_response": [
+        "E",
         "A",
         "B",
-        "C",
-        "E"
+        "D"
       ],
       "scoring": {
         "method": "plus_minus",
         "max_points": 4
       },
       "rationales": {
-        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
-        "A": "Hand hygiene and limiting exposure to ill contacts reduce infection risk.",
-        "B": "Febrile neutropenia is an emergency; prompt reporting and evaluation are required.",
-        "C": "Rectal procedures can injure mucosa and introduce organisms.",
-        "D": "Fresh flowers and raw sprouts may carry organisms and are commonly restricted under neutropenic food-safety policies.",
-        "E": "Central lines are a major infection source; meticulous care and surveillance are essential."
+        "summary": "The correct selections are: Perform meticulous hand hygiene and require visitors with respiratory symptoms to defer visits — Hand hygiene and limiting exposure to ill contacts reduce infection risk. Monitor temperature and report a single oral temperature of 38.0°C (100.4°F) or higher promptly — Febrile neutropenia is an emergency; prompt reporting and evaluation are required. Avoid rectal temperatures, suppositories, and rectal examinations — Rectal procedures can injure mucosa and introduce organisms. Use meticulous central-line care and assess for subtle signs of infection — Central lines are a major infection source; meticulous care and surveillance are essential.",
+        "E": "Hand hygiene and limiting exposure to ill contacts reduce infection risk.",
+        "A": "Febrile neutropenia is an emergency; prompt reporting and evaluation are required.",
+        "B": "Rectal procedures can injure mucosa and introduce organisms.",
+        "C": "Fresh flowers and raw sprouts may carry organisms and are commonly restricted under neutropenic food-safety policies.",
+        "D": "Central lines are a major infection source; meticulous care and surveillance are essential."
       },
       "clinical_judgment": "generate_solutions",
       "tags": [
@@ -5012,7 +5017,7 @@
       "estimated_time_seconds": 85,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -5059,15 +5064,15 @@
         "options": [
           {
             "id": "A",
-            "text": "Hyperkalemia, hyperphosphatemia, hyperuricemia, and hypocalcemia"
-          },
-          {
-            "id": "B",
             "text": "Hypokalemia, hypophosphatemia, hypouricemia, and hypercalcemia"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Hypernatremia, hypomagnesemia, hypercalcemia, and low uric acid"
+          },
+          {
+            "id": "C",
+            "text": "Hyperkalemia, hyperphosphatemia, hyperuricemia, and hypocalcemia"
           },
           {
             "id": "D",
@@ -5076,17 +5081,17 @@
         ]
       },
       "correct_response": [
-        "A"
+        "C"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
-        "A": "Rapid tumor-cell breakdown releases potassium, phosphate, and nucleic acids; uric acid rises and phosphate binds calcium, causing hypocalcemia.",
-        "B": "This is the opposite of the characteristic biochemical pattern.",
-        "C": "These abnormalities do not reflect the release of intracellular tumor contents.",
+        "summary": "The best response is Hyperkalemia, hyperphosphatemia, hyperuricemia, and hypocalcemia — Rapid tumor-cell breakdown releases potassium, phosphate, and nucleic acids; uric acid rises and phosphate binds calcium, causing hypocalcemia.",
+        "C": "Rapid tumor-cell breakdown releases potassium, phosphate, and nucleic acids; uric acid rises and phosphate binds calcium, causing hypocalcemia.",
+        "A": "This is the opposite of the characteristic biochemical pattern.",
+        "B": "These abnormalities do not reflect the release of intracellular tumor contents.",
         "D": "This pattern is not characteristic of tumor lysis syndrome."
       },
       "clinical_judgment": "recognize_cues",
@@ -5099,7 +5104,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -5168,7 +5173,7 @@
         "max_points": 1
       },
       "rationales": {
-        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
+        "summary": "The best response is Promptly provide prescribed opioid analgesia, encourage or administer appropriate hydration, and reassess oxygenation and pain response — Rapid analgesia and appropriate hydration are central; monitor for acute chest syndrome and other complications while reassessing response.",
         "A": "Rapid analgesia and appropriate hydration are central; monitor for acute chest syndrome and other complications while reassessing response.",
         "B": "Cold causes vasoconstriction and can worsen sickling; fluid restriction increases dehydration risk.",
         "C": "Oxygen is indicated for hypoxemia, not automatically to achieve 100% in a normoxic client.",
@@ -5184,7 +5189,7 @@
       "estimated_time_seconds": 70,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -5225,15 +5230,15 @@
         "options": [
           {
             "id": "A",
-            "text": "Notify the orthopedic team immediately, keep the limb at heart level, and prepare for urgent compartment-pressure assessment or fasciotomy"
-          },
-          {
-            "id": "B",
             "text": "Elevate the limb well above the heart and apply ice while waiting for the next analgesic dose"
           },
           {
-            "id": "C",
+            "id": "B",
             "text": "Reassure the client because palpable distal pulses exclude compartment syndrome"
+          },
+          {
+            "id": "C",
+            "text": "Notify the orthopedic team immediately, keep the limb at heart level, and prepare for urgent compartment-pressure assessment or fasciotomy"
           },
           {
             "id": "D",
@@ -5242,17 +5247,17 @@
         ]
       },
       "correct_response": [
-        "A"
+        "C"
       ],
       "scoring": {
         "method": "exact_match",
         "max_points": 1
       },
       "rationales": {
-        "summary": "The correct response depends on the specific clinical cues and the immediate risk to the client.",
-        "A": "Pain out of proportion and pain with passive stretch are early warning signs; pulses may remain present until late. Urgent escalation is required and the limb should not be elevated above heart level.",
-        "B": "High elevation can further reduce perfusion; ice and delay are inappropriate when compartment syndrome is suspected.",
-        "C": "Pulses can remain palpable in compartment syndrome and do not exclude it.",
+        "summary": "The best response is Notify the orthopedic team immediately, keep the limb at heart level, and prepare for urgent compartment-pressure assessment or fasciotomy — Pain out of proportion and pain with passive stretch are early warning signs; pulses may remain present until late. Urgent escalation is required and the limb should not be elevated above heart level.",
+        "C": "Pain out of proportion and pain with passive stretch are early warning signs; pulses may remain present until late. Urgent escalation is required and the limb should not be elevated above heart level.",
+        "A": "High elevation can further reduce perfusion; ice and delay are inappropriate when compartment syndrome is suspected.",
+        "B": "Pulses can remain palpable in compartment syndrome and do not exclude it.",
         "D": "Removing external constriction may be appropriate under protocol, but reassessment later delays definitive evaluation."
       },
       "clinical_judgment": "take_action",
@@ -5265,7 +5270,7 @@
       "estimated_time_seconds": 80,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
@@ -5325,7 +5330,7 @@
       "estimated_time_seconds": 90,
       "case_study_id": null,
       "review_metadata": {
-        "status": "not_clinically_verified",
+        "status": "editorially_reviewed",
         "references": [],
         "publication_status": "published"
       }
