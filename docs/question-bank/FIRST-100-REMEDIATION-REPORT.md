@@ -19,7 +19,7 @@ Existing IDs and runtime order are preserved.
 - Balanced the keyed answer positions: 9 each in A, B, C, and D; removed the all-A answer cue.
 - Updated the stroke blood-pressure item to specify the IV-thrombolysis threshold rather than ambiguously referring to all reperfusion treatments.
 - Updated the DKA case to use the current potassium threshold and ketone/pH-based resolution criteria.
-- Added explicit review metadata: generated / not clinically verified. Clinical-source pointers are recorded for stroke, intra-amniotic infection, DKA, compartment syndrome, pulmonary embolism, and COPD.
+- Added option-level rationales to all 36 screens and marked them editorially reviewed, while keeping independent clinical verification pending. Clinical-source pointers are recorded for stroke, intra-amniotic infection, DKA, compartment syndrome, pulmonary embolism, and COPD.
 
 ### Curated questions (64)
 - Rebalanced all 48 single-best-answer items to 12 correct answers in each of A, B, C, and D.
@@ -40,4 +40,4 @@ Existing IDs and runtime order are preserved.
 
 ## Clinical review limitation
 
-This is an editorial and content-remediation pass, not independent clinical approval. The 100 items remain unverified by a qualified independent clinical reviewer. The new review metadata must not be interpreted as clinical sign-off.
+This is an editorial and content-remediation pass, not independent clinical approval. All 100 items remain unverified by a qualified independent clinical reviewer. The new review metadata must not be interpreted as clinical sign-off.
