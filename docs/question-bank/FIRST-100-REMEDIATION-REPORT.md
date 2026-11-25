@@ -25,7 +25,7 @@ Existing IDs and runtime order are preserved.
 - Rebalanced all 48 single-best-answer items to 12 correct answers in each of A, B, C, and D.
 - Reordered multiple-response options with answer keys and option rationales remapped together.
 - Replaced generic summary rationales with item-specific explanations derived from the keyed option rationales.
-- Corrected `QRN-000473` so the answer key includes A, B, C, and E, consistent with the option-level rationales.
+- Corrected `QRN-000473` so its key includes all four responses supported by the option-level rationales; the option labels were then remapped with the answer-position balancing.
 - Updated `QRN-000489` to the 2024 DKA potassium threshold of 3.5 mmol/L and added the 2024 consensus reference.
 - Marked the 64 items `editorially_reviewed`; this is not clinical verification. Their existing runtime publication state was preserved, and no clinical approval was recorded.
 
