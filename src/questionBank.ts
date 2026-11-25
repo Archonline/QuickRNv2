@@ -896,10 +896,10 @@ const learnerReadyCore = all.map((question) => question.status === "development"
       ...question,
       status: "published" as const,
       auditRequired: true,
-      reviewStatus: "generated" as const,
+      reviewStatus: question.reviewStatus === "editorially-reviewed" ? "editorially-reviewed" as const : "generated" as const,
       reviewMetadata: {
         ...(question.reviewMetadata ?? { status: "not-clinically-verified" as const, references: [] }),
-        status: "not-clinically-verified" as const,
+        status: question.reviewStatus === "editorially-reviewed" ? "editorially-reviewed" as const : "not-clinically-verified" as const,
         publicationStatus: "draft" as const,
       },
     }
