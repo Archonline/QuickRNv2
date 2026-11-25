@@ -2,9 +2,11 @@ import type { Question } from "./questions";
 
 /**
  * First authored replacement batch for the repetitive generated core items.
- * IDs intentionally preserve qrn-0137..qrn-0156 so learner history remains stable.
+ * IDs intentionally preserve qrn-0137..qrn-0236 so learner history remains stable.
  * These items are original drafts and are NOT clinically verified.
  */
+const editoriallyReviewedIds = new Set(Array.from({ length: 64 }, (_, index) => `qrn-${String(index + 137).padStart(4, "0")}`));
+
 const single = (
   id: string,
   category: string,
@@ -26,10 +28,11 @@ const single = (
     correctResponse: [String(answer)],
     optionRationales,
   },
-  clinicalJudgmentStep, contentVersion: 3, reviewStatus: "generated",
+  clinicalJudgmentStep, contentVersion: 3,
+  reviewStatus: editoriallyReviewedIds.has(id) ? "editorially-reviewed" : "generated",
   reviewMetadata: {
-    status: "not-clinically-verified", references: [],
-    publicationStatus: "draft",
+    status: editoriallyReviewedIds.has(id) ? "editorially-reviewed" : "not-clinically-verified",
+    references: [], publicationStatus: "draft",
   },
 });
 
