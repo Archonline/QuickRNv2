@@ -144,3 +144,16 @@ A static item-level triage inspected the first 20 records in the 244-item third 
 These are static quality flags, not independent clinical validation. The 20 records remain unmodified and not clinically verified; no false review records were created. The next audit ID is `qrn-0277`. Do not add net-new core or Booster items until Phase 1 classifies the existing runtime inventory and resolves the 244-item rewrite tranche's quality defects. The next run should audit the next bounded group of 20 existing records.
 
 Latest CI at `74f1a1a` passed the authoring audit, question-batch validation, unit tests, Chromium regression, production build, and secret scan. Passing automation does not establish clinical correctness.
+
+
+## 2026-11-26 run 3 checkpoint — continued baseline triage
+
+The latest inspected feature-branch head at the start of this run was `430e46292c2c5b58164ecd29e43d8a6e233c5e75`. Source-level runtime assembly still enforces 500 unique core IDs plus 100 NGN extension IDs, combined as 600 unique runtime IDs. The 364 rewrite records remain replacements within the core bank and contribute zero net-new inventory. Core target credit remains 600/3,000; Booster remains 0/600. No new questions were authored or integrated.
+
+The next 20 items in `src/authoredCoreRewriteBatch3.ts`, `qrn-0277`–`qrn-0296`, were statically triaged. All 20 are classified `revise` and require qualified educator review before any clinical-release disposition. Findings include maternal/newborn topic-demographic/context contradictions, absent topic-defining assessment data, unrelated high-risk findings, repeated generic stem and rationale templates, four reused answer-option families, and CJMM/option-task mismatches. The per-item findings are recorded in `3600-expansion-ledger.json` and `runs/2026-11-26-run-03.md`.
+
+Cumulative progress in the 244-item tranche: **40/244 triaged**, **40 require substantive revision/educator review**, **0 passed for clinical release**, and **204 remain**. The next audit ID is `qrn-0297`. No item was modified, retired, quarantined, or removed from learner selection; stable IDs and learner-history references remain unchanged. No clinical review or approval was fabricated.
+
+The 3,600-specific Webmaster tracker remains absent. `src/QuestionGenerationTracker.tsx` still reads the separate `src/question-batches/ngn/manifest.json` NGN 300-draft archive and is not a 3,600 tracker. PR #9 remains merged/closed; follow-up draft PR #18 remains open. The latest pre-commit CI at `430e46292c2c5b58164ecd29e43d8a6e233c5e75` passed authoring audit, batch validation, unit tests, Chromium regression, production build, secret scan, and Vercel status. This run changed documentation only; no question content or schema changed.
+
+No clinical approval, merge, or deployment was performed.

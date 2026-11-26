@@ -43,3 +43,13 @@ src/ngnQuestionBank.ts exports questionBank100 from a generated curated extensio
 ## Scope and limitations
 
 This is a source-level audit of the current main branch and its documented reconciliation. It is not a complete item-by-item clinical audit, runtime browser test, or independent psychometric validation. No question is certified clinically correct by this report. The detailed item-level audit must be generated from the actual runtime exports and retained as a reproducible artifact.
+
+
+## 2026-11-26 — second 20-item triage batch
+
+- Source: `src/authoredCoreRewriteBatch3.ts`; IDs `qrn-0277`–`qrn-0296`.
+- Static disposition: 20 revise; all 20 require qualified educator review; 0 passed for clinical release.
+- Recurrent defects: incompatible maternal/newborn ages or absent pregnancy/birth/postpartum context; missing topic-defining cues for cardiovascular/perfusion conditions; unrelated high-risk laboratory/vital-sign findings; repeated generic reassessment stems; four generic option-family templates reused five times each; rationale and CJMM-function mismatch.
+- Representative examples: `qrn-0277` placenta previa assigned to a 3-day-old newborn with hyperkalemia; `qrn-0283` neonatal sepsis assigned to a 7-year-old; `qrn-0288` inferior STEMI without ECG/troponin evidence and with unexplained hematuria; `qrn-0293` acute limb ischemia without limb perfusion findings; `qrn-0296` ICD discharge without shock/rhythm/device context.
+- Cumulative third-tranche progress: 40/244 triaged; 204 remain; next ID `qrn-0297`.
+- No source question was edited, quarantined, retired, or marked clinically reviewed. Learner history and IDs are preserved. This is static triage, not clinical verification.

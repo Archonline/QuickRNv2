@@ -1,6 +1,6 @@
 {
   "project": "quickrn-3600",
-  "updatedAt": "2026-11-25",
+  "updatedAt": "2026-11-26",
   "branch": "feat/3600-question-bank-expansion",
   "sourceOfTruth": "assembled runtime IDs in src/ngnQuestionBank.ts plus source inventory and this ledger",
   "targets": {
@@ -17,7 +17,10 @@
     "netNewCoreRequired": 2400,
     "netNewBoosterRequired": 600,
     "replacementRecordsIntegrated": 364,
-    "replacementRecordsCountAsNetNew": 0
+    "replacementRecordsCountAsNetNew": 0,
+    "lastVerifiedAt": "2026-11-26",
+    "lastVerifiedBranchHead": "430e46292c2c5b58164ecd29e43d8a6e233c5e75",
+    "verificationMethod": "Static inspection of runtime assembly and uniqueness guards: questionBank500 is length 500 with a Set-size guard of 500; questionBank100 is length 100; questionBank600 concatenates both and enforces Set-size 600. Latest branch CI also passed on this inspected head."
   },
   "clinicalReview": {
     "confirmedClinicallyVerified": 0,
@@ -32,39 +35,274 @@
     "targetedRewriteTrancheSize": 244,
     "inspectedThisRun": 20,
     "inspectedIds": [
-      "qrn-0257",
-      "qrn-0258",
-      "qrn-0259",
-      "qrn-0260",
-      "qrn-0261",
-      "qrn-0262",
-      "qrn-0263",
-      "qrn-0264",
-      "qrn-0265",
-      "qrn-0266",
-      "qrn-0267",
-      "qrn-0268",
-      "qrn-0269",
-      "qrn-0270",
-      "qrn-0271",
-      "qrn-0272",
-      "qrn-0273",
-      "qrn-0274",
-      "qrn-0275",
-      "qrn-0276"
+      "qrn-0277",
+      "qrn-0278",
+      "qrn-0279",
+      "qrn-0280",
+      "qrn-0281",
+      "qrn-0282",
+      "qrn-0283",
+      "qrn-0284",
+      "qrn-0285",
+      "qrn-0286",
+      "qrn-0287",
+      "qrn-0288",
+      "qrn-0289",
+      "qrn-0290",
+      "qrn-0291",
+      "qrn-0292",
+      "qrn-0293",
+      "qrn-0294",
+      "qrn-0295",
+      "qrn-0296"
     ],
-    "needsSubstantiveRemediation": 20,
+    "needsSubstantiveRemediation": 40,
     "passedForClinicalReleaseThisRun": 0,
-    "nextAuditId": "qrn-0277",
-    "remainingInTargetedTranche": 224,
-    "notes": "Static triage only. No clinical approval or content change was recorded."
+    "nextAuditId": "qrn-0297",
+    "remainingInTargetedTranche": 204,
+    "notes": "Static triage only. 40/244 items in the third rewrite tranche have been classified for substantive revision and qualified educator review; no clinical approval or content change was recorded.",
+    "needsSubstantiveRemediationThisRun": 20,
+    "auditedInTargetedTranche": 40,
+    "dispositionCountsToDate": {
+      "retain": 0,
+      "revise": 40,
+      "replace": 0,
+      "retire": 0,
+      "educatorReviewRequired": 40
+    },
+    "lastAuditBatch": {
+      "date": "2026-11-26",
+      "range": "qrn-0277–qrn-0296",
+      "inspected": 20,
+      "dispositionCounts": {
+        "retain": 0,
+        "revise": 20,
+        "replace": 0,
+        "retire": 0,
+        "educatorReviewRequired": 20
+      },
+      "commonFindings": [
+        "Repeated generic reassessment stem skeleton across all 20 items.",
+        "Only four generic option-family templates were reused across the 20 items (five items per family).",
+        "Rationales repeat generic escalation/assessment/effectiveness wording and frequently do not support the named topic or CJMM function.",
+        "Maternal/newborn labels are repeatedly paired with adult/child demographics or without pregnancy, labor, birth, or postpartum context.",
+        "High-risk vital signs and laboratory findings recur across unrelated topics without a coherent patient record."
+      ],
+      "items": [
+        {
+          "id": "qrn-0277",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Placenta-previa topic is paired with a 3-day-old newborn; no maternal pregnancy/bleeding/placental-location context.",
+            "Oliguria and hyperkalemia with peaked T waves do not establish placenta previa; generic escalation choices and rationale are not topic-specific."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0278",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Uterine inversion is presented in a 56-year-old without childbirth/postpartum context.",
+            "Hypotension/tachycardia may indicate instability, but INR elevation and gross hematuria do not establish inversion; answer choices and rationale are generic."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0279",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Postpartum hypertension lacks a clear pregnancy/postpartum timeline and does not present hypertension; fever, hypotension, severe hyponatremia and seizure dominate the stem.",
+            "Generic communication options do not test recognition or management of postpartum hypertension."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0280",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Newborn age is plausible for jaundice, but no bilirubin value, age-in-hours, gestational age, hemolysis risk or feeding context is supplied.",
+            "Hypercapnia and somnolence suggest a different acute problem; outcome/effectiveness options do not match the stated take-action function."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0281",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Newborn respiratory distress is assigned to a 22-year-old adult with dizziness and bradycardia.",
+            "Hypoglycemia/inability to swallow is not a neonatal respiratory assessment; no newborn respiratory signs or perinatal context are present."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0282",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Meconium aspiration is assigned to a 68-year-old admitted from home, without birth or neonatal respiratory context.",
+            "Oliguria and hypoglycemia are not sufficient evidence for the named respiratory condition; generic priority choices are reused."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0283",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Neonatal sepsis is assigned to a 7-year-old child, contradicting the neonatal label.",
+            "Hypotension and thrombocytopenia are nonspecific without neonatal/infectious timeline or focused cues; generic options/rationale do not resolve the mismatch."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0284",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Group B streptococcal prophylaxis is assigned to a 79-year-old with no pregnancy, labor, screening, allergy or intrapartum timing context.",
+            "Hypoxemia and falling hemoglobin are unrelated to the prophylaxis decision; options test response evaluation rather than prophylaxis."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0285",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Labor analgesia safety is assigned to a 68-year-old admitted from home with no labor, neuraxial procedure or analgesic exposure context.",
+            "Confusion, elevated lactate and rising creatinine are nonspecific deterioration cues; the item does not test labor-analgesia safety."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0286",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Postpartum thromboembolism is assigned to a 7-year-old child with no postpartum context.",
+            "Severe hypertension and hyperkalemia/peaked T waves do not establish thromboembolism; no VTE-focused assessment or escalation decision is supplied."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0287",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Atrial fibrillation with rapid response lacks ECG/rhythm evidence; fever, hypotension and hyperkalemia with peaked T waves create competing acute priorities.",
+            "The generic assessment/communication options do not test rhythm recognition or a defensible AF-with-RVR decision."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0288",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Inferior STEMI lacks chest-pain characterization, ECG leads/ST findings, troponin trend or other diagnostic evidence.",
+            "INR elevation and gross hematuria are unexplained; outcome/effectiveness options do not test the stated take-action task."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0289",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Acute decompensated heart failure lacks congestion, dyspnea, oxygenation, volume-status or relevant diagnostic cues.",
+            "Bradycardia/hypotension with severe hyponatremia and seizure suggests a competing emergency; generic escalation choices do not assess heart-failure management."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0290",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Cardiac tamponade has no procedure/cardiac timeline or focused findings such as obstructive-shock pattern, venous congestion or diagnostic confirmation.",
+            "Hypercapnia and somnolence are nonspecific; generic ABC choices do not test tamponade recognition or response."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0291",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Pulmonary embolism is assigned to a 3-day-old newborn without neonatal thrombotic risk or respiratory presentation.",
+            "Hypertension and hypoglycemia do not establish PE; no oxygenation, perfusion or diagnostic context is given."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0292",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Proximal DVT lacks unilateral limb pain/swelling, edema, circumference or venous-imaging context.",
+            "Fever, hypotension and hypoglycemia are unrelated/nonspecific; outcome/effectiveness options do not test DVT assessment or escalation."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0293",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Acute limb ischemia lacks limb-specific laterality, pulse, temperature, color, sensation, movement or capillary-refill findings.",
+            "Severe pain is paired with thrombocytopenia/bleeding rather than a coherent limb-perfusion assessment; generic escalation choices are reused."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0294",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Symptomatic sinus bradycardia is assigned to a 3-day-old newborn but uses adult-style blood pressure/dizziness and an unexplained adult-like hemoglobin trend.",
+            "No age-appropriate neonatal perfusion/context or rhythm evidence is supplied; generic prioritization choices do not address the item."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0295",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Vasospastic angina lacks episodic rest chest pain, transient ischemic ECG changes or a vasospasm-related decision point.",
+            "Oliguria, lactate elevation and rising creatinine are unrelated to the named angina topic; generic assessment/communication options are reused."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        },
+        {
+          "id": "qrn-0296",
+          "disposition": "revise",
+          "educatorReviewRequired": true,
+          "findings": [
+            "Implantable defibrillator discharge lacks shock count/timing, rhythm, symptoms, device history or post-discharge assessment.",
+            "Hypotension/tachycardia and hyperkalemia with peaked T waves create a competing arrhythmia concern; outcome/effectiveness options do not test ICD-discharge response."
+          ],
+          "learnerPoolAction": "unchanged-pending-qualified-review"
+        }
+      ],
+      "notes": "Static source-level triage only. No clinical content, answer key, item ID, learner-history reference, runtime inclusion, or review record was changed. All items remain not clinically verified; educator review is required."
+    }
   },
   "tracker": {
     "threeThousandSixHundredUiTracker": "removed",
     "removedComponent": "src/QuestionBankAutomationTracker.tsx",
     "removalCommit": "7c453b58b5dc9b0115afa71d3b29f793b2df541a",
     "remainingWebmasterTracker": "src/QuestionGenerationTracker.tsx",
-    "remainingTrackerScope": "separate NGN 300-draft archive only"
+    "remainingTrackerScope": "separate NGN 300-draft archive only",
+    "lastInspectedAt": "2026-11-26",
+    "uiTrackerExists": false,
+    "ngnManifest": "src/question-batches/ngn/manifest.json",
+    "ngnManifestScope": "separate NGN 300-draft archive only; excluded from 3,600 runtime counts"
   },
   "pullRequest": {
     "priorNumber": 9,
@@ -77,28 +315,31 @@
     "followUpDraftState": "open-draft"
   },
   "ci": {
-    "commit": "74f1a1a3184d064abba94bdae851ed0912ef4d04",
+    "commit": "430e46292c2c5b58164ecd29e43d8a6e233c5e75",
     "status": "success",
     "checks": [
       "question-bank authoring audit",
       "question-batch validation",
       "unit tests",
-      "Chromium regression",
+      "Chromium browser regression",
       "production build",
-      "secret scan"
+      "secret scan",
+      "Vercel status"
     ],
     "runs": [
-      "https://github.com/Archonline/QuickRNv2/actions/runs/45518568083",
-      "https://github.com/Archonline/QuickRNv2/actions/runs/45518568005",
-      "https://github.com/Archonline/QuickRNv2/actions/runs/45518568048"
-    ]
+      "https://github.com/Archonline/QuickRNv2/actions/runs/45526442126",
+      "https://github.com/Archonline/QuickRNv2/actions/runs/45526442134",
+      "https://github.com/Archonline/QuickRNv2/actions/runs/45526442145"
+    ],
+    "note": "All listed GitHub Actions workflows completed successfully on the inspected branch head before this documentation-only audit commit."
   },
   "lastRun": {
-    "date": "2026-11-25",
+    "date": "2026-11-26",
     "newQuestionsAuthored": 0,
     "newQuestionsIntegrated": 0,
     "runtimeInventoryDelta": 0,
-    "existingItemsTriaged": 20
+    "existingItemsTriaged": 20,
+    "triageRange": "qrn-0277–qrn-0296"
   },
   "nextNetNewCoreIdCandidate": {
     "id": "qrn-0501",

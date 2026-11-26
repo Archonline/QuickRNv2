@@ -1,7 +1,7 @@
 # QuickRNv2 Repository Question Inventory
 
-**Inventory date:** 2026-11-25  
-**Branch inspected:** `main`  
+**Inventory date:** 2026-11-26  
+**Branch inspected:** `feat/3600-question-bank-expansion` at `430e46292c2c5b58164ecd29e43d8a6e233c5e75`  
 **Scope:** source files assembled into the runtime question bank, source-level replacement batches, the separate development examples, and the standalone NGN 300-project archive.
 
 ## Executive count
@@ -99,3 +99,14 @@ The highest-value next task is an item-level release audit of the 364 rewritten 
 - Next item-level audit ID: `qrn-0277`; 224 records remain in the 244-item tranche after this first 20-item triage.
 - These flags are not clinical validation. Items remain not clinically verified and must not be represented as approved.
 - The 3,600-specific Webmaster tracker is currently absent; use the interim ledger `3600-expansion-ledger.json` until a dedicated tracker is restored.
+
+
+## 2026-11-26 feature-branch baseline triage checkpoint
+
+- Runtime assembly inspection reconfirmed 500 core items, 100 NGN extension items, and a combined 600-ID uniqueness assertion in `src/ngnQuestionBank.ts`. The two curated JSON inputs are not counted again. The 364 authored rewrite entries remain replacements within the 500 core positions.
+- The next 20 third-tranche records, `qrn-0277`–`qrn-0296`, were statically audited. All 20 were classified `revise` with qualified educator review required; 0 passed for clinical release.
+- Defects include mismatched maternal/newborn patient context, absent topic-defining cues, unrelated physiologic findings, generic/recycled option sets (four families reused five times each), and generic rationales/CJMM mismatches. The detailed item-by-item record is in `3600-expansion-ledger.json` and `runs/2026-11-26-run-03.md`.
+- Cumulative third-tranche audit: 40/244 triaged; 40 require substantive revision and educator review; 204 remain. Next ID: `qrn-0297`.
+- Runtime inventory remains 600 unique IDs; core credit 600/3,000; Booster 0/600. Net-new questions authored/integrated: 0; runtime delta: 0.
+- The 3,600 Webmaster tracker component remains absent. `src/QuestionGenerationTracker.tsx` is linked to the separate NGN 300-draft manifest and is not a substitute.
+- No question source, answer key, learner history, runtime selection, clinical review status, or approval record was changed. These static flags do not establish clinical validation.
