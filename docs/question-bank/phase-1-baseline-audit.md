@@ -53,3 +53,13 @@ This is a source-level audit of the current main branch and its documented recon
 - Representative examples: `qrn-0277` placenta previa assigned to a 3-day-old newborn with hyperkalemia; `qrn-0283` neonatal sepsis assigned to a 7-year-old; `qrn-0288` inferior STEMI without ECG/troponin evidence and with unexplained hematuria; `qrn-0293` acute limb ischemia without limb perfusion findings; `qrn-0296` ICD discharge without shock/rhythm/device context.
 - Cumulative third-tranche progress: 40/244 triaged; 204 remain; next ID `qrn-0297`.
 - No source question was edited, quarantined, retired, or marked clinically reviewed. Learner history and IDs are preserved. This is static triage, not clinical verification.
+
+
+## 2026-11-26 — third 20-item triage batch (run 4)
+
+- Source: `src/authoredCoreRewriteBatch3.ts`; IDs `qrn-0297`–`qrn-0316`.
+- Static disposition: 20 revise; all 20 require qualified educator review; 0 passed for clinical release.
+- Recurrent defects: generic reassessment stem and four repeated answer/rationale families; named cardiovascular/perfusion topics lack defining diagnostic cues and focused patient history; unrelated acute findings create competing priorities; generic rationales and response choices do not support the specific topic or CJMM task.
+- Representative examples: `qrn-0297` hypertensive emergency without documented hypertension; `qrn-0298` aortic dissection without aortic/pain/imaging evidence; `qrn-0302` warfarin bleeding without anticoagulant/INR/bleeding evidence; `qrn-0303` VT without ECG/rhythm evidence; `qrn-0310` pacemaker failure without device/ECG evidence; `qrn-0316` status asthmaticus without asthma/airflow findings.
+- Cumulative third-tranche progress: 60/244 triaged; 184 remain; next ID `qrn-0317`.
+- No content, answer key, ID, learner-history reference, pool membership, or clinical-review record was changed. All audited items remain not clinically verified. This is static triage only.
