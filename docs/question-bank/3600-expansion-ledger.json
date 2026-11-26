@@ -19,8 +19,8 @@
     "replacementRecordsIntegrated": 364,
     "replacementRecordsCountAsNetNew": 0,
     "lastVerifiedAt": "2026-11-26",
-    "lastVerifiedBranchHead": "430e46292c2c5b58164ecd29e43d8a6e233c5e75",
-    "verificationMethod": "Static inspection of runtime assembly and uniqueness guards: questionBank500 is length 500 with a Set-size guard of 500; questionBank100 is length 100; questionBank600 concatenates both and enforces Set-size 600. Latest branch CI also passed on this inspected head."
+    "lastVerifiedBranchHead": "9349cacd8bfb4fb746fc52a0732f4f79954c59f0",
+    "verificationMethod": "Starting-run inspection reconfirmed the ledger's 600 unique-ID claim against the documented runtime assembly; source inspection of src/questionBank.ts and src/ngnQuestionBank.ts is recorded in the prior inventory report. This run did not change runtime content."
   },
   "clinicalReview": {
     "confirmedClinicallyVerified": 0,
@@ -35,44 +35,44 @@
     "targetedRewriteTrancheSize": 244,
     "inspectedThisRun": 20,
     "inspectedIds": [
-      "qrn-0277",
-      "qrn-0278",
-      "qrn-0279",
-      "qrn-0280",
-      "qrn-0281",
-      "qrn-0282",
-      "qrn-0283",
-      "qrn-0284",
-      "qrn-0285",
-      "qrn-0286",
-      "qrn-0287",
-      "qrn-0288",
-      "qrn-0289",
-      "qrn-0290",
-      "qrn-0291",
-      "qrn-0292",
-      "qrn-0293",
-      "qrn-0294",
-      "qrn-0295",
-      "qrn-0296"
+      "qrn-0297",
+      "qrn-0298",
+      "qrn-0299",
+      "qrn-0300",
+      "qrn-0301",
+      "qrn-0302",
+      "qrn-0303",
+      "qrn-0304",
+      "qrn-0305",
+      "qrn-0306",
+      "qrn-0307",
+      "qrn-0308",
+      "qrn-0309",
+      "qrn-0310",
+      "qrn-0311",
+      "qrn-0312",
+      "qrn-0313",
+      "qrn-0314",
+      "qrn-0315",
+      "qrn-0316"
     ],
-    "needsSubstantiveRemediation": 40,
+    "needsSubstantiveRemediation": 60,
     "passedForClinicalReleaseThisRun": 0,
-    "nextAuditId": "qrn-0297",
-    "remainingInTargetedTranche": 204,
-    "notes": "Static triage only. 40/244 items in the third rewrite tranche have been classified for substantive revision and qualified educator review; no clinical approval or content change was recorded.",
+    "nextAuditId": "qrn-0317",
+    "remainingInTargetedTranche": 184,
+    "notes": "Static triage only. 60/244 items in the third rewrite tranche have been classified for substantive revision and qualified educator review; no clinical approval or content change was recorded.",
     "needsSubstantiveRemediationThisRun": 20,
-    "auditedInTargetedTranche": 40,
+    "auditedInTargetedTranche": 60,
     "dispositionCountsToDate": {
       "retain": 0,
-      "revise": 40,
+      "revise": 60,
       "replace": 0,
       "retire": 0,
-      "educatorReviewRequired": 40
+      "educatorReviewRequired": 60
     },
     "lastAuditBatch": {
       "date": "2026-11-26",
-      "range": "qrn-0277–qrn-0296",
+      "range": "qrn-0297–qrn-0316",
       "inspected": 20,
       "dispositionCounts": {
         "retain": 0,
@@ -82,215 +82,235 @@
         "educatorReviewRequired": 20
       },
       "commonFindings": [
-        "Repeated generic reassessment stem skeleton across all 20 items.",
-        "Only four generic option-family templates were reused across the 20 items (five items per family).",
-        "Rationales repeat generic escalation/assessment/effectiveness wording and frequently do not support the named topic or CJMM function.",
-        "Maternal/newborn labels are repeatedly paired with adult/child demographics or without pregnancy, labor, birth, or postpartum context.",
-        "High-risk vital signs and laboratory findings recur across unrelated topics without a coherent patient record."
+        "All 20 reuse the same generic reassessment stem and one of four generic answer/rationale families; the format remains single-response for every item in this audited range.",
+        "Named cardiovascular/perfusion topics are paired with unrelated or nonspecific findings rather than topic-defining assessment, diagnostic or timeline evidence.",
+        "Several records have age/context mismatch or omit the history needed to make the named diagnosis plausible; newborn/child cases use adult-like or non-age-specific cues.",
+        "Correct-answer option families alternate between generic escalation, generic organ-compromise recognition, generic communication and generic effectiveness statements; the rationale repeats a topic label plus boilerplate.",
+        "Blueprint/CJMM alignment is weak: several options assess generic escalation or effectiveness regardless of the assigned clinical judgment function."
       ],
       "items": [
         {
-          "id": "qrn-0277",
+          "id": "qrn-0297",
+          "topic": "Hypertensive emergency",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Placenta-previa topic is paired with a 3-day-old newborn; no maternal pregnancy/bleeding/placental-location context.",
-            "Oliguria and hyperkalemia with peaked T waves do not establish placenta previa; generic escalation choices and rationale are not topic-specific."
+            "Child has no elevated BP documented; hypoxemia and hyperkalemic ECG changes dominate, not evidence for hypertensive emergency.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0278",
+          "id": "qrn-0298",
+          "topic": "Aortic dissection",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Uterine inversion is presented in a 56-year-old without childbirth/postpartum context.",
-            "Hypotension/tachycardia may indicate instability, but INR elevation and gross hematuria do not establish inversion; answer choices and rationale are generic."
+            "New confusion and INR 5.6/hematuria do not establish dissection; no abrupt pain, pulse/BP differential, imaging or aortic context.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0279",
+          "id": "qrn-0299",
+          "topic": "Infective endocarditis",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Postpartum hypertension lacks a clear pregnancy/postpartum timeline and does not present hypertension; fever, hypotension, severe hyponatremia and seizure dominate the stem.",
-            "Generic communication options do not test recognition or management of postpartum hypertension."
+            "Severe hyponatremia with seizure dominates; no infectious timeline, fever, bacteremia, murmur, embolic or valve evidence.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0280",
+          "id": "qrn-0300",
+          "topic": "Cardiogenic shock",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Newborn age is plausible for jaundice, but no bilirubin value, age-in-hours, gestational age, hemolysis risk or feeding context is supplied.",
-            "Hypercapnia and somnolence suggest a different acute problem; outcome/effectiveness options do not match the stated take-action function."
+            "Child has fever, hypercapnia and somnolence but no cardiac dysfunction, perfusion profile, cardiac history or supporting diagnostics.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0281",
+          "id": "qrn-0301",
+          "topic": "Peripheral arterial disease",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Newborn respiratory distress is assigned to a 22-year-old adult with dizziness and bradycardia.",
-            "Hypoglycemia/inability to swallow is not a neonatal respiratory assessment; no newborn respiratory signs or perinatal context are present."
+            "Hypotension/tachycardia and severe hypoglycemia dominate; no limb-specific ischemia, pulses, skin, pain or claudication findings.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0282",
+          "id": "qrn-0302",
+          "topic": "Warfarin-associated bleeding",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Meconium aspiration is assigned to a 68-year-old admitted from home, without birth or neonatal respiratory context.",
-            "Oliguria and hypoglycemia are not sufficient evidence for the named respiratory condition; generic priority choices are reused."
+            "Hypoxemia and hypoglycemia are presented without anticoagulant history, INR, bleeding site, hemoglobin trend or evidence of hemorrhage.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0283",
+          "id": "qrn-0303",
+          "topic": "Ventricular tachycardia",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Neonatal sepsis is assigned to a 7-year-old child, contradicting the neonatal label.",
-            "Hypotension and thrombocytopenia are nonspecific without neonatal/infectious timeline or focused cues; generic options/rationale do not resolve the mismatch."
+            "Confusion and thrombocytopenia/mucosal bleeding do not establish VT; no rhythm strip, rate, pulse or hemodynamic rhythm context.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0284",
+          "id": "qrn-0304",
+          "topic": "Unstable angina",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Group B streptococcal prophylaxis is assigned to a 79-year-old with no pregnancy, labor, screening, allergy or intrapartum timing context.",
-            "Hypoxemia and falling hemoglobin are unrelated to the prophylaxis decision; options test response evaluation rather than prophylaxis."
+            "Postoperative anemia and hypertension/tachycardia are given without ischemic chest symptoms, ECG findings or troponin context.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0285",
+          "id": "qrn-0305",
+          "topic": "Aortic stenosis",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Labor analgesia safety is assigned to a 68-year-old admitted from home with no labor, neuraxial procedure or analgesic exposure context.",
-            "Confusion, elevated lactate and rising creatinine are nonspecific deterioration cues; the item does not test labor-analgesia safety."
+            "Neonatal age is possible, but fever/lactate/creatinine alone do not establish aortic stenosis; no murmur, perfusion, echo or cardiac history.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0286",
+          "id": "qrn-0306",
+          "topic": "Pericarditis",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Postpartum thromboembolism is assigned to a 7-year-old child with no postpartum context.",
-            "Severe hypertension and hyperkalemia/peaked T waves do not establish thromboembolism; no VTE-focused assessment or escalation decision is supplied."
+            "Pain and hyperkalemic ECG changes are not enough to identify pericarditis; no pleuritic/positional features, rub, diffuse ST changes or effusion context.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0287",
+          "id": "qrn-0307",
+          "topic": "Post-catheterization hemorrhage",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Atrial fibrillation with rapid response lacks ECG/rhythm evidence; fever, hypotension and hyperkalemia with peaked T waves create competing acute priorities.",
-            "The generic assessment/communication options do not test rhythm recognition or a defensible AF-with-RVR decision."
+            "Bradycardia, hypotension and dizziness plus hyperkalemia lack procedure/access-site timing, bleeding/hematoma assessment or hemoglobin trend.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0288",
+          "id": "qrn-0308",
+          "topic": "Orthostatic hypotension",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Inferior STEMI lacks chest-pain characterization, ECG leads/ST findings, troponin trend or other diagnostic evidence.",
-            "INR elevation and gross hematuria are unexplained; outcome/effectiveness options do not test the stated take-action task."
+            "Newborn urine output and INR/hematuria do not establish orthostasis; no positional BP/HR changes or age-appropriate volume assessment.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0289",
+          "id": "qrn-0309",
+          "topic": "Chronic venous insufficiency",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Acute decompensated heart failure lacks congestion, dyspnea, oxygenation, volume-status or relevant diagnostic cues.",
-            "Bradycardia/hypotension with severe hyponatremia and seizure suggests a competing emergency; generic escalation choices do not assess heart-failure management."
+            "Young adult hypotension and severe hyponatremia/seizure do not assess venous insufficiency; no edema, stasis changes, ulcers or venous history.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0290",
+          "id": "qrn-0310",
+          "topic": "Pacemaker failure to capture",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Cardiac tamponade has no procedure/cardiac timeline or focused findings such as obstructive-shock pattern, venous congestion or diagnostic confirmation.",
-            "Hypercapnia and somnolence are nonspecific; generic ABC choices do not test tamponade recognition or response."
+            "Hypoxemia, hypercapnia and somnolence lack pacemaker history, ECG pacing spikes without capture, pulse correlation or device assessment.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0291",
+          "id": "qrn-0311",
+          "topic": "Hyperkalemic ECG changes",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Pulmonary embolism is assigned to a 3-day-old newborn without neonatal thrombotic risk or respiratory presentation.",
-            "Hypertension and hypoglycemia do not establish PE; no oxygenation, perfusion or diagnostic context is given."
+            "Child has hypoglycemia/confusion but no potassium result or ECG change in the stem to substantiate hyperkalemia.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0292",
+          "id": "qrn-0312",
+          "topic": "Acute pulmonary edema",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Proximal DVT lacks unilateral limb pain/swelling, edema, circumference or venous-imaging context.",
-            "Fever, hypotension and hypoglycemia are unrelated/nonspecific; outcome/effectiveness options do not test DVT assessment or escalation."
+            "Bradycardia/hypotension and hypoglycemia are unrelated without dyspnea, crackles, oxygenation decline, fluid overload or imaging.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0293",
+          "id": "qrn-0313",
+          "topic": "Right-sided heart failure",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Acute limb ischemia lacks limb-specific laterality, pulse, temperature, color, sensation, movement or capillary-refill findings.",
-            "Severe pain is paired with thrombocytopenia/bleeding rather than a coherent limb-perfusion assessment; generic escalation choices are reused."
+            "Oliguria and thrombocytopenia/bleeding do not establish right-sided failure; no JVD, peripheral edema, hepatomegaly, ascites or volume context.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0294",
+          "id": "qrn-0314",
+          "topic": "Syncope with conduction block",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Symptomatic sinus bradycardia is assigned to a 3-day-old newborn but uses adult-style blood pressure/dizziness and an unexplained adult-like hemoglobin trend.",
-            "No age-appropriate neonatal perfusion/context or rhythm evidence is supplied; generic prioritization choices do not address the item."
+            "Child hypotension/tachycardia and falling hemoglobin lack syncope description, ECG conduction findings or rhythm-related event timeline.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0295",
+          "id": "qrn-0315",
+          "topic": "Acute COPD exacerbation",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Vasospastic angina lacks episodic rest chest pain, transient ischemic ECG changes or a vasospasm-related decision point.",
-            "Oliguria, lactate elevation and rising creatinine are unrelated to the named angina topic; generic assessment/communication options are reused."
+            "Hypoxemia/tachypnea and lactate/creatinine are nonspecific; no COPD history, baseline respiratory status, wheeze, sputum or airflow findings.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0296",
+          "id": "qrn-0316",
+          "topic": "Status asthmaticus",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Implantable defibrillator discharge lacks shock count/timing, rhythm, symptoms, device history or post-discharge assessment.",
-            "Hypotension/tachycardia and hyperkalemia with peaked T waves create a competing arrhythmia concern; outcome/effectiveness options do not test ICD-discharge response."
+            "Confusion and hyperkalemic ECG changes do not establish severe asthma; no asthma history, acute bronchospasm, airflow limitation or respiratory assessment.",
+            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         }
       ],
-      "notes": "Static source-level triage only. No clinical content, answer key, item ID, learner-history reference, runtime inclusion, or review record was changed. All items remain not clinically verified; educator review is required."
+      "notes": "Static source-level triage only. No clinical content, answer key, item ID, learner-history reference, runtime inclusion, or review record was changed. All items remain not clinically verified; qualified educator review is required."
     }
   },
   "tracker": {
