@@ -19,8 +19,8 @@
     "replacementRecordsIntegrated": 364,
     "replacementRecordsCountAsNetNew": 0,
     "lastVerifiedAt": "2026-11-26",
-    "lastVerifiedBranchHead": "97b16f9165932db1feceea5b05e5632ca1cf5c1b",
-    "verificationMethod": "At run start, re-read source assembly src/questionBank.ts and src/ngnQuestionBank.ts plus unique-ID guards and confirmed ledger baseline 600 (500 core + 100 NGN); no runtime content changed in this audit-only run."
+    "lastVerifiedBranchHead": "f964f5f0daf8cb6fd7c774daa1e5393148502db8",
+    "verificationMethod": "Re-read src/questionBank.ts and src/ngnQuestionBank.ts: questionBank500 is guarded at 500 with 500 unique IDs; questionBank100 is guarded at 100; combined questionBank600 is guarded at 600 unique IDs. The 364 rewrite entries remain replacement positions; curated JSON inputs are not additive."
   },
   "clinicalReview": {
     "confirmedClinicallyVerified": 0,
@@ -35,44 +35,44 @@
     "targetedRewriteTrancheSize": 244,
     "inspectedThisRun": 20,
     "inspectedIds": [
-      "qrn-0317",
-      "qrn-0318",
-      "qrn-0319",
-      "qrn-0320",
-      "qrn-0321",
-      "qrn-0322",
-      "qrn-0323",
-      "qrn-0324",
-      "qrn-0325",
-      "qrn-0326",
-      "qrn-0327",
-      "qrn-0328",
-      "qrn-0329",
-      "qrn-0330",
-      "qrn-0331",
-      "qrn-0332",
-      "qrn-0333",
-      "qrn-0334",
-      "qrn-0335",
-      "qrn-0336"
+      "qrn-0337",
+      "qrn-0338",
+      "qrn-0339",
+      "qrn-0340",
+      "qrn-0341",
+      "qrn-0342",
+      "qrn-0343",
+      "qrn-0344",
+      "qrn-0345",
+      "qrn-0346",
+      "qrn-0347",
+      "qrn-0348",
+      "qrn-0349",
+      "qrn-0350",
+      "qrn-0351",
+      "qrn-0352",
+      "qrn-0353",
+      "qrn-0354",
+      "qrn-0355",
+      "qrn-0356"
     ],
-    "needsSubstantiveRemediation": 80,
+    "needsSubstantiveRemediation": 100,
     "passedForClinicalReleaseThisRun": 0,
-    "nextAuditId": "qrn-0337",
-    "remainingInTargetedTranche": 164,
-    "notes": "Static triage only. 80/244 items in the third rewrite tranche are classified for substantive revision and qualified educator review; no clinical approval or content changes were recorded.",
+    "nextAuditId": "qrn-0357",
+    "remainingInTargetedTranche": 144,
+    "notes": "Static triage only. 100/244 items in the third rewrite tranche are classified for substantive revision and qualified educator review; no clinical approval or content changes were recorded.",
     "needsSubstantiveRemediationThisRun": 20,
-    "auditedInTargetedTranche": 80,
+    "auditedInTargetedTranche": 100,
     "dispositionCountsToDate": {
       "retain": 0,
-      "revise": 80,
+      "revise": 100,
       "replace": 0,
       "retire": 0,
-      "educatorReviewRequired": 80
+      "educatorReviewRequired": 100
     },
     "lastAuditBatch": {
       "date": "2026-11-26",
-      "range": "qrn-0317–qrn-0336",
+      "range": "qrn-0337–qrn-0356",
       "inspected": 20,
       "dispositionCounts": {
         "retain": 0,
@@ -82,235 +82,235 @@
         "educatorReviewRequired": 20
       },
       "commonFindings": [
-        "All 20 items repeat the generic reassessment stem and four reusable answer/rationale families; all are single-response and do not demonstrate the planned NGN format diversity.",
-        "Named respiratory/airway and endocrine topics are not supported by topic-defining history, focused assessment, diagnostic data or timeline.",
-        "Several patient contexts are incompatible with the named topic (e.g., newborn total laryngectomy, newborn DKA) or omit required device/procedure context (chest tube, tracheostomy, NIV, ventilator).",
-        "Unrelated acute findings such as hyperkalemia, hypoglycemia, hyponatremia/seizure, INR/hematuria and anemia create competing priorities unrelated to the assigned topic.",
-        "Generic options and boilerplate rationales test broad escalation/effectiveness rather than a distinct, defensible topic-specific nursing decision."
+        "All 20 are single-response items built from a repeated generic reassessment stem and four reusable answer/rationale families; the task does not distinguish the named endocrine or renal learning objective.",
+        "Named endocrine disorders generally lack defining history, vital-sign patterns, laboratory values, diagnostic criteria or treatment timeline.",
+        "Renal/dialysis items omit key context such as baseline renal function, dialysis session/ultrafiltration, peritoneal-dialysis exchanges or vascular-access history.",
+        "Unrelated acute abnormalities (hyperkalemia, hypoglycemia, severe hyponatremia/seizure, INR/hematuria, bleeding, respiratory acidosis) compete with or contradict the named topic.",
+        "Several demographics/context details are clinically unsupported (e.g., newborn insulin-pump interruption; pediatric post-thyroidectomy/AV fistula contexts without surgical/access history)."
       ],
       "items": [
         {
-          "id": "qrn-0317",
-          "topic": "Metered-dose inhaler technique",
+          "id": "qrn-0337",
+          "topic": "Thyroid storm",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "A topic about inhaler technique is paired with hypertension and hyperkalemia/peaked T waves; no inhaler device, medication, teach-back or technique error is described.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "Severe pain and hyperkalemia with peaked T waves are not supported by thyroid-storm cues: no fever, marked tachycardia, agitation/delirium, GI symptoms, thyroid history or precipitant.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0318",
-          "topic": "Hypoxemia with altered mentation",
+          "id": "qrn-0338",
+          "topic": "Myxedema coma",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Postoperative fever, tachycardia/hypotension and INR/hematuria create multiple competing emergencies; no oxygen saturation, respiratory findings or neurologic detail supports the named problem.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "Bradycardia/hypotension could indicate instability but INR 5.6 with gross hematuria is a competing bleeding problem; no hypothermia, hypoventilation, altered consciousness, hypothyroid history or thyroid labs support myxedema coma.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0319",
-          "topic": "Total laryngectomy airway",
+          "id": "qrn-0339",
+          "topic": "Post-thyroidectomy hypocalcemia",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "A 3-day-old newborn is incompatible with an adult total-laryngectomy context; severe hyponatremia/seizure dominates and no stoma/airway assessment is provided.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "A 7-year-old is described without thyroid surgery or postoperative timing; sodium 118 with seizure suggests a separate acute neurologic/electrolyte emergency, and no calcium, magnesium, paresthesia, tetany or QT data are supplied.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0320",
-          "topic": "Community-acquired pneumonia",
+          "id": "qrn-0340",
+          "topic": "Hyperkalemia",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Bradycardia/hypotension, hypercapnia and somnolence are nonspecific; no infectious symptoms, lung exam, imaging or oxygenation data support pneumonia.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "The scenario supplies respiratory acidosis/hypercapnia and somnolence but no potassium value, renal context or ECG findings; hypotension/tachycardia suggest competing shock/respiratory deterioration rather than a supported hyperkalemia item.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0321",
-          "topic": "Acute respiratory distress syndrome",
+          "id": "qrn-0341",
+          "topic": "SIADH",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Oliguria and severe hypoglycemia dominate; no acute hypoxemic respiratory failure, bilateral opacities or precipitating insult is documented.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "No sodium, serum/urine osmolality, urine sodium, fluid-balance or euvolemia data support SIADH; hypoglycemia with unsafe swallowing is a competing immediate problem.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0322",
-          "topic": "Pulmonary embolism",
+          "id": "qrn-0342",
+          "topic": "Diabetes sick-day management",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Newborn context and hypoglycemia are unrelated; no thromboembolic risk, sudden dyspnea, pleuritic pain, hypoxemia or diagnostic evidence.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "A child is not given diabetes type, sick-day illness, glucose trend, ketones, hydration plan or caregiver-management context; the low glucose and inability to swallow instead require an acute hypoglycemia response.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0323",
-          "topic": "Chest tube disconnection",
+          "id": "qrn-0343",
+          "topic": "Diabetes insipidus",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No chest tube or thoracic procedure is mentioned; fever, hypotension and thrombocytopenia/bleeding do not describe a disconnection or its immediate respiratory consequences.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "No polyuria, polydipsia, high urine output, hypernatremia, dilute urine, fluid-balance or pituitary/postoperative history; thrombocytopenia and mucosal bleeding are unrelated.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0324",
-          "topic": "Tracheostomy decannulation",
+          "id": "qrn-0344",
+          "topic": "Cushing syndrome",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No tracheostomy history, readiness assessment, airway patency or decannulation plan; falling hemoglobin and pain are competing unexplained findings.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "Fever, tachycardia, hypotension and a rapid hemoglobin fall suggest an acute infectious/bleeding differential, not chronic hypercortisolism; no steroid exposure, cushingoid features, glucose or cortisol context.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0325",
-          "topic": "Pleural effusion",
+          "id": "qrn-0345",
+          "topic": "Addison disease",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Pediatric patient has bradycardia/hypotension and nonspecific lactate/creatinine changes; no dyspnea, asymmetric breath sounds, imaging or fluid cause.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "Hypotension, tachycardia, lactate and rising creatinine are nonspecific shock/organ-dysfunction findings; no adrenal/steroid history, hyponatremia, hyperkalemia, hypoglycemia or cortisol context establishes adrenal insufficiency.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0326",
-          "topic": "Tension pneumothorax",
+          "id": "qrn-0346",
+          "topic": "Metformin-associated lactic acidosis",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Oliguria and hyperkalemic ECG findings do not establish tension pneumothorax; no sudden respiratory distress, unilateral absent breath sounds or obstructive-shock pattern.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "No metformin exposure, diabetes/renal-risk history, lactate elevation, pH/bicarbonate or anion-gap acidosis is supplied; hypoxemia and hyperkalemic ECG findings create unrelated competing emergencies.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0327",
-          "topic": "Tuberculosis isolation",
+          "id": "qrn-0347",
+          "topic": "Insulin pump interruption",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No cough duration, exposure, weight loss, night sweats, sputum or suspected/confirmed TB; hypotension and hyperkalemia are unrelated acute findings.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "A 3-day-old newborn in a special-care nursery is an implausible unsupported context for the stated insulin-pump interruption; no diabetes/pump details, infusion interruption, glucose, ketones or acidosis, while hyperkalemia is unexplained.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0328",
-          "topic": "Obstructive sleep apnea",
+          "id": "qrn-0348",
+          "topic": "DKA potassium shift",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "A child with hypoxemia and INR/hematuria is not given sleep-related symptoms, witnessed apneas, snoring, polysomnography or peri-sedation context.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "No diabetes, hyperglycemia, ketones, anion gap, pH, bicarbonate, fluid deficit or insulin treatment phase; INR 5.6 with gross hematuria is an unrelated bleeding issue.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0329",
-          "topic": "Aspiration pneumonitis",
+          "id": "qrn-0349",
+          "topic": "Hypercalcemic crisis",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Confusion with severe hyponatremia/seizure dominates; no aspiration event, impaired airway protection, acute cough or respiratory findings.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "No calcium level, malignancy/hyperparathyroid context, dehydration, constipation, polyuria or neurocognitive symptoms; sodium 118 with seizure is a separate major electrolyte emergency.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0330",
-          "topic": "Postoperative atelectasis",
+          "id": "qrn-0350",
+          "topic": "Refeeding syndrome",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "The scenario does not identify a postoperative patient; hypercapnia/somnolence and hypertension are not supported by focused lung assessment or imaging.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "A newborn is given no malnutrition/starvation history or recent nutrition restart; no phosphate, potassium, magnesium, fluid shift or cardiac/neuromuscular findings support refeeding syndrome. Hypercapnia/somnolence is unrelated.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0331",
-          "topic": "Ventilator-associated pneumonia",
+          "id": "qrn-0351",
+          "topic": "Acute kidney injury",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No mechanical ventilation duration, ventilator status, new infiltrate, respiratory secretion change or infection evidence; severe hypoglycemia is a competing emergency.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "No baseline/current creatinine trend, BUN, urinalysis, renal insult or documented oliguria supports AKI; severe hypoglycemia with inability to swallow is a competing acute priority.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0332",
-          "topic": "Noninvasive ventilation intolerance",
+          "id": "qrn-0352",
+          "topic": "Hemodialysis hypotension",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No NIV use, interface, respiratory indication, intolerance behavior or gas-exchange response; pain and severe hypoglycemia are unrelated.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "No hemodialysis session, ultrafiltration amount, access, intradialytic BP trend or dialysis timing; low urine output alone is nonspecific and the hypoglycemia is unrelated.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0333",
-          "topic": "Diabetic ketoacidosis",
+          "id": "qrn-0353",
+          "topic": "Arteriovenous fistula protection",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "A 3-day-old newborn with bradycardia and thrombocytopenia/bleeding is not supported by diabetes history, glucose, ketones, acidosis or dehydration findings.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "A 7-year-old has no ESRD, dialysis access or fistula history/exam; hypotension/tachycardia with thrombocytopenia and bleeding suggests an unrelated acute instability.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0334",
-          "topic": "Hyperosmolar hyperglycemic state",
+          "id": "qrn-0354",
+          "topic": "Peritoneal dialysis peritonitis",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No marked hyperglycemia, hyperosmolality, dehydration or diabetes context; confusion plus acute hemoglobin drop suggests competing neurologic/bleeding concerns.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "No peritoneal-dialysis context, exchange details, cloudy effluent, abdominal pain/tenderness, fever or effluent cell count/culture; acute hemoglobin decline is a competing bleeding concern.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0335",
-          "topic": "Severe hypoglycemia",
+          "id": "qrn-0355",
+          "topic": "Chronic kidney disease anemia",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No glucose value or hypoglycemic symptoms; hypertension/tachycardia and lactate/creatinine changes do not establish hypoglycemia.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "No established CKD, chronicity/eGFR, hemoglobin/hematocrit, iron indices or anemia symptoms; acute confusion, elevated lactate and rising creatinine do not establish CKD anemia.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0336",
-          "topic": "Adrenal crisis",
+          "id": "qrn-0356",
+          "topic": "Hyperkalemia in renal failure",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Newborn fever and hyperkalemia/peaked T waves do not establish adrenal insufficiency; no steroid history, hypotension, hyponatremia, hypoglycemia or adrenal context.",
-            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
+            "Potassium 6.2 with peaked T waves supports hyperkalemia, but no renal failure history, creatinine/eGFR or medication context supports the stated etiology; the 7-year-old context and bradycardia/hypotension need a coherent pediatric case and focused immediate-action task.",
+            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         }
       ],
-      "notes": "Static source-level triage only. No clinical content, answer key, item ID, learner-history reference, runtime inclusion, or review record was changed. All items remain not clinically verified; qualified educator review is required."
+      "notes": "Source-level static triage only; no item content, answer key, stable ID, learner history, runtime inclusion or clinical review status changed."
     }
   },
   "tracker": {
