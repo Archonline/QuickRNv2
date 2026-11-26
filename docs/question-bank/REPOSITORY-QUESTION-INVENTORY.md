@@ -1,6 +1,6 @@
 # QuickRNv2 Repository Question Inventory
 
-**Inventory date:** 2026-11-26  
+**Inventory date:** 2026-11-26 (run 4 audit update)  
 **Branch inspected:** `feat/3600-question-bank-expansion` at `430e46292c2c5b58164ecd29e43d8a6e233c5e75`  
 **Scope:** source files assembled into the runtime question bank, source-level replacement batches, the separate development examples, and the standalone NGN 300-project archive.
 
@@ -110,3 +110,16 @@ The highest-value next task is an item-level release audit of the 364 rewritten 
 - Runtime inventory remains 600 unique IDs; core credit 600/3,000; Booster 0/600. Net-new questions authored/integrated: 0; runtime delta: 0.
 - The 3,600 Webmaster tracker component remains absent. `src/QuestionGenerationTracker.tsx` is linked to the separate NGN 300-draft manifest and is not a substitute.
 - No question source, answer key, learner history, runtime selection, clinical review status, or approval record was changed. These static flags do not establish clinical validation.
+
+
+## 2026-11-26 — third 20-item triage batch (run 4)
+
+- Starting branch head inspected: `9349cacd8bfb4fb746fc52a0732f4f79954c59f0`.
+- Source: `src/authoredCoreRewriteBatch3.ts`; IDs `qrn-0297`–`qrn-0316`.
+- Static disposition: 20 revise; all 20 require qualified educator review; 0 passed for clinical release.
+- Common defects: generic reassessment stem and repeated option/rationale templates; unrelated acute findings create competing emergencies; topic-specific diagnostic cues and relevant patient history are absent; single-response format does not represent the planned NGN format breadth; boilerplate rationales do not support the named clinical decision.
+- Representative problems: hypertensive emergency without elevated BP (`qrn-0297`); aortic dissection without aortic/pain/imaging context (`qrn-0298`); infective endocarditis without infection evidence (`qrn-0299`); cardiogenic shock without cardiac/perfusion evidence (`qrn-0300`); warfarin bleeding without anticoagulant/INR/bleeding evidence (`qrn-0302`); VT without rhythm evidence (`qrn-0303`); pacemaker failure without ECG/device context (`qrn-0310`); status asthmaticus without asthma/airflow context (`qrn-0316`).
+- Cumulative third-tranche progress: 60/244 triaged; 184 remain; next ID `qrn-0317`.
+- Runtime inventory remains 600 unique IDs (500 core + 100 NGN extension); replacement work remains non-additive; Booster remains 0 and no Booster namespace is assigned.
+- No source item, answer key, ID, learner history, pool membership or clinical review metadata was changed. Static triage is not clinical verification.
+- Latest available Actions evidence was successful on older head `68930635d07f7fb39a9a12e6208a195cf9e74b94`; current-head Vercel status is success. No fresh Actions run was triggered by audit-only documentation changes.
