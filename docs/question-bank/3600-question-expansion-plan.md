@@ -157,3 +157,14 @@ Cumulative progress in the 244-item tranche: **40/244 triaged**, **40 require su
 The 3,600-specific Webmaster tracker remains absent. `src/QuestionGenerationTracker.tsx` still reads the separate `src/question-batches/ngn/manifest.json` NGN 300-draft archive and is not a 3,600 tracker. PR #9 remains merged/closed; follow-up draft PR #18 remains open. The latest pre-commit CI at `430e46292c2c5b58164ecd29e43d8a6e233c5e75` passed authoring audit, batch validation, unit tests, Chromium regression, production build, secret scan, and Vercel status. This run changed documentation only; no question content or schema changed.
 
 No clinical approval, merge, or deployment was performed.
+
+
+## 2026-11-26 Phase 1 progress — run 5
+
+- Third rewrite tranche static triage: `qrn-0257`–`qrn-0336`, 80 of 244 items audited.
+- All 80 have been classified for substantive revision and qualified educator review; no item is clinically cleared by this static audit.
+- Next audit ID: `qrn-0337`; 164 items remain in this tranche.
+- The current runtime inventory remains 600 unique IDs (500 core + 100 NGN). The 364 authored rewrites remain replacements within existing core positions.
+- No net-new core or Booster items may be authored until the full Phase 1 reconciliation is complete. Booster namespace remains unassigned.
+- Webmaster 3,600-specific UI tracker remains absent; maintain this ledger as the durable source of progress. The separate NGN 300-draft tracker must not be used to infer 3,600-bank progress.
+- Run 5 findings and exact item-level dispositions are recorded in `docs/question-bank/runs/2026-11-26-run-05.md` and the ledger.
