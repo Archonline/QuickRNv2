@@ -134,3 +134,15 @@ The highest-value next task is an item-level release audit of the 364 rewritten 
 - Runtime count unchanged: 600 unique IDs (500 core + 100 NGN). The 364 rewrite entries remain replacements, not additive inventory. Booster count remains zero; namespace unassigned.
 - No clinical content, answer key, stable ID, learner history, pool membership or review record changed. Static triage is not clinical validation.
 - Starting-head Vercel status was success. Latest full GitHub Actions checks passed on older head `68930635d07f7fb39a9a12e6208a195cf9e74b94`; no new workflow run was available for the inspected starting head. This audit changed documentation only.
+
+
+## 2026-11-26 — third-tranche audit run 6
+
+- Start-of-run branch head: `f964f5f0daf8cb6fd7c774daa1e5393148502db8`.
+- Re-read runtime assembly: 500 unique core + 100 unique NGN extension = 600 unique runtime IDs; the 364 authored rewrites remain replacements. No Booster namespace is assigned and Booster remains 0.
+- Statically audited `qrn-0337`–`qrn-0356`: 20 revise; all 20 require qualified educator review; 0 clinically cleared. Endocrine/renal topics are unsupported by defining histories, assessments, diagnostics or treatment timelines; unrelated acute findings compete with the named topics; generic reassessment stems, four rotating option/rationale families and single-response-only format recur throughout.
+- Representative issues: thyroid storm without thyrotoxic findings (`qrn-0337`); myxedema coma without hypothyroid context (`qrn-0338`); SIADH without sodium/osmolality evidence (`qrn-0341`); insulin-pump interruption assigned to a newborn (`qrn-0347`); hemodialysis hypotension without a dialysis session (`qrn-0352`); hyperkalemia with ECG evidence but no renal-failure context (`qrn-0356`).
+- Cumulative third-tranche audit: 100/244; 144 remain; next ID `qrn-0357`. All 100 require revision/educator review; none passed clinical release.
+- No item content, answer key, ID, learner history, pool membership or clinical review metadata changed. Static triage is not clinical validation.
+- 3,600 Webmaster tracker remains absent; `QuestionGenerationTracker` remains the separate NGN 300-draft archive tracker.
+- Latest full Actions evidence remains green on older commit `68930635d07f7fb39a9a12e6208a195cf9e74b94`; starting-head Vercel status was success; no fresh Actions run on the docs-only starting head.
