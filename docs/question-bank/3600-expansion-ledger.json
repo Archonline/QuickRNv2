@@ -19,8 +19,8 @@
     "replacementRecordsIntegrated": 364,
     "replacementRecordsCountAsNetNew": 0,
     "lastVerifiedAt": "2026-11-26",
-    "lastVerifiedBranchHead": "9349cacd8bfb4fb746fc52a0732f4f79954c59f0",
-    "verificationMethod": "Starting-run inspection reconfirmed the ledger's 600 unique-ID claim against the documented runtime assembly; source inspection of src/questionBank.ts and src/ngnQuestionBank.ts is recorded in the prior inventory report. This run did not change runtime content."
+    "lastVerifiedBranchHead": "97b16f9165932db1feceea5b05e5632ca1cf5c1b",
+    "verificationMethod": "At run start, re-read source assembly src/questionBank.ts and src/ngnQuestionBank.ts plus unique-ID guards and confirmed ledger baseline 600 (500 core + 100 NGN); no runtime content changed in this audit-only run."
   },
   "clinicalReview": {
     "confirmedClinicallyVerified": 0,
@@ -35,44 +35,44 @@
     "targetedRewriteTrancheSize": 244,
     "inspectedThisRun": 20,
     "inspectedIds": [
-      "qrn-0297",
-      "qrn-0298",
-      "qrn-0299",
-      "qrn-0300",
-      "qrn-0301",
-      "qrn-0302",
-      "qrn-0303",
-      "qrn-0304",
-      "qrn-0305",
-      "qrn-0306",
-      "qrn-0307",
-      "qrn-0308",
-      "qrn-0309",
-      "qrn-0310",
-      "qrn-0311",
-      "qrn-0312",
-      "qrn-0313",
-      "qrn-0314",
-      "qrn-0315",
-      "qrn-0316"
+      "qrn-0317",
+      "qrn-0318",
+      "qrn-0319",
+      "qrn-0320",
+      "qrn-0321",
+      "qrn-0322",
+      "qrn-0323",
+      "qrn-0324",
+      "qrn-0325",
+      "qrn-0326",
+      "qrn-0327",
+      "qrn-0328",
+      "qrn-0329",
+      "qrn-0330",
+      "qrn-0331",
+      "qrn-0332",
+      "qrn-0333",
+      "qrn-0334",
+      "qrn-0335",
+      "qrn-0336"
     ],
-    "needsSubstantiveRemediation": 60,
+    "needsSubstantiveRemediation": 80,
     "passedForClinicalReleaseThisRun": 0,
-    "nextAuditId": "qrn-0317",
-    "remainingInTargetedTranche": 184,
-    "notes": "Static triage only. 60/244 items in the third rewrite tranche have been classified for substantive revision and qualified educator review; no clinical approval or content change was recorded.",
+    "nextAuditId": "qrn-0337",
+    "remainingInTargetedTranche": 164,
+    "notes": "Static triage only. 80/244 items in the third rewrite tranche are classified for substantive revision and qualified educator review; no clinical approval or content changes were recorded.",
     "needsSubstantiveRemediationThisRun": 20,
-    "auditedInTargetedTranche": 60,
+    "auditedInTargetedTranche": 80,
     "dispositionCountsToDate": {
       "retain": 0,
-      "revise": 60,
+      "revise": 80,
       "replace": 0,
       "retire": 0,
-      "educatorReviewRequired": 60
+      "educatorReviewRequired": 80
     },
     "lastAuditBatch": {
       "date": "2026-11-26",
-      "range": "qrn-0297–qrn-0316",
+      "range": "qrn-0317–qrn-0336",
       "inspected": 20,
       "dispositionCounts": {
         "retain": 0,
@@ -82,230 +82,230 @@
         "educatorReviewRequired": 20
       },
       "commonFindings": [
-        "All 20 reuse the same generic reassessment stem and one of four generic answer/rationale families; the format remains single-response for every item in this audited range.",
-        "Named cardiovascular/perfusion topics are paired with unrelated or nonspecific findings rather than topic-defining assessment, diagnostic or timeline evidence.",
-        "Several records have age/context mismatch or omit the history needed to make the named diagnosis plausible; newborn/child cases use adult-like or non-age-specific cues.",
-        "Correct-answer option families alternate between generic escalation, generic organ-compromise recognition, generic communication and generic effectiveness statements; the rationale repeats a topic label plus boilerplate.",
-        "Blueprint/CJMM alignment is weak: several options assess generic escalation or effectiveness regardless of the assigned clinical judgment function."
+        "All 20 items repeat the generic reassessment stem and four reusable answer/rationale families; all are single-response and do not demonstrate the planned NGN format diversity.",
+        "Named respiratory/airway and endocrine topics are not supported by topic-defining history, focused assessment, diagnostic data or timeline.",
+        "Several patient contexts are incompatible with the named topic (e.g., newborn total laryngectomy, newborn DKA) or omit required device/procedure context (chest tube, tracheostomy, NIV, ventilator).",
+        "Unrelated acute findings such as hyperkalemia, hypoglycemia, hyponatremia/seizure, INR/hematuria and anemia create competing priorities unrelated to the assigned topic.",
+        "Generic options and boilerplate rationales test broad escalation/effectiveness rather than a distinct, defensible topic-specific nursing decision."
       ],
       "items": [
         {
-          "id": "qrn-0297",
-          "topic": "Hypertensive emergency",
+          "id": "qrn-0317",
+          "topic": "Metered-dose inhaler technique",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Child has no elevated BP documented; hypoxemia and hyperkalemic ECG changes dominate, not evidence for hypertensive emergency.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "A topic about inhaler technique is paired with hypertension and hyperkalemia/peaked T waves; no inhaler device, medication, teach-back or technique error is described.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0298",
-          "topic": "Aortic dissection",
+          "id": "qrn-0318",
+          "topic": "Hypoxemia with altered mentation",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "New confusion and INR 5.6/hematuria do not establish dissection; no abrupt pain, pulse/BP differential, imaging or aortic context.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "Postoperative fever, tachycardia/hypotension and INR/hematuria create multiple competing emergencies; no oxygen saturation, respiratory findings or neurologic detail supports the named problem.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0299",
-          "topic": "Infective endocarditis",
+          "id": "qrn-0319",
+          "topic": "Total laryngectomy airway",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Severe hyponatremia with seizure dominates; no infectious timeline, fever, bacteremia, murmur, embolic or valve evidence.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "A 3-day-old newborn is incompatible with an adult total-laryngectomy context; severe hyponatremia/seizure dominates and no stoma/airway assessment is provided.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0300",
-          "topic": "Cardiogenic shock",
+          "id": "qrn-0320",
+          "topic": "Community-acquired pneumonia",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Child has fever, hypercapnia and somnolence but no cardiac dysfunction, perfusion profile, cardiac history or supporting diagnostics.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "Bradycardia/hypotension, hypercapnia and somnolence are nonspecific; no infectious symptoms, lung exam, imaging or oxygenation data support pneumonia.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0301",
-          "topic": "Peripheral arterial disease",
+          "id": "qrn-0321",
+          "topic": "Acute respiratory distress syndrome",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Hypotension/tachycardia and severe hypoglycemia dominate; no limb-specific ischemia, pulses, skin, pain or claudication findings.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "Oliguria and severe hypoglycemia dominate; no acute hypoxemic respiratory failure, bilateral opacities or precipitating insult is documented.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0302",
-          "topic": "Warfarin-associated bleeding",
+          "id": "qrn-0322",
+          "topic": "Pulmonary embolism",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Hypoxemia and hypoglycemia are presented without anticoagulant history, INR, bleeding site, hemoglobin trend or evidence of hemorrhage.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "Newborn context and hypoglycemia are unrelated; no thromboembolic risk, sudden dyspnea, pleuritic pain, hypoxemia or diagnostic evidence.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0303",
-          "topic": "Ventricular tachycardia",
+          "id": "qrn-0323",
+          "topic": "Chest tube disconnection",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Confusion and thrombocytopenia/mucosal bleeding do not establish VT; no rhythm strip, rate, pulse or hemodynamic rhythm context.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "No chest tube or thoracic procedure is mentioned; fever, hypotension and thrombocytopenia/bleeding do not describe a disconnection or its immediate respiratory consequences.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0304",
-          "topic": "Unstable angina",
+          "id": "qrn-0324",
+          "topic": "Tracheostomy decannulation",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Postoperative anemia and hypertension/tachycardia are given without ischemic chest symptoms, ECG findings or troponin context.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "No tracheostomy history, readiness assessment, airway patency or decannulation plan; falling hemoglobin and pain are competing unexplained findings.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0305",
-          "topic": "Aortic stenosis",
+          "id": "qrn-0325",
+          "topic": "Pleural effusion",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Neonatal age is possible, but fever/lactate/creatinine alone do not establish aortic stenosis; no murmur, perfusion, echo or cardiac history.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "Pediatric patient has bradycardia/hypotension and nonspecific lactate/creatinine changes; no dyspnea, asymmetric breath sounds, imaging or fluid cause.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0306",
-          "topic": "Pericarditis",
+          "id": "qrn-0326",
+          "topic": "Tension pneumothorax",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Pain and hyperkalemic ECG changes are not enough to identify pericarditis; no pleuritic/positional features, rub, diffuse ST changes or effusion context.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "Oliguria and hyperkalemic ECG findings do not establish tension pneumothorax; no sudden respiratory distress, unilateral absent breath sounds or obstructive-shock pattern.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0307",
-          "topic": "Post-catheterization hemorrhage",
+          "id": "qrn-0327",
+          "topic": "Tuberculosis isolation",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Bradycardia, hypotension and dizziness plus hyperkalemia lack procedure/access-site timing, bleeding/hematoma assessment or hemoglobin trend.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "No cough duration, exposure, weight loss, night sweats, sputum or suspected/confirmed TB; hypotension and hyperkalemia are unrelated acute findings.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0308",
-          "topic": "Orthostatic hypotension",
+          "id": "qrn-0328",
+          "topic": "Obstructive sleep apnea",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Newborn urine output and INR/hematuria do not establish orthostasis; no positional BP/HR changes or age-appropriate volume assessment.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "A child with hypoxemia and INR/hematuria is not given sleep-related symptoms, witnessed apneas, snoring, polysomnography or peri-sedation context.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0309",
-          "topic": "Chronic venous insufficiency",
+          "id": "qrn-0329",
+          "topic": "Aspiration pneumonitis",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Young adult hypotension and severe hyponatremia/seizure do not assess venous insufficiency; no edema, stasis changes, ulcers or venous history.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "Confusion with severe hyponatremia/seizure dominates; no aspiration event, impaired airway protection, acute cough or respiratory findings.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0310",
-          "topic": "Pacemaker failure to capture",
+          "id": "qrn-0330",
+          "topic": "Postoperative atelectasis",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Hypoxemia, hypercapnia and somnolence lack pacemaker history, ECG pacing spikes without capture, pulse correlation or device assessment.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "The scenario does not identify a postoperative patient; hypercapnia/somnolence and hypertension are not supported by focused lung assessment or imaging.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0311",
-          "topic": "Hyperkalemic ECG changes",
+          "id": "qrn-0331",
+          "topic": "Ventilator-associated pneumonia",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Child has hypoglycemia/confusion but no potassium result or ECG change in the stem to substantiate hyperkalemia.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "No mechanical ventilation duration, ventilator status, new infiltrate, respiratory secretion change or infection evidence; severe hypoglycemia is a competing emergency.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0312",
-          "topic": "Acute pulmonary edema",
+          "id": "qrn-0332",
+          "topic": "Noninvasive ventilation intolerance",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Bradycardia/hypotension and hypoglycemia are unrelated without dyspnea, crackles, oxygenation decline, fluid overload or imaging.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "No NIV use, interface, respiratory indication, intolerance behavior or gas-exchange response; pain and severe hypoglycemia are unrelated.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0313",
-          "topic": "Right-sided heart failure",
+          "id": "qrn-0333",
+          "topic": "Diabetic ketoacidosis",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Oliguria and thrombocytopenia/bleeding do not establish right-sided failure; no JVD, peripheral edema, hepatomegaly, ascites or volume context.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "A 3-day-old newborn with bradycardia and thrombocytopenia/bleeding is not supported by diabetes history, glucose, ketones, acidosis or dehydration findings.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0314",
-          "topic": "Syncope with conduction block",
+          "id": "qrn-0334",
+          "topic": "Hyperosmolar hyperglycemic state",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Child hypotension/tachycardia and falling hemoglobin lack syncope description, ECG conduction findings or rhythm-related event timeline.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "No marked hyperglycemia, hyperosmolality, dehydration or diabetes context; confusion plus acute hemoglobin drop suggests competing neurologic/bleeding concerns.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0315",
-          "topic": "Acute COPD exacerbation",
+          "id": "qrn-0335",
+          "topic": "Severe hypoglycemia",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Hypoxemia/tachypnea and lactate/creatinine are nonspecific; no COPD history, baseline respiratory status, wheeze, sputum or airflow findings.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "No glucose value or hypoglycemic symptoms; hypertension/tachycardia and lactate/creatinine changes do not establish hypoglycemia.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0316",
-          "topic": "Status asthmaticus",
+          "id": "qrn-0336",
+          "topic": "Adrenal crisis",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Confusion and hyperkalemic ECG changes do not establish severe asthma; no asthma history, acute bronchospasm, airflow limitation or respiratory assessment.",
-            "Generic stem/option/rationale template does not test a distinct topic-specific NCLEX decision; single-response format and answer key need educator-level re-authoring."
+            "Newborn fever and hyperkalemia/peaked T waves do not establish adrenal insufficiency; no steroid history, hypotension, hyponatremia, hypoglycemia or adrenal context.",
+            "Repeated generic stem/option/rationale structure prevents a distinct topic-specific NCLEX decision; answer key and rationale require educator-level re-authoring."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         }
