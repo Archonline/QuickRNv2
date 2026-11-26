@@ -168,3 +168,14 @@ No clinical approval, merge, or deployment was performed.
 - No net-new core or Booster items may be authored until the full Phase 1 reconciliation is complete. Booster namespace remains unassigned.
 - Webmaster 3,600-specific UI tracker remains absent; maintain this ledger as the durable source of progress. The separate NGN 300-draft tracker must not be used to infer 3,600-bank progress.
 - Run 5 findings and exact item-level dispositions are recorded in `docs/question-bank/runs/2026-11-26-run-05.md` and the ledger.
+
+
+## 2026-11-26 run 6 checkpoint — third-tranche audit
+
+The start-of-run feature branch head was `f964f5f0daf8cb6fd7c774daa1e5393148502db8`. Source assembly was re-read and confirms 500 unique core IDs plus 100 unique NGN extension IDs, combined into 600 unique runtime IDs. The 364 rewrite entries remain replacements within the 500 core positions. Core credit remains 600/3,000; Booster remains 0/600 and its namespace is unassigned. No new questions were authored or integrated.
+
+The next 20 records in `src/authoredCoreRewriteBatch3.ts`, `qrn-0337`–`qrn-0356`, were statically triaged. All 20 are classified `revise` and require qualified educator review; 0 passed for clinical release. Findings include endocrine/renal topics without defining history, focused assessment or diagnostic data; patient-context mismatches; unrelated acute abnormalities creating competing priorities; and repeated generic stems, four reusable option/rationale families, and single-response-only format. Item-specific evidence is in `3600-expansion-ledger.json` and `runs/2026-11-26-run-06.md`.
+
+Cumulative progress in the 244-item tranche: **100/244 triaged**, **100 require substantive revision/educator review**, **0 clinically cleared**, and **144 remain**. The next audit ID is `qrn-0357`. No item was modified, retired, quarantined or removed from learner selection; stable IDs and learner-history references remain unchanged. No clinical review or approval was fabricated.
+
+The 3,600-specific Webmaster tracker remains absent; `src/QuestionGenerationTracker.tsx` is for the separate NGN 300-draft archive. The 3,600 ledger remains the durable tracker. Latest full Actions evidence remains successful on older head `68930635d07f7fb39a9a12e6208a195cf9e74b94`; starting-head Vercel status was success. No fresh Actions run was available for the docs-only starting head. Passing automation does not establish clinical correctness.
