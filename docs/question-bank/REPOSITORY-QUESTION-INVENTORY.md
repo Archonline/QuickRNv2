@@ -1,7 +1,7 @@
 # QuickRNv2 Repository Question Inventory
 
 **Inventory date:** 2026-11-26 (run 4 audit update)  
-**Branch inspected:** `feat/3600-question-bank-expansion` at `430e46292c2c5b58164ecd29e43d8a6e233c5e75`  
+**Branch inspected:** `feat/3600-question-bank-expansion` at `97b16f9165932db1feceea5b05e5632ca1cf5c1b`  
 **Scope:** source files assembled into the runtime question bank, source-level replacement batches, the separate development examples, and the standalone NGN 300-project archive.
 
 ## Executive count
@@ -123,3 +123,14 @@ The highest-value next task is an item-level release audit of the 364 rewritten 
 - Runtime inventory remains 600 unique IDs (500 core + 100 NGN extension); replacement work remains non-additive; Booster remains 0 and no Booster namespace is assigned.
 - No source item, answer key, ID, learner history, pool membership or clinical review metadata was changed. Static triage is not clinical verification.
 - Latest available Actions evidence was successful on older head `68930635d07f7fb39a9a12e6208a195cf9e74b94`; current-head Vercel status is success. No fresh Actions run was triggered by audit-only documentation changes.
+
+
+## 2026-11-26 item-level audit — run 5
+
+- Inspected `qrn-0317`–`qrn-0336` in `src/authoredCoreRewriteBatch3.ts`.
+- Static disposition: 20 revise; 20 qualified educator review required; 0 clinically cleared.
+- Recurring findings: repeated generic reassessment stem and four generic answer/rationale families; all 20 single-response; respiratory/airway and endocrine topics lack defining context; newborn/device/procedure mismatches; unrelated acute laboratory/vital-sign findings create competing priorities.
+- Cumulative third-tranche audit: 80/244; 164 remain; next ID `qrn-0337`.
+- Runtime count unchanged: 600 unique IDs (500 core + 100 NGN). The 364 rewrite entries remain replacements, not additive inventory. Booster count remains zero; namespace unassigned.
+- No clinical content, answer key, stable ID, learner history, pool membership or review record changed. Static triage is not clinical validation.
+- Starting-head Vercel status was success. Latest full GitHub Actions checks passed on older head `68930635d07f7fb39a9a12e6208a195cf9e74b94`; no new workflow run was available for the inspected starting head. This audit changed documentation only.
