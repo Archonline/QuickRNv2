@@ -1,6 +1,6 @@
 {
   "project": "quickrn-3600",
-  "updatedAt": "2026-11-26",
+  "updatedAt": "2026-11-27",
   "branch": "feat/3600-question-bank-expansion",
   "sourceOfTruth": "assembled runtime IDs in src/ngnQuestionBank.ts plus source inventory and this ledger",
   "targets": {
@@ -18,9 +18,9 @@
     "netNewBoosterRequired": 600,
     "replacementRecordsIntegrated": 364,
     "replacementRecordsCountAsNetNew": 0,
-    "lastVerifiedAt": "2026-11-26",
-    "lastVerifiedBranchHead": "f964f5f0daf8cb6fd7c774daa1e5393148502db8",
-    "verificationMethod": "Re-read src/questionBank.ts and src/ngnQuestionBank.ts: questionBank500 is guarded at 500 with 500 unique IDs; questionBank100 is guarded at 100; combined questionBank600 is guarded at 600 unique IDs. The 364 rewrite entries remain replacement positions; curated JSON inputs are not additive."
+    "lastVerifiedAt": "2026-11-27",
+    "lastVerifiedBranchHead": "99278d262d650c8d227bb551851ae4411f762822",
+    "verificationMethod": "At run start, re-read src/questionBank.ts and src/ngnQuestionBank.ts: questionBank500 is asserted at 500 entries with 500 unique IDs; questionBank100 is asserted at 100 entries; questionBank600 = [...questionBank500V2, ...questionBank100] is asserted at 600 unique IDs. Cross-bank normalized prompt/scenario duplicate guards are present. The 364 authored rewrite records remain stable-ID replacements within the 500 core positions; curated JSON inputs are not additive."
   },
   "clinicalReview": {
     "confirmedClinicallyVerified": 0,
@@ -35,44 +35,44 @@
     "targetedRewriteTrancheSize": 244,
     "inspectedThisRun": 20,
     "inspectedIds": [
-      "qrn-0337",
-      "qrn-0338",
-      "qrn-0339",
-      "qrn-0340",
-      "qrn-0341",
-      "qrn-0342",
-      "qrn-0343",
-      "qrn-0344",
-      "qrn-0345",
-      "qrn-0346",
-      "qrn-0347",
-      "qrn-0348",
-      "qrn-0349",
-      "qrn-0350",
-      "qrn-0351",
-      "qrn-0352",
-      "qrn-0353",
-      "qrn-0354",
-      "qrn-0355",
-      "qrn-0356"
+      "qrn-0357",
+      "qrn-0358",
+      "qrn-0359",
+      "qrn-0360",
+      "qrn-0361",
+      "qrn-0362",
+      "qrn-0363",
+      "qrn-0364",
+      "qrn-0365",
+      "qrn-0366",
+      "qrn-0367",
+      "qrn-0368",
+      "qrn-0369",
+      "qrn-0370",
+      "qrn-0371",
+      "qrn-0372",
+      "qrn-0373",
+      "qrn-0374",
+      "qrn-0375",
+      "qrn-0376"
     ],
-    "needsSubstantiveRemediation": 100,
+    "needsSubstantiveRemediation": 120,
     "passedForClinicalReleaseThisRun": 0,
-    "nextAuditId": "qrn-0357",
-    "remainingInTargetedTranche": 144,
-    "notes": "Static triage only. 100/244 items in the third rewrite tranche are classified for substantive revision and qualified educator review; no clinical approval or content changes were recorded.",
+    "nextAuditId": "qrn-0377",
+    "remainingInTargetedTranche": 124,
+    "notes": "Static triage only. 120/244 items in the third rewrite tranche are classified for substantive revision and qualified educator review; no clinical approval or content changes were recorded.",
     "needsSubstantiveRemediationThisRun": 20,
-    "auditedInTargetedTranche": 100,
+    "auditedInTargetedTranche": 120,
     "dispositionCountsToDate": {
       "retain": 0,
-      "revise": 100,
+      "revise": 120,
       "replace": 0,
       "retire": 0,
-      "educatorReviewRequired": 100
+      "educatorReviewRequired": 120
     },
     "lastAuditBatch": {
-      "date": "2026-11-26",
-      "range": "qrn-0337–qrn-0356",
+      "date": "2026-11-27",
+      "range": "qrn-0357–qrn-0376",
       "inspected": 20,
       "dispositionCounts": {
         "retain": 0,
@@ -82,235 +82,238 @@
         "educatorReviewRequired": 20
       },
       "commonFindings": [
-        "All 20 are single-response items built from a repeated generic reassessment stem and four reusable answer/rationale families; the task does not distinguish the named endocrine or renal learning objective.",
-        "Named endocrine disorders generally lack defining history, vital-sign patterns, laboratory values, diagnostic criteria or treatment timeline.",
-        "Renal/dialysis items omit key context such as baseline renal function, dialysis session/ultrafiltration, peritoneal-dialysis exchanges or vascular-access history.",
-        "Unrelated acute abnormalities (hyperkalemia, hypoglycemia, severe hyponatremia/seizure, INR/hematuria, bleeding, respiratory acidosis) compete with or contradict the named topic.",
-        "Several demographics/context details are clinically unsupported (e.g., newborn insulin-pump interruption; pediatric post-thyroidectomy/AV fistula contexts without surgical/access history)."
+        "All 20 are single-response records using one normalized generic reassessment prompt; four option families and four corresponding rationale families are each reused five times.",
+        "All 20 scenarios lack sufficient topic-defining history, assessment, diagnostic data, medication/treatment timeline or focused clinical decision to support the named topic.",
+        "Multiple demographic/context mismatches occur, including newborns assigned renal calculi, dialysis fluid overload and myasthenic crisis, and a child assigned acute ischemic stroke or autonomic dysreflexia without the required context.",
+        "Unrelated high-risk findings repeatedly compete with the named topic: hyperkalemia with ECG changes, symptomatic hypoglycemia, severe hyponatremia with seizure, bleeding/coagulopathy, hypoxemia/hypercapnia and acute kidney injury/shock indicators.",
+        "The correct-response index matches the option-rationale correct marker, but generic options and rationales do not establish a clinically defensible answer for the stated condition; distractors are not topic-specific.",
+        "CJMM labels rotate evenly across four steps (five items each) but do not correspond to different item tasks. Blueprint metadata is limited to broad category/topic/difficulty/CJMM; specific objective, Client Needs subcategory and evidence references are absent.",
+        "The source helper marks every item generated, not clinically verified, draft, with an empty references array. Runtime migration upgrades the legacy interaction to contentVersion 3; this structural migration is not clinical validation.",
+        "No exact duplicate IDs were found in this 20-item batch; all 20 IDs are unique. Their prompts and answer/rationale patterns are near-duplicate templates. The existing 600-ID runtime uniqueness guard remains the assembled-bank protection."
       ],
       "items": [
         {
-          "id": "qrn-0337",
-          "topic": "Thyroid storm",
+          "id": "qrn-0357",
+          "topic": "Post-TURP irrigation",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Severe pain and hyperkalemia with peaked T waves are not supported by thyroid-storm cues: no fever, marked tachycardia, agitation/delirium, GI symptoms, thyroid history or precipitant.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "No TURP/postoperative history, continuous-irrigation orders, inflow/outflow comparison, clots, bladder distention or catheter assessment is given. Oliguria plus potassium 6.2 mEq/L and peaked T waves instead raises a separate immediate hyperkalemia concern; the named irrigation problem is not established.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0338",
-          "topic": "Myxedema coma",
+          "id": "qrn-0358",
+          "topic": "Urinary retention",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Bradycardia/hypotension could indicate instability but INR 5.6 with gross hematuria is a competing bleeding problem; no hypothermia, hypoventilation, altered consciousness, hypothyroid history or thyroid labs support myxedema coma.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "No inability to void, suprapubic distention, bladder scan or postvoid residual supports retention. Hypotension, tachycardia, tachypnea and INR 5.6 with gross hematuria suggest acute bleeding/instability, not a defined retention decision.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0339",
-          "topic": "Post-thyroidectomy hypocalcemia",
+          "id": "qrn-0359",
+          "topic": "Pyelonephritis with sepsis",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "A 7-year-old is described without thyroid surgery or postoperative timing; sodium 118 with seizure suggests a separate acute neurologic/electrolyte emergency, and no calcium, magnesium, paresthesia, tetany or QT data are supplied.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "No urinary symptoms, flank/CVA findings, fever history, urinalysis, culture or infection source is supplied. SpO2 88% with RR 32/min and sodium 118 mEq/L with a new seizure create competing respiratory and neurologic emergencies; sepsis from pyelonephritis is not substantiated.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0340",
-          "topic": "Hyperkalemia",
+          "id": "qrn-0360",
+          "topic": "Nephrotic syndrome",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "The scenario supplies respiratory acidosis/hypercapnia and somnolence but no potassium value, renal context or ECG findings; hypotension/tachycardia suggest competing shock/respiratory deterioration rather than a supported hyperkalemia item.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "No edema, proteinuria, hypoalbuminemia, hyperlipidemia or renal history is provided. Postoperative confusion with pH 7.24, PaCO2 62 mm Hg and somnolence points to an acute ventilatory/neurologic problem unrelated to nephrotic syndrome.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0341",
-          "topic": "SIADH",
+          "id": "qrn-0361",
+          "topic": "Renal calculi",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No sodium, serum/urine osmolality, urine sodium, fluid-balance or euvolemia data support SIADH; hypoglycemia with unsafe swallowing is a competing immediate problem.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "A 3-day-old newborn is assigned renal calculi without congenital/urologic history or diagnostic evidence; no hematuria, colic, obstruction or imaging is described. BP 174/102 mm Hg plus glucose 42 mg/dL, diaphoresis and unsafe swallowing are unrelated urgent findings and the blood pressure needs a coherent neonatal context.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0342",
-          "topic": "Diabetes sick-day management",
+          "id": "qrn-0362",
+          "topic": "Contrast-associated kidney injury",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "A child is not given diabetes type, sick-day illness, glucose trend, ketones, hydration plan or caregiver-management context; the low glucose and inability to swallow instead require an acute hypoglycemia response.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "No contrast administration, exposure timing, baseline/current creatinine trend, eGFR, urine output or renal-risk history is supplied. Fever, tachycardia, hypotension and symptomatic glucose 42 mg/dL suggest other acute problems rather than demonstrated contrast-associated kidney injury.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0343",
-          "topic": "Diabetes insipidus",
+          "id": "qrn-0363",
+          "topic": "Transplant rejection",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No polyuria, polydipsia, high urine output, hypernatremia, dilute urine, fluid-balance or pituitary/postoperative history; thrombocytopenia and mucosal bleeding are unrelated.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "The postoperative context does not identify a transplant, organ, transplant date, immunosuppressive regimen or graft-specific dysfunction/trend. Pain 9/10 with platelets 48,000/mm³ and mucosal bleeding is a competing bleeding problem, not evidence of rejection.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0344",
-          "topic": "Cushing syndrome",
+          "id": "qrn-0364",
+          "topic": "Fluid overload in dialysis",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Fever, tachycardia, hypotension and a rapid hemoglobin fall suggest an acute infectious/bleeding differential, not chronic hypercortisolism; no steroid exposure, cushingoid features, glucose or cortisol context.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "A 3-day-old newborn is given a dialysis-related diagnosis without ESRD, dialysis modality/session, access or renal history. No weight gain, edema, crackles, oxygenation trend, fluid balance or ultrafiltration data supports overload; hemoglobin falling from 11.2 to 8.1 g/dL is a competing anemia/bleeding concern.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0345",
-          "topic": "Addison disease",
+          "id": "qrn-0365",
+          "topic": "UTI with delirium",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Hypotension, tachycardia, lactate and rising creatinine are nonspecific shock/organ-dysfunction findings; no adrenal/steroid history, hyponatremia, hyperkalemia, hypoglycemia or cortisol context establishes adrenal insufficiency.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "No delirium or altered cognition is actually described, and there are no urinary symptoms, fever, urinalysis or culture. Oliguria, lactate 4.1 mmol/L and creatinine rising from 0.9 to 1.6 mg/dL suggest perfusion/renal deterioration but do not establish a UTI source.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0346",
-          "topic": "Metformin-associated lactic acidosis",
+          "id": "qrn-0366",
+          "topic": "Continuous bladder irrigation obstruction",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No metformin exposure, diabetes/renal-risk history, lactate elevation, pH/bicarbonate or anion-gap acidosis is supplied; hypoxemia and hyperkalemic ECG findings create unrelated competing emergencies.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "No TURP, bladder irrigation, catheter, inflow/outflow discrepancy, clots, suprapubic pain or bladder distention is documented. Hypotension/tachycardia/tachypnea with potassium 6.2 mEq/L and peaked T waves is a separate unstable hyperkalemia presentation.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0347",
-          "topic": "Insulin pump interruption",
+          "id": "qrn-0367",
+          "topic": "Acute ischemic stroke",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "A 3-day-old newborn in a special-care nursery is an implausible unsupported context for the stated insulin-pump interruption; no diabetes/pump details, infusion interruption, glucose, ketones or acidosis, while hyperkalemia is unexplained.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "A 7-year-old is described without focal neurologic deficit, last-known-well time, stroke scale, imaging or other stroke-specific evidence. Fever, hypotension and potassium 6.2 mEq/L with peaked T waves are competing acute problems; no stroke-specific nursing decision can be keyed.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0348",
-          "topic": "DKA potassium shift",
+          "id": "qrn-0368",
+          "topic": "Intracranial hemorrhage",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No diabetes, hyperglycemia, ketones, anion gap, pH, bicarbonate, fluid deficit or insulin treatment phase; INR 5.6 with gross hematuria is an unrelated bleeding issue.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "No sudden severe headache, neurologic deficit, trauma, anticoagulant history, altered level of consciousness or CT result is given; the stated pain is nonspecific. INR 5.6 with gross hematuria suggests bleeding elsewhere but does not establish intracranial hemorrhage.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0349",
-          "topic": "Hypercalcemic crisis",
+          "id": "qrn-0369",
+          "topic": "Status epilepticus",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No calcium level, malignancy/hyperparathyroid context, dehydration, constipation, polyuria or neurocognitive symptoms; sodium 118 with seizure is a separate major electrolyte emergency.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "Sodium 118 mEq/L with a new seizure supports a seizure/electrolyte emergency but not status epilepticus without seizure duration of at least 5 minutes or recurrent seizures without recovery. Bradycardia, hypotension and dizziness are not enough to define the seizure course or priority.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0350",
-          "topic": "Refeeding syndrome",
+          "id": "qrn-0370",
+          "topic": "Autonomic dysreflexia",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "A newborn is given no malnutrition/starvation history or recent nutrition restart; no phosphate, potassium, magnesium, fluid shift or cardiac/neuromuscular findings support refeeding syndrome. Hypercapnia/somnolence is unrelated.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "No spinal cord injury at/above T6, baseline blood-pressure context, severe hypertension, headache/flushing/diaphoresis or triggering bladder/bowel stimulus is described. A 7-year-old context is unsupported; oliguria with hypercapnia and somnolence is unrelated.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0351",
-          "topic": "Acute kidney injury",
+          "id": "qrn-0371",
+          "topic": "Increased intracranial pressure",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No baseline/current creatinine trend, BUN, urinalysis, renal insult or documented oliguria supports AKI; severe hypoglycemia with inability to swallow is a competing acute priority.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "No neurologic injury, tumor, altered pupils, declining GCS, headache/vomiting or serial neurologic findings support increased ICP. Hypotension/tachycardia/tachypnea and symptomatic hypoglycemia are competing problems; the stated observations do not demonstrate the expected neurologic pattern.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0352",
-          "topic": "Hemodialysis hypotension",
+          "id": "qrn-0372",
+          "topic": "Guillain-Barré respiratory decline",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No hemodialysis session, ultrafiltration amount, access, intradialytic BP trend or dialysis timing; low urine output alone is nonspecific and the hypoglycemia is unrelated.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "No antecedent illness, ascending weakness, areflexia, bulbar weakness, vital-capacity/NIF trend or established GBS diagnosis is supplied. Hypoxemia and tachypnea are present, but glucose 42 mg/dL with diaphoresis/unsafe swallowing is a competing acute problem and the cause of respiratory decline is not established.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0353",
-          "topic": "Arteriovenous fistula protection",
+          "id": "qrn-0373",
+          "topic": "Bacterial meningitis",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "A 7-year-old has no ESRD, dialysis access or fistula history/exam; hypotension/tachycardia with thrombocytopenia and bleeding suggests an unrelated acute instability.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "Confusion alone is nonspecific; no fever, headache, neck stiffness, photophobia, rash, CSF findings or culture evidence is given. Platelets 48,000/mm³ with mucosal bleeding is a competing hematologic problem and does not support meningitis.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0354",
-          "topic": "Peritoneal dialysis peritonitis",
+          "id": "qrn-0374",
+          "topic": "Aphasia after stroke",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No peritoneal-dialysis context, exchange details, cloudy effluent, abdominal pain/tenderness, fever or effluent cell count/culture; acute hemoglobin decline is a competing bleeding concern.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "No prior stroke, onset/last-known-well time, language assessment, focal findings or imaging is provided to establish aphasia after stroke. BP 174/102 mm Hg and a rapid hemoglobin fall from 11.2 to 8.1 g/dL are competing postoperative/hemodynamic findings.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0355",
-          "topic": "Chronic kidney disease anemia",
+          "id": "qrn-0375",
+          "topic": "Myasthenic crisis",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "No established CKD, chronicity/eGFR, hemoglobin/hematocrit, iron indices or anemia symptoms; acute confusion, elevated lactate and rising creatinine do not establish CKD anemia.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "A 3-day-old newborn is assigned myasthenic crisis without maternal myasthenia history, neonatal hypotonia/poor suck, fatigability, bulbar weakness, apnea or respiratory mechanics. Fever, tachycardia, hypotension, lactate and creatinine changes are nonspecific and may indicate another acute process.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         },
         {
-          "id": "qrn-0356",
-          "topic": "Hyperkalemia in renal failure",
+          "id": "qrn-0376",
+          "topic": "Parkinson medication timing",
           "disposition": "revise",
           "educatorReviewRequired": true,
           "findings": [
-            "Potassium 6.2 with peaked T waves supports hyperkalemia, but no renal failure history, creatinine/eGFR or medication context supports the stated etiology; the 7-year-old context and bradycardia/hypotension need a coherent pediatric case and focused immediate-action task.",
-            "All 20 use the same generic reassessment construction and one single-response format; the four rotating option/rationale families do not assess the named endocrine/renal learning objectives. The keyed response and generic rationale therefore cannot be validated against a distinct topic-specific clinical decision."
+            "No Parkinson disease history, medication name/schedule, missed or delayed dose, wearing-off pattern or motor fluctuation is described. Pain 9/10 is unexplained and potassium 6.2 mEq/L with peaked T waves is a separate immediate concern, not a medication-timing cue.",
+            "The stem normalizes to the same generic reassessment prompt across all 20 items. Four answer-option families and their corresponding generic rationale families are each reused five times; the CJMM labels rotate evenly (five each for recognize-cues, analyze-cues, prioritize-hypotheses and take-action) without a distinct task matching those functions. Each record is single-response only. The answer index agrees with the option-rationale 'Correct' marker, but the scenario does not establish a defensible topic-specific key; distractors and rationales do not explain the named condition."
           ],
           "learnerPoolAction": "unchanged-pending-qualified-review"
         }
       ],
-      "notes": "Source-level static triage only; no item content, answer key, stable ID, learner history, runtime inclusion or clinical review status changed."
+      "notes": "Static source triage only. No clinical item content, answer key, stable ID, learner history, runtime inclusion, pool membership or clinical review status changed."
     }
   },
   "tracker": {
