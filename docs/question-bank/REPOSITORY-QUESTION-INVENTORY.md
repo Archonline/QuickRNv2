@@ -146,3 +146,15 @@ The highest-value next task is an item-level release audit of the 364 rewritten 
 - No item content, answer key, ID, learner history, pool membership or clinical review metadata changed. Static triage is not clinical validation.
 - 3,600 Webmaster tracker remains absent; `QuestionGenerationTracker` remains the separate NGN 300-draft archive tracker.
 - Latest full Actions evidence remains green on older commit `68930635d07f7fb39a9a12e6208a195cf9e74b94`; starting-head Vercel status was success; no fresh Actions run on the docs-only starting head.
+
+
+## 2026-11-27 — third-tranche audit run 7
+
+- Start-of-run branch head: `99278d262d650c8d227bb551851ae4411f762822`.
+- Re-read runtime assembly: 500 core entries with a 500-unique-ID guard + 100 NGN entries = 600 assembled runtime IDs with a combined uniqueness guard. The 364 authored rewrite records remain replacements; Booster is 0 and its namespace is unassigned.
+- Statically audited `qrn-0357`–`qrn-0376`: 20 revise; all 20 require qualified educator review; 0 clinically cleared. The items use one normalized generic reassessment prompt, four repeated option/rationale families, and single-response format only. Named topics lack defining histories, focused assessment, diagnostics or treatment context; unrelated acute abnormalities and unsupported patient contexts compete with the topic.
+- Representative findings: post-TURP irrigation without a TURP/irrigation record and with hyperkalemic ECG changes (`qrn-0357`); urinary retention without voiding/bladder evidence and with coagulopathic bleeding (`qrn-0358`); renal calculi assigned to a newborn without stone evidence (`qrn-0361`); status epilepticus without seizure-duration/recovery criteria (`qrn-0369`); autonomic dysreflexia without spinal cord injury/trigger cues (`qrn-0370`); myasthenic crisis assigned to a newborn without maternal/neonatal neuromuscular context (`qrn-0375`).
+- Cumulative third-tranche audit: 120/244; 124 remain; next ID `qrn-0377`. All 120 require revision/educator review; none passed clinical release.
+- No question content, answer key, ID, learner history, pool membership or clinical review metadata changed. Static triage is not clinical validation.
+- The 3,600-specific Webmaster tracker remains absent; `QuestionGenerationTracker` is the separate NGN 300-draft archive tracker.
+- CI at start: Vercel success on the starting head; latest full Actions workflows green on older commit `68930635d07f7fb39a9a12e6208a195cf9e74b94`; no newer Actions run available. Docs-only update; no code/schema tests rerun.
