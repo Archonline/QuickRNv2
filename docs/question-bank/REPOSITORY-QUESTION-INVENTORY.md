@@ -158,3 +158,14 @@ The highest-value next task is an item-level release audit of the 364 rewritten 
 - No question content, answer key, ID, learner history, pool membership or clinical review metadata changed. Static triage is not clinical validation.
 - The 3,600-specific Webmaster tracker remains absent; `QuestionGenerationTracker` is the separate NGN 300-draft archive tracker.
 - CI at start: Vercel success on the starting head; latest full Actions workflows green on older commit `68930635d07f7fb39a9a12e6208a195cf9e74b94`; no newer Actions run available. Docs-only update; no code/schema tests rerun.
+
+
+## 2026-11-28 — third-tranche audit run 8
+
+- Starting feature-branch head: `e0c765620ce434dbe083f5770d04587e46ea9be8`; ledger cursor was `qrn-0377` (the older `qrn-0277` plan note is superseded by recorded runs 3–7).
+- Source-level runtime reinspection: 500 core + 100 NGN = 600 unique guarded runtime IDs. Core composition: 36 case-study screens, 100 curated traditional items, 364 category-generated positions. The 364 authored rewrites replace stable IDs and add no inventory. Booster 0; namespace unassigned.
+- Statically triaged `qrn-0377`–`qrn-0396`: 20 revise; all 20 require qualified educator review; 0 clinically cleared. All are single-response with four options/rationales and matching answer-index/correct-marker structure, but share one topic-substituted reassessment task, four option/rationale families reused five times each, and CJMM labels that rotate without distinct task alignment. Most lack topic-defining context; unrelated acute findings compete with the named topics. Item-level findings are in the ledger and run 8 log.
+- Cumulative third-tranche audit: 140/244; 104 remain; next ID `qrn-0397`. All 140 require revision/educator review; none clinically cleared.
+- No question content, answer key, stable ID, learner history, learner-pool membership or clinical review metadata changed. Static triage is not clinical validation.
+- Only `src/QuestionGenerationTracker.tsx` exists; it reads the separate NGN 300-draft manifest, which has an empty question archive and unreconciled ID registry. The 3,600-specific Webmaster tracker remains absent.
+- CI at start: Vercel success on the starting head; only Vercel Preview Comments appears as a current check-run. Latest full Actions checks succeeded on older commit `68930635d07f7fb39a9a12e6208a195cf9e74b94`; no fresh full Actions run was available. Documentation-only update; no code/schema suite rerun.
