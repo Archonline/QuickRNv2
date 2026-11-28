@@ -63,3 +63,13 @@ This is a source-level audit of the current main branch and its documented recon
 - Representative examples: `qrn-0297` hypertensive emergency without documented hypertension; `qrn-0298` aortic dissection without aortic/pain/imaging evidence; `qrn-0302` warfarin bleeding without anticoagulant/INR/bleeding evidence; `qrn-0303` VT without ECG/rhythm evidence; `qrn-0310` pacemaker failure without device/ECG evidence; `qrn-0316` status asthmaticus without asthma/airflow findings.
 - Cumulative third-tranche progress: 60/244 triaged; 184 remain; next ID `qrn-0317`.
 - No content, answer key, ID, learner-history reference, pool membership, or clinical-review record was changed. All audited items remain not clinically verified. This is static triage only.
+
+
+## 2026-11-28 — Phase 1 third-tranche run 8
+
+- Starting feature-branch head: `e0c765620ce434dbe083f5770d04587e46ea9be8`; durable ledger cursor: `qrn-0377`. The older `qrn-0277` cursor note is superseded by the run 3–7 checkpoints and the current ledger.
+- Statically triaged `qrn-0377`–`qrn-0396`: 20 revise, all require qualified educator review, 0 clinically cleared. Topic-specific findings and all IDs are recorded in `3600-expansion-ledger.json` and `runs/2026-11-28-run-08.md`.
+- Common defect: one generic reassessment task with four reused option/rationale families and four evenly rotating CJMM labels; most named neurologic/musculoskeletal topics lack defining history, focused assessment, diagnostic evidence or injury/procedure context. Some acute cues are present (new seizure with sodium 118; new confusion) but do not support a topic-specific keyed decision.
+- Third rewrite tranche progress: **140/244 audited; 104 remain; next ID `qrn-0397`**. All 140 require substantive revision/educator review; none clinically cleared.
+- Runtime remains source-guarded at 600 unique IDs (500 core + 100 NGN). The 364 authored rewrite records remain replacements. Booster 0; namespace unassigned. No net-new authoring or integration.
+- No content, answer key, ID, learner history, learner-pool membership or review record changed. Static triage is not clinical verification.
