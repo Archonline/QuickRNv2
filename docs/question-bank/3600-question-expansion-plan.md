@@ -190,3 +190,16 @@ The next 20 records in `src/authoredCoreRewriteBatch3.ts`, `qrn-0357`–`qrn-037
 Cumulative progress in the 244-item tranche: **120/244 triaged**, **120 require substantive revision/educator review**, **0 clinically cleared**, and **124 remain**. The next audit ID is `qrn-0377`. No item was modified, retired, quarantined or removed from learner selection; stable IDs and learner-history references remain unchanged. No clinical review or approval was fabricated.
 
 The 3,600-specific Webmaster tracker remains absent; `src/QuestionGenerationTracker.tsx` is for the separate NGN 300-draft archive. The durable 3,600 ledger remains the source of progress. CI at start showed Vercel success on the inspected head; latest full Actions checks were successful on older commit `68930635d07f7fb39a9a12e6208a195cf9e74b94`, with no newer Actions run available. This run changed documentation only; no code/schema test suite was rerun. Passing automation does not establish clinical correctness.
+
+
+## 2026-11-28 run 8 checkpoint — third-tranche audit
+
+At the start of the run the feature branch head was `e0c765620ce434dbe083f5770d04587e46ea9be8`; the durable ledger cursor was `qrn-0377`. The older `qrn-0277` cursor note is superseded by runs 3–7 and the current ledger, so this run follows `nextAuditId`.
+
+Reinspection of source-level runtime assembly confirms 500 core + 100 NGN = 600 unique guarded IDs. The core is composed of 36 case-study screens, 100 curated traditional items and 364 category-generated positions. The 364 authored rewrites are stable-ID replacements, not net-new questions. Core credit remains 600/3,000; Booster 0/600 and namespace unassigned. No runtime code was executed during this docs-only audit.
+
+Statically triaged `qrn-0377`–`qrn-0396`: 20 classified `revise`, all require qualified educator review, 0 clinically cleared. All use one topic-substituted reassessment task, four option families and four rationale families each reused five times, single-response only, and four CJMM labels that rotate without distinct task alignment. Most topics lack defining history, injury/procedure context, focused assessment or diagnostic evidence. New seizure with sodium 118 and new confusion are partially relevant cues in two items, but the generic task still does not establish a defensible topic-specific response. Item-level evidence is recorded in the ledger and `runs/2026-11-28-run-08.md`.
+
+Cumulative third-tranche progress: **140/244 audited**, **140 require revision/educator review**, **0 clinically cleared**, **104 remain**; next ID `qrn-0397`. No content, answer key, ID, learner history, learner-pool membership or review metadata changed. The 3,600 Webmaster tracker remains absent; `QuestionGenerationTracker` is the separate NGN 300-draft archive tracker. No unreviewed content was merged or deployed.
+
+CI at start: Vercel success on the starting head; latest full Actions checks successful on older commit `68930635d07f7fb39a9a12e6208a195cf9e74b94`; no newer full Actions run. This docs-only update does not alter code/schema, so code/test suites were not rerun.
